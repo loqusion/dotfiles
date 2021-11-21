@@ -1,8 +1,11 @@
 source /opt/homebrew/share/antigen/antigen.zsh
 
 antigen use oh-my-zsh
+antigen bundle cargo
 antigen bundle git
 antigen bundle nvm
+antigen bundle rust
+antigen bundle rustup
 antigen bundle yarn
 
 antigen bundle zsh-users/zsh-autosuggestions
@@ -26,6 +29,7 @@ bindkey -e
 
 alias vim=nvim
 alias config='git --git-dir="$HOME/.cfg" --work-tree="$HOME"'
+alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
