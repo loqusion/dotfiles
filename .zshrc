@@ -13,15 +13,19 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 
 antigen apply
 
-if hash brew &>/dev/null
-then
+if hash brew &>/dev/null; then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-
-  autoload -Uz compinit
-  compinit
 fi
 
+autoload -Uz bashcompinit && bashcompinit -i
+autoload -Uz compinit && compinit
+
+# aws completion
+complete -C '/usr/local/bin/aws_completer' aws
+
 export PATH="${HOME}/.yarn/bin:${PATH}"
+export PATH="${HOMEBREW_PREFIX}/opt/ruby/bin:${PATH}"
+export PATH="${HOMEBREW_PREFIX}/lib/ruby/gems/3.0.0/bin:${PATH}"
 
 export EDITOR=nvim
 # Need this for emacs bindings in VSCode
