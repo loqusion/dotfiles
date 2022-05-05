@@ -1,0 +1,534 @@
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+on_event = 'CursorHold'
+hook_source = '''
+  " Note: for profile
+  "let g:denops#server#deno_args = [
+  "    \ '-q',
+  "    \ '--no-check',
+  "    \ '--unstable',
+  "    \ '-A',
+  "    \ '--inspect',
+  "    \ ]
+'''
+
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+hook_add = '''
+  nnoremap <silent>   [Space]f
+  \ <Cmd>Defx -listed -resume -buffer-name=win-`win_getid()`<CR>
+'''
+hook_source = '''
+  call defx#custom#column('mark', {
+          \ 'readonly_icon': '✗',
+          \ 'selected_icon': '✓',
+          \ })
+  call defx#custom#column('icon', {
+          \ 'directory_icon': '+',
+          \ 'opened_icon': '-',
+          \ 'root_icon': ' ',
+          \ })
+  call defx#custom#column('icon', {
+        \ 'directory_icon': '▸ ',
+        \ 'file_icon': '  ',
+        \ 'opened_icon': '▾ ',
+        \ 'root_icon': '  ',
+        \ })
+'''
+[plugins.ftplugin]
+defx = '''
+  " Define mappings
+  nnoremap <silent><buffer><expr> <CR>
+  \ defx#is_binary() ?
+  \ defx#do_action('execute_system') :
+  \ defx#do_action('open')
+  nnoremap <silent><buffer><expr> +
+  \ defx#do_action('open', 'choose')
+  nnoremap <silent><buffer><expr> c
+  \ defx#do_action('copy')
+  nnoremap <silent><buffer><expr> !
+  \ defx#do_action('execute_command')
+  nnoremap <silent><buffer><expr> &
+  \ defx#do_action('execute_command', ['', 'async'])
+  nnoremap <silent><buffer><expr> m
+  \ defx#do_action('move')
+  nnoremap <silent><buffer><expr> p
+  \ defx#do_action('paste')
+  nnoremap <silent><buffer><expr> l
+  \ defx#do_action('open')
+  nnoremap <silent><buffer><expr> E
+  \ defx#do_action('open', 'vsplit')
+  nnoremap <silent><buffer><expr> L
+  \ defx#do_action('link')
+  nnoremap <silent><buffer><expr> P
+  \ defx#do_action('preview')
+  nnoremap <silent><buffer><expr> o
+  \ defx#do_action('open_tree', ['nested', 'toggle'])
+  nnoremap <silent><buffer><expr> O
+  \ defx#do_action('open_tree', 'recursive')
+  nnoremap <silent><buffer><expr> K
+  \ defx#do_action('new_directory', ['open', 'open_tree'])
+  nnoremap <silent><buffer><expr> N
+  \ defx#do_action('new_file', ['open', 'drop'])
+  nnoremap <silent><buffer><expr> M
+  \ defx#do_action('new_multiple_files')
+  nnoremap <silent><buffer><expr> C
+  \ defx#do_action('toggle_columns', 'mark:filename:type:size:time')
+  nnoremap <silent><buffer><expr> S
+  \ defx#do_action('toggle_sort', 'Time')
+  nnoremap <silent><buffer><expr> se
+  \ defx#do_action('add_session')
+  nnoremap <silent><buffer><expr> sl
+  \ defx#do_action('load_session')
+  nnoremap <silent><buffer><expr> d
+  \ defx#do_action('remove_trash')
+  nnoremap <silent><buffer><expr> r
+  \ defx#do_action('rename')
+  nnoremap <silent><buffer><expr> x
+  \ defx#do_action('execute_system')
+  nnoremap <silent><buffer><expr> >
+  \ defx#do_action('toggle_ignored_files')
+  nnoremap <silent><buffer><expr> <
+  \ defx#do_action('change_ignored_files')
+  nnoremap <silent><buffer><expr> .
+  \ defx#do_action('repeat')
+  nnoremap <silent><buffer><expr> yy
+  \ defx#do_action('yank_path')
+  nnoremap <silent><buffer><expr> h
+  \ defx#do_action('cd', ['..', '', 'nohist'])
+  nnoremap <silent><buffer><expr> ~
+  \ defx#do_action('cd')
+  nnoremap <silent><buffer><expr> \
+  \ defx#do_action('cd', getcwd())
+  nnoremap <silent><buffer><expr> q
+  \ defx#do_action('quit')
+  nnoremap <silent><buffer><expr> <Space>
+  \ defx#do_action('toggle_select') . 'j'
+  nnoremap <silent><buffer><expr> *
+  \ defx#do_action('toggle_select_all')
+  nnoremap <silent><buffer><expr> j
+  \ line('.') == line('$') ? 'gg' : 'j'
+  nnoremap <silent><buffer><expr> k
+  \ line('.') == 1 ? 'G' : 'k'
+  nnoremap <silent><buffer><expr> <C-l>
+  \ defx#do_action('redraw')
+  xnoremap <silent><buffer><expr> <CR>
+  \ defx#do_action('toggle_select_visual')
+  nnoremap <silent><buffer><expr> <C-g>
+  \ defx#do_action('print')
+  nnoremap <silent><buffer><expr> <Tab> winnr('$') != 1 ?
+  \ '<Cmd>wincmd w<CR>' :
+  \ '<Cmd>Defx -buffer-name=temp -split=vertical<CR>'
+'''
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+hook_source = '''
+let g:context_filetype#ignore_patterns = {
+    \ 'toml': ['^\s*#\s*'],
+    \ }
+'''
+
+[[plugins]]
+repo = 'Shougo/deol.nvim'
+depends = ['ddu.vim', 'ddc.vim']
+hook_add = '''
+  nnoremap <expr><silent> [Space]s
+  \ printf('<Cmd>Deol %s -no-start-insert -toggle<CR>',
+  \        has('win32') ? 'cmd': 'zsh')
+  nnoremap <silent> sD  <Cmd>call deol#kill_editor()<CR>
+  nnoremap <silent> <C-t> <Cmd>Ddu -name=deol
+  \ -ui-param-split=`has('nvim') ? 'floating' : 'horizontal'`
+  \ -ui-param-winRow=1 -ui-param-autoResize
+  \ -ui-param-cursorPos=`tabpagenr()-1`
+  \ deol<CR>
+'''
+hook_source = '''
+  let g:deol#enable_dir_changed = v:false
+  let g:deol#prompt_pattern = '\w*% \?'
+  let g:deol#shell_history_path = '~/.zsh-history'
+  let g:deol#extra_options = {
+      \ 'term_kill': 'kill',
+      \ }
+  "let g:deol#enable_ddc_completion = v:true
+  let g:deol#nvim_server = '~/.cache/nvim/server.pipe'
+  call ddu#custom#patch_global({
+      \   'sourceParams': {
+      \     'deol': {
+      \       'command': ['zsh'],
+      \     },
+      \   }
+      \ })
+  " Set terminal colors
+  if has('nvim')
+    let g:terminal_color_0  = '#6c6c6c'
+    let g:terminal_color_1  = '#ff6666'
+    let g:terminal_color_2  = '#66ff66'
+    let g:terminal_color_3  = '#ffd30a'
+    let g:terminal_color_4  = '#1e95fd'
+    let g:terminal_color_5  = '#ff13ff'
+    let g:terminal_color_6  = '#1bc8c8'
+    let g:terminal_color_7  = '#c0c0c0'
+    let g:terminal_color_8  = '#383838'
+    let g:terminal_color_9  = '#ff4444'
+    let g:terminal_color_10 = '#44ff44'
+    let g:terminal_color_11 = '#ffb30a'
+    let g:terminal_color_12 = '#6699ff'
+    let g:terminal_color_13 = '#f820ff'
+    let g:terminal_color_14 = '#4ae2e2'
+    let g:terminal_color_15 = '#ffffff'
+  else
+    let g:terminal_ansi_colors = [
+          \ '#6c6c6c', '#ff6666', '#66ff66', '#ffd30a',
+          \ '#1e95fd', '#ff13ff', '#1bc8c8', '#c0c0c0',
+          \ '#383838', '#ff4444', '#44ff44', '#ffb30a',
+          \ '#6699ff', '#f820ff', '#4ae2e2', '#ffffff',
+          \ ]
+  endif
+  tnoremap <expr><C-t> ddc#manual_complete()
+  tnoremap <silent><expr> <Tab> pum#visible() ?
+        \ '<Cmd>call pum#map#insert_relative(+1)<CR>' :
+        \ '<Tab>'
+  tnoremap <silent><expr> <S-Tab> pum#visible() ?
+        \ '<Cmd>call pum#map#insert_relative(-1)<CR>' :
+        \ '<S-Tab>'
+  tnoremap <Down>   <Cmd>call pum#map#select_relative(+1)<CR>
+  tnoremap <Up>     <Cmd>call pum#map#select_relative(-1)<CR>
+  tnoremap <silent><expr> <C-y>
+        \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<C-y>'
+  tnoremap <silent><expr> <C-e>
+        \ pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<C-e>'
+'''
+[plugins.ftplugin]
+deol = '''
+  nnoremap <buffer><silent> [Space]gc
+  \ <Cmd>call deol#send('git commit')<CR>
+  nnoremap <buffer><silent> [Space]gs
+  \ <Cmd>call deol#send('git status')<CR>
+  nnoremap <buffer><silent> [Space]gA
+  \ <Cmd>call deol#send('git commit --amend')<CR>
+  nmap <buffer> e <Plug>(deol_edit)
+  tmap <buffer> <CR> <Plug>(deol_execute_line)
+  call ddc#custom#patch_buffer('sourceOptions', {
+      \ '_': {
+      \   'converters': [],
+      \ },
+      \ })
+'''
+zsh = '''
+  nnoremap <buffer><silent> [Space]gc
+  \ <Cmd>call deol#send('git commit')<CR>
+  nnoremap <buffer><silent> [Space]gs
+  \ <Cmd>call deol#send('git status')<CR>
+  nnoremap <buffer><silent> [Space]gA
+  \ <Cmd>call deol#send('git commit --amend')<CR>
+'''
+
+[[plugins]]
+repo = 'Shougo/junkfile.vim'
+on_source = ['ddu.vim']
+hook_add = '''
+  nnoremap <silent> se <Cmd>Ddu junkfile -volatile<CR>
+'''
+
+[[plugins]]
+repo = 'Shougo/vinarise.vim'
+on_cmd = 'Vinarise'
+hook_add = '''
+  let g:vinarise_enable_auto_detect = v:true
+  let g:vinarise_guifont = 'Courier\ 10\ Pitch:h14'
+'''
+
+[[plugins]]
+repo = 'Shougo/ddx.vim'
+
+[[plugins]]
+repo = 'kana/vim-niceblock'
+on_map = {x = '<Plug>'}
+hook_add = '''
+  xmap I  <Plug>(niceblock-I)
+  xmap A  <Plug>(niceblock-A)
+'''
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
+on_ft = ['qf']
+[plugins.ftplugin]
+qf = '''
+  nnoremap <buffer> r <Cmd>Qfreplace<CR>
+'''
+
+[[plugins]]
+repo = 'thinca/vim-scouter'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+
+[[plugins]]
+repo = 'rhysd/accelerated-jk'
+on_map = {n = '<Plug>'}
+hook_add = '''
+  nmap <silent>j <Plug>(accelerated_jk_gj)
+  nmap <silent>k <Plug>(accelerated_jk_gk)
+'''
+
+[[plugins]]
+repo = 'rhysd/vim-operator-surround'
+depends = 'vim-operator-user'
+on_map = {n = '<Plug>'}
+hook_add = '''
+  nmap <silent>sa <Plug>(operator-surround-append)
+  nmap <silent>sd <Plug>(operator-surround-delete)a
+  nmap <silent>sr <Plug>(operator-surround-replace)a
+  nmap <silent>sc <Plug>(operator-surround-replace)a
+'''
+
+[[plugins]]
+repo = 'kannokanno/previm'
+on_cmd = 'PrevimOpen'
+depends = 'open-browser.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vim-jplus'
+on_map = {n = '<Plug>'}
+hook_add = '''
+  nmap J <Plug>(jplus)
+'''
+
+# [[plugins]]
+# repo = 'katono/rogue.vim'
+
+[[plugins]]
+repo = 'lambdalisue/vim-findent'
+
+[[plugins]]
+repo = 'tweekmonster/helpful.vim'
+on_cmd = 'HelpfulVersion'
+
+[[plugins]]
+repo = 'rhysd/vim-gfm-syntax'
+on_ft = 'markdown'
+
+[[plugins]]
+repo = 'machakann/vim-vimhelplint'
+on_ft = 'help'
+[plugins.ftplugin]
+help = '''
+  nnoremap <silent><buffer> ,r  <Cmd>VimhelpLint!<CR>
+'''
+
+#[[plugins]]
+#repo = 'lambdalisue/suda.vim'
+#on_event = 'BufRead'
+#hook_add = '''
+#  let g:suda_smart_edit = v:true
+#'''
+
+[[plugins]]
+repo = 'mattn/vim-goimports'
+on_ft = 'go'
+hook_source = '''
+  let g:goimports_simplify = v:true
+'''
+
+[[plugins]]
+repo = 'dag/vim2hs'
+on_ft = 'haskell'
+hook_source = '''
+let g:haskell_conceal = v:false
+'''
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+if = 'has("nvim") && !has("win32")'
+on_event = 'BufRead'
+hook_post_update = 'TSUpdate'
+hook_source = '''
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = 'all',
+    additional_vim_regex_highlighting = false,
+    highlight = {
+        enable = true,
+        disable = {'c', 'help'},
+    },
+}
+EOF
+" Enable syntax for non treesitter highlights
+autocmd MyAutoCmd FileType c,help,gitcommit
+\ if &l:syntax == '' | syntax enable | endif
+" Custom colors
+highlight CandyBlue         gui=NONE guibg=#2c2c2c guifg=#1e95fd
+highlight CandyCranberry    gui=NONE guibg=#2c2c2c guifg=#4ae2e2
+highlight CandyEmerald      gui=NONE guibg=#2c2c2c guifg=#44ff44
+highlight CandyGreen        gui=NONE guibg=#2c2c2c guifg=#66ff66
+highlight CandyLime         gui=NONE guibg=#2c2c2c guifg=#4ae2e2
+highlight CandyOrange       gui=NONE guibg=#2c2c2c guifg=#ffb30a
+highlight CandyRed          gui=NONE guibg=#2c2c2c guifg=#ff6666
+highlight CandySky          gui=NONE guibg=#2c2c2c guifg=#6699ff
+highlight CandyViolet       gui=NONE guibg=#2c2c2c guifg=#ff13ff
+highlight CandyWhite        gui=NONE guibg=#2c2c2c guifg=#cccccc
+highlight CandyYellow       gui=NONE guibg=#2c2c2c guifg=#ffd30a
+highlight CandyCoral        gui=NONE guibg=#2c2c2c guifg=#f820ff
+highlight CandyTurquoise    gui=NONE guibg=#2c2c2c guifg=#1bc8c8
+highlight CandyCrimson      gui=NONE guibg=#2c2c2c guifg=#ff4444
+" neovim treesitter colors
+highlight! link TSAnnotation      CandyViolet
+highlight! link TSAttribute       CandySky
+highlight! link TSBoolean         Boolean
+highlight! link TSCharacter       Character
+highlight! link TSConditional     CandyCoral
+highlight! link TSConstBuiltin    CandyGreen
+highlight! link TSConstMacro      CandyViolet
+highlight! link TSConstant        Constant
+highlight! link TSConstructor     CandyEmerald
+highlight! link TSError           Error
+highlight! link TSException       Exception
+highlight! link TSField           CandyBlue
+highlight! link TSFloat           Float
+highlight! link TSFuncBuiltin     CandySky
+highlight! link TSFuncMacro       CandySky
+highlight! link TSFunction        CandyCranberry
+highlight! link TSInclude         CandyCranberry
+highlight! link TSKeyword         CandyEmerald
+highlight! link TSKeywordFunction Keyword
+highlight! link TSKeywordOperator CandyViolet
+highlight! link TSLabel           Label
+highlight! link TSLiteral         CandyYellow
+highlight! link TSMethod          CandyTurquoise
+highlight! link TSNamespace       CandyBlue
+highlight! link TSNone            Normal
+highlight! link TSNumber          Number
+highlight! link TSOperator        Operator
+highlight! link TSParameter       CandyWhite
+highlight! link TSParameterReference CandyWhite
+highlight! link TSProperty        Identifier
+highlight! link TSPunctBracket    CandyOrange
+highlight! link TSPunctDelimiter  CandyLime
+highlight! link TSPunctSpecial    Special
+highlight! link TSRepeat          Repeat
+highlight! link TSString          String
+highlight! link TSStringEscape    SpecialChar
+highlight! link TSStringRegex     String
+highlight! link TSTag             CandyBlue
+highlight! link TSTagDelimiter    CandyLime
+highlight! link TSText            TSNone
+highlight! link TSTitle           Title
+highlight! link TSType            Type
+highlight! link TSTypeBuiltin     Type
+highlight! link TSURL             Underlined
+highlight! link TSUnderline       Underlined
+highlight! link TSVariableBuiltin CandyLime
+'''
+
+[[plugins]]
+repo = 'hrsh7th/vim-eft'
+hook_source = '''
+let g:eft_ignorecase = v:true
+'''
+hook_add = '''
+nmap ;; <Plug>(eft-repeat)
+xmap ;; <Plug>(eft-repeat)
+nmap f <Plug>(eft-f)
+xmap f <Plug>(eft-f)
+omap f <Plug>(eft-f)
+nmap F <Plug>(eft-F)
+xmap F <Plug>(eft-F)
+omap F <Plug>(eft-F)
+'''
+on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+
+#[[plugins]]
+#repo = 'teal-language/vim-teal'
+#on_ft = 'teal'
+
+[[plugins]]
+repo = 'joker1007/vim-markdown-quote-syntax'
+on_ft = 'markdown'
+
+[[plugins]]
+repo = 'rcarriga/nvim-notify'
+on_lua = 'notify'
+on_source = '''
+lua vim.notify = require('notify')
+'''
+
+[[plugins]]
+repo = 'mattn/vim-notification'
+if = '!has("nvim")'
+
+[[plugins]]
+repo = 'mattn/vim-treesitter'
+build = 'cd server && go build'
+if = '!has("nvim")'
+#on_event = 'BufRead'
+
+[[plugins]]
+repo = 'Shougo/echodoc.vim'
+on_event = 'InsertEnter'
+hook_source = '''
+  call echodoc#enable()
+  let g:echodoc#type = has('nvim') ? 'floating' : 'popup'
+  let g:echodoc#events = ['PumCompleteDone', 'TextChangedP', 'PumCompleteChanged']
+'''
+
+#[[plugins]]
+#repo = 'github/copilot.vim'
+#hook_source = '''
+#let g:copilot_no_maps = v:true
+#imap <script><silent><nowait><expr> <C-g> copilot#Accept()
+#'''
+
+[[plugins]]
+repo = 'VonHeikemen/fine-cmdline.nvim'
+if = 'has("nvim")'
+depends = 'nui.nvim'
+on_lua = 'fine-cmdline'
+hook_add = '''
+nnoremap <C-p> <Cmd>lua require'fine-cmdline'.setup({
+\  cmdline = {
+\    enable_keymaps = false
+\  },
+\  popup = {
+\    buf_options = {
+\      filetype = 'FineCmdlinePrompt'
+\    },
+\  },
+\  hooks = {
+\    before_mount = function(input)
+\      input.input_props.prompt = ''
+\    end,
+\    set_keymaps = function(imap, feedkeys)
+\      local fn = require('fine-cmdline').fn
+\      imap('<Esc'..'>', fn.close)
+\      imap('<C-c>', fn.close)
+\      imap('jj', fn.close)
+\      imap('<C-p>', fn.up_history)
+\      imap('<C-n>', fn.down_history)
+\    end,
+\  },
+\})<CR><Cmd>lua require('fine-cmdline').open()<CR>
+'''
+
+[[plugins]]
+repo = 'MunifTanjim/nui.nvim'
+
+[[plugins]]
+repo = 'yuki-yano/fuzzy-motion.vim'
+depends = 'denops.vim'
+if = 'has("nvim")'
+on_cmd = 'FuzzyMotion'
+hook_add = '''
+  nnoremap F   <Cmd>FuzzyMotion<CR>
+'''
+
+[[plugins]]
+repo = 'tversteeg/registers.nvim'
+depends = 'denops.vim'
+if = 'has("nvim")'
+on_map = '"'
+hook_source = '''
+let g:registers_paste_in_normal_mode = 1
+let g:registers_hide_only_whitespace = 1
+let g:registers_show_empty_registers = 0
+'''
