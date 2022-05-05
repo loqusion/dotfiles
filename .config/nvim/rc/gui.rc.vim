@@ -50,8 +50,8 @@ endif
 
 set ambiwidth=double
 
-set mouse=
-set mousemodel=
+"set mouse=
+"set mousemodel=
 
 " Don't focus the window when the mouse pointer is moved.
 set nomousefocus
@@ -69,7 +69,7 @@ set guioptions-=e
 set guioptions+=c
 " set guioptions+=!
 " Use dark mode.
-set guioptions+=d
+"set guioptions+=d
 
 " Don't flick cursor.
 set guicursor&

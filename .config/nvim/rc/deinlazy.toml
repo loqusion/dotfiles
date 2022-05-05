@@ -340,7 +340,7 @@ let g:haskell_conceal = v:false
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
-if = 'has("nvim") && !has("win32")'
+if = 'has("nvim") && !has("win32") && v:false'
 on_event = 'BufRead'
 hook_post_update = 'TSUpdate'
 hook_source = '''

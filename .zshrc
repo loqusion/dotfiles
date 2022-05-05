@@ -32,6 +32,8 @@ export EDITOR=nvim
 bindkey -e
 
 alias vim=nvim
+alias neovide='NEOVIDE_MULTIGRID=1 neovide'
+alias nvide='neovide'
 alias config='git --git-dir="$HOME/.cfg" --work-tree="$HOME"'
 alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
 

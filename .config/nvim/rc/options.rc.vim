@@ -40,7 +40,7 @@ set smarttab
 " Exchange tab to spaces.
 set expandtab
 " Substitute <Tab> with blanks.
-" set tabstop=8
+set tabstop=4
 " Spaces instead <Tab>.
 " set softtabstop=4
 " Autoindent width.
@@ -50,6 +50,10 @@ set shiftround
 
 " Enable smart indent.
 set autoindent smartindent
+
+" Show line numbers
+set number
+set relativenumber
 
 " Disable modeline.
 set modelines=0
