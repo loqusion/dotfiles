@@ -23,11 +23,8 @@ autoload -Uz compinit && compinit
 # aws completion
 complete -C '/usr/local/bin/aws_completer' aws
 
-export PATH="${HOME}/.yarn/bin:${PATH}"
-export PATH="${HOMEBREW_PREFIX}/opt/ruby/bin:${PATH}"
-export PATH="${HOMEBREW_PREFIX}/lib/ruby/gems/3.0.0/bin:${PATH}"
+export PATH="${HOME}/.yarn/bin:${PATH}:${HOMEBREW_PREFIX}/opt/ruby/bin:${PATH}:${HOMEBREW_PREFIX}/lib/ruby/gems/3.1.0/bin:${PATH}"
 
-export EDITOR=nvim
 # Need this for emacs bindings in VSCode
 bindkey -e
 
