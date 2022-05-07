@@ -44,7 +44,7 @@ set tabstop=4
 " Spaces instead <Tab>.
 " set softtabstop=4
 " Autoindent width.
-set shiftwidth=4
+set shiftwidth=0
 " Round indent by shiftwidth.
 set shiftround
 
@@ -323,4 +323,5 @@ if exists('+termguicolors') && !has('gui_running')
 endif
 
 " Colorscheme
-colorscheme candy
+colorscheme space_vim_theme
+set background=dark

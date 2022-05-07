@@ -15,6 +15,11 @@ augroup MyAutoCmd
         \ call vimrc#on_filetype()
 augroup END
 
+" Re-source every time vim configuration is updated.
+augroup MyAutoCmd
+  autocmd BufWritePost */rc/{*.vim,*.toml,vimrc} nested source $MYVIMRC
+augroup END
+
 let $CACHE = expand('~/.cache')
 if !isdirectory($CACHE)
   call mkdir($CACHE, 'p')
@@ -22,6 +27,10 @@ endif
 
 " Use English interface.
 language message C
+
+if filereadable(expand('~/.secret_vimrc'))
+  source ~/.secret_vimrc
+endif
 
 " Load dein.
 if &runtimepath !~# '/dein.vim'
@@ -49,6 +58,13 @@ let g:dein#enable_notification = v:true
 let g:dein#install_check_remote_threshold = 24 * 60 * 60
 let g:dein#auto_remote_plugins = v:false
 let g:dein#install_copy_vim = has('nvim')
+let g:dein#default_options = {}
+
+" We want to reload the plugin configs when they're updated.
+" TODO: This currently doesn't work properly!
+"if !has('vim_starting')
+"  let g:dein#default_options['overwrite'] = v:true
+"endif
 
 let s:path = $CACHE . '/dein'
 if dein#min#load_state(s:path)
@@ -79,8 +95,8 @@ if dein#min#load_state(s:path)
 
   call dein#load_toml(s:dein_toml, {'lazy': 0})
   call dein#load_toml(s:dein_lazy_toml, {'lazy' : 1})
-  "call dein#load_toml(s:dein_ddc_toml, {'lazy' : 1})
-  "call dein#load_toml(s:dein_ddu_toml, {'lazy' : 1})
+  call dein#load_toml(s:dein_ddc_toml, {'lazy' : 1})
+  call dein#load_toml(s:dein_ddu_toml, {'lazy' : 1})
   call dein#load_toml(s:dein_ft_toml)
 
   if filereadable('vimrc_local.vim')
