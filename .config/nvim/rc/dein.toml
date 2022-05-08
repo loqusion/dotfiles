@@ -33,31 +33,43 @@ repo = 'cespare/vim-toml'
 repo = 'Vimjas/vim-python-pep8-indent'
 
 [[plugins]]
+repo = 'leafOfTree/vim-vue-plugin'
+hook_add = '''
+  let g:vim_vue_plugin_config = {
+    \'syntax': {
+    \    'template': ['html'],
+    \    'script': ['typescript'],
+    \    'style': ['css'],
+    \},
+    \'full_syntax': [],
+    \'initial_indent': [],
+    \'attribute': 0,
+    \'keyword': 0,
+    \'foldexpr': 0,
+    \'debug': 0,
+    \}
+'''
+
+[[plugins]]
+repo = 'rbtnn/vim-vimscript_indentexpr'
+
+[[plugins]]
 repo = 'jiangmiao/auto-pairs'
 hook_source = '''
   let g:AutoPairsFlyMode = 0
-  let g:AutoPairsShortcutToggle = ''
 '''
 
 [[plugins]]
 repo = 'tpope/vim-endwise'
 
 [[plugins]]
-repo = """https://raw.githubusercontent.com/Shougo\
-          /shougo-s-github/master/vim/colors/candy.vim"""
-script_type = 'colors'
-if = 'v:false'
-
-[[plugins]]
-repo = 'liuchengxu/space-vim-dark'
-if = 'v:false'
-
-[[plugins]]
 repo = 'liuchengxu/space-vim-theme'
+hook_add = '''
+  let g:space_vim_transp_bg = 1
+'''
 hook_source = '''
-  "hi Comment guifg=#5C6370 ctermfg=59
   augroup MyAutoCmd
     autocmd VimEnter,ColorScheme *
-    \ if !has('gui_running') | hi Normal ctermbg=NONE guibg=NONE | endif
+    \ hi Comment guifg=#5C6370 ctermfg=59
   augroup END
 '''

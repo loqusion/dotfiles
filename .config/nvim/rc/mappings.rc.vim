@@ -103,6 +103,7 @@ nnoremap s?    ?
 
 " Better x
 nnoremap x "_x
+nnoremap X "_X
 
 " Disable Ex-mode.
 nnoremap Q  q

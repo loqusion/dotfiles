@@ -34,6 +34,7 @@ hook_add = '''
 '''
 hook_source = '''
 call ddu#custom#alias('source', 'file_rg', 'file_external')
+
 call ddu#custom#patch_global({
     \   'ui': 'ff',
     \   'sourceOptions': {
@@ -97,6 +98,7 @@ call ddu#custom#patch_local('files', {
     \     }
     \   },
     \ })
+
 call ddu#custom#patch_global({
     \   'sourceParams': {
     \     'file_rg': {
@@ -118,6 +120,7 @@ call ddu#custom#patch_global({
     \     },
     \   }
     \ })
+
 "call ddu#custom#action('kind', 'file', 'test',
 "    \ { args -> execute('let g:foo = 1') })
 "call ddu#custom#action('source', 'file_old', 'test2',

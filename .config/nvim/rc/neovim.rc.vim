@@ -2,10 +2,10 @@
 " For neovim:
 "
 
-let g:loaded_node_provider = v:false
-let g:loaded_perl_provider = v:false
-let g:loaded_python_provider = v:false
-let g:loaded_ruby_provider = v:false
+"let g:loaded_node_provider = v:false
+"let g:loaded_perl_provider = v:false
+let g:loaded_python_provider = v:true
+"let g:loaded_ruby_provider = v:false
 
 let g:python3_host_prog = has('win32') ? 'python.exe' : 'python3'
 
@@ -32,9 +32,9 @@ let g:terminal_scrollback_buffer_size = 3000
 
 " For neovide
 let g:neovide_no_idle = v:true
-let g:neovide_cursor_animation_length = 0.05
+let g:neovide_cursor_animation_length = 0.03
 let g:neovide_cursor_trail_length = 0.8
-let g:neovide_transparency = 0.5
+let g:neovide_transparency = 1
 
 " For nvui
 if exists('g:nvui')

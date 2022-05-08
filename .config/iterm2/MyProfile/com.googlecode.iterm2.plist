@@ -699,6 +699,8 @@
 	</dict>
 	<key>Default Bookmark Guid</key>
 	<string>93C8B635-53FD-40DE-A71F-49726E7D414B</string>
+	<key>EnableAPIServer</key>
+	<false/>
 	<key>EnableDivisionView</key>
 	<true/>
 	<key>EnableProxyIcon</key>
