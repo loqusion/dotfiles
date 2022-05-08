@@ -67,9 +67,3 @@ repo = 'liuchengxu/space-vim-theme'
 hook_add = '''
   let g:space_vim_transp_bg = 1
 '''
-hook_source = '''
-  augroup MyAutoCmd
-    autocmd VimEnter,ColorScheme *
-    \ hi Comment guifg=#5C6370 ctermfg=59
-  augroup END
-'''
