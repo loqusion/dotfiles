@@ -323,5 +323,5 @@ if exists('+termguicolors') && !has('gui_running')
 endif
 
 " Colorscheme
-colorscheme space_vim_theme
+colorscheme space_vim_theme_improved
 set background=dark

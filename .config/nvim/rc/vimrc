@@ -17,7 +17,7 @@ augroup END
 
 " Re-source every time vim configuration is updated.
 augroup MyAutoCmd
-  autocmd BufWritePost */rc/{*.vim,*.toml,vimrc} nested source $MYVIMRC
+  autocmd BufWritePost */rc/{*.vim,*.toml,vimrc} ++nested source $MYVIMRC
 augroup END
 
 let $CACHE = expand('~/.cache')

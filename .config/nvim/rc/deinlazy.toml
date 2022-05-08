@@ -355,9 +355,11 @@ require'nvim-treesitter.configs'.setup {
     },
 }
 EOF
+
 " Enable syntax for non treesitter highlights
 autocmd MyAutoCmd FileType c,help,gitcommit
 \ if &l:syntax == '' | syntax enable | endif
+
 " Custom colors
 "highlight CandyBlue         gui=NONE guibg=#2c2c2c guifg=#1e95fd
 "highlight CandyCranberry    gui=NONE guibg=#2c2c2c guifg=#4ae2e2
