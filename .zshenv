@@ -8,6 +8,7 @@ export LESS='-RQM'
 export GZIP='-v9N'
 export SHELL=zsh
 export MANPAGER='nvim --clean +Man\!'
+export GOPATH="$HOME/.go"
 
 #---- SVN -----------------#
 export SVN_EDITOR="vim"
