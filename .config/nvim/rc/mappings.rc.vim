@@ -94,8 +94,11 @@ nnoremap <silent> sp  <Cmd>vsplit<CR>:wincmd w<CR>
 nnoremap <silent> so  <Cmd>only<CR>
 nnoremap <silent> <Tab>      <cmd>wincmd w<CR>
 nnoremap <silent><expr> q
-      \ &l:filetype ==# 'qf' ? '<Cmd>cclose<CR>' :
       \ winnr('$') != 1 ? '<Cmd>close<CR>' : ''
+" :close works just fine to close location-list windows, whereas :cclose
+" only works on quickfix windows and makes closing location-list windows
+" fail. Idk if :close works on quickfix windows though.
+"\ &l:filetype ==# 'qf' ? '<Cmd>cclose<CR>' :
 
 " Original search
 nnoremap s/    /
@@ -222,3 +225,6 @@ inoremap <C-v>u  <C-r>=nr2char(0x)<Left>
 " Tag jump
 nnoremap tt  g<C-]>
 nnoremap tp  <Cmd>pop<CR>
+
+" Why does this even exist??
+noremap gs  <Nop>

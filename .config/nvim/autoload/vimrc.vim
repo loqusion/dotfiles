@@ -125,3 +125,69 @@ function! vimrc#diagnostics_to_qf() abort
     copen
   endif
 endfunction
+
+" Get the last selected text in visual mode
+" without using |gv| to avoid |textlock|.
+" NOTE:
+" * This function uses |gv| only when using |CTRL-V|
+"   because |gv| is the only way to get selected text
+"   when using <C-v>$ .
+"   Please see #192 for the details.
+" * If you don't care about |textlock|,
+"   you can use simple version of this function.
+"   https://github.com/vim-jp/vital.vim/commit/39aae80f3839fdbeebd838ff14d87327a6b889a9
+function! vimrc#get_last_selected() abort
+  if visualmode() ==# "\<C-v>"
+    let save = getreg('"', 1)
+    let save_type = getregtype('"')
+    try
+      normal! gv""y
+      return @"
+    finally
+      call setreg('"', save, save_type)
+    endtry
+  else
+    let [begin, end] = [getpos("'<"), getpos("'>")]
+    let lastchar = matchstr(getline(end[1])[end[2]-1 :], '.')
+    if begin[1] ==# end[1]
+      let lines = [getline(begin[1])[begin[2]-1 : end[2]-2]]
+    else
+      let lines = [getline(begin[1])[begin[2]-1 :]]
+      \         + (end[1] - begin[1] <# 2 ? [] : getline(begin[1]+1, end[1]-1))
+      \         + [getline(end[1])[: end[2]-2]]
+    endif
+    return join(lines, "\n") . lastchar . (visualmode() ==# 'V' ? "\n" : '')
+  endif
+endfunction
+
+function! vimrc#get_in_quotes() abort
+  let save = getreg('"')
+  let save_type = getregtype('"')
+  let [_; save_cursor] = getcurpos()
+  try
+    call setreg('"', '')
+    normal! ""yi'
+    let s1 = @"
+    call cursor(save_cursor)
+    call setreg('"', '')
+    normal! ""yi"
+    let s2 = @"
+    let len1 = strlen(s1)
+    let len2 = strlen(s2)
+    return (len1 != 0 && (len2 == 0 || len1 < len2)) ? s1 : s2
+  finally
+    call setreg('"', save, save_type)
+    call cursor(save_cursor)
+  endtry
+endfunction
+
+function! vimrc#github_or_openbrowser(mode)
+  let selected = a:mode == 'n' ? vimrc#get_in_quotes() : vimrc#get_last_selected()
+  echomsg selected
+  if match(selected, '\c^[a-z0-9_.-]\+/[a-z0-9_.-]\+$') != -1
+    let github_uri = 'https://github.com/' . selected
+    call openbrowser#open(github_uri)
+  else
+    call openbrowser#_keymap_smart_search(a:mode)
+  endif
+endfunction

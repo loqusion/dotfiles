@@ -56,14 +56,36 @@ repo = 'rbtnn/vim-vimscript_indentexpr'
 [[plugins]]
 repo = 'jiangmiao/auto-pairs'
 hook_source = '''
-  let g:AutoPairsFlyMode = 0
+  let g:AutoPairsFlyMode = 1
 '''
 
 [[plugins]]
 repo = 'tpope/vim-endwise'
 
 [[plugins]]
+repo = 'tpope/vim-scriptease'
+
+[[plugins]]
 repo = 'liuchengxu/space-vim-theme'
 hook_add = '''
   let g:space_vim_transp_bg = 1
 '''
+
+[[plugins]]
+repo = 'ap/vim-buftabline'
+
+#[[plugins]]
+#repo = 'andymass/vim-matchup'
+
+#[[plugins]]
+#repo = 'tpope/vim-sleuth'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+#on_map = '<Plug>(openbrowser-'
+#on_func = 'openbrowser'
+hook_add = '''
+  nmap <silent>gx <Cmd>call vimrc#github_or_openbrowser('n')<CR>
+  xmap <silent>gx <Cmd>call vimrc#github_or_openbrowser('v')<CR>
+'''
+
