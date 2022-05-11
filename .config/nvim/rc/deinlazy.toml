@@ -281,7 +281,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'osyo-manga/vim-jplus'
-on_map = {n = '<Plug>'}
+on_map = '<Plug>'
 hook_add = '''
   nmap J <Plug>(jplus)
   vmap J <Plug>(jplus)

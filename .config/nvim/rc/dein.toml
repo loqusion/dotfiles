@@ -82,8 +82,6 @@ repo = 'ap/vim-buftabline'
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
-#on_map = '<Plug>(openbrowser-'
-#on_func = 'openbrowser'
 hook_add = '''
   nmap <silent>gx <Cmd>call vimrc#github_or_openbrowser('n')<CR>
   xmap <silent>gx <Cmd>call vimrc#github_or_openbrowser('v')<CR>
