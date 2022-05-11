@@ -280,9 +280,9 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'Shougo/ddc-omni'
 
-[[plugins]]
-repo = 'Shougo/ddc-rtags'
-on_ft = ['c', 'cpp']
+#[[plugins]]
+#repo = 'Shougo/ddc-rtags'
+#on_ft = ['c', 'cpp']
 
 [[plugins]]
 repo = 'vim-skk/skkeleton'

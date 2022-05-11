@@ -163,9 +163,9 @@ endif
 " Show <TAB> and <CR>
 set list
 if has('win32')
-   set listchars=tab:>-,trail:-,precedes:<
+  set listchars=tab:>-,trail:-,precedes:<
 else
-   set listchars=tab:▸\ ,trail:-,precedes:«,nbsp:%
+  set listchars=space:⋅,tab:→\ ,eol:↴,trail:-,precedes:«,extends:»,nbsp:%
 endif
 
 " Always disable statusline.
