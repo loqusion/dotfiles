@@ -135,6 +135,10 @@ ruby = '''
   setlocal shiftwidth=2 softtabstop=2 tabstop=2
 '''
 
+javascript = '''
+  setlocal shiftwidth=2
+'''
+
 typescript = '''
   setlocal shiftwidth=2
 '''

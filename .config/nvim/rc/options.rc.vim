@@ -252,7 +252,7 @@ endif
 let g:did_install_default_menus = v:true
 
 " Completion setting.
-set completeopt=menuone
+set completeopt=menuone,noselect
 if exists('+completepopup')
   set completeopt+=popup
   set completepopup=height:4,width:60,highlight:InfoPopup

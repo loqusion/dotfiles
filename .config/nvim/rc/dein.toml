@@ -55,12 +55,9 @@ repo = 'rbtnn/vim-vimscript_indentexpr'
 
 [[plugins]]
 repo = 'jiangmiao/auto-pairs'
-hook_source = '''
+hook_add = '''
   let g:AutoPairsFlyMode = 1
 '''
-
-[[plugins]]
-repo = 'tpope/vim-endwise'
 
 [[plugins]]
 repo = 'tpope/vim-scriptease'
@@ -74,11 +71,17 @@ hook_add = '''
 [[plugins]]
 repo = 'ap/vim-buftabline'
 
-#[[plugins]]
-#repo = 'andymass/vim-matchup'
+[[plugins]]
+repo = 'andymass/vim-matchup'
 
 #[[plugins]]
 #repo = 'tpope/vim-sleuth'
+
+[[plugins]]
+repo = 'numToStr/Comment.nvim'
+hook_add = '''
+  lua require('Comment').setup()
+'''
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
@@ -110,3 +113,32 @@ hook_add = '''
     endif
   endfunction
 '''
+
+#[[plugins]]
+#repo = 'pangloss/vim-javascript'
+##on_ft = ['javascript', 'javascriptreact']
+#on_ft = 'javascript'
+
+#[[plugins]]
+#repo = 'leafgarland/typescript-vim'
+##on_ft = ['typescript', 'typescriptreact']
+#on_ft = 'typescript'
+
+#[[plugins]]
+#repo = 'MaxMEllon/vim-jsx-pretty'
+#on_ft = 'javascriptreact'
+
+#[[plugins]]
+#repo = 'peitalin/vim-jsx-typescript'
+#on_ft = 'typescriptreact'
+
+#[[plugins]]
+#repo = 'styled-components/vim-styled-components'
+#on_ft = ['javascript', 'typescript', 'javascriptreact', 'typescriptreact']
+
+#[[plugins]]
+#repo = 'jparise/vim-graphql'
+#on_ft = [
+#  'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'graphql'
+#]
+#merge_ftdetect = 'v:true'

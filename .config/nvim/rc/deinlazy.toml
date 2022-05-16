@@ -308,6 +308,7 @@ EOF
 repo = 'tweekmonster/helpful.vim'
 on_cmd = 'HelpfulVersion'
 
+# TODO: markdown syntax
 [[plugins]]
 repo = 'rhysd/vim-gfm-syntax'
 on_ft = 'markdown'
@@ -348,13 +349,67 @@ on_event = 'BufRead'
 hook_post_update = 'TSUpdate'
 hook_source = '''
 lua <<EOF
-  require'nvim-treesitter.configs'.setup {
+  require('nvim-treesitter.configs').setup {
     ensure_installed = 'all',
     ignore_install = { 'phpdoc' },
     additional_vim_regex_highlighting = false,
     highlight = {
       enable = true,
       disable = {'c', 'help'},
+    },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = 'gnn',
+        node_incremental = 'grn',
+        scope_incremental = 'grc',
+        node_decremental = 'grm',
+      },
+    },
+    indent = {
+      enable = true,
+    },
+    textobjects = {
+      select = {
+        enable = true,
+        lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+        keymaps = {
+          -- You can use the capture groups defined in textobjects.scm
+          ['af'] = '@function.outer',
+          ['if'] = '@function.inner',
+          ['ac'] = '@class.outer',
+          ['ic'] = '@class.inner',
+        },
+      },
+      move = {
+        enable = true,
+        set_jumps = true, -- whether to set jumps in the jumplist
+        goto_next_start = {
+          [']m'] = '@function.outer',
+          [']]'] = '@class.outer',
+        },
+        goto_next_end = {
+          [']M'] = '@function.outer',
+          [']['] = '@class.outer',
+        },
+        goto_previous_start = {
+          ['[m'] = '@function.outer',
+          ['[['] = '@class.outer',
+        },
+        goto_previous_end = {
+          ['[M'] = '@function.outer',
+          ['[]'] = '@class.outer',
+        },
+      },
+    },
+    endwise = {
+      enable = true,
+    },
+    autotag = {
+      enable = true,
+    },
+    matchup = {
+      enable = true,
     },
   }
 EOF
@@ -363,6 +418,21 @@ EOF
 autocmd MyAutoCmd FileType c,help,gitcommit
 \ if &l:syntax == '' | syntax enable | endif
 '''
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter-textobjects'
+depends = 'nvim-treesitter'
+on_source = 'nvim-treesitter'
+
+[[plugins]]
+repo = 'RRethy/nvim-treesitter-endwise'
+depends = 'nvim-treesitter'
+on_ft = ['lua', 'ruby', 'sh', 'vim']
+
+[[plugins]]
+repo = 'windwp/nvim-ts-autotag'
+depends = 'nvim-treesitter'
+on_ft = ['html', 'javascriptreact', 'typescriptreact', 'vue']
 
 [[plugins]]
 repo = 'nvim-treesitter/playground'
@@ -386,9 +456,10 @@ hook_add = '''
 '''
 on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
 
-[[plugins]]
-repo = 'joker1007/vim-markdown-quote-syntax'
-on_ft = 'markdown'
+# TODO: markdown syntax
+#[[plugins]]
+#repo = 'joker1007/vim-markdown-quote-syntax'
+#on_ft = 'markdown'
 
 [[plugins]]
 repo = 'rcarriga/nvim-notify'
@@ -481,3 +552,7 @@ hook_source = '''
   let g:registers_hide_only_whitespace = 1
   let g:registers_show_empty_registers = 0
 '''
+
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = 'rust'

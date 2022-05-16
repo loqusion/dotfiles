@@ -1,0 +1,211 @@
+[[plugins]]
+repo = 'L3MON4D3/LuaSnip'
+
+[[plugins]]
+repo = 'saadparwaiz1/cmp_luasnip'
+on_source = 'LuaSnip'
+
+[[plugins]]
+repo = 'hrsh7th/nvim-cmp'
+depends = ['LuaSnip', 'cmp_luasnip']
+on_event = ['InsertEnter', 'CursorHold']
+hook_source = '''
+lua <<EOF
+  local cmp = require 'cmp'
+  local luasnip = require 'luasnip'
+
+  cmp.setup({
+    snippet = {
+      expand = function(args)
+        luasnip.lsp_expand(args.body)
+      end,
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm { 
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true
+      },
+      ['<Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        else
+          fallback()
+        end
+      end, { 'i', 's' }),
+      ['<S-Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { 'i', 's' })
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
+      { name = 'buffer' },
+    }),
+  })
+
+  cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' },
+    },
+  })
+
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' },
+    }, {
+      { name = 'cmdline' },
+    }),
+  })
+
+EOF
+'''
+
+[[plugins]]
+repo = 'hrsh7th/cmp-nvim-lsp'
+on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'hrsh7th/cmp-buffer'
+on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'hrsh7th/cmp-path'
+on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'hrsh7th/cmp-cmdline'
+on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+depends = ['nvim-cmp', 'cmp-nvim-lsp']
+on_ft = [
+  'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'go',
+  'python', 'vim'
+]
+if = 'has("nvim")'
+# TODO: Install language servers automatically
+#build = '''
+#  !npm i -g typescript typescript-language-server vscode-langservers-extracted vim-language-server
+#'''
+hook_source = '''
+lua << EOF
+  local lspconfig = require('lspconfig')
+  local on_attach = function(_, bufnr)
+    local opts = { buffer = bufnr }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set('n', '<leader>wl', function()
+      vim.inspect(vim.lsp.buf.list_workspace_folders())
+    end, opts)
+    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', '<leader>so', require('telescope.builtin').lsp_document_symbols, opts)
+    vim.api.nvim_create_user_command('Format', vim.lsp.buf.formatting, {})
+  end
+
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+  local servers = { 'rust_analyzer', 'tsserver', 'vimls' }
+  for _, lsp in ipairs(servers) do
+    lspconfig[lsp].setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
+  end
+
+  local runtime_path = vim.split(package.path, ';')
+  table.insert(runtime_path, 'lua/?.lua')
+  table.insert(runtime_path, 'lua/?/init.lua')
+  lspconfig.sumneko_lua.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+      Lua = {
+        runtime = {
+          version = 'LuaJIT',
+          path = runtime_path,
+        },
+        diagnostics = {
+          globals = { 'vim' },
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file('', true),
+        },
+        telemetry = {
+          enable = false,
+        },
+      },
+    },
+  }
+EOF
+'''
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+depends = 'plenary.nvim'
+on_source = 'nvim-cmp'
+hook_source = '''
+lua <<EOF
+  require('telescope').setup {
+    defaults = {
+      mappings = {
+        i = {
+          ['<C-u>'] = false,
+          ['<C-d>'] = false,
+        },
+      },
+    },
+  }
+
+  vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers)
+  vim.keymap.set('n', '<leader>sf', function()
+    require('telescope.builtin').find_files { previewer = false }
+  end)
+  vim.keymap.set('n', '<leader>sb', require('telescope.builtin').current_buffer_fuzzy_find)
+  vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags)
+  vim.keymap.set('n', '<leader>st', require('telescope.builtin').tags)
+  vim.keymap.set('n', '<leader>sd', require('telescope.builtin').grep_string)
+  vim.keymap.set('n', '<leader>sp', require('telescope.builtin').live_grep)
+  vim.keymap.set('n', '<leader>so', function()
+    require('telescope.builtin').tags { only_current_buffer = true }
+  end)
+  vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles)
+EOF
+'''
+
+[[plugins]]
+repo = 'nvim-telescope/telescope-fzf-native.nvim'
+build = 'make'
+depends = 'telescope.nvim'
+on_source = 'telescope.nvim'
+hook_source = '''
+lua <<EOF
+  require('telescope').load_extension 'fzf'
+EOF
+'''

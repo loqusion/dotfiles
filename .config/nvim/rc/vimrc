@@ -22,9 +22,9 @@ augroup MyAutoCmd
 augroup END
 
 " Re-source every time vim configuration is updated.
-augroup MyAutoCmd
-  autocmd BufWritePost */rc/{*.vim,*.toml,vimrc} ++nested source $MYVIMRC
-augroup END
+"augroup MyAutoCmd
+"  autocmd BufWritePost */rc/{*.vim,*.toml,vimrc} ++nested source $MYVIMRC
+"augroup END
 
 let $CACHE = expand('~/.cache')
 if !isdirectory($CACHE)
@@ -91,7 +91,8 @@ if dein#min#load_state(s:path)
 
   let s:dein_toml = s:base_dir . 'dein.toml'
   let s:dein_lazy_toml = s:base_dir . 'deinlazy.toml'
-  let s:dein_ddc_toml = s:base_dir . 'ddc.toml'
+  "let s:dein_ddc_toml = s:base_dir . 'ddc.toml'
+  let s:dein_cmp_toml = s:base_dir . 'cmp.toml'
   let s:dein_ddu_toml = s:base_dir . 'ddu.toml'
   let s:dein_ft_toml = s:base_dir . 'deinft.toml'
 
@@ -101,7 +102,8 @@ if dein#min#load_state(s:path)
 
   call dein#load_toml(s:dein_toml, {'lazy': 0})
   call dein#load_toml(s:dein_lazy_toml, {'lazy' : 1})
-  call dein#load_toml(s:dein_ddc_toml, {'lazy' : 1})
+  "call dein#load_toml(s:dein_ddc_toml, {'lazy' : 1})
+  call dein#load_toml(s:dein_cmp_toml, {'lazy': 1})
   call dein#load_toml(s:dein_ddu_toml, {'lazy' : 1})
   call dein#load_toml(s:dein_ft_toml)
 

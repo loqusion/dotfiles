@@ -8,8 +8,8 @@ nnoremap m  <Nop>
 nnoremap ,  <Nop>
 
 " Use <C-Space>.
-nmap <C-Space>  <C-@>
-cmap <C-Space>  <C-@>
+"nmap <C-Space>  <C-@>
+"cmap <C-Space>  <C-@>
 
 " Visual mode keymappings:
 " Indent
@@ -72,12 +72,18 @@ nnoremap [Space]l
       \ <Cmd>call vimrc#toggle_option('laststatus')<CR>
 
 " Easily edit current buffer
-nnoremap <silent><expr> [Space]e
+nnoremap <silent><expr> <leader>e
       \ bufname('%') !=# '' ? '<Cmd>edit %<CR>' : ''
 
 " Quickfix
+nnoremap [Space]e
+      \ <Cmd>lua vim.diagnostic.open_float()<CR>
+nnoremap [d
+      \ <Cmd>lua vim.diagnostic.goto_prev()<CR>
+nnoremap ]d
+      \ <Cmd>lua vim.diagnostic.goto_next()<CR>
 nnoremap [Space]q
-      \ <Cmd>call vimrc#diagnostics_to_qf()<CR>
+      \ <Cmd>lua vim.diagnostic.setloclist()<CR>
 
 " Useful save mappings.
 nnoremap <silent> <Leader><Leader> <Cmd>silent update<CR>

@@ -261,7 +261,10 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 depends = 'impatient.nvim'
-on_ft = ['typescript', 'go', 'python']
+on_ft = [
+  'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'go',
+  'python'
+]
 if = 'has("nvim")'
 depends = 'ddc.vim'
 hook_source = '''
@@ -269,8 +272,12 @@ hook_source = '''
 require'lspconfig'.denols.setup{}
 require'lspconfig'.gopls.setup{}
 require'lspconfig'.pylsp.setup{}
+require'lspconfig'.eslint.setup{}
 --require'lspconfig'.sumneko.setup{}
 EOF
+'''
+hook_post_update = '''
+  !npm i -g vscode-langservers-extracted
 '''
 
 [[plugins]]
