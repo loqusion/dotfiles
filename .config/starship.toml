@@ -1,3 +1,6 @@
 format = """$character"""
 
 right_format = """$all"""
+
+[aws]
+disabled = true
