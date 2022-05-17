@@ -33,6 +33,7 @@ alias neovide='NEOVIDE_MULTIGRID=1 neovide'
 alias nvide='neovide'
 alias config='git --git-dir="$HOME/.cfg" --work-tree="$HOME"'
 alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
+alias zshrc='$EDITOR "$HOME/.zshrc"'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
