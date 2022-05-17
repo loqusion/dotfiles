@@ -68,8 +68,8 @@ hook_add = '''
   let g:space_vim_transp_bg = 1
 '''
 
-[[plugins]]
-repo = 'ap/vim-buftabline'
+# [[plugins]]
+# repo = 'ap/vim-buftabline'
 
 [[plugins]]
 repo = 'andymass/vim-matchup'
