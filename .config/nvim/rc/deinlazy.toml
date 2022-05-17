@@ -1,125 +1,6 @@
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 on_event = 'CursorHold'
-hook_source = '''
-  " Note: for profile
-  "let g:denops#server#deno_args = [
-  "    \ '-q',
-  "    \ '--no-check',
-  "    \ '--unstable',
-  "    \ '-A',
-  "    \ '--inspect',
-  "    \ ]
-'''
-
-[[plugins]]
-repo = 'Shougo/defx.nvim'
-hook_add = '''
-  nnoremap <silent>   [Space]f
-  \ <Cmd>Defx -listed -resume -buffer-name=win-`win_getid()`<CR>
-'''
-hook_source = '''
-  call defx#custom#column('mark', {
-          \ 'readonly_icon': '✗',
-          \ 'selected_icon': '✓',
-          \ })
-  call defx#custom#column('icon', {
-          \ 'directory_icon': '+',
-          \ 'opened_icon': '-',
-          \ 'root_icon': ' ',
-          \ })
-  call defx#custom#column('icon', {
-        \ 'directory_icon': '▸ ',
-        \ 'file_icon': '  ',
-        \ 'opened_icon': '▾ ',
-        \ 'root_icon': '  ',
-        \ })
-'''
-[plugins.ftplugin]
-defx = '''
-  " Define mappings
-  nnoremap <silent><buffer><expr> <CR>
-  \ defx#is_binary() ?
-  \ defx#do_action('execute_system') :
-  \ defx#do_action('open')
-  nnoremap <silent><buffer><expr> +
-  \ defx#do_action('open', 'choose')
-  nnoremap <silent><buffer><expr> c
-  \ defx#do_action('copy')
-  nnoremap <silent><buffer><expr> !
-  \ defx#do_action('execute_command')
-  nnoremap <silent><buffer><expr> &
-  \ defx#do_action('execute_command', ['', 'async'])
-  nnoremap <silent><buffer><expr> m
-  \ defx#do_action('move')
-  nnoremap <silent><buffer><expr> p
-  \ defx#do_action('paste')
-  nnoremap <silent><buffer><expr> l
-  \ defx#do_action('open')
-  nnoremap <silent><buffer><expr> E
-  \ defx#do_action('open', 'vsplit')
-  nnoremap <silent><buffer><expr> L
-  \ defx#do_action('link')
-  nnoremap <silent><buffer><expr> P
-  \ defx#do_action('preview')
-  nnoremap <silent><buffer><expr> o
-  \ defx#do_action('open_tree', ['nested', 'toggle'])
-  nnoremap <silent><buffer><expr> O
-  \ defx#do_action('open_tree', 'recursive')
-  nnoremap <silent><buffer><expr> K
-  \ defx#do_action('new_directory', ['open', 'open_tree'])
-  nnoremap <silent><buffer><expr> N
-  \ defx#do_action('new_file', ['open', 'drop'])
-  nnoremap <silent><buffer><expr> M
-  \ defx#do_action('new_multiple_files')
-  nnoremap <silent><buffer><expr> C
-  \ defx#do_action('toggle_columns', 'mark:filename:type:size:time')
-  nnoremap <silent><buffer><expr> S
-  \ defx#do_action('toggle_sort', 'Time')
-  nnoremap <silent><buffer><expr> se
-  \ defx#do_action('add_session')
-  nnoremap <silent><buffer><expr> sl
-  \ defx#do_action('load_session')
-  nnoremap <silent><buffer><expr> d
-  \ defx#do_action('remove_trash')
-  nnoremap <silent><buffer><expr> r
-  \ defx#do_action('rename')
-  nnoremap <silent><buffer><expr> x
-  \ defx#do_action('execute_system')
-  nnoremap <silent><buffer><expr> >
-  \ defx#do_action('toggle_ignored_files')
-  nnoremap <silent><buffer><expr> <
-  \ defx#do_action('change_ignored_files')
-  nnoremap <silent><buffer><expr> .
-  \ defx#do_action('repeat')
-  nnoremap <silent><buffer><expr> yy
-  \ defx#do_action('yank_path')
-  nnoremap <silent><buffer><expr> h
-  \ defx#do_action('cd', ['..', '', 'nohist'])
-  nnoremap <silent><buffer><expr> ~
-  \ defx#do_action('cd')
-  nnoremap <silent><buffer><expr> \
-  \ defx#do_action('cd', getcwd())
-  nnoremap <silent><buffer><expr> q
-  \ defx#do_action('quit')
-  nnoremap <silent><buffer><expr> <Space>
-  \ defx#do_action('toggle_select') . 'j'
-  nnoremap <silent><buffer><expr> *
-  \ defx#do_action('toggle_select_all')
-  nnoremap <silent><buffer><expr> j
-  \ line('.') == line('$') ? 'gg' : 'j'
-  nnoremap <silent><buffer><expr> k
-  \ line('.') == 1 ? 'G' : 'k'
-  nnoremap <silent><buffer><expr> <C-l>
-  \ defx#do_action('redraw')
-  xnoremap <silent><buffer><expr> <CR>
-  \ defx#do_action('toggle_select_visual')
-  nnoremap <silent><buffer><expr> <C-g>
-  \ defx#do_action('print')
-  nnoremap <silent><buffer><expr> <Tab> winnr('$') != 1 ?
-  \ '<Cmd>wincmd w<CR>' :
-  \ '<Cmd>Defx -buffer-name=temp -split=vertical<CR>'
-'''
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
@@ -127,101 +8,6 @@ hook_source = '''
 let g:context_filetype#ignore_patterns = {
     \ 'toml': ['^\s*#\s*'],
     \ }
-'''
-
-[[plugins]]
-repo = 'Shougo/deol.nvim'
-depends = ['ddu.vim', 'ddc.vim']
-hook_add = '''
-  nnoremap <expr><silent> [Space]s
-  \ printf('<Cmd>Deol %s -no-start-insert -toggle<CR>',
-  \        has('win32') ? 'cmd': 'zsh')
-  nnoremap <silent> sD  <Cmd>call deol#kill_editor()<CR>
-  nnoremap <silent> <C-t> <Cmd>Ddu -name=deol
-  \ -ui-param-split=`has('nvim') ? 'floating' : 'horizontal'`
-  \ -ui-param-winRow=1 -ui-param-autoResize
-  \ -ui-param-cursorPos=`tabpagenr()-1`
-  \ deol<CR>
-'''
-hook_source = '''
-  let g:deol#enable_dir_changed = v:false
-  let g:deol#prompt_pattern = '\w*% \?'
-  let g:deol#shell_history_path = '~/.zsh-history'
-  let g:deol#extra_options = {
-      \ 'term_kill': 'kill',
-      \ }
-  "let g:deol#enable_ddc_completion = v:true
-  let g:deol#nvim_server = '~/.cache/nvim/server.pipe'
-  call ddu#custom#patch_global({
-      \   'sourceParams': {
-      \     'deol': {
-      \       'command': ['zsh'],
-      \     },
-      \   }
-      \ })
-  " Set terminal colors
-  if has('nvim')
-    let g:terminal_color_0  = '#6c6c6c'
-    let g:terminal_color_1  = '#ff6666'
-    let g:terminal_color_2  = '#66ff66'
-    let g:terminal_color_3  = '#ffd30a'
-    let g:terminal_color_4  = '#1e95fd'
-    let g:terminal_color_5  = '#ff13ff'
-    let g:terminal_color_6  = '#1bc8c8'
-    let g:terminal_color_7  = '#c0c0c0'
-    let g:terminal_color_8  = '#383838'
-    let g:terminal_color_9  = '#ff4444'
-    let g:terminal_color_10 = '#44ff44'
-    let g:terminal_color_11 = '#ffb30a'
-    let g:terminal_color_12 = '#6699ff'
-    let g:terminal_color_13 = '#f820ff'
-    let g:terminal_color_14 = '#4ae2e2'
-    let g:terminal_color_15 = '#ffffff'
-  else
-    let g:terminal_ansi_colors = [
-          \ '#6c6c6c', '#ff6666', '#66ff66', '#ffd30a',
-          \ '#1e95fd', '#ff13ff', '#1bc8c8', '#c0c0c0',
-          \ '#383838', '#ff4444', '#44ff44', '#ffb30a',
-          \ '#6699ff', '#f820ff', '#4ae2e2', '#ffffff',
-          \ ]
-  endif
-  tnoremap <expr><C-t> ddc#manual_complete()
-  tnoremap <silent><expr> <Tab> pum#visible() ?
-        \ '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-        \ '<Tab>'
-  tnoremap <silent><expr> <S-Tab> pum#visible() ?
-        \ '<Cmd>call pum#map#insert_relative(-1)<CR>' :
-        \ '<S-Tab>'
-  tnoremap <Down>   <Cmd>call pum#map#select_relative(+1)<CR>
-  tnoremap <Up>     <Cmd>call pum#map#select_relative(-1)<CR>
-  tnoremap <silent><expr> <C-y>
-        \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<C-y>'
-  tnoremap <silent><expr> <C-e>
-        \ pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<C-e>'
-'''
-[plugins.ftplugin]
-deol = '''
-  nnoremap <buffer><silent> [Space]gc
-  \ <Cmd>call deol#send('git commit')<CR>
-  nnoremap <buffer><silent> [Space]gs
-  \ <Cmd>call deol#send('git status')<CR>
-  nnoremap <buffer><silent> [Space]gA
-  \ <Cmd>call deol#send('git commit --amend')<CR>
-  nmap <buffer> e <Plug>(deol_edit)
-  tmap <buffer> <CR> <Plug>(deol_execute_line)
-  call ddc#custom#patch_buffer('sourceOptions', {
-      \ '_': {
-      \   'converters': [],
-      \ },
-      \ })
-'''
-zsh = '''
-  nnoremap <buffer><silent> [Space]gc
-  \ <Cmd>call deol#send('git commit')<CR>
-  nnoremap <buffer><silent> [Space]gs
-  \ <Cmd>call deol#send('git status')<CR>
-  nnoremap <buffer><silent> [Space]gA
-  \ <Cmd>call deol#send('git commit --amend')<CR>
 '''
 
 [[plugins]]
@@ -253,13 +39,13 @@ hook_add = '''
   xmap A  <Plug>(niceblock-A)
 '''
 
-[[plugins]]
-repo = 'thinca/vim-qfreplace'
-on_ft = ['qf']
-[plugins.ftplugin]
-qf = '''
-  nnoremap <buffer> r <Cmd>Qfreplace<CR>
-'''
+# [[plugins]]
+# repo = 'thinca/vim-qfreplace'
+# on_ft = ['qf']
+# [plugins.ftplugin]
+# qf = '''
+#   nnoremap <buffer> r <Cmd>Qfreplace<CR>
+# '''
 
 [[plugins]]
 repo = 'rhysd/accelerated-jk'
@@ -290,9 +76,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'lambdalisue/vim-findent'
-
-[[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
 on_event = 'BufRead'
 hook_source = '''
@@ -308,39 +91,19 @@ EOF
 repo = 'tweekmonster/helpful.vim'
 on_cmd = 'HelpfulVersion'
 
-# TODO: markdown syntax
-[[plugins]]
-repo = 'rhysd/vim-gfm-syntax'
-on_ft = 'markdown'
+# [[plugins]]
+# repo = 'mattn/vim-goimports'
+# on_ft = 'go'
+# hook_source = '''
+#   let g:goimports_simplify = v:true
+# '''
 
-[[plugins]]
-repo = 'machakann/vim-vimhelplint'
-on_ft = 'help'
-[plugins.ftplugin]
-help = '''
-  nnoremap <silent><buffer> ,r  <Cmd>VimhelpLint!<CR>
-'''
-
-#[[plugins]]
-#repo = 'lambdalisue/suda.vim'
-#on_event = 'BufRead'
-#hook_add = '''
-#  let g:suda_smart_edit = v:true
-#'''
-
-[[plugins]]
-repo = 'mattn/vim-goimports'
-on_ft = 'go'
-hook_source = '''
-  let g:goimports_simplify = v:true
-'''
-
-[[plugins]]
-repo = 'dag/vim2hs'
-on_ft = 'haskell'
-hook_source = '''
-let g:haskell_conceal = v:false
-'''
+# [[plugins]]
+# repo = 'dag/vim2hs'
+# on_ft = 'haskell'
+# hook_source = '''
+# let g:haskell_conceal = v:false
+# '''
 
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
@@ -456,18 +219,12 @@ hook_add = '''
 '''
 on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
 
-# TODO: markdown syntax
-#[[plugins]]
-#repo = 'joker1007/vim-markdown-quote-syntax'
-#on_ft = 'markdown'
-
 [[plugins]]
 repo = 'rcarriga/nvim-notify'
 on_lua = 'notify'
 hook_source = '''
 lua <<EOF
-  vim.notify = require('notify')
-  vim.notify.setup({
+  require('notify').setup({
     stages = 'fade',
   })
 EOF
@@ -483,15 +240,6 @@ build = 'cd server && go build'
 if = '!has("nvim")'
 #on_event = 'BufRead'
 
-[[plugins]]
-repo = 'Shougo/echodoc.vim'
-on_event = 'InsertEnter'
-hook_source = '''
-  call echodoc#enable()
-  let g:echodoc#type = has('nvim') ? 'floating' : 'popup'
-  let g:echodoc#events = ['PumCompleteDone', 'TextChangedP', 'PumCompleteChanged']
-'''
-
 #[[plugins]]
 #repo = 'github/copilot.vim'
 #hook_source = '''
@@ -499,36 +247,36 @@ hook_source = '''
 #imap <script><silent><nowait><expr> <C-g> copilot#Accept()
 #'''
 
-[[plugins]]
-repo = 'VonHeikemen/fine-cmdline.nvim'
-if = 'has("nvim")'
-depends = 'nui.nvim'
-on_lua = 'fine-cmdline'
-hook_add = '''
-  nnoremap <C-p> <Cmd>lua require'fine-cmdline'.setup({
-  \  cmdline = {
-  \    enable_keymaps = false
-  \  },
-  \  popup = {
-  \    buf_options = {
-  \      filetype = 'FineCmdlinePrompt'
-  \    },
-  \  },
-  \  hooks = {
-  \    before_mount = function(input)
-  \      input.input_props.prompt = ''
-  \    end,
-  \    set_keymaps = function(imap, feedkeys)
-  \      local fn = require('fine-cmdline').fn
-  \      imap('<Esc'..'>', fn.close)
-  \      imap('<C-c>', fn.close)
-  \      imap('jj', fn.close)
-  \      imap('<C-p>', fn.up_history)
-  \      imap('<C-n>', fn.down_history)
-  \    end,
-  \  },
-  \})<CR><Cmd>lua require('fine-cmdline').open()<CR>
-'''
+# [[plugins]]
+# repo = 'VonHeikemen/fine-cmdline.nvim'
+# if = 'has("nvim")'
+# depends = 'nui.nvim'
+# on_lua = 'fine-cmdline'
+# hook_add = '''
+#   nnoremap <C-p> <Cmd>lua require'fine-cmdline'.setup({
+#   \  cmdline = {
+#   \    enable_keymaps = false
+#   \  },
+#   \  popup = {
+#   \    buf_options = {
+#   \      filetype = 'FineCmdlinePrompt'
+#   \    },
+#   \  },
+#   \  hooks = {
+#   \    before_mount = function(input)
+#   \      input.input_props.prompt = ''
+#   \    end,
+#   \    set_keymaps = function(imap, feedkeys)
+#   \      local fn = require('fine-cmdline').fn
+#   \      imap('<Esc'..'>', fn.close)
+#   \      imap('<C-c>', fn.close)
+#   \      imap('jj', fn.close)
+#   \      imap('<C-p>', fn.up_history)
+#   \      imap('<C-n>', fn.down_history)
+#   \    end,
+#   \  },
+#   \})<CR><Cmd>lua require('fine-cmdline').open()<CR>
+# '''
 
 [[plugins]]
 repo = 'MunifTanjim/nui.nvim'
@@ -554,5 +302,8 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'rust-lang/rust.vim'
-on_ft = 'rust'
+repo = 'vimwiki/vimwiki'
+on_map = '<Plug>Vimwiki'
+hook_add = '''
+  nmap <leader>ww <Plug>VimwikiIndex
+'''

@@ -2,10 +2,7 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
-" Use ',' instead of '\'.
-" Use <Leader> in global plugin.
 let g:mapleader = ','
-" Use <LocalLeader> in filetype plugin.
 let g:maplocalleader = 'm'
 
 if has('nvim')
@@ -32,7 +29,7 @@ if !isdirectory($CACHE)
 endif
 
 " Use English interface.
-language message C
+" language message C
 
 if filereadable(expand('~/.secret_vimrc'))
   source ~/.secret_vimrc
@@ -65,13 +62,6 @@ let g:dein#install_check_remote_threshold = 24 * 60 * 60
 let g:dein#auto_remote_plugins = v:false
 let g:dein#install_copy_vim = has('nvim')
 
-"let g:dein#default_options = {}
-" We want to reload the plugin configs when they're updated.
-" TODO: This currently doesn't work properly!
-"if !has('vim_starting')
-"  let g:dein#default_options['overwrite'] = v:true
-"endif
-
 let s:path = $CACHE . '/dein'
 if dein#min#load_state(s:path)
   let s:base_dir = fnamemodify(expand('<sfile>'), ':h') . '/'
@@ -91,8 +81,6 @@ if dein#min#load_state(s:path)
 
   let s:dein_toml = s:base_dir . 'dein.toml'
   let s:dein_lazy_toml = s:base_dir . 'deinlazy.toml'
-  "let s:dein_ddc_toml = s:base_dir . 'ddc.toml'
-  "let s:dein_ddu_toml = s:base_dir . 'ddu.toml'
   let s:dein_cmp_toml = s:base_dir . 'cmp.toml'
   let s:dein_ft_toml = s:base_dir . 'deinft.toml'
 
@@ -102,8 +90,6 @@ if dein#min#load_state(s:path)
 
   call dein#load_toml(s:dein_toml, {'lazy': 0})
   call dein#load_toml(s:dein_lazy_toml, {'lazy' : 1})
-  "call dein#load_toml(s:dein_ddc_toml, {'lazy' : 1})
-  "call dein#load_toml(s:dein_ddu_toml, {'lazy' : 1})
   call dein#load_toml(s:dein_cmp_toml, {'lazy': 1})
   call dein#load_toml(s:dein_ft_toml)
 
@@ -123,6 +109,11 @@ endif
 
 if !empty(argv())
   call vimrc#on_filetype()
+endif
+
+" Install any not installed plugins.
+if dein#check_install()
+  call dein#install()
 endif
 
 set secure

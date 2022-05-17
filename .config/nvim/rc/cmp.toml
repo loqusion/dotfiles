@@ -6,6 +6,7 @@ hook_source = '''
 lua <<EOF
   local cmp = require 'cmp'
   local luasnip = require 'luasnip'
+  local lspkind = require 'lspkind'
 
   cmp.setup({
     snippet = {
@@ -20,7 +21,7 @@ lua <<EOF
       ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm { 
         behavior = cmp.ConfirmBehavior.Replace,
-        select = true
+        select = false,
       },
       ['<Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
@@ -42,17 +43,37 @@ lua <<EOF
       end, { 'i', 's' })
     }),
     sources = cmp.config.sources({
+      { name = 'npm', keyword_length = 4 },
       { name = 'nvim_lsp' },
+      { name = 'nvim_lsp_signature_help' },
+      { name = 'nvim_lua' },
       { name = 'luasnip' },
+    }, {
+      { name = 'buffer', keyword_length = 5 },
+    }),
+    formatting = {
+      format = lspkind.cmp_format({
+        mode = 'symbol', -- show only symbol annotations
+        maxwidth = 50, -- prevent the popup from showing more than provided characters
+      }),
+    },
+  })
+
+  cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+      { name = 'cmp_git' },
+    }, {
       { name = 'buffer' },
     }),
   })
 
   cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = {
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp_document_symbol' }
+    }, {
       { name = 'buffer' },
-    },
+    }),
   })
 
   cmp.setup.cmdline(':', {
@@ -63,7 +84,6 @@ lua <<EOF
       { name = 'cmdline' },
     }),
   })
-
 EOF
 '''
 
@@ -73,7 +93,19 @@ repo = 'L3MON4D3/LuaSnip'
 repo = 'saadparwaiz1/cmp_luasnip'
 
 [[plugins]]
+repo = 'onsails/lspkind.nvim'
+on_source = 'nvim-cmp'
+
+[[plugins]]
 repo = 'hrsh7th/cmp-nvim-lsp'
+on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'hrsh7th/cmp-nvim-lsp-document-symbol'
+on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'hrsh7th/cmp-nvim-lsp-signature-help'
 on_source = 'nvim-cmp'
 
 [[plugins]]
@@ -87,6 +119,20 @@ on_source = 'nvim-cmp'
 [[plugins]]
 repo = 'hrsh7th/cmp-cmdline'
 on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'hrsh7th/cmp-nvim-lua'
+on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'David-Kunz/cmp-npm'
+on_source = 'nvim-cmp'
+#on_lua = 'cmp-npm'
+hook_source = '''
+lua <<EOF
+  require('cmp-npm').setup({})
+EOF
+'''
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'

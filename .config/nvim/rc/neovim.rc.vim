@@ -12,7 +12,6 @@ let g:python3_host_prog = has('win32') ? 'python.exe' : 'python3'
 set inccommand=nosplit
 
 set pumblend=20
-
 set winblend=20
 
 " Use cursor shape feature
@@ -31,10 +30,12 @@ let g:terminal_scrollback_buffer_size = 3000
 "     \ {higroup='IncSearch', timeout=100}
 
 " For neovide
-let g:neovide_no_idle = v:true
-let g:neovide_cursor_animation_length = 0.03
-let g:neovide_cursor_trail_length = 0.8
-let g:neovide_transparency = 1
+if exists('g:neovide')
+  let g:neovide_no_idle = v:true
+  let g:neovide_cursor_animation_length = 0.03
+  let g:neovide_cursor_trail_length = 0.8
+  let g:neovide_transparency = 1
+endif
 
 " For nvui
 if exists('g:nvui')
@@ -55,5 +56,7 @@ endif
 if has('win32')
   set guifont=Firge:h13
 else
-  "set guifont=Courier\ 10\ Pitch\ 14
+  set guifont=CaskaydiaCove_Nerd_Font:h14
+  set guifontwide=CaskaydiaCove_Nerd_Font:h14
+  set linespace=3
 endif
