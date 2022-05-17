@@ -1,11 +1,4 @@
 [[plugins]]
-repo = 'L3MON4D3/LuaSnip'
-
-[[plugins]]
-repo = 'saadparwaiz1/cmp_luasnip'
-on_source = 'LuaSnip'
-
-[[plugins]]
 repo = 'hrsh7th/nvim-cmp'
 depends = ['LuaSnip', 'cmp_luasnip']
 on_event = ['InsertEnter', 'CursorHold']
@@ -73,6 +66,11 @@ lua <<EOF
 
 EOF
 '''
+
+[[plugins]]
+repo = 'L3MON4D3/LuaSnip'
+[[plugins]]
+repo = 'saadparwaiz1/cmp_luasnip'
 
 [[plugins]]
 repo = 'hrsh7th/cmp-nvim-lsp'
@@ -164,9 +162,6 @@ EOF
 '''
 
 [[plugins]]
-repo = 'nvim-lua/plenary.nvim'
-
-[[plugins]]
 repo = 'nvim-telescope/telescope.nvim'
 depends = 'plenary.nvim'
 on_source = 'nvim-cmp'
@@ -187,9 +182,13 @@ lua <<EOF
   vim.keymap.set('n', '<leader>sf', function()
     require('telescope.builtin').find_files { previewer = false }
   end)
+  vim.keymap.set('n', '<leader>sv', function()
+    require('telescope.builtin').find_files { cwd = vim.fn.stdpath('config') }
+  end)
   vim.keymap.set('n', '<leader>sb', require('telescope.builtin').current_buffer_fuzzy_find)
   vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags)
   vim.keymap.set('n', '<leader>st', require('telescope.builtin').tags)
+  vim.keymap.set('n', '<leader>sT', require('telescope.builtin').colorscheme)
   vim.keymap.set('n', '<leader>sd', require('telescope.builtin').grep_string)
   vim.keymap.set('n', '<leader>sp', require('telescope.builtin').live_grep)
   vim.keymap.set('n', '<leader>so', function()
@@ -209,3 +208,7 @@ lua <<EOF
   require('telescope').load_extension 'fzf'
 EOF
 '''
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+
