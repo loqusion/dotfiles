@@ -7,10 +7,6 @@ nnoremap ;  <Nop>
 nnoremap m  <Nop>
 nnoremap ,  <Nop>
 
-" Use <C-Space>.
-"nmap <C-Space>  <C-@>
-"cmap <C-Space>  <C-@>
-
 " Visual mode keymappings:
 " Indent
 nnoremap > >>
@@ -95,10 +91,6 @@ nnoremap <silent> so  <Cmd>only<CR>
 nnoremap <silent> <Tab>      <cmd>wincmd w<CR>
 nnoremap <silent><expr> q
       \ winnr('$') != 1 ? '<Cmd>close<CR>' : ''
-" :close works just fine to close location-list windows, whereas :cclose
-" only works on quickfix windows and makes closing location-list windows
-" fail. Idk if :close works on quickfix windows though.
-"\ &l:filetype ==# 'qf' ? '<Cmd>cclose<CR>' :
 
 " Original search
 nnoremap s/    /
@@ -123,9 +115,6 @@ noremap <expr> <C-b> max([winheight(0) - 2, 1])
 " Disable ZZ.
 nnoremap ZZ  <Nop>
 
-" Select rectangle.
-xnoremap r <C-v>
-
 " Redraw.
 nnoremap <silent> <C-l>    <Cmd>redraw!<CR>
 
@@ -137,31 +126,12 @@ xnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
 " Substitute.
 xnoremap s :s//g<Left><Left>
 
-" Sticky shift in English keyboard.
-" Sticky key.
-inoremap <expr> ;  vimrc#sticky_func()
-cnoremap <expr> ;  vimrc#sticky_func()
-snoremap <expr> ;  vimrc#sticky_func()
-
 " Easy escape.
 inoremap jj           <ESC>
 cnoremap <expr> j
       \ getcmdline()[getcmdpos()-2] ==# 'j' ? '<BS><C-c>' : 'j'
 
 inoremap j<Space>     j
-
-" a>, i], etc...
-" <angle>
-onoremap aa  a>
-xnoremap aa  a>
-onoremap ia  i>
-xnoremap ia  i>
-
-" [rectangle]
-onoremap ar  a]
-xnoremap ar  a]
-onoremap ir  i]
-xnoremap ir  i]
 
 " Improved increment.
 nmap <C-a> <SID>(increment)
@@ -182,7 +152,6 @@ if exists(':tnoremap')
     tnoremap   jj          <C-w>N
   endif
   tnoremap   j<Space>   j
-  tnoremap <expr> ;  vimrc#sticky_func()
 endif
 
 " Wordcount
