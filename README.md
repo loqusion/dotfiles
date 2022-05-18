@@ -1,13 +1,7 @@
 # Installing dotfiles onto a new system
 
 ```sh
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-echo '.cfg' >> .gitignore
-git clone --bare git@github.com:loqusion/dotfiles.git $HOME/.cfg
-config config --local core.sparseCheckout true
-echo -e '/*\n!README.md' > $HOME/.cfg/info/sparse-checkout
-config checkout
-config config --local status.showUntrackedFiles no
+sh -c $(curl -fsSL https://raw.githubusercontent.com/loqusion/dotfiles/main/install.sh?token=GHSAT0AAAAAABUV433AY3S4Z7DSGM4OJJWUYUEQSGA)
 ```
 
 [Inspiration for this setup](https://www.atlassian.com/git/tutorials/dotfiles)
