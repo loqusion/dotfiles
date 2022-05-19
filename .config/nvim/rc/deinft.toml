@@ -126,6 +126,11 @@ help = '''
   setlocal iskeyword+=:
   setlocal iskeyword+=#
   setlocal iskeyword+=-
+  setlocal signcolumn=no
+'''
+
+man = '''
+  setlocal signcolumn=no
 '''
 
 ruby = '''

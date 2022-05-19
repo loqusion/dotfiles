@@ -111,9 +111,9 @@ if !empty(argv())
   call vimrc#on_filetype()
 endif
 
-" Install any not installed plugins.
-if dein#check_install()
-  call dein#install()
-endif
+" " Install any not installed plugins.
+" if dein#check_install()
+"   call dein#install()
+" endif
 
 set secure

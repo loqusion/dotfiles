@@ -180,3 +180,28 @@ function! vimrc#get_in_quotes() abort
     call cursor(save_cursor)
   endtry
 endfunction
+
+" https://github.com/editorconfig/editorconfig-vim/blob/a8e3e66deefb6122f476c27cee505aaae93f7109/plugin/editorconfig.vim#L501
+function! vimrc#trim_trailing_whitespace()
+  if &l:modifiable
+    " don't lose user position when trimming trailing whitespace
+    let s:view = winsaveview()
+    try
+      silent! keeppatterns keepjumps %s/\s\+$//e
+    finally
+      call winrestview(s:view)
+    endtry
+  endif
+endfunction
+
+function! vimrc#trim_final_newlines()
+  if &l:modifiable
+    let s:view = winsaveview()
+    try
+      " can use \_s instead of \n to handle spaces/tabs as well
+      silent! keeppatterns keepjumps %s/\n\+\%$//e
+    finally
+      call winrestview(s:view)
+    endtry
+  endif
+endfunction

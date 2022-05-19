@@ -64,8 +64,9 @@ autocmd MyAutoCmd BufRead,BufWritePost *.txt setlocal modelines=2 modeline
 " Enable backspace delete indent and newline.
 set backspace=indent,eol,nostop
 
-" Highlight <>.
-set matchpairs+=<:>
+" DON't highlight <>. This makes "<" and ">" match even if they're only used
+" as "less than" or "greater than" operators 50 lines apart.
+"set matchpairs+=<:>
 
 " Display another buffer when current buffer isn't saved.
 set hidden
@@ -133,6 +134,11 @@ function! s:mkdir_as_necessary(dir, force) abort
   endif
 endfunction
 
+" Automatically trim trailing whitespace and final newlines.
+autocmd MyAutoCmd BufWritePre *
+      \ call vimrc#trim_trailing_whitespace() |
+      \ call vimrc#trim_final_newlines()
+
 " Use autofmt.
 set formatexpr=autofmt#japanese#formatexpr()
 
@@ -168,8 +174,8 @@ else
   set listchars=space:⋅,tab:→\ ,eol:↴,trail:-,precedes:«,extends:»,nbsp:%
 endif
 
-" Always disable statusline.
-set laststatus=0
+" Always enable statusline.
+set laststatus=2
 " Height of command line.
 set cmdheight=1
 "try
@@ -308,8 +314,8 @@ if exists('+previewpopup')
   set previewpopup=height:10,width:60
 endif
 
-" Disable signcolumn
-set signcolumn=no
+" Always enable signcolumn
+set signcolumn=yes
 
 " Disable cmdwin
 set cedit=

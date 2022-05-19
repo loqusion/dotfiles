@@ -39,8 +39,7 @@ endif
 
 " For nvui
 if exists('g:nvui')
-  set guifont=Courier\ 10\ Pitch:h14,VL\ Gothic:h14
-  call rpcnotify(1, 'NVUI_ANIMATIONS_ENABLED', v:false)
+  call rpcnotify(1, 'NVUI_ANIMATIONS_ENABLED', v:true)
   call rpcnotify(1, 'NVUI_CURSOR_HIDE_TYPE', v:true)
 
   " Note: nvui does not use 'titlestring'
@@ -58,5 +57,4 @@ if has('win32')
 else
   set guifont=CaskaydiaCove_Nerd_Font:h14
   set guifontwide=CaskaydiaCove_Nerd_Font:h14
-  set linespace=3
 endif

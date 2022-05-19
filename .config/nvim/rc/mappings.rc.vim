@@ -3,7 +3,6 @@
 "
 
 " Release keymappings for plug-in.
-nnoremap ;  <Nop>
 nnoremap m  <Nop>
 nnoremap ,  <Nop>
 
@@ -88,7 +87,6 @@ nnoremap <silent> <Leader><Leader> <Cmd>silent update<CR>
 " The prefix key.
 nnoremap <silent> sp  <Cmd>vsplit<CR>:wincmd w<CR>
 nnoremap <silent> so  <Cmd>only<CR>
-nnoremap <silent> <Tab>      <cmd>wincmd w<CR>
 nnoremap <silent><expr> q
       \ winnr('$') != 1 ? '<Cmd>close<CR>' : ''
 

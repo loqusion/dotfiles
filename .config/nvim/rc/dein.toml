@@ -65,13 +65,16 @@ repo = 'tpope/vim-scriptease'
 [[plugins]]
 repo = 'liuchengxu/space-vim-theme'
 hook_add = '''
-  if !exists('g:neovide')
+  if !exists('g:neovide') && !exists('g:nvui')
     let g:space_vim_transp_bg = 1
   endif
 '''
 
 [[plugins]]
 repo = 'andymass/vim-matchup'
+hook_add = '''
+  let g:matchup_surround_enabled = 1
+'''
 
 [[plugins]]
 repo = 'numToStr/Comment.nvim'
@@ -133,3 +136,34 @@ hook_add = '''
 # TODO: GFM not working!!!
 [[plugins]]
 repo = 'preservim/vim-markdown'
+
+[[plugins]]
+repo = 'mhinz/vim-signify'
+hook_add = '''
+  let g:signify_sign_add = '+'
+  let g:signify_sign_delete = '_'
+  let g:signify_sign_delete_first_line = '‾'
+  let g:signify_sign_change = '~'
+  let g:signify_sign_change_delete = g:signify_sign_change . g:signify_sign_delete_first_line
+
+  nnoremap <leader>gd <cmd>SignifyDiff<cr>
+  nnoremap <leader>gp <cmd>SignifyHunkDiff<cr>
+  nnoremap <leader>gu <cmd>SignifyHunkUndo<cr>
+
+  omap ic <plug>(signify-motion-inner-pending)
+  xmap ic <plug>(signify-motion-inner-visual)
+  omap ac <plug>(signify-motion-outer-pending)
+  xmap ac <plug>(signify-motion-outer-visual)
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'tpope/vim-rhubarb'
+
+[[plugins]]
+repo = 'AndrewRadev/splitjoin.vim'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
