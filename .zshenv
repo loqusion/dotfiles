@@ -7,7 +7,7 @@ export PAGER=less
 export LESS='-RQM'
 export GZIP='-v9N'
 export SHELL=zsh
-export MANPAGER='nvim --clean +Man\!'
+export MANPAGER='nvim ++Man\!'
 export GOPATH="$HOME/.go"
 export LC_ALL='en_US.UTF-8'
 
