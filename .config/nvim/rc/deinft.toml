@@ -111,6 +111,7 @@ vim = '''
   setlocal iskeyword+=:,#
   setlocal indentkeys+=\\,endif,endfunction,endfor,endwhile,endtry
   let b:echodoc_enabled = v:true
+  nnoremap <buffer> <F6> <Cmd>exec getline('.')<CR>
 '''
 
 toml = '''

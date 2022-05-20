@@ -186,6 +186,24 @@ command! -bang -complete=file -nargs=? WUnix
 command! -bang -complete=file -nargs=? WDos
       \ write<bang> ++fileformat=dos <args> | edit <args>
 
+function! Retab(...)
+  let save_equalprg = &l:equalprg
+  setlocal equalprg=
+
+  echomsg 'a:0 is '..a:0..' a:1 is '..a:1..' ('..type(a:1)..')'
+  if a:0 && type(a:1) == v:t_number && a:1 != 0
+    let width = a:1
+    let &l:tabstop = width
+    if &l:shiftwidth != 0
+      let &l:shiftwidth = width
+    endif
+  endif
+  normal! gg=G
+
+  let &l:equalprg = save_equalprg
+endfunction
+command! -count Retab call Retab(<count>)
+
 " Insert special character
 inoremap <C-v>u  <C-r>=nr2char(0x)<Left>
 
@@ -195,3 +213,6 @@ nnoremap tp  <Cmd>pop<CR>
 
 " Why does this even exist??
 noremap gs  <Nop>
+
+inoremap <C-CR> <C-o>o
+inoremap <S-CR> <C-o>O
