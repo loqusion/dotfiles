@@ -9,8 +9,6 @@ local utils = require 'config.utils'
 local autocmd = utils.autocmd
 local map = vim.keymap.set
 
-local e = 3
-
 g.mapleader = [[,]]
 g.maplocalleader = [[m]]
 
@@ -100,6 +98,7 @@ opt_local.smartindent = o.smartindent
 opt.autoindent = true
 opt.laststatus = 3
 opt.cmdheight = 1
+opt.showcmd = false
 opt.showmode = false
 opt.signcolumn = 'yes:1'
 opt_local.signcolumn = o.signcolumn
@@ -128,8 +127,6 @@ opt_local.concealcursor = o.concealcursor
 opt.colorcolumn = '+1'
 opt.splitbelow = true
 opt.splitright = true
-opt.winwidth = 30
-opt.winheight = 20
 opt.cmdwinheight = 5
 opt.previewheight = 5
 opt.helpheight = 12
@@ -158,6 +155,9 @@ opt.cedit = '<C-q>'
 opt.shell = 'sh'
 opt.guifont = 'CaskaydiaCove_Nerd_Font:h14'
 opt.guifontwide = o.guifont
+opt.title = true
+opt.titlelen = 95
+opt.titlestring = [[%{expand('%:p:~:.')} %<(%{fnamemodify(getcwd(), ':~')})%(%m%r%w%)]]
 
 ----------------------------------------------------------------------------
 -- Colorscheme
@@ -198,10 +198,11 @@ cmd [[colorscheme space_vim_theme_improved]]
 --   endif
 -- endfunction
 --
--- " Automatically trim trailing whitespace and final newlines.
+-- cmd [[
 -- autocmd MyAutoCmd BufWritePre *
 --       \ call vimrc#trim_trailing_whitespace() |
 --       \ call vimrc#trim_final_newlines()
+-- ]]
 --
 -- let $CONFIG = stdpath('config')
 -- augroup packer_user_config
@@ -280,12 +281,12 @@ map('n', ']d', vim.diagnostic.goto_next)
 map('n', '[Space]q', vim.diagnostic.setloclist)
 
 -- Useful save mappings.
-map('n', '<leader>w', '<cmd>silent update<cr>', { silent = true })
+map('n', '<leader><leader>', '<cmd>silent update<cr>', { silent = true })
 
 -- s: Windows and buffers (High priority)
 map('n', 'sp', '<cmd>vsplit<cr>', { silent = true })
 map('n', 'so', '<cmd>only<cr>', { silent = true })
-map('n', 'q', [[winnr('$') != 1 ? <cmd>close<cr> : '']], {
+map('n', 'q', [[winnr('$') != 1 ? '<cmd>close<cr>' : '']], {
   silent = true,
   expr = true,
 })
@@ -308,6 +309,7 @@ map('n', 'X', '"_X')
 map('n', 'Q', 'q')
 
 -- Useless commands.
+map({'n', 'i', 'c', 'v', 'o', 't', 'l'}, '<MiddleMouse>', '<Nop>')
 map('n', 'M', 'm')
 map('n', 'gs', '<nop>')
 map('n', 's', '<nop>')
