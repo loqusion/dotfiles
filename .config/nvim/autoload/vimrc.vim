@@ -205,3 +205,27 @@ function! vimrc#trim_final_newlines()
     endtry
   endif
 endfunction
+
+function! vimrc#get_github_owner_repo(mode)
+  " TODO: vimrc#get_last_selected doesn't return the right text
+  " vimrc#get_in_quotes works just fine though, so this is low priority
+  let selected = a:mode ==# 'n' ? vimrc#get_in_quotes() : vimrc#get_last_selected()
+  let col = getcurpos()[2]
+  if match(selected, '\c^[a-z0-9_.-]\+/[a-z0-9_.-]\+$') != -1 &&
+        \ (a:mode ==# 'v' || (
+        \ match(getline('.'), selected) < col &&
+        \ matchend(getline('.'), selected) >= col - 1))
+    return 'https://github.com/' . selected
+  endif
+  return ''
+endfunction
+
+" If hovering/selecting owner/repo, treat it as a github url
+function! vimrc#github_or_open_browser(mode)
+  let github_uri = vimrc#get_github_owner_repo(a:mode)
+  if !empty(github_uri)
+    call openbrowser#open(github_uri)
+  else
+    call openbrowser#_keymap_smart_search(a:mode)
+  endif
+endfunction
