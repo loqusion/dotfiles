@@ -2,5 +2,6 @@
 
 = My knowledge base =
     * [[Tasks]]: things to be done _yesterday_!!!
+    * [[Portfolio]]: show off my skills 😎
     * [[Project Gutenberg]]: good books are power.
     * [[Scratchpad]]: various temporary stuff.

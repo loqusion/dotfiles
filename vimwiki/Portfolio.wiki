@@ -1,0 +1,5 @@
+= Portfolio =
+    * loqusion.me
+        - I like this https://kurabloodlust.eu
+        - Consider Vercel for hosting, use either React or jekyll
+    * clientele.js

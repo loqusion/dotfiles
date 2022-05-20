@@ -1,5 +1,6 @@
 = Tasks =
 
 == Vim ==
+    * https://github.com/wbthomason/dotfiles/blob/fff32536bba36f69586b3041f637c9ad9a373a1c/neovim/.config/nvim/init.lua#L85
 == etc ==
     * Make a blog at loqusion.me
