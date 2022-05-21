@@ -212,7 +212,7 @@ _G.packer_plugins = {
     url = "https://github.com/onsails/lspkind.nvim"
   },
   ["nvim-cmp"] = {
-    after = { "cmp-path", "cmp-cmdline", "cmp-nvim-lsp", "cmp-nvim-lsp-signature-help", "cmp-nvim-lua", "cmp-npm", "cmp-buffer", "cmp-nvim-lsp-document-symbol" },
+    after = { "cmp-path", "cmp-cmdline", "cmp-nvim-lsp", "cmp-nvim-lsp-signature-help", "cmp-buffer", "cmp-nvim-lsp-document-symbol", "cmp-nvim-lua", "cmp-npm" },
     config = { "require('config.cmp')" },
     loaded = false,
     needs_bufread = false,
@@ -489,42 +489,26 @@ end
 time([[Setup for telescope.nvim]], true)
 require('config.telescope_setup')
 time([[Setup for telescope.nvim]], false)
--- Setup for: vimwiki
-time([[Setup for vimwiki]], true)
-require('config.vimwiki')
-time([[Setup for vimwiki]], false)
 -- Setup for: vinarise.vim
 time([[Setup for vinarise.vim]], true)
 vim.g.vinarise_enable_auto_detect = 1
 time([[Setup for vinarise.vim]], false)
+-- Setup for: vimwiki
+time([[Setup for vimwiki]], true)
+require('config.vimwiki')
+time([[Setup for vimwiki]], false)
+-- Config for: auto-pairs
+time([[Config for auto-pairs]], true)
+vim.g.AutoPairsFlyMode = 1
+time([[Config for auto-pairs]], false)
+-- Config for: vim-eft
+time([[Config for vim-eft]], true)
+require('config.eft')
+time([[Config for vim-eft]], false)
 -- Config for: accelerated-jk
 time([[Config for accelerated-jk]], true)
 require('config.accelerated_jk')
 time([[Config for accelerated-jk]], false)
--- Config for: open-browser.vim
-time([[Config for open-browser.vim]], true)
-require('config.open_browser')
-time([[Config for open-browser.vim]], false)
--- Config for: vim-lengthmatters
-time([[Config for vim-lengthmatters]], true)
-require('config.lengthmatters')
-time([[Config for vim-lengthmatters]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
-time([[Config for Comment.nvim]], false)
--- Config for: vim-jplus
-time([[Config for vim-jplus]], true)
-require('config.jplus')
-time([[Config for vim-jplus]], false)
--- Config for: vim-niceblock
-time([[Config for vim-niceblock]], true)
-require('config.niceblock')
-time([[Config for vim-niceblock]], false)
--- Config for: vim-matchup
-time([[Config for vim-matchup]], true)
-require('config.matchup')
-time([[Config for vim-matchup]], false)
 -- Config for: vim-operator-surround
 time([[Config for vim-operator-surround]], true)
 require('config.operator_surround')
@@ -533,22 +517,38 @@ time([[Config for vim-operator-surround]], false)
 time([[Config for vim-signify]], true)
 require('config.signify')
 time([[Config for vim-signify]], false)
--- Config for: vim-eft
-time([[Config for vim-eft]], true)
-require('config.eft')
-time([[Config for vim-eft]], false)
--- Config for: auto-pairs
-time([[Config for auto-pairs]], true)
-vim.g.AutoPairsFlyMode = 1
-time([[Config for auto-pairs]], false)
--- Config for: fuzzy-motion.vim
-time([[Config for fuzzy-motion.vim]], true)
-require('config.fuzzy_motion')
-time([[Config for fuzzy-motion.vim]], false)
 -- Config for: nvim-web-devicons
 time([[Config for nvim-web-devicons]], true)
 try_loadstring("\27LJ\2\nO\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\fdefault\2\nsetup\22nvim-web-devicons\frequire\0", "config", "nvim-web-devicons")
 time([[Config for nvim-web-devicons]], false)
+-- Config for: vim-niceblock
+time([[Config for vim-niceblock]], true)
+require('config.niceblock')
+time([[Config for vim-niceblock]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
+time([[Config for Comment.nvim]], false)
+-- Config for: vim-jplus
+time([[Config for vim-jplus]], true)
+require('config.jplus')
+time([[Config for vim-jplus]], false)
+-- Config for: vim-matchup
+time([[Config for vim-matchup]], true)
+require('config.matchup')
+time([[Config for vim-matchup]], false)
+-- Config for: fuzzy-motion.vim
+time([[Config for fuzzy-motion.vim]], true)
+require('config.fuzzy_motion')
+time([[Config for fuzzy-motion.vim]], false)
+-- Config for: open-browser.vim
+time([[Config for open-browser.vim]], true)
+require('config.open_browser')
+time([[Config for open-browser.vim]], false)
+-- Config for: vim-lengthmatters
+time([[Config for vim-lengthmatters]], true)
+require('config.lengthmatters')
+time([[Config for vim-lengthmatters]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd nvim-treesitter ]]
@@ -557,31 +557,31 @@ time([[Sequenced loading]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Sayonara lua require("packer.load")({'vim-sayonara'}, { cmd = "Sayonara", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Vinarise lua require("packer.load")({'vinarise.vim'}, { cmd = "Vinarise", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file HelpfulVersion lua require("packer.load")({'helpful.vim'}, { cmd = "HelpfulVersion", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file TSPlaygroundToggle lua require("packer.load")({'playground'}, { cmd = "TSPlaygroundToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Sayonara lua require("packer.load")({'vim-sayonara'}, { cmd = "Sayonara", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Vinarise lua require("packer.load")({'vinarise.vim'}, { cmd = "Vinarise", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 -- Keymap lazy-loads
 time([[Defining lazy-load keymaps]], true)
-vim.cmd [[nnoremap <silent> " <cmd>lua require("packer.load")({'registers.nvim'}, { keys = "\"", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <Plug>Vimwiki <cmd>lua require("packer.load")({'vimwiki'}, { keys = "<lt>Plug>Vimwiki", prefix = "" }, _G.packer_plugins)<cr>]]
 vim.cmd [[inoremap <silent> <c-r> <cmd>lua require("packer.load")({'registers.nvim'}, { keys = "<lt>c-r>" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <Plug>Vimwiki <cmd>lua require("packer.load")({'vimwiki'}, { keys = "<lt>Plug>Vimwiki", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[nnoremap <silent> " <cmd>lua require("packer.load")({'registers.nvim'}, { keys = "\"", prefix = "" }, _G.packer_plugins)<cr>]]
 time([[Defining lazy-load keymaps]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType vim ++once lua require("packer.load")({'nvim-treesitter-endwise'}, { ft = "vim" }, _G.packer_plugins)]]
-vim.cmd [[au FileType lua ++once lua require("packer.load")({'nvim-treesitter-endwise'}, { ft = "lua" }, _G.packer_plugins)]]
-vim.cmd [[au FileType sh ++once lua require("packer.load")({'nvim-treesitter-endwise'}, { ft = "sh" }, _G.packer_plugins)]]
-vim.cmd [[au FileType typescriptreact ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "typescriptreact" }, _G.packer_plugins)]]
-vim.cmd [[au FileType vue ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "vue" }, _G.packer_plugins)]]
 vim.cmd [[au FileType javascriptreact ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "javascriptreact" }, _G.packer_plugins)]]
+vim.cmd [[au FileType lua ++once lua require("packer.load")({'nvim-treesitter-endwise'}, { ft = "lua" }, _G.packer_plugins)]]
+vim.cmd [[au FileType vue ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "vue" }, _G.packer_plugins)]]
+vim.cmd [[au FileType vim ++once lua require("packer.load")({'nvim-treesitter-endwise'}, { ft = "vim" }, _G.packer_plugins)]]
+vim.cmd [[au FileType sh ++once lua require("packer.load")({'nvim-treesitter-endwise'}, { ft = "sh" }, _G.packer_plugins)]]
 vim.cmd [[au FileType ruby ++once lua require("packer.load")({'nvim-treesitter-endwise'}, { ft = "ruby" }, _G.packer_plugins)]]
+vim.cmd [[au FileType typescriptreact ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "typescriptreact" }, _G.packer_plugins)]]
 vim.cmd [[au FileType html ++once lua require("packer.load")({'nvim-ts-autotag'}, { ft = "html" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads

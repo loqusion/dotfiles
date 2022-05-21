@@ -3,6 +3,7 @@ g.lengthmatters_excluded = {
   'dirvish',
   'gundo',
   'help',
+  'man',
   'nerdtree',
   'qf',
   'startify',
