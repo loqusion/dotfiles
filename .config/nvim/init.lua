@@ -2,7 +2,6 @@ vim.g.do_filetype_lua = 1
 vim.g.did_load_filetypes = 0
 require 'impatient'
 local g = vim.g
-local cmd = vim.cmd
 local fn = vim.fn
 local o, opt, opt_local = vim.o, vim.opt, vim.opt_local
 local utils = require 'config.utils'
@@ -48,177 +47,201 @@ g.terminal_scrollback_buffer_size = 3000
 
 ----------------------------------------------------------------------------
 -- Settings
-opt.textwidth = 100
-opt_local.textwidth = o.textwidth
-opt.scrolloff = 2
-opt.wildmenu = true
+o.textwidth = 100
+--opt_local.textwidth = o.textwidth
+o.scrolloff = 0
+o.wildmenu = true
 opt.wildoptions:append { 'pum', 'tagfile' }
 if fn.has('patch-8.2.4463') ~= 0 then
   opt.wildoptions:append { 'fuzzy' }
 end
 opt.wildignore:append { '*.o', '*~', '*.pyc', 'node_modules' }
-opt.wildmode = { 'longest', 'full' }
-opt.wildignorecase = true
--- set completeopt=menuone,noselect
--- if exists('+completepopup')
---   set completeopt+=popup
---   set completepopup=height:4,width:60,highlight:InfoPopup
--- endif
--- opt.complete = { '.' }
-opt.completeslash = 'slash'
-opt.pumheight = 10
-opt.pumwidth = 0
-opt.pumblend = 20
-opt.winblend = 20
---opt.whichwrap:append { '<', '>', 'h', 'l' }
+o.wildmode = 'longest,full'
+o.wildignorecase = true
+o.completeopt = 'menuone,noselect'
+-- o.complete = '.'
+o.completeslash = 'slash'
+o.pumheight = 10
+o.pumwidth = 0
+o.pumblend = 20
+o.winblend = 20
 o.whichwrap = o.whichwrap .. '<,>,h,l'
-opt.backspace = { 'indent', 'eol', 'nostop' }
-opt.inccommand = 'nosplit'
-opt.incsearch = true
-opt.hlsearch = false
-opt.lazyredraw = true
-opt.redrawtime = 0
-opt.ignorecase = true
-opt.smartcase = true
-opt.tabstop = 2
+o.backspace = 'indent,eol,nostop'
+o.inccommand = 'nosplit'
+o.incsearch = true
+o.hlsearch = false
+o.lazyredraw = true
+o.redrawtime = 0
+o.ignorecase = true
+o.smartcase = true
+o.tabstop = 2
 opt_local.tabstop = o.tabstop
-opt.softtabstop = 0
+o.softtabstop = 0
 opt_local.softtabstop = o.softtabstop
-opt.expandtab = true
+o.expandtab = true
 opt_local.expandtab = o.expandtab
---opt.smarttab = true
-opt.shiftwidth = 2
+o.shiftwidth = 2
 opt_local.shiftwidth = o.shiftwidth
-opt.number = true
+o.shiftround = true
+o.number = true
 opt_local.number = o.number
-opt.relativenumber = true
+o.relativenumber = true
 opt_local.relativenumber = o.relativenumber
-opt.smartindent = true
+o.smartindent = true
 opt_local.smartindent = o.smartindent
-opt.autoindent = true
-opt.laststatus = 3
-opt.cmdheight = 1
-opt.showcmd = false
-opt.showmode = false
-opt.signcolumn = 'yes:1'
+o.autoindent = true
+o.laststatus = 0
+o.cmdheight = 1
+o.showcmd = false
+o.showmode = false
+o.signcolumn = 'yes:1'
 opt_local.signcolumn = o.signcolumn
-opt.foldenable = false
-opt.foldmethod = 'manual'
-opt.foldcolumn = 'auto:1'
-opt.history = 200
+o.foldenable = false
+o.foldmethod = 'manual'
+o.foldcolumn = 'auto:1'
+o.history = 200
 o.shada = [['20,<50,s10,h,/100]]
-opt.hidden = true
-opt.shortmess = 'aTIcF'
+o.hidden = true
+o.shortmess = 'aTIcF'
 opt.guicursor = {
   'n-v-c:block-Cursor/lCursor-blinkon0',
   'i-ci-ve:ver25-Cursor/lCursor',
   'r-cr:hor20-Cursor/lCursor',
   'o:hor50',
 }
-opt.timeout = true
-opt.ttimeout = true
-opt.timeoutlen = 3000
-opt.ttimeoutlen = 100
-opt.updatetime = 100
-opt.conceallevel = 2
+o.timeout = true
+o.ttimeout = true
+o.timeoutlen = 3000
+o.ttimeoutlen = 100
+o.updatetime = 100
+o.conceallevel = 2
 opt_local.conceallevel = o.conceallevel
-opt.concealcursor = 'nc'
+o.concealcursor = 'nc'
 opt_local.concealcursor = o.concealcursor
-opt.colorcolumn = '+1'
-opt.splitbelow = true
-opt.splitright = true
-opt.cmdwinheight = 5
-opt.previewheight = 5
-opt.helpheight = 12
-opt.equalalways = false
-opt.undofile = true
+-- o.colorcolumn = '+1'
+o.splitbelow = true
+o.splitright = true
+o.cmdwinheight = 5
+o.previewheight = 5
+o.helpheight = 12
+o.equalalways = false
+o.undofile = true
 opt_local.undofile = o.undofile
-opt.synmaxcol = 500
+opt.directory:remove { '.' }
+o.synmaxcol = 500
 opt_local.synmaxcol = o.synmaxcol
 opt.display = { 'msgsep', 'uhex' }
-opt.cursorline = false
-opt.modeline = false
+o.cursorline = false
+o.modeline = false
 opt_local.modeline = o.modeline
-opt.mouse = 'nvihr'
-opt.grepprg = [[grep\ -inH]]
+o.mouse = 'nvihr'
+o.grepprg = [[grep\ -inH]]
 opt.isfname:remove { '=' }
 opt.isfname:append { '@-@' }
-opt.backup = false
-opt.swapfile = false
-opt.visualbell = false
+o.backup = false
+o.swapfile = false
+o.visualbell = false
 opt.belloff = { 'all' }
-opt.showfulltag = true
+o.showfulltag = true
 if fn.exists('+previewpopup') ~= 0 then
   opt.previewpopup = { 'height:10', 'width:60' }
 end
-opt.cedit = '<C-q>'
-opt.shell = 'sh'
-opt.guifont = 'CaskaydiaCove_Nerd_Font:h14'
-opt.guifontwide = o.guifont
-opt.title = true
-opt.titlelen = 95
-opt.titlestring = [[%{expand('%:p:~:.')} %<(%{fnamemodify(getcwd(), ':~')})%(%m%r%w%)]]
+o.cedit = '<C-q>'
+o.shell = 'sh'
+o.guifont = 'CaskaydiaCove_Nerd_Font:h14'
+o.guifontwide = o.guifont
+if fn.has('gui_running') ~= 0 then
+  o.guioptions = 'Mc'
+end
+o.title = true
+o.titlelen = 95
+o.titlestring = [[%{expand('%:p:~:.')} %<(%{fnamemodify(getcwd(), ':~')})%(%m%r%w%)]]
+o.statusline =  [[ %=%{printf('%'.(len(line('$'))+2).'d/%d',line('.'),line('$'))}]]
+o.virtualedit = 'block'
+o.keywordprg = ':help'
+opt.diffopt = { 'internal', 'algorithm:patience', 'indent-heuristic' }
+opt.helplang = { 'en', 'ja' }
+o.fileformat = 'unix'
+opt.fileformats = { 'unix', 'dos', 'mac' }
+o.list = true
+if fn.has('win32') > 0 then
+  o.listchars = 'tab:>-,trail:-,precedes:<'
+else
+  o.listchars = 'space:⋅,tab:→ ,eol:↴,trail:-,precedes:«,extends:»,nbsp:%'
+end
+o.linebreak = true
+o.showbreak = [[\]]
+opt.breakat = {
+  [' '] = true,
+  ["\t"] = true,
+  [';'] = true,
+  [':'] = true,
+  [','] = true,
+  ['!'] = true,
+  ['?'] = true,
+}
 
 ----------------------------------------------------------------------------
 -- Colorscheme
 opt.termguicolors = true
-opt.background = 'dark'
-g.space_vim_transp_bg = 1
-cmd [[colorscheme space_vim_theme_improved]]
+opt.background = 'light'
+-- g.space_vim_transp_bg = 1
+vim.cmd [[colorscheme space_vim_theme_improved]]
 
 ----------------------------------------------------------------------------
 -- Autocommands
--- cmd [[
--- augroup MyAutoCmd
---   autocmd!
--- augroup END
---
--- " For only Vim help files.
--- autocmd MyAutoCmd BufRead,BufWritePost *.txt setlocal modelines=2 modeline
---
--- " Disable paste.
--- autocmd MyAutoCmd InsertLeave *
---       \ if &paste | setlocal nopaste | echo 'nopaste' | endif |
---       \ if &l:diff | diffupdate | endif
---
--- " Update diff.
--- " (duplicate?)
--- autocmd MyAutoCmd InsertLeave * if &l:diff | diffupdate | endif
---
--- " Make directory automatically.
--- " --------------------------------------
--- " http://vim-users.jp/2011/02/hack202/
--- autocmd MyAutoCmd BufWritePre *
---       \ call MkdirAsNecessary(expand('<afile>:p:h'), v:cmdbang)
--- function! MkdirAsNecessary(dir, force) abort
---   if !isdirectory(a:dir) && &l:buftype ==# '' &&
---         \ (a:force || input(printf('"%s" does not exist. Create? [y/N]',
---         \              a:dir)) =~? '^y\%[es]$')
---     call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
---   endif
--- endfunction
---
--- cmd [[
--- autocmd MyAutoCmd BufWritePre *
---       \ call vimrc#trim_trailing_whitespace() |
---       \ call vimrc#trim_final_newlines()
--- ]]
---
--- let $CONFIG = stdpath('config')
--- augroup packer_user_config
---   autocmd!
---   autocmd BufWritePost $CONFIG/lua/plugins.lua
---         \ source <a-file> | PackerCompile
--- augroup end
--- ]]
+vim.cmd [[
+  augroup MyAutoCmd
+    autocmd!
 
+    " For only Vim help files.
+    autocmd BufRead,BufWritePost *.txt
+          \ setlocal modelines=2 modeline colorcolumn= signcolumn=no
+
+    " Disable paste.
+    autocmd InsertLeave *
+          \ if &paste | setlocal nopaste | setlocal paste? | endif |
+          \ if &l:diff | diffupdate | endif
+
+    " hl-QuickFixLine doesn't play nicely with listchars.
+    autocmd FileType qf setlocal nolist
+
+    " Make directory automatically.
+    " --------------------------------------
+    " http://vim-users.jp/2011/02/hack202/
+    autocmd MyAutoCmd BufWritePre *
+          \ call MkdirAsNecessary(expand('<afile>:p:h'), v:cmdbang)
+    function! MkdirAsNecessary(dir, force) abort
+      if !isdirectory(a:dir) && &l:buftype ==# '' &&
+            \ (a:force || input(printf('"%s" does not exist. Create? [y/N]',
+            \              a:dir)) =~? '^y\%[es]$')
+        call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+      endif
+    endfunction
+
+    autocmd MyAutoCmd BufWritePre *
+          \ call vimrc#trim_trailing_whitespace() |
+          \ call vimrc#trim_final_newlines()
+
+    let $CONFIG = stdpath('config')
+    let $PLUGINS_SPEC = $CONFIG .. '/lua/plugins.lua'
+    augroup packer_user_config
+      autocmd!
+      autocmd BufWritePost $PLUGINS_SPEC,$CONFIG/lua/config/*
+            \ exec 'source ' .. $PLUGINS_SPEC |
+            \ packadd packer.nvim | lua require('plugins').compile()
+    augroup end
+  augroup END
+]]
+
+----------------------------------------------------------------------------
 -- Commands
---cmd [[command! WhatHighlight :call util#syntax_stack()]]
-cmd [[command! PackerInstall packadd packer.nvim | lua require('plugins').install()]]
-cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]]
-cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]]
-cmd [[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]]
-cmd [[command! PackerCompile packadd packer.nvim | lua require('plugins').compile()]]
+vim.cmd [[command! WhatHighlight :call util#syntax_stack()]]
+vim.cmd [[command! PackerInstall packadd packer.nvim | lua require('plugins').install()]]
+vim.cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]]
+vim.cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]]
+vim.cmd [[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]]
+vim.cmd [[command! PackerCompile packadd packer.nvim | lua require('plugins').compile()]]
 
 ----------------------------------------------------------------------------
 -- Keybindings
@@ -249,7 +272,7 @@ map('i', '<C-u>', '<C-g>u<C-u>')
 
 -- Command mode keymappings:
 -- <C-b>: previous char.
-map('c', '<C-b>', 'Left')
+map('c', '<C-b>', '<Left>')
 -- <C-f>: next char.
 map('c', '<C-f>', '<Right>')
 -- <C-a> move to head.
@@ -272,7 +295,7 @@ map('c', '<C-k>',
   { expr = true }
 )
 
-map('n', '[Space]l', [[<cmd>call vimrc#toggle_option('laststatus')]])
+map('n', '[Space]l', [[<cmd>call vimrc#toggle_option('laststatus')<cr>]])
 
 -- Quickfix
 map('n', '[Space]e', vim.diagnostic.open_float)
@@ -280,8 +303,14 @@ map('n', '[d', vim.diagnostic.goto_prev)
 map('n', ']d', vim.diagnostic.goto_next)
 map('n', '[Space]q', vim.diagnostic.setloclist)
 
--- Useful save mappings.
+-- Build
+map('n', '<localleader><localleader>', '<cmd>Make<cr>', { silent = true })
+
+-- Useful save/quit mappings.
 map('n', '<leader><leader>', '<cmd>silent update<cr>', { silent = true })
+map('n', '<leader>q', '<cmd>qa<cr>', { silent = true })
+map('n', '<leader>x', '<cmd>x!<cr>', { silent = true })
+map('n', '<leader>d', '<cmd>Sayonara<cr>', { silent = true })
 
 -- s: Windows and buffers (High priority)
 map('n', 'sp', '<cmd>vsplit<cr>', { silent = true })
@@ -297,9 +326,8 @@ map('n', '<c-j>', '<c-w>j')
 map('n', '<c-k>', '<c-w>k')
 map('n', '<c-l>', '<c-w>l')
 
--- Tab movement
-map('n', '<C-Left>', '<cmd>tabpre<cr>')
-map('n', '<C-Right>', '<cmd>tabnext<cr>')
+-- Yank to clipboard
+map({ 'n', 'v' }, 'y+', '<cmd>set opfunc=util#clipboard_yank<cr>g@', { silent = true })
 
 -- Better x
 map('n', 'x', '"_x')
@@ -329,7 +357,7 @@ map('n', '<C-b>',
 map('n', 'ZZ', '<nop>')
 
 -- Redraw.
-map('n', '<C-l>', '<cmd>redraw!<cr>', { silent = true })
+map('n', '<C-S-l>', '<cmd>redraw!<cr>', { silent = true })
 
 -- If press l on fold, fold open.
 map('n', 'l', [[foldclosed(line('.')) != -1 ? 'zo0' : 'l']], { expr = true })

@@ -3,7 +3,7 @@ local luasnip = require 'luasnip'
 local lspkind = require 'lspkind'
 
 cmp.setup {
-  completion = { completeopt = 'menu,menuone,noinsert' },
+  completion = { completeopt = 'menuone,noselect' },
   sorting = {
     comparators = {
       cmp.config.compare.offset,

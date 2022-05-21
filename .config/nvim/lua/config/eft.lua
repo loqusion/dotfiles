@@ -10,6 +10,6 @@ keymap.set('n', 'f', '<plug>(eft-f)')
 keymap.set('x', 'f', '<plug>(eft-f)')
 keymap.set('o', 'f', '<plug>(eft-f)')
 
-keymap.set('n', 'F', '<plug>(eft-F)')
+-- keymap.set('n', 'F', '<plug>(eft-F)')
 keymap.set('x', 'F', '<plug>(eft-F)')
 keymap.set('o', 'F', '<plug>(eft-F)')

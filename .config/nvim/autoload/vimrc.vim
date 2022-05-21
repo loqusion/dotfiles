@@ -59,15 +59,14 @@ endfunction
 function! vimrc#toggle_option(option_name) abort
   if a:option_name ==# 'laststatus'
     if &laststatus == 0
-      setlocal laststatus=2
+      silent setlocal laststatus=2
     else
-      setlocal laststatus=0
+      silent setlocal laststatus=0
     endif
   else
-    execute 'setlocal' a:option_name.'!'
+    execute 'silent setlocal' a:option_name.'!'
+    execute 'setlocal' a:option_name.'?'
   endif
-
-  execute 'setlocal' a:option_name.'?'
 endfunction
 
 function! vimrc#on_filetype() abort

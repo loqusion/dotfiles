@@ -1,4 +1,4 @@
-local keymap = vim.keymap
+local map = vim.keymap.set
 
-keymap.set('x', 'I', '<plug>(niceblock-I)')
-keymap.set('x', 'A', '<plug>(niceblock-A)')
+map('x', 'I', '<plug>(niceblock-I)')
+map('x', 'A', '<plug>(niceblock-A)')

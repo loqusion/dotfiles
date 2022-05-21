@@ -1,3 +1,3 @@
-local keymap = vim.keymap
-keymap.set({'n', 'v'}, 'J', '<plug>(jplus)')
-keymap.set({'n', 'v'}, '<leader>J', '<plug>(jplus-getchar)')
+local map = vim.keymap.set
+map({'n', 'v'}, 'J', '<plug>(jplus)')
+map({'n', 'v'}, '<leader>J', '<plug>(jplus-getchar)')
