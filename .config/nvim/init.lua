@@ -236,7 +236,6 @@ vim.cmd [[
 
 ----------------------------------------------------------------------------
 -- Commands
-vim.cmd [[command! WhatHighlight :call util#syntax_stack()]]
 vim.cmd [[command! PackerInstall packadd packer.nvim | lua require('plugins').install()]]
 vim.cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]]
 vim.cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]]
@@ -325,9 +324,6 @@ map('n', '<c-h>', '<c-w>h')
 map('n', '<c-j>', '<c-w>j')
 map('n', '<c-k>', '<c-w>k')
 map('n', '<c-l>', '<c-w>l')
-
--- Yank to clipboard
-map({ 'n', 'v' }, 'y+', '<cmd>set opfunc=util#clipboard_yank<cr>g@', { silent = true })
 
 -- Better x
 map('n', 'x', '"_x')
