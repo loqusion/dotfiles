@@ -23,7 +23,7 @@ autoload -Uz compinit && compinit
 # aws completion
 complete -C '/usr/local/bin/aws_completer' aws
 
-export PATH="${HOME}/.yarn/bin:${PATH}:${HOMEBREW_PREFIX}/opt/ruby/bin:${PATH}:${HOMEBREW_PREFIX}/lib/ruby/gems/3.1.0/bin:${PATH}"
+export PATH="${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin:${HOME}/.yarn/bin:${PATH}:${HOMEBREW_PREFIX}/opt/ruby/bin:${PATH}:${HOMEBREW_PREFIX}/lib/ruby/gems/3.1.0/bin:${PATH}"
 
 # Need this for emacs bindings in VSCode
 bindkey -e
@@ -46,4 +46,3 @@ nvm use --lts &>/dev/null
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 eval "$(starship init zsh)"
-
