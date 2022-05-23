@@ -1,26 +1,48 @@
 require('nvim-lsp-installer').setup { automatic_installation = true }
 
 local lspconfig = require 'lspconfig'
+local trouble = require 'trouble'
+
+trouble.setup()
+
+local disabled_formatters = { 'stylelint_lsp', 'tsserver' }
+local lsp_formatting = function(bufnr)
+  -- TODO: Change to `vim.lsp.buf.format` in Neovim 0.8
+  -- @see https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
+  vim.lsp.buf.formatting {
+    -- filter = function(clients)
+    --   return vim.tbl_filter(function(client)
+    --     return not vim.tbl_contains(disabled_formatters, client.name)
+    --   end, clients)
+    -- end,
+    -- bufnr = bufnr,
+  }
+end
 
 local on_attach = function(_, bufnr)
   local opts = { buffer = bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-  vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, opts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-  vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
-  vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
-  vim.keymap.set('n', '<leader>wl', function()
-    vim.inspect(vim.lsp.buf.list_workspace_folders())
+  local map = vim.keymap.set
+  map('n', 'gD', vim.lsp.buf.declaration, opts)
+  map('n', 'gd', vim.lsp.buf.definition, opts)
+  map('n', 'K', vim.lsp.buf.hover, opts)
+  map('n', 'gI', vim.lsp.buf.implementation, opts)
+  map('i', '<C-k>', vim.lsp.buf.signature_help, opts)
+  map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+  map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+  map('n', '<leader>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, opts)
-  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-  vim.keymap.set('n', '<leader>so', require('telescope.builtin').lsp_document_symbols, opts)
-  vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting)
-  vim.api.nvim_create_user_command('Format', vim.lsp.buf.formatting, {})
+  map('n', '<leader>D', vim.lsp.buf.type_definition, opts)
+  map('n', '<leader>rn', vim.lsp.buf.rename, opts)
+  map('n', 'gr', vim.lsp.buf.references, opts)
+  map('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+  map('n', '<leader>so', require('telescope.builtin').lsp_document_symbols, opts)
+  map('n', '<leader>f', function()
+    lsp_formatting(bufnr)
+  end)
+  vim.api.nvim_create_user_command('Format', function()
+    lsp_formatting(bufnr)
+  end, {})
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

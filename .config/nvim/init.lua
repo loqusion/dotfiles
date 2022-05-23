@@ -9,7 +9,8 @@ local autocmd = utils.autocmd
 local map = vim.keymap.set
 
 g.mapleader = [[,]]
-g.maplocalleader = [[m]]
+g.maplocalleader = [[ ]]
+g.makeleader = [[m]]
 
 local disabled_builtins = {
   '2html_plugin',
@@ -69,12 +70,11 @@ o.whichwrap = o.whichwrap .. '<,>,h,l'
 o.backspace = 'indent,eol,nostop'
 o.inccommand = 'nosplit'
 o.incsearch = true
-o.hlsearch = false
 o.lazyredraw = true
 o.redrawtime = 0
 o.ignorecase = true
 o.smartcase = true
-o.tabstop = 2
+o.tabstop = 4
 opt_local.tabstop = o.tabstop
 o.softtabstop = 0
 opt_local.softtabstop = o.softtabstop
@@ -90,7 +90,6 @@ opt_local.relativenumber = o.relativenumber
 o.smartindent = true
 opt_local.smartindent = o.smartindent
 o.autoindent = true
-o.laststatus = 0
 o.cmdheight = 1
 o.showcmd = false
 o.showmode = false
@@ -118,7 +117,7 @@ o.conceallevel = 2
 opt_local.conceallevel = o.conceallevel
 o.concealcursor = 'nc'
 opt_local.concealcursor = o.concealcursor
--- o.colorcolumn = '+1'
+o.colorcolumn = '+1'
 o.splitbelow = true
 o.splitright = true
 o.cmdwinheight = 5
@@ -135,7 +134,7 @@ o.cursorline = false
 o.modeline = false
 opt_local.modeline = o.modeline
 o.mouse = 'nvihr'
-o.grepprg = [[grep\ -inH]]
+o.grepprg = [[grep -inH]]
 opt.isfname:remove { '=' }
 opt.isfname:append { '@-@' }
 o.backup = false
@@ -148,15 +147,17 @@ if fn.exists('+previewpopup') ~= 0 then
 end
 o.cedit = '<C-q>'
 o.shell = 'sh'
-o.guifont = 'CaskaydiaCove_Nerd_Font:h14'
-o.guifontwide = o.guifont
+o.guifont = 'CaskaydiaCove Nerd Font:h14.5'
 if fn.has('gui_running') ~= 0 then
   o.guioptions = 'Mc'
 end
 o.title = true
 o.titlelen = 95
 o.titlestring = [[%{expand('%:p:~:.')} %<(%{fnamemodify(getcwd(), ':~')})%(%m%r%w%)]]
-o.statusline =  [[ %=%{printf('%'.(len(line('$'))+2).'d/%d',line('.'),line('$'))}]]
+o.laststatus = 0
+o.statusline = [[ %=%{printf('%'.(len(line('$'))+2).'d/%d',line('.'),line('$'))}]]
+o.showtabline = 1
+o.tabline = [[]]
 o.virtualedit = 'block'
 o.keywordprg = ':help'
 opt.diffopt = { 'internal', 'algorithm:patience', 'indent-heuristic' }
@@ -167,7 +168,7 @@ o.list = true
 if fn.has('win32') > 0 then
   o.listchars = 'tab:>-,trail:-,precedes:<'
 else
-  o.listchars = 'space:⋅,tab:→ ,eol:↴,trail:-,precedes:«,extends:»,nbsp:%'
+  o.listchars = 'space:⋅,tab:→ ,eol:↴,precedes:«,extends:»,nbsp:%'
 end
 o.linebreak = true
 o.showbreak = [[\]]
@@ -184,7 +185,7 @@ opt.breakat = {
 ----------------------------------------------------------------------------
 -- Colorscheme
 opt.termguicolors = true
-opt.background = 'light'
+opt.background = 'dark'
 -- g.space_vim_transp_bg = 1
 vim.cmd [[colorscheme space_vim_theme_improved]]
 
@@ -196,7 +197,10 @@ vim.cmd [[
 
     " For only Vim help files.
     autocmd BufRead,BufWritePost *.txt
-          \ setlocal modelines=2 modeline colorcolumn= signcolumn=no
+          \ setlocal modelines=2 modeline colorcolumn= foldcolumn=0 signcolumn=no
+
+    " Disable unnecessary features in man pages.
+    autocmd FileType man setlocal signcolumn=no
 
     " Disable paste.
     autocmd InsertLeave *
@@ -219,10 +223,12 @@ vim.cmd [[
       endif
     endfunction
 
+    " Trim unnecessary whitespace.
     autocmd MyAutoCmd BufWritePre *
           \ call vimrc#trim_trailing_whitespace() |
           \ call vimrc#trim_final_newlines()
 
+    " Reload plugins file on save.
     let $CONFIG = stdpath('config')
     let $PLUGINS_SPEC = $CONFIG .. '/lua/plugins.lua'
     augroup packer_user_config
@@ -241,6 +247,7 @@ vim.cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').upd
 vim.cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]]
 vim.cmd [[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]]
 vim.cmd [[command! PackerCompile packadd packer.nvim | lua require('plugins').compile()]]
+vim.cmd [[command! Todo Grepper -noprompt -tool git -query -E '(TODO|FIXME|BUG|XXX):']]
 
 ----------------------------------------------------------------------------
 -- Keybindings
@@ -249,9 +256,13 @@ vim.cmd [[command! PackerCompile packadd packer.nvim | lua require('plugins').co
 map('n', 'm', '<Nop>')
 map('n', ',', '<Nop>')
 
-map('n', '<Space>', '[Space]', { remap = true })
-map('n', '[Space]', '<Nop>')
+map({ 'n', 'x' }, '<Space>', '[Space]', { remap = true })
+map({ 'n', 'x' }, '[Space]', '<Nop>')
 
+map({ 'n', 'x' }, 's', '<nop>')
+map({ 'n', 'x' }, 'S', '<nop>')
+
+-- Easy indent
 map('n', '>', '>>')
 map('n', '<', '<<')
 map('x', '>', '>gv')
@@ -274,6 +285,10 @@ map('i', '<C-u>', '<C-g>u<C-u>')
 map('c', '<C-b>', '<Left>')
 -- <C-f>: next char.
 map('c', '<C-f>', '<Right>')
+-- <M-b>: previous word.
+map('c', '<M-b>', '<S-Left>')
+-- <M-f>: next word.
+map('c', '<M-f>', '<S-Right>')
 -- <C-a> move to head.
 map('c', '<C-a>', '<Home>')
 -- <C-e> move to end.
@@ -302,9 +317,6 @@ map('n', '[d', vim.diagnostic.goto_prev)
 map('n', ']d', vim.diagnostic.goto_next)
 map('n', '[Space]q', vim.diagnostic.setloclist)
 
--- Build
-map('n', '<localleader><localleader>', '<cmd>Make<cr>', { silent = true })
-
 -- Useful save/quit mappings.
 map('n', '<leader><leader>', '<cmd>silent update<cr>', { silent = true })
 map('n', '<leader>q', '<cmd>qa<cr>', { silent = true })
@@ -314,10 +326,10 @@ map('n', '<leader>d', '<cmd>Sayonara<cr>', { silent = true })
 -- s: Windows and buffers (High priority)
 map('n', 'sp', '<cmd>vsplit<cr>', { silent = true })
 map('n', 'so', '<cmd>only<cr>', { silent = true })
-map('n', 'q', [[winnr('$') != 1 ? '<cmd>close<cr>' : '']], {
-  silent = true,
-  expr = true,
-})
+-- map('n', 'q', [[winnr('$') != 1 ? '<cmd>close<cr>' : '']], {
+--   silent = true,
+--   expr = true,
+-- })
 
 -- Window movement
 map('n', '<c-h>', '<c-w>h')
@@ -330,14 +342,13 @@ map('n', 'x', '"_x')
 map('n', 'X', '"_X')
 
 -- Disable ex-mode.
+map({ 'n', 'x' }, 'q', '<Nop>')
 map('n', 'Q', 'q')
 
 -- Useless commands.
-map({'n', 'i', 'c', 'v', 'o', 't', 'l'}, '<MiddleMouse>', '<Nop>')
+map({ 'n', 'i', 'c', 'v', 'o', 't', 'l' }, '<MiddleMouse>', '<Nop>')
 map('n', 'M', 'm')
 map('n', 'gs', '<nop>')
-map('n', 's', '<nop>')
-map('n', 'S', '<nop>')
 
 -- Smart <C-f>, <C-b>.
 map('n', '<C-f>',
@@ -361,16 +372,16 @@ map('n', 'l', [[foldclosed(line('.')) != -1 ? 'zo0' : 'l']], { expr = true })
 map('x', 'l', [[foldclosed(line('.')) != -1 ? 'zogv0' : 'l']], { expr = true })
 
 -- Substitute.
-map('x', 's', '<cmd>s//g<left><left>')
+-- map('x', 's', ':s//g<left><left>')
 
 -- Easy escape.
-map('i', 'jj', '<Esc>')
-map('t', 'jj', [[<C-\><C-n>]])
-map('c', 'j', [[getcmdline()[getcmdpos()-2] ==# 'j' ? '<BS><C-c>' : 'j']],
-  { expr = true }
-)
-map('i', 'j<Space>', 'j')
-map('t', 'j<Space>', 'j')
+-- map('i', 'jj', '<Esc>')
+-- map('t', 'jj', [[<C-\><C-n>]])
+-- map('c', 'j', [[getcmdline()[getcmdpos()-2] ==# 'j' ? '<BS><C-c>' : 'j']],
+--   { expr = true }
+-- )
+-- map('i', 'j<Space>', 'j')
+-- map('t', 'j<Space>', 'j')
 
 -- Improved increment.
 -- cmd [[
@@ -396,8 +407,13 @@ map('n', 'tt', 'g<C-]>')
 map('n', 'tp', '<cmd>pop<cr>')
 
 -- Begin a new line without leaving insert mode.
-map('i', '<C-CR>','<C-o>o')
+map('i', '<C-CR>', '<C-o>o')
 map('i', '<S-CR>', '<C-o>O')
+map('i', '<C-S-CR>', '<C-o>O')
 
 -- Suppress "Type :qa and press <Enter> to exit Nvim"
 map('n', '<C-c>', '<silent> <C-c>')
+
+if vim.fn.exists('g:neovide') ~= 0 then
+  vim.cmd [[cd $HOME]]
+end

@@ -1,4 +1,3 @@
-local map = vim.keymap.set
 local telescope = require('telescope')
 
 telescope.setup {
@@ -8,6 +7,8 @@ telescope.setup {
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+        ['<C-v>'] = false,
+        ['<C-\\>'] = require('telescope.actions').select_vertical,
       },
     },
   },

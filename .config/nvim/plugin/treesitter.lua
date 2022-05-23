@@ -7,7 +7,8 @@ require('nvim-treesitter.configs').setup {
     disable = { 'help' },
   },
   indent = {
-    enable = true,
+    -- Enabling this removes the leading space from /*...*...*/ comments! This is annoying!!
+    enable = false,
   },
   incremental_selection = {
     enable = true,

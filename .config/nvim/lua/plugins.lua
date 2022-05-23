@@ -16,6 +16,13 @@ return require('packer').startup({ function(use)
 
   use 'lewis6991/impatient.nvim'
 
+  use {
+    'kyazdani42/nvim-web-devicons',
+    config = function()
+      require('nvim-web-devicons').setup { default = true, }
+    end
+  }
+
   -- Highlights
   use {
     {
@@ -42,7 +49,6 @@ return require('packer').startup({ function(use)
       after = 'nvim-treesitter',
     },
   }
-
 
   -- Completion
   use {
@@ -109,32 +115,59 @@ return require('packer').startup({ function(use)
       'neovim/nvim-lspconfig',
       -- config = [[require('config.lsp')]],
     },
-    -- 'folke/trouble.nvim',
+    'folke/trouble.nvim',
+    'folke/lsp-colors.nvim',
     -- Is this needed?
     -- 'ray-x/lsp_signature.nvim',
     -- 'kosayoda/nvim-lightbulb',
   }
   -- jose-elias-alvarez/null-ls.nvim
 
+  -- Build
+  use { 'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
+
+  -- REPL
+  use {
+    'hkupty/iron.nvim',
+    setup = [[require('config.iron_setup')]],
+    config = [[require('config.iron')]],
+    cmd = { 'IronRepl', 'IronSend', 'IronReplHere'},
+    module = 'iron',
+  }
+
+  -- Quickfix/Location list
+  use { 'romainl/vim-qf', config = [[require('config.qf')]] }
+  -- use 'kevinhwang91/nvim-bqf'
+  use {
+    'mhinz/vim-grepper',
+    cmd = 'Grepper',
+    keys = '<plug>(GrepperOperator)',
+    setup = [[require('config.grepper')]],
+  }
+
   -- Git
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
+  -- use { 'mhinz/vim-signify', config = [[require('config.signify')]] }
   use {
-    'mhinz/vim-signify',
-    config = [[require('config.signify')]],
+    'lewis6991/gitsigns.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = [[require('config.gitsigns')]],
   }
-  use 'airblade/vim-gitgutter'
+  use { 'TimUntersberger/neogit', cmd = 'Neogit', config = [[require('config.neogit')]] }
 
   -- Python
   use 'Vimjas/vim-python-pep8-indent'
 
+  -- Text objects
   use {
-    'jiangmiao/auto-pairs',
-    config = [[vim.g.AutoPairsFlyMode = 1]],
-    -- event = 'InsertEnter *',
+    'kana/vim-textobj-user',
+    'kana/vim-textobj-entire',
   }
-  use { 'mhinz/vim-sayonara', cmd = 'Sayonara' }
+  use 'wellle/targets.vim'
+  use 'chaoren/vim-wordmotion'
 
+  -- Operators and mappings
   use {
     'kana/vim-operator-user',
     {
@@ -143,20 +176,31 @@ return require('packer').startup({ function(use)
       config = [[require('config.operator_surround')]],
     }
   }
-  use { 'kana/vim-niceblock', config = [[require('config.niceblock')]] }
-  use { 'osyo-manga/vim-jplus', config = [[require('config.jplus')]] }
+  use {
+    'kana/vim-arpeggio',
+    config = [[require('config.arpeggio')]],
+  }
   use {
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup {}
     end,
   }
-  use 'AndrewRadev/splitjoin.vim'
+  use { 'AndrewRadev/splitjoin.vim', config = [[require('config.splitjoin')]] }
+  use {
+    'AndrewRadev/switch.vim',
+    setup = [[vim.g.switch_mapping = '_']],
+    keys = '_',
+  }
+
+  -- Augmentations
+  use { 'kana/vim-niceblock', config = [[require('config.niceblock')]] }
+  use { 'osyo-manga/vim-jplus', config = [[require('config.jplus')]] }
   use {
     'tyru/open-browser.vim',
     config = [[require('config.open_browser')]],
   }
-
+  use { 'mhinz/vim-sayonara', cmd = 'Sayonara' }
   use { 'rhysd/accelerated-jk', config = [[require('config.accelerated_jk')]] }
   use { 'hrsh7th/vim-eft', config = [[require('config.eft')]] }
   use {
@@ -164,22 +208,42 @@ return require('packer').startup({ function(use)
     requires = { 'vim-denops/denops.vim', event = 'CursorHold' },
     config = [[require('config.fuzzy_motion')]],
   }
-
+  use 'kana/vim-smartinput'
+  use {
+    'jiangmiao/auto-pairs',
+    config = [[vim.g.AutoPairsFlyMode = 1]],
+    disable = true,
+    -- event = 'InsertEnter *',
+  }
   use { 'andymass/vim-matchup', config = [[require('config.matchup')]] }
-  use { 'whatyouhide/vim-lengthmatters', config = [[require('config.lengthmatters')]] }
+  use { 'romainl/vim-cool' }
+  use {
+    'dhruvasagar/vim-prosession',
+    after = 'vim-obsession',
+    requires = { {
+      'tpope/vim-obsession',
+      -- cmd = 'Prosession',
+    } },
+    config = [[require('config.prosession')]],
+  }
+
+  -- UI
   use { 'lukas-reineke/indent-blankline.nvim' }
   use {
     'tversteeg/registers.nvim',
     keys = { { 'n', '"' }, { 'i', '<c-r>' } },
     config = [[require('config.registers')]],
   }
-
-  use 'liuchengxu/space-vim-theme'
   use {
-    'kyazdani42/nvim-web-devicons',
-    config = function()
-      require('nvim-web-devicons').setup { default = true, }
-    end
+    'mbbill/undotree',
+    cmd = 'UndotreeToggle',
+    config = [[vim.g.undotree_SetFocusWhenToggle = 1]],
+  }
+  use {
+    'VonHeikemen/fine-cmdline.nvim',
+    requires = 'MunifTanjim/nui.nvim',
+    -- keys = ':',
+    config = [[require('config.fine_cmdline')]],
   }
 
   -- plugin writing
@@ -199,14 +263,14 @@ return require('packer').startup({ function(use)
   }
   -- use 'Shougo/context_filetype.vim'
 
-  -- settings
+  -- Settings
   use 'tpope/vim-sleuth'
   -- use {
   --   'editorconfig/editorconfig-vim',
   --   setup = [[require('config.editorconfig')]],
   -- }
 
-  -- use 'vim-jp/autofmt'
+  -- Misc
   use 'vim-jp/vimdoc-ja'
   -- use 'chrisbra/vim-zsh'
   -- use 'roxma/nvim-yarp'
@@ -214,17 +278,20 @@ return require('packer').startup({ function(use)
   -- use 'cespare/vim-toml'
   -- use 'thinca/vim-qfreplace'
   -- use 'rcarriga/nvim-notify'
-  -- use 'MunifTanjim/nui.nvim'
+  use 'MunifTanjim/nui.nvim'
   -- use 'Shougo/ddx.vim'
-  -- use 'VonHeikemen/fine-cmdline.nvim'
+  use 'antoinemadec/FixCursorHold.nvim'
+
+  -- Colorscheme
+  use 'liuchengxu/space-vim-theme'
 
   if packer_bootstrap then
     require('packer').sync()
   end
 end,
-  config = {
-    display = {
-      open_fn = require('packer.util').float,
-    },
-  }
+config = {
+  display = {
+    open_fn = require('packer.util').float,
+  },
+}
 })
