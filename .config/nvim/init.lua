@@ -168,7 +168,14 @@ o.list = true
 if fn.has('win32') > 0 then
   o.listchars = 'tab:>-,trail:-,precedes:<'
 else
-  o.listchars = 'space:⋅,tab:→ ,eol:↴,precedes:«,extends:»,nbsp:%'
+  opt.listchars = {
+    space = '⋅',
+    tab = '→ ',
+    -- eol = '↴',
+    precedes = '«',
+    extends = '»',
+    nbsp = '%',
+  }
 end
 o.linebreak = true
 o.showbreak = [[\]]

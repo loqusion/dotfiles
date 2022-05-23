@@ -1,6 +1,7 @@
 local fn = vim.fn
 local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local packer_bootstrap = nil
+---@diagnostic disable-next-line: missing-parameter
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system {
     'git',
@@ -53,6 +54,42 @@ return require('packer').startup {
         after = 'nvim-treesitter',
       },
     }
+    use {
+      'norcalli/nvim-colorizer.lua',
+      ft = {
+        'css',
+        'html',
+        'javascript',
+        'javascriptreact',
+        'sass',
+        'scss',
+        'typescript',
+        'typescriptreact',
+        'vim',
+        'vue',
+      },
+      config = function()
+        require('colorizer').setup({
+          'css',
+          'html',
+          'javascript',
+          'javascriptreact',
+          'sass',
+          'scss',
+          'typescript',
+          'typescriptreact',
+          'vim',
+          'vue',
+        }, {
+          RGB = true,
+          RRGGBB = true,
+          names = true,
+          RRGGBBAA = true,
+          rgb_fn = true,
+          hsl_fn = true,
+        })
+      end,
+    }
 
     -- Completion
     use {
@@ -88,6 +125,7 @@ return require('packer').startup {
           'nvim-lua/plenary.nvim',
           'telescope-frecency.nvim',
           'telescope-fzf-native.nvim',
+          'telescope-dap.nvim',
           'nvim-telescope/telescope-ui-select.nvim',
         },
         wants = {
@@ -109,6 +147,9 @@ return require('packer').startup {
       {
         'nvim-telescope/telescope-fzf-native.nvim',
         run = 'make',
+      },
+      {
+        'nvim-telescope/telescope-dap.nvim',
       },
     }
 
@@ -132,6 +173,14 @@ return require('packer').startup {
       },
     }
 
+    -- Documentation
+    use {
+      'danymat/neogen',
+      requires = 'nvim-treesitter',
+      config = [[require('config.neogen')]],
+      keys = { '<localleader>d', '<localleader>df', '<localleader>dc' },
+    }
+
     -- REPL
     use {
       'hkupty/iron.nvim',
@@ -148,7 +197,9 @@ return require('packer').startup {
     use {
       {
         'mfussenegger/nvim-dap',
-        requires = 'jbyuki/one-small-step-for-vimkind',
+        setup = [[require('config.dap_setup')]],
+        config = [[require('config.dap')]],
+        requires = { 'jbyuki/one-small-step-for-vimkind' },
         wants = 'one-small-step-for-vimkind',
         module = 'dap',
       },
@@ -185,6 +236,17 @@ return require('packer').startup {
 
     -- Python
     use 'Vimjas/vim-python-pep8-indent'
+    use {
+      'mfussenegger/nvim-dap-python',
+      requires = 'nvim-dap',
+    }
+
+    -- Rust
+    use {
+      'simrat39/rust-tools.nvim',
+      fs = 'rust',
+      config = [[require('rust-tools').setup({})]],
+    }
 
     -- Text objects
     use {
@@ -210,7 +272,10 @@ return require('packer').startup {
     use {
       'numToStr/Comment.nvim',
       config = function()
-        require('Comment').setup {}
+        require('Comment').setup {
+          toggler = { block = 'gBB' },
+          opleader = { block = 'gB' },
+        }
       end,
     }
     use { 'AndrewRadev/splitjoin.vim', config = [[require('config.splitjoin')]] }
@@ -219,6 +284,7 @@ return require('packer').startup {
       setup = [[vim.g.switch_mapping = '_']],
       keys = '_',
     }
+    use 'tpope/vim-unimpaired'
 
     -- Augmentations
     use { 'kana/vim-niceblock', config = [[require('config.niceblock')]] }
@@ -274,10 +340,20 @@ return require('packer').startup {
       -- keys = ':',
       config = [[require('config.fine_cmdline')]],
     }
+    use {
+      'justinmk/vim-dirvish',
+      'bounceme/remote-viewer',
+    }
+    use {
+      'akinsho/bufferline.nvim',
+      requires = 'kyazdani42/nvim-web-devicons',
+      config = [[require('config.bufferline')]],
+    }
 
     -- plugin writing
     use 'tpope/vim-scriptease'
     use { 'tweekmonster/helpful.vim', cmd = 'HelpfulVersion' }
+    use 'folke/lua-dev.nvim'
 
     -- filetype
     use {
@@ -299,6 +375,13 @@ return require('packer').startup {
     --   setup = [[require('config.editorconfig')]],
     -- }
 
+    -- Profiling
+    use {
+      'dstein64/vim-startuptime',
+      cmd = 'StartupTime',
+      config = [[vim.g.startuptime_tries = 10]],
+    }
+
     -- Misc
     use 'vim-jp/vimdoc-ja'
     -- use 'chrisbra/vim-zsh'
@@ -313,6 +396,7 @@ return require('packer').startup {
 
     -- Colorscheme
     use 'liuchengxu/space-vim-theme'
+    use 'sainnhe/gruvbox-material'
 
     if packer_bootstrap then
       require('packer').sync()

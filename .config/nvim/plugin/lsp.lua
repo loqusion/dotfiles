@@ -161,8 +161,8 @@ local servers = {
   emmet_ls = {},
   eslint = { cmd = { 'eslint' } },
   graphql = {},
-  html = { cmd = { 'vscode-json-languageserver', '--stdio' } },
-  jsonls = { prefer_null_ls = true, cmd = { 'vscode-json-languageserver', '--stdio' } },
+  html = { cmd = { 'vscode-html-language-server', '--stdio' } },
+  jsonls = { prefer_null_ls = true, cmd = { 'vscode-json-language-server', '--stdio' } },
   sumneko_lua = {
     cmd = { 'lua-language-server' },
     settings = {
@@ -187,7 +187,7 @@ local servers = {
   pyright = { settings = { python = { formatting = { provider = 'yapf' } } } },
   stylelint_lsp = {},
   tailwindcss = {},
-  rust_analyzer = {},
+  -- rust_analyzer = {},
   tsserver = {},
   vimls = {},
   yamlls = {},
