@@ -1,13 +1,14 @@
-*
 gh/hosts.yml
 iterm2/*
 
-!.gitignore
-!gh
-!iterm2
 !iterm2/MyProfile
-!luarocks
-!luarocks/config*.lua
-!nvim
-!ptpython
-!starship.toml
+#!.gitignore
+#!gh
+#!iterm2
+#!luarocks
+#!luarocks/config*.lua
+#!nvim
+#!ptpython
+#!starship.toml
+#!stylua
+#!stylua/*
