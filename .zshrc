@@ -23,23 +23,22 @@ autoload -Uz compinit && compinit
 # aws completion
 complete -C '/usr/local/bin/aws_completer' aws
 
-export PATH="${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin:${HOME}/.yarn/bin:${PATH}:${HOMEBREW_PREFIX}/opt/ruby/bin:${PATH}:${HOMEBREW_PREFIX}/lib/ruby/gems/3.1.0/bin:${PATH}"
-
 # Need this for emacs bindings in VSCode
 bindkey -e
 
 alias vim=nvim
+# <command> --help | viman
+alias viman='nvim ++Man\!'
 alias neovide='NEOVIDE_MULTIGRID=1 neovide'
 alias nvide='neovide'
 alias config='git --git-dir="$HOME/.cfg" --work-tree="$HOME"'
 alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
 alias zshrc='$EDITOR "$HOME/.zshrc"'
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PTPYTHON_CONFIG_HOME="$HOME/.config/ptpython"
 
-# Use stable node version by default
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 nvm use --lts &>/dev/null
 
 # iTerm2 shell integration
