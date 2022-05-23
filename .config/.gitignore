@@ -1,14 +1,9 @@
+.DS_STORE
+configstore
+fish
 gh/hosts.yml
-iterm2/*
+iterm2
+qBittorrent
+yarn
 
 !iterm2/MyProfile
-#!.gitignore
-#!gh
-#!iterm2
-#!luarocks
-#!luarocks/config*.lua
-#!nvim
-#!ptpython
-#!starship.toml
-#!stylua
-#!stylua/*
