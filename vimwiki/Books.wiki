@@ -1,8 +1,0 @@
-= Books =
-
-== Software Development ==
-    * The Pragmatic Programmer ◀︎
-
-== Dealing with People ==
-    * The Mythical Man-Month
-    * Dinosaur Brains
