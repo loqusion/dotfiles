@@ -1,6 +1,17 @@
 #!/usr/bin/env sh
 
+cmd='npm'
+nvm_path="${HOME}/.nvm"
+
+if ! type nvm >/dev/null 2>&1 && [ -r "${nvm_path}/nvm.sh" ]; then
+  . "${nvm_path}/nvm.sh"
+fi
+
+if type nvm >/dev/null 2>&1 && [ "$(nvm version current)" != "$(nvm version node)" ]; then
+  cmd='nvm exec node npm'
+fi
+
 escaped_home=$(echo "$HOME" | sed 's/\//\\\//g')
-npm list -g --depth=0 --parseable |
-  sed -E "s/${escaped_home}\/\.nvm\/versions\/node\/.*\/lib\/node_modules\///g" |
-  sed 1d >~/.npm-packages
+${cmd} list -g --depth=0 --parseable |
+  sed -E '1,+1d' |
+  sed -E "s/${escaped_home}\/\.nvm\/versions\/node\/.*\/lib\/node_modules\///" >~/.npm-packages
