@@ -1,6 +1,7 @@
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 local lspkind = require 'lspkind'
+local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 
 cmp.setup {
   completion = { completeopt = 'menuone,noselect' },
@@ -22,15 +23,15 @@ cmp.setup {
     end,
   },
   formatting = {
-    format = lspkind.cmp_format({
+    format = lspkind.cmp_format {
       mode = 'symbol',
       maxwidth = 50,
-    }),
+    },
   },
   mapping = cmp.mapping.preset.insert {
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete({}),
+    ['<C-Space>'] = cmp.mapping.complete {},
     ['<C-e>'] = cmp.mapping {
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
@@ -75,7 +76,7 @@ cmp.setup.filetype('gitcommit', {
     { name = 'cmp_git' },
   }, {
     { name = 'buffer' },
-  })
+  }),
 })
 
 cmp.setup.cmdline('/', {
@@ -95,3 +96,5 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' },
   }),
 })
+
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done { map_char = { text = '' } })

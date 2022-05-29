@@ -11,41 +11,12 @@ local lsp = vim.lsp
 vim.api.nvim_command 'hi link LightBulbFloatWin YellowFloat'
 vim.api.nvim_command 'hi link LightBulbVirtualText YellowFloat'
 
--- local kind_symbols = {
---   Text = '  ',
---   Method = '  ',
---   Function = '  ',
---   Constructor = '  ',
---   Field = '  ',
---   Variable = '  ',
---   Class = '  ',
---   Interface = '  ',
---   Module = '  ',
---   Property = '  ',
---   Unit = '  ',
---   Value = '  ',
---   Enum = '  ',
---   Keyword = '  ',
---   Snippet = '  ',
---   Color = '  ',
---   File = '  ',
---   Reference = '  ',
---   Folder = '  ',
---   EnumMember = '  ',
---   Constant = '  ',
---   Struct = '  ',
---   Event = '  ',
---   Operator = '  ',
---   TypeParameter = '  ',
--- }
-
 local sign_define = vim.fn.sign_define
 sign_define('DiagnosticSignError', { text = '', numhl = 'RedSign' })
 sign_define('DiagnosticSignWarn', { text = '', numhl = 'YellowSign' })
 sign_define('DiagnosticSignInfo', { text = '', numhl = 'WhiteSign' })
 sign_define('DiagnosticSignHint', { text = '', numhl = 'BlueSign' })
 lsp_status.config {
-  -- kind_labels = kind_symbols,
   indicator_errors = 'E',
   indicator_warnings = 'W',
   indicator_info = 'i',
@@ -94,11 +65,14 @@ local lsp_formatting = function(bufnr)
   }
 end
 
-require('lsp_signature').setup { bind = true, handler_opts = { border = 'single' } }
-local keymap_opts = { noremap = true, silent = true }
+pcall(function()
+  require('lsp_signature').setup { bind = true, handler_opts = { border = 'single' } }
+end)
 local on_attach = function(client, bufnr)
   lsp_status.on_attach(client)
-  require('lsp_signature').on_attach { bind = true, handler_opts = { border = 'single' } }
+  pcall(function()
+    require('lsp_signature').on_attach { bind = true, handler_opts = { border = 'single' } }
+  end)
   local opts = { buffer = bufnr }
   local map = vim.keymap.set
   map('n', 'gD', vim.lsp.buf.declaration, opts)
@@ -159,7 +133,7 @@ local servers = {
   },
   cssmodules_ls = {},
   emmet_ls = {},
-  eslint = { cmd = { 'eslint' } },
+  -- eslint = { cmd = { 'eslint' } },
   graphql = {},
   html = { cmd = { 'vscode-html-language-server', '--stdio' } },
   jsonls = { prefer_null_ls = true, cmd = { 'vscode-json-language-server', '--stdio' } },
@@ -231,6 +205,7 @@ local null_act = null_ls.builtins.code_actions
 null_ls.setup {
   sources = {
     -- null_diag.pylint,
+    null_diag.eslint,
     null_diag.shellcheck,
     null_diag.teal,
     null_diag.vint,
@@ -243,6 +218,7 @@ null_ls.setup {
     null_fmt.yapf,
     null_act.gitsigns,
     null_act.refactoring.with { filetypes = { 'javascript', 'typescript', 'lua', 'python' } },
+    null_act.eslint,
   },
   on_attach = on_attach,
 }

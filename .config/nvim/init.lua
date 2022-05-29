@@ -4,8 +4,6 @@ require 'impatient'
 local g = vim.g
 local fn = vim.fn
 local o, opt, opt_local = vim.o, vim.opt, vim.opt_local
-local utils = require 'config.utils'
-local autocmd = utils.autocmd
 local map = vim.keymap.set
 
 g.mapleader = [[,]]
@@ -56,7 +54,7 @@ opt.wildoptions:append { 'pum', 'tagfile' }
 if fn.has('patch-8.2.4463') ~= 0 then
   opt.wildoptions:append { 'fuzzy' }
 end
-opt.wildignore:append { '*.o', '*~', '*.pyc', 'node_modules' }
+opt.wildignore:append { '*.o', '*~', '*.pyc', 'node_modules', '.git' }
 o.wildmode = 'longest,full'
 o.wildignorecase = true
 o.completeopt = 'menuone,noselect'
@@ -154,7 +152,7 @@ end
 o.title = true
 o.titlelen = 95
 o.titlestring = [[%{expand('%:p:~:.')} %<(%{fnamemodify(getcwd(), ':~')})%(%m%r%w%)]]
-o.laststatus = 0
+o.laststatus = 3
 o.statusline = [[ %=%{printf('%'.(len(line('$'))+2).'d/%d',line('.'),line('$'))}]]
 o.showtabline = 1
 o.tabline = [[]]
@@ -263,8 +261,7 @@ vim.cmd [[command! Todo Grepper -noprompt -tool git -query -E '(TODO|FIXME|BUG|X
 map('n', 'm', '<Nop>')
 map('n', ',', '<Nop>')
 
-map({ 'n', 'x' }, '<Space>', '[Space]', { remap = true })
-map({ 'n', 'x' }, '[Space]', '<Nop>')
+map({ 'n', 'x' }, '<Space>', '<Nop>', { remap = true })
 
 map({ 'n', 'x' }, 's', '<nop>')
 map({ 'n', 'x' }, 'S', '<nop>')
@@ -274,10 +271,6 @@ map('n', '>', '>>')
 map('n', '<', '<<')
 map('x', '>', '>gv')
 map('x', '<', '<gv')
-
--- if (!has('nvim') || $DISPLAY !=# '') && has('clipboard')
---   xnoremap <silent> y "*y:let [@+,@"]=[@*,@*]<CR>
--- endif
 
 -- Insert mode keymappings:
 -- <C-t>: insert tab.
@@ -316,13 +309,13 @@ map('c', '<C-k>',
   { expr = true }
 )
 
-map('n', '[Space]l', [[<cmd>call vimrc#toggle_option('laststatus')<cr>]])
+map('n', '<Space>l', [[<cmd>call vimrc#toggle_option('laststatus')<cr>]])
 
 -- Quickfix
-map('n', '[Space]e', vim.diagnostic.open_float)
+map('n', '<Space>e', vim.diagnostic.open_float)
 map('n', '[d', vim.diagnostic.goto_prev)
 map('n', ']d', vim.diagnostic.goto_next)
-map('n', '[Space]q', vim.diagnostic.setloclist)
+map('n', '<Space>q', vim.diagnostic.setloclist)
 
 -- Useful save/quit mappings.
 map('n', '<leader><leader>', '<cmd>silent update<cr>', { silent = true })
@@ -333,10 +326,6 @@ map('n', '<leader>d', '<cmd>Sayonara<cr>', { silent = true })
 -- s: Windows and buffers (High priority)
 map('n', 'sp', '<cmd>vsplit<cr>', { silent = true })
 map('n', 'so', '<cmd>only<cr>', { silent = true })
--- map('n', 'q', [[winnr('$') != 1 ? '<cmd>close<cr>' : '']], {
---   silent = true,
---   expr = true,
--- })
 
 -- Window movement
 map('n', '<c-h>', '<c-w>h')
@@ -359,11 +348,11 @@ map('n', 'gs', '<nop>')
 
 -- Smart <C-f>, <C-b>.
 map('n', '<C-f>',
-  [[max([winheight(0) - 2, 1]) .. '<C-d>' .. (line('w$') >= line('$') ? 'L' : 'M')]],
+  [[max([winheight(0) - 2, 1]) .. '<C-e>' .. (line('w$') >= line('$') ? 'L' : 'M')]],
   { expr = true }
 )
 map('n', '<C-b>',
-  [[max([winheight(0) - 2, 1]) .. '<C-u>' .. (line('w0') <= 1 ? 'H' : 'M')]],
+  [[max([winheight(0) - 2, 1]) .. '<C-y>' .. (line('w0') <= 1 ? 'H' : 'M')]],
   { expr = true }
 )
 
@@ -377,28 +366,6 @@ map('n', '<C-S-l>', '<cmd>redraw!<cr>', { silent = true })
 map('n', 'l', [[foldclosed(line('.')) != -1 ? 'zo0' : 'l']], { expr = true })
 -- If press l on fold, range fold open.
 map('x', 'l', [[foldclosed(line('.')) != -1 ? 'zogv0' : 'l']], { expr = true })
-
--- Substitute.
--- map('x', 's', ':s//g<left><left>')
-
--- Easy escape.
--- map('i', 'jj', '<Esc>')
--- map('t', 'jj', [[<C-\><C-n>]])
--- map('c', 'j', [[getcmdline()[getcmdpos()-2] ==# 'j' ? '<BS><C-c>' : 'j']],
---   { expr = true }
--- )
--- map('i', 'j<Space>', 'j')
--- map('t', 'j<Space>', 'j')
-
--- Improved increment.
--- cmd [[
---   nmap <C-a> <SID>(increment)
---   nmap <C-x> <SID>(decrement)
---   nnoremap <silent> <SID>(increment)    <Cmd>AddNumbers 1<CR>
---   nnoremap <silent> <SID>(decrement)    <Cmd>AddNumbers -1<CR>
---   command! -range -nargs=1 AddNumbers
---         \ call vimrc#add_numbers((<line2>-<line1>+1) * eval(<args>))
--- ]]
 
 -- Switch between alternate buffer.
 map('n', '#', '<C-^>', { silent = true })
@@ -416,7 +383,6 @@ map('n', 'tp', '<cmd>pop<cr>')
 -- Begin a new line without leaving insert mode.
 map('i', '<C-CR>', '<C-o>o')
 map('i', '<S-CR>', '<C-o>O')
-map('i', '<C-S-CR>', '<C-o>O')
 
 -- Suppress "Type :qa and press <Enter> to exit Nvim"
 map('n', '<C-c>', '<silent> <C-c>')

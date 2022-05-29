@@ -4,10 +4,10 @@ map('n', '<leader><space>', function()
   require('telescope.builtin').buffers()
 end)
 map('n', '<leader>sf', function()
-  require('telescope.builtin').find_files()
+  require('telescope.builtin').find_files { hidden = true }
 end)
 map('n', '<leader>sv', function()
-  require('telescope.builtin').find_files { cwd = vim.fn.stdpath('config') }
+  require('telescope.builtin').find_files { cwd = vim.fn.stdpath 'config' }
 end)
 map('n', '<leader>sb', function()
   require('telescope.builtin').current_buffer_fuzzy_find()

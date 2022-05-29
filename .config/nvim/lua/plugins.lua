@@ -91,6 +91,26 @@ return require('packer').startup {
       end,
     }
 
+    -- LSP
+    use {
+      'williamboman/nvim-lsp-installer',
+      'neovim/nvim-lspconfig',
+      'nvim-lua/lsp-status.nvim',
+      'folke/trouble.nvim',
+      'folke/lsp-colors.nvim',
+      -- Is this needed?
+      -- 'ray-x/lsp_signature.nvim',
+      'kosayoda/nvim-lightbulb',
+      { 'jose-elias-alvarez/null-ls.nvim', requires = 'nvim-lua/plenary.nvim' },
+      {
+        'ThePrimeagen/refactoring.nvim',
+        requires = {
+          'nvim-lua/plenary.nvim',
+          'nvim-treesitter/nvim-treesitter',
+        },
+      },
+    }
+
     -- Completion
     use {
       'hrsh7th/nvim-cmp',
@@ -119,7 +139,8 @@ return require('packer').startup {
     -- Search
     use {
       {
-        'nvim-telescope/telescope.nvim',
+        -- 'nvim-telescope/telescope.nvim',
+        '~/Projects/telescope.nvim',
         requires = {
           'nvim-lua/popup.nvim',
           'nvim-lua/plenary.nvim',
@@ -150,26 +171,6 @@ return require('packer').startup {
       },
       {
         'nvim-telescope/telescope-dap.nvim',
-      },
-    }
-
-    -- LSP
-    use {
-      'williamboman/nvim-lsp-installer',
-      'neovim/nvim-lspconfig',
-      'nvim-lua/lsp-status.nvim',
-      'folke/trouble.nvim',
-      'folke/lsp-colors.nvim',
-      -- Is this needed?
-      'ray-x/lsp_signature.nvim',
-      'kosayoda/nvim-lightbulb',
-      { 'jose-elias-alvarez/null-ls.nvim', requires = 'nvim-lua/plenary.nvim' },
-      {
-        'ThePrimeagen/refactoring.nvim',
-        requires = {
-          'nvim-lua/plenary.nvim',
-          'nvim-treesitter/nvim-treesitter',
-        },
       },
     }
 
@@ -234,6 +235,15 @@ return require('packer').startup {
     }
     use { 'TimUntersberger/neogit', cmd = 'Neogit', config = [[require('config.neogit')]] }
 
+    -- JavaScript/TypeScript
+    use {
+      'vuki656/package-info.nvim',
+      requires = 'MunifTanjim/nui.nvim',
+      config = function()
+        require('package-info').setup()
+      end,
+    }
+
     -- Python
     use 'Vimjas/vim-python-pep8-indent'
     use {
@@ -284,7 +294,7 @@ return require('packer').startup {
       setup = [[vim.g.switch_mapping = '_']],
       keys = '_',
     }
-    use 'tpope/vim-unimpaired'
+    use { 'tpope/vim-unimpaired', config = [[require('config.unimpaired')]] }
 
     -- Augmentations
     use { 'kana/vim-niceblock', config = [[require('config.niceblock')]] }
@@ -301,7 +311,8 @@ return require('packer').startup {
       requires = { 'vim-denops/denops.vim', event = 'CursorHold' },
       config = [[require('config.fuzzy_motion')]],
     }
-    use 'kana/vim-smartinput'
+    -- use 'kana/vim-smartinput'
+    use { 'windwp/nvim-autopairs', config = [[require('config.autopairs')]] }
     use {
       'jiangmiao/auto-pairs',
       config = [[vim.g.AutoPairsFlyMode = 1]],
@@ -321,6 +332,7 @@ return require('packer').startup {
       },
       config = [[require('config.prosession')]],
     }
+    use 'tpope/vim-eunuch'
 
     -- UI
     use { 'lukas-reineke/indent-blankline.nvim' }
@@ -336,19 +348,27 @@ return require('packer').startup {
     }
     use {
       'VonHeikemen/fine-cmdline.nvim',
+      disable = true,
       requires = 'MunifTanjim/nui.nvim',
       -- keys = ':',
       config = [[require('config.fine_cmdline')]],
     }
     use {
-      'justinmk/vim-dirvish',
+      {
+        'justinmk/vim-dirvish',
+        config = function()
+          vim.g.dirvish_mode = ':sort ,^.*[/],'
+        end,
+      },
       'bounceme/remote-viewer',
     }
     use {
       'akinsho/bufferline.nvim',
+      disable = true,
       requires = 'kyazdani42/nvim-web-devicons',
       config = [[require('config.bufferline')]],
     }
+    use { 'akinsho/toggleterm.nvim', config = [[require('config.toggleterm')]] }
 
     -- plugin writing
     use 'tpope/vim-scriptease'

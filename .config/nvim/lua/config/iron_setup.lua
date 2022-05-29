@@ -19,11 +19,11 @@ local core = {
   clear = function() require('iron.core').send(nil, string.char(12)) end,
 }
 
-map('n', '[Space]sc', core.send_motion, { silent = true })
-map('x', '[Space]sc', core.visual_send, { silent = true })
-map('n', '[Space]sl', core.send_line, { silent = true })
-map('n', '[Space]s.', core.repeat_cmd, { silent = true })
-map('n', '[Space]s<CR>', core.cr, { silent = true })
-map('n', '[Space]s[Space]', core.interrupt, { silent = true })
-map('n', '[Space]sq', core.exit, { silent = true })
-map('n', '[Space]cl', core.clear, { silent = true })
+map('n', '<Space>sc', core.send_motion, { silent = true })
+map('x', '<Space>sc', core.visual_send, { silent = true })
+map('n', '<Space>sl', core.send_line, { silent = true })
+map('n', '<Space>s.', core.repeat_cmd, { silent = true })
+map('n', '<Space>s<CR>', core.cr, { silent = true })
+map('n', '<Space>s<Space>', core.interrupt, { silent = true })
+map('n', '<Space>sq', core.exit, { silent = true })
+map('n', '<Space>cl', core.clear, { silent = true })
