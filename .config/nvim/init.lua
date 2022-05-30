@@ -51,7 +51,7 @@ o.textwidth = 100
 o.scrolloff = 0
 o.wildmenu = true
 opt.wildoptions:append { 'pum', 'tagfile' }
-if fn.has('patch-8.2.4463') ~= 0 then
+if fn.has 'patch-8.2.4463' ~= 0 then
   opt.wildoptions:append { 'fuzzy' }
 end
 opt.wildignore:append { '*.o', '*~', '*.pyc', 'node_modules', '.git' }
@@ -140,13 +140,13 @@ o.swapfile = false
 o.visualbell = false
 opt.belloff = { 'all' }
 o.showfulltag = true
-if fn.exists('+previewpopup') ~= 0 then
+if fn.exists '+previewpopup' ~= 0 then
   opt.previewpopup = { 'height:10', 'width:60' }
 end
 o.cedit = '<C-q>'
 o.shell = 'sh'
 o.guifont = 'CaskaydiaCove Nerd Font:h14.5'
-if fn.has('gui_running') ~= 0 then
+if fn.has 'gui_running' ~= 0 then
   o.guioptions = 'Mc'
 end
 o.title = true
@@ -163,7 +163,7 @@ opt.helplang = { 'en', 'ja' }
 o.fileformat = 'unix'
 opt.fileformats = { 'unix', 'dos', 'mac' }
 o.list = true
-if fn.has('win32') > 0 then
+if fn.has 'win32' > 0 then
   o.listchars = 'tab:>-,trail:-,precedes:<'
 else
   opt.listchars = {
@@ -179,7 +179,7 @@ o.linebreak = true
 o.showbreak = [[\]]
 opt.breakat = {
   [' '] = true,
-  ["\t"] = true,
+  ['\t'] = true,
   [';'] = true,
   [':'] = true,
   [','] = true,
@@ -232,17 +232,17 @@ vim.cmd [[
     autocmd MyAutoCmd BufWritePre *
           \ call vimrc#trim_trailing_whitespace() |
           \ call vimrc#trim_final_newlines()
-
-    " Reload plugins file on save.
-    let $CONFIG = stdpath('config')
-    let $PLUGINS_SPEC = $CONFIG .. '/lua/plugins.lua'
-    augroup packer_user_config
-      autocmd!
-      autocmd BufWritePost $PLUGINS_SPEC,$CONFIG/lua/config/*
-            \ exec 'source ' .. $PLUGINS_SPEC |
-            \ packadd packer.nvim | lua require('plugins').compile()
-    augroup end
   augroup END
+
+  " Reload plugins file on save.
+  let $CONFIG = stdpath('config')
+  let $PLUGINS_SPEC = $CONFIG .. '/lua/plugins.lua'
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost $PLUGINS_SPEC,$CONFIG/lua/config/*
+          \ exec 'source ' .. $PLUGINS_SPEC |
+          \ packadd packer.nvim | lua require('plugins').compile()
+  augroup end
 ]]
 
 ----------------------------------------------------------------------------
@@ -304,10 +304,7 @@ map('c', '<C-g>', '<C-c>')
 -- <C-d>: delete char.
 map('c', '<C-d>', '<Del>')
 -- <C-k>: Delete to the end.
-map('c', '<C-k>',
-  [[repeat("\<Del>", strchars(getcmdline()[getcmdpos() - 1:]))]],
-  { expr = true }
-)
+map('c', '<C-k>', [[repeat("\<Del>", strchars(getcmdline()[getcmdpos() - 1:]))]], { expr = true })
 
 map('n', '<Space>l', [[<cmd>call vimrc#toggle_option('laststatus')<cr>]])
 
@@ -347,11 +344,15 @@ map('n', 'M', 'm')
 map('n', 'gs', '<nop>')
 
 -- Smart <C-f>, <C-b>.
-map('n', '<C-f>',
+map(
+  'n',
+  '<C-f>',
   [[max([winheight(0) - 2, 1]) .. '<C-e>' .. (line('w$') >= line('$') ? 'L' : 'M')]],
   { expr = true }
 )
-map('n', '<C-b>',
+map(
+  'n',
+  '<C-b>',
   [[max([winheight(0) - 2, 1]) .. '<C-y>' .. (line('w0') <= 1 ? 'H' : 'M')]],
   { expr = true }
 )
@@ -387,6 +388,6 @@ map('i', '<S-CR>', '<C-o>O')
 -- Suppress "Type :qa and press <Enter> to exit Nvim"
 map('n', '<C-c>', '<silent> <C-c>')
 
-if vim.fn.exists('g:neovide') ~= 0 then
+if vim.fn.exists 'g:neovide' ~= 0 then
   vim.cmd [[cd $HOME]]
 end
