@@ -31,7 +31,8 @@ alias vim=nvim
 alias viman='nvim ++Man\!'
 alias neovide='NEOVIDE_MULTIGRID=1 neovide'
 alias nvide='neovide'
-alias config='git --git-dir="$HOME/.cfg" --work-tree="$HOME"'
+alias lg='lazygit'
+alias config='git --git-dir="$HOME/.local/share/dotfiles" --work-tree="$HOME"'
 alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
 alias zshrc='$EDITOR "$HOME/.zshrc"'
 
