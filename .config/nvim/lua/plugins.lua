@@ -98,8 +98,7 @@ return require('packer').startup {
       'nvim-lua/lsp-status.nvim',
       'folke/trouble.nvim',
       'folke/lsp-colors.nvim',
-      -- Is this needed?
-      -- 'ray-x/lsp_signature.nvim',
+      'ray-x/lsp_signature.nvim',
       'kosayoda/nvim-lightbulb',
       { 'jose-elias-alvarez/null-ls.nvim', requires = 'nvim-lua/plenary.nvim' },
       {
@@ -111,7 +110,7 @@ return require('packer').startup {
       },
     }
 
-    -- Completion
+    -- Completion/Snippets
     use {
       'hrsh7th/nvim-cmp',
       requires = {
@@ -134,6 +133,12 @@ return require('packer').startup {
       },
       config = [[require('config.cmp')]],
       event = { 'InsertEnter *', 'CursorHold' },
+    }
+    use {
+      'danymat/neogen',
+      requires = 'nvim-treesitter',
+      config = [[require('config.neogen')]],
+      keys = { '<localleader>d', '<localleader>df', '<localleader>dc' },
     }
 
     -- Search
@@ -175,12 +180,7 @@ return require('packer').startup {
     }
 
     -- Documentation
-    use {
-      'danymat/neogen',
-      requires = 'nvim-treesitter',
-      config = [[require('config.neogen')]],
-      keys = { '<localleader>d', '<localleader>df', '<localleader>dc' },
-    }
+    use 'rizzatti/dash.vim'
 
     -- REPL
     use {
@@ -244,6 +244,9 @@ return require('packer').startup {
       end,
     }
 
+    -- Markdown
+    use 'preservim/vim-markdown'
+
     -- Python
     use 'Vimjas/vim-python-pep8-indent'
     use {
@@ -267,14 +270,8 @@ return require('packer').startup {
     use 'chaoren/vim-wordmotion'
 
     -- Operators and mappings
-    use {
-      'kana/vim-operator-user',
-      {
-        'rhysd/vim-operator-surround',
-        requires = 'kana/vim-operator-user',
-        config = [[require('config.operator_surround')]],
-      },
-    }
+    use 'tpope/vim-surround'
+    use 'tpope/vim-repeat'
     use {
       'kana/vim-arpeggio',
       config = [[require('config.arpeggio')]],
@@ -283,8 +280,8 @@ return require('packer').startup {
       'numToStr/Comment.nvim',
       config = function()
         require('Comment').setup {
-          toggler = { block = 'gBB' },
-          opleader = { block = 'gB' },
+          -- toggler = { block = 'gBB' },
+          -- opleader = { block = 'gB' },
         }
       end,
     }
@@ -357,7 +354,8 @@ return require('packer').startup {
       {
         'justinmk/vim-dirvish',
         config = function()
-          vim.g.dirvish_mode = ':sort ,^.*[/],'
+          vim.g.dirvish_mode = 1
+          vim.cmd [[autocmd FileType dirvish silent sort ,^.*[/],]]
         end,
       },
       'bounceme/remote-viewer',

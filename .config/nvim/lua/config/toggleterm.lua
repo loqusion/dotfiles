@@ -40,6 +40,6 @@ function _G.set_terminal_keymaps()
   end
 end
 
-map('n', '<leader>g', '<cmd>lua _lazygit_toggle()<cr>', { silent = true })
+map('n', '<localleader>g', '<cmd>lua _lazygit_toggle()<cr>', { silent = true })
 vim.cmd [[autocmd! TermOpen term://* lua set_terminal_keymaps()]]
 vim.cmd [[autocmd! TermOpen term://* set nolist]]
