@@ -2,12 +2,11 @@
 
 set -u
 
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-echo '.cfg' >> "$HOME/.gitignore"
-git clone --bare git@github.com:loqusion/dotfiles.git "$HOME/.cfg"
+alias config='/usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME'
+git clone --bare git@github.com:loqusion/dotfiles.git "$HOME/.local/share/dotfiles"
 
 config config --local core.sparseCheckout true
-echo -e '/*\n!README.md\n!installer.sh' > $HOME/.cfg/info/sparse-checkout
+echo -e '/*\n!README.md\n!installer.sh' > $HOME/.local/share/dotfiles/info/sparse-checkout
 config checkout
 config config --local status.showUntrackedFiles no
 
