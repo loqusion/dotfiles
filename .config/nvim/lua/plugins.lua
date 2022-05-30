@@ -246,6 +246,14 @@ return require('packer').startup {
 
     -- Markdown
     use 'preservim/vim-markdown'
+    use {
+      'iamcco/markdown-preview.nvim',
+      run = 'cd app && yarn install',
+      ft = { 'markdown', 'pandoc.markdown', 'rmd' },
+      setup = function()
+        vim.g.mkdp_filetypes = { 'markdown', 'pandoc.markdown', 'rmd' }
+      end,
+    }
 
     -- Python
     use 'Vimjas/vim-python-pep8-indent'
@@ -257,7 +265,7 @@ return require('packer').startup {
     -- Rust
     use {
       'simrat39/rust-tools.nvim',
-      fs = 'rust',
+      ft = 'rust',
       config = [[require('rust-tools').setup({})]],
     }
 
@@ -367,6 +375,16 @@ return require('packer').startup {
       config = [[require('config.bufferline')]],
     }
     use { 'akinsho/toggleterm.nvim', config = [[require('config.toggleterm')]] }
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+      config = [[require('config.lualine')]],
+    }
+    use {
+      'simrat39/symbols-outline.nvim',
+      cmd = { 'SymbolsOutline', 'SymbolsOutlineOpen', 'SymbolsOutlineClose' },
+      setup = [[require('config.symbols_outline')]],
+    }
 
     -- plugin writing
     use 'tpope/vim-scriptease'
