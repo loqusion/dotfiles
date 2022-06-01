@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+progname="$(basename "$0")"
+script_dir="$(dirname "$0")"
+
+declare -a invalid_input
+declare -a valid_input
+
+supported=(
+  brew
+  npm
+  pip
+)
+
+usage() {
+  {
+    echo "Usage: ${progname} <package_manager>"
+    echo "Supported Package Managers"
+    print_all_supported
+    echo "Or, pass 'all' to dump all of them"
+  } >&2
+}
+
+print_all_supported() {
+  for s in "${supported[@]}"; do
+    echo -e "\t${s}"
+  done
+}
+
+is_supported() {
+  local prog="$1"
+  for s in "${supported[@]}"; do
+    if [ "$prog" = "$s" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+dump() {
+  local prog="$1"
+  if [ -z "$prog" ] || ! is_supported "$prog"; then
+    return 1
+  fi
+  valid_input+=("$prog")
+  echo "Dumping ${prog}..."
+  "${script_dir}/dump-${prog}.sh" >&2
+  echo "Finished dumping $prog"
+  echo
+}
+
+if [ $# -eq 0 ]; then
+  usage
+  exit 0
+fi
+
+progs_to_dump=("$@")
+for arg in "$@"; do
+  if [ "$arg" = "all" ]; then
+    progs_to_dump=("${supported[@]}")
+    break
+  fi
+done
+
+for prog in "${progs_to_dump[@]}"; do
+  set +e; dump "$prog"; status=$?; set -e
+  if [ $status -eq 0 ]; then
+    valid_input+=("$prog")
+  else
+    invalid_input+=("$prog")
+  fi
+done
+
+if [ ${#invalid_input} -gt 0 ]; then
+  {
+    usage
+    echo
+    echo "Invalid input: ${invalid_input[*]}"
+  } >&2
+  exit 1
+else
+  echo "Done!" >&2
+fi
