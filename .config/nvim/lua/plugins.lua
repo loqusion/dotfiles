@@ -318,12 +318,6 @@ return require('packer').startup {
     }
     -- use 'kana/vim-smartinput'
     use { 'windwp/nvim-autopairs', config = [[require('config.autopairs')]] }
-    use {
-      'jiangmiao/auto-pairs',
-      config = [[vim.g.AutoPairsFlyMode = 1]],
-      disable = true,
-      -- event = 'InsertEnter *',
-    }
     use { 'andymass/vim-matchup', config = [[require('config.matchup')]] }
     use { 'romainl/vim-cool' }
     use {

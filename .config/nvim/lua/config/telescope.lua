@@ -8,7 +8,7 @@ telescope.setup {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
         ['<C-v>'] = false,
-        ['<C-\\>'] = require('telescope.actions').select_vertical,
+        ['<C-CR>'] = require('telescope.actions').select_vertical,
       },
     },
   },
