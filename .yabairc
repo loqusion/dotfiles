@@ -58,6 +58,7 @@ yabai -m config --space float layout float
 
 # window rules
 yabai -m rule --add app="^iTerm.?$" space=code
+yabai -m rule --add app="^Dash$" space=code grid=9:5:1:1:3:7 manage=off
 yabai -m rule --add app="^Firefox Developer Edition$" space=code
 yabai -m rule --add app="^Safari$" space=web
 yabai -m rule --add app="^Chrome$" space=web
@@ -76,6 +77,6 @@ yabai -m rule --add title="Software Update" manage=off
 yabai -m rule --add app="System Information" manage=off
 
 # signals
-yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
+yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &>/dev/null || yabai -m window --focus mouse &>/dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &>/dev/null"
 
 echo "yabai configuration loaded.."

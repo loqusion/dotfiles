@@ -88,10 +88,6 @@ shift + alt - r : yabai -m space --rotate 90
 shift + alt - x : yabai -m space --mirror x-axis
 shift + alt - y : yabai -m space --mirror y-axis
 
-# Float / Unfloat window
-shift + alt - space : \
-    yabai -m window --toggle float
-
 # Restart Yabai
 shift + lctrl + alt - r : \
     /usr/bin/env osascript <<< \
@@ -102,6 +98,28 @@ shift + lctrl + alt - r : \
 # Make window native fullscreen
 alt - f         : yabai -m window --toggle zoom-fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
+
+# Float / Unfloat window
+shift + alt - space : \
+    yabai -m window --toggle float
+
+# float / unfloat window and center on screen
+alt - t : yabai -m window --toggle float;\
+          yabai -m window --grid 4:5:1:0:3:4
+
+# move floating window
+shift + ctrl - h : yabai -m window --move rel:-20:0
+shift + ctrl - j : yabai -m window --move rel:0:20
+shift + ctrl - k : yabai -m window --move rel:0:-20
+shift + ctrl - l : yabai -m window --move rel:20:0
+
+# increase window size
+# shift + alt - a : yabai -m window --resize left:-20:0
+# shift + alt - w : yabai -m window --resize top:0:-20
+
+# decrease window size
+# shift + cmd - s : yabai -m window --resize top:0:20
+# shift + cmd - w : yabai -m window --resize bottom:0:-20
 
 # make floating window fill half of screen
 # shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
@@ -120,20 +138,6 @@ shift + alt - f : yabai -m window --toggle native-fullscreen
 # ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
 # ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
 
-# move floating window
-# shift + ctrl - a : yabai -m window --move rel:-20:0
-# shift + ctrl - s : yabai -m window --move rel:0:20
-# shift + ctrl - w : yabai -m window --move rel:0:-20
-# shift + ctrl - d : yabai -m window --move rel:20:0
-
-# increase window size
-# shift + alt - a : yabai -m window --resize left:-20:0
-# shift + alt - w : yabai -m window --resize top:0:-20
-
-# decrease window size
-# shift + cmd - s : yabai -m window --resize top:0:20
-# shift + cmd - w : yabai -m window --resize bottom:0:-20
-
 # set insertion point in focused container
 # ctrl + alt - h : yabai -m window --insert west
 
@@ -143,10 +147,6 @@ shift + alt - f : yabai -m window --toggle native-fullscreen
 
 # toggle window split type
 # alt - e : yabai -m window --toggle split
-
-# float / unfloat window and center on screen
-# alt - t : yabai -m window --toggle float;\
-#           yabai -m window --grid 4:4:1:1:2:2
 
 # toggle sticky(+float), topmost, picture-in-picture
 # alt - p : yabai -m window --toggle sticky;\
