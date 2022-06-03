@@ -33,8 +33,11 @@ alias neovide='NEOVIDE_MULTIGRID=1 neovide'
 alias nvide='neovide'
 alias lg='lazygit'
 alias config='git --git-dir="$HOME/.local/share/dotfiles" --work-tree="$HOME"'
+alias c=config
 alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
 alias zshrc='$EDITOR "$HOME/.zshrc"'
+alias caf='caffeinate -d'
+function linecount() { find "${1:-.}" -name "*.*" -print | xargs wc -l }
 
 export PTPYTHON_CONFIG_HOME="$HOME/.config/ptpython"
 
