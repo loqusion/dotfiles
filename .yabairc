@@ -58,12 +58,14 @@ yabai -m config --space float layout float
 
 # window rules
 yabai -m rule --add app="^iTerm.?$" space=code
-yabai -m rule --add app="^Dash$" space=code grid=9:5:1:1:3:7 manage=off
+yabai -m rule --add app="^Dash$" space=code manage=off
+yabai -m rule --add app="^Dash$" title!="^(General|Downloads|Docsets|Web Search|Integration|Snippets|License)$" space=code grid=9:5:1:1:3:7 manage=off
 yabai -m rule --add app="^Firefox Developer Edition$" space=code
 yabai -m rule --add app="^Safari$" space=web
 yabai -m rule --add app="^Chrome$" space=web
 yabai -m rule --add app="^Brave$" space=web
 yabai -m rule --add app="^Spark$" space=mail
+yabai -m rule --add app="^Spark$" title!="^Spark" space=mail manage=off
 yabai -m rule --add app="^Mail$" space=mail
 yabai -m rule --add app="^Messages$" space=mail
 yabai -m rule --add app="^Discord$" space=social grid=1:1:0:0:1:1 manage=off
