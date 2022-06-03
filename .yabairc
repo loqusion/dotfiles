@@ -55,7 +55,6 @@ yabai -m space 5 --label float
 # specific space settings
 yabai -m config --space mail  layout stack
 yabai -m config --space float layout float
-yabai -m config --space float focus_follows_mouse off
 
 # window rules
 yabai -m rule --add app="^iTerm.?$" space=code
