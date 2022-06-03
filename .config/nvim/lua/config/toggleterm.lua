@@ -31,7 +31,6 @@ function _G._lazygit_toggle()
 end
 
 function _G.set_terminal_keymaps()
-  map('t', '<esc>', [[<C-\><C-n>]])
   if direction ~= 'float' then
     -- map('t', '<C-h>', [[<C-\><C-n><C-W>h]])
     -- map('t', '<C-j>', [[<C-\><C-n><C-W>j]])
@@ -41,5 +40,6 @@ function _G.set_terminal_keymaps()
 end
 
 map('n', '<localleader>g', '<cmd>lua _lazygit_toggle()<cr>', { silent = true })
+map('t', '<esc>', [[<C-\><C-n>]])
 vim.cmd [[autocmd! TermOpen term://* lua set_terminal_keymaps()]]
 vim.cmd [[autocmd! TermOpen term://* set nolist]]

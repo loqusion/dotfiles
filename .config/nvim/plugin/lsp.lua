@@ -209,7 +209,7 @@ null_ls.setup {
     null_diag.shellcheck,
     null_diag.teal,
     null_diag.vint,
-    null_diag.write_good.with { filetypes = { 'markdown' } },
+    -- null_diag.write_good.with { filetypes = { 'markdown' } },
     null_fmt.isort,
     null_fmt.prettier,
     null_fmt.rustfmt,

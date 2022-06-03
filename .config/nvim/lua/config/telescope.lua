@@ -9,6 +9,7 @@ telescope.setup {
         ['<C-d>'] = false,
         ['<C-v>'] = false,
         ['<C-CR>'] = require('telescope.actions').select_vertical,
+        ['<S-CR>'] = require('telescope.actions').select_horizontal,
       },
     },
   },

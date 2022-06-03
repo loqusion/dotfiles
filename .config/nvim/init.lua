@@ -191,7 +191,7 @@ opt.breakat = {
 -- Colorscheme
 opt.termguicolors = true
 opt.background = 'dark'
--- g.space_vim_transp_bg = 1
+g.space_vim_transp_bg = 1
 vim.cmd [[colorscheme space_vim_theme_improved]]
 
 ----------------------------------------------------------------------------
@@ -253,6 +253,10 @@ vim.cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync(
 vim.cmd [[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]]
 vim.cmd [[command! PackerCompile packadd packer.nvim | lua require('plugins').compile()]]
 vim.cmd [[command! Todo Grepper -noprompt -tool git -query -E '(TODO|FIXME|BUG|XXX):']]
+vim.cmd [[
+  command! -bang -bar -addr=other -complete=customlist,man#complete -nargs=* VMan
+        \ exe 'vertical <mods> <count>Man <args>'
+]]
 
 ----------------------------------------------------------------------------
 -- Keybindings
