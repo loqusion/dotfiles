@@ -187,6 +187,19 @@ opt.breakat = {
   ['?'] = true,
 }
 o.commentstring = '# %s'
+opt.formatoptions:remove { 't' }
+opt.formatoptions:append {
+  -- Auto-wrap comments
+  c = true,
+  -- Continue comments after <CR>
+  r = true,
+  -- Allow formatting comments with `gq`
+  q = true,
+  -- Long lines are not broken in insert mode
+  l = true,
+  -- Remove comment leader when joining lines
+  j = true,
+}
 
 ----------------------------------------------------------------------------
 -- Colorscheme
