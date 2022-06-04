@@ -23,6 +23,9 @@ editor.pre = function()
   vim.cmd [[syntax enable]]
   vim.opt.foldmethod = 'indent'
   vim.opt.foldlevelstart = 99
+  vim.opt.foldcolumn = 'auto:1'
+  vim.opt.signcolumn = 'yes:1'
+  vim.opt.wildignorecase = true
   vim.opt.wildignore:append {
     '*/.git/*',
     '*/node_modules/*',
@@ -32,16 +35,53 @@ editor.pre = function()
     '*/target/*',
     '.DS_Store',
   }
+  vim.opt.lazyredraw = true
+  vim.opt.redrawtime = 0
+  vim.opt.ignorecase = true
+  vim.opt.smartcase = true
+  vim.opt.virtualedit = 'block'
+  vim.opt.diffopt = { 'internal', 'algorithm:patience', 'indent-heuristic' }
+  vim.opt.fileformat = 'unix'
+  vim.opt.fileformats = { 'unix', 'dos', 'mac' }
+  vim.opt.formatoptions:remove { 't' }
+  vim.opt.formatoptions:append {
+    -- Auto-wrap comments
+    c = true,
+    -- Continue comments after <CR>
+    r = true,
+    -- Allow formatting comments with `gq`
+    q = true,
+    -- Long lines are not broken in insert mode
+    l = true,
+    -- Remove comment leader when joining lines
+    j = true,
+  }
+  vim.opt.list = true
+  if vim.fn.has 'win32' ~= 0 then
+    vim.o.listchars = 'tab:>-,trail:-,precedes:<'
+  else
+    vim.opt.listchars = {
+      space = '⋅',
+      tab = '→ ',
+      -- eol = '↴',
+      precedes = '«',
+      extends = '»',
+      nbsp = '%',
+    }
+  end
 
   set_filetype()
 
   -- setup indent
   vim.cmd [[filetype indent on]]
   vim.opt.cindent = true
+  -- vim.opt.smartindent = true
+  -- vim.opt.autoindent = true
   vim.opt.expandtab = true
+  vim.opt.shiftround = true
   vim.opt.tabstop = 8
   vim.opt.shiftwidth = 4
-  vim.opt.softtabstop = -1
+  vim.opt.softtabstop = 0
   local fi_group = vim.api.nvim_create_augroup('fileindent', {})
   vim.api.nvim_create_autocmd('FileType', {
     group = fi_group,
