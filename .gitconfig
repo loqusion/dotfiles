@@ -1,12 +1,19 @@
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+[core]
+	editor = nvim
 [user]
 	name = John Bernard
 	email = 38332081+loqusion@users.noreply.github.com
 [init]
 	defaultBranch = main
 [pull]
+	rebase = true
 	ff = only
+[diff]
+	tool = nvimdiff
+[difftool "nvimdiff"]
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
