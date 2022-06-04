@@ -1,6 +1,5 @@
 local crows = require 'crows'
----@type Feature
-local search = { plugins = {} }
+local search = require('crows.utils').new_feat()
 
 search.pre = function()
   vim.opt.ignorecase = true
@@ -10,8 +9,29 @@ search.post = function()
   crows.key.map('Clear search', 'n', '<leader>/', '<cmd>nohlsearch<cr>')
 end
 
+search.use 'romainl/vim-qf'
+search.use 'Olical/vim-enmasse'
+
+search.use {
+  'mhinz/vim-grepper',
+  disable = true,
+  cmd = 'Grepper',
+  keys = '<plug>(GrepperOperator)',
+  setup = function()
+    vim.cmd [[
+      let g:grepper = {}
+      let g:grepper.searchreg = 1
+      let g:grepper.prompt_text = '$c '
+    ]]
+    local key = require('crows').key
+    for _, mode in ipairs { 'n', 'x' } do
+      key.map('Grepper', mode, 'gs', '<Plug>(GrepperOperator)')
+    end
+  end,
+}
+
 -- telescope
-search.plugins[#search.plugins + 1] = {
+search.use {
   -- 'nvim-telescope/telescope.nvim',
   '~/Projects/telescope.nvim', -- Until `find_files` has additional ignore options
   requires = {
@@ -26,6 +46,12 @@ search.plugins[#search.plugins + 1] = {
     { 'nvim-telescope/telescope-dap.nvim', after = 'telescope.nvim' },
     -- TODO: auto-session
     -- { 'rmagatti/session-lens' },
+  },
+  wants = {
+    'popup.nvim',
+    'plenary.nvim',
+    'telescope-frecency.nvim',
+    'telescope-fzf-native.nvim',
   },
   cmd = 'Telescope',
   module = 'telescope',
@@ -68,71 +94,31 @@ search.plugins[#search.plugins + 1] = {
     }
   end,
   setup = function()
-    -- lazy load telescope by wrapping requires in functions
-    local t = {
-      find_files = function()
-        require('telescope.builtin').find_files { hidden = true }
-      end,
-      find_files_vim = function()
-        require('telescope.builtin').find_files { cwd = vim.fn.stdpath 'config' }
-      end,
-      current_buffer_fuzzy_find = function()
-        require('telescope.builtin').current_buffer_fuzzy_find()
-      end,
-      help_tags = function()
-        require('telescope.builtin').help_tags()
-      end,
-      tags = function()
-        require('telescope.builtin').tags()
-      end,
-      colorscheme = function()
-        require('telescope.builtin').colorscheme()
-      end,
-      grep_string = function()
-        require('telescope.builtin').grep_string()
-      end,
-      live_grep = function()
-        require('telescope.builtin').live_grep()
-      end,
-      lsp_references = function()
-        require('telescope.builtin').lsp_references()
-      end,
-      document_symbols = function()
-        require('telescope.builtin').document_symbols()
-      end,
-      session_lens = function()
-        require('session-lens').search_session()
-      end,
-      marks = function()
-        require('telescope.builtin').marks()
-      end,
-      buffers = function()
-        require('telescope.builtin').buffers()
-      end,
-      oldfiles = function()
-        require('telescope.builtin').oldfiles()
-      end,
-    }
+    local lazy_require = require('crows.utils').lazy_require
+    local tb = 'telescope.builtin'
 
     require('crows').key.maps {
       ['<leader>'] = {
         name = 'telescope search',
         s = {
-          f = { t.find_files, 'Find files' },
-          v = { t.find_files_vim, 'Find in Vim config' },
-          b = { t.current_buffer_fuzzy_find, 'Find in current buffer' },
-          h = { t.help_tags, 'Find help' },
-          t = { t.tags, 'Find tags' },
-          T = { t.colorscheme, 'Select colorscheme' },
-          d = { t.grep_string, 'Grep word under cursor' },
-          p = { t.live_grep, 'Grep in files' },
-          r = { t.lsp_references, 'Search LSP references in workspace' },
-          o = { t.document_symbols, 'Search current document symbols' },
-          s = { t.session_lens, 'Search Session' },
-          ["'"] = { t.marks, 'Search marks' },
+          f = { lazy_require(tb, 'find_files', { hidden = true }), 'Find files' },
+          v = {
+            lazy_require(tb, 'find_files', { cwd = vim.fn.stdpath 'config' }),
+            'Find in Vim config',
+          },
+          b = { lazy_require(tb, 'current_buffer_fuzzy_find'), 'Find in current buffer' },
+          h = { lazy_require(tb, 'help_tags'), 'Find help' },
+          t = { lazy_require(tb, 'tags'), 'Find tags' },
+          T = { lazy_require(tb, 'colorscheme'), 'Select colorscheme' },
+          d = { lazy_require(tb, 'grep_string'), 'Grep word under cursor' },
+          p = { lazy_require(tb, 'live_grep'), 'Grep in files' },
+          r = { lazy_require(tb, 'lsp_references'), 'Search LSP references in workspace' },
+          o = { lazy_require(tb, 'document_symbols'), 'Search current document symbols' },
+          s = { lazy_require('session-lens', 'search_session'), 'Search Session' },
+          ["'"] = { lazy_require(tb, 'marks'), 'Search marks' },
         },
-        ['<space>'] = { t.buffers, 'Buffers' },
-        ['?'] = { t.oldfiles, 'Find oldfiles' },
+        ['<space>'] = { lazy_require(tb, 'buffers'), 'Buffers' },
+        ['?'] = { lazy_require(tb, 'oldfiles'), 'Find oldfiles' },
       },
     }
   end,

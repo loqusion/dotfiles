@@ -1,7 +1,7 @@
 ---@type Feature
-local completion = { plugins = {} }
+local completion = require('crows.utils').new_feat()
 
-completion.plugins[#completion.plugins + 1] = {
+completion.use {
   'hrsh7th/nvim-cmp',
   requires = {
     -- Snippets
@@ -144,14 +144,14 @@ completion.plugins[#completion.plugins + 1] = {
   end,
 }
 
-completion.plugins[#completion.plugins + 1] = {
+completion.use {
   'hrsh7th/cmp-nvim-lsp',
   config = function()
     require('crows.lsp').add_caps_setter(require('cmp_nvim_lsp').update_capabilities)
   end,
 }
 
-completion.plugins[#completion.plugins + 1] = {
+completion.use {
   'David-Kunz/cmp-npm',
   config = function()
     require('cmp-npm').setup()

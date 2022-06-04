@@ -1,8 +1,8 @@
 -- source: https://github.com/nanozuki/CrowsEnv
 
-local keymap = require('crows.keymap')
-local lsp = require('crows.lsp')
-local plugin = require('crows.plugin')
+local keymap = require 'crows.keymap'
+local lsp = require 'crows.lsp'
+local plugin = require 'crows.plugin'
 
 ---@class CrowsModule
 ---@field key table
@@ -22,11 +22,6 @@ local crows = {
 ---@class SetupOptions
 ---@field modules string[]
 ---@field features Feature[]
-
----@class Feature
----@field pre? function config not depend on plugin
----@field plugins? PluginSpec[]
----@field post? function config depend on plugin
 
 local default_plugins = {
   { 'wbthomason/packer.nvim', opt = true },

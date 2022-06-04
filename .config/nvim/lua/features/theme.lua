@@ -3,11 +3,13 @@ local theme = {}
 
 ---@class Theme
 ---@field palette table
+---@field lualine? string
 ---@field apply function
 
 ---@type table<string, Theme>
 local themes = {
   gruvbox_light = {
+    lualine = 'gruvbox_light',
     palette = {
       accent = '#d65d0e', -- orange
       accent_sec = '#7c6f64', -- fg4
@@ -24,6 +26,7 @@ local themes = {
     end,
   },
   gruvbox_dark = {
+    lualine = 'gruvbox_dark',
     palette = {
       accent = '#d65d0e', -- orange
       accent_sec = '#a89984', -- fg4
@@ -56,6 +59,7 @@ local themes = {
     end,
   },
   nord = {
+    lualine = 'nord',
     palette = {
       accent = '#88c0d0', -- nord8
       accent_sec = '#81a1c1', -- nord9
@@ -88,6 +92,7 @@ local themes = {
     end,
   },
   spacevim_dark = {
+    lualine = 'palenight',
     palette = {},
     apply = function()
       vim.cmd [[packadd space-vim-theme]]
@@ -113,6 +118,7 @@ theme.plugins = {
 theme.post = function()
   used_theme.apply()
   theme.palette = used_theme.palette
+  theme.lualine = used_theme.lualine or 'auto'
 end
 
 return theme
