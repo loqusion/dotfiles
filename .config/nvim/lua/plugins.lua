@@ -19,42 +19,44 @@ return require('packer').startup {
   function(use)
     use 'wbthomason/packer.nvim'
 
-    use 'lewis6991/impatient.nvim'
+    use 'lewis6991/impatient.nvim' -- Speed up loading Lua modules to improve startup time
 
-    use {
+    use { -- Adds filetype glyphs to various plugins
       'kyazdani42/nvim-web-devicons',
       config = function()
         require('nvim-web-devicons').setup { default = true }
       end,
     }
 
-    -- Highlights
-    use {
-      {
+    -- Treesitter
+    use { -- Config: ../plugin/treesitter.lua
+      { -- Efficient syntax tree for highlighting, etc
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
       },
-      {
+      { -- View treesitter information directly in Neovim!
         'nvim-treesitter/playground',
         cmd = 'TSPlaygroundToggle',
         after = 'nvim-treesitter',
       },
-      {
+      { -- Syntax aware text-objects, select, move, swap, and peek support
         'nvim-treesitter/nvim-treesitter-textobjects',
         after = 'nvim-treesitter',
       },
-      {
+      { -- Wisely add "end" in ruby, Lua, Vimscript, etc
         'RRethy/nvim-treesitter-endwise',
         ft = { 'lua', 'ruby', 'sh', 'vim' },
         after = 'nvim-treesitter',
       },
-      {
+      { -- Autoclose and autorename html tag
         'windwp/nvim-ts-autotag',
-        ft = { 'html', 'javascriptreact', 'typescriptreact', 'vue' },
+        ft = { 'html', 'javascriptreact', 'typescriptreact', 'vue', 'markdown' },
         after = 'nvim-treesitter',
       },
     }
-    use {
+
+    -- Highlights
+    use { -- Color highlighter
       'norcalli/nvim-colorizer.lua',
       ft = {
         'css',
@@ -92,16 +94,22 @@ return require('packer').startup {
     }
 
     -- LSP
-    use {
-      'williamboman/nvim-lsp-installer',
-      'neovim/nvim-lspconfig',
-      'nvim-lua/lsp-status.nvim',
-      'folke/trouble.nvim',
-      'folke/lsp-colors.nvim',
-      'ray-x/lsp_signature.nvim',
-      'kosayoda/nvim-lightbulb',
-      { 'jose-elias-alvarez/null-ls.nvim', requires = 'nvim-lua/plenary.nvim' },
-      {
+    use { -- Config: ../plugin/lsp.lua
+      'williamboman/nvim-lsp-installer', -- Manage LSP servers
+      'neovim/nvim-lspconfig', -- Collection of common configurations for LSP servers
+      'nvim-lua/lsp-status.nvim', -- Generate statusline components
+      { -- Pretty list for showing diagnostics, references, telescope results, quickfix and location lists
+        'folke/trouble.nvim',
+        config = [[require('config.trouble')]],
+      },
+      'folke/lsp-colors.nvim', -- Automatically creates missing LSP diagnostics highlight groups
+      'ray-x/lsp_signature.nvim', -- Show function signature when you type
+      'kosayoda/nvim-lightbulb', -- Show  for `textDocument/codeAction`s
+      { -- Inject LSP diagnostics, code actions, and more
+        'jose-elias-alvarez/null-ls.nvim',
+        requires = 'nvim-lua/plenary.nvim',
+      },
+      { -- Automated refactorings
         'ThePrimeagen/refactoring.nvim',
         requires = {
           'nvim-lua/plenary.nvim',
@@ -111,30 +119,49 @@ return require('packer').startup {
     }
 
     -- Completion/Snippets
-    use {
-      'hrsh7th/nvim-cmp',
+    use { -- Config: ./config/cmp.lua
+      'hrsh7th/nvim-cmp', -- Completion engine
       requires = {
-        'L3MON4D3/LuaSnip',
-        'onsails/lspkind.nvim',
-        { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
+        'L3MON4D3/LuaSnip', -- Snippets
+        'onsails/lspkind.nvim', -- Pictograms for LSP
+        -- Completion engine sources
+        { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }, -- LSP
         { 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
-        {
+        { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }, -- Buffer words
+        { 'hrsh7th/cmp-path', after = 'nvim-cmp' }, -- Filesystem paths
+        { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }, -- Vim's cmdline
+        { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' }, -- Neovim's Lua API
+        { -- NPM package names and versions
           'David-Kunz/cmp-npm',
           requires = 'nvim-lua/plenary.nvim',
           after = 'nvim-cmp',
           config = [[require('cmp-npm').setup()]],
         },
-        'lukas-reineke/cmp-under-comparator',
-        { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
+        'lukas-reineke/cmp-under-comparator', -- Better sorting for underscores
+        { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' }, -- `textDocument/documentSymbol`
+        { -- AI pair programmer
+          'zbirenbaum/copilot-cmp',
+          disable = true,
+          requires = {
+            -- 'github/copilot.vim', -- Use this for setup
+            {
+              'zbirenbaum/copilot.lua',
+              disable = true,
+              event = 'VimEnter',
+              config = function()
+                vim.defer_fn(function()
+                  require('copilot').setup()
+                end, 100)
+              end,
+            },
+          },
+          after = { 'copilot.lua', 'nvim-cmp' },
+        },
       },
       config = [[require('config.cmp')]],
-      event = { 'InsertEnter *', 'CursorHold' },
+      event = { 'InsertEnter *', 'CmdlineEnter', 'CmdwinEnter', 'CursorHold' },
     }
-    use {
+    use { -- Creates annotations with one keybind
       'danymat/neogen',
       requires = 'nvim-treesitter',
       config = [[require('config.neogen')]],
@@ -143,9 +170,9 @@ return require('packer').startup {
 
     -- Search
     use {
-      {
+      { -- Gaze deeply into unknown regions using the power of the moon.
         -- 'nvim-telescope/telescope.nvim',
-        '~/Projects/telescope.nvim',
+        '~/Projects/telescope.nvim', -- Until `find_files` has additional ignore options
         requires = {
           'nvim-lua/popup.nvim',
           'nvim-lua/plenary.nvim',
@@ -165,25 +192,25 @@ return require('packer').startup {
         cmd = 'Telescope',
         module = 'telescope',
       },
-      {
+      { -- Intelligent prioritization when selecting files from your editing history
         'nvim-telescope/telescope-frecency.nvim',
         after = 'telescope.nvim',
         requires = 'tami5/sqlite.lua',
       },
-      {
+      { -- fzf syntax for Telescope
         'nvim-telescope/telescope-fzf-native.nvim',
         run = 'make',
       },
-      {
+      { -- Integration for nvim-dap
         'nvim-telescope/telescope-dap.nvim',
       },
     }
 
     -- Documentation
-    use 'rizzatti/dash.vim'
+    use 'rizzatti/dash.vim' -- Dash.app
 
     -- REPL
-    use {
+    use { -- Quickly interact with the repl without having to leave your work buffer
       'hkupty/iron.nvim',
       setup = [[require('config.iron_setup')]],
       config = [[require('config.iron')]],
@@ -196,7 +223,7 @@ return require('packer').startup {
 
     -- Debug
     use {
-      {
+      { -- Launch debug sessions, set breakpoints, step through code, inspect state
         'mfussenegger/nvim-dap',
         setup = [[require('config.dap_setup')]],
         config = [[require('config.dap')]],
@@ -204,7 +231,7 @@ return require('packer').startup {
         wants = 'one-small-step-for-vimkind',
         module = 'dap',
       },
-      {
+      { -- UI for nvim-dap
         'rcarriga/nvim-dap-ui',
         requires = 'nvim-dap',
         after = 'nvim-dap',
@@ -212,41 +239,56 @@ return require('packer').startup {
           require('dapui').setup()
         end,
       },
+      { -- Python DAP
+        'mfussenegger/nvim-dap-python',
+        requires = 'nvim-dap',
+        ft = 'python',
+        config = [[require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')]],
+      },
     }
 
     -- Quickfix/Location list
-    use { 'romainl/vim-qf', config = [[require('config.qf')]] }
+    use { -- Settings, commands, and mappings to make working with qf list smoother
+      'romainl/vim-qf',
+      config = [[require('config.qf')]],
+    }
     -- use 'kevinhwang91/nvim-bqf'
-    use {
+    use { -- Use your favorite grep tool to start an asynchronous search and populate quickfix/location list
       'mhinz/vim-grepper',
       cmd = 'Grepper',
       keys = '<plug>(GrepperOperator)',
       setup = [[require('config.grepper')]],
     }
+    use 'Olical/vim-enmasse'
 
     -- Git
-    use 'tpope/vim-fugitive'
-    use 'tpope/vim-rhubarb'
+    use 'tpope/vim-fugitive' -- A git wrapper so awesome, it should be illegal
+    use 'tpope/vim-rhubarb' -- :GBrowse and completion for issues/URLs/collaborators
     -- use { 'mhinz/vim-signify', config = [[require('config.signify')]] }
-    use {
+    use { -- Super fast git decorations
       'lewis6991/gitsigns.nvim',
       requires = { 'nvim-lua/plenary.nvim' },
       config = [[require('config.gitsigns')]],
     }
-    use { 'TimUntersberger/neogit', cmd = 'Neogit', config = [[require('config.neogit')]] }
+    use { -- Magit clone
+      'TimUntersberger/neogit',
+      cmd = 'Neogit',
+      config = [[require('config.neogit')]],
+    }
 
     -- JavaScript/TypeScript
-    use {
+    use { -- All the `npm`/`yarn`/`pnpm` commands I don't want to type
       'vuki656/package-info.nvim',
       requires = 'MunifTanjim/nui.nvim',
       config = function()
         require('package-info').setup()
+        require 'config.package_info'
       end,
     }
 
     -- Markdown
     use 'preservim/vim-markdown'
-    use {
+    use { -- Preview markdown on your modern browser with synchronized scrolling and flexible configuration
       'iamcco/markdown-preview.nvim',
       run = 'cd app && yarn install',
       ft = { 'markdown', 'pandoc.markdown', 'rmd' },
@@ -256,14 +298,10 @@ return require('packer').startup {
     }
 
     -- Python
-    use 'Vimjas/vim-python-pep8-indent'
-    use {
-      'mfussenegger/nvim-dap-python',
-      requires = 'nvim-dap',
-    }
+    use 'Vimjas/vim-python-pep8-indent' -- Modify indentation behavior to comply with PEP8
 
     -- Rust
-    use {
+    use { -- Extra rust tools
       'simrat39/rust-tools.nvim',
       ft = 'rust',
       config = [[require('rust-tools').setup({})]],
@@ -379,11 +417,32 @@ return require('packer').startup {
       cmd = { 'SymbolsOutline', 'SymbolsOutlineOpen', 'SymbolsOutlineClose' },
       setup = [[require('config.symbols_outline')]],
     }
+    use {
+      'Pocco81/TrueZen.nvim',
+      config = [[require('config.true_zen')]],
+    }
+    use { -- Dims inactive portions of code
+      -- 'folke/twilight.nvim',
+      'loqusion/twilight.nvim', -- Use this one until https://github.com/folke/twilight.nvim/issues/15 is resolved
+      setup = function()
+        vim.keymap.set({ 'n', 'v' }, '<localleader>t', '<cmd>Twilight<cr>')
+      end,
+    }
+    -- use 'stevearc/dressing.nvim'
+    -- use {
+    --   'hood/popui.nvim',
+    --   requires = 'RishabhRD/popfix',
+    --   config = function()
+    --     vim.ui.select = require('popui.ui-overrider')
+    --     vim.ui.input = require('popui.input-overrider')
+    --   end,
+    -- }
 
-    -- plugin writing
+    -- Vim
     use 'tpope/vim-scriptease'
     use { 'tweekmonster/helpful.vim', cmd = 'HelpfulVersion' }
     use 'folke/lua-dev.nvim'
+    use { 'folke/which-key.nvim', config = [[require('which-key').setup()]] }
 
     -- filetype
     use {
@@ -419,7 +478,6 @@ return require('packer').startup {
     -- use 'vim-jp/syntax-vim-ex'
     -- use 'cespare/vim-toml'
     -- use 'thinca/vim-qfreplace'
-    -- use 'rcarriga/nvim-notify'
     use 'MunifTanjim/nui.nvim'
     -- use 'Shougo/ddx.vim'
     use 'antoinemadec/FixCursorHold.nvim'

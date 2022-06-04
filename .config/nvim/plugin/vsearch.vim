@@ -31,9 +31,9 @@ endfunction
 vnoremap <silent> * :<C-U>call <SID>VSetSearch('/')<CR>/<C-R>/<CR>
 vnoremap <silent> # :<C-U>call <SID>VSetSearch('?')<CR>?<C-R>/<CR>
 nmap <silent> <Plug>VLToggle :let g:VeryLiteral = !g:VeryLiteral
-  \\| echo "VeryLiteral " . (g:VeryLiteral ? "On" : "Off")<CR>
+  \\| echo 'VeryLiteral ' . (g:VeryLiteral ? 'On' : 'Off')<CR>
 
-if !hasmapto("<Plug>VLToggle")
+if !hasmapto('<Plug>VLToggle')
   nmap <unique> <Leader>vl <Plug>VLToggle
 endif
 

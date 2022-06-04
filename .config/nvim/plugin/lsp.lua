@@ -53,6 +53,8 @@ lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_pub
 
 local disabled_formatters = { 'stylelint_lsp', 'tsserver' }
 local lsp_formatting = function(bufnr)
+  -- Make sure formatters are shown in telescope ui
+  require('telescope')
   -- TODO: Change to `vim.lsp.buf.format` in Neovim 0.8
   -- @see https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
   vim.lsp.buf.formatting {
@@ -75,21 +77,19 @@ local on_attach = function(client, bufnr)
   end)
   local opts = { buffer = bufnr }
   local map = vim.keymap.set
-  map('n', 'gD', vim.lsp.buf.declaration, opts)
-  map('n', 'gd', vim.lsp.buf.definition, opts)
-  map('n', 'K', vim.lsp.buf.hover, opts)
-  map('n', 'gI', vim.lsp.buf.implementation, opts)
-  map('i', '<C-k>', vim.lsp.buf.signature_help, opts)
-  map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
-  map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
-  map('n', '<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, opts)
-  map('n', '<leader>D', vim.lsp.buf.type_definition, opts)
-  map('n', '<leader>rn', vim.lsp.buf.rename, opts)
-  map('n', 'gr', vim.lsp.buf.references, opts)
-  map('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-  map('n', '<leader>so', require('telescope.builtin').lsp_document_symbols, opts)
+  map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+  map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+  map('n', 'gTD', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+  map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+  map('n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+  map('i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+  map('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>', opts)
+  map('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>', opts)
+  map('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>', opts)
+  map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+  map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+  map('n', '<leader>sr', '<cmd>lua require("telescope.builtin").lsp_references()<cr>', opts)
+  map('n', '<leader>so', '<cmd>lua require("telescope.builtin").lsp_document_symbols()<cr>', opts)
   map('n', '<leader>f', function()
     lsp_formatting(bufnr)
   end)
@@ -128,6 +128,7 @@ end
 local servers = {
   bashls = {},
   cssls = {
+    cmd = { 'vscode-css-languageserver', '--stdio' },
     filetypes = { 'css', 'scss', 'less', 'sass' },
     root_dir = lspconfig.util.root_pattern('package.json', '.git'),
   },

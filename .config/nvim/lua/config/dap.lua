@@ -1,7 +1,5 @@
 local dap = require 'dap'
 
-require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
-
 dap.adapters.nlua = function(callback, config)
   callback { type = 'server', host = config.host, port = config.port }
 end

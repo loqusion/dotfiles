@@ -335,7 +335,7 @@ map('n', '<Space>q', vim.diagnostic.setloclist)
 -- Useful save/quit mappings.
 map('n', '<leader><leader>', '<cmd>silent update<cr>', { silent = true })
 map('n', '<leader>q', '<cmd>qa<cr>', { silent = true })
-map('n', '<leader>x', '<cmd>x!<cr>', { silent = true })
+-- map('n', '<leader>x', '<cmd>x!<cr>', { silent = true })
 map('n', '<leader>d', '<cmd>Sayonara<cr>', { silent = true })
 
 -- s: Windows and buffers (High priority)
