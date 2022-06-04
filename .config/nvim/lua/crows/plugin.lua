@@ -16,7 +16,7 @@ local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/opt/packer.nvim
 local repository = 'https://github.com/wbthomason/packer.nvim'
 
 function plugin.is_ready()
----@diagnostic disable-next-line: missing-parameter
+  ---@diagnostic disable-next-line: missing-parameter
   return vim.fn.empty(vim.fn.glob(install_path)) == 0
 end
 
@@ -35,6 +35,8 @@ function plugin.load()
   end
   vim.cmd [[packadd packer.nvim]]
   require('packer').init {
+    -- https://github.com/wbthomason/packer.nvim/issues/202#issuecomment-826481883
+    max_jobs = 50,
     display = {
       open_fn = require('packer.util').float,
     },
