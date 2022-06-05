@@ -13,8 +13,7 @@ file_browser.use {
         ignore = false,
       },
     }
-    -- TODO: mapping for NvimTreeToggle
-    -- require('crows').key.map('Toggle filetree', 'n', '<leader>fl', '<cmd>NvimTreeToggle<cr>')
+    require('crows').key.map('Toggle filetree', 'n', '<localleader>f', '<cmd>NvimTreeToggle<cr>')
   end,
 }
 

@@ -105,7 +105,7 @@ basic.use {
       auto_session_suppress_dirs = { '~' },
     }
     require('crows').key.maps {
-      ['<Leader>s'] = {
+      ['<Leader>l'] = {
         r = { '<cmd>RestoreSession<cr>', 'Restore session' },
         s = { '<cmd>SaveSession<cr>', 'Save session' },
       },

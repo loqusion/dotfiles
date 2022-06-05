@@ -45,8 +45,7 @@ search.use {
     { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', after = 'telescope.nvim' },
     { 'nvim-telescope/telescope-dap.nvim', after = 'telescope.nvim' },
     { 'nvim-telescope/telescope-ui-select.nvim', after = 'telescope.nvim' },
-    -- TODO: auto-session
-    -- { 'rmagatti/session-lens' },
+    { 'rmagatti/session-lens' },
   },
   wants = {
     'popup.nvim',
@@ -115,7 +114,7 @@ search.use {
           p = { lazy_require(tb, 'live_grep'), 'Grep in files' },
           r = { lazy_require(tb, 'lsp_references'), 'Search LSP references in workspace' },
           o = { lazy_require(tb, 'lsp_document_symbols'), 'Search current document symbols' },
-          s = { lazy_require('session-lens', 'search_session'), 'Search Session' },
+          s = { require('session-lens').search_session, 'Search Session' },
           ["'"] = { lazy_require(tb, 'marks'), 'Search marks' },
         },
         ['<space>'] = { lazy_require(tb, 'buffers'), 'Buffers' },
