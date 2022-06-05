@@ -104,8 +104,8 @@ shift + alt - space : \
     yabai -m window --toggle float
 
 # float / unfloat window and center on screen
-alt - t : yabai -m window --toggle float;\
-          yabai -m window --grid 4:5:1:0:3:4
+alt - space : yabai -m window --toggle float;\
+              yabai -m window --grid 4:5:1:0:3:4
 
 # move floating window
 shift + ctrl - h : yabai -m window --move rel:-20:0
