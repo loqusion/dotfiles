@@ -98,7 +98,7 @@ local themes = {
       vim.cmd [[packadd space-vim-theme]]
       vim.opt.background = 'dark'
       vim.g.space_vim_transp_bg = 1
-      vim.cmd [[colorscheme space_vim_theme]]
+      vim.cmd [[colorscheme space_vim_theme_improved]]
     end,
   },
 }

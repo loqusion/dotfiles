@@ -1,4 +1,3 @@
-local theme = require('features.theme').lualine
 local statusline = require('crows.utils').new_feat()
 
 statusline.pre = function()
@@ -14,7 +13,7 @@ statusline.use {
     require('lualine').setup {
       options = {
         icons_enabled = true,
-        theme = theme,
+        theme = require('features.theme').lualine,
         -- component_separators = { left = '', right = '' },
         -- section_separators = { left = '', right = '' },
         component_separators = '',
