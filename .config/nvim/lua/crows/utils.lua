@@ -29,14 +29,11 @@ end
 ---@param fnname string
 ---@vararg any passed to fn
 function utils.lazy_require(modname, fnname, ...)
-  local default_args = arg
+  local default_args = {...}
   ---@vararg any passed to fn
   return function(...)
-    local num_args = arg.n + default_args.n
-    local all_args = vim.tbl_deep_extend('keep', { n = num_args }, arg, default_args)
-    if num_args == 0 then
-      return require(modname)[fnname]()
-    end
+    local arg = {...}
+    local all_args = vim.tbl_deep_extend('keep', arg, default_args)
     return require(modname)[fnname](unpack(all_args))
   end
 end

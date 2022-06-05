@@ -21,6 +21,7 @@ file_browser.use {
 file_browser.use {
   {
     'justinmk/vim-dirvish',
+    disable = true,
     config = function()
       vim.g.dirvish_mode = 1
       -- show directories first

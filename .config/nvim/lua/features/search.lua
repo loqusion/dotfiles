@@ -44,6 +44,7 @@ search.use {
     },
     { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', after = 'telescope.nvim' },
     { 'nvim-telescope/telescope-dap.nvim', after = 'telescope.nvim' },
+    { 'nvim-telescope/telescope-ui-select.nvim', after = 'telescope.nvim' },
     -- TODO: auto-session
     -- { 'rmagatti/session-lens' },
   },

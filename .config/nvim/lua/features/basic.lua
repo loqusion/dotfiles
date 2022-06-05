@@ -97,17 +97,17 @@ basic.use {
   disabled = true,
 }
 
-basic.use {
-  'dhruvasagar/vim-prosession',
-  requires = 'tpope/vim-obsession',
-  after = 'vim-obsession',
-  config = function()
-    vim.g.prosession_tmux_title = 1
-    vim.g.prosession_on_startup = 1
-    ---@diagnostic disable-next-line: missing-parameter
-    vim.g.prosession_dir = vim.fn.expand '~/.cache/nvim/sessions'
-  end,
-}
+-- basic.use {
+--   'dhruvasagar/vim-prosession',
+--   requires = 'tpope/vim-obsession',
+--   after = 'vim-obsession',
+--   config = function()
+--     vim.g.prosession_tmux_title = 1
+--     vim.g.prosession_on_startup = 1
+--     ---@diagnostic disable-next-line: missing-parameter
+--     vim.g.prosession_dir = vim.fn.expand '~/.cache/nvim/sessions'
+--   end,
+-- }
 
 -- improve vim select/input UI
 basic.use {

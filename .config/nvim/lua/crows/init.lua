@@ -28,6 +28,7 @@ local default_plugins = {
   'folke/which-key.nvim',
   'nvim-lua/plenary.nvim',
   'neovim/nvim-lspconfig',
+  'williamboman/nvim-lsp-installer',
 }
 
 local function load_plugins()

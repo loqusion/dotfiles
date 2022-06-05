@@ -53,13 +53,6 @@ lsp.use {
 }
 
 lsp.use {
-  'williamboman/nvim-lsp-installer',
-  config = function()
-    require('nvim-lsp-installer').setup { automatic_installation = true }
-  end,
-}
-
-lsp.use {
   'nvim-lua/lsp-status.nvim',
   disable = true,
   config = function()
