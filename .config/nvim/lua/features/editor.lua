@@ -75,8 +75,8 @@ editor.pre = function()
   -- setup indent
   vim.cmd [[filetype indent on]]
   vim.opt.cindent = true
-  -- vim.opt.smartindent = true
-  -- vim.opt.autoindent = true
+  vim.opt.smartindent = true
+  vim.opt.autoindent = true
   vim.opt.expandtab = true
   vim.opt.shiftround = true
   vim.opt.tabstop = 8
@@ -710,8 +710,8 @@ editor.post = function()
   -- Useful save/quit mappings.
   map('n', '<leader><leader>', '<cmd>silent update<cr>', { silent = true })
   map('n', '<leader>q', '<cmd>qa<cr>', { silent = true })
-  -- map('n', '<leader>x', '<cmd>x!<cr>', { silent = true })
-  map('n', '<leader>d', '<cmd>Sayonara<cr>', { silent = true })
+  map('n', '<leader>X', '<cmd>x!<cr>', { silent = true })
+  map('n', '<leader>D', '<cmd>Sayonara<cr>', { silent = true })
 
   -- Window movement
   map('n', '<c-h>', '<c-w>h')

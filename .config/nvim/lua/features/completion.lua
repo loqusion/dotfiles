@@ -1,6 +1,36 @@
 local completion = require('crows.utils').new_feat()
 
 completion.use {
+  'gelguy/wilder.nvim',
+  disable = true,
+  config = function()
+    local wilder = require 'wilder'
+    wilder.setup {
+      modes = { ':', '/', '?' }
+    }
+    wilder.set_option('pipeline', {
+      wilder.branch(
+        wilder.cmdline_pipeline {
+          language = 'python',
+          fuzzy = 1
+        },
+        wilder.python_search_pipeline {
+          pattern = wilder.python_fuzzy_pattern(),
+          sorter = wilder.python_difflib_sorter(),
+          engine = 're',
+        }
+      )
+    })
+    wilder.set_option(
+      'renderer',
+      wilder.popupmenu_renderer({
+        highlighter = wilder.basic_highlighter(),
+      })
+    )
+  end,
+}
+
+completion.use {
   'hrsh7th/nvim-cmp',
   requires = {
     -- Snippets
@@ -98,10 +128,18 @@ completion.use {
           i = cmp.mapping.abort(),
           c = cmp.mapping.close(),
         },
-        ['<CR>'] = cmp.mapping.confirm {
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-        },
+        ['<C-y>'] = cmp.mapping({
+          c = cmp.mapping.confirm { select = true },
+        }),
+        ['<CR>'] = cmp.mapping({
+          i = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+          },
+          c = function(fallback)
+            fallback()
+          end,
+        }),
         ['<Tab>'] = cmp.mapping(tab, { 'i', 's' }),
         ['<S-Tab>'] = cmp.mapping(stab, { 'i', 's' }),
       },
@@ -113,7 +151,7 @@ completion.use {
         { name = 'nvim_lua' },
       }, {
         { name = 'path' },
-        { name = 'buffer', keyword_length = 5 },
+        { name = 'buffer' },
       }),
     }
 

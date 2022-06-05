@@ -102,7 +102,7 @@ basic.use {
     vim.opt.sessionoptions = 'curdir,folds,help,tabpages,terminal,winsize'
     require('auto-session').setup {
       pre_save_cmds = { 'NvimTreeClose' },
-      auto_session_suppress_dirs = { '~' },
+      auto_session_suppress_dirs = { '~', '~/Projects' },
     }
     require('crows').key.maps {
       ['<Leader>l'] = {

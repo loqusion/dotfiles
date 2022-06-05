@@ -46,7 +46,7 @@ local lsp = {
       end,
       'List workspace folder',
     },
-    type_def = { '<leader>D', vim.lsp.buf.type_definition, 'Goto type definition' },
+    type_def = { '<leader>d', vim.lsp.buf.type_definition, 'Goto type definition' },
     rename = { '<leader>rn', vim.lsp.buf.rename, 'Rename symbol' },
     code_action = { '<leader>ca', vim.lsp.buf.code_action, 'Code action' },
     -- list_ref = { 'gr', vim.lsp.buf.references, 'List references' },
