@@ -95,7 +95,8 @@ function plugin.sync_and_quit()
   local qall = function()
     vim.cmd [[qall]]
   end
-  plugin.compile(qall)
+  plugin.set_compiled_hook(qall)
+  require('packer').compile()
 end
 
 return plugin

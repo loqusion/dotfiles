@@ -124,7 +124,11 @@ lsp.use {
 lsp.use {
   'j-hui/fidget.nvim',
   config = function()
-    require('fidget').setup {}
+    require('fidget').setup {
+      window = {
+        blend = 100,
+      },
+    }
   end,
 }
 

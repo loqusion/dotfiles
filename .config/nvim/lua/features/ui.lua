@@ -19,7 +19,7 @@ ui.use {
     end
 
     for _, mode in ipairs { 'n', 'x' } do
-      key.map('thing', mode, '<localleader>z', '<cmd>TZAtaraxis<cr>')
+      key.map('True Zen: Ataraxis', mode, '<localleader>z', '<cmd>TZAtaraxis<cr>')
     end
   end,
 }

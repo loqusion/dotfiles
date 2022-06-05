@@ -73,6 +73,10 @@ basic.pre = function()
   vim.opt.cmdwinheight = 5
   vim.opt.previewheight = 5
   vim.opt.helpheight = 12
+  vim.opt.pumheight = 10
+  vim.opt.pumwidth = 0
+  vim.opt.pumblend = 10
+  vim.opt.winblend = 20
   vim.opt.equalalways = false
   vim.opt.undofile = true
   vim.opt.synmaxcol = 500
@@ -94,20 +98,20 @@ basic.use 'lewis6991/impatient.nvim'
 
 basic.use {
   'rmagatti/auto-session',
-  disabled = true,
+  config = function()
+    vim.opt.sessionoptions = 'curdir,folds,help,tabpages,terminal,winsize'
+    require('auto-session').setup {
+      pre_save_cmds = { 'NvimTreeClose' },
+      auto_session_suppress_dirs = { '~' },
+    }
+    require('crows').key.maps {
+      ['<Leader>s'] = {
+        r = { '<cmd>RestoreSession<cr>', 'Restore session' },
+        s = { '<cmd>SaveSession<cr>', 'Save session' },
+      },
+    }
+  end
 }
-
--- basic.use {
---   'dhruvasagar/vim-prosession',
---   requires = 'tpope/vim-obsession',
---   after = 'vim-obsession',
---   config = function()
---     vim.g.prosession_tmux_title = 1
---     vim.g.prosession_on_startup = 1
---     ---@diagnostic disable-next-line: missing-parameter
---     vim.g.prosession_dir = vim.fn.expand '~/.cache/nvim/sessions'
---   end,
--- }
 
 -- improve vim select/input UI
 basic.use {

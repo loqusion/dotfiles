@@ -100,8 +100,8 @@ search.use {
 
     require('crows').key.maps {
       ['<leader>'] = {
-        name = 'telescope search',
         s = {
+          name = 'telescope search',
           f = { lazy_require(tb, 'find_files', { hidden = true }), 'Find files' },
           v = {
             lazy_require(tb, 'find_files', { cwd = vim.fn.stdpath 'config' }),
@@ -114,7 +114,7 @@ search.use {
           d = { lazy_require(tb, 'grep_string'), 'Grep word under cursor' },
           p = { lazy_require(tb, 'live_grep'), 'Grep in files' },
           r = { lazy_require(tb, 'lsp_references'), 'Search LSP references in workspace' },
-          o = { lazy_require(tb, 'document_symbols'), 'Search current document symbols' },
+          o = { lazy_require(tb, 'lsp_document_symbols'), 'Search current document symbols' },
           s = { lazy_require('session-lens', 'search_session'), 'Search Session' },
           ["'"] = { lazy_require(tb, 'marks'), 'Search marks' },
         },

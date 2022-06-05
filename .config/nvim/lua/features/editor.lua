@@ -590,66 +590,61 @@ editor.post = function()
   ----------------------------------------------------------------------------
   -- Autocommands
   vim.cmd [[
-  augroup MyAutoCmd
-    autocmd!
+    augroup MyAutoCmd
+      autocmd!
 
-    " For only Vim help files.
-    autocmd BufRead,BufWritePost *.txt
-          \ setlocal modelines=2 modeline colorcolumn= foldcolumn=0 signcolumn=no
+      " For only Vim help files.
+      autocmd BufRead,BufWritePost *.txt
+            \ setlocal modelines=2 modeline colorcolumn= foldcolumn=0 signcolumn=no
 
-    " Disable unnecessary features in man pages.
-    autocmd FileType man setlocal signcolumn=no
+      " Disable unnecessary features in man pages.
+      autocmd FileType man setlocal signcolumn=no
 
-    " Disable paste.
-    autocmd InsertLeave *
-          \ if &paste | setlocal nopaste | setlocal paste? | endif |
-          \ if &l:diff | diffupdate | endif
+      " Disable paste.
+      autocmd InsertLeave *
+            \ if &paste | setlocal nopaste | setlocal paste? | endif |
+            \ if &l:diff | diffupdate | endif
 
-    " hl-QuickFixLine doesn't play nicely with listchars.
-    autocmd FileType qf setlocal nolist
+      " hl-QuickFixLine doesn't play nicely with listchars.
+      autocmd FileType qf setlocal nolist
 
-    " Make directory automatically.
-    " --------------------------------------
-    " http://vim-users.jp/2011/02/hack202/
-    autocmd MyAutoCmd BufWritePre *
-          \ call MkdirAsNecessary(expand('<afile>:p:h'), v:cmdbang)
-    function! MkdirAsNecessary(dir, force) abort
-      if !isdirectory(a:dir) && &l:buftype ==# '' &&
-            \ (a:force || input(printf('"%s" does not exist. Create? [y/N]',
-            \              a:dir)) =~? '^y\%[es]$')
-        call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
-      endif
-    endfunction
+      " Make directory automatically.
+      " --------------------------------------
+      " http://vim-users.jp/2011/02/hack202/
+      autocmd MyAutoCmd BufWritePre *
+            \ call MkdirAsNecessary(expand('<afile>:p:h'), v:cmdbang)
+      function! MkdirAsNecessary(dir, force) abort
+        if !isdirectory(a:dir) && &l:buftype ==# '' &&
+              \ (a:force || input(printf('"%s" does not exist. Create? [y/N]',
+              \              a:dir)) =~? '^y\%[es]$')
+          call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+        endif
+      endfunction
 
-    " Trim unnecessary whitespace.
-    autocmd MyAutoCmd BufWritePre *
-          \ call vimrc#trim_trailing_whitespace() |
-          \ call vimrc#trim_final_newlines()
-  augroup END
+      " Trim unnecessary whitespace.
+      autocmd MyAutoCmd BufWritePre *
+            \ call vimrc#trim_trailing_whitespace() |
+            \ call vimrc#trim_final_newlines()
+    augroup END
 
-  " Reload plugins file on save.
-  let $CONFIG = stdpath('config')
-  let $PLUGINS_SPEC = $CONFIG .. '/lua/plugins.lua'
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost $PLUGINS_SPEC,$CONFIG/lua/config/*
-          \ exec 'source ' .. $PLUGINS_SPEC |
-          \ packadd packer.nvim | lua require('plugins').compile()
-  augroup end
-]]
+    " Reload plugins file on save.
+    let $CONFIG = stdpath('config')
+    let $PLUGINS_SPEC = $CONFIG .. '/lua/plugins.lua'
+    augroup packer_user_config
+      autocmd!
+      autocmd BufWritePost $PLUGINS_SPEC,$CONFIG/lua/config/*
+            \ exec 'source ' .. $PLUGINS_SPEC |
+            \ packadd packer.nvim | lua require('plugins').compile()
+    augroup end
+  ]]
 
   ----------------------------------------------------------------------------
   -- Commands
-  vim.cmd [[command! PackerInstall packadd packer.nvim | lua require('plugins').install()]]
-  vim.cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]]
-  vim.cmd [[command! PackerSync packadd packer.nvim | lua require('plugins').sync()]]
-  vim.cmd [[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]]
-  vim.cmd [[command! PackerCompile packadd packer.nvim | lua require('plugins').compile()]]
   vim.cmd [[command! Todo Grepper -noprompt -tool git -query -E '(TODO|FIXME|BUG|XXX):']]
   vim.cmd [[
-  command! -bang -bar -addr=other -complete=customlist,man#complete -nargs=* VMan
-        \ exe 'vertical <mods> <count>Man <args>'
-]]
+    command! -bang -bar -addr=other -complete=customlist,man#complete -nargs=* VMan
+          \ exe 'vertical <mods> <count>Man <args>'
+  ]]
 
   ----------------------------------------------------------------------------
   -- Keybindings
@@ -661,8 +656,8 @@ editor.post = function()
 
   map({ 'n', 'x' }, '<Space>', '<Nop>', { remap = true })
 
-  map({ 'n', 'x' }, 's', '<nop>')
-  map({ 'n', 'x' }, 'S', '<nop>')
+  -- map({ 'n', 'x' }, 's', '<nop>')
+  -- map({ 'n', 'x' }, 'S', '<nop>')
 
   -- Easy indent
   map('n', '>', '>>')
@@ -772,8 +767,8 @@ editor.post = function()
   map('i', '<C-v>u', '<C-r>=nr2char(0x)<Left>')
 
   -- Tag jump
-  map('n', 'tt', 'g<C-]>')
-  map('n', 'tp', '<cmd>pop<cr>')
+  -- map('n', 'tt', 'g<C-]>')
+  -- map('n', 'tp', '<cmd>pop<cr>')
 
   -- Begin a new line without leaving insert mode.
   map('i', '<C-CR>', '<C-o>o')

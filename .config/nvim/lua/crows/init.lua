@@ -25,7 +25,31 @@ local crows = {
 
 local default_plugins = {
   { 'wbthomason/packer.nvim', opt = true },
-  'folke/which-key.nvim',
+  {
+    'folke/which-key.nvim',
+    config = function()
+      require('which-key').setup {
+        plugins = {
+          presets = {
+            operators = false,
+          },
+        },
+        operators = {
+          d = 'Delete',
+          c = 'Change',
+          y = 'Yank (copy)',
+          ['g~'] = 'Toggle case',
+          ['gu'] = 'Lowercase',
+          ['gU'] = 'Uppercase',
+          -- ['>'] = 'Indent right',
+          -- ['<lt>'] = "Indent left",
+          ['zf'] = 'Create fold',
+          ['!'] = 'Filter though external program',
+          ['v'] = 'Visual Character Mode',
+        }
+      }
+    end
+  },
   'nvim-lua/plenary.nvim',
   'neovim/nvim-lspconfig',
   'williamboman/nvim-lsp-installer',
