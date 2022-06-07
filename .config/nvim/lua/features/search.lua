@@ -19,9 +19,9 @@ search.use {
   keys = '<plug>(GrepperOperator)',
   setup = function()
     vim.cmd [[
-      let g:grepper = {}
-      let g:grepper.searchreg = 1
-      let g:grepper.prompt_text = '$c '
+    let g:grepper = {}
+    let g:grepper.searchreg = 1
+    let g:grepper.prompt_text = '$c '
     ]]
     local key = require('crows').key
     for _, mode in ipairs { 'n', 'x' } do
@@ -32,8 +32,7 @@ search.use {
 
 -- telescope
 search.use {
-  -- 'nvim-telescope/telescope.nvim',
-  '~/Projects/telescope.nvim', -- Until `find_files` has additional ignore options
+  'nvim-telescope/telescope.nvim',
   requires = {
     { 'nvim-lua/popup.nvim' },
     { 'nvim-lua/plenary.nvim' },
@@ -53,7 +52,6 @@ search.use {
     'telescope-frecency.nvim',
     'telescope-fzf-native.nvim',
   },
-  cmd = 'Telescope',
   module = 'telescope',
   config = function()
     local telescope = require 'telescope'
@@ -73,6 +71,11 @@ search.use {
             ['<C-CR>'] = require('telescope.actions').select_vertical,
             ['<S-CR>'] = require('telescope.actions').select_horizontal,
           },
+        },
+      },
+      pickers = {
+        find_files = {
+          file_ignore_patterns = { '.git' },
         },
       },
       extensions = {

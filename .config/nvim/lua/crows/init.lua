@@ -19,7 +19,7 @@ local crows = {
   features = {},
 }
 
----@class SetupOptions
+---@class CrowsOptions
 ---@field modules string[]
 ---@field features Feature[]
 
@@ -68,7 +68,7 @@ local function load_plugins()
   end
 end
 
----@param opt SetupOptions
+---@param opt CrowsOptions
 function crows.setup(opt)
   vim.api.nvim_create_user_command('CrowsReload', crows.reload, {})
   vim.api.nvim_create_user_command('CrowsResync', crows.resync, {})
@@ -121,6 +121,7 @@ function crows.resync()
 end
 
 function crows.external_resync()
+  reset()
   plugin.sync_and_quit()
 end
 

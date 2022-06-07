@@ -141,12 +141,12 @@ editor.use {
     end
 
     local default_conceallevel = vim.go.conceallevel ~= 0 and vim.go.conceallevel or 2
-    require('crows').key.maps {
+    require('crows').key.maps({
       ['<Plug>(unimpaired-enable)'] = {
-        a = { '<Cmd>set conceallevel=' .. default_conceallevel .. '<CR>', 'Enable conceallevel' },
+        a = { ':<C-U>set conceallevel=' .. default_conceallevel .. '<CR>', 'Enable conceallevel' },
       },
       ['<Plug>(unimpaired-disable)'] = {
-        a = { '<Cmd>set conceallevel=0', 'Disable conceallevel' },
+        a = { ':<C-U>set conceallevel=0' .. '<CR>', 'Disable conceallevel' },
       },
       ['<Plug>(unimpaired-toggle)'] = {
         a = {
@@ -156,7 +156,7 @@ editor.use {
           'Toggle conceallevel',
         },
       },
-    }
+    }, { silent = false })
   end,
 }
 
@@ -166,14 +166,12 @@ editor.use {
   config = function()
     vim.g.splitjoin_split_mapping = ''
     vim.g.splitjoin_join_mapping = ''
-    -- TODO: add mappings for splitjoin
-    -- require('crows').key.maps({
-    --   ['s'] = {
-    --     name = 'Splitjoin',
-    --     j = { '<cmd>SplitjoinSplit<cr>', 'Split line' },
-    --     k = { '<cmd>SplitjoinJoin<cr>', 'Join line' },
-    --   },
-    -- }, { silent = true })
+    require('crows').key.maps({
+      ['<Leader>'] = {
+        j = { '<cmd>SplitjoinSplit<cr>', 'Split line' },
+        k = { '<cmd>SplitjoinJoin<cr>', 'Join line' },
+      },
+    }, { silent = true })
   end,
 }
 

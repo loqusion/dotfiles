@@ -108,6 +108,7 @@ basic.use {
       ['<Leader>l'] = {
         r = { '<cmd>RestoreSession<cr>', 'Restore session' },
         s = { '<cmd>SaveSession<cr>', 'Save session' },
+        d = { '<cmd>DeleteSession<cr>', 'Delete session' },
       },
     }
   end

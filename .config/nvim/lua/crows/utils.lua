@@ -24,17 +24,17 @@ function utils.new_feat(plugins)
   return ret
 end
 
----returns function which executes `require(modname)[fnname](unpack(args))`
+---returns function that `require`s `'modname'.fn` just before it's called
 ---@param modname string
----@param fnname string
+---@param fn string
 ---@vararg any passed to fn
-function utils.lazy_require(modname, fnname, ...)
-  local default_args = {...}
+function utils.lazy_require(modname, fn, ...)
+  local default_args = { ... }
   ---@vararg any passed to fn
   return function(...)
-    local arg = {...}
+    local arg = { ... }
     local all_args = vim.tbl_deep_extend('keep', arg, default_args)
-    return require(modname)[fnname](unpack(all_args))
+    return require(modname)[fn](unpack(all_args))
   end
 end
 
