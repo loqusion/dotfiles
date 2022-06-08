@@ -48,8 +48,8 @@ yabai -m config window_gap                   8
 # mission-control desktop labels
 yabai -m space 1 --label code
 yabai -m space 2 --label web
-yabai -m space 3 --label media
-yabai -m space 4 --label mail
+yabai -m space 3 --label mail
+yabai -m space 4 --label media
 yabai -m space 5 --label social
 yabai -m space 6 --label float
 
@@ -79,6 +79,7 @@ yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Dictionary$" manage=off
 yabai -m rule --add app="^Preview$" manage=off
 yabai -m rule --add app="^VLC" manage=off
+yabai -m rule --add app="^Dashlane$" manage=off
 yabai -m rule --add title="Software Update" manage=off
 yabai -m rule --add app="System Information" manage=off
 

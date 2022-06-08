@@ -107,10 +107,10 @@ alt - space : yabai -m window --toggle float;\
               yabai -m window --grid 4:5:1:0:3:4
 
 # move floating window
-shift + ctrl - h : yabai -m window --move rel:-20:0
-shift + ctrl - j : yabai -m window --move rel:0:20
-shift + ctrl - k : yabai -m window --move rel:0:-20
-shift + ctrl - l : yabai -m window --move rel:20:0
+# alt + cmd - h : yabai -m window --move rel:-20:0
+# alt + cmd - j : yabai -m window --move rel:0:20
+# alt + cmd - k : yabai -m window --move rel:0:-20
+# alt + cmd - l : yabai -m window --move rel:20:0
 
 # increase window size
 # shift + alt - a : yabai -m window --resize left:-20:0
