@@ -291,8 +291,6 @@ map('x', '>', '>gv')
 map('x', '<', '<gv')
 
 -- Insert mode keymappings:
--- <C-t>: insert tab.
-map('i', '<C-t>', '<C-v><Tab>')
 -- Enable undo <C-w> and <C-u>.
 map('i', '<C-w>', '<C-g>u<C-w>')
 map('i', '<C-u>', '<C-g>u<C-u>')

@@ -9,8 +9,10 @@ file_browser.use {
       update_cwd = true,
       diagnostics = { enable = true },
       view = { signcolumn = 'auto' },
-      git = {
-        ignore = false,
+      filters = {
+        custom = {
+          "\\.git",
+        },
       },
     }
     require('crows').key.map('Toggle filetree', 'n', '<localleader>f', '<cmd>NvimTreeToggle<cr>')

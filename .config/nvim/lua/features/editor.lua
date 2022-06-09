@@ -664,8 +664,6 @@ editor.post = function()
   map('x', '<', '<gv')
 
   -- Insert mode keymappings:
-  -- <C-t>: insert tab.
-  map('i', '<C-t>', '<C-v><Tab>')
   -- Enable undo <C-w> and <C-u>.
   map('i', '<C-w>', '<C-g>u<C-w>')
   map('i', '<C-u>', '<C-g>u<C-u>')
@@ -760,13 +758,6 @@ editor.post = function()
 
   -- {visual}p to put without yank to unnamed register
   map('x', 'p', 'P')
-
-  -- Insert special character
-  map('i', '<C-v>u', '<C-r>=nr2char(0x)<Left>')
-
-  -- Tag jump
-  -- map('n', 'tt', 'g<C-]>')
-  -- map('n', 'tp', '<cmd>pop<cr>')
 
   -- Begin a new line without leaving insert mode.
   map('i', '<C-CR>', '<C-o>o')

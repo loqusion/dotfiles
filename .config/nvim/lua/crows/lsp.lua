@@ -49,8 +49,7 @@ local lsp = {
     type_def = { '<leader>d', vim.lsp.buf.type_definition, 'Goto type definition' },
     rename = { '<leader>rn', vim.lsp.buf.rename, 'Rename symbol' },
     code_action = { '<leader>ca', vim.lsp.buf.code_action, 'Code action' },
-    -- list_ref = { 'gr', vim.lsp.buf.references, 'List references' },
-    -- format = { '<leader>f', vim.lsp.buf.formatting, 'Format buffer' },
+    list_ref = { 'gr', '<cmd>TroubleToggle lsp_references<cr>', 'List references' }
   },
   on_attaches = {},
   caps_setters = {},

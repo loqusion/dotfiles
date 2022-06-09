@@ -1,4 +1,4 @@
-xnoremap @ <cmd>call ExecuteMacroOverVisualRange()<CR>
+xnoremap @ :<C-U>call ExecuteMacroOverVisualRange()<CR>
 
 function! ExecuteMacroOverVisualRange()
   echo '@' . getcmdline()

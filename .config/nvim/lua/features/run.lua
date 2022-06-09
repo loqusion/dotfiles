@@ -45,6 +45,15 @@ run.use { -- Quickly interact with the repl without having to leave your work bu
   module = 'iron',
 }
 
-run.use { 'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
+run.use {
+  'tpope/vim-dispatch',
+  cmd = { 'Dispatch', 'Make', 'Focus', 'Start' },
+  keys = {
+    "m<CR>", "m<Space>", "m!", "m?",
+    "`<CR>", "`<Space>", "`!", "`?",
+    "'<CR>", "'<Space>", "'!", "'?",
+    "g'<CR>", "g'<Space>", "g'!", "g'?",
+  },
+}
 
 return run
