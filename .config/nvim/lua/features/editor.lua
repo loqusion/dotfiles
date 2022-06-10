@@ -107,7 +107,15 @@ editor.use {
   'kana/vim-textobj-user',
   'kana/vim-textobj-entire',
   'wellle/targets.vim',
-  'chaoren/vim-wordmotion',
+  {
+    'chaoren/vim-wordmotion',
+    config = function()
+      vim.g.wordmotion_mappings = {
+        aw = 'av',
+        iw = 'iv',
+      }
+    end,
+  },
 }
 
 -- surround
@@ -140,20 +148,31 @@ editor.use {
       vim.cmd [[autocmd VimEnter * ++once lua _unmap_unimpaired()]]
     end
 
-    local default_conceallevel = vim.go.conceallevel ~= 0 and vim.go.conceallevel or 2
+    local defaults = {
+      conceallevel = vim.go.conceallevel ~= 0 and vim.go.conceallevel or 2,
+      laststatus = vim.go.laststatus ~= 0 and vim.go.laststatus or 3
+    }
     require('crows').key.maps({
       ['<Plug>(unimpaired-enable)'] = {
-        a = { ':<C-U>set conceallevel=' .. default_conceallevel .. '<CR>', 'Enable conceallevel' },
+        a = { ':<C-U>set conceallevel=' .. defaults.conceallevel .. '<CR>', 'Enable conceallevel' },
+        g = { ':<C-U>set laststatus=' .. defaults.laststatus .. '<CR>', 'Enable laststatus' },
       },
       ['<Plug>(unimpaired-disable)'] = {
         a = { ':<C-U>set conceallevel=0' .. '<CR>', 'Disable conceallevel' },
+        g = { ':<C-U>set laststatus=0' .. '<CR>', 'Disable laststatus' },
       },
       ['<Plug>(unimpaired-toggle)'] = {
         a = {
           ':<C-U>set conceallevel=<C-R>=&conceallevel == 0 ? '
-              .. default_conceallevel
+              .. defaults.conceallevel
               .. ' : 0<CR><CR>',
           'Toggle conceallevel',
+        },
+        g = {
+          ':<C-U>set laststatus=<C-R>=&laststatus == 0 ? '
+              .. defaults.laststatus
+              .. ' : 0<CR><CR>',
+          'Toggle laststatus',
         },
       },
     }, { silent = false })

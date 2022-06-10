@@ -1,6 +1,16 @@
 ---@type Feature
 local theme = {}
 
+local function table_keys(t)
+  local keys = {}
+  local n = 1
+  for key in pairs(t) do
+    keys[n] = key
+    n = n + 1
+  end
+  return keys
+end
+
 ---@class Theme
 ---@field palette table
 ---@field lualine? string
@@ -105,6 +115,22 @@ local themes = {
 
 local used_theme = themes.spacevim_dark
 
+local source_file = vim.fn.expand('<sfile>')
+local function colorscheme_command(args)
+  local colorscheme = args.args
+  local new_theme = themes[colorscheme]
+  if new_theme then
+    new_theme.apply()
+  else
+    local err_fmt = "Error: color scheme '%s' does not have a defined configuration. Add it to themes in %s or install it manually."
+    vim.notify(
+      string.format(err_fmt, colorscheme, source_file),
+      vim.log.levels.ERROR,
+      {}
+    )
+  end
+end
+
 theme.pre = function()
   vim.opt.termguicolors = true
 end
@@ -119,6 +145,13 @@ theme.post = function()
   used_theme.apply()
   theme.palette = used_theme.palette
   theme.lualine = used_theme.lualine or 'auto'
+
+  vim.api.nvim_create_user_command('Colorscheme', colorscheme_command, {
+    complete = function()
+      return table_keys(themes)
+    end,
+    nargs = 1,
+  })
 end
 
 return theme

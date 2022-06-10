@@ -66,9 +66,8 @@ search.use {
         mappings = {
           i = {
             ['<C-u>'] = false,
-            ['<C-d>'] = false,
-            ['<C-f>'] = { '<Right>', type = 'command' },
-            ['<C-b>'] = { '<Left>', type = 'command' },
+            ['<C-f>'] = require('telescope.actions').preview_scrolling_down,
+            ['<C-d>'] = require('telescope.actions').preview_scrolling_up,
             ['<M-f>'] = { '<S-Right>', type = 'command' },
             ['<M-b>'] = { '<S-Left>', type = 'command' },
             ['<C-a>'] = { '<Home>', type = 'command' },
