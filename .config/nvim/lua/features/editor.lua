@@ -580,9 +580,11 @@ editor.use 'folke/lua-dev.nvim'
 
 editor.use {
   'vimwiki/vimwiki',
-  disable = true,
   keys = '<Plug>Vimwiki',
-  setup = [[require('config.vimwiki')]],
+  setup = function()
+    vim.keymap.set('n', '<leader>ww', '<plug>VimwikiIndex')
+    vim.cmd [[autocmd MyAutoCmd FileType vimwiki setlocal nolist concealcursor=]]
+  end,
 }
 editor.use {
   'Shougo/vinarise.vim',
