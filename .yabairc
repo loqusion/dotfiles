@@ -80,6 +80,7 @@ yabai -m rule --add app="^Dictionary$" manage=off
 yabai -m rule --add app="^Preview$" manage=off
 yabai -m rule --add app="^VLC" manage=off
 yabai -m rule --add app="^Dashlane$" manage=off
+yabai -m rule --add app="^Fantastical$" manage=off
 yabai -m rule --add title="Software Update" manage=off
 yabai -m rule --add app="System Information" manage=off
 
