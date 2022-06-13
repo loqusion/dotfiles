@@ -108,6 +108,15 @@ local function on_attach(client, bufnr)
   end
 end
 
+local function make_on_attach(local_on_attach)
+  return function(client, bufnr)
+    if local_on_attach then
+      local_on_attach(client, bufnr)
+    end
+    on_attach(client, bufnr)
+  end
+end
+
 local function capabilities()
   local caps = vim.lsp.protocol.make_client_capabilities()
   caps.textDocument.completion.completionItem.snippetSupport = true
@@ -127,7 +136,7 @@ function lsp.set_config(name, config)
   -- required before lspconfig setup
   require('nvim-lsp-installer').setup { automatic_installation = true }
   local lspconfig = require 'lspconfig'
-  config.on_attach = on_attach
+  config.on_attach = make_on_attach(config.on_attach)
   config.capabilities = capabilities()
   lspconfig[name].setup(config)
 end

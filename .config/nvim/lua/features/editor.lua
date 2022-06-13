@@ -131,15 +131,17 @@ editor.use {
   'tpope/vim-unimpaired',
   config = function()
     function _G._unmap_unimpaired()
-      local unmap = vim.keymap.del
-      unmap('n', '<s')
-      unmap('n', '<s<Esc>')
-      unmap('n', '<p')
-      unmap('n', '<P')
-      unmap('n', '>s')
-      unmap('n', '>s<Esc>')
-      unmap('n', '>p')
-      unmap('n', '>P')
+      if vim.fn.maparg('<s', 'n', false, false) ~= '' then
+        local unmap = vim.keymap.del
+        unmap('n', '<s')
+        unmap('n', '<s<Esc>')
+        unmap('n', '<p')
+        unmap('n', '<P')
+        unmap('n', '>s')
+        unmap('n', '>s<Esc>')
+        unmap('n', '>p')
+        unmap('n', '>P')
+      end
     end
 
     if vim.v.vim_did_enter == 1 then
@@ -150,7 +152,7 @@ editor.use {
 
     local defaults = {
       conceallevel = vim.go.conceallevel ~= 0 and vim.go.conceallevel or 2,
-      laststatus = vim.go.laststatus ~= 0 and vim.go.laststatus or 3
+      laststatus = vim.go.laststatus ~= 0 and vim.go.laststatus or 3,
     }
     require('crows').key.maps({
       ['<Plug>(unimpaired-enable)'] = {
@@ -163,15 +165,11 @@ editor.use {
       },
       ['<Plug>(unimpaired-toggle)'] = {
         a = {
-          ':<C-U>set conceallevel=<C-R>=&conceallevel == 0 ? '
-              .. defaults.conceallevel
-              .. ' : 0<CR><CR>',
+          ':<C-U>set conceallevel=<C-R>=&conceallevel == 0 ? ' .. defaults.conceallevel .. ' : 0<CR><CR>',
           'Toggle conceallevel',
         },
         g = {
-          ':<C-U>set laststatus=<C-R>=&laststatus == 0 ? '
-              .. defaults.laststatus
-              .. ' : 0<CR><CR>',
+          ':<C-U>set laststatus=<C-R>=&laststatus == 0 ? ' .. defaults.laststatus .. ' : 0<CR><CR>',
           'Toggle laststatus',
         },
       },
@@ -318,12 +316,7 @@ editor.use {
   'simrat39/symbols-outline.nvim',
   cmd = { 'SymbolsOutline', 'SymbolsOutlineOpen', 'SymbolsOutlineClose' },
   setup = function()
-    require('crows').key.map(
-      'Toggle symbols outline',
-      'n',
-      '<localleader>o',
-      '<cmd>SymbolsOutline<cr>'
-    )
+    require('crows').key.map('Toggle symbols outline', 'n', '<localleader>o', '<cmd>SymbolsOutline<cr>')
   end,
 }
 
@@ -589,7 +582,7 @@ editor.use {
         path = '~/vimwiki/',
         syntax = 'markdown',
         ext = '.md',
-      }
+      },
     }
     vim.cmd [[autocmd MyAutoCmd FileType vimwiki setlocal nolist concealcursor=]]
   end,
@@ -617,61 +610,61 @@ editor.post = function()
   ----------------------------------------------------------------------------
   -- Autocommands
   vim.cmd [[
-    augroup MyAutoCmd
-      autocmd!
+  augroup MyAutoCmd
+  autocmd!
 
-      " For only Vim help files.
-      autocmd BufRead,BufWritePost *.txt
-            \ setlocal modelines=2 modeline colorcolumn= foldcolumn=0 signcolumn=no
+  " For only Vim help files.
+  autocmd BufRead,BufWritePost *.txt
+  \ setlocal modelines=2 modeline colorcolumn= foldcolumn=0 signcolumn=no
 
-      " Disable unnecessary features in man pages.
-      autocmd FileType man setlocal signcolumn=no
+  " Disable unnecessary features in man pages.
+  autocmd FileType man setlocal signcolumn=no
 
-      " Disable paste.
-      autocmd InsertLeave *
-            \ if &paste | setlocal nopaste | setlocal paste? | endif |
-            \ if &l:diff | diffupdate | endif
+  " Disable paste.
+  autocmd InsertLeave *
+  \ if &paste | setlocal nopaste | setlocal paste? | endif |
+  \ if &l:diff | diffupdate | endif
 
-      " hl-QuickFixLine doesn't play nicely with listchars.
-      autocmd FileType qf setlocal nolist
+  " hl-QuickFixLine doesn't play nicely with listchars.
+  autocmd FileType qf setlocal nolist
 
-      " Make directory automatically.
-      " --------------------------------------
-      " http://vim-users.jp/2011/02/hack202/
-      autocmd MyAutoCmd BufWritePre *
-            \ call MkdirAsNecessary(expand('<afile>:p:h'), v:cmdbang)
-      function! MkdirAsNecessary(dir, force) abort
-        if !isdirectory(a:dir) && &l:buftype ==# '' &&
-              \ (a:force || input(printf('"%s" does not exist. Create? [y/N]',
-              \              a:dir)) =~? '^y\%[es]$')
-          call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
-        endif
-      endfunction
+  " Make directory automatically.
+  " --------------------------------------
+  " http://vim-users.jp/2011/02/hack202/
+  autocmd MyAutoCmd BufWritePre *
+  \ call MkdirAsNecessary(expand('<afile>:p:h'), v:cmdbang)
+  function! MkdirAsNecessary(dir, force) abort
+  if !isdirectory(a:dir) && &l:buftype ==# '' &&
+    \ (a:force || input(printf('"%s" does not exist. Create? [y/N]',
+    \              a:dir)) =~? '^y\%[es]$')
+    call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+    endif
+    endfunction
 
-      " Trim unnecessary whitespace.
-      autocmd MyAutoCmd BufWritePre *
-            \ call vimrc#trim_trailing_whitespace() |
-            \ call vimrc#trim_final_newlines()
+    " Trim unnecessary whitespace.
+    autocmd MyAutoCmd BufWritePre *
+    \ call vimrc#trim_trailing_whitespace() |
+    \ call vimrc#trim_final_newlines()
     augroup END
 
     " Reload plugins file on save.
     let $CONFIG = stdpath('config')
     let $PLUGINS_SPEC = $CONFIG .. '/lua/plugins.lua'
     augroup packer_user_config
-      autocmd!
-      autocmd BufWritePost $PLUGINS_SPEC,$CONFIG/lua/config/*
-            \ exec 'source ' .. $PLUGINS_SPEC |
-            \ packadd packer.nvim | lua require('plugins').compile()
+    autocmd!
+    autocmd BufWritePost $PLUGINS_SPEC,$CONFIG/lua/config/*
+    \ exec 'source ' .. $PLUGINS_SPEC |
+    \ packadd packer.nvim | lua require('plugins').compile()
     augroup end
-  ]]
+    ]]
 
   ----------------------------------------------------------------------------
   -- Commands
   vim.cmd [[command! Todo Grepper -noprompt -tool git -query -E '(TODO|FIXME|BUG|XXX):']]
   vim.cmd [[
     command! -bang -bar -addr=other -complete=customlist,man#complete -nargs=* VMan
-          \ exe 'vertical <mods> <count>Man <args>'
-  ]]
+    \ exe 'vertical <mods> <count>Man <args>'
+    ]]
 
   ----------------------------------------------------------------------------
   -- Keybindings
@@ -682,9 +675,6 @@ editor.post = function()
   map('n', ',', '<Nop>')
 
   map({ 'n', 'x' }, '<Space>', '<Nop>', { remap = true })
-
-  -- map({ 'n', 'x' }, 's', '<nop>')
-  -- map({ 'n', 'x' }, 'S', '<nop>')
 
   -- Easy indent
   map('n', '>', '>>')
@@ -758,18 +748,8 @@ editor.post = function()
   map('n', 'gs', '<nop>')
 
   -- Smart <C-f>, <C-b>.
-  map(
-    'n',
-    '<C-f>',
-    [[max([winheight(0) - 2, 1]) .. '<C-e>' .. (line('w$') >= line('$') ? 'L' : 'M')]],
-    { expr = true }
-  )
-  map(
-    'n',
-    '<C-b>',
-    [[max([winheight(0) - 2, 1]) .. '<C-y>' .. (line('w0') <= 1 ? 'H' : 'M')]],
-    { expr = true }
-  )
+  map('n', '<C-f>', [[max([winheight(0) - 2, 1]) .. '<C-e>' .. (line('w$') >= line('$') ? 'L' : 'M')]], { expr = true })
+  map('n', '<C-b>', [[max([winheight(0) - 2, 1]) .. '<C-y>' .. (line('w0') <= 1 ? 'H' : 'M')]], { expr = true })
 
   -- Disable ZZ.
   map('n', 'ZZ', '<nop>')
@@ -794,6 +774,9 @@ editor.post = function()
 
   -- Suppress "Type :qa and press <Enter> to exit Nvim"
   map('n', '<C-c>', '<silent> <C-c>')
+
+  -- Select previously inserted/yanked text
+  map({ 'n', 'x' }, 'gV', 'v`[o`]')
 end
 
 return editor

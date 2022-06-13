@@ -12,24 +12,11 @@ lsp.pre = function()
   ]]
 end
 
--- lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
---   virtual_text = false,
---   signs = true,
---   update_in_insert = false,
---   underline = true,
--- })
-
-
-
--- end of  on_attach
--- vim.cmd 'augroup lsp_aucmds'
--- if client.server_capabilities.documentHighlightProvider then
---   vim.cmd 'au CursorHold <buffer> lua vim.lsp.buf.document_highlight()'
---   vim.cmd 'au CursorMoved <buffer> lua vim.lsp.buf.clear_references()'
--- end
---
--- vim.cmd 'au CursorHold,CursorHoldI <buffer> lua require"nvim-lightbulb".update_lightbulb {sign = {enabled = false}, virtual_text = {enabled = true, text = ""}, float = {enabled = false, text = "", win_opts = {winblend = 100, anchor = "NE"}}}'
--- vim.cmd 'augroup END'
+lsp.use {
+  'jose-elias-alvarez/null-ls.nvim',
+  disable = true,
+  requires = 'nvim-lua/plenary.nvim',
+}
 
 -- lsp diagnostics
 lsp.use {
@@ -105,12 +92,33 @@ lsp.use {
 
 lsp.use {
   'kosayoda/nvim-lightbulb',
+  config = function()
+    require('crows.lsp').add_on_attach(function(_, bufnr)
+      local group = vim.api.nvim_create_augroup('lsp_aucmds', {})
+      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+        group = group,
+        buffer = bufnr,
+        callback = function()
+          require('nvim-lightbulb').update_lightbulb {
+            sign = { enabled = false },
+            virtual_text = { enabled = true, text = '' },
+            float = { enabled = false, text = '', win_opts = { winblend = 100, anchor = 'NE' } },
+          }
+        end,
+        desc = 'Show lightbulb',
+      })
+    end)
+  end,
 }
 
 lsp.use {
-  'jose-elias-alvarez/null-ls.nvim',
-  disable = true,
-  requires = 'nvim-lua/plenary.nvim',
+  'RRethy/vim-illuminate',
+  config = function()
+    require('crows.lsp').add_on_attach(function(client)
+      require('illuminate').on_attach(client)
+    end)
+    vim.g.Illuminate_delay = 100
+  end,
 }
 
 lsp.use {

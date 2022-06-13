@@ -43,7 +43,7 @@ terminal.use {
     key.map('Open lazygit', 'n', '<localleader>g', '<cmd> lua _lazygit_toggle()<cr>', {
       silent = true,
     })
-    key.map('Enter normal mode', 't', '<Esc>', [[<C-\><C-n>]])
+    vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
     vim.cmd [[autocmd! TermOpen term://* lua set_terminal_keymaps()]]
     vim.cmd [[autocmd! TermOpen term://* set nolist]]
   end,

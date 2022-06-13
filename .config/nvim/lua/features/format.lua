@@ -11,6 +11,27 @@ format.formatters = {
       stdin = true,
     }
   end,
+  rustfmt = function()
+    return {
+      exe = 'rustfmt',
+      args = { '--emit=stdout' },
+      stdin = true,
+    }
+  end,
+  stylua = function()
+    return {
+      exe = 'stylua',
+      args = { '-' },
+      stdin = true,
+    }
+  end,
+  goimports = function()
+    return {
+      exe = 'goimports',
+      args = { '-w' },
+      stdin = false,
+    }
+  end,
 }
 
 format.use {
@@ -20,17 +41,19 @@ format.use {
     require('formatter').setup {
       filetype = fmt.by_formatter,
     }
-    local group = vim.api.nvim_create_augroup('format_on_save', {})
+    local group = vim.api.nvim_create_augroup('FormatAutogroup', {})
     vim.api.nvim_create_autocmd('BufWritePost', {
       group = group,
       pattern = '*',
-      command = 'silent! FormatWrite',
+      command = 'FormatWrite',
     })
-    vim.api.nvim_create_autocmd('BufWritePost', {
-      group = group,
-      pattern = table.concat(fmt.by_lsp, ','),
-      callback = vim.lsp.buf.formatting_seq_sync,
-    })
+    if #fmt.by_lsp ~= 0 then
+      vim.api.nvim_create_autocmd('BufWritePost', {
+        group = group,
+        pattern = table.concat(fmt.by_lsp, ','),
+        callback = vim.lsp.buf.formatting_seq_sync,
+      })
+    end
   end,
 }
 
