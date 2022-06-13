@@ -581,8 +581,16 @@ editor.use 'folke/lua-dev.nvim'
 editor.use {
   'vimwiki/vimwiki',
   keys = '<Plug>Vimwiki',
+  cmd = 'VimwikiIndex',
   setup = function()
     vim.keymap.set('n', '<leader>ww', '<plug>VimwikiIndex')
+    vim.g.vimwiki_list = {
+      {
+        path = '~/vimwiki/',
+        syntax = 'markdown',
+        ext = '.md',
+      }
+    }
     vim.cmd [[autocmd MyAutoCmd FileType vimwiki setlocal nolist concealcursor=]]
   end,
 }

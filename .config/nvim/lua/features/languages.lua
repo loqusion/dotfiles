@@ -87,6 +87,25 @@ local lua = {
 }
 
 ---@type Feature
+local man = {
+  post = function()
+    vim.g.no_man_maps = 1
+    local augroup = vim.api.nvim_create_augroup('my-filetype-man', {})
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = 'man',
+      desc = 'keymaps',
+      group = augroup,
+      callback = function(args)
+        local opts = { silent = true, buffer = args.buf }
+        vim.keymap.set('n', 'gO', ':call man#show_toc()<CR>', opts)
+        vim.keymap.set('n', '<2-LeftMouse>', ':Man<CR>', opts)
+        vim.keymap.set('n', 'q', ':lclose<CR><C-W>c', vim.tbl_extend('keep', { nowait = true }, opts))
+      end,
+    })
+  end
+}
+
+---@type Feature
 local markdown = {
   pre = function()
     fmt.by_formatter.markdown = { fmt.formatters.prettier }
@@ -241,6 +260,7 @@ return {
   go,
   json,
   lua,
+  man,
   markdown,
   python,
   rust,
