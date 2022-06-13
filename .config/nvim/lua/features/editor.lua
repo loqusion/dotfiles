@@ -5,7 +5,6 @@ local function set_filetype()
   vim.cmd [[filetype plugin on]]
   vim.g.do_filetype_lua = 1
   -- vim.g.did_load_filetypes = 1
-  vim.g.did_load_filetypes = 0
   local filetypes = {
     ['*html'] = 'html',
     ['tsconfig.json'] = 'jsonc',
