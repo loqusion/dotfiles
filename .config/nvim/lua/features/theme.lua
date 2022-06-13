@@ -115,19 +115,16 @@ local themes = {
 
 local used_theme = themes.spacevim_dark
 
-local source_file = vim.fn.expand('<sfile>')
+local source_file = vim.fn.expand '<sfile>'
 local function colorscheme_command(args)
   local colorscheme = args.args
   local new_theme = themes[colorscheme]
   if new_theme then
     new_theme.apply()
   else
-    local err_fmt = "Error: color scheme '%s' does not have a defined configuration. Add it to themes in %s or install it manually."
-    vim.notify(
-      string.format(err_fmt, colorscheme, source_file),
-      vim.log.levels.ERROR,
-      {}
-    )
+    local err_fmt =
+      "Error: color scheme '%s' does not have a defined configuration. Add it to themes in %s or install it manually."
+    vim.notify(string.format(err_fmt, colorscheme, source_file), vim.log.levels.ERROR, {})
   end
 end
 

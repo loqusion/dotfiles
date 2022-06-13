@@ -46,9 +46,9 @@ local default_plugins = {
           ['zf'] = 'Create fold',
           ['!'] = 'Filter though external program',
           ['v'] = 'Visual Character Mode',
-        }
+        },
       }
-    end
+    end,
   },
   'nvim-lua/plenary.nvim',
   'neovim/nvim-lspconfig',

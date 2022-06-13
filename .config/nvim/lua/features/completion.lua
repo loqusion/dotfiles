@@ -6,26 +6,26 @@ completion.use {
   config = function()
     local wilder = require 'wilder'
     wilder.setup {
-      modes = { ':', '/', '?' }
+      modes = { ':', '/', '?' },
     }
     wilder.set_option('pipeline', {
       wilder.branch(
         wilder.cmdline_pipeline {
           language = 'python',
-          fuzzy = 1
+          fuzzy = 1,
         },
         wilder.python_search_pipeline {
           pattern = wilder.python_fuzzy_pattern(),
           sorter = wilder.python_difflib_sorter(),
           engine = 're',
         }
-      )
+      ),
     })
     wilder.set_option(
       'renderer',
-      wilder.popupmenu_renderer({
+      wilder.popupmenu_renderer {
         highlighter = wilder.basic_highlighter(),
-      })
+      }
     )
   end,
 }
@@ -128,10 +128,10 @@ completion.use {
           i = cmp.mapping.abort(),
           c = cmp.mapping.close(),
         },
-        ['<C-y>'] = cmp.mapping({
+        ['<C-y>'] = cmp.mapping {
           c = cmp.mapping.confirm { select = true },
-        }),
-        ['<CR>'] = cmp.mapping({
+        },
+        ['<CR>'] = cmp.mapping {
           i = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
@@ -139,7 +139,7 @@ completion.use {
           c = function(fallback)
             fallback()
           end,
-        }),
+        },
         ['<Tab>'] = cmp.mapping(tab, { 'i', 's' }),
         ['<S-Tab>'] = cmp.mapping(stab, { 'i', 's' }),
       },
@@ -194,7 +194,7 @@ completion.use {
   'David-Kunz/cmp-npm',
   config = function()
     require('cmp-npm').setup()
-  end
+  end,
 }
 
 return completion

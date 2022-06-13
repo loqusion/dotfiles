@@ -8,10 +8,10 @@ debug.use {
       vim.api.nvim_create_user_command('Debug', 'lua require("dap").continue()', {})
       vim.api.nvim_create_user_command('DapREPL', 'lua require("dap").repl.open()', {})
       require('crows').key.maps {
-        ['<F5>'] = { '<cmd>lua require("dap").continue()', 'Debug: Continue'},
-        ['<F10>'] = { '<cmd>lua require("dap").step_over()', 'Debug: Step over'},
-        ['<F11>'] = { '<cmd>lua require("dap").step_into()', 'Debug: Step into'},
-        ['<F12>'] = { '<cmd>lua require("dap").step_out()', 'Debug: Step out'},
+        ['<F5>'] = { '<cmd>lua require("dap").continue()', 'Debug: Continue' },
+        ['<F10>'] = { '<cmd>lua require("dap").step_over()', 'Debug: Step over' },
+        ['<F11>'] = { '<cmd>lua require("dap").step_into()', 'Debug: Step into' },
+        ['<F12>'] = { '<cmd>lua require("dap").step_out()', 'Debug: Step out' },
       }
     end,
     config = function()
@@ -38,7 +38,7 @@ debug.use {
             assert(val, 'Please provide a port number')
             return val
           end,
-        }
+        },
       }
 
       -- lldb
@@ -60,7 +60,7 @@ debug.use {
           stopOnEntry = false,
           args = {},
           runInTerminal = false,
-        }
+        },
       }
 
       dap.configurations.c = dap.configurations.cpp

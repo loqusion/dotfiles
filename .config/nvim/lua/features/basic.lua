@@ -111,7 +111,7 @@ basic.use {
         d = { '<cmd>DeleteSession<cr>', 'Delete session' },
       },
     }
-  end
+  end,
 }
 
 -- improve vim select/input UI

@@ -11,7 +11,7 @@ file_browser.use {
       view = { signcolumn = 'auto' },
       filters = {
         custom = {
-          "\\.git",
+          '\\.git',
         },
       },
     }
