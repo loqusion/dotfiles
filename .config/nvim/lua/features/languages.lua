@@ -10,6 +10,7 @@ local fish = {
   },
 }
 
+---@type Feature
 local go = {
   pre = function()
     fmt.by_formatter.go = { fmt.formatters.goimports }
@@ -231,7 +232,7 @@ local typescript = {
     lsp.set_config('html', {})
     lsp.set_config('cssls', {})
     lsp.set_config('cssmodules_ls', {})
-    lsp.set_config('eslint', {})
+    -- lsp.set_config('eslint', {})
     lsp.set_config('emmet_ls', {})
   end,
 }

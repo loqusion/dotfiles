@@ -250,6 +250,9 @@ editor.use {
 editor.use {
   'mhinz/vim-sayonara',
   cmd = 'Sayonara',
+  setup = function()
+    require('crows').key.map('Sayonara', 'n', 'q', '<cmd>Sayonara<cr>')
+  end,
 }
 
 -- speedy jk

@@ -102,7 +102,10 @@ end
 ---@param client table client object
 ---@param bufnr number buffer number
 local function on_attach(client, bufnr)
-  mapping(bufnr)
+  if not vim.b.did_lsp_mappings then
+    mapping(bufnr)
+    vim.b.did_lsp_mappings = true
+  end
   for _, fn in ipairs(lsp.on_attaches) do
     fn(client, bufnr)
   end
@@ -139,6 +142,11 @@ function lsp.set_config(name, config)
   config.on_attach = make_on_attach(config.on_attach)
   config.capabilities = capabilities()
   lspconfig[name].setup(config)
+end
+
+function lsp.setup_null_ls(config)
+  config.on_attach = make_on_attach(config.on_attach)
+  return require('null-ls').setup(config)
 end
 
 function lsp.add_default(name, default_config)

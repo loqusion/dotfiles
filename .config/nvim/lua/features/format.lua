@@ -1,30 +1,10 @@
 local format = require('crows.utils').new_feat()
+local lazy_require = require('crows.utils').lazy_require
 
 format.by_formatter = {}
 format.by_lsp = {}
 
 format.formatters = {
-  prettier = function()
-    return {
-      exe = 'prettier',
-      args = { '--stdin-filepath', vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)) },
-      stdin = true,
-    }
-  end,
-  rustfmt = function()
-    return {
-      exe = 'rustfmt',
-      args = { '--emit=stdout' },
-      stdin = true,
-    }
-  end,
-  stylua = function()
-    return {
-      exe = 'stylua',
-      args = { '-' },
-      stdin = true,
-    }
-  end,
   goimports = function()
     return {
       exe = 'goimports',
@@ -32,6 +12,16 @@ format.formatters = {
       stdin = false,
     }
   end,
+  prettier = lazy_require 'formatter.defaults.prettier',
+  python = lazy_require('formatter.defaults.python', 'yapf'),
+  rustfmt = function()
+    return {
+      exe = 'rustfmt',
+      args = { '--emit=stdout' },
+      stdin = true,
+    }
+  end,
+  stylua = lazy_require('formatter.filetypes.lua', 'stylua'),
 }
 
 format.use {

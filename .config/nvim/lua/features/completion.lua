@@ -71,7 +71,6 @@ completion.use {
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
     local lspkind = require 'lspkind'
-    local lazy_require = require('crows.utils').lazy_require
     local function tab(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -102,7 +101,7 @@ completion.use {
           cmp.config.compare.offset,
           cmp.config.compare.exact,
           cmp.config.compare.score,
-          lazy_require('cmp-under-comparator', 'under'),
+          require('cmp-under-comparator').under,
           cmp.config.compare.kind,
           cmp.config.compare.sort_text,
           cmp.config.compare.length,

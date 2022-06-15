@@ -24,17 +24,17 @@ function utils.new_feat(plugins)
   return ret
 end
 
----returns function that `require`s `'modname'.fn` just before it's called
----@param modname string
----@param fn string
----@vararg any passed to fn
-function utils.lazy_require(modname, fn, ...)
+---returns function that requires a module just before it calls `'modname'.fname`
+---pass additional arguments for currying
+---@param modname string module name
+---@param fname string pass `nil` to use default export
+function utils.lazy_require(modname, fname, ...)
   local default_args = { ... }
-  ---@vararg any passed to fn
   return function(...)
-    local arg = { ... }
-    local all_args = vim.tbl_deep_extend('keep', arg, default_args)
-    return require(modname)[fn](unpack(all_args))
+    local args = vim.list_extend(default_args, { ... })
+    local mod = require(modname)
+    local fn = fname and mod[fname] or mod
+    return fn(unpack(args))
   end
 end
 
