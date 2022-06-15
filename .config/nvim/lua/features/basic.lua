@@ -89,6 +89,7 @@ basic.pre = function()
   -- vim.opt.showfulltag = true
   vim.opt.cedit = '<C-q>'
   vim.opt.shell = 'bash'
+  vim.fn.setenv('BASH_ENV', os.getenv 'HOME' .. '/.bashenv.sh')
   vim.opt.title = true
   vim.opt.titlelen = 95
   vim.opt.titlestring = [[%{expand('%:p:~:.')} %<(%{fnamemodify(getcwd(), ':~')})%(%m%r%w%)]]
