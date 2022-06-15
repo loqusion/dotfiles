@@ -12,4 +12,6 @@ alias nvide='neovide'
 alias lg='lazygit'
 
 alias caf='caffeinate -d'
-function linecount() { find "${1:-.}" -name "*.*" -print | xargs wc -l }
+function linecount() {
+    find "${1:-.}" -name "*.*" -print | xargs wc -l
+}
