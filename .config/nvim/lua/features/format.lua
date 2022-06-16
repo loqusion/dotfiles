@@ -1,5 +1,5 @@
 local format = require('crows.utils').new_feat()
-local lazy_require = require('crows.utils').lazy_require
+local lazy = require 'crows.lazy'
 
 format.by_formatter = {}
 format.by_lsp = {}
@@ -12,8 +12,8 @@ format.formatters = {
       stdin = false,
     }
   end,
-  prettier = lazy_require 'formatter.defaults.prettier',
-  python = lazy_require('formatter.defaults.python', 'yapf'),
+  prettier = lazy.fn 'formatter.defaults.prettier',
+  python = lazy.fn('formatter.defaults.python', 'yapf'),
   rustfmt = function()
     return {
       exe = 'rustfmt',
@@ -21,11 +21,12 @@ format.formatters = {
       stdin = true,
     }
   end,
-  stylua = lazy_require('formatter.filetypes.lua', 'stylua'),
+  stylua = lazy.fn('formatter.filetypes.lua', 'stylua'),
 }
 
 format.use {
-  'mhartington/formatter.nvim',
+  -- 'mhartington/formatter.nvim',
+  '~/Projects/formatter.nvim',
   config = function()
     local fmt = require 'features.format'
     require('formatter').setup {

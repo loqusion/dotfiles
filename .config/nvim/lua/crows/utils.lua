@@ -24,18 +24,4 @@ function utils.new_feat(plugins)
   return ret
 end
 
----returns function that requires a module just before it calls `'modname'.fname`
----pass additional arguments for currying
----@param modname string module name
----@param fname string pass `nil` to use default export
-function utils.lazy_require(modname, fname, ...)
-  local default_args = { ... }
-  return function(...)
-    local args = vim.list_extend(default_args, { ... })
-    local mod = require(modname)
-    local fn = fname and mod[fname] or mod
-    return fn(unpack(args))
-  end
-end
-
 return utils

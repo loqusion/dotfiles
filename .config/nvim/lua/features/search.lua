@@ -99,31 +99,31 @@ search.use {
     }
   end,
   setup = function()
-    local lazy_require = require('crows.utils').lazy_require
+    local lazy = require 'crows.lazy'
     local tb = 'telescope.builtin'
 
     require('crows').key.maps {
       ['<leader>'] = {
         s = {
           name = 'telescope search',
-          f = { lazy_require(tb, 'find_files', { hidden = true }), 'Find files' },
+          f = { lazy.fn(tb, 'find_files', { hidden = true }), 'Find files' },
           v = {
-            lazy_require(tb, 'find_files', { cwd = vim.fn.stdpath 'config' }),
+            lazy.fn(tb, 'find_files', { cwd = vim.fn.stdpath 'config' }),
             'Find in Vim config',
           },
-          b = { lazy_require(tb, 'current_buffer_fuzzy_find'), 'Find in current buffer' },
-          h = { lazy_require(tb, 'help_tags'), 'Find help' },
-          t = { lazy_require(tb, 'tags'), 'Find tags' },
-          T = { lazy_require(tb, 'colorscheme'), 'Select colorscheme' },
-          d = { lazy_require(tb, 'grep_string'), 'Grep word under cursor' },
-          p = { lazy_require(tb, 'live_grep'), 'Grep in files' },
-          r = { lazy_require(tb, 'lsp_references'), 'Search LSP references in workspace' },
-          o = { lazy_require(tb, 'lsp_document_symbols'), 'Search current document symbols' },
+          b = { lazy.fn(tb, 'current_buffer_fuzzy_find'), 'Find in current buffer' },
+          h = { lazy.fn(tb, 'help_tags'), 'Find help' },
+          t = { lazy.fn(tb, 'tags'), 'Find tags' },
+          T = { lazy.fn(tb, 'colorscheme'), 'Select colorscheme' },
+          d = { lazy.fn(tb, 'grep_string'), 'Grep word under cursor' },
+          p = { lazy.fn(tb, 'live_grep'), 'Grep in files' },
+          r = { lazy.fn(tb, 'lsp_references'), 'Search LSP references in workspace' },
+          o = { lazy.fn(tb, 'lsp_document_symbols'), 'Search current document symbols' },
           s = { require('session-lens').search_session, 'Search Session' },
-          ["'"] = { lazy_require(tb, 'marks'), 'Search marks' },
+          ["'"] = { lazy.fn(tb, 'marks'), 'Search marks' },
         },
-        ['<space>'] = { lazy_require(tb, 'buffers'), 'Buffers' },
-        ['?'] = { lazy_require(tb, 'oldfiles'), 'Find oldfiles' },
+        ['<space>'] = { lazy.fn(tb, 'buffers'), 'Buffers' },
+        ['?'] = { lazy.fn(tb, 'oldfiles'), 'Find oldfiles' },
       },
     }
   end,

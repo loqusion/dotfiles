@@ -56,18 +56,15 @@ editor.pre = function()
     j = true,
   }
   vim.opt.list = true
-  if vim.fn.has 'win32' ~= 0 then
-    vim.o.listchars = 'tab:>-,trail:-,precedes:<'
-  else
-    vim.opt.listchars = {
-      space = '⋅',
-      tab = '→ ',
-      -- eol = '↴',
-      precedes = '«',
-      extends = '»',
-      nbsp = '%',
-    }
-  end
+  vim.opt.listchars = {
+    tab = ' ──',
+    space = '⋅',
+    nbsp = '␣',
+    trail = '•',
+    eol = '↵',
+    precedes = '«',
+    extends = '»',
+  }
 
   set_filetype()
 
@@ -105,6 +102,16 @@ editor.use 'tpope/vim-sleuth'
 editor.use {
   'kana/vim-textobj-user',
   'kana/vim-textobj-entire',
+  {
+    'glts/vim-textobj-comment',
+    config = function()
+      vim.g.textobj_comment_no_default_key_mappings = 1
+      require('crows').key.maps({
+        ['ac'] = { '<Plug>(textobj-comment-a)', 'a comment' },
+        ['ic'] = { '<Plug>(textobj-comment-i)', 'in comment' },
+      }, { mode = 'o' })
+    end,
+  },
   'wellle/targets.vim',
   {
     'chaoren/vim-wordmotion',
@@ -399,7 +406,11 @@ editor.use {
         additional_vim_regex_highlighting = false,
         highlight = {
           enable = true,
-          disable = { 'help' },
+          disable = {
+            'vim',
+            'help',
+            'c',
+          },
         },
         indent = {
           -- Enabling this removes the leading space from /*...*...*/ comments! This is annoying!!
@@ -408,10 +419,10 @@ editor.use {
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = 'gnn',
-            node_incremental = 'grn',
-            scope_incremental = 'grc',
-            node_decremental = 'grm',
+            init_selection = '<CR>',
+            scope_incremental = '<CR>',
+            node_incremental = '<TAB>',
+            node_decremental = '<S-TAB>',
           },
         },
         textobjects = {
@@ -480,6 +491,8 @@ editor.use {
     after = 'nvim-treesitter',
   },
 }
+
+editor.use 'MTDL9/vim-log-highlighting'
 
 -- git management
 editor.use 'tpope/vim-fugitive'
@@ -679,7 +692,7 @@ editor.post = function()
   map({ 'n', 'x' }, '<Space>', '<Nop>', { remap = true })
 
   -- Easy indent
-  map('n', '>', '>>')
+  map('n', '>', '>')
   map('n', '<', '<<')
   map('x', '>', '>gv')
   map('x', '<', '<gv')

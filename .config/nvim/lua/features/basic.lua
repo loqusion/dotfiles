@@ -38,7 +38,7 @@ basic.pre = function()
   vim.g.maplocalleader = ' '
   vim.g.makeleader = 'm'
   vim.opt.linebreak = true
-  vim.opt.showbreak = '->'
+  vim.opt.showbreak = '⤷ '
   vim.opt.breakat = {
     [' '] = true,
     ['\t'] = true,
@@ -89,7 +89,7 @@ basic.pre = function()
   -- vim.opt.showfulltag = true
   vim.opt.cedit = '<C-q>'
   vim.opt.shell = 'bash'
-  vim.fn.setenv('BASH_ENV', os.getenv 'HOME' .. '/.bashenv.sh')
+  vim.env.BASH_ENV = vim.env.HOME .. '/.bashenv.sh'
   vim.opt.title = true
   vim.opt.titlelen = 95
   vim.opt.titlestring = [[%{expand('%:p:~:.')} %<(%{fnamemodify(getcwd(), ':~')})%(%m%r%w%)]]

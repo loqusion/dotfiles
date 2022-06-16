@@ -3,21 +3,21 @@ local run = require('crows.utils').new_feat()
 run.use { -- Quickly interact with the repl without having to leave your work buffer
   'hkupty/iron.nvim',
   setup = function()
-    local lazy_require = require('crows.utils').lazy_require
+    local lazy = require 'crows.lazy'
     local key = require('crows').key
-    local send_motion = lazy_require('iron.core', 'run_motion', 'send_motion')
+    local send_motion = lazy.fn('iron.core', 'run_motion', 'send_motion')
 
     key.maps({
       ['<Space>'] = {
         s = {
           name = 'IronRepl',
-          l = { lazy_require('iron.core', 'send_line'), 'Send line' },
-          ['.'] = { lazy_require('iron.core', 'repeat_cmd'), 'Repeat command' },
-          ['<CR>'] = { lazy_require('iron.core', 'send', nil, string.char(13)), 'Send <EOL>' },
-          ['<Space>'] = { lazy_require('iron.core', 'send', nil, string.char(03)), 'Send interrupt' },
-          q = { lazy_require('iron.core', 'close_repl'), 'Exit' },
+          l = { lazy.fn('iron.core', 'send_line'), 'Send line' },
+          ['.'] = { lazy.fn('iron.core', 'repeat_cmd'), 'Repeat command' },
+          ['<CR>'] = { lazy.fn('iron.core', 'send', nil, string.char(13)), 'Send <EOL>' },
+          ['<Space>'] = { lazy.fn('iron.core', 'send', nil, string.char(03)), 'Send interrupt' },
+          q = { lazy.fn('iron.core', 'close_repl'), 'Exit' },
         },
-        cl = { lazy_require('iron.core', 'send', nil, string.char(12)), 'Clear' },
+        cl = { lazy.fn('iron.core', 'send', nil, string.char(12)), 'Clear' },
       },
     }, { silent = true })
     for _, mode in ipairs { 'n', 'x' } do
@@ -66,6 +66,42 @@ run.use {
     "g'!",
     "g'?",
   },
+}
+
+run.use {
+  'rcarriga/vim-ultest',
+  disable = true,
+  requires = 'vim-test/vim-test',
+  run = ':UpdateRemotePlugins',
+  config = function()
+    vim.g.ultest_use_pty = 1
+    require('crows').key.maps {
+      [']t'] = { '<Plug>(ultest-next-fail)', 'Next failed test' },
+      ['[t'] = { '<Plug>(ultest-prev-fail)', 'Prev failed test' },
+    }
+  end,
+}
+
+run.use {
+  'nvim-neotest/neotest',
+  requires = {
+    'nvim-lua/plenary.nvim',
+    'nvim-treesitter/nvim-treesitter',
+    'antoinemadec/FixCursorHold.nvim',
+    'haydenmeade/neotest-jest',
+    'nvim-neotest/neotest-vim-test',
+    'vim-test/vim-test',
+  },
+  config = function()
+    require('neotest').setup {
+      adapters = {
+        require 'neotest-jest' {},
+        require 'neotest-vim-test' {
+          ignore_filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
+        },
+      },
+    }
+  end,
 }
 
 return run

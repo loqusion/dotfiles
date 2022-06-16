@@ -78,6 +78,14 @@ debug.use {
       require('dapui').setup()
     end,
   },
+  {
+    'theHamsta/nvim-dap-virtual-text',
+    requires = { 'nvim-dap', 'nvim-treesitter' },
+    after = 'nvim-dap',
+    config = function()
+      require('nvim-dap-virtual-text').setup {}
+    end,
+  },
   { -- Python DAP
     'mfussenegger/nvim-dap-python',
     requires = 'nvim-dap',

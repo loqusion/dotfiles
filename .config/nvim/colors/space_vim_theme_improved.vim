@@ -10,7 +10,7 @@ let g:colors_name = 'space_vim_theme_improved'
 hi Comment  guifg=#5C6370 ctermfg=59
 hi link QuickFixLine CursorLine
 
-if g:space_vim_transp_bg
+if get(g:, 'space_vim_transp_bg')
   hi GitGutterAdd guibg=NONE ctermbg=NONE
   hi GitGutterChange guibg=NONE ctermbg=NONE
   hi GitGutterDelete guibg=NONE ctermbg=NONE
