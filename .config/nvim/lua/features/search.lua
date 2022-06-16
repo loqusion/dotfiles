@@ -11,6 +11,19 @@ end
 
 search.use 'romainl/vim-qf'
 search.use 'Olical/vim-enmasse'
+search.use {
+  'https://gitlab.com/yorickpeterse/nvim-pqf.git',
+  config = function()
+    require('pqf').setup {
+      signs = {
+        error = '',
+        warning = '',
+        info = '',
+        hint = '',
+      },
+    }
+  end,
+}
 
 search.use {
   'mhinz/vim-grepper',
