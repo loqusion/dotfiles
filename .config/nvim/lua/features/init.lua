@@ -5,6 +5,7 @@ local features = {
   require 'features.snippets',
   require 'features.completion',
   require 'features.editor',
+  require 'features.syntax',
   require 'features.debug',
   require 'features.external',
   require 'features.run',

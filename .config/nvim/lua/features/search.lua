@@ -40,6 +40,7 @@ search.use {
     for _, mode in ipairs { 'n', 'x' } do
       key.map('Grepper', mode, 'gs', '<Plug>(GrepperOperator)')
     end
+    vim.cmd [[command! Todo Grepper -noprompt -tool git -query -E '(TODO|FIXME|BUG|XXX):']]
   end,
 }
 
