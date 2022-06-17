@@ -13,7 +13,7 @@ statusline.use {
     require('lualine').setup {
       options = {
         icons_enabled = true,
-        theme = require('features.theme').lualine,
+        theme = require('plugins.theme').lualine,
         -- component_separators = { left = '', right = '' },
         -- section_separators = { left = '', right = '' },
         component_separators = '',

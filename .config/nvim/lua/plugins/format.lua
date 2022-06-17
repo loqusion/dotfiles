@@ -28,7 +28,7 @@ format.use {
   -- 'mhartington/formatter.nvim',
   '~/Projects/formatter.nvim',
   config = function()
-    local fmt = require 'features.format'
+    local fmt = require 'plugins.format'
     require('formatter').setup {
       filetype = fmt.by_formatter,
     }

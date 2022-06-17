@@ -1,7 +1,7 @@
 -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 
 local lsp = require 'crows.lsp'
-local fmt = require 'features.format'
+local fmt = require 'plugins.format'
 
 ---@type Feature
 local fish = {

@@ -1,10 +1,6 @@
 local crows = require 'crows'
 local search = require('crows.utils').new_feat()
 
-search.pre = function()
-  vim.opt.ignorecase = true
-end
-
 search.post = function()
   crows.key.map('Clear search', 'n', '<leader>/', '<cmd>nohlsearch<cr>')
 end

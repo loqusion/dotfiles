@@ -1,5 +1,7 @@
 pcall(require, 'impatient')
-require('crows').setup {
-  modules = { 'features' },
-  features = require 'features',
-}
+
+require 'core.options'
+require 'core.settings'
+-- require('core.mapping')
+require 'plugins'
+-- require 'core.after'

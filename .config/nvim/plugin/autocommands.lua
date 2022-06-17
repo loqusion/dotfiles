@@ -35,14 +35,4 @@ vim.cmd [[
     \ call vimrc#trim_trailing_whitespace() |
     \ call vimrc#trim_final_newlines()
   augroup END
-
-  " Reload plugins file on save.
-  let $CONFIG = stdpath('config')
-  let $PLUGINS_SPEC = $CONFIG .. '/lua/plugins.lua'
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost $PLUGINS_SPEC,$CONFIG/lua/config/*
-          \ exec 'source ' .. $PLUGINS_SPEC |
-          \ packadd packer.nvim | lua require('plugins').compile()
-  augroup end
 ]]

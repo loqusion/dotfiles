@@ -1,3 +1,5 @@
+local path = require 'utils.api.path'
+
 ---@class PluginModule
 ---@field bootstrapped boolean is bootstrapped
 ---@field loaded boolean is packer.nvim loaded
@@ -51,7 +53,59 @@ function plugin.reset()
   plugin.plugins = {}
 end
 
+---@return string
+local function canonical_name(spec)
+  if spec.as then
+    return spec.as
+  end
+  local name = type(spec) == 'string' and spec or spec[1]
+  return string.match(name, '/([%w%-_]+).?')
+end
+
+---only returns config path if config/lua/<path> exists
+---@param name string
+local function get_config_path(name)
+  local config_path = path.join('config', 'plugins', name:lower())
+  local config_file_path = path.join(vim.fn.stdpath 'config', 'lua', string.format('%s.lua', config_path))
+  if vim.fn.filereadable(config_file_path) == 1 then
+    return config_path
+  end
+  return nil
+end
+
+---@return table|string
+local function add_config(spec)
+  if type(spec) == 'table' and #spec > 1 then
+    for i, child in ipairs(spec) do
+      spec[i] = add_config(child)
+    end
+    return spec
+  end
+
+  local name = canonical_name(spec)
+  local config_path = get_config_path(name)
+  if config_path then
+    if type(spec) == 'string' then
+      spec = { spec }
+    end
+    if spec.ptp == 'viml' then
+      spec.setup = string.format('require("%s").entrance()', config_path)
+    else
+      local config = require(config_path)
+      if config.setup then
+        spec.setup = string.format("require('%s').setup()", config_path)
+      end
+      if config.config then
+        spec.config = string.format("require('%s').config()", config_path)
+      end
+    end
+  end
+  return spec
+end
+
 function plugin.use(spec)
+  spec = add_config(spec)
+  vim.notify(vim.inspect(spec))
   plugin.plugins[#plugin.plugins + 1] = spec
 end
 
