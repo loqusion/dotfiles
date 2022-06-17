@@ -16,10 +16,16 @@ map('n', ',', '<Nop>')
 map({ 'n', 'x' }, '<Space>', '<Nop>', { remap = true })
 
 -- Easy indent
-map('n', '>', '>')
+map('n', '>', '>>')
 map('n', '<', '<<')
 map('x', '>', '>gv')
 map('x', '<', '<gv')
+
+-- Use * for hl, not navigation
+map({ 'n', 'x' }, '*', '*N')
+map({ 'n', 'x' }, 'g*', 'g*N')
+-- map({ 'n', 'x' }, '#', '#N')
+map({ 'n', 'x' }, 'g#', 'g#N')
 
 -- Insert mode keymappings:
 -- Enable undo <C-w> and <C-u>.
@@ -84,7 +90,7 @@ map('n', 'Q', 'q')
 -- Useless commands.
 map({ 'n', 'i', 'c', 'v', 'o', 't', 'l' }, '<MiddleMouse>', '<Nop>')
 map('n', 'M', 'm')
-map('n', 'gs', '<nop>')
+-- map('n', 'gs', '<nop>')
 
 -- Smart <C-f>, <C-b>.
 map('n', '<C-f>', [[max([winheight(0) - 2, 1]) .. '<C-e>' .. (line('w$') >= line('$') ? 'L' : 'M')]], { expr = true })

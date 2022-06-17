@@ -148,6 +148,7 @@ lsp.use {
 
 lsp.use {
   'j-hui/fidget.nvim',
+  event = 'BufReadPre',
   config = function()
     require('fidget').setup {
       window = {
@@ -156,5 +157,7 @@ lsp.use {
     }
   end,
 }
+
+lsp.use 'b0o/SchemaStore.nvim'
 
 return lsp

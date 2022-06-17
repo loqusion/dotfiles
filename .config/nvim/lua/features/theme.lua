@@ -18,6 +18,22 @@ end
 
 ---@type table<string, Theme>
 local themes = {
+  edge_light = {
+    palette = {
+      accent = '#bf75d6', -- bg_purple
+      accent_sec = '#8790a0', -- grey
+      bg = '#eef1f4', -- bg1
+      bg_sec = '#dde2e7', -- bg4
+      fg = '#33353f', -- default:bg1
+      fg_sec = '#4b505b', -- fg
+    },
+    apply = function()
+      vim.cmd [[packadd edge]]
+      vim.opt.background = 'light'
+      vim.g.edge_enable_italic = 1
+      vim.cmd [[colorscheme edge]]
+    end,
+  },
   gruvbox_light = {
     lualine = 'gruvbox_light',
     palette = {
@@ -29,10 +45,11 @@ local themes = {
       fg_sec = '#665c54', -- fg3
     },
     apply = function()
-      vim.cmd 'packadd gruvbox-material'
+      vim.cmd [[packadd gruvbox-material]]
       vim.opt.background = 'light'
-      vim.g['gruvbox_material_enable_italic'] = 1
-      vim.cmd 'colorscheme gruvbox-material'
+      vim.g.gruvbox_material_enable_italic = 1
+      vim.g.gruvbox_material_transparent_background = vim.g.use_transparency
+      vim.cmd [[colorscheme gruvbox-material]]
     end,
   },
   gruvbox_dark = {
@@ -46,26 +63,11 @@ local themes = {
       fg_sec = '#bdae93', -- fg3
     },
     apply = function()
-      vim.cmd 'packadd gruvbox-material'
+      vim.cmd [[packadd gruvbox-material]]
       vim.opt.background = 'dark'
-      vim.g['gruvbox_material_enable_italic'] = 1
-      vim.cmd 'colorscheme gruvbox-material'
-    end,
-  },
-  edge_light = {
-    palette = {
-      accent = '#bf75d6', -- bg_purple
-      accent_sec = '#8790a0', -- grey
-      bg = '#eef1f4', -- bg1
-      bg_sec = '#dde2e7', -- bg4
-      fg = '#33353f', -- default:bg1
-      fg_sec = '#4b505b', -- fg
-    },
-    apply = function()
-      vim.cmd 'packadd edge'
-      vim.opt.background = 'light'
-      vim.g.edge_enable_italic = 1
-      vim.cmd 'colorscheme edge'
+      vim.g.gruvbox_material_enable_italic = 1
+      vim.g.gruvbox_material_transparent_background = vim.g.use_transparency
+      vim.cmd [[colorscheme gruvbox-material]]
     end,
   },
   nord = {
@@ -79,11 +81,33 @@ local themes = {
       fg_sec = '#d8dee9', -- nord4
     },
     apply = function()
-      vim.cmd 'packadd nord.nvim'
+      vim.cmd [[packadd nord.nvim]]
       vim.opt.background = 'dark'
       vim.g.nord_borders = true
       require('nord').set()
-      vim.cmd 'colorscheme nord'
+      vim.cmd [[colorscheme nord]]
+    end,
+  },
+  onedarkpro = {
+    lualine = 'onedark',
+    apply = function()
+      vim.cmd [[packadd onedarkpro.nvim]]
+      vim.opt.background = 'dark'
+      local onedarkpro = require 'onedarkpro'
+      onedarkpro.setup {
+        options = {
+          transparency = vim.g.use_transparency,
+          bold = true,
+          italic = true,
+          underline = true,
+          undercurl = true,
+        },
+        styles = {
+          comments = 'italic',
+          keywords = 'bold,italic',
+        },
+      }
+      vim.cmd [[colorscheme onedarkpro]]
     end,
   },
   rose_pine_dawn = {
@@ -96,9 +120,9 @@ local themes = {
       fg_sec = '#6e6a86', -- fg
     },
     apply = function()
-      vim.cmd 'packadd rose-pine'
+      vim.cmd [[packadd rose-pine]]
       vim.o.background = 'light'
-      vim.cmd 'colorscheme rose-pine'
+      vim.cmd [[colorscheme rose-pine]]
     end,
   },
   spacevim_dark = {
@@ -107,20 +131,24 @@ local themes = {
     apply = function()
       vim.cmd [[packadd space-vim-theme]]
       vim.opt.background = 'dark'
-      vim.g.space_vim_transp_bg = 1
+      if vim.g.use_transparency then
+        vim.g.space_vim_transp_bg = 1
+      end
       vim.cmd [[colorscheme space_vim_theme_improved]]
     end,
   },
 }
 
-local used_theme = themes.spacevim_dark
+vim.g.use_transparency = true
+local used_theme = themes.gruvbox_dark
 
+---@diagnostic disable-next-line: missing-parameter
 local source_file = vim.fn.expand '<sfile>'
 local function colorscheme_command(args)
   local colorscheme = args.args
-  local new_theme = themes[colorscheme]
-  if new_theme then
-    new_theme.apply()
+  used_theme = themes[colorscheme]
+  if used_theme then
+    used_theme.apply()
   else
     local err_fmt =
       "Error: color scheme '%s' does not have a defined configuration. Add it to themes in %s or install it manually."
@@ -137,6 +165,23 @@ theme.plugins = {
   { 'sainnhe/edge', opt = true },
   { 'rose-pine/neovim', opt = true, as = 'rose-pine' },
   { 'liuchengxu/space-vim-theme', opt = true },
+  { 'olimorris/onedarkpro.nvim', opt = true },
+  { 'rebelot/kanagawa.nvim', opt = true },
+  { 'luisiacc/gruvbox-baby', opt = true },
+  { 'eddyekofo94/gruvbox-flat.nvim', opt = true },
+  { 'EdenEast/nightfox.nvim', opt = true },
+  { 'Shatur/neovim-ayu', opt = true },
+  { 'Mofiqul/dracula.nvim', opt = true },
+  { 'mcchrish/zenbones.nvim', opt = true, requires = 'rktjmp/lush.nvim' },
+  { 'catppuccin/nvim', opt = true, as = 'catppuccin' },
+  { 'folke/tokyonight.nvim', opt = true },
+  {
+    'f-person/auto-dark-mode.nvim',
+    event = 'VimEnter',
+    config = function()
+      -- require("config.theme").setup()
+    end,
+  },
 }
 theme.post = function()
   used_theme.apply()

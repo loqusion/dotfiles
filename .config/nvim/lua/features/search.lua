@@ -32,14 +32,10 @@ search.use {
   keys = '<plug>(GrepperOperator)',
   setup = function()
     vim.cmd [[
-    let g:grepper = {}
-    let g:grepper.searchreg = 1
-    let g:grepper.prompt_text = '$c '
+      let g:grepper = {}
+      let g:grepper.searchreg = 1
+      let g:grepper.prompt_text = '$c '
     ]]
-    local key = require('crows').key
-    for _, mode in ipairs { 'n', 'x' } do
-      key.map('Grepper', mode, 'gs', '<Plug>(GrepperOperator)')
-    end
     vim.cmd [[command! Todo Grepper -noprompt -tool git -query -E '(TODO|FIXME|BUG|XXX):']]
   end,
 }
@@ -58,6 +54,8 @@ search.use {
     { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', after = 'telescope.nvim' },
     { 'nvim-telescope/telescope-dap.nvim', after = 'telescope.nvim' },
     { 'nvim-telescope/telescope-ui-select.nvim', after = 'telescope.nvim' },
+    { 'nvim-telescope/telescope-file-browser.nvim' },
+    { 'cljoly/telescope-repo.nvim' },
     { 'rmagatti/session-lens' },
   },
   wants = {
@@ -69,10 +67,12 @@ search.use {
   module = 'telescope',
   config = function()
     local telescope = require 'telescope'
+    telescope.load_extension 'dap'
+    telescope.load_extension 'file_browser'
     telescope.load_extension 'frecency'
     telescope.load_extension 'fzf'
+    telescope.load_extension 'repo'
     telescope.load_extension 'ui-select'
-    telescope.load_extension 'dap'
 
     telescope.setup {
       defaults = {
@@ -91,7 +91,7 @@ search.use {
       },
       pickers = {
         find_files = {
-          file_ignore_patterns = { '.git' },
+          file_ignore_patterns = { [[\.git/]] },
         },
       },
       extensions = {
@@ -115,6 +115,7 @@ search.use {
   setup = function()
     local lazy = require 'crows.lazy'
     local tb = 'telescope.builtin'
+    require 'session-lens'
 
     require('crows').key.maps {
       ['<leader>'] = {
@@ -133,11 +134,25 @@ search.use {
           p = { lazy.fn(tb, 'live_grep'), 'Grep in files' },
           r = { lazy.fn(tb, 'lsp_references'), 'Search LSP references in workspace' },
           o = { lazy.fn(tb, 'lsp_document_symbols'), 'Search current document symbols' },
-          s = { require('session-lens').search_session, 'Search Session' },
+          g = {
+            lazy.fn('telescope', 'extensions.repo.cached_list', { search_dirs = { '~/Projects' } }),
+            'Search git repos',
+          },
+          s = {
+            lazy.fn('session-lens', 'search_session', {
+              path_display = { 'shorten' },
+              theme_conf = { border = false },
+              previewer = true,
+            }),
+            'Search Session',
+          },
           ["'"] = { lazy.fn(tb, 'marks'), 'Search marks' },
         },
         ['<space>'] = { lazy.fn(tb, 'buffers'), 'Buffers' },
         ['?'] = { lazy.fn(tb, 'oldfiles'), 'Find oldfiles' },
+      },
+      ['<localleader>'] = {
+        fb = { ':Telescope file_browser<CR>', 'File browser' },
       },
     }
   end,

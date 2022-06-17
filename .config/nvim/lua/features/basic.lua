@@ -49,12 +49,12 @@ basic.pre = function()
     ['?'] = true,
   }
   vim.opt.mouse = 'nvihr'
-  vim.opt.guicursor = {
-    'n-v-c:block-Cursor/lCursor-blinkon0',
-    'i-ci-ve:ver25-Cursor/lCursor',
-    'r-cr:hor20-Cursor/lCursor',
-    'o:hor50',
-  }
+  -- vim.opt.guicursor = {
+  --   'n-v-c:block-Cursor/lCursor-blinkon0',
+  --   'i-ci-ve:ver25-Cursor/lCursor',
+  --   'r-cr:hor20-Cursor/lCursor',
+  --   'o:hor50',
+  -- }
   vim.opt.number = true
   vim.opt.relativenumber = true
   vim.opt.textwidth = 120
@@ -63,6 +63,8 @@ basic.pre = function()
   vim.opt.concealcursor = 'nc'
   vim.opt.shada = { "'20", '<50', 's10', 'h', '/100' }
   vim.opt.updatetime = 100
+  vim.opt.backup = true
+  vim.opt.undofile = true
   vim.opt.shortmess:append {
     a = true,
     c = true,
@@ -78,14 +80,12 @@ basic.pre = function()
   vim.opt.pumblend = 10
   vim.opt.winblend = 20
   vim.opt.equalalways = false
-  vim.opt.undofile = true
   vim.opt.synmaxcol = 500
   vim.opt.display = { 'msgsep', 'uhex' }
   vim.opt.modeline = false
   vim.opt.grepprg = 'grep -inH'
   vim.opt.isfname:remove { '=' }
   vim.opt.isfname:append { '@-@' }
-  vim.opt.swapfile = false
   -- vim.opt.showfulltag = true
   vim.opt.cedit = '<C-q>'
   vim.opt.shell = 'bash'
@@ -97,12 +97,14 @@ end
 
 basic.use 'lewis6991/impatient.nvim'
 
+basic.use 'antoinemadec/FixCursorHold.nvim'
+
 basic.use {
   'rmagatti/auto-session',
   config = function()
     vim.opt.sessionoptions = 'curdir,folds,help,tabpages,terminal,winsize'
     require('auto-session').setup {
-      pre_save_cmds = { 'NvimTreeClose' },
+      -- pre_save_cmds = { 'NvimTreeClose' },
       auto_session_suppress_dirs = { '~', '~/Projects', '~/vimwiki' },
     }
     require('crows').key.maps {

@@ -126,9 +126,7 @@ editor.use {
 
 -- surround
 editor.use {
-  {
-    'tpope/vim-surround',
-  },
+  'tpope/vim-surround',
   'tpope/vim-repeat',
 }
 
@@ -218,27 +216,52 @@ editor.use {
 }
 
 -- comment
+-- editor.use 'tpope/vim-commentary'
 editor.use {
   'numToStr/Comment.nvim',
   config = function()
-    require('Comment').setup()
-  end,
-}
+    require('Comment').setup {
+      pre_hook = function(ctx)
+        -- Only calculate commentstring for jsx/tsx filetypes
+        if vim.bo.filetype == 'javascriptreact' or vim.bo.filetype == 'typescriptreact' then
+          local U = require 'Comment.utils'
 
--- autopairs
-editor.use {
-  'windwp/nvim-autopairs',
-  requires = { 'hrsh7th/nvim-cmp' },
-  config = function()
-    require('nvim-autopairs').setup {
-      fast_wrap = {},
-      enable_check_bracket_line = true,
-      check_ts = true,
+          -- Determine whether to use linewise or blockwise commentstring
+          local type = ctx.ctype == U.ctype.line and '__default' or '__multiline'
+
+          -- Determine the location where to calculate commentstring from
+          local location = nil
+          if ctx.ctype == U.ctype.block then
+            location = require('ts_context_commentstring.utils').get_cursor_location()
+          elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
+            location = require('ts_context_commentstring.utils').get_visual_start_location()
+          end
+
+          return require('ts_context_commentstring.internal').calculate_commentstring {
+            key = type,
+            location = location,
+          }
+        end
+        -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring#commentnvim
+        -- require('Comment').setup {
+        --   pre_hook = function(ctx)
+        --     local U = require 'Comment.utils'
+        --
+        --     local location = nil
+        --     if ctx.ctype == U.ctype.block then
+        --       location = require('ts_context_commentstring.utils').get_cursor_location()
+        --     elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
+        --       location = require('ts_context_commentstring.utils').get_visual_start_location()
+        --     end
+        --
+        --     return require('ts_context_commentstring.internal').calculate_commentstring {
+        --       key = ctx.ctype == U.ctype.line and '__default' or '__multiline',
+        --       location = location,
+        --     }
+        --   end,
+        -- }
+      end,
     }
-    -- If you want insert `(` after select function or method item
-    local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-    local cmp = require 'cmp'
-    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done { map_char = { tex = '' } })
   end,
 }
 
@@ -271,62 +294,9 @@ editor.use {
   end,
 }
 
--- visual f/t
-editor.use {
-  'hrsh7th/vim-eft',
-  disable = true,
-  config = function()
-    local keymap = vim.keymap
-
-    vim.g.eft_ignorecase = 1
-
-    keymap.set('n', ';', '<plug>(eft-repeat)')
-    keymap.set('x', ';', '<plug>(eft-repeat)')
-
-    keymap.set('n', 'f', '<plug>(eft-f)')
-    keymap.set('x', 'f', '<plug>(eft-f)')
-    keymap.set('o', 'f', '<plug>(eft-f)')
-
-    -- reserved for fuzzy motion
-    -- keymap.set('n', 'F', '<plug>(eft-F)')
-    keymap.set('x', 'F', '<plug>(eft-F)')
-    keymap.set('o', 'F', '<plug>(eft-F)')
-  end,
-}
-
 -- lightspeed
 editor.use {
   'ggandor/lightspeed.nvim',
-}
-
--- show registers
-editor.use {
-  'tversteeg/registers.nvim',
-  disable = true,
-  keys = { { 'n', '"' }, { 'i', '<c-r>' } },
-  config = function()
-    vim.g.registers_paste_in_normal_mode = 1
-    vim.g.registers_hide_only_whitespace = 1
-    vim.g.registers_show_empty_registers = 0
-  end,
-}
-
--- undotree
-editor.use {
-  'mbbill/undotree',
-  cmd = 'UndotreeToggle',
-  config = function()
-    vim.g.undotree_SetFocusWhenToggle = 1
-  end,
-}
-
--- symbols outline
-editor.use {
-  'simrat39/symbols-outline.nvim',
-  cmd = { 'SymbolsOutline', 'SymbolsOutlineOpen', 'SymbolsOutlineClose' },
-  setup = function()
-    require('crows').key.map('Toggle symbols outline', 'n', '<localleader>o', '<cmd>SymbolsOutline<cr>')
-  end,
 }
 
 -- search highlight
@@ -341,90 +311,6 @@ editor.use {
       show_current_context = true,
       show_current_context_start = true,
       use_treesitter = true,
-    }
-  end,
-}
-
--- git management
-editor.use 'tpope/vim-fugitive'
-editor.use 'tpope/vim-rhubarb'
-editor.use {
-  'lewis6991/gitsigns.nvim',
-  requires = { 'nvim-lua/plenary.nvim' },
-  config = function()
-    require('gitsigns').setup {
-      on_attach = function(_)
-        local gs = package.loaded.gitsigns
-        local key = require('crows').key
-
-        local function next_hunk()
-          if vim.wo.diff then
-            return ']c'
-          end
-          vim.schedule(function()
-            gs.next_hunk()
-          end)
-          return '<Ignore>'
-        end
-
-        local function prev_hunk()
-          if vim.wo.diff then
-            return '[c'
-          end
-          vim.schedule(function()
-            gs.prev_hunk()
-          end)
-          return '<Ignore>'
-        end
-
-        local function blame_line_full()
-          gs.blame_line { full = true }
-        end
-
-        local function diffthis()
-          gs.diffthis '~'
-        end
-
-        key.maps {
-          [']c'] = { next_hunk, 'Goto next hunk' },
-          ['[c'] = { prev_hunk, 'Goto prev hunk' },
-          ['<leader>g'] = {
-            name = 'Gitsigns',
-            S = { gs.stage_buffer, 'Stage current buffer' },
-            u = { gs.undo_stage_hunk, 'Undo last staged hunk' },
-            R = { gs.reset_buffer, 'Reset current buffer' },
-            p = { gs.preview_hunk, 'Preview hunk' },
-            b = { blame_line_full, 'Blame current line' },
-            tb = { gs.toggle_current_line_blame, 'Toggle blame current line' },
-            d = { gs.diffthis, 'Git diff' },
-            D = { diffthis, 'Git diff' },
-            td = { gs.toggle_deleted, 'Toggle deleted' },
-          },
-        }
-        for _, mode in ipairs { 'n', 'v' } do
-          key.map('Stage hunk', mode, '<leader>gs', ':Gitsigns stage_hunk<cr>')
-          key.map('Reset hunk', mode, '<leader>gr', ':Gitsigns reset_hunk<cr>')
-        end
-        for _, mode in ipairs { 'o', 'x' } do
-          key.map('hunk', mode, 'ic', '<cmd>Gitsigns select_hunk<cr>')
-          key.map('hunk', mode, 'ac', '<cmd>Gitsigns select_hunk<cr>')
-        end
-      end,
-    }
-  end,
-}
-editor.use {
-  'TimUntersberger/neogit',
-  requires = {
-    'nvim-lua/plenary.nvim',
-    'sindrets/diffview.nvim',
-  },
-  cmd = 'Neogit',
-  config = function()
-    require('neogit').setup {
-      integrations = { diffview = true },
-      disable_commit_confirmation = true,
-      disable_signs = true,
     }
   end,
 }
@@ -453,23 +339,11 @@ editor.use {
     vim.cmd [[autocmd MyAutoCmd FileType vimwiki setlocal nolist concealcursor=]]
   end,
 }
-editor.use {
-  'Shougo/vinarise.vim',
-  disable = true,
-  cmd = 'Vinarise',
-  setup = [[vim.g.vinarise_enable_auto_detect = 1]],
-}
 
 editor.use {
   'dstein64/vim-startuptime',
   cmd = 'StartupTime',
   config = [[vim.g.startuptime_tries = 10]],
 }
-
-editor.use 'antoinemadec/FixCursorHold.nvim'
-
--- editor.use 'MunifTanjim/nui.nvim'
-
--- editor.use 'vim-jp/vimdoc-ja'
 
 return editor

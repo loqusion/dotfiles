@@ -68,6 +68,7 @@ run.use {
   },
 }
 
+-- testing
 run.use {
   'rcarriga/vim-ultest',
   disable = true,
@@ -81,15 +82,15 @@ run.use {
     }
   end,
 }
-
 run.use {
   'nvim-neotest/neotest',
   requires = {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
     'antoinemadec/FixCursorHold.nvim',
-    'haydenmeade/neotest-jest',
     'nvim-neotest/neotest-vim-test',
+    'akinsho/neotest-go',
+    'haydenmeade/neotest-jest',
     'vim-test/vim-test',
   },
   config = function()
@@ -101,6 +102,22 @@ run.use {
         },
       },
     }
+  end,
+}
+run.use {
+  'andythigpen/nvim-coverage',
+  cmd = {
+    'Coverage',
+    'CoverageLoad',
+    'CoverageShow',
+    'CoverageHide',
+    'CoverageToggle',
+    'CoverageClear',
+    'CoverageSummary',
+  },
+  module = 'coverage',
+  config = function()
+    require('config.test').coverage()
   end,
 }
 

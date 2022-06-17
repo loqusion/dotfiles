@@ -34,6 +34,15 @@ local function wrap(t, handler)
   })
 end
 
+local function deref(tbl, access_path)
+  local thing = tbl
+  local keys = vim.split(access_path, '.', { plain = true })
+  for _, key in ipairs(keys) do
+    thing = thing[key]
+  end
+  return thing
+end
+
 ---Will only require the module after first either indexing, or calling it.
 ---
 ---You can pass a handler function to process the module in some way before
@@ -84,14 +93,8 @@ end
 ---@param access_path string
 ---@return LazyModule
 function lazy.access(x, access_path)
-  local keys = vim.split(access_path, '.', { plain = true })
-
   local handler = function(module)
-    local export = module
-    for _, key in ipairs(keys) do
-      export = export[key]
-    end
-    return export
+    return deref(module, access_path)
   end
 
   if type(x) == 'string' then
@@ -110,7 +113,7 @@ function lazy.fn(modname, fname, ...)
   return function(...)
     local args = vim.list_extend(default_args, { ... })
     local mod = require(modname)
-    local fn = fname and mod[fname] or mod
+    local fn = fname and deref(mod, fname) or mod
     return fn(unpack(args))
   end
 end

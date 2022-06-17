@@ -36,7 +36,14 @@ local json = {
     fmt.by_formatter.json = { fmt.formatters.prettier }
   end,
   post = function()
-    lsp.set_config('jsonls', {})
+    lsp.set_config('jsonls', {
+      settings = {
+        json = {
+          schemas = require('schemastore').json.schemas(),
+          validate = { enable = true },
+        },
+      },
+    })
   end,
 }
 
@@ -112,7 +119,27 @@ local markdown = {
     fmt.by_formatter.markdown = { fmt.formatters.prettier }
   end,
   plugins = {
-    'preservim/vim-markdown',
+    {
+      'preservim/vim-markdown',
+      config = function()
+        vim.g.vim_markdown_fenced_languages = {
+          'js=javascriptreact',
+          'ts=typescriptreact',
+          'jsx=javascriptreact',
+          'tsx=typescriptreact',
+          'sh=bash',
+        }
+      end,
+    },
+    {
+      'ellisonleao/glow.nvim',
+      config = function()
+        -- local glow_path = vim.fn.system 'which glow'
+        -- if glow_path ~= '' then
+        --   vim.g.glow_binary_path = glow_path
+        -- end
+      end,
+    },
     {
       'iamcco/markdown-preview.nvim',
       run = 'cd app && yarn install',

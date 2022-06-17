@@ -6,12 +6,12 @@ local features = {
   require 'features.completion',
   require 'features.editor',
   require 'features.syntax',
+  require 'features.git',
   require 'features.debug',
   require 'features.external',
   require 'features.run',
   require 'features.terminal',
   require 'features.ui',
-  require 'features.file_browser',
   require 'features.search',
   -- statusline requires themes
   require 'features.theme',
