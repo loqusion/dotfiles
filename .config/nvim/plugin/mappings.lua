@@ -22,10 +22,10 @@ map('x', '>', '>gv')
 map('x', '<', '<gv')
 
 -- Use * for hl, not navigation
-map({ 'n', 'x' }, '*', '*N')
-map({ 'n', 'x' }, 'g*', 'g*N')
--- map({ 'n', 'x' }, '#', '#N')
-map({ 'n', 'x' }, 'g#', 'g#N')
+map('n', '*', '*N', { remap = true })
+map('n', 'g*', 'g*N', { remap = true })
+-- map( 'n', '#', '#N', { remap = true })
+map('n', 'g#', 'g#N', { remap = true })
 
 -- Insert mode keymappings:
 -- Enable undo <C-w> and <C-u>.
