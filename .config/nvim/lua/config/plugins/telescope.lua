@@ -5,7 +5,6 @@ local M = {}
 function M.setup()
   local lazy = require 'crows.lazy'
   local tb = 'telescope.builtin'
-  require 'session-lens'
 
   require('crows').key.maps {
     ['<leader>'] = {
@@ -42,7 +41,7 @@ function M.setup()
       ['?'] = { lazy.fn(tb, 'oldfiles'), 'Find oldfiles' },
     },
     ['<localleader>'] = {
-      f = { ':Telescope file_browser<CR>', 'File browser' },
+      f = { lazy.fn('telescope', 'extensions.file_browser.file_browser'), 'File browser' },
     },
   }
 end
@@ -62,7 +61,6 @@ function M.config()
       mappings = {
         i = {
           ['<C-u>'] = false,
-          ['<M-g>'] = false,
           ['<C-f>'] = require('telescope.actions').preview_scrolling_down,
           ['<C-d>'] = require('telescope.actions').preview_scrolling_up,
           ['<M-f>'] = { '<S-Right>', type = 'command' },

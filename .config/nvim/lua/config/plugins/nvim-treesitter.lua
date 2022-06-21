@@ -5,6 +5,14 @@ local M = {}
 function M.setup() end
 
 function M.config()
+  local key = require('crows').key
+  if packer_plugins['treesitter-unit'] then
+    key.map('Select treesitter unit', 'x', 'iu', ':lua require("treesitter-unit").select()<CR>')
+    key.map('Select treesitter unit', 'x', 'au', ':lua require("treesitter-unit").select(true)<CR>')
+    key.map('Select treesitter unit', 'o', 'iu', ':<C-u>lua require("treesitter-unit").select()<CR>')
+    key.map('Select treesitter unit', 'o', 'au', ':<C-u>lua require("treesitter-unit").select(true)<CR>')
+  end
+
   require('nvim-treesitter.configs').setup {
     ensure_installed = 'all',
     ignore_install = { 'php', 'phpdoc' },

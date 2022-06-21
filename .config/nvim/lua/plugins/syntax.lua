@@ -27,56 +27,48 @@ syntax.use {
 -- treesitter
 syntax.use {
   'nvim-treesitter/nvim-treesitter',
+  event = { 'BufRead', 'BufNewFile' },
   run = ':TSUpdate',
-  requires = {
-    {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      after = 'nvim-treesitter',
-    },
-    'JoosepAlviste/nvim-ts-context-commentstring',
-    {
-      'David-Kunz/treesitter-unit',
-      config = function()
-        require('crows').key.map('Select treesitter unit', 'x', 'iu', ':lua require("treesitter-unit").select()<CR>')
-        require('crows').key.map(
-          'Select treesitter unit',
-          'x',
-          'au',
-          ':lua require("treesitter-unit").select(true)<CR>'
-        )
-        require('crows').key.map(
-          'Select treesitter unit',
-          'o',
-          'iu',
-          ':<C-u>lua require("treesitter-unit").select()<CR>'
-        )
-        require('crows').key.map(
-          'Select treesitter unit',
-          'o',
-          'au',
-          ':<C-u>lua require("treesitter-unit").select(true)<CR>'
-        )
-      end,
-    },
-    {
-      'windwp/nvim-ts-autotag',
-      after = 'nvim-treesitter',
-      ft = { 'html', 'javascriptreact', 'typescriptreact', 'vue', 'markdown' },
-    },
-    {
-      'RRethy/nvim-treesitter-endwise',
-      ft = { 'lua', 'ruby', 'sh', 'vim' },
-    },
-    {
-      'nvim-treesitter/playground',
-      after = 'nvim-treesitter',
-      cmd = 'TSPlaygroundToggle',
-    },
-  },
   config = true,
 }
 
-syntax.use 'nvim-treesitter/nvim-treesitter-context'
+syntax.use {
+  'nvim-treesitter/nvim-treesitter-textobjects',
+  after = 'nvim-treesitter',
+}
+
+syntax.use {
+  'JoosepAlviste/nvim-ts-context-commentstring',
+  after = 'nvim-treesitter',
+}
+
+syntax.use {
+  'David-Kunz/treesitter-unit',
+  after = 'nvim-treesitter',
+}
+
+syntax.use {
+  'windwp/nvim-ts-autotag',
+  wants = 'nvim-treesitter',
+  ft = { 'html', 'javascriptreact', 'typescriptreact', 'vue', 'markdown' },
+}
+
+syntax.use {
+  'RRethy/nvim-treesitter-endwise',
+  wants = 'nvim-treesitter',
+  ft = { 'lua', 'ruby', 'sh', 'vim' },
+}
+
+syntax.use {
+  'nvim-treesitter/playground',
+  wants = 'nvim-treesitter',
+  cmd = 'TSPlaygroundToggle',
+}
+
+syntax.use {
+  'nvim-treesitter/nvim-treesitter-context',
+  after = 'nvim-treesitter',
+}
 
 syntax.use 'MTDL9/vim-log-highlighting'
 
