@@ -16,7 +16,7 @@ function M.config()
     },
   }
   require('crows').key.maps {
-    ['<leader>x'] = {
+    ['<localleader>x'] = {
       name = 'lsp trouble',
       x = { '<cmd>TroubleToggle<cr>', 'Toggle Trouble' },
       w = { '<cmd>Trouble workspace_diagnostics<cr>', 'Workspace diagnostics' },
