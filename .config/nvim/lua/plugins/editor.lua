@@ -29,7 +29,10 @@ editor.pre = function()
 end
 
 -- arpeggio
-editor.use 'kana/vim-arpeggio'
+editor.use {
+  'kana/vim-arpeggio',
+  config = true,
+}
 
 -- sleuth
 editor.use 'tpope/vim-sleuth'
@@ -38,9 +41,9 @@ editor.use 'tpope/vim-sleuth'
 editor.use {
   'kana/vim-textobj-user',
   'kana/vim-textobj-entire',
-  'glts/vim-textobj-comment',
+  { 'glts/vim-textobj-comment', config = true },
   'wellle/targets.vim',
-  'chaoren/vim-wordmotion',
+  { 'chaoren/vim-wordmotion', config = true },
 }
 
 -- surround
@@ -50,18 +53,23 @@ editor.use {
 }
 
 -- unimpaired
-editor.use 'tpope/vim-unimpaired'
+editor.use {
+  'tpope/vim-unimpaired',
+  config = true,
+}
 
 -- splitjoin
-editor.use 'AndrewRadev/splitjoin.vim'
+editor.use {
+  'AndrewRadev/splitjoin.vim',
+  config = true,
+}
 
 editor.use {
   'osyo-manga/vim-jplus',
   disable = true,
   config = function()
-    local map = vim.keymap.set
-    map({ 'n', 'v' }, 'J', '<plug>(jplus)')
-    map({ 'n', 'v' }, '<leader>J', '<plug>(jplus-getchar)')
+    vim.keymap.set({ 'n', 'v' }, 'J', '<plug>(jplus)')
+    vim.keymap.set({ 'n', 'v' }, '<leader>J', '<plug>(jplus-getchar)')
   end,
 }
 
@@ -80,24 +88,16 @@ editor.use 'numToStr/Comment.nvim'
 -- niceblock
 editor.use {
   'kana/vim-niceblock',
-  config = function()
-    require('crows').key.maps({
-      I = { '<Plug>(niceblock-I)', 'Prepend visual selection' },
-      A = { '<Plug>(niceblock-A)', 'Append visual selection' },
-    }, { mode = 'x' })
-  end,
+  config = true,
 }
 
 -- close buffer with save prompt
-editor.use { 'mhinz/vim-sayonara', cmd = 'Sayonara' }
+editor.use { 'mhinz/vim-sayonara', cmd = 'Sayonara', setup = true }
 
 -- speedy jk
 editor.use {
   'rhysd/accelerated-jk',
-  config = function()
-    vim.keymap.set('n', 'j', '<Plug>(accelerated_jk_gj)', { silent = true })
-    vim.keymap.set('n', 'k', '<Plug>(accelerated_jk_gk)', { silent = true })
-  end,
+  config = true,
 }
 
 -- lightspeed
@@ -109,17 +109,7 @@ editor.use {
 editor.use 'romainl/vim-cool'
 
 -- indent hint
-editor.use {
-  'lukas-reineke/indent-blankline.nvim',
-  config = function()
-    require('indent_blankline').setup {
-      buftype_exclude = { 'help', 'nofile', 'nowrite', 'quickfix', 'terminal', 'prompt' },
-      show_current_context = true,
-      show_current_context_start = true,
-      use_treesitter = true,
-    }
-  end,
-}
+editor.use { 'lukas-reineke/indent-blankline.nvim', config = true }
 
 -- unix commands
 editor.use 'tpope/vim-eunuch'
@@ -128,22 +118,13 @@ editor.use 'tpope/vim-eunuch'
 editor.use 'tpope/vim-scriptease'
 editor.use { 'tweekmonster/helpful.vim', cmd = 'HelpfulVersion' }
 editor.use 'folke/lua-dev.nvim'
+editor.use 'bfredl/nvim-luadev'
 
 editor.use {
   'vimwiki/vimwiki',
   keys = '<Plug>Vimwiki',
   cmd = 'VimwikiIndex',
-  setup = function()
-    vim.keymap.set('n', '<leader>ww', '<plug>VimwikiIndex')
-    vim.g.vimwiki_list = {
-      {
-        path = '~/vimwiki/',
-        syntax = 'markdown',
-        ext = '.md',
-      },
-    }
-    vim.cmd [[autocmd MyAutoCmd FileType vimwiki setlocal nolist concealcursor=]]
-  end,
+  setup = true,
 }
 
 editor.use {

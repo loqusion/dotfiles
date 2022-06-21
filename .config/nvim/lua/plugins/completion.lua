@@ -3,31 +3,7 @@ local completion = require('crows.utils').new_feat()
 completion.use {
   'gelguy/wilder.nvim',
   disable = true,
-  config = function()
-    local wilder = require 'wilder'
-    wilder.setup {
-      modes = { ':', '/', '?' },
-    }
-    wilder.set_option('pipeline', {
-      wilder.branch(
-        wilder.cmdline_pipeline {
-          language = 'python',
-          fuzzy = 1,
-        },
-        wilder.python_search_pipeline {
-          pattern = wilder.python_fuzzy_pattern(),
-          sorter = wilder.python_difflib_sorter(),
-          engine = 're',
-        }
-      ),
-    })
-    wilder.set_option(
-      'renderer',
-      wilder.popupmenu_renderer {
-        highlighter = wilder.basic_highlighter(),
-      }
-    )
-  end,
+  config = true,
 }
 
 completion.use {
@@ -56,161 +32,31 @@ completion.use {
           'zbirenbaum/copilot.lua',
           disable = true,
           event = 'VimEnter',
-          config = function()
-            vim.defer_fn(function()
-              require('copilot').setup()
-            end, 100)
-          end,
+          config = true,
         },
       },
       after = { 'copilot.lua', 'nvim-cmp' },
     },
   },
   event = { 'InsertEnter *', 'CmdlineEnter', 'CmdwinEnter', 'CursorHold' },
-  config = function()
-    local cmp = require 'cmp'
-    local luasnip = require 'luasnip'
-    local lspkind = require 'lspkind'
-    local function tab(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end
-
-    local function stab(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end
-
-    cmp.setup {
-      completion = {
-        completeopt = 'menuone,noselect',
-        -- completeopt = 'menu,menuone,noinsert',
-      },
-      sorting = {
-        comparators = {
-          cmp.config.compare.offset,
-          cmp.config.compare.exact,
-          cmp.config.compare.score,
-          require('cmp-under-comparator').under,
-          cmp.config.compare.kind,
-          cmp.config.compare.sort_text,
-          cmp.config.compare.length,
-          cmp.config.compare.order,
-        },
-      },
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
-      formatting = {
-        format = lspkind.cmp_format {
-          mode = 'symbol',
-          maxwidth = 50,
-        },
-      },
-      mapping = cmp.mapping.preset.insert {
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete {},
-        ['<C-e>'] = cmp.mapping {
-          i = cmp.mapping.abort(),
-          c = cmp.mapping.close(),
-        },
-        ['<C-y>'] = cmp.mapping {
-          c = cmp.mapping.confirm { select = true },
-        },
-        ['<CR>'] = cmp.mapping {
-          i = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-          },
-          c = function(fallback)
-            fallback()
-          end,
-        },
-        ['<Tab>'] = cmp.mapping(tab, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(stab, { 'i', 's' }),
-      },
-      sources = cmp.config.sources({
-        { name = 'npm', keyword_length = 4 },
-        --{ name = 'nvim_lsp_signature_help' },
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'nvim_lua' },
-      }, {
-        { name = 'path' },
-        { name = 'buffer' },
-      }),
-    }
-
-    cmp.setup.filetype('gitcommit', {
-      sources = cmp.config.sources({
-        { name = 'cmp_git' },
-      }, {
-        { name = 'buffer' },
-      }),
-    })
-
-    cmp.setup.cmdline('/', {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-        { name = 'nvim_lsp_document_symbol' },
-      }, {
-        { name = 'buffer' },
-      }),
-    })
-
-    cmp.setup.cmdline(':', {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-        { name = 'path' },
-      }, {
-        { name = 'cmdline' },
-      }),
-    })
-  end,
+  config = true,
 }
 
 completion.use {
   'hrsh7th/cmp-nvim-lsp',
-  config = function()
-    require('crows.lsp').add_caps_setter(require('cmp_nvim_lsp').update_capabilities)
-  end,
+  config = true,
 }
 
 completion.use {
   'David-Kunz/cmp-npm',
-  config = function()
-    require('cmp-npm').setup()
-  end,
+  config = true,
 }
 
 -- autopairs
 completion.use {
   'windwp/nvim-autopairs',
   requires = { 'hrsh7th/nvim-cmp' },
-  config = function()
-    require('nvim-autopairs').setup {
-      fast_wrap = {},
-      enable_check_bracket_line = true,
-      check_ts = true,
-    }
-    -- If you want insert `(` after select function or method item
-    local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-    local cmp = require 'cmp'
-    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done { map_char = { tex = '' } })
-  end,
+  config = true,
 }
 
 return completion

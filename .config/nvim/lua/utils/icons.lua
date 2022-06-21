@@ -5,10 +5,10 @@ icons.lsp_hover = {
 }
 
 icons.diagnostics = {
-  Error = ' ',
-  Warn = ' ',
-  Info = 'ﬤ ',
-  Hint = ' ',
+  Error = '',
+  Warn = '',
+  Info = '',
+  Hint = '',
 }
 
 icons.kind = {

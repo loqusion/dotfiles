@@ -152,9 +152,7 @@ function! vimrc#trim_final_newlines()
 endfunction
 
 function! vimrc#get_github_owner_repo(mode)
-  " TODO: vimrc#get_last_selected doesn't return the right text
-  " vimrc#get_in_quotes works just fine though, so this is low priority
-  let selected = a:mode ==# 'n' ? vimrc#get_in_quotes() : vimrc#get_last_selected()
+  let selected = expand('<cfile>')
   let col = getcurpos()[2]
   if match(selected, '\c^[a-z0-9_.-]\+/[a-z0-9_.-]\+$') != -1 &&
         \ (a:mode ==# 'v' || (

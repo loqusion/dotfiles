@@ -1,7 +1,7 @@
 local lsp = require('crows.utils').new_feat()
 
 lsp.pre = function()
-  local signs = { Error = '', Warn = '', Info = '', Hint = '' }
+  local signs = require('utils.icons').diagnostics
   for sign, text in pairs(signs) do
     local hl = 'DiagnosticSign' .. sign
     vim.fn.sign_define(hl, { text = text, texthl = hl, linehl = '', numhl = '' })
@@ -40,8 +40,15 @@ lsp.use {
   'folke/trouble.nvim',
   requires = 'kyazdani42/nvim-web-devicons',
   config = function()
+    local signs = require('utils.icons').diagnostics
     require('trouble').setup {
-      signs = { error = '', warning = '', hint = '', information = '', other = '﫠' },
+      signs = {
+        error = signs.Error,
+        warning = signs.Warn,
+        hint = signs.Hint,
+        information = signs.Info,
+        other = '﫠',
+      },
     }
     require('crows').key.maps {
       ['<leader>x'] = {
@@ -116,10 +123,11 @@ lsp.use {
         group = group,
         buffer = bufnr,
         callback = function()
+          local action_icon = require('utils.icons').lsp_hover.Action
           require('nvim-lightbulb').update_lightbulb {
             sign = { enabled = false },
-            virtual_text = { enabled = true, text = '' },
-            float = { enabled = false, text = '', win_opts = { winblend = 100, anchor = 'NE' } },
+            virtual_text = { enabled = true, text = action_icon },
+            float = { enabled = false, text = action_icon, win_opts = { winblend = 100, anchor = 'NE' } },
           }
         end,
         desc = 'Show lightbulb',
