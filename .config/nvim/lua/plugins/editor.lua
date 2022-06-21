@@ -83,7 +83,10 @@ editor.use {
 }
 
 -- comment
-editor.use 'numToStr/Comment.nvim'
+editor.use {
+  'numToStr/Comment.nvim',
+  config = true,
+}
 
 -- niceblock
 editor.use {

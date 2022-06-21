@@ -25,8 +25,7 @@ format.formatters = {
 }
 
 format.use {
-  -- 'mhartington/formatter.nvim',
-  '~/repos/formatter.nvim',
+  'mhartington/formatter.nvim',
   config = function()
     local fmt = require 'plugins.format'
     require('formatter').setup {
