@@ -7,7 +7,7 @@ function M.setup() end
 function M.config()
   require('auto-session').setup {
     -- pre_save_cmds = { 'NvimTreeClose' },
-    auto_session_suppress_dirs = { '~', '~/Projects', '~/vimwiki' },
+    auto_session_suppress_dirs = { '~', '~/repos', '~/vimwiki' },
   }
   require('crows').key.maps {
     ['<Leader>l'] = {

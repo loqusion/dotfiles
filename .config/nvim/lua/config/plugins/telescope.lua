@@ -25,7 +25,7 @@ function M.setup()
         r = { lazy.fn(tb, 'lsp_references'), 'Search LSP references in workspace' },
         o = { lazy.fn(tb, 'lsp_document_symbols'), 'Search current document symbols' },
         g = {
-          lazy.fn('telescope', 'extensions.repo.cached_list', { search_dirs = { '~/Projects' } }),
+          lazy.fn('telescope', 'extensions.repo.cached_list', { search_dirs = { '~/repos' } }),
           'Search git repos',
         },
         s = {
@@ -62,6 +62,7 @@ function M.config()
       mappings = {
         i = {
           ['<C-u>'] = false,
+          ['<M-g>'] = false,
           ['<C-f>'] = require('telescope.actions').preview_scrolling_down,
           ['<C-d>'] = require('telescope.actions').preview_scrolling_up,
           ['<M-f>'] = { '<S-Right>', type = 'command' },
@@ -79,7 +80,7 @@ function M.config()
     extensions = {
       frecency = {
         workspaces = {
-          clientele = '/Users/rasnauf/Projects/clientele',
+          clientele = '/Users/rasnauf/repos/clientele',
         },
       },
       fzf = {
