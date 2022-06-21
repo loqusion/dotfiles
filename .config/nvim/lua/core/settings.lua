@@ -163,6 +163,8 @@ vim.opt.wildignore:append {
   '.DS_Store',
 }
 
+vim.opt.backupdir:remove { '.' }
+
 vim.opt.shortmess:append {
   a = true,
   c = true,
