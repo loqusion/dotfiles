@@ -70,7 +70,7 @@ map('n', '<Space>q', vim.diagnostic.setloclist)
 -- Useful save/quit mappings.
 map('n', '<leader><leader>', '<cmd>silent update<cr>', { silent = true })
 map('n', '<leader>q', '<cmd>qa<cr>', { silent = true })
-map('n', '<leader>X', '<cmd>x!<cr>', { silent = true })
+map('n', '<leader>x', '<cmd>x!<cr>', { silent = true })
 map('n', '<leader>D', '<cmd>Sayonara<cr>', { silent = true })
 
 -- Window movement
