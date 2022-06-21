@@ -76,10 +76,8 @@ editor.use {
 -- switch
 editor.use {
   'AndrewRadev/switch.vim',
-  keys = '_',
-  setup = function()
-    vim.g.switch_mapping = '_'
-  end,
+  keys = '<Plug>(Switch)',
+  setup = true,
 }
 
 -- comment
