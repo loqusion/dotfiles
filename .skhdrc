@@ -2,13 +2,13 @@
 alt - return : "${HOME}/.config/yabai/scripts/open_iterm2.sh"
 
 # focus window
-alt - x : yabai -m window --focus recent
 alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
-alt - z : yabai -m window --focus stack.prev
-alt - c : yabai -m window --focus stack.next
+# alt - x : yabai -m window --focus recent
+# alt - z : yabai -m window --focus stack.prev
+# alt - c : yabai -m window --focus stack.next
 
 # swap window
 # shift + alt - h : yabai -m window --swap west
@@ -96,15 +96,11 @@ shift + lctrl + alt - r : \
     launchctl kickstart -k "gui/${UID}/homebrew.mxcl.skhd"
 
 # Make window native fullscreen
-alt - f         : yabai -m window --toggle zoom-fullscreen
-
-# Float / Unfloat window
-shift + alt - space : \
-    yabai -m window --toggle float
+shift + alt - f         : yabai -m window --toggle zoom-fullscreen
 
 # float / unfloat window and center on screen
-alt - space : yabai -m window --toggle float;\
-              yabai -m window --grid 4:5:1:0:3:4
+shift + alt - space : yabai -m window --toggle float;\
+                      yabai -m window --grid 4:5:1:0:3:4
 
 # move floating window
 # alt + cmd - h : yabai -m window --move rel:-20:0
