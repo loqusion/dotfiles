@@ -42,7 +42,7 @@ function M.setup()
       ['?'] = { lazy.fn(tb, 'oldfiles'), 'Find oldfiles' },
     },
     ['<localleader>'] = {
-      fb = { ':Telescope file_browser<CR>', 'File browser' },
+      f = { ':Telescope file_browser<CR>', 'File browser' },
     },
   }
 end
