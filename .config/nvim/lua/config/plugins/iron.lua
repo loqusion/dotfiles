@@ -3,6 +3,28 @@
 local M = {}
 
 function M.setup()
+  M.register_global_keys()
+end
+
+function M.config()
+  require('iron.core').setup {
+    config = {
+      should_map_plug = false,
+      scratch_repl = true,
+      buflisted = false,
+      repl_definition = {
+        lua = {
+          command = { 'croissant' },
+        },
+        python = {
+          command = { 'ptipython' },
+        },
+      },
+    },
+  }
+end
+
+function M.register_global_keys()
   local lazy = require 'crows.lazy'
   local key = require('crows').key
   local send_motion = lazy.fn('iron.core', 'run_motion', 'send_motion')
@@ -23,24 +45,6 @@ function M.setup()
   for _, mode in ipairs { 'n', 'x' } do
     key.map('Send motion', mode, '<Space>sc', send_motion, { silent = true })
   end
-end
-
-function M.config()
-  require('iron.core').setup {
-    config = {
-      should_map_plug = false,
-      scratch_repl = true,
-      buflisted = false,
-      repl_definition = {
-        lua = {
-          command = { 'croissant' },
-        },
-        python = {
-          command = { 'ptipython' },
-        },
-      },
-    },
-  }
 end
 
 return M

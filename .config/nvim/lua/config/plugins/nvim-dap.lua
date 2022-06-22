@@ -3,15 +3,10 @@
 local M = {}
 
 function M.setup()
+  M.register_global_keys()
   vim.api.nvim_create_user_command('BreakpointToggle', 'lua require("dap").toggle_breakpoint()', {})
   vim.api.nvim_create_user_command('Debug', 'lua require("dap").continue()', {})
   vim.api.nvim_create_user_command('DapREPL', 'lua require("dap").repl.open()', {})
-  require('crows').key.maps {
-    ['<F5>'] = { '<cmd>lua require("dap").continue()', 'Debug: Continue' },
-    ['<F10>'] = { '<cmd>lua require("dap").step_over()', 'Debug: Step over' },
-    ['<F11>'] = { '<cmd>lua require("dap").step_into()', 'Debug: Step into' },
-    ['<F12>'] = { '<cmd>lua require("dap").step_out()', 'Debug: Step out' },
-  }
 end
 
 function M.config()
@@ -65,6 +60,15 @@ function M.config()
 
   dap.configurations.c = dap.configurations.cpp
   dap.configurations.rust = dap.configurations.cpp
+end
+
+function M.register_global_keys()
+  require('crows').key.maps {
+    ['<F5>'] = { '<cmd>lua require("dap").continue()', 'Debug: Continue' },
+    ['<F10>'] = { '<cmd>lua require("dap").step_over()', 'Debug: Step over' },
+    ['<F11>'] = { '<cmd>lua require("dap").step_into()', 'Debug: Step into' },
+    ['<F12>'] = { '<cmd>lua require("dap").step_out()', 'Debug: Step out' },
+  }
 end
 
 return M

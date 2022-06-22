@@ -2,9 +2,14 @@
 
 local M = {}
 
-function M.config()
-  vim.fn['arpeggio#map']('i', '', 0, 'jk', '<Esc>')
+function M.entrance()
+  vim.cmd 'packadd vim-arpeggio'
   vim.g.arpeggio_timeoutlen = 60
+  M.register_global_keys()
+end
+
+function M.register_global_keys()
+  vim.fn['arpeggio#map']('i', '', 0, 'jk', '<Esc>')
 end
 
 return M

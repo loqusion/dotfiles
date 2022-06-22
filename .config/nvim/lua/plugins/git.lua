@@ -8,6 +8,7 @@ git.use { 'akinsho/git-conflict.nvim', config = true }
 git.use {
   'lewis6991/gitsigns.nvim',
   requires = { 'nvim-lua/plenary.nvim' },
+  event = { 'BufRead', 'BufNewFile' },
   config = true,
 }
 

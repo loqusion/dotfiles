@@ -31,7 +31,8 @@ end
 -- arpeggio
 editor.use {
   'kana/vim-arpeggio',
-  config = true,
+  event = 'InsertEnter',
+  ptp = 'viml',
 }
 
 -- sleuth
@@ -41,9 +42,17 @@ editor.use 'tpope/vim-sleuth'
 editor.use {
   'kana/vim-textobj-user',
   'kana/vim-textobj-entire',
-  { 'glts/vim-textobj-comment', config = true },
+  {
+    'glts/vim-textobj-comment',
+    keys = '<Plug>(textobj-comment',
+    ptp = 'viml',
+  },
   'wellle/targets.vim',
-  { 'chaoren/vim-wordmotion', config = true },
+  {
+    'chaoren/vim-wordmotion',
+    event = 'VimEnter',
+    ptp = 'viml',
+  },
 }
 
 -- surround
@@ -61,7 +70,7 @@ editor.use {
 -- splitjoin
 editor.use {
   'AndrewRadev/splitjoin.vim',
-  config = true,
+  ptp = 'viml',
 }
 
 editor.use {
@@ -89,11 +98,16 @@ editor.use {
 -- niceblock
 editor.use {
   'kana/vim-niceblock',
-  config = true,
+  event = 'VimEnter',
+  ptp = 'viml',
 }
 
 -- close buffer with save prompt
-editor.use { 'mhinz/vim-sayonara', cmd = 'Sayonara', setup = true }
+editor.use {
+  'mhinz/vim-sayonara',
+  cmd = 'Sayonara',
+  ptp = 'viml',
+}
 
 -- speedy jk
 editor.use {
@@ -125,7 +139,7 @@ editor.use {
   'vimwiki/vimwiki',
   keys = '<Plug>Vimwiki',
   cmd = 'VimwikiIndex',
-  setup = true,
+  ptp = 'viml',
 }
 
 editor.use {

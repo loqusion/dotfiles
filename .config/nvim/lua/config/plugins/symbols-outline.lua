@@ -3,9 +3,13 @@
 local M = {}
 
 function M.setup()
-  require('crows').key.map('Toggle symbols outline', 'n', '<localleader>o', '<cmd>SymbolsOutline<cr>')
+  M.register_global_keys()
 end
 
 function M.config() end
+
+function M.register_global_keys()
+  require('crows').key.map('Toggle symbols outline', 'n', '<localleader>o', '<cmd>SymbolsOutline<cr>')
+end
 
 return M

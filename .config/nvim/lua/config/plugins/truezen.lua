@@ -5,7 +5,6 @@ local M = {}
 function M.setup() end
 
 function M.config()
-  local key = require('crows').key
   local true_zen = require 'true-zen'
 
   true_zen.setup {
@@ -20,6 +19,11 @@ function M.config()
     vim.wo.list = false
   end
 
+  M.register_global_keys()
+end
+
+function M.register_global_keys()
+  local key = require('crows').key
   for _, mode in ipairs { 'n', 'x' } do
     key.map('True Zen: Ataraxis', mode, '<localleader>z', '<cmd>TZAtaraxis<cr>')
   end

@@ -5,8 +5,6 @@ local M = {}
 function M.setup() end
 
 function M.config()
-  local key = require('crows').key
-
   require('toggleterm').setup {
     direction = 'float',
     border = 'shadow',
@@ -25,10 +23,7 @@ function M.config()
     },
     on_open = function(term)
       vim.cmd [[startinsert!]]
-      key.map('Close terminal', 'n', 'q', '<cmd>close<cr>', {
-        bufnr = term.bufnr,
-        silent = true,
-      })
+      M.register_buffer_keys(term.bufnr)
     end,
   }
 
@@ -36,14 +31,23 @@ function M.config()
     lazygit:toggle()
   end
 
-  function _G.set_terminal_keymaps() end
+  vim.cmd [[autocmd! TermOpen term://* set nolist]]
+  M.register_global_keys()
+end
 
+function M.register_global_keys()
+  local key = require('crows').key
   key.map('Open lazygit', 'n', '<localleader>g', '<cmd> lua _lazygit_toggle()<cr>', {
     silent = true,
   })
   vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
-  vim.cmd [[autocmd! TermOpen term://* lua set_terminal_keymaps()]]
-  vim.cmd [[autocmd! TermOpen term://* set nolist]]
+end
+
+function M.register_buffer_keys(bufnr)
+  require('crows').key.map('Close terminal', 'n', 'q', '<cmd>close<cr>', {
+    bufnr = bufnr,
+    silent = true,
+  })
 end
 
 return M

@@ -3,6 +3,12 @@
 local M = {}
 
 function M.setup()
+  M.register_global_keys()
+end
+
+function M.config() end
+
+function M.register_global_keys()
   require('crows').key.maps {
     ['<localleader>d'] = {
       name = 'Neogen annotations',
@@ -17,7 +23,5 @@ function M.setup()
     },
   }
 end
-
-function M.config() end
 
 return M

@@ -3,7 +3,8 @@ local syntax = require('crows.utils').new_feat()
 -- better matching
 syntax.use {
   'andymass/vim-matchup',
-  config = true,
+  event = { 'BufRead', 'BufNewFile' },
+  ptp = 'viml',
 }
 
 -- color highlighter
@@ -27,8 +28,10 @@ syntax.use {
 -- treesitter
 syntax.use {
   'nvim-treesitter/nvim-treesitter',
-  event = { 'BufRead', 'BufNewFile' },
   run = ':TSUpdate',
+  event = { 'BufRead', 'BufNewFile' },
+  module = 'nvim-treesitter',
+  setup = true,
   config = true,
 }
 

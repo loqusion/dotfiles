@@ -14,8 +14,8 @@ ui.use {
 -- undotree
 ui.use {
   'mbbill/undotree',
-  cmd = 'UndotreeToggle',
-  setup = true,
+  event = 'VimEnter',
+  ptp = 'viml',
 }
 
 -- symbols outline

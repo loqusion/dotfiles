@@ -2,9 +2,7 @@
 
 local M = {}
 
-function M.setup() end
-
-function M.config()
+function M.entrance()
   vim.g.matchup_matchparen_deferred = 1
   vim.g.matchup_matchparen_deferred_show_delay = 100
   vim.g.matchup_matchparen_hi_surround_always = 1

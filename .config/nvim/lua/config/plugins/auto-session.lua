@@ -9,6 +9,10 @@ function M.config()
     -- pre_save_cmds = { 'NvimTreeClose' },
     auto_session_suppress_dirs = { '~', '~/repos', '~/vimwiki' },
   }
+  M.register_global_keys()
+end
+
+function M.register_global_keys()
   require('crows').key.maps {
     ['<Leader>l'] = {
       r = { '<cmd>RestoreSession<cr>', 'Restore session' },

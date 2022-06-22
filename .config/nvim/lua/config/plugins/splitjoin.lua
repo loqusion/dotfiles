@@ -2,9 +2,13 @@
 
 local M = {}
 
-function M.config()
+function M.entrance()
   vim.g.splitjoin_split_mapping = ''
   vim.g.splitjoin_join_mapping = ''
+  M.register_global_keys()
+end
+
+function M.register_global_keys()
   require('crows').key.maps({
     ['<Leader>'] = {
       j = { '<cmd>SplitjoinSplit<cr>', 'Split line' },

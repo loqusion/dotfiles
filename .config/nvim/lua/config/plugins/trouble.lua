@@ -15,6 +15,10 @@ function M.config()
       other = '﫠',
     },
   }
+  M.register_global_keys()
+end
+
+function M.register_global_keys()
   require('crows').key.maps {
     ['<localleader>x'] = {
       name = 'lsp trouble',

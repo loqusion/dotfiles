@@ -2,6 +2,8 @@
 
 local M = {}
 
+function M.setup() end
+
 function M.config()
   require('indent_blankline').setup {
     buftype_exclude = { 'help', 'nofile', 'nowrite', 'quickfix', 'terminal', 'prompt' },

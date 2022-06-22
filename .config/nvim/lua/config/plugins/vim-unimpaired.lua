@@ -2,27 +2,23 @@
 
 local M = {}
 
-function _G._unmap_unimpaired()
-  if vim.fn.maparg('<s', 'n', false, false) ~= '' then
-    local unmap = vim.keymap.del
-    unmap('n', '<s')
-    unmap('n', '<s<Esc>')
-    unmap('n', '<p')
-    unmap('n', '<P')
-    unmap('n', '>s')
-    unmap('n', '>s<Esc>')
-    unmap('n', '>p')
-    unmap('n', '>P')
-  end
-end
-
 function M.config()
   if vim.v.vim_did_enter == 1 then
-    _unmap_unimpaired()
+    M.unmap()
   else
-    vim.cmd [[autocmd VimEnter * ++once lua _unmap_unimpaired()]]
+    vim.api.nvim_create_autocmd('VimEnter', {
+      pattern = '*',
+      once = true,
+      callback = function()
+        M.unmap()
+      end,
+    })
   end
 
+  M.register_global_keys()
+end
+
+function M.register_global_keys()
   local defaults = {
     conceallevel = vim.go.conceallevel ~= 0 and vim.go.conceallevel or 2,
     laststatus = vim.go.laststatus ~= 0 and vim.go.laststatus or 3,
@@ -47,6 +43,16 @@ function M.config()
       },
     },
   }, { silent = false })
+end
+
+function M.unmap()
+  if vim.fn.maparg('<s', 'n', false, false) ~= '' then
+    local unmap = vim.keymap.del
+    local keys = { '<s', '<s<Esc>', '<p', '<P', '>s', '>s<Esc>', '>p', '>P' }
+    for _, key in ipairs(keys) do
+      unmap('n', key)
+    end
+  end
 end
 
 return M

@@ -2,7 +2,7 @@
 
 local M = {}
 
-function M.config()
+function M.entrance()
   vim.g.wordmotion_mappings = {
     aw = 'av',
     iw = 'iv',

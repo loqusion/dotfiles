@@ -2,10 +2,8 @@
 
 local M = {}
 
-function M.setup()
+function M.entrance()
   vim.g.undotree_SetFocusWhenToggle = 1
 end
-
-function M.config() end
 
 return M

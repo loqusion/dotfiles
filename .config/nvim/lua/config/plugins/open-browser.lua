@@ -2,9 +2,11 @@
 
 local M = {}
 
-function M.setup() end
+function M.entrance()
+  M.register_global_keys()
+end
 
-function M.config()
+function M.register_global_keys()
   local key = require('crows').key
   for _, mode in ipairs { 'n', 'x' } do
     key.map(

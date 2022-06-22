@@ -2,8 +2,7 @@
 
 local M = {}
 
-function M.setup()
-  vim.keymap.set('n', '<leader>ww', '<plug>VimwikiIndex')
+function M.entrance()
   vim.g.vimwiki_list = {
     {
       path = '~/vimwiki/',
@@ -11,7 +10,11 @@ function M.setup()
       ext = '.md',
     },
   }
-  vim.cmd [[autocmd MyAutoCmd FileType vimwiki setlocal nolist concealcursor=]]
+  M.register_global_keys()
+end
+
+function M.register_global_keys()
+  vim.keymap.set('n', '<leader>ww', '<plug>VimwikiIndex')
 end
 
 return M
