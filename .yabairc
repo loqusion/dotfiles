@@ -73,6 +73,7 @@ yabai -m rule --add app="^Spotify$" space=media
 yabai -m rule --add app="^Discord$" space=social grid=1:1:0:0:1:1 manage=off
 yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Contacts$" manage=off
+yabai -m rule --add app="^Photo Booth$" manage=off
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^App Store$" manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
