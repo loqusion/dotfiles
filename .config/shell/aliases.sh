@@ -8,6 +8,7 @@ alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
 alias viman='nvim ++Man\!'
 alias neovide='NEOVIDE_MULTIGRID=1 neovide'
 alias nvide='neovide'
+alias vw='nvim ++VimwikiIndex'
 
 alias lg='lazygit'
 
