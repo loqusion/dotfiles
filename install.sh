@@ -2,11 +2,13 @@
 
 set -u
 
-alias config='/usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME'
-git clone --bare git@github.com:loqusion/dotfiles.git "$HOME/.local/share/dotfiles"
+DEST=${DOT_DEST:-"$HOME/.local/share/dotfiles/"}
+
+alias config='/usr/bin/git --git-dir="$DEST" --work-tree=$HOME'
+git clone --bare git@github.com:loqusion/dotfiles.git "$DEST"
 
 config config --local core.sparseCheckout true
-echo -e '/*\n!README.md\n!installer.sh' > $HOME/.local/share/dotfiles/info/sparse-checkout
+echo -e '/*\n!README.md\n!installer.sh' > "$DEST/info/sparse-checkout"
 config checkout
 config config --local status.showUntrackedFiles no
 
