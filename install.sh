@@ -5,7 +5,7 @@ set -u
 DEST=${DOT_DEST:-"$HOME/.local/share/dotfiles/"}
 
 if [ -e "${DEST}" ]; then
-  printf "$DEST already exists" >&2
+  printf "$DEST already exists\n" >&2
   exit 1
 fi
 
