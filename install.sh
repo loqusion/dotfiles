@@ -8,7 +8,7 @@ alias config='/usr/bin/git --git-dir="$DEST" --work-tree=$HOME'
 git clone --bare git@github.com:loqusion/dotfiles.git "$DEST"
 
 config config --local core.sparseCheckout true
-echo -e '/*\n!README.md\n!installer.sh' > "$DEST/info/sparse-checkout"
+printf '/*\n!README.md\n!install.sh\n' > "$DEST/info/sparse-checkout"
 config checkout
 config config --local status.showUntrackedFiles no
 
