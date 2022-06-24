@@ -4,6 +4,11 @@ set -u
 
 DEST=${DOT_DEST:-"$HOME/.local/share/dotfiles/"}
 
+if [ -e "${DEST}" ]; then
+  printf "$DEST already exists" >&2
+  exit 1
+fi
+
 alias config='/usr/bin/git --git-dir="$DEST" --work-tree=$HOME'
 git clone --bare git@github.com:loqusion/dotfiles.git "$DEST"
 
