@@ -40,7 +40,7 @@ search.use {
     { 'nvim-telescope/telescope-ui-select.nvim', after = 'telescope.nvim' },
     { 'nvim-telescope/telescope-file-browser.nvim', after = 'telescope.nvim' },
     { 'cljoly/telescope-repo.nvim', after = 'telescope.nvim' },
-    { 'rmagatti/session-lens', after = 'telescope.nvim' },
+    { 'rmagatti/session-lens', after = 'telescope.nvim', module = 'session-lens' },
   },
   wants = {
     'popup.nvim',

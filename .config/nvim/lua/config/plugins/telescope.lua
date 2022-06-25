@@ -16,12 +16,6 @@ end
 
 function M.config()
   local telescope = require 'telescope'
-  telescope.load_extension 'dap'
-  telescope.load_extension 'file_browser'
-  telescope.load_extension 'frecency'
-  telescope.load_extension 'fzf'
-  telescope.load_extension 'repo'
-  telescope.load_extension 'ui-select'
 
   telescope.setup {
     defaults = {
@@ -41,9 +35,13 @@ function M.config()
     pickers = {
       find_files = {
         file_ignore_patterns = { [[%.git/]], [[.*~$]] },
+        hidden = true,
       },
     },
     extensions = {
+      file_browser = {
+        sorting_strategy = 'ascending',
+      },
       frecency = {
         workspaces = {
           clientele = '/Users/rasnauf/repos/clientele',
@@ -60,6 +58,18 @@ function M.config()
       },
     },
   }
+
+  require('session-lens').setup {
+    theme_conf = { border = false },
+    previewer = true,
+  }
+
+  telescope.load_extension 'dap'
+  telescope.load_extension 'file_browser'
+  telescope.load_extension 'frecency'
+  telescope.load_extension 'fzf'
+  telescope.load_extension 'repo'
+  telescope.load_extension 'ui-select'
 end
 
 function M.register_global_keys()
@@ -70,9 +80,9 @@ function M.register_global_keys()
     ['<leader>'] = {
       s = {
         name = 'telescope search',
-        f = { lazy.fn(tb, 'find_files', { hidden = true }), 'Find files' },
+        f = { lazy.fn(tb, 'find_files'), 'Find files' },
         v = {
-          lazy.fn(tb, 'find_files', { cwd = vim.fn.stdpath 'config' }),
+          lazy.fn(tb, 'find_files', { cwd = vim.fn.stdpath 'config', hidden = false }),
           'Find in Vim config',
         },
         b = { lazy.fn(tb, 'current_buffer_fuzzy_find'), 'Find in current buffer' },
@@ -87,14 +97,7 @@ function M.register_global_keys()
           lazy.fn('telescope', 'extensions.repo.cached_list', { search_dirs = { '~/repos' } }),
           'Search git repos',
         },
-        s = {
-          lazy.fn('session-lens', 'search_session', {
-            -- path_display = { 'shorten' },
-            theme_conf = { border = false },
-            previewer = true,
-          }),
-          'Search Session',
-        },
+        s = { lazy.fn('session-lens', 'search_session'), 'Search Session' },
         ["'"] = { lazy.fn(tb, 'marks'), 'Search marks' },
       },
       ['<space>'] = { lazy.fn(tb, 'buffers'), 'Buffers' },
