@@ -20,36 +20,42 @@ local lsp = {
   keys = {
     diag_float = {
       '<localleader>e',
-      vim.diagnostic.open_float,
-      'Open diagnostic floating window',
+      {
+        vim.diagnostic.open_float,
+        'Open diagnostic floating window',
+      },
     },
-    diag_prev = { '[d', vim.diagnostic.goto_prev, 'Goto prev diagnostic' },
-    diag_next = { ']d', vim.diagnostic.goto_next, 'Goto next diagnostic' },
+    diag_prev = { '[d', { vim.diagnostic.goto_prev, 'Goto prev diagnostic' } },
+    diag_next = { ']d', { vim.diagnostic.goto_next, 'Goto next diagnostic' } },
     diag_loclist = {
       '<localleader>q',
-      vim.diagnostic.setloclist,
-      'Add buffer diagnostics to the location list.',
+      {
+        vim.diagnostic.setloclist,
+        'Add buffer diagnostics to the location list.',
+      },
     },
   },
   buffer_keys = {
-    goto_decl = { 'gD', vim.lsp.buf.declaration, 'Goto declaration' },
-    goto_def = { 'gd', vim.lsp.buf.definition, 'Goto definition' },
-    hover = { 'K', vim.lsp.buf.hover, 'Display hover information' },
-    goto_impl = { 'gi', vim.lsp.buf.implementation, 'Goto implementation' },
-    sign_help = { '<C-k>', vim.lsp.buf.signature_help, 'Display signature information' },
-    add_folder = { '<leader>wa', vim.lsp.buf.add_workspace_folder, 'Add workspace folder' },
-    del_folder = { '<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Remove workspace folder' },
+    goto_decl = { 'gD', { vim.lsp.buf.declaration, 'Goto declaration' } },
+    goto_def = { 'gd', { vim.lsp.buf.definition, 'Goto definition' } },
+    hover = { 'K', { vim.lsp.buf.hover, 'Display hover information' } },
+    goto_impl = { 'gi', { vim.lsp.buf.implementation, 'Goto implementation' } },
+    sign_help = { '<C-k>', { vim.lsp.buf.signature_help, 'Display signature information', mode = 'i' } },
+    add_folder = { '<leader>wa', { vim.lsp.buf.add_workspace_folder, 'Add workspace folder' } },
+    del_folder = { '<leader>wr', { vim.lsp.buf.remove_workspace_folder, 'Remove workspace folder' } },
     list_folders = {
       '<leader>wl',
-      function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end,
-      'List workspace folder',
+      {
+        function()
+          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end,
+        'List workspace folder',
+      },
     },
-    type_def = { '<leader>d', vim.lsp.buf.type_definition, 'Goto type definition' },
-    rename = { '<leader>rn', vim.lsp.buf.rename, 'Rename symbol' },
-    code_action = { '<leader>ca', vim.lsp.buf.code_action, 'Code action' },
-    list_ref = { 'gr', '<cmd>TroubleToggle lsp_references<cr>', 'List references' },
+    type_def = { '<leader>d', { vim.lsp.buf.type_definition, 'Goto type definition' } },
+    rename = { '<leader>rn', { vim.lsp.buf.rename, 'Rename symbol' } },
+    code_action = { '<leader>ca', { vim.lsp.buf.code_action, 'Code action' } },
+    list_ref = { 'gr', { '<cmd>TroubleToggle lsp_references<cr>', 'List references' } },
   },
   on_attaches = {},
   caps_setters = {},
@@ -87,13 +93,13 @@ local function mapping(bufnr)
   local wk = require 'which-key'
   local mappings = {}
   for _, mapper in pairs(lsp.keys) do
-    mappings[mapper[1]] = { mapper[2], mapper[3] }
+    mappings[mapper[1]] = mapper[2]
   end
   wk.register(mappings, { silent = true })
 
   local buf_mappings = {}
   for _, mapper in pairs(lsp.buffer_keys) do
-    buf_mappings[mapper[1]] = { mapper[2], mapper[3] }
+    buf_mappings[mapper[1]] = mapper[2]
   end
   wk.register(buf_mappings, { buffer = bufnr })
 end
