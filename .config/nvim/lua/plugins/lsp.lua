@@ -16,26 +16,9 @@ lsp.use {
   'jose-elias-alvarez/null-ls.nvim',
   disable = true,
   requires = 'nvim-lua/plenary.nvim',
-  config = function()
-    local null_ls = require 'null-ls'
-    local diagnostics = null_ls.builtins.diagnostics
-    local actions = null_ls.builtins.code_actions
-
-    require('crows.lsp').setup_null_ls {
-      sources = {
-        diagnostics.eslint,
-        -- diagnostics.shellcheck,
-        -- diagnostics.teal,
-        -- diagnostics.vint,
-        actions.gitsigns,
-        actions.refactoring.with { filetypes = { 'javascript', 'typescript', 'lua', 'python' } },
-        actions.eslint,
-      },
-    }
-  end,
+  config = true,
 }
 
--- lsp diagnostics
 lsp.use {
   'folke/trouble.nvim',
   requires = 'kyazdani42/nvim-web-devicons',
@@ -45,84 +28,27 @@ lsp.use {
 lsp.use {
   'nvim-lua/lsp-status.nvim',
   disable = true,
-  config = function()
-    local lsp_status = require 'lsp-status'
-    lsp_status.config {
-      indicator_errors = 'E',
-      indicator_warnings = 'W',
-      indicator_info = 'i',
-      indicator_hint = '?',
-      indicator_ok = 'Ok',
-      select_symbol = function(cursor_pos, symbol)
-        if symbol.valueRange then
-          local value_range = {
-            ['start'] = { character = 0, line = vim.fn.byte2line(symbol.valueRange[1]) },
-            ['end'] = { character = 0, line = vim.fn.byte2line(symbol.valueRange[2]) },
-          }
-
-          return require('lsp-status/util').in_range(cursor_pos, value_range)
-        end
-      end,
-      current_function = false,
-    }
-    lsp_status.register_progress()
-    require('crows.lsp').add_on_attach(function(client, _)
-      require('lsp_status').on_attach(client)
-    end)
-  end,
+  config = true,
 }
 
 lsp.use {
   'folke/lsp-colors.nvim',
-  config = function()
-    require('lsp-colors').setup {
-      Error = '#db4b4b',
-      Warning = '#e0af68',
-      Information = '#0db9d7',
-      Hint = '#10B981',
-    }
-  end,
+  config = true,
 }
 
 lsp.use {
   'ray-x/lsp_signature.nvim',
-  config = function()
-    require('crows.lsp').add_on_attach(function(_, _)
-      require('lsp_signature').on_attach { bind = true, handler_opts = { border = 'none' } }
-    end)
-  end,
+  config = true,
 }
 
 lsp.use {
   'kosayoda/nvim-lightbulb',
-  config = function()
-    require('crows.lsp').add_on_attach(function(_, bufnr)
-      local group = vim.api.nvim_create_augroup('lsp_aucmds', {})
-      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-        group = group,
-        buffer = bufnr,
-        callback = function()
-          local action_icon = require('utils.icons').lsp_hover.Action
-          require('nvim-lightbulb').update_lightbulb {
-            sign = { enabled = false },
-            virtual_text = { enabled = true, text = action_icon },
-            float = { enabled = false, text = action_icon, win_opts = { winblend = 100, anchor = 'NE' } },
-          }
-        end,
-        desc = 'Show lightbulb',
-      })
-    end)
-  end,
+  config = true,
 }
 
 lsp.use {
   'RRethy/vim-illuminate',
-  config = function()
-    require('crows.lsp').add_on_attach(function(client)
-      require('illuminate').on_attach(client)
-    end)
-    vim.g.Illuminate_delay = 100
-  end,
+  config = true,
 }
 
 lsp.use {
@@ -136,13 +62,7 @@ lsp.use {
 lsp.use {
   'j-hui/fidget.nvim',
   event = 'BufReadPre',
-  config = function()
-    require('fidget').setup {
-      window = {
-        blend = 100,
-      },
-    }
-  end,
+  config = true,
 }
 
 lsp.use 'b0o/SchemaStore.nvim'
