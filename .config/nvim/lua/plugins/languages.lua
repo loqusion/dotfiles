@@ -80,9 +80,7 @@ languages.use {
     'vuki656/package-info.nvim',
     requires = 'MunifTanjim/nui.nvim',
     module = 'package-info',
-    config = function()
-      require('package-info').setup()
-
+    setup = function()
       local lazy = require 'crows.lazy'
       local key = require('crows').key
       key.maps({
@@ -96,6 +94,9 @@ languages.use {
           p = { lazy.fn('package-info', 'change_version'), 'Change package version' },
         },
       }, { silent = true })
+    end,
+    config = function()
+      require('package-info').setup()
     end,
   },
 }
