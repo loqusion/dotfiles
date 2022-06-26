@@ -12,6 +12,9 @@ if type nvm >/dev/null 2>&1 && [ "$(nvm version current)" != "$(nvm version node
 fi
 
 escaped_home=$(echo "$HOME" | sed 's/\//\\\//g')
-${cmd} list -g --depth=0 --parseable |
-  sed -E '1,+1d' |
-  sed -E "s/${escaped_home}\/\.nvm\/versions\/node\/.*\/lib\/node_modules\///" >~/.npm-packages
+{
+  ${cmd} list -g --depth=0 --parseable |
+  sed -E '1d' |
+  sed -E "s/${escaped_home}\/\.nvm\/versions\/node\/.*\/lib\/node_modules\///" |
+  sed -E '/\<corepack$/d'
+} >~/.npm-packages
