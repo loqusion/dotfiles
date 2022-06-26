@@ -55,14 +55,12 @@ languages.use {
 
 -- rust
 languages.use {
-  {
-    'simrat39/rust-tools.nvim',
-    disable = true,
-    ft = 'rust',
-    config = function()
-      require('rust-tools').setup {}
-    end,
-  },
+  'simrat39/rust-tools.nvim',
+  disable = true,
+  ft = 'rust',
+  config = function()
+    require('rust-tools').setup {}
+  end,
 }
 
 -- web dev (js, ts, react, html, etc)
