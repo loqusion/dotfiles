@@ -5,7 +5,36 @@ local path = require 'utils.api.path'
 ---@field loaded boolean is packer.nvim loaded
 ---@field plugins PluginSpec[] used plugins
 
----@alias PluginSpec string|table
+---@class PluginSpecTable
+---@field [number]    string      The plugin location string
+---@field disable?    boolean     Mark a plugin as inactive
+---@field as?         string      Specifies an alias under which to install the plugin
+---@field installer?  function    Specifies custom installer. See `|packer-custom-installers|`
+---@field updater?    function    Specifies custom updater. See `|packer-custom-installers|`
+---@field after?      string|list Specifies plugins to load before this plugin
+---@field rtp?        string      Specifies a subdirectory of the plugin to add to `'runtimepath'`
+---@field opt?        boolean     Manually marks a plugin as optional
+---@field branch?     string      Specifies a git branch to use
+---@field tag?        string      Specifies a git tag to use. Supports '*' for "latest tag"
+---@field commit?     string      Specifies a git commit to use
+---@field lock?       boolean     Skip updating this plugin in updates/syncs. Still cleans.
+---@field run?        string|function|table   Post-update/install hook. See `|packer-plugin-hooks|`
+---@field requires?   string|list Specifies plugin dependencies. See `|packer-plugin-dependencies|`
+---@field config?     string|function|boolean Specifies code to run after this plugin is loaded.
+---@field rocks?      string|list Specifies Luarocks dependencies for the plugin
+---@field cmd?        string|list Specifies commands which load this plugin. Can be an autocmd pattern.
+---@field ft?         string|list Specifies filetypes which load this plugin.
+---@field keys?       string|list Specifies maps which load this plugin. See `|packer-plugin-keybindings|`
+---@field event?      string|list Specifies autocommand events which load this plugin.
+---@field fn?         string|list Specifies functions which load this plugin.
+---@field cond?       string|function|list    Specifies a conditional test to load this plugin
+---@field setup?      string|function|boolean Specifies code to run before this plugin is loaded.
+---@field module?     string|list Specifies Lua module names for require. When requiring a string which starts with one of these module names, the plugin will be loaded.
+---@field module_pattern?  string|list Specifies Lua pattern of Lua module names for require. When requiring a string which matches one of these patterns, the plugin will be loaded.
+
+---@alias SinglePluginSpec string|PluginSpecTable
+---@alias MultiPluginSpec table<SinglePluginSpec>
+---@alias PluginSpec SinglePluginSpec|MultiPluginSpec
 
 ---@type PluginModule
 local plugin = {
