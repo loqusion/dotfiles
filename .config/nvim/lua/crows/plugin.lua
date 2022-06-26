@@ -74,12 +74,16 @@ local function get_config_path(name)
   -- return nil
 end
 
+local function is_multi_spec(spec)
+  return type(spec) == 'table' and #spec > 1
+end
+
 ---@return table|string
 local function add_config(spec)
   if type(spec) == 'string' then
     return spec
   end
-  if type(spec) == 'table' and #spec > 1 then
+  if is_multi_spec(spec) then
     for i, child in ipairs(spec) do
       spec[i] = add_config(child)
     end
@@ -88,7 +92,6 @@ local function add_config(spec)
 
   local name = canonical_name(spec)
   local config_path = get_config_path(name)
-  -- if config_path then
   if spec.ptp == 'viml' then
     spec.setup = string.format('require("%s").entrance()', config_path)
   else
@@ -99,7 +102,6 @@ local function add_config(spec)
       spec.config = string.format("require('%s').config()", config_path)
     end
   end
-  -- end
   return spec
 end
 
