@@ -1,0 +1,3 @@
+local fish = {}
+
+return fish

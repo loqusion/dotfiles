@@ -16,19 +16,26 @@ end
 
 function M.config()
   local telescope = require 'telescope'
+  local telescope_actions = require 'telescope.actions'
+  local file_browser = telescope.extensions.file_browser
+
+  local function delete_line_before_cursor()
+    vim.cmd [[exe "normal! i\<C-u>"]]
+  end
 
   telescope.setup {
     defaults = {
       layout_strategy = 'flex',
       mappings = {
         i = {
-          ['<C-u>'] = false,
-          ['<C-f>'] = require('telescope.actions').preview_scrolling_down,
-          ['<C-d>'] = require('telescope.actions').preview_scrolling_up,
+          ['<M-BS>'] = delete_line_before_cursor,
           ['<M-f>'] = { '<S-Right>', type = 'command' },
           ['<M-b>'] = { '<S-Left>', type = 'command' },
           ['<C-a>'] = { '<Home>', type = 'command' },
           ['<C-e>'] = { '<End>', type = 'command' },
+        },
+        n = {
+          ['<C-c>'] = telescope_actions.close,
         },
       },
     },
@@ -41,6 +48,17 @@ function M.config()
     extensions = {
       file_browser = {
         sorting_strategy = 'ascending',
+        mappings = {
+          i = {
+            ['<C-u>'] = telescope_actions.preview_scrolling_up,
+            ['<C-d>'] = telescope_actions.preview_scrolling_down,
+            ['<C-f>'] = file_browser.actions.toggle_browser,
+            ['<C-CR>'] = file_browser.actions.change_cwd,
+          },
+          n = {
+            ['<C-CR>'] = file_browser.actions.change_cwd,
+          },
+        },
       },
       frecency = {
         workspaces = {

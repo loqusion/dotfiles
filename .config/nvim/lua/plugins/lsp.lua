@@ -67,4 +67,10 @@ lsp.use {
 
 lsp.use 'b0o/SchemaStore.nvim'
 
+-- lsp configs initialized here
+lsp.use {
+  'williamboman/nvim-lsp-installer',
+  config = true,
+}
+
 return lsp

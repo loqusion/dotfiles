@@ -142,8 +142,6 @@ end
 ---@param name string language server string
 ---@param config table language server config
 function lsp.set_config(name, config)
-  -- required before lspconfig setup
-  require('nvim-lsp-installer').setup { automatic_installation = true }
   local lspconfig = require 'lspconfig'
   config.on_attach = make_on_attach(config.on_attach)
   config.capabilities = capabilities()

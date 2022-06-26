@@ -15,12 +15,9 @@ local plugins = {
   require 'plugins.theme',
   require 'plugins.statusline', -- must load after theme
   require 'plugins.lsp',
+  require 'plugins.languages',
+  require 'plugins.format',
 }
-
-for _, lang in ipairs(require 'plugins.languages') do
-  table.insert(plugins, lang)
-end
-table.insert(plugins, require 'plugins.format') -- must load after languages
 
 require('crows').setup {
   modules = { 'plugins' },

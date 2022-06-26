@@ -1,297 +1,105 @@
--- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+local languages = require('crows.utils').new_feat()
 
-local lsp = require 'crows.lsp'
-local fmt = require 'plugins.format'
+-- fish
+languages.use {
+  'dag/vim-fish',
+  ft = { 'fish' },
+}
 
----@type Feature
-local fish = {
-  plugins = {
-    { 'dag/vim-fish', ft = { 'fish' } },
+-- go
+languages.use {
+  'ray-x/go.nvim',
+  ft = { 'go', 'gomod' },
+  config = function()
+    require('go').setup()
+  end,
+}
+
+-- markdown
+languages.use {
+  {
+    'preservim/vim-markdown',
+    config = function()
+      vim.g.vim_markdown_fenced_languages = {
+        'js=javascriptreact',
+        'ts=typescriptreact',
+        'jsx=javascriptreact',
+        'tsx=typescriptreact',
+        'sh=bash',
+      }
+    end,
+  },
+  {
+    'ellisonleao/glow.nvim',
+    config = function()
+      -- local glow_path = vim.fn.system 'which glow'
+      -- if glow_path ~= '' then
+      --   vim.g.glow_binary_path = glow_path
+      -- end
+    end,
+  },
+  {
+    'iamcco/markdown-preview.nvim',
+    run = 'cd app && yarn install',
+    ft = { 'markdown', 'pandoc.markdown', 'rmd' },
+    setup = function()
+      vim.g.mkdp_filetypes = { 'markdown', 'pandoc.markdown', 'rmd' }
+    end,
   },
 }
 
----@type Feature
-local go = {
-  pre = function()
-    fmt.by_formatter.go = { fmt.formatters.goimports }
-  end,
-  plugins = {
-    {
-      'ray-x/go.nvim',
-      ft = { 'go', 'gomod' },
-      config = function()
-        require('go').setup()
-      end,
+-- python
+languages.use {
+  'Vimjas/vim-python-pep8-indent',
+}
+
+-- rust
+languages.use {
+  {
+    'simrat39/rust-tools.nvim',
+    disable = true,
+    ft = 'rust',
+    config = function()
+      require('rust-tools').setup {}
+    end,
+  },
+}
+
+-- web dev (js, ts, react, html, etc)
+languages.use {
+  {
+    'mattn/emmet-vim',
+    ft = {
+      'html',
+      'javascript.jsx',
+      'typescript.tsx',
+      'javascriptreact',
+      'typescriptreact',
+      'vue',
     },
   },
-  post = function()
-    lsp.set_config('gopls', {})
-    lsp.set_config('golangci_lint_ls', {})
-  end,
-}
+  {
+    'vuki656/package-info.nvim',
+    requires = 'MunifTanjim/nui.nvim',
+    module = 'package-info',
+    config = function()
+      require('package-info').setup()
 
----@type Feature
-local json = {
-  pre = function()
-    fmt.by_formatter.json = { fmt.formatters.prettier }
-  end,
-  post = function()
-    lsp.set_config('jsonls', {
-      settings = {
-        json = {
-          schemas = require('schemastore').json.schemas(),
-          validate = { enable = true },
+      local lazy = require 'crows.lazy'
+      local key = require('crows').key
+      key.maps({
+        ['<leader>n'] = {
+          s = { lazy.fn('package-info', 'show'), 'Show package versions' },
+          c = { lazy.fn('package-info', 'hide'), 'Hide package versions' },
+          u = { lazy.fn('package-info', 'update'), 'Update package on current line' },
+          d = { lazy.fn('package-info', 'delete'), 'Delete package on current line' },
+          i = { lazy.fn('package-info', 'install'), 'Install a new package' },
+          r = { lazy.fn('package-info', 'reinstall'), 'Reinstall dependencies' },
+          p = { lazy.fn('package-info', 'change_version'), 'Change package version' },
         },
-      },
-    })
-  end,
-}
-
----@type Feature
-local lua = {
-  pre = function()
-    fmt.by_formatter.lua = { fmt.formatters.stylua }
-  end,
-  post = function()
-    local runtime_path = vim.split(package.path, ';')
-    table.insert(runtime_path, 'lua/?.lua')
-    table.insert(runtime_path, 'lua/?/init.lua')
-
-    local function workspace_files()
-      local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
-      if cwd == '~/.config/nvim' then
-        -- Make the server aware of Neovim runtime files, only in config cwd
-        return vim.api.nvim_get_runtime_file('', true)
-      end
-      return nil
-    end
-
-    local sumneko_lua_settings = {
-      cmd = { 'lua-language-server' },
-      settings = {
-        Lua = {
-          runtime = {
-            version = 'LuaJIT',
-            path = runtime_path,
-          },
-          completion = {
-            autoRequire = false,
-          },
-          diagnostics = {
-            globals = { 'vim' },
-          },
-          workspace = {
-            library = workspace_files(),
-            maxPreload = 5000,
-          },
-          telemetry = {
-            enable = false,
-          },
-        },
-      },
-    }
-    lsp.set_config('sumneko_lua', sumneko_lua_settings)
-  end,
-}
-
----@type Feature
-local man = {
-  post = function()
-    vim.g.no_man_maps = 1
-    local augroup = vim.api.nvim_create_augroup('my-filetype-man', {})
-    vim.api.nvim_create_autocmd('FileType', {
-      pattern = 'man',
-      desc = 'keymaps',
-      group = augroup,
-      callback = function(args)
-        local opts = { silent = true, buffer = args.buf }
-        vim.keymap.set('n', 'gO', ':call man#show_toc()<CR>', opts)
-        vim.keymap.set('n', '<2-LeftMouse>', ':Man<CR>', opts)
-        vim.keymap.set('n', 'q', ':lclose<CR><C-W>c', vim.tbl_extend('keep', { nowait = true }, opts))
-      end,
-    })
-  end,
-}
-
----@type Feature
-local markdown = {
-  pre = function()
-    fmt.by_formatter.markdown = { fmt.formatters.prettier }
-  end,
-  plugins = {
-    {
-      'preservim/vim-markdown',
-      config = function()
-        vim.g.vim_markdown_fenced_languages = {
-          'js=javascriptreact',
-          'ts=typescriptreact',
-          'jsx=javascriptreact',
-          'tsx=typescriptreact',
-          'sh=bash',
-        }
-      end,
-    },
-    {
-      'ellisonleao/glow.nvim',
-      config = function()
-        -- local glow_path = vim.fn.system 'which glow'
-        -- if glow_path ~= '' then
-        --   vim.g.glow_binary_path = glow_path
-        -- end
-      end,
-    },
-    {
-      'iamcco/markdown-preview.nvim',
-      run = 'cd app && yarn install',
-      ft = { 'markdown', 'pandoc.markdown', 'rmd' },
-      setup = function()
-        vim.g.mkdp_filetypes = { 'markdown', 'pandoc.markdown', 'rmd' }
-      end,
-    },
+      }, { silent = true })
+    end,
   },
 }
 
----@type Feature
-local python = {
-  pre = function()
-    fmt.by_formatter.python = { fmt.formatters.python }
-  end,
-  plugins = {
-    'Vimjas/vim-python-pep8-indent',
-  },
-  post = function()
-    lsp.set_config('pyright', {})
-  end,
-}
-
----@type Feature
-local rust = {
-  pre = function()
-    fmt.by_formatter.rust = { fmt.formatters.rustfmt }
-  end,
-  plugins = {
-    {
-      'simrat39/rust-tools.nvim',
-      disable = true,
-      ft = 'rust',
-      config = function()
-        require('rust-tools').setup {}
-      end,
-    },
-  },
-  post = function()
-    lsp.set_config('rust_analyzer', {})
-  end,
-}
-
----@type Feature
-local typescript = {
-  pre = function()
-    fmt.by_formatter.typescript = { fmt.formatters.prettier }
-    fmt.by_formatter.javascript = { fmt.formatters.prettier }
-    fmt.by_formatter.typescriptreact = { fmt.formatters.prettier }
-    fmt.by_formatter.javascriptreact = { fmt.formatters.prettier }
-    fmt.by_formatter.html = { fmt.formatters.prettier }
-    fmt.by_formatter.css = { fmt.formatters.prettier }
-    fmt.by_formatter.scss = { fmt.formatters.prettier }
-    fmt.by_formatter.sass = { fmt.formatters.prettier }
-    fmt.by_formatter.vue = { fmt.formatters.prettier }
-    fmt.by_formatter.graphql = { fmt.formatters.prettier }
-  end,
-  plugins = {
-    {
-      'mattn/emmet-vim',
-      ft = {
-        'html',
-        'javascript.jsx',
-        'typescript.tsx',
-        'javascriptreact',
-        'typescriptreact',
-        'vue',
-      },
-    },
-    {
-      'vuki656/package-info.nvim',
-      requires = 'MunifTanjim/nui.nvim',
-      module = 'package-info',
-      config = function()
-        require('package-info').setup()
-
-        local lazy = require 'crows.lazy'
-        local key = require('crows').key
-        key.maps({
-          ['<leader>n'] = {
-            s = { lazy.fn('package-info', 'show'), 'Show package versions' },
-            c = { lazy.fn('package-info', 'hide'), 'Hide package versions' },
-            u = { lazy.fn('package-info', 'update'), 'Update package on current line' },
-            d = { lazy.fn('package-info', 'delete'), 'Delete package on current line' },
-            i = { lazy.fn('package-info', 'install'), 'Install a new package' },
-            r = { lazy.fn('package-info', 'reinstall'), 'Reinstall dependencies' },
-            p = { lazy.fn('package-info', 'change_version'), 'Change package version' },
-          },
-        }, { silent = true })
-      end,
-    },
-  },
-  post = function()
-    local util = require 'lspconfig.util'
-    lsp.set_config('tsserver', {
-      root_dir = function(fname)
-        return util.root_pattern 'tsconfig.json'(fname) or util.root_pattern('package.json', 'jsconfig.json')(fname)
-      end,
-    })
-
-    lsp.set_config('tailwindcss', {
-      root_dir = util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
-    })
-
-    lsp.set_config('denols', {
-      root_dir = util.root_pattern 'deno_root',
-      init_options = {
-        enable = true,
-        lint = true,
-        unstable = true,
-      },
-    })
-    lsp.set_config('graphql', {
-      filetypes = { 'graphql' },
-    })
-    lsp.set_config('html', {})
-    lsp.set_config('cssls', {})
-    lsp.set_config('cssmodules_ls', {})
-    -- lsp.set_config('eslint', {})
-    lsp.set_config('emmet_ls', {})
-  end,
-}
-
----@type Feature
-local viml = {
-  post = function()
-    lsp.set_config('vimls', {})
-  end,
-}
-
----@type Feature
-local yaml = {
-  pre = function()
-    fmt.by_formatter.yaml = { fmt.formatters.prettier }
-  end,
-  post = function()
-    lsp.set_config('yamlls', {})
-  end,
-}
-
----@type Feature[]
-return {
-  fish,
-  go,
-  json,
-  lua,
-  man,
-  markdown,
-  python,
-  rust,
-  typescript,
-  viml,
-  yaml,
-}
+return languages
