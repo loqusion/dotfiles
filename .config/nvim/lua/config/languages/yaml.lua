@@ -1,5 +1,3 @@
-local lazy = require 'crows.lazy'
-
 local yaml = {}
 
 yaml.lsp_configs = {
@@ -8,7 +6,7 @@ yaml.lsp_configs = {
 
 yaml.formatters = {
   yaml = {
-    lazy.fn 'formatter.defaults.prettier',
+    require 'config.formatters.prettier',
   },
 }
 

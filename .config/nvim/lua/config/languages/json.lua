@@ -1,5 +1,3 @@
-local lazy = require 'crows.lazy'
-
 local json = {}
 
 json.lsp_configs = {
@@ -15,7 +13,7 @@ json.lsp_configs = {
 
 json.formatters = {
   json = {
-    lazy.fn 'formatter.defaults.prettier',
+    require 'config.formatters.prettier',
   },
 }
 

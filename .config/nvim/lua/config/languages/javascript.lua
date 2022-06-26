@@ -1,4 +1,3 @@
-local lazy = require 'crows.lazy'
 local util = require 'lspconfig.util'
 
 local javascript = {}
@@ -30,7 +29,7 @@ javascript.lsp_configs = {
   -- eslint = {},
 }
 
-local prettier = lazy.fn 'formatter.defaults.prettier'
+local prettier = require 'config.formatters.prettier'
 javascript.formatters = {
   javascript = { prettier },
   typescript = { prettier },
