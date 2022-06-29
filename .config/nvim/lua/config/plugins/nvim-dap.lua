@@ -64,10 +64,23 @@ end
 
 function M.register_global_keys()
   require('crows').key.maps {
-    ['<F5>'] = { '<cmd>lua require("dap").continue()', 'Debug: Continue' },
-    ['<F10>'] = { '<cmd>lua require("dap").step_over()', 'Debug: Step over' },
-    ['<F11>'] = { '<cmd>lua require("dap").step_into()', 'Debug: Step into' },
-    ['<F12>'] = { '<cmd>lua require("dap").step_out()', 'Debug: Step out' },
+    ['<F5>'] = { '<Cmd>lua require("dap").continue()<CR>', 'Debug: Continue' },
+    ['<F10>'] = { '<Cmd>lua require("dap").step_over()<CR>', 'Debug: Step over' },
+    ['<F11>'] = { '<Cmd>lua require("dap").step_into()<CR>', 'Debug: Step into' },
+    ['<F12>'] = { '<Cmd>lua require("dap").step_out()<CR>', 'Debug: Step out' },
+    ['<Leader>'] = {
+      b = {
+        b = { '<Cmd>lua require("dap").toggle_breakpoint()<CR>', 'Toggle breakpoint' },
+        c = {
+          '<Cmd>lua require("dap").toggle_breakpoint(vim.fn.input("Condition: "))<CR>',
+          'Set conditional breakpoint',
+        },
+      },
+      rpl = {
+        '<Cmd>lua require("dap").repl.toggle()<CR>',
+        'Toggle dap repl',
+      },
+    },
   }
 end
 
