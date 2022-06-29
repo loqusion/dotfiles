@@ -49,7 +49,7 @@ editor.use {
   {
     'glts/vim-textobj-comment',
     ptp = 'viml',
-    keys = '<Plug>(textobj-comment',
+    event = { 'BufRead', 'BufNewFile' },
     setup = true,
   },
   {
