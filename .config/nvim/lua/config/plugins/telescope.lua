@@ -99,7 +99,7 @@ function M.register_global_keys()
   local tb = 'telescope.builtin'
 
   require('crows').key.maps {
-    ['<leader>'] = {
+    ['<LocalLeader>'] = {
       s = {
         name = 'telescope search',
         f = { lazy.fn(tb, 'find_files'), 'Find files' },
@@ -126,8 +126,6 @@ function M.register_global_keys()
       },
       ['<space>'] = { lazy.fn(tb, 'buffers'), 'Buffers' },
       ['?'] = { lazy.fn(tb, 'oldfiles'), 'Find oldfiles' },
-    },
-    ['<localleader>'] = {
       f = { lazy.fn('telescope', 'extensions.file_browser.file_browser'), 'File browser' },
     },
   }
