@@ -115,7 +115,6 @@ function M.register_global_keys()
         d = { lazy.fn(tb, 'grep_string'), 'Grep word under cursor' },
         p = { lazy.fn(tb, 'live_grep'), 'Grep in files' },
         r = { lazy.fn(tb, 'lsp_references'), 'Search LSP references in workspace' },
-        o = { lazy.fn(tb, 'lsp_document_symbols'), 'Search current document symbols' },
         c = { lazy.fn(tb, 'commands'), 'Search commands' },
         g = {
           lazy.fn('telescope', 'extensions.repo.cached_list', { search_dirs = { '~/repos' } }),
