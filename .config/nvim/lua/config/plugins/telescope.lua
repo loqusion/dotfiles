@@ -40,6 +40,9 @@ function M.config()
       },
     },
     pickers = {
+      commands = {
+        theme = 'ivy',
+      },
       find_files = {
         file_ignore_patterns = { [[%.git/]], [[.*~$]] },
         hidden = true,
@@ -106,12 +109,14 @@ function M.register_global_keys()
         },
         b = { lazy.fn(tb, 'current_buffer_fuzzy_find'), 'Find in current buffer' },
         h = { lazy.fn(tb, 'help_tags'), 'Find help' },
+        m = { lazy.fn(tb, 'man_pages'), 'Find man pages' },
         t = { lazy.fn(tb, 'tags'), 'Find tags' },
         T = { lazy.fn(tb, 'colorscheme'), 'Select colorscheme' },
         d = { lazy.fn(tb, 'grep_string'), 'Grep word under cursor' },
         p = { lazy.fn(tb, 'live_grep'), 'Grep in files' },
         r = { lazy.fn(tb, 'lsp_references'), 'Search LSP references in workspace' },
         o = { lazy.fn(tb, 'lsp_document_symbols'), 'Search current document symbols' },
+        c = { lazy.fn(tb, 'commands'), 'Search commands' },
         g = {
           lazy.fn('telescope', 'extensions.repo.cached_list', { search_dirs = { '~/repos' } }),
           'Search git repos',
