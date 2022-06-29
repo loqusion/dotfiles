@@ -17,8 +17,12 @@ local function l()
   vim.cmd [[exe 'normal! ' .. (foldclosed(line('.')) != -1 ? (mode() == 'n' ? 'zo0' : 'zogv0') : 'l')]]
 end
 
--- Basic mappings
-key.maps({
+key.maps({ -- Unmappings
+  q = { '<Nop>', 'which_key_ignore', mode = { 'n', 'x' } },
+  ZZ = { '<Nop>', 'which_key_ignore' },
+  ['<MiddleMouse>'] = { '<Nop>', 'which_key_ignore', mode = { 'n', 'x', 'o', 'i', 'l', 'c', 't' } },
+}, {}, false)
+key.maps({ -- Normal mode
   ['>'] = { '>>', 'Indent current line' },
   ['<'] = { '<<', 'Dedent current line' },
   ['*'] = { '*N', 'Highlight matches' },
@@ -28,10 +32,8 @@ key.maps({
   x = { '"_x', 'Delete character below cursor' },
   X = { '"_X', 'Delete character before cursor' },
   l = { l, 'which_key_ignore' },
-  q = { '<Nop>', '', mode = { 'n', 'x' } },
   Q = { 'q', 'Start recording macro' },
   M = { 'm', 'Set mark' },
-  ZZ = { '<Nop>', 'which_key_ignore' },
   ['<C-c>'] = { '<silent> <C-c>', '' },
   ['#'] = { '<C-^>', 'Switch to alternate buffer' },
   gV = { 'v`[o`]', 'Select previously inserted/yanked text' },
@@ -47,19 +49,20 @@ key.maps({
     x = { '<Cmd>xit!<CR>', 'Write (if modified) and close window' },
   },
 }, {}, false)
-key.maps({
+key.maps({ -- Visual mode
   ['>'] = { '>gv', 'Indent selection' },
   ['<'] = { '<gv', 'Dedent selection' },
   p = { 'P', 'Put without yank to unnamed register' },
 }, { mode = 'x' }, false)
-key.maps({
+key.maps({ -- Insert mode
   ['<C-w>'] = { '<C-g>u<C-w>', '' },
   ['<C-u>'] = { '<C-g>u<C-u>', '' },
   -- ['<C-k>'] = { '<C-o>D', '' },
-  ['<C-CR>'] = { '<C-o>o', 'Begin new line below cursor' },
-  ['<S-CR>'] = { '<C-o>O', 'Begin new line above cursor' },
+  -- These can be done with <M-o> and <M-O>
+  -- ['<C-CR>'] = { '<C-o>o', 'Begin new line below cursor' },
+  -- ['<S-CR>'] = { '<C-o>O', 'Begin new line above cursor' },
 }, { mode = 'i' }, false)
-key.maps({
+key.maps({ -- Command mode
   ['<C-b>'] = { '<Left>', '' },
   ['<C-f>'] = { '<Right>', '' },
   ['<M-b>'] = { '<S-Left>', '' },
