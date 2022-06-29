@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BadgeTopMargin</key>
+	<integer>10</integer>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>3024 Day</key>
@@ -80558,7 +80560,7 @@
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
-			<integer>0</integer>
+			<integer>12</integer>
 			<key>Working Directory</key>
 			<string>/Users/rasnauf</string>
 		</dict>
@@ -82099,6 +82101,10 @@
 	<key>TabStyleWithAutomaticOption</key>
 	<integer>5</integer>
 	<key>TabViewType</key>
+	<integer>0</integer>
+	<key>TerminalMargin</key>
+	<integer>0</integer>
+	<key>TerminalVMargin</key>
 	<integer>0</integer>
 	<key>URLHandlersByGuid</key>
 	<dict/>
