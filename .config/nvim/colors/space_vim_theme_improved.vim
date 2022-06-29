@@ -15,4 +15,9 @@ if get(g:, 'space_vim_transp_bg')
   hi GitGutterChange guibg=NONE ctermbg=NONE
   hi GitGutterDelete guibg=NONE ctermbg=NONE
   hi GitGutterChangeDelete guibg=NONE ctermbg=NONE
+  hi link NotifyERRORBody Normal
+  hi link NotifyWARNBody Normal
+  hi link NotifyINFOBody Normal
+  hi link NotifyDEBUGBody Normal
+  hi link NotifyTRACEBody Normal
 endif

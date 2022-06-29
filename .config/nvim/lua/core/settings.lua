@@ -9,7 +9,7 @@ local settings = {
     makeleader = 'm',
   },
   opt = {
-    syntax = 'enable',
+    syntax = 'ON',
     encoding = 'utf-8',
     fileencoding = 'utf-8',
     fileformat = 'unix',
@@ -67,7 +67,7 @@ local settings = {
     pumheight = 10,
     pumwidth = 0,
     pumblend = 10,
-    winblend = 20,
+    winblend = 10,
     ignorecase = true,
     smartcase = true,
     foldenable = true,

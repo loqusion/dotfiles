@@ -73,4 +73,15 @@ lsp.use {
   config = true,
 }
 
+-- Command interface for neovim LSP
+lsp.use 'ii14/lsp-command'
+
+lsp.use { -- Preview native LSP's goto definition calls in floating windows
+  'rmagatti/goto-preview',
+  module = 'goto-preview',
+  keys = 'gp',
+  setup = true,
+  config = true,
+}
+
 return lsp

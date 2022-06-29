@@ -1,5 +1,10 @@
 local go = {}
 
+go.lsp_configs = {
+  gopls = {},
+  golangci_lint_ls = {},
+}
+
 go.formatters = {
   go = {
     function()
@@ -10,11 +15,6 @@ go.formatters = {
       }
     end,
   },
-}
-
-go.lsp_configs = {
-  gopls = {},
-  golangci_lint_ls = {},
 }
 
 return go

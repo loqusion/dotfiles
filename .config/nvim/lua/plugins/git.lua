@@ -1,34 +1,79 @@
 local git = require('crows.utils').new_feat()
 
-git.use 'tpope/vim-fugitive'
-git.use 'tpope/vim-rhubarb'
+git.use { -- A Git wrapper so awesome, it should be illegal
+  'tpope/vim-fugitive',
+  cmd = {
+    'G',
+    'Git',
+    'Ggrep',
+    'Glgrep',
+    'Gclog',
+    'Gllog',
+    'Gcd',
+    'Glcd',
+    'Gedit',
+    'Gsplit',
+    'Gvsplit',
+    'Gtabedit',
+    'Gpedit',
+    'Gdrop',
+    'Gread',
+    'Gwrite',
+    'Gwq',
+    'Gdiffsplit',
+    'Gvdiffsplit',
+    'Ghdiffsplit',
+    'GMove',
+    'GRename',
+    'GDelete',
+    'GRemove',
+    'GUnlink',
+    'GBrowse',
+  },
+}
+git.use { -- Open GitHub URLs, omni-complete issues, issue URLs, and collaborators
+  'tpope/vim-rhubarb',
+  after = 'vim-fugitive',
+}
+git.use { -- Same, but for GitLab
+  'shumphrey/fugitive-gitlab.vim',
+  after = 'vim-fugitive',
+}
 
-git.use { 'akinsho/git-conflict.nvim', config = true }
+git.use { -- Visualize and resolve conflicts
+  'akinsho/git-conflict.nvim',
+  event = { 'BufRead', 'BufNewFile' },
+  config = true,
+}
 
-git.use {
+git.use { -- Super fast git decorations
   'lewis6991/gitsigns.nvim',
   requires = { 'nvim-lua/plenary.nvim' },
   event = { 'BufRead', 'BufNewFile' },
   config = true,
 }
 
-git.use {
+git.use { -- Git porcelain inside vim
   'TimUntersberger/neogit',
   requires = {
     'nvim-lua/plenary.nvim',
     'sindrets/diffview.nvim',
   },
   cmd = 'Neogit',
+  module = 'neogit',
   config = true,
 }
 
 git.use {
+  -- TODO: use pwntester/octo.nvim
   'haydenmeade/octo.nvim',
   requires = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope.nvim',
     'kyazdani42/nvim-web-devicons',
   },
+  cmd = 'Octo',
+  module = 'octo',
   config = true,
 }
 

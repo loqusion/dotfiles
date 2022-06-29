@@ -109,4 +109,4 @@ local function goto_plugin_config()
   vim.cmd('e ' .. config_path)
 end
 
-key.map('Go to plugin config', 'n', 'gp', goto_plugin_config)
+key.map('Go to plugin config', 'n', 'gpc', goto_plugin_config)

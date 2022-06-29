@@ -28,7 +28,7 @@ function M.config()
     },
     indent = {
       -- Enabling this removes the leading space from /*...*...*/ comments! This is annoying!!
-      enable = false,
+      enable = true,
     },
     incremental_selection = {
       enable = true,
@@ -39,41 +39,10 @@ function M.config()
         node_decremental = 'grm',
       },
     },
-    textobjects = {
-      select = {
-        enable = true,
-        -- Automatically jump forward to textobj, similar to targets.vim
-        lookahead = true,
-        keymaps = {
-          -- You can use the capture groups defined in textobjects.scm
-          ['af'] = '@function.outer',
-          ['if'] = '@function.inner',
-          ['aC'] = '@class.outer',
-          ['iC'] = '@class.inner',
-        },
-      },
-      move = {
-        enable = true,
-        set_jumps = true, -- whether to set jumps in the jumplist
-        goto_next_start = {
-          [']m'] = '@function.outer',
-          [']]'] = '@class.outer',
-        },
-        goto_next_end = {
-          [']M'] = '@function.outer',
-          [']['] = '@class.outer',
-        },
-        goto_previous_start = {
-          ['[m'] = '@function.outer',
-          ['[['] = '@class.outer',
-        },
-        goto_previous_end = {
-          ['[M'] = '@function.outer',
-          ['[]'] = '@class.outer',
-        },
-      },
+    autotag = {
+      enable = true,
+      filetypes = { 'html', 'javascript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'markdown' },
     },
-    autotag = { enable = true },
     context_commentstring = {
       -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring#commentnvim
       enable = true,
@@ -81,13 +50,72 @@ function M.config()
     },
     endwise = { enable = true },
     matchup = { enable = true },
+    query_linter = {
+      enable = true,
+      use_virtual_text = true,
+      lint_events = { 'BufWrite', 'CursorHold' },
+    },
+    textobjects = {
+      select = {
+        enable = true,
+        -- Automatically jump forward to textobj, similar to targets.vim
+        lookahead = true,
+        keymaps = {
+          ['af'] = '@function.outer',
+          ['if'] = '@function.inner',
+          ['il'] = '@loop.inner',
+          ['al'] = '@loop.outer',
+          ['icd'] = '@conditional.inner',
+          ['acd'] = '@conditional.outer',
+          ['acm'] = '@comment.outer',
+          ['ast'] = '@statement.outer',
+          ['isc'] = '@scopename.inner',
+          ['iB'] = '@block.inner',
+          ['aB'] = '@block.outer',
+          ['ia'] = '@parameter.inner',
+          ['aa'] = '@parameter.outer',
+        },
+      },
+      move = {
+        enable = true,
+        set_jumps = true, -- whether to set jumps in the jumplist
+        goto_next_start = {
+          ['gnf'] = '@function.outer',
+          ['gnif'] = '@function.inner',
+          ['gna'] = '@parameter.inner',
+          ['gnc'] = '@call.outer',
+          ['gnic'] = '@call.inner',
+        },
+        goto_next_end = {
+          ['gnF'] = '@function.outer',
+          ['gniF'] = '@function.inner',
+          ['gnA'] = '@parameter.inner',
+          ['gnC'] = '@call.outer',
+          ['gniC'] = '@call.inner',
+        },
+        goto_previous_start = {
+          ['gpf'] = '@function.outer',
+          ['gpif'] = '@function.inner',
+          ['gpa'] = '@parameter.inner',
+          ['gpc'] = '@call.outer',
+          ['gpic'] = '@call.inner',
+        },
+        goto_previous_end = {
+          ['gpF'] = '@function.outer',
+          ['gpiF'] = '@function.inner',
+          ['gpA'] = '@parameter.inner',
+          ['gpC'] = '@call.outer',
+          ['gpiC'] = '@call.inner',
+        },
+      },
+    },
+    textsubjects = {
+      enable = true,
+      keymaps = {
+        ['.'] = 'textsubjects-smart',
+      },
+    },
   }
-
-  -- Enable syntax for non treesitter highlights
-  -- vim.cmd [[
-  --   autocmd MyAutoCmd FileType c,help,gitcommit
-  --   \ if &l:syntax == '' | syntax enable | endif
-  -- ]]
 end
 
 function M.register_global_keys()

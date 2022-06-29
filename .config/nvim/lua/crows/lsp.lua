@@ -38,8 +38,8 @@ local lsp = {
   buffer_keys = {
     goto_decl = { 'gD', { vim.lsp.buf.declaration, 'Goto declaration' } },
     goto_def = { 'gd', { vim.lsp.buf.definition, 'Goto definition' } },
-    hover = { 'K', { vim.lsp.buf.hover, 'Display hover information' } },
-    goto_impl = { 'gi', { vim.lsp.buf.implementation, 'Goto implementation' } },
+    hover = { 'gh', { vim.lsp.buf.hover, 'Display hover information' } },
+    goto_impl = { 'gI', { vim.lsp.buf.implementation, 'Goto implementation' } },
     sign_help = { '<C-k>', { vim.lsp.buf.signature_help, 'Display signature information', mode = 'i' } },
     add_folder = { '<leader>wa', { vim.lsp.buf.add_workspace_folder, 'Add workspace folder' } },
     del_folder = { '<leader>wr', { vim.lsp.buf.remove_workspace_folder, 'Remove workspace folder' } },

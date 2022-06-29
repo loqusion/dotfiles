@@ -1,16 +1,15 @@
 local basic = require('crows.utils').new_feat()
 
-basic.use 'lewis6991/impatient.nvim'
+basic.use 'lewis6991/impatient.nvim' -- Improve startup time
 
-basic.use 'antoinemadec/FixCursorHold.nvim'
+basic.use 'antoinemadec/FixCursorHold.nvim' -- Fix Neovim CursorHold and CursorHoldI
 
-basic.use {
+basic.use { -- A small automated session manager
   'rmagatti/auto-session',
   config = true,
 }
 
--- improve vim select/input UI
-basic.use {
+basic.use { -- Improve default vim.ui interfaces
   'stevearc/dressing.nvim',
   config = true,
 }

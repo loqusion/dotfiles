@@ -31,6 +31,8 @@ local path = require 'utils.api.path'
 ---@field setup?      string|function|boolean Specifies code to run before this plugin is loaded.
 ---@field module?     string|list Specifies Lua module names for require. When requiring a string which starts with one of these module names, the plugin will be loaded.
 ---@field module_pattern?  string|list Specifies Lua pattern of Lua module names for require. When requiring a string which matches one of these patterns, the plugin will be loaded.
+---@field ptp?        string      Specifies plugin type, e.g. 'viml'
+---@field wants?      string|list `packer_load` is called on each plugin before this plugin is `packadd`ed
 
 ---@alias SinglePluginSpec string|PluginSpecTable
 ---@alias MultiPluginSpec table<SinglePluginSpec>
@@ -95,40 +97,43 @@ end
 ---@param name string
 local function get_config_path(name)
   local config_path = path.join('config', 'plugins', name:lower())
-  return config_path
-  -- local config_file_path = path.join(vim.fn.stdpath 'config', 'lua', string.format('%s.lua', config_path))
-  -- if vim.fn.filereadable(config_file_path) == 1 then
-  --   return config_path
-  -- end
-  -- return nil
+  local config_file_path = path.join(vim.fn.stdpath 'config', 'lua', string.format('%s.lua', config_path))
+
+  if vim.fn.filereadable(config_file_path) == 1 then
+    return config_path
+  end
+  return nil
 end
 
 local function is_multi_spec(spec)
   return type(spec) == 'table' and #spec > 1
 end
 
+---@param spec PluginSpec
 ---@return table|string
 local function add_config(spec)
   if type(spec) == 'string' then
     return spec
-  end
+  end ---@cast spec -string
   if is_multi_spec(spec) then
     for i, child in ipairs(spec) do
       spec[i] = add_config(child)
     end
     return spec
-  end
+  end ---@cast spec -MultiPluginSpec
 
   local name = canonical_name(spec)
   local config_path = get_config_path(name)
-  if spec.ptp == 'viml' then
-    spec.setup = string.format('require("%s").entrance()', config_path)
-  else
-    if spec.setup == true then
-      spec.setup = string.format("require('%s').setup()", config_path)
-    end
-    if spec.config == true then
-      spec.config = string.format("require('%s').config()", config_path)
+  if config_path then
+    if spec.ptp == 'viml' and spec.setup then
+      spec.setup = string.format('require("%s").entrance()', config_path)
+    else
+      if spec.setup == true then
+        spec.setup = string.format("require('%s').setup()", config_path)
+      end
+      if spec.config == true then
+        spec.config = string.format("require('%s').config()", config_path)
+      end
     end
   end
   return spec

@@ -1,13 +1,12 @@
 local languages = require('crows.utils').new_feat()
 
 -- fish
-languages.use {
+languages.use { -- Fish
   'dag/vim-fish',
   ft = { 'fish' },
 }
 
--- go
-languages.use {
+languages.use { -- Go
   'ray-x/go.nvim',
   ft = { 'go', 'gomod' },
   config = function()
@@ -15,10 +14,10 @@ languages.use {
   end,
 }
 
--- markdown
-languages.use {
+languages.use { -- Markdown
   {
     'preservim/vim-markdown',
+    ft = { 'markdown', 'vimwiki' },
     config = function()
       vim.g.vim_markdown_fenced_languages = {
         'js=javascriptreact',
@@ -29,32 +28,36 @@ languages.use {
       }
     end,
   },
-  {
+  { -- Preview markdown in a floating window
     'ellisonleao/glow.nvim',
+    cmd = 'Glow',
     config = function()
-      -- local glow_path = vim.fn.system 'which glow'
-      -- if glow_path ~= '' then
-      --   vim.g.glow_binary_path = glow_path
-      -- end
+      local glow_path = vim.fn.system 'which glow'
+      if glow_path ~= '' then
+        vim.g.glow_binary_path = glow_path
+      end
     end,
   },
-  {
+  { -- Preview markdown in browser
     'iamcco/markdown-preview.nvim',
     run = 'cd app && yarn install',
-    ft = { 'markdown', 'pandoc.markdown', 'rmd' },
+    ft = { 'markdown', 'pandoc.markdown', 'rmd', 'vimwiki' },
     setup = function()
-      vim.g.mkdp_filetypes = { 'markdown', 'pandoc.markdown', 'rmd' }
+      vim.g.mkdp_filetypes = { 'markdown', 'pandoc.markdown', 'rmd', 'vimwiki' }
     end,
+  },
+  { -- Paste image from clipboard
+    'ekickx/clipboard-image.nvim',
+    ft = { 'markdown', 'vimwiki' },
+    cmd = 'PasteImg',
   },
 }
 
--- python
-languages.use {
+languages.use { -- Python
   'Vimjas/vim-python-pep8-indent',
 }
 
--- rust
-languages.use {
+languages.use { -- Rust
   'simrat39/rust-tools.nvim',
   disable = true,
   ft = 'rust',
@@ -63,41 +66,14 @@ languages.use {
   end,
 }
 
--- web dev (js, ts, react, html, etc)
-languages.use {
-  {
-    'mattn/emmet-vim',
-    ft = {
-      'html',
-      'javascript.jsx',
-      'typescript.tsx',
-      'javascriptreact',
-      'typescriptreact',
-      'vue',
-    },
-  },
-  {
+languages.use { -- Web development (JS, TS, React, HTML, CSS, etc)
+  { -- All the npm commands I don't want to type
     'vuki656/package-info.nvim',
     requires = 'MunifTanjim/nui.nvim',
+    ft = 'json',
     module = 'package-info',
-    setup = function()
-      local lazy = require 'crows.lazy'
-      local key = require('crows').key
-      key.maps({
-        ['<leader>n'] = {
-          s = { lazy.fn('package-info', 'show'), 'Show package versions' },
-          c = { lazy.fn('package-info', 'hide'), 'Hide package versions' },
-          u = { lazy.fn('package-info', 'update'), 'Update package on current line' },
-          d = { lazy.fn('package-info', 'delete'), 'Delete package on current line' },
-          i = { lazy.fn('package-info', 'install'), 'Install a new package' },
-          r = { lazy.fn('package-info', 'reinstall'), 'Reinstall dependencies' },
-          p = { lazy.fn('package-info', 'change_version'), 'Change package version' },
-        },
-      }, { silent = true })
-    end,
-    config = function()
-      require('package-info').setup()
-    end,
+    setup = true,
+    config = true,
   },
 }
 

@@ -1,6 +1,11 @@
 local ui = require('crows.utils').new_feat()
 
 ui.use {
+  'rcarriga/nvim-notify',
+  config = true,
+}
+
+ui.use {
   'Pocco81/TrueZen.nvim',
   config = true,
 }
@@ -14,8 +19,9 @@ ui.use {
 -- undotree
 ui.use {
   'mbbill/undotree',
-  event = 'VimEnter',
   ptp = 'viml',
+  event = 'VimEnter',
+  setup = true,
 }
 
 -- symbols outline
@@ -23,6 +29,11 @@ ui.use {
   'simrat39/symbols-outline.nvim',
   cmd = { 'SymbolsOutline', 'SymbolsOutlineOpen', 'SymbolsOutlineClose' },
   setup = true,
+}
+
+ui.use { -- Stabilize buffer content on window open-close events
+  'luukvbaal/stabilize.nvim',
+  config = true,
 }
 
 return ui

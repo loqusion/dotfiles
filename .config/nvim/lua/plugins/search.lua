@@ -28,19 +28,8 @@ search.use {
 search.use {
   'nvim-telescope/telescope.nvim',
   requires = {
-    { 'nvim-lua/popup.nvim' },
-    { 'nvim-lua/plenary.nvim' },
-    {
-      'nvim-telescope/telescope-frecency.nvim',
-      after = 'telescope.nvim',
-      requires = 'tami5/sqlite.lua',
-    },
-    { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', after = 'telescope.nvim' },
-    { 'nvim-telescope/telescope-dap.nvim', after = 'telescope.nvim' },
-    { 'nvim-telescope/telescope-ui-select.nvim', after = 'telescope.nvim' },
-    { 'nvim-telescope/telescope-file-browser.nvim', after = 'telescope.nvim' },
-    { 'cljoly/telescope-repo.nvim', after = 'telescope.nvim' },
-    { 'rmagatti/session-lens', after = 'telescope.nvim', module = 'session-lens' },
+    'nvim-lua/popup.nvim',
+    'nvim-lua/plenary.nvim',
   },
   wants = {
     'popup.nvim',
@@ -56,6 +45,45 @@ search.use {
   module = 'telescope',
   setup = true,
   config = true,
+}
+
+search.use {
+  {
+    'tami5/sqlite.lua',
+    after = 'impatient.nvim',
+  },
+  {
+    'nvim-telescope/telescope-frecency.nvim',
+    requires = 'tami5/sqlite.lua',
+    wants = 'sqlite.lua',
+    after = 'telescope.nvim',
+  },
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make',
+    after = 'telescope.nvim',
+  },
+  {
+    'nvim-telescope/telescope-dap.nvim',
+    after = 'telescope.nvim',
+  },
+  {
+    'nvim-telescope/telescope-ui-select.nvim',
+    after = 'telescope.nvim',
+  },
+  {
+    'nvim-telescope/telescope-file-browser.nvim',
+    after = 'telescope.nvim',
+  },
+  {
+    'cljoly/telescope-repo.nvim',
+    after = 'telescope.nvim',
+  },
+  {
+    'rmagatti/session-lens',
+    after = 'telescope.nvim',
+    module = 'session-lens',
+  },
 }
 
 return search

@@ -22,10 +22,21 @@ javascript.lsp_configs = {
   graphql = {
     filetypes = { 'graphql' },
   },
-  emmet_ls = {},
+  emmet_ls = {
+    filetypes = { 'html', 'javascriptreact', 'typescriptreact', 'css', 'sass', 'scss', 'less', 'vue' },
+  },
   html = {},
   cssls = {},
   cssmodules_ls = {},
+  jsonls = {
+    settings = {
+      json = {
+        schemas = require('schemastore').json.schemas(),
+        validate = { enable = true },
+      },
+    },
+  },
+  yamlls = {},
   -- eslint = {},
 }
 
@@ -41,6 +52,8 @@ javascript.formatters = {
   scss = { prettier },
   sass = { prettier },
   graphql = { prettier },
+  json = { prettier },
+  yaml = { prettier },
 }
 
 return javascript

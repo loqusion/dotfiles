@@ -2,14 +2,12 @@
   "config": {
     "prefix": "cfg",
     "body": [
-      "-- https://github.com/$1\n",
-      "local M = {}\n",
-      "function M.setup()",
-      "end\n",
-      "function M.config()",
-      "end\n",
-      "return M"
-    ],
-    "description": "plugin config"
+      "local ok, m = pcall(require, '$1')",
+      "if not ok then",
+      "  return",
+      "end",
+      "",
+      "M.$2 = m"
+    ]
   }
 }

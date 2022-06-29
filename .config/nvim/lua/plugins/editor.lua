@@ -9,50 +9,72 @@ local function set_filetype()
   }
   local ft_group = vim.api.nvim_create_augroup('filetypes', {})
   for pattern, filetype in pairs(filetypes) do
-    vim.api.nvim_create_autocmd(
-      { 'BufNewFile', 'BufRead' },
-      { group = ft_group, pattern = pattern, command = 'setfiletype ' .. filetype, once = true }
-    )
+    vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+      group = ft_group,
+      pattern = pattern,
+      command = 'setfiletype ' .. filetype,
+      once = true,
+    })
   end
 end
 
 editor.pre = function()
-  vim.cmd [[syntax enable]]
-  set_filetype()
-  vim.cmd [[filetype indent on]]
+  -- vim.cmd [[syntax enable]]
+  -- set_filetype()
+  -- vim.cmd [[filetype indent on]]
 end
 
--- arpeggio
-editor.use {
+editor.use { -- arpeggio
   'kana/vim-arpeggio',
-  event = 'InsertEnter',
   ptp = 'viml',
+  event = 'InsertEnter',
+  setup = true,
 }
 
 -- sleuth
 editor.use 'tpope/vim-sleuth'
 
+editor.use 'tpope/vim-abolish'
+
 -- text objects
 editor.use {
-  'kana/vim-textobj-user',
-  'kana/vim-textobj-entire',
   {
-    'glts/vim-textobj-comment',
-    keys = '<Plug>(textobj-comment',
+    'kana/vim-textobj-user',
     ptp = 'viml',
   },
-  'wellle/targets.vim',
+  {
+    'kana/vim-textobj-entire',
+    ptp = 'viml',
+  },
+  {
+    'glts/vim-textobj-comment',
+    ptp = 'viml',
+    keys = '<Plug>(textobj-comment',
+    setup = true,
+  },
+  {
+    'wellle/targets.vim',
+    ptp = 'viml',
+  },
   {
     'chaoren/vim-wordmotion',
-    event = 'VimEnter',
     ptp = 'viml',
+    event = 'VimEnter',
+    setup = true,
   },
 }
 
--- surround
-editor.use {
-  'tpope/vim-surround',
-  'tpope/vim-repeat',
+editor.use { -- Surround
+  {
+    'tpope/vim-surround',
+    ptp = 'viml',
+    event = { 'BufRead', 'BufNewFile' },
+  },
+  {
+    'tpope/vim-repeat',
+    ptp = 'viml',
+    fn = 'repeat#set',
+  },
 }
 
 -- unimpaired
@@ -65,6 +87,7 @@ editor.use {
 editor.use {
   'AndrewRadev/splitjoin.vim',
   ptp = 'viml',
+  setup = true,
 }
 
 editor.use {
@@ -92,15 +115,17 @@ editor.use {
 -- niceblock
 editor.use {
   'kana/vim-niceblock',
-  event = 'VimEnter',
   ptp = 'viml',
+  event = 'VimEnter',
+  setup = true,
 }
 
 -- close buffer with save prompt
 editor.use {
   'mhinz/vim-sayonara',
-  cmd = 'Sayonara',
   ptp = 'viml',
+  cmd = 'Sayonara',
+  setup = true,
 }
 
 -- speedy jk
@@ -131,15 +156,37 @@ editor.use 'bfredl/nvim-luadev'
 
 editor.use {
   'vimwiki/vimwiki',
-  keys = '<Plug>Vimwiki',
-  cmd = 'VimwikiIndex',
   ptp = 'viml',
+  keys = { '<Plug>Vimwiki' },
+  cmd = 'VimwikiIndex',
+  setup = true,
 }
 
 editor.use {
   'dstein64/vim-startuptime',
   cmd = 'StartupTime',
   config = [[vim.g.startuptime_tries = 10]],
+}
+
+editor.use {
+  'ahmedkhalf/project.nvim',
+  config = true,
+}
+
+editor.use { -- Neorg
+  { -- Core
+    -- IMPORTANT: run `CC=$(which clang) nvim -c "TSInstallSync norg"` with clang with C++14 support
+    'nvim-neorg/neorg',
+    requires = 'nvim-lua/plenary.nvim',
+    ft = 'norg',
+    after = { 'nvim-treesitter', 'telescope.nvim' },
+    wants = { 'neorg-telescope' },
+    config = true,
+  },
+  { -- Telescope integration
+    'nvim-neorg/neorg-telescope',
+    after = 'neorg',
+  },
 }
 
 return editor
