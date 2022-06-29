@@ -185,8 +185,17 @@ editor.use { -- Neorg
   },
   { -- Telescope integration
     'nvim-neorg/neorg-telescope',
-    after = 'neorg',
+    after = { 'neorg', 'telescope.nvim' },
   },
+}
+
+editor.use { -- Swap function arguments, list elements, function parameters, and more
+  'mizlan/iswap.nvim',
+  requires = 'nvim-treesitter',
+  after = 'nvim-treesitter',
+  cmd = { 'ISwap', 'ISwapWith' },
+  setup = true,
+  config = true,
 }
 
 return editor
