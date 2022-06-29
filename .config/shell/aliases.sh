@@ -9,6 +9,7 @@ alias viman='nvim ++Man\!'
 alias neovide='NEOVIDE_MULTIGRID=1 neovide'
 alias nvide='neovide'
 alias vw='nvim ++VimwikiIndex'
+alias org='(cd ~ && nvim -c NeorgStart)'
 
 alias lg='lazygit'
 
