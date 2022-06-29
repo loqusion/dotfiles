@@ -40,7 +40,6 @@ ctrl + shift - n :  yabai -m space --create && \
 alt + shift - w : yabai -m space --destroy
 
 # fast focus desktop
-alt - x : yabai -m space --focus recent
 alt - p : yabai -m space --focus prev
 alt - n : yabai -m space --focus next
 alt - 1 : yabai -m space --focus 1
