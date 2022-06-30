@@ -14,7 +14,7 @@ function M.config()
 
   M.notify = m
   M.notify.setup {
-    timeout = 5000,
+    timeout = 2500,
     stages = 'fade_in_slide_out',
     background_colour = '#ffcc66',
     icons = {
