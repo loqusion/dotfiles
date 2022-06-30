@@ -11,5 +11,9 @@ external.use {
   keys = { '<Plug>DashSearch', '<Plug>DashGlobalSearch' },
   setup = true,
 }
+external.use {
+  'andweeb/presence.nvim',
+  config = true,
+}
 
 return external
