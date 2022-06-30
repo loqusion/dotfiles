@@ -5,9 +5,12 @@ search.post = function()
   crows.key.map('Clear search', 'n', '<leader>/', '<cmd>nohlsearch<cr>')
 end
 
-search.use 'romainl/vim-qf'
-search.use 'Olical/vim-enmasse'
-search.use { 'https://gitlab.com/yorickpeterse/nvim-pqf.git', config = true }
+search.use { -- Quickfix
+  { 'https://gitlab.com/yorickpeterse/nvim-pqf.git', config = true },
+  -- 'kevinhwang91/nvim-bqf',
+  'romainl/vim-qf',
+  'Olical/vim-enmasse',
+}
 
 search.use {
   'mhinz/vim-grepper',
