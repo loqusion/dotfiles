@@ -36,4 +36,11 @@ ui.use { -- Stabilize buffer content on window open-close events
   config = true,
 }
 
+ui.use {
+  'petertriho/nvim-scrollbar',
+  -- event = {'BufRead', 'BufNewFile'},
+  -- module = 'scrollbar',
+  config = true,
+}
+
 return ui

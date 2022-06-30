@@ -17,65 +17,73 @@ local function l()
   vim.cmd [[exe 'normal! ' .. (foldclosed(line('.')) != -1 ? (mode() == 'n' ? 'zo0' : 'zogv0') : 'l')]]
 end
 
-key.maps({ -- Unmappings
-  q = { '<Nop>', 'which_key_ignore', mode = { 'n', 'x' } },
-  ZZ = { '<Nop>', 'which_key_ignore' },
-  ['<MiddleMouse>'] = { '<Nop>', 'which_key_ignore', mode = { 'n', 'x', 'o', 'i', 'l', 'c', 't' } },
-}, {}, false)
-key.maps({ -- Normal mode
-  ['>'] = { '>>', 'Indent current line' },
-  ['<'] = { '<<', 'Dedent current line' },
-  ['*'] = { '*N', 'Highlight matches' },
-  -- ['#'] = {  '#N' , 'Highlight matches',},
-  ['g*'] = { 'g*N', 'Highlight matches' },
-  ['g#'] = { 'g#N', 'Highlight matches' },
-  x = { '"_x', 'Delete character below cursor' },
-  X = { '"_X', 'Delete character before cursor' },
-  l = { l, 'which_key_ignore' },
-  Q = { 'q', 'Start recording macro' },
-  M = { 'm', 'Set mark' },
-  ['<C-c>'] = { '<silent> <C-c>', '' },
-  ['#'] = { '<C-^>', 'Switch to alternate buffer' },
-  gV = { 'v`[o`]', 'Select previously inserted/yanked text' },
-  ['<C-f>'] = { ctrl_f, 'Scroll down one page' },
-  ['<C-b>'] = { ctrl_b, 'Scroll up one page' },
-  ['<C-h>'] = { '<C-w>h', 'Move to left window' },
-  ['<C-j>'] = { '<C-w>j', 'Move to below window' },
-  ['<C-k>'] = { '<C-w>k', 'Move to above window' },
-  ['<C-l>'] = { '<C-w>l', 'Move to right window' },
-  ['<leader>'] = {
-    ['<leader>'] = { '<Cmd>silent update<CR>', 'Write (if modified)' },
-    q = { '<Cmd>qall<CR>', 'Exit Vim' },
-    x = { '<Cmd>xit!<CR>', 'Write (if modified) and close window' },
+local mappings = {
+  unmappings = { -- Unmappings
+    q = { '<Nop>', 'which_key_ignore', mode = { 'n', 'x' } },
+    ZZ = { '<Nop>', 'which_key_ignore' },
+    ['<MiddleMouse>'] = { '<Nop>', 'which_key_ignore', mode = { 'n', 'x', 'o', 'i', 'l', 'c', 't' } },
   },
-}, {}, false)
-key.maps({ -- Visual mode
-  ['>'] = { '>gv', 'Indent selection' },
-  ['<'] = { '<gv', 'Dedent selection' },
-  p = { 'P', 'Put without yank to unnamed register' },
-}, { mode = 'x' }, false)
-key.maps({ -- Insert mode
-  ['<C-w>'] = { '<C-g>u<C-w>', '' },
-  ['<C-u>'] = { '<C-g>u<C-u>', '' },
-  -- ['<C-k>'] = { '<C-o>D', '' },
-  -- These can be done with <M-o> and <M-O>
-  -- ['<C-CR>'] = { '<C-o>o', 'Begin new line below cursor' },
-  -- ['<S-CR>'] = { '<C-o>O', 'Begin new line above cursor' },
-}, { mode = 'i' }, false)
-key.maps({ -- Command mode
-  ['<C-b>'] = { '<Left>', '' },
-  ['<C-f>'] = { '<Right>', '' },
-  ['<M-b>'] = { '<S-Left>', '' },
-  ['<M-f>'] = { '<S-Right>', '' },
-  ['<C-a>'] = { '<Home>', '' },
-  ['<C-e>'] = { '<End>', '' },
-  ['<C-p>'] = { '<Up>', '' },
-  ['<C-n>'] = { '<Down>', '' },
-  ['<C-y>'] = { '<C-r>*', '' },
-  ['<C-g>'] = { '<C-c>', '' },
-  ['<C-d>'] = { '<Del>', '' },
-  ['<C-k>'] = { c_ctrl_k, '' },
-}, { mode = 'c' }, false)
+  normal = { -- Normal mode
+    ['>'] = { '>>', 'Indent current line' },
+    ['<'] = { '<<', 'Dedent current line' },
+    -- ['*'] = { '*N', 'Highlight matches' },
+    -- ['#'] = { '#N', 'Highlight matches' },
+    ['#'] = { '<C-^>', 'Switch to alternate buffer' },
+    -- ['g*'] = { 'g*N', 'Highlight matches' },
+    -- ['g#'] = { 'g#N', 'Highlight matches' },
+    x = { '"_x', 'Delete character below cursor' },
+    X = { '"_X', 'Delete character before cursor' },
+    l = { l, 'which_key_ignore' },
+    Q = { 'q', 'Start recording macro' },
+    M = { 'm', 'Set mark' },
+    ['<C-c>'] = { '<silent> <C-c>', '' },
+    gV = { 'v`[o`]', 'Select previously inserted/yanked text' },
+    ['<C-f>'] = { ctrl_f, 'Scroll down one page' },
+    ['<C-b>'] = { ctrl_b, 'Scroll up one page' },
+    ['<C-h>'] = { '<C-w>h', 'Move to left window' },
+    ['<C-j>'] = { '<C-w>j', 'Move to below window' },
+    ['<C-k>'] = { '<C-w>k', 'Move to above window' },
+    ['<C-l>'] = { '<C-w>l', 'Move to right window' },
+    ['<leader>'] = {
+      ['<leader>'] = { '<Cmd>silent update<CR>', 'Write (if modified)' },
+      q = { '<Cmd>qall<CR>', 'Exit Vim' },
+      x = { '<Cmd>xit!<CR>', 'Write (if modified) and close window' },
+    },
+  },
+  visual = { -- Visual mode
+    ['>'] = { '>gv', 'Indent selection' },
+    ['<'] = { '<gv', 'Dedent selection' },
+    p = { 'P', 'Put without yank to unnamed register' },
+  },
+  insert = { -- Insert mode
+    ['<C-w>'] = { '<C-g>u<C-w>', '' },
+    ['<C-u>'] = { '<C-g>u<C-u>', '' },
+    -- ['<C-k>'] = { '<C-o>D', '' },
+    -- These can be done with <M-o> and <M-O>
+    -- ['<C-CR>'] = { '<C-o>o', 'Begin new line below cursor' },
+    -- ['<S-CR>'] = { '<C-o>O', 'Begin new line above cursor' },
+  },
+  command = { -- Command mode
+    ['<C-b>'] = { '<Left>', '' },
+    ['<C-f>'] = { '<Right>', '' },
+    ['<M-b>'] = { '<S-Left>', '' },
+    ['<M-f>'] = { '<S-Right>', '' },
+    ['<C-a>'] = { '<Home>', '' },
+    ['<C-e>'] = { '<End>', '' },
+    ['<C-p>'] = { '<Up>', '' },
+    ['<C-n>'] = { '<Down>', '' },
+    ['<C-y>'] = { '<C-r>*', '' },
+    ['<C-g>'] = { '<C-c>', '' },
+    ['<C-d>'] = { '<Del>', '' },
+    ['<C-k>'] = { c_ctrl_k, '' },
+  },
+}
+
+key.maps(mappings.unmappings, {}, false)
+key.maps(mappings.normal, {}, false)
+key.maps(mappings.visual, { mode = 'x' }, false)
+key.maps(mappings.insert, { mode = 'i', false })
+key.maps(mappings.command, { mode = 'c' }, false)
 
 ---@return string
 local function canonical_name(name)
@@ -113,3 +121,5 @@ local function goto_plugin_config()
 end
 
 key.map('Go to plugin config', 'n', 'gpc', goto_plugin_config)
+
+return mappings

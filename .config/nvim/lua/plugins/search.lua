@@ -5,28 +5,6 @@ search.post = function()
   crows.key.map('Clear search', 'n', '<leader>/', '<cmd>nohlsearch<cr>')
 end
 
-search.use { -- Quickfix
-  { 'https://gitlab.com/yorickpeterse/nvim-pqf.git', config = true },
-  -- 'kevinhwang91/nvim-bqf',
-  'romainl/vim-qf',
-  'Olical/vim-enmasse',
-}
-
-search.use {
-  'mhinz/vim-grepper',
-  disable = true,
-  cmd = 'Grepper',
-  keys = '<plug>(GrepperOperator)',
-  setup = function()
-    vim.cmd [[
-      let g:grepper = {}
-      let g:grepper.searchreg = 1
-      let g:grepper.prompt_text = '$c '
-    ]]
-    vim.cmd [[command! Todo Grepper -noprompt -tool git -query -E '(TODO|FIXME|BUG|XXX):']]
-  end,
-}
-
 -- telescope
 search.use {
   'nvim-telescope/telescope.nvim',
@@ -86,6 +64,43 @@ search.use {
     'rmagatti/session-lens',
     after = 'telescope.nvim',
     module = 'session-lens',
+  },
+}
+
+search.use { -- Quickfix
+  { 'https://gitlab.com/yorickpeterse/nvim-pqf.git', config = true },
+  -- 'kevinhwang91/nvim-bqf',
+  'romainl/vim-qf',
+  'Olical/vim-enmasse',
+}
+
+search.use {
+  'mhinz/vim-grepper',
+  disable = true,
+  cmd = 'Grepper',
+  keys = '<plug>(GrepperOperator)',
+  setup = function()
+    vim.cmd [[
+      let g:grepper = {}
+      let g:grepper.searchreg = 1
+      let g:grepper.prompt_text = '$c '
+    ]]
+    vim.cmd [[command! Todo Grepper -noprompt -tool git -query -E '(TODO|FIXME|BUG|XXX):']]
+  end,
+}
+
+search.use { -- *, #, n, N, etc
+  {
+    'kevinhwang91/nvim-hlslens',
+    module = 'hlslens',
+    setup = true,
+    config = true,
+  },
+  {
+    'haya14busa/vim-asterisk',
+    ptp = 'viml',
+    event = { 'BufRead', 'BufNewFile' },
+    setup = true,
   },
 }
 
