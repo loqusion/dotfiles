@@ -17,7 +17,7 @@ function M.config()
   end
 
   M.iswap = m
-  M.iswap.setup {}
+  M.iswap.setup()
 end
 
 function M.register_global_keys()

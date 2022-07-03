@@ -13,6 +13,7 @@ function M.config()
 end
 
 function M.register_global_keys()
+
   require('crows').key.maps {
     ['<Leader>l'] = {
       r = { '<cmd>RestoreSession<cr>', 'Restore session' },

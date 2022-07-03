@@ -31,7 +31,7 @@ function M.register_global_keys()
 
   key.maps({
     ['<Space>'] = {
-      s = {
+      i = {
         name = 'IronRepl',
         l = { lazy.fn('iron.core', 'send_line'), 'Send line' },
         ['.'] = { lazy.fn('iron.core', 'repeat_cmd'), 'Repeat command' },

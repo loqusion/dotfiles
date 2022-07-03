@@ -14,7 +14,7 @@ function M.entrance()
 end
 
 function M.register_global_keys()
-  vim.keymap.set('n', '<leader>ww', '<Plug>VimwikiIndex')
+  vim.keymap.set('n', '<leader>ww', '<plug>VimwikiIndex')
 end
 
 return M

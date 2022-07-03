@@ -49,7 +49,7 @@ languages.use { -- Markdown
   { -- Paste image from clipboard
     'ekickx/clipboard-image.nvim',
     ft = { 'markdown', 'vimwiki' },
-    cmd = 'PasteImg',
+    cmd = 'PasteImg'
   },
 }
 

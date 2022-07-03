@@ -26,11 +26,7 @@ local mappings = {
   normal = { -- Normal mode
     ['>'] = { '>>', 'Indent current line' },
     ['<'] = { '<<', 'Dedent current line' },
-    -- ['*'] = { '*N', 'Highlight matches' },
-    -- ['#'] = { '#N', 'Highlight matches' },
     ['#'] = { '<C-^>', 'Switch to alternate buffer' },
-    -- ['g*'] = { 'g*N', 'Highlight matches' },
-    -- ['g#'] = { 'g#N', 'Highlight matches' },
     x = { '"_x', 'Delete character below cursor' },
     X = { '"_X', 'Delete character before cursor' },
     l = { l, 'which_key_ignore' },
@@ -45,7 +41,8 @@ local mappings = {
     ['<C-k>'] = { '<C-w>k', 'Move to above window' },
     ['<C-l>'] = { '<C-w>l', 'Move to right window' },
     ['<leader>'] = {
-      ['<leader>'] = { '<Cmd>silent update<CR>', 'Write (if modified)' },
+      ['<leader>'] = { '<Cmd>echomsg "Use ,w instead"<CR>', 'Reminder' },
+      w = { '<Cmd>silent update<CR>', 'Write (if modified)' },
       q = { '<Cmd>qall<CR>', 'Exit Vim' },
       x = { '<Cmd>xit!<CR>', 'Write (if modified) and close window' },
     },
@@ -59,9 +56,6 @@ local mappings = {
     ['<C-w>'] = { '<C-g>u<C-w>', '' },
     ['<C-u>'] = { '<C-g>u<C-u>', '' },
     -- ['<C-k>'] = { '<C-o>D', '' },
-    -- These can be done with <M-o> and <M-O>
-    -- ['<C-CR>'] = { '<C-o>o', 'Begin new line below cursor' },
-    -- ['<S-CR>'] = { '<C-o>O', 'Begin new line above cursor' },
   },
   command = { -- Command mode
     ['<C-b>'] = { '<Left>', '' },

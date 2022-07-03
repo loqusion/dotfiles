@@ -23,6 +23,7 @@ function M.register_global_keys()
   require('crows').key.maps {
     gp = {
       name = 'Preview',
+
       d = { lazy.fn('goto-preview', 'goto_preview_definition'), 'Goto preview definition' },
       i = { lazy.fn('goto-preview', 'goto_preview_implementation'), 'Goto preview implementation' },
       r = { lazy.fn('goto-preview', 'goto_preview_references'), 'Goto preview references' },

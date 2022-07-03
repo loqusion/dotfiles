@@ -2,7 +2,9 @@
 
 local M = {}
 
-function M.setup() end
+function M.setup()
+  M.register_global_keys()
+end
 
 function M.config()
   local true_zen = require 'true-zen'
@@ -10,16 +12,17 @@ function M.config()
   true_zen.setup {
     integrations = {
       gitsigns = true,
-      lualine = false,
+      lualine = true,
       twilight = false,
     },
   }
 
   true_zen.after_mode_ataraxis_on = function()
     vim.wo.list = false
+    vim.wo.showbreak = '  '
+    vim.opt.statusline = ' '
+    vim.wo.colorcolumn = ''
   end
-
-  M.register_global_keys()
 end
 
 function M.register_global_keys()

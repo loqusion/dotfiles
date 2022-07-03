@@ -2,8 +2,6 @@
 
 local M = {}
 
-function M.setup() end
-
 function M.config()
   require('Comment').setup {
     pre_hook = function(ctx)

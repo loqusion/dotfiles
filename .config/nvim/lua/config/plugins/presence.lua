@@ -19,7 +19,7 @@ function M.config()
     enable_line_number = true,
     debounce_timeout = 5,
     main_image = 'file',
-    neovim_image_text = '😎',
+    neovim_image_text = 'hi',
   }
 end
 

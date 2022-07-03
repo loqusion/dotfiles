@@ -89,7 +89,7 @@ function M.config()
         goto_next_end = {
           [']M'] = '@function.outer',
           [']iM'] = '@function.inner',
-          ['g)'] = '@parameter.inner',
+          -- ['gnA'] = '@parameter.inner',
           [']C'] = '@call.outer',
           [']iC'] = '@call.inner',
         },
@@ -103,7 +103,7 @@ function M.config()
         goto_previous_end = {
           ['[M'] = '@function.outer',
           ['[iM'] = '@function.inner',
-          ['g('] = '@parameter.inner',
+          -- ['gpA'] = '@parameter.inner',
           ['[C'] = '@call.outer',
           ['[iC'] = '@call.inner',
         },

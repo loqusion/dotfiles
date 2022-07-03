@@ -4,7 +4,6 @@
 -- https://github.com/nvim-telescope/telescope-dap.nvim
 -- https://github.com/nvim-telescope/telescope-ui-select.nvim
 -- https://github.com/nvim-telescope/telescope-file-browser.nvim
--- https://github.com/nvim-telescope/telescope-file-browser.nvim
 -- https://github.com/cljoly/telescope-repo.nvim
 -- https://github.com/rmagatti/session-lens
 
@@ -57,9 +56,11 @@ function M.config()
             ['<C-d>'] = telescope_actions.preview_scrolling_down,
             ['<C-f>'] = file_browser.actions.toggle_browser,
             ['<C-CR>'] = file_browser.actions.change_cwd,
+            ['<C-_>'] = file_browser.actions.goto_parent_dir,
           },
           n = {
             ['<C-CR>'] = file_browser.actions.change_cwd,
+            ['-'] = file_browser.actions.goto_parent_dir,
           },
         },
       },

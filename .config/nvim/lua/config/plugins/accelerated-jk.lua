@@ -6,8 +6,6 @@ function M.setup() end
 
 function M.config()
   M.register_global_keys()
-  -- default man ftplugin maps j and k
-  vim.g.no_man_maps = 1
 end
 
 function M.register_global_keys()

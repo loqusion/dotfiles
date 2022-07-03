@@ -5,7 +5,7 @@
       "local ok, m = pcall(require, '$1')",
       "if not ok then",
       "  vim.notify(",
-      "    string.format('Failed to load config %s: %s', require('utils.api.path').current_filename(true), m),",
+      "    string.format('Failed to load config %s', require('utils.api.path').current_filename(true)),",
       "    vim.log.levels.ERROR",
       "  )",
       "  return",

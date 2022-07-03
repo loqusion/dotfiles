@@ -3,6 +3,7 @@
 local M = {}
 
 function M.setup()
+
   M.register_global_keys()
 end
 

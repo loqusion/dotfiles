@@ -8,10 +8,7 @@ function M.setup()
       '<Plug>DashSearch',
       'Search for the word under the cursor in docsets corresponding to the current keyword setup',
     },
-    gK = {
-      '<Plug>DashGlobalSearch',
-      'Search for the word under the cursor in all docsets',
-    },
+    gK = { '<Plug>DashGlobalSearch', 'Search for the word under the cursor in all docsets' },
   }
 end
 

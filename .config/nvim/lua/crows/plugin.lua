@@ -125,7 +125,7 @@ local function add_config(spec)
   local name = canonical_name(spec)
   local config_path = get_config_path(name)
   if config_path then
-    if spec.ptp == 'viml' and spec.setup then
+    if spec.ptp == 'viml' then
       spec.setup = string.format('require("%s").entrance()', config_path)
     else
       if spec.setup == true then

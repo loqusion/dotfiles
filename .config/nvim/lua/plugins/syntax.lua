@@ -71,4 +71,10 @@ syntax.use {
 
 syntax.use 'MTDL9/vim-log-highlighting'
 
+syntax.use { -- Better language auto-detection, powered by treesitter
+  'spywhere/detect-language.nvim',
+  after = 'nvim-treesitter',
+  config = true
+}
+
 return syntax

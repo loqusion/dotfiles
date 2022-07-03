@@ -1,1 +1,1 @@
-return require('crows.lazy').fn 'formatter.defaults.prettierd'
+return require('crows.lazy').fn 'formatter.defaults.prettier'

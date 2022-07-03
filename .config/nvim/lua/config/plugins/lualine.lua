@@ -4,6 +4,8 @@ local M = {}
 
 function M.setup() end
 
+-- %{%v:lua.require'lualine'.statusline()%}
+-- %!v:lua.require'lualine'.statusline()
 function M.config()
   require('lualine').setup {
     options = {

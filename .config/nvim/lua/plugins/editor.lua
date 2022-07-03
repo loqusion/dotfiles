@@ -151,16 +151,7 @@ editor.use 'tpope/vim-eunuch'
 -- Vim
 editor.use 'tpope/vim-scriptease'
 editor.use { 'tweekmonster/helpful.vim', cmd = 'HelpfulVersion' }
-editor.use 'folke/lua-dev.nvim'
 editor.use 'bfredl/nvim-luadev'
-
-editor.use {
-  'vimwiki/vimwiki',
-  ptp = 'viml',
-  keys = { '<Plug>Vimwiki' },
-  cmd = 'VimwikiIndex',
-  setup = true,
-}
 
 editor.use {
   'dstein64/vim-startuptime',
@@ -181,6 +172,7 @@ editor.use { -- Neorg
     ft = 'norg',
     after = { 'nvim-treesitter', 'telescope.nvim' },
     wants = { 'neorg-telescope' },
+    setup = true,
     config = true,
   },
   { -- Telescope integration

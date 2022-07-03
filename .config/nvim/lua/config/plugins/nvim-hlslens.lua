@@ -7,6 +7,8 @@ function M.setup()
 end
 
 function M.config()
+  -- M.register_global_keys()
+
   local ok, m = pcall(require, 'hlslens')
   if not ok then
     vim.notify(

@@ -14,40 +14,9 @@ end
 
 lsp.use {
   'jose-elias-alvarez/null-ls.nvim',
-  disable = true,
   requires = 'nvim-lua/plenary.nvim',
-  config = true,
-}
-
-lsp.use {
-  'folke/trouble.nvim',
-  requires = 'kyazdani42/nvim-web-devicons',
-  config = true,
-}
-
-lsp.use {
-  'nvim-lua/lsp-status.nvim',
-  disable = true,
-  config = true,
-}
-
-lsp.use {
-  'folke/lsp-colors.nvim',
-  config = true,
-}
-
-lsp.use {
-  'ray-x/lsp_signature.nvim',
-  config = true,
-}
-
-lsp.use {
-  'kosayoda/nvim-lightbulb',
-  config = true,
-}
-
-lsp.use {
-  'RRethy/vim-illuminate',
+  after = 'nvim-lspconfig',
+  setup = true,
   config = true,
 }
 
@@ -60,16 +29,58 @@ lsp.use {
 }
 
 lsp.use {
+  'folke/lua-dev.nvim',
+  after = 'nvim-lspconfig',
+}
+
+-- lsp configs initialized here
+lsp.use {
+  'williamboman/nvim-lsp-installer',
+  after = { 'nvim-lspconfig', 'cmp-nvim-lsp', 'lua-dev.nvim', 'null-ls.nvim' },
+  config = true,
+}
+
+lsp.use {
+  'nvim-lua/lsp-status.nvim',
+  disable = true,
+  config = true,
+}
+
+lsp.use {
+  'folke/lsp-colors.nvim',
+  after = 'nvim-lsp-installer',
+  config = true,
+}
+
+lsp.use {
+  'ray-x/lsp_signature.nvim',
+  after = 'nvim-lsp-installer',
+  config = true,
+}
+
+lsp.use {
+  'kosayoda/nvim-lightbulb',
+  after = 'nvim-lsp-installer',
+  config = true,
+}
+
+lsp.use {
+  'RRethy/vim-illuminate',
+  after = 'nvim-lsp-installer',
+  config = true,
+}
+
+lsp.use {
   'j-hui/fidget.nvim',
-  event = 'BufReadPre',
+  after = 'nvim-lsp-installer',
   config = true,
 }
 
 lsp.use 'b0o/SchemaStore.nvim'
 
--- lsp configs initialized here
 lsp.use {
-  'williamboman/nvim-lsp-installer',
+  'folke/trouble.nvim',
+  requires = 'kyazdani42/nvim-web-devicons',
   config = true,
 }
 

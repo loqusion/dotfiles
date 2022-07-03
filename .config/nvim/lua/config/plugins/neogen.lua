@@ -21,6 +21,12 @@ function M.register_global_keys()
         'Generate class annotations',
       },
     },
+    -- ['<C-e>'] = {
+    --   function()
+    --     require('neogen').jump_next()
+    --   end,
+    --   { 'Jump next neogen annotation', mode = 'i' },
+    -- },
   }
 end
 

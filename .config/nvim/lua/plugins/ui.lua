@@ -7,6 +7,8 @@ ui.use {
 
 ui.use {
   'Pocco81/TrueZen.nvim',
+  cmd = { 'TZAtaraxis', 'TZFocus', 'TZMinimalist' },
+  setup = true,
   config = true,
 }
 

@@ -13,6 +13,7 @@ external.use {
 }
 external.use {
   'andweeb/presence.nvim',
+  event = 'ColorScheme',
   config = true,
 }
 

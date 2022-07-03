@@ -1,3 +1,5 @@
+local options = require 'core.options'
+
 ---@type Feature
 local theme = {}
 
@@ -66,7 +68,7 @@ local themes = {
       vim.cmd [[packadd gruvbox-material]]
       vim.opt.background = 'dark'
       vim.g.gruvbox_material_enable_italic = 1
-      vim.g.gruvbox_material_transparent_background = vim.g.use_transparency
+      vim.g.gruvbox_material_transparent_background = options.use_transparency
       vim.cmd [[colorscheme gruvbox-material]]
     end,
   },

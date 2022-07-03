@@ -9,8 +9,8 @@ end
 
 function M.register_global_keys()
   require('crows').key.maps({
-    ['a/'] = { '<Plug>(textobj-comment-a)', 'a comment' },
-    ['i/'] = { '<Plug>(textobj-comment-i)', 'in comment' },
+    ['ac'] = { '<Plug>(textobj-comment-a)', 'a comment' },
+    ['ic'] = { '<Plug>(textobj-comment-i)', 'in comment' },
   }, { mode = 'o' })
 end
 

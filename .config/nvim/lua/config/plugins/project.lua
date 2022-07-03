@@ -6,7 +6,6 @@ function M.setup() end
 
 function M.config()
   require('project_nvim').setup()
-  M.load_telescope_extension()
 end
 
 function M.load_telescope_extension()

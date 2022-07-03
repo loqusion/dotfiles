@@ -36,24 +36,8 @@ javascript.lsp_configs = {
       },
     },
   },
-  yamlls = {},
+  yamlls = {}
   -- eslint = {},
-}
-
-local prettier = require 'config.formatters.prettier'
-javascript.formatters = {
-  javascript = { prettier },
-  typescript = { prettier },
-  javascriptreact = { prettier },
-  typescriptreact = { prettier },
-  vue = { prettier },
-  html = { prettier },
-  css = { prettier },
-  scss = { prettier },
-  sass = { prettier },
-  graphql = { prettier },
-  json = { prettier },
-  yaml = { prettier },
 }
 
 return javascript

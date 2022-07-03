@@ -6,7 +6,7 @@ local utils = {}
 ---@field post? function config depend on plugin
 
 ---@class FeatureWithUse : Feature
----@field use fun(plugins: PluginSpec): nil syntactic sugar for `feat.plugins[#feat.plugins+1] = <plugin_spec>`
+---@field use function(plugins:PluginSpec)->nil syntactic sugar for `feat.plugins[#feat.plugins+1] = <plugin_spec>`
 
 ---specs consisting of a table of exactly 1 table must be flattened
 ---@param spec PluginSpec

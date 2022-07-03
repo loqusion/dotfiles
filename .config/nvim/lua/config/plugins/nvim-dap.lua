@@ -76,10 +76,6 @@ function M.register_global_keys()
           'Set conditional breakpoint',
         },
       },
-      rpl = {
-        '<Cmd>lua require("dap").repl.toggle()<CR>',
-        'Toggle dap repl',
-      },
     },
   }
 end

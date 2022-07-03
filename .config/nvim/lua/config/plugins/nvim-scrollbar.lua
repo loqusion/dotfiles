@@ -20,6 +20,7 @@ function M.config()
       search = true,
     },
   }
+  -- require('scrollbar.handlers.search').setup()
 end
 
 return M

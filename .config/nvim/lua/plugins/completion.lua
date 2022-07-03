@@ -26,7 +26,8 @@ completion.use { -- Completion Engine
   config = true,
 }
 
-completion.use { -- Completion engine sources
+-- Completion engine sources
+completion.use {
   { -- LuaSnip
     'saadparwaiz1/cmp_luasnip',
     after = 'nvim-cmp',

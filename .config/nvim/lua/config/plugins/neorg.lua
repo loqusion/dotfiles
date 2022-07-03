@@ -24,6 +24,7 @@ function M.config()
           workspaces = {
             main = '~/notes',
             gtd = '~/notes/gtd',
+            example_gtd = '~/repos/gtd/gtd',
           },
           default_workspace = 'main',
         },
@@ -51,6 +52,14 @@ function M.config()
       ['core.integrations.nvim-cmp'] = {},
       ['core.integrations.telescope'] = {},
       ['core.integrations.treesitter'] = {},
+    },
+  }
+end
+
+function M.register_global_keys()
+  require('crows').key.maps {
+    ['<Leader>o'] = {
+      s = { '<Cmd>NeorgStart<CR>', 'Start Neorg' },
     },
   }
 end
