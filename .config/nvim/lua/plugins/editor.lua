@@ -170,6 +170,7 @@ editor.use { -- Neorg
     'nvim-neorg/neorg',
     requires = 'nvim-lua/plenary.nvim',
     ft = 'norg',
+    cmd = 'NeorgStart',
     after = { 'nvim-treesitter', 'telescope.nvim' },
     wants = { 'neorg-telescope' },
     setup = true,
