@@ -41,21 +41,21 @@ local lsp = {
     hover = { 'gh', { vim.lsp.buf.hover, 'Display hover information' } },
     goto_impl = { 'gI', { vim.lsp.buf.implementation, 'Goto implementation' } },
     sign_help = { '<C-k>', { vim.lsp.buf.signature_help, 'Display signature information', mode = 'i' } },
-    add_folder = { '<leader>wa', { vim.lsp.buf.add_workspace_folder, 'Add workspace folder' } },
-    del_folder = { '<leader>wr', { vim.lsp.buf.remove_workspace_folder, 'Remove workspace folder' } },
-    list_folders = {
-      '<leader>wl',
-      {
-        function()
-          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end,
-        'List workspace folder',
-      },
-    },
+    -- add_folder = { '<leader>wa', { vim.lsp.buf.add_workspace_folder, 'Add workspace folder' } },
+    -- del_folder = { '<leader>wr', { vim.lsp.buf.remove_workspace_folder, 'Remove workspace folder' } },
+    -- list_folders = {
+    --   '<leader>wl',
+    --   {
+    --     function()
+    --       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    --     end,
+    --     'List workspace folder',
+    --   },
+    -- },
     type_def = { '<leader>d', { vim.lsp.buf.type_definition, 'Goto type definition' } },
     -- TODO: Rebind rename and code_action
-    -- rename = { '<leader>rn', { vim.lsp.buf.rename, 'Rename symbol' } },
-    -- code_action = { '<leader>ca', { vim.lsp.buf.code_action, 'Code action' } },
+    rename = { '<F2>', { vim.lsp.buf.rename, 'Rename symbol' } },
+    code_action = { '<leader><leader>', { vim.lsp.buf.code_action, 'Code action' } },
     list_ref = { 'gr', { '<cmd>TroubleToggle lsp_references<cr>', 'List references' } },
   },
   on_attaches = {},

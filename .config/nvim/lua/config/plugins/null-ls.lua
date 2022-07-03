@@ -30,9 +30,9 @@ function M.config()
       -- diagnostics.shellcheck,
       -- diagnostics.teal,
       -- diagnostics.vint,
-      actions.gitsigns,
+      -- actions.gitsigns,
       -- actions.refactoring.with { filetypes = { 'javascript', 'typescript', 'lua', 'python' } },
-      actions.eslint,
+      -- actions.eslint,
     },
   }
 end
