@@ -16,5 +16,5 @@ escaped_home=$(echo "$HOME" | sed 's/\//\\\//g')
   ${cmd} list -g --depth=0 --parseable |
   sed -E '1d' |
   sed -E "s/${escaped_home}\/\.nvm\/versions\/node\/.*\/lib\/node_modules\///" |
-  sed -E '/\<corepack$/d'
+  sed -E '/^corepack$/d'
 } >~/.npm-packages
