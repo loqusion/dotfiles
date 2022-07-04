@@ -68,7 +68,7 @@ local themes = {
       vim.cmd [[packadd gruvbox-material]]
       vim.opt.background = 'dark'
       vim.g.gruvbox_material_enable_italic = 1
-      vim.g.gruvbox_material_transparent_background = options.use_transparency
+      vim.g.gruvbox_material_transparent_background = options.transparent_background
       vim.cmd [[colorscheme gruvbox-material]]
     end,
   },
