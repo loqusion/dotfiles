@@ -76,7 +76,13 @@ function M.config()
       },
       repo = {
         list = {
-          search_dirs = '~/repos',
+          fd_opts = {
+            '--exclude',
+            '__archive__',
+            '--exclude',
+            '__reference__',
+          },
+          search_dirs = { '~/repos' },
         },
       },
       ['ui-select'] = {
@@ -122,7 +128,7 @@ function M.register_global_keys()
         p = { lazy.fn(tb, 'live_grep'), 'Grep in files' },
         r = { lazy.fn(tb, 'lsp_references'), 'Search LSP references in workspace' },
         c = { lazy.fn(tb, 'commands'), 'Search commands' },
-        g = { lazy.fn('telescope', 'extensions.repo.cached_list'), 'Search git repos' },
+        g = { lazy.fn('telescope', 'extensions.repo.list'), 'Search git repos' },
         s = { lazy.fn('session-lens', 'search_session'), 'Search Session' },
         ["'"] = { lazy.fn(tb, 'marks'), 'Search marks' },
       },
