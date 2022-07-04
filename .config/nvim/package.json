@@ -10,6 +10,18 @@
         "path": "./snippets/lua.json"
       },
       {
+        "language": "sh",
+        "path": "./snippets/sh.json"
+      },
+      {
+        "language": "bash",
+        "path": "./snippets/sh.json"
+      },
+      {
+        "language": "zsh",
+        "path": "./snippets/sh.json"
+      },
+      {
         "language": "norg",
         "path": "./snippets/norg.json"
       }
