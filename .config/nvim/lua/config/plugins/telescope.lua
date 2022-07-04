@@ -56,7 +56,6 @@ function M.config()
             ['<C-d>'] = telescope_actions.preview_scrolling_down,
             ['<C-f>'] = file_browser.actions.toggle_browser,
             ['<C-CR>'] = file_browser.actions.change_cwd,
-            ['<C-_>'] = file_browser.actions.goto_parent_dir,
           },
           n = {
             ['<C-CR>'] = file_browser.actions.change_cwd,
@@ -74,6 +73,11 @@ function M.config()
         override_generic_sorter = true,
         override_file_sorter = true,
         case_mode = 'smart_case',
+      },
+      repo = {
+        list = {
+          search_dirs = '~/repos',
+        },
       },
       ['ui-select'] = {
         require('telescope.themes').get_dropdown {},
@@ -118,10 +122,7 @@ function M.register_global_keys()
         p = { lazy.fn(tb, 'live_grep'), 'Grep in files' },
         r = { lazy.fn(tb, 'lsp_references'), 'Search LSP references in workspace' },
         c = { lazy.fn(tb, 'commands'), 'Search commands' },
-        g = {
-          lazy.fn('telescope', 'extensions.repo.cached_list', { search_dirs = { '~/repos' } }),
-          'Search git repos',
-        },
+        g = { lazy.fn('telescope', 'extensions.repo.list'), 'Search git repos' },
         s = { lazy.fn('session-lens', 'search_session'), 'Search Session' },
         ["'"] = { lazy.fn(tb, 'marks'), 'Search marks' },
       },
