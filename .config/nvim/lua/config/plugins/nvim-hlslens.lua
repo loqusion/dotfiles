@@ -7,8 +7,6 @@ function M.setup()
 end
 
 function M.config()
-  -- M.register_global_keys()
-
   local ok, m = pcall(require, 'hlslens')
   if not ok then
     vim.notify(
@@ -39,7 +37,6 @@ function M.register_global_keys()
     ['*'] = {
       [[<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>]],
       'Find matches for keyword under cursor',
-      remap = true,
     },
     -- ['#'] = {
     --   [[<Plug>(asterisk-z#)<Cmd>lua require('hlslens').start()<CR>]],
@@ -49,12 +46,10 @@ function M.register_global_keys()
     ['g*'] = {
       [[<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>]],
       'Find matches for keyword under cursor',
-      remap = true,
     },
     ['g#'] = {
       [[<Plug>(asterisk-gz#)<Cmd>lua require('hlslens').start()<CR>]],
       'Find matches for keyword under cursor',
-      remap = true,
     },
   }, { mode = { 'n', 'x' }, use_whichkey = false })
 end

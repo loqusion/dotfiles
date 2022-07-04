@@ -4,7 +4,6 @@ local M = {}
 
 function M.entrance()
   vim.g['asterisk#keeppos'] = 1
-  M.register_global_mappings()
 end
 
 function M.register_global_mappings()

@@ -93,6 +93,7 @@ function M.config()
   telescope.load_extension 'notify'
   telescope.load_extension 'repo'
   telescope.load_extension 'ui-select'
+  require('config.plugins.project').load_telescope_extension()
 end
 
 function M.register_global_keys()

@@ -1,7 +1,6 @@
 ---@type Feature[]
 local plugins = {
   require 'plugins.basic',
-  require 'plugins.snippets',
   require 'plugins.completion',
   require 'plugins.editor',
   require 'plugins.syntax',

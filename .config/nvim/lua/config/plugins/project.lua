@@ -5,7 +5,17 @@ local M = {}
 function M.setup() end
 
 function M.config()
-  require('project_nvim').setup()
+  local ok, m = pcall(require, 'project_nvim')
+  if not ok then
+    vim.notify(
+      string.format('Failed to load config %s', require('utils.api.path').current_filename(true)),
+      vim.log.levels.ERROR
+    )
+    return
+  end
+
+  M.project_nvim = m
+  M.project_nvim.setup()
 end
 
 function M.load_telescope_extension()

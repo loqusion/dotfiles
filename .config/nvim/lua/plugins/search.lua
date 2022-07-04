@@ -99,7 +99,7 @@ search.use { -- *, #, n, N, etc
   {
     'haya14busa/vim-asterisk',
     ptp = 'viml',
-    keys = { '*', 'g*', 'g#' },
+    event = { 'BufRead', 'BufNewFile' },
     setup = true,
   },
 }
