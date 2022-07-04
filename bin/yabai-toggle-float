@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+yabai -m window --toggle float
+yabai -m window --grid 4:5:1:0:3:4

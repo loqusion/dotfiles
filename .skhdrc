@@ -89,8 +89,7 @@ shift + lctrl + alt - r : \
 shift + alt - f         : yabai -m window --toggle zoom-fullscreen
 
 # float / unfloat window and center on screen
-shift + alt - space : yabai -m window --toggle float;\
-                      yabai -m window --grid 4:5:1:0:3:4
+shift + alt - space : ~/bin/yabai-toggle-float
 
 # move floating window
 # alt + cmd - h : yabai -m window --move rel:-20:0
