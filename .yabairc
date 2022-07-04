@@ -60,6 +60,7 @@ yabai -m config --space mail  layout stack
 yabai -m config --space float layout float
 
 # window rules
+yabai -m rule --add app="^iTerm2$" manage=off grid=23:23:6:6:11:11
 yabai -m rule --add app="^Dash$" space=code manage=off
 yabai -m rule --add app="^Dash$" title!="^(General|Downloads|Docsets|Web Search|Integration|Snippets|License)$" space=code grid=9:5:1:1:3:7 manage=off
 yabai -m rule --add app="^Firefox Developer Edition$" space=code
