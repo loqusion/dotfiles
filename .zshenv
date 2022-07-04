@@ -15,10 +15,8 @@ HOMEBREW_PREFIX='/opt/homebrew'
 export PATH="${HOME}/bin:${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin:${HOME}/.yarn/bin:${PATH}:${HOMEBREW_PREFIX}/opt/ruby/bin:${PATH}:${HOMEBREW_PREFIX}/lib/ruby/gems/3.1.0/bin:${HOME}/.luarocks/bin:${PATH}"
 export NVM_DIR="$HOME/.nvm"
 export XDG_CONFIG_HOME=$HOME/.config
-CC=$(which clang)
-REPOS="${HOME}/repos"
-# cached with gupdatedb in findutils
-LOCATE_PATH="${HOME}/.local/share/locate.database"
+export CC=$(which clang)
+export REPOS="${HOME}/repos"
 
 #---- SVN -----------------#
 export SVN_EDITOR="vim"

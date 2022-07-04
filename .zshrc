@@ -54,16 +54,17 @@ export PTPYTHON_CONFIG_HOME="$HOME/.config/ptpython"
 
 source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases.sh"
 
-# https://egeek.me/2020/04/18/enabling-locate-on-osx/
-if which glocate > /dev/null; then
-  alias locate='glocate -d "${HOME}/.local/share/locate.database"'
-
-  # Using cache_list requires `LOCATE_PATH` environment var to exist in session.
-  # trouble shoot: `echo $LOCATE_PATH` needs to return db path.
-  [[ -f "${HOME}/.local/share/locate.database" ]] && export LOCATE_PATH="${HOME}/.local/share/locate.database"
-fi
-
-alias loaddb="gupdatedb --localpaths="${HOME}/repos" --prunepaths=/Volumes --output="${HOME}"/.local/share/locate.database"
+# This is scuffed
+# # https://egeek.me/2020/04/18/enabling-locate-on-osx/
+# if which glocate > /dev/null; then
+#   alias locate='glocate -d "${HOME}/.local/share/locate.database"'
+#
+#   # Using cache_list requires `LOCATE_PATH` environment var to exist in session.
+#   # trouble shoot: `echo $LOCATE_PATH` needs to return db path.
+#   [[ -f "${HOME}/.local/share/locate.database" ]] && export LOCATE_PATH="${HOME}/.local/share/locate.database"
+# fi
+#
+# alias loaddb='gupdatedb --localpaths="$REPOS" --prunepaths="/Volumes" --output=${HOME}/.local/share/locate.database'
 
 
 ###########
