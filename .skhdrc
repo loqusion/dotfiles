@@ -6,15 +6,6 @@ alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
-# alt - x : yabai -m window --focus recent
-# alt - z : yabai -m window --focus stack.prev
-# alt - c : yabai -m window --focus stack.next
-
-# swap window
-# shift + alt - h : yabai -m window --swap west
-# shift + alt - j : yabai -m window --swap south
-# shift + alt - k : yabai -m window --swap north
-# shift + alt - l : yabai -m window --swap east
 
 # move window
 shift + alt - h : yabai -m window --warp west
