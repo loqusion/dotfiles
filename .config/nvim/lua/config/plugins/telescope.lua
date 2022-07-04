@@ -134,7 +134,6 @@ function M.register_global_keys()
       },
       ['<space>'] = { lazy.fn(tb, 'buffers'), 'Buffers' },
       ['?'] = { lazy.fn(tb, 'oldfiles'), 'Find oldfiles' },
-      f = { lazy.fn('telescope', 'extensions.file_browser.file_browser'), 'File browser' },
     },
   }
 end

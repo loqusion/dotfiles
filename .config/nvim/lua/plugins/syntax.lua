@@ -77,4 +77,11 @@ syntax.use { -- Better language auto-detection, powered by treesitter
   config = true
 }
 
+syntax.use { -- Horizontal highlights for text filetypes (markdown, neorg)
+  'lukas-reineke/headlines.nvim',
+  disable = true,
+  after = 'nvim-treesitter',
+  config = true,
+}
+
 return syntax

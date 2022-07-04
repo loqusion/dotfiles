@@ -10,12 +10,12 @@ local plugins = {
   require 'plugins.run',
   require 'plugins.terminal',
   require 'plugins.ui',
+  require 'plugins.file_browser',
   require 'plugins.search',
   require 'plugins.theme',
   require 'plugins.statusline', -- must load after theme
   require 'plugins.lsp',
   require 'plugins.languages',
-  require 'plugins.format',
 }
 
 require('crows').setup {
