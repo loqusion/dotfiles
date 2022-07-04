@@ -7,6 +7,8 @@ local settings = {
     mapleader = ',',
     maplocalleader = ' ',
     makeleader = 'm',
+    -- Avoid remapping of j and k
+    no_man_maps = 1,
   },
   opt = {
     syntax = 'ON',

@@ -1,7 +1,3 @@
-" Avoid remapping of j and k
-g:no_man_maps = 1
-
-
 setlocal signcolumn=no
 
 augroup MyFiletypeMan
