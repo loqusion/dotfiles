@@ -16,6 +16,9 @@ export PATH="${HOME}/bin:${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin:${HOME}/.
 export NVM_DIR="$HOME/.nvm"
 export XDG_CONFIG_HOME=$HOME/.config
 CC=$(which clang)
+REPOS="${HOME}/repos"
+# cached with gupdatedb in findutils
+LOCATE_PATH="${HOME}/.local/share/locate.database"
 
 #---- SVN -----------------#
 export SVN_EDITOR="vim"
