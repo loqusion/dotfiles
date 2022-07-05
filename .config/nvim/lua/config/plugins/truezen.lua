@@ -28,7 +28,7 @@ end
 function M.register_global_keys()
   local key = require('crows').key
   for _, mode in ipairs { 'n', 'x' } do
-    key.map('True Zen: Ataraxis', mode, '<localleader>z', '<cmd>TZAtaraxis<cr>')
+    key.map('True Zen: Ataraxis', mode, '<localleader>z', '<cmd>silent TZAtaraxis<cr>')
   end
 end
 
