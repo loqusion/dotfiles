@@ -1,5 +1,7 @@
+local nvim_env = require 'utils.api.env'
+
 local function yabai_float(action)
-  if vim.env.NVIM_IS_CHILD_PROCESS ~= 'true' then
+  if not (nvim_env.is_child_session() or nvim_env.is_ssh_session()) then
     vim.cmd([[silent !yabai-float ]] .. action)
   end
 end
