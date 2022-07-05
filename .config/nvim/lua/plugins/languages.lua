@@ -15,19 +15,6 @@ languages.use { -- Go
 }
 
 languages.use { -- Markdown
-  {
-    'preservim/vim-markdown',
-    ft = { 'markdown', 'vimwiki' },
-    config = function()
-      vim.g.vim_markdown_fenced_languages = {
-        'js=javascriptreact',
-        'ts=typescriptreact',
-        'jsx=javascriptreact',
-        'tsx=typescriptreact',
-        'sh=bash',
-      }
-    end,
-  },
   { -- Preview markdown in a floating window
     'ellisonleao/glow.nvim',
     cmd = 'Glow',
@@ -49,7 +36,7 @@ languages.use { -- Markdown
   { -- Paste image from clipboard
     'ekickx/clipboard-image.nvim',
     ft = { 'markdown', 'vimwiki' },
-    cmd = 'PasteImg'
+    cmd = 'PasteImg',
   },
 }
 
