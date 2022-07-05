@@ -4,8 +4,6 @@ local M = {}
 
 function M.setup() end
 
--- %{%v:lua.require'lualine'.statusline()%}
--- %!v:lua.require'lualine'.statusline()
 function M.config()
   require('lualine').setup {
     options = {
@@ -47,14 +45,6 @@ function M.config()
       lualine_x = { 'location' },
       lualine_y = {},
       lualine_z = {},
-    },
-    tabline = {
-      lualine_a = { 'buffers' },
-      lualine_b = {},
-      lualine_c = {},
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = { 'tabs' },
     },
     extensions = {
       'fugitive',
