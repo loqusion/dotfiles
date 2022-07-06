@@ -1,5 +1,6 @@
 . "$HOME/.cargo/env"
 . "$HOME/.nvm/nvm.sh"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 #---- Environment variables ------------#
 export EDITOR=nvim
