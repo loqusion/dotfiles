@@ -191,4 +191,9 @@ editor.use { -- Swap function arguments, list elements, function parameters, and
   config = true,
 }
 
+editor.use {
+  'anuvyklack/hydra.nvim',
+  config = true,
+}
+
 return editor
