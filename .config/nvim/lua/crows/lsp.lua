@@ -52,8 +52,7 @@ local lsp = {
     --     'List workspace folder',
     --   },
     -- },
-    type_def = { '<leader>d', { vim.lsp.buf.type_definition, 'Goto type definition' } },
-    -- TODO: Rebind rename and code_action
+    type_def = { '<leader>D', { vim.lsp.buf.type_definition, 'Goto type definition' } },
     rename = { '<F2>', { vim.lsp.buf.rename, 'Rename symbol' } },
     code_action = { '<leader><leader>', { vim.lsp.buf.code_action, 'Code action' } },
     list_ref = { 'gr', { '<cmd>TroubleToggle lsp_references<cr>', 'List references' } },
