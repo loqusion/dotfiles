@@ -66,7 +66,7 @@ function M.config()
     },
   }
 
-  vim.cmd [[NeorgStart silent=true]]
+  vim.cmd [[if exists(':NeorgStart') == 2 | NeorgStart silent=true | endif]]
 end
 
 function M.register_global_keys()
