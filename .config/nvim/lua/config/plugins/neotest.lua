@@ -15,7 +15,7 @@ function M.config()
   M.neotest.setup {
     adapters = {
       require 'neotest-jest' {
-        jestCommand = 'yarn test --'
+        jestCommand = 'yarn test --',
       },
       require 'neotest-vim-test' {
         ignore_filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },

@@ -48,7 +48,7 @@ run.use { -- Neotest
   },
   { -- Python testing
     'nvim-neotest/neotest-python',
-    after = 'neotest'
+    after = 'neotest',
   },
   { -- Go testing
     'akinsho/neotest-go',

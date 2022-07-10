@@ -65,7 +65,7 @@ local function native_map(mappings, opts, prefix)
       if reg[2] ~= 'which_key_ignore' then
         merged_opts.desc = reg[2]
       end
-      vim.keymap.set(mode, prefix .. key, reg[1], merged_opts )
+      vim.keymap.set(mode, prefix .. key, reg[1], merged_opts)
     else
       native_map(reg, opts, prefix .. key)
     end

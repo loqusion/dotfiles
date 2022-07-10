@@ -10,7 +10,6 @@ end
 function M.config() end
 
 function M.register_global_keys()
-
   require('crows').key.map('Switch', 'n', '_', '<Plug>(Switch)')
 end
 

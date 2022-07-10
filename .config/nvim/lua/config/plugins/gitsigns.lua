@@ -41,7 +41,7 @@ function M.register_buffer_keys(bufnr)
     gs.diffthis '~'
   end
 
-  local opts = {buffer = bufnr}
+  local opts = { buffer = bufnr }
   key.maps({
     [']c'] = { next_hunk, 'Goto next hunk' },
     ['[c'] = { prev_hunk, 'Goto prev hunk' },

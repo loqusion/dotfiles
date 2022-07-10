@@ -36,7 +36,7 @@ javascript.lsp_configs = {
       },
     },
   },
-  yamlls = {}
+  yamlls = {},
   -- eslint = {},
 }
 

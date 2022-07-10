@@ -5,7 +5,6 @@ local M = {}
 function M.setup() end
 
 function M.config()
-
   require('toggleterm').setup {
     direction = 'float',
     border = 'shadow',

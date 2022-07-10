@@ -1,7 +1,7 @@
 local vim = {}
 
 vim.lsp_configs = {
-  vimls = {}
+  vimls = {},
 }
 
 return vim

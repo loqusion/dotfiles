@@ -2,15 +2,14 @@
 
 local M = {}
 
-function M.setup()
-end
+function M.setup() end
 
 function M.config()
-require('fidget').setup {
-      window = {
-        blend = 100,
-      },
-    }
+  require('fidget').setup {
+    window = {
+      blend = 100,
+    },
+  }
 end
 
 return M

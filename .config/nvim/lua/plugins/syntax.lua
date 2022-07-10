@@ -74,7 +74,7 @@ syntax.use 'MTDL9/vim-log-highlighting'
 syntax.use { -- Better language auto-detection, powered by treesitter
   'spywhere/detect-language.nvim',
   after = 'nvim-treesitter',
-  config = true
+  config = true,
 }
 
 syntax.use { -- Horizontal highlights for text filetypes (markdown, neorg)

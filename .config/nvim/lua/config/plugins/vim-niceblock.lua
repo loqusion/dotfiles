@@ -7,7 +7,6 @@ function M.entrance()
 end
 
 function M.register_global_keys()
-
   require('crows').key.maps({
     I = { '<Plug>(niceblock-I)', 'Prepend visual selection' },
     A = { '<Plug>(niceblock-A)', 'Append visual selection' },

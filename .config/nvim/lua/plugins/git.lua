@@ -37,7 +37,7 @@ git.use { -- Open GitHub URLs, omni-complete issues, issue URLs, and collaborato
 }
 git.use { -- Same, but for GitLab
   'shumphrey/fugitive-gitlab.vim',
-  after = 'vim-fugitive'
+  after = 'vim-fugitive',
 }
 
 git.use { -- Visualize and resolve conflicts

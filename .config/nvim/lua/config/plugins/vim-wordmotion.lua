@@ -6,7 +6,7 @@ function M.entrance()
   vim.g.wordmotion_mappings = {
     aw = 'av',
     iw = 'iv',
-    ['<C-R><C-W>'] = ''
+    ['<C-R><C-W>'] = '',
   }
 end
 
