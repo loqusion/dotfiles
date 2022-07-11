@@ -1,6 +1,8 @@
 -- https://github.com/Pocco81/TrueZen.nvim
 
-local M = {}
+local M = {
+  mapleader = '<LocalLeader>z',
+}
 
 function M.setup()
   M.register_global_keys()
@@ -26,10 +28,14 @@ function M.config()
 end
 
 function M.register_global_keys()
-  local key = require('crows').key
-  for _, mode in ipairs { 'n', 'x' } do
-    key.map('True Zen: Ataraxis', mode, '<localleader>z', '<cmd>silent TZAtaraxis<cr>')
-  end
+  require('crows').key.maps {
+    [M.mapleader] = {
+      name = 'TrueZen',
+      z = { '<Cmd>silent TZAtaraxis<CR>', 'TrueZen Ataraxis' },
+      f = { '<Cmd>silent TZFocus<CR>', 'TrueZen Focus' },
+      m = { '<Cmd>silent TZMinimalist', 'TrueZen Minimalist' },
+    },
+  }
 end
 
 return M
