@@ -184,7 +184,7 @@ editor.use { -- Neorg
 editor.use { -- Swap function arguments, list elements, function parameters, and more
   'mizlan/iswap.nvim',
   requires = 'nvim-treesitter',
-  after = 'nvim-treesitter',
+  wants = 'nvim-treesitter',
   cmd = { 'ISwap', 'ISwapWith' },
   setup = true,
   config = true,
