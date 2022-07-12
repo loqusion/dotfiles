@@ -33,7 +33,7 @@ function M.register_global_keys()
       name = 'TrueZen',
       z = { '<Cmd>silent TZAtaraxis<CR>', 'TrueZen Ataraxis' },
       f = { '<Cmd>silent TZFocus<CR>', 'TrueZen Focus' },
-      m = { '<Cmd>silent TZMinimalist', 'TrueZen Minimalist' },
+      m = { '<Cmd>silent TZMinimalist<CR>', 'TrueZen Minimalist' },
     },
   }
 end
