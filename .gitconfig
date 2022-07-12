@@ -1,5 +1,5 @@
 [core]
-	editor = nvim
+	editor = NVIM_DISABLE_YABAI_TOGGLE=true nvim
 [user]
 	name = John Bernard
 	email = 38332081+loqusion@users.noreply.github.com

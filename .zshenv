@@ -9,7 +9,7 @@ export PAGER=less
 export LESS='-RQM'
 export GZIP='-v9N'
 export SHELL=zsh
-export MANPAGER='nvim ++Man\!'
+export MANPAGER='NVIM_DISABLE_YABAI_TOGGLE=true nvim ++Man\!'
 export GOPATH="$HOME/.go"
 export LC_ALL='en_US.UTF-8'
 HOMEBREW_PREFIX='/opt/homebrew'
