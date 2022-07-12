@@ -5,12 +5,11 @@ alias zshrc='$EDITOR "$HOME/.zshrc"'
 alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
 
 # <command> --help | viman
-alias viman='nvim ++Man\!'
+alias viman='NVIM_DISABLE_YABAI_TOGGLE=true nvim ++Man\!'
 alias neovide='NEOVIDE_MULTIGRID=1 neovide'
-alias nvide='neovide'
-alias vw='nvim ++VimwikiIndex'
-alias org='(cd ~ && nvim -c "packadd neorg | Neorg workspace main")'
-alias gtd='(cd ~ && nvim -c "packadd neorg | Neorg workspace gtd")'
+alias nvide='NVIM_DISABLE_YABAI_TOGGLE=true neovide'
+alias org='(cd ~ && NVIM_DISABLE_YABAI_TOGGLE=true nvim -c "packadd neorg | Neorg workspace main")'
+alias gtd='(cd ~ && NVIM_DISABLE_YABAI_TOGGLE=true nvim -c "packadd neorg | Neorg workspace gtd")'
 
 alias lg='lazygit'
 
