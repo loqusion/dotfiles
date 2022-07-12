@@ -80520,7 +80520,7 @@
 			<key>Thin Strokes</key>
 			<integer>3</integer>
 			<key>Transparency</key>
-			<real>0.053856382978723409</real>
+			<real>0.14927692819148936</real>
 			<key>Unicode Normalization</key>
 			<integer>0</integer>
 			<key>Unicode Version</key>
@@ -82102,10 +82102,8 @@
 	<integer>5</integer>
 	<key>TabViewType</key>
 	<integer>0</integer>
-	<key>TerminalMargin</key>
-	<integer>0</integer>
 	<key>TerminalVMargin</key>
-	<integer>0</integer>
+	<integer>4</integer>
 	<key>URLHandlersByGuid</key>
 	<dict/>
 	<key>VisualIndicatorForEsc</key>
