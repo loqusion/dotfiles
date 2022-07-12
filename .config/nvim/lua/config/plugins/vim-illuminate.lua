@@ -18,7 +18,7 @@ function M.register_buffer_keys(bufnr)
       '<Cmd>lua require("illuminate").next_reference({ wrap = true })<CR>',
       'Goto next reference',
     },
-    ['<S-F7>'] = {
+    ['<F19>'] = { -- <S-F7> doesn't work; see https://github.com/neovim/neovim/issues/7384
       '<Cmd>lua require("illuminate").next_reference({ reverse = true, wrap = true })<CR>',
       'Goto previous reference',
     },
