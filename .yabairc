@@ -54,8 +54,6 @@ yabai -m space 5 --label social
 yabai -m space 6 --label float
 
 # specific space settings
-yabai -m space code --toggle padding
-yabai -m space code --toggle gap
 yabai -m config --space mail  layout stack
 yabai -m config --space float layout float
 
