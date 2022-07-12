@@ -8,9 +8,12 @@ function M.config()
   require('crows.lsp').add_on_attach(function(_, bufnr)
     require('lsp_signature').on_attach({
       bind = true,
+      floating_window = false,
       handler_opts = {
-        border = 'none',
+        border = 'rounded',
       },
+      shadow_blend = 69,
+      -- transparency = 10,
       hint_enable = true,
       hint_prefix = 'α ',
       toggle_key = '<C-k>',
