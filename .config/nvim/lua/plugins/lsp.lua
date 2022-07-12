@@ -54,6 +54,7 @@ lsp.use {
 
 lsp.use {
   'ray-x/lsp_signature.nvim',
+  disable = true,
   after = 'nvim-lsp-installer',
   config = true,
 }
@@ -61,13 +62,13 @@ lsp.use {
 lsp.use {
   'kosayoda/nvim-lightbulb',
   after = 'nvim-lsp-installer',
-  config = true,
+  setup = true,
 }
 
 lsp.use {
   'RRethy/vim-illuminate',
   after = 'nvim-lsp-installer',
-  config = true,
+  setup = true,
 }
 
 lsp.use {
