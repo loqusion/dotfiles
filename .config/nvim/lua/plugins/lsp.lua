@@ -54,7 +54,7 @@ lsp.use {
 
 lsp.use {
   'ray-x/lsp_signature.nvim',
-  disable = true,
+  disable = false,
   after = 'nvim-lsp-installer',
   config = true,
 }

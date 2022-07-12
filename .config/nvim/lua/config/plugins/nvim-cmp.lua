@@ -84,7 +84,7 @@ function M.config()
     sources = M.cmp.config.sources({
       { name = 'neorg' },
       { name = 'npm', keyword_length = 4 },
-      { name = 'nvim_lsp_signature_help' },
+      -- { name = 'nvim_lsp_signature_help' },
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
       { name = 'nvim_lua' },

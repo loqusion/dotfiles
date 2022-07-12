@@ -11,6 +11,10 @@ function M.config()
       handler_opts = {
         border = 'none',
       },
+      hint_enable = true,
+      hint_prefix = 'α ',
+      toggle_key = '<C-k>',
+      select_signature_key = '<M-m>',
     }, bufnr)
   end)
 end
