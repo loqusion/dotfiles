@@ -15,7 +15,9 @@ function M.config()
   end
 
   M.project_nvim = m
-  M.project_nvim.setup()
+  M.project_nvim.setup{
+    manual_mode = true, -- otherwise conflicts with auto-session
+  }
 end
 
 function M.load_telescope_extension()
