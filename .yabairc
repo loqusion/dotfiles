@@ -48,9 +48,9 @@ yabai -m config window_gap                   8
 # mission-control desktop labels
 yabai -m space 1 --label code
 yabai -m space 2 --label web
-yabai -m space 3 --label mail
+yabai -m space 3 --label social
 yabai -m space 4 --label media
-yabai -m space 5 --label social
+yabai -m space 5 --label mail
 yabai -m space 6 --label float
 
 # specific space settings
@@ -70,7 +70,7 @@ yabai -m rule --add app="^Spark$" title!="^Spark" space=mail manage=off
 yabai -m rule --add app="^Mail$" space=mail
 yabai -m rule --add app="^Messages$" space=mail
 yabai -m rule --add app="^Spotify$" space=media
-yabai -m rule --add app="^Discord$" space=social grid=1:1:0:0:1:1 manage=off
+yabai -m rule --add app="^Discord$" space=social
 yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Contacts$" manage=off
 yabai -m rule --add app="^Photo Booth$" manage=off
