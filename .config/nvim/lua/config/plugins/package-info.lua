@@ -14,7 +14,7 @@ function M.register_global_keys()
   local lazy = require 'crows.lazy'
   local key = require('crows').key
   key.maps({
-    ['<leader>n'] = {
+    ['<leader>p'] = {
       s = { lazy.fn('package-info', 'show'), 'Show package versions' },
       c = { lazy.fn('package-info', 'hide'), 'Hide package versions' },
       u = { lazy.fn('package-info', 'update'), 'Update package on current line' },
