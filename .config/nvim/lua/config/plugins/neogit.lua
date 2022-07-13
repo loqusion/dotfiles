@@ -1,11 +1,15 @@
 -- https://github.com/TimUntersberger/neogit
 
-local M = {}
+local M = {
+  safe_requires = {
+    'neogit'
+  }
+}
 
 function M.setup() end
 
 function M.config()
-  require('neogit').setup {
+  M.neogit.setup {
     integrations = { diffview = true },
     disable_commit_confirmation = true,
     disable_signs = true,

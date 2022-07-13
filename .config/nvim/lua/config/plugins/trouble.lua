@@ -1,17 +1,21 @@
 -- https://github.com/folke/trouble.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    'trouble',
+  },
+  icons = require('utils.icons').diagnostics,
+}
 
 function M.setup() end
 
 function M.config()
-  local signs = require('utils.icons').diagnostics
-  require('trouble').setup {
+  M.trouble.setup {
     signs = {
-      error = signs.Error,
-      warning = signs.Warn,
-      hint = signs.Hint,
-      information = signs.Info,
+      error = M.icons.Error,
+      warning = M.icons.Warn,
+      hint = M.icons.Hint,
+      information = M.icons.Info,
       other = '﫠',
     },
   }

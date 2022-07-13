@@ -1,11 +1,15 @@
 -- https://github.com/haydenmeade/octo.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    'octo'
+  }
+}
 
 function M.setup() end
 
 function M.config()
-  require('octo').setup()
+  M.octo.setup()
 end
 
 return M

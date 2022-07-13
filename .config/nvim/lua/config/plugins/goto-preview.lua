@@ -1,19 +1,16 @@
 -- https://github.com/rmagatti/goto-preview
 
-local M = {}
+local M = {
+  safe_requires = {
+    { 'goto-preview', 'goto_preview' },
+  },
+}
 
 function M.setup()
   M.register_global_keys()
 end
 
 function M.config()
-  local ok, m = pcall(require, 'goto-preview')
-  if not ok then
-    return
-  end
-
-  M.goto_preview = m
-
   M.goto_preview.setup {}
 end
 

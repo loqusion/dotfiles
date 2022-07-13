@@ -1,6 +1,9 @@
 -- https://github.com/nvim-neorg/neorg
 
 local M = {
+  safe_requires = {
+    'neorg'
+  },
   mapleader = '<Leader>o',
 }
 
@@ -16,12 +19,6 @@ function M.setup()
 end
 
 function M.config()
-  local ok, m = pcall(require, 'neorg')
-  if not ok then
-    return
-  end
-
-  M.neorg = m
   M.neorg.setup {
     load = {
       ['core.defaults'] = {},

@@ -1,13 +1,17 @@
 -- https://github.com/vuki656/package-info.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    {'package-info', 'package_info'}
+  }
+}
 
 function M.setup()
   M.register_global_keys()
 end
 
 function M.config()
-  require('package-info').setup()
+  M.package_info.setup()
 end
 
 function M.register_global_keys()

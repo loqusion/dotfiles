@@ -2,25 +2,17 @@
 
 local settings = require 'core.settings'
 
-local M = {}
+local M = {
+  safe_requires = {
+    'cmp',
+    'luasnip',
+    'lspkind',
+  },
+}
 
 function M.setup() end
 
 function M.config()
-  local ok, m = pcall(require, 'cmp')
-  if not ok then
-    vim.notify(
-      string.format('Failed to load config %s: %s', require('utils.api.path').current_filename(true), m),
-      vim.log.levels.ERROR
-    )
-    return
-  end
-
-  M.cmp = m
-
-  M.luasnip = require 'luasnip'
-  M.lspkind = require 'lspkind'
-
   local function tab(fallback)
     if M.luasnip.expand_or_jumpable() then
       M.luasnip.expand_or_jump()

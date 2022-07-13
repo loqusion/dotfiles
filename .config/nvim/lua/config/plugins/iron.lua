@@ -1,13 +1,17 @@
 -- https://github.com/hkupty/iron.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    { 'iron.core', 'iron_core' },
+  },
+}
 
 function M.setup()
   M.register_global_keys()
 end
 
 function M.config()
-  require('iron.core').setup {
+  M.iron_core.setup {
     config = {
       should_map_plug = false,
       scratch_repl = true,

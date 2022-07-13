@@ -1,11 +1,15 @@
 -- https://github.com/David-Kunz/cmp-npm
 
-local M = {}
+local M = {
+  safe_requires = {
+    {'cmp-npm', 'cmp_npm'}
+  }
+}
 
 function M.setup() end
 
 function M.config()
-  require('cmp-npm').setup()
+  M.cmp_npm.setup()
 end
 
 return M

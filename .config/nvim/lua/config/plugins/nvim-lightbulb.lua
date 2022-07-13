@@ -1,6 +1,8 @@
 -- https://github.com/kosayoda/nvim-lightbulb
 
-local M = {}
+local M = {
+  icons = require('utils.icons').lsp_hover,
+}
 
 function M.setup()
   require('crows.lsp').add_on_attach(function(_, bufnr)
@@ -9,7 +11,7 @@ function M.setup()
       group = group,
       buffer = bufnr,
       callback = function()
-        local action_icon = require('utils.icons').lsp_hover.Action
+        local action_icon = M.icons.Action
         require('nvim-lightbulb').update_lightbulb {
           sign = {
             enabled = true,

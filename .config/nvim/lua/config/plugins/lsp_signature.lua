@@ -1,12 +1,16 @@
 -- https://github.com/ray-x/lsp_signature.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    'lsp_signature',
+  },
+}
 
 function M.setup() end
 
 function M.config()
   require('crows.lsp').add_on_attach(function(_, bufnr)
-    require('lsp_signature').on_attach({
+    M.lsp_signature.on_attach({
       bind = true,
       floating_window = false,
       handler_opts = {

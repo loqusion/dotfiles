@@ -2,9 +2,7 @@
 
 local M = {}
 
-function M.setup() end
-
-function M.config()
+function M.entrance()
   M.register_global_keys()
 end
 

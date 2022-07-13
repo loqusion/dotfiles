@@ -102,6 +102,7 @@ editor.use {
 -- switch
 editor.use {
   'AndrewRadev/switch.vim',
+  ptp = 'viml',
   keys = '<Plug>(Switch)',
   setup = true,
 }
@@ -131,7 +132,9 @@ editor.use {
 -- speedy jk
 editor.use {
   'rhysd/accelerated-jk',
-  config = true,
+  ptp = 'viml',
+  event = { 'BufRead', 'BufNewFile' },
+  setup = true,
 }
 
 -- lightspeed
@@ -143,7 +146,10 @@ editor.use {
 editor.use 'romainl/vim-cool'
 
 -- indent hint
-editor.use { 'lukas-reineke/indent-blankline.nvim', config = true }
+editor.use {
+  'lukas-reineke/indent-blankline.nvim',
+  config = true,
+}
 
 -- unix commands
 editor.use 'tpope/vim-eunuch'

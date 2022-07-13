@@ -1,6 +1,9 @@
 -- https://github.com/Pocco81/TrueZen.nvim
 
 local M = {
+  safe_requires = {
+    {'true-zen', 'true_zen'}
+  },
   mapleader = '<LocalLeader>z',
 }
 
@@ -9,9 +12,7 @@ function M.setup()
 end
 
 function M.config()
-  local true_zen = require 'true-zen'
-
-  true_zen.setup {
+  M.true_zen.setup {
     integrations = {
       gitsigns = true,
       lualine = true,
@@ -19,7 +20,7 @@ function M.config()
     },
   }
 
-  true_zen.after_mode_ataraxis_on = function()
+  M.true_zen.after_mode_ataraxis_on = function()
     vim.wo.list = false
     vim.wo.showbreak = '  '
     vim.opt.statusline = ' '

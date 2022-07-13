@@ -1,9 +1,13 @@
 -- https://github.com/numToStr/Comment.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    'Comment',
+  },
+}
 
 function M.config()
-  require('Comment').setup {
+  M.Comment.setup {
     pre_hook = function(ctx)
       -- Only calculate commentstring for jsx/tsx filetypes
       if vim.bo.filetype == 'javascriptreact' or vim.bo.filetype == 'typescriptreact' then

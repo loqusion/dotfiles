@@ -1,6 +1,10 @@
 -- https://github.com/mfussenegger/nvim-dap
 
-local M = {}
+local M = {
+  safe_requires = {
+    'dap',
+  },
+}
 
 function M.setup()
   M.register_global_keys()
@@ -10,13 +14,11 @@ function M.setup()
 end
 
 function M.config()
-  local dap = require 'dap'
-
-  dap.adapters.nlua = function(callback, config)
+  M.dap.adapters.nlua = function(callback, config)
     callback { type = 'server', host = config.host, port = config.port }
   end
 
-  dap.configurations.lua = {
+  M.dap.configurations.lua = {
     {
       type = 'nlua',
       request = 'attach',
@@ -37,13 +39,13 @@ function M.config()
   }
 
   -- lldb
-  dap.adapters.lldb = {
+  M.dap.adapters.lldb = {
     type = 'executable',
     command = '/usr/bin/lldb-vscode',
     name = 'lldb',
   }
 
-  dap.configurations.cpp = {
+  M.dap.configurations.cpp = {
     {
       name = 'Launch',
       type = 'lldb',
@@ -58,8 +60,8 @@ function M.config()
     },
   }
 
-  dap.configurations.c = dap.configurations.cpp
-  dap.configurations.rust = dap.configurations.cpp
+  M.dap.configurations.c = M.dap.configurations.cpp
+  M.dap.configurations.rust = M.dap.configurations.cpp
 end
 
 function M.register_global_keys()

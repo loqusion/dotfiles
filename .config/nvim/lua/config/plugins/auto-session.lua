@@ -1,11 +1,15 @@
 -- https://github.com/rmagatti/auto-session
 
-local M = {}
+local M = {
+  safe_requires = {
+    {'auto-session', 'auto_session'}
+  }
+}
 
 function M.setup() end
 
 function M.config()
-  require('auto-session').setup {
+  M.auto_session.setup {
     pre_save_cmds = { 'Neotree close' },
     auto_session_suppress_dirs = { '~', '~/repos', '~/notes' },
   }

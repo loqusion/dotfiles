@@ -1,11 +1,15 @@
 -- https://github.com/nvim-lualine/lualine.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    'lualine'
+  }
+}
 
 function M.setup() end
 
 function M.config()
-  require('lualine').setup {
+  M.lualine.setup {
     options = {
       icons_enabled = true,
       theme = require('plugins.theme').lualine,

@@ -1,11 +1,15 @@
 -- https://github.com/lewis6991/gitsigns.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    'gitsigns'
+  }
+}
 
 function M.setup() end
 
 function M.config()
-  require('gitsigns').setup {
+  M.gitsigns.setup {
     on_attach = function(bufnr)
       M.register_buffer_keys(bufnr)
     end,

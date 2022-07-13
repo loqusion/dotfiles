@@ -1,12 +1,15 @@
 -- https://github.com/nvim-lua/lsp-status.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    { 'lsp-status', 'lsp_status' },
+  },
+}
 
 function M.setup() end
 
 function M.config()
-  local lsp_status = require 'lsp-status'
-  lsp_status.config {
+  M.lsp_status.config {
     indicator_errors = 'E',
     indicator_warnings = 'W',
     indicator_info = 'i',
@@ -24,7 +27,7 @@ function M.config()
     end,
     current_function = false,
   }
-  lsp_status.register_progress()
+  M.lsp_status.register_progress()
   require('crows.lsp').add_on_attach(function(client, _)
     require('lsp_status').on_attach(client)
   end)

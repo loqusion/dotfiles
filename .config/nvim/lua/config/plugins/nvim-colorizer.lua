@@ -1,11 +1,15 @@
 -- https://github.com/norcalli/nvim-colorizer.lua
 
-local M = {}
+local M = {
+  safe_requires = {
+    'colorizer',
+  },
+}
 
 function M.setup() end
 
 function M.config()
-  require('colorizer').setup({
+  M.colorizer.setup({
     '*',
   }, {
     RGB = true,

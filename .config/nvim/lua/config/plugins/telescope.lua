@@ -7,22 +7,25 @@
 -- https://github.com/cljoly/telescope-repo.nvim
 -- https://github.com/rmagatti/session-lens
 
-local M = {}
+local M = {
+  safe_requires = {
+    'telescope',
+    {'telescope.actions', 'telescope_actions'}
+  }
+}
 
 function M.setup()
   M.register_global_keys()
 end
 
 function M.config()
-  local telescope = require 'telescope'
-  local telescope_actions = require 'telescope.actions'
-  local file_browser = telescope.extensions.file_browser
+  local file_browser = M.telescope.extensions.file_browser
 
   local function delete_line_before_cursor()
     vim.cmd [[exe "normal! i\<C-u>"]]
   end
 
-  telescope.setup {
+  M.telescope.setup {
     defaults = {
       layout_strategy = 'flex',
       mappings = {
@@ -34,7 +37,7 @@ function M.config()
           ['<C-e>'] = { '<End>', type = 'command' },
         },
         n = {
-          ['<C-c>'] = telescope_actions.close,
+          ['<C-c>'] = M.telescope_actions.close,
         },
       },
     },
@@ -52,8 +55,8 @@ function M.config()
         sorting_strategy = 'ascending',
         mappings = {
           i = {
-            ['<C-u>'] = telescope_actions.preview_scrolling_up,
-            ['<C-d>'] = telescope_actions.preview_scrolling_down,
+            ['<C-u>'] = M.telescope_actions.preview_scrolling_up,
+            ['<C-d>'] = M.telescope_actions.preview_scrolling_down,
             ['<C-f>'] = file_browser.actions.toggle_browser,
             ['<C-CR>'] = file_browser.actions.change_cwd,
           },
@@ -96,13 +99,13 @@ function M.config()
     previewer = true,
   }
 
-  telescope.load_extension 'dap'
-  telescope.load_extension 'file_browser'
-  telescope.load_extension 'frecency'
-  telescope.load_extension 'fzf'
-  telescope.load_extension 'notify'
-  telescope.load_extension 'repo'
-  telescope.load_extension 'ui-select'
+  M.telescope.load_extension 'dap'
+  M.telescope.load_extension 'file_browser'
+  M.telescope.load_extension 'frecency'
+  M.telescope.load_extension 'fzf'
+  M.telescope.load_extension 'notify'
+  M.telescope.load_extension 'repo'
+  M.telescope.load_extension 'ui-select'
   require('config.plugins.project').load_telescope_extension()
 end
 

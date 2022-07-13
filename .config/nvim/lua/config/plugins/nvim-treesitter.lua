@@ -7,14 +7,18 @@
 -- https://github.com/nvim-treesitter/playground
 -- https://github.com/nvim-treesitter/nvim-treesitter-context
 
-local M = {}
+local M = {
+  safe_requires = {
+    {'nvim-treesitter.configs', 'treesitter_configs'}
+  }
+}
 
 function M.setup()
   M.register_global_keys()
 end
 
 function M.config()
-  require('nvim-treesitter.configs').setup {
+  M.treesitter_configs.setup {
     ensure_installed = 'all',
     ignore_install = { 'php', 'phpdoc' },
     additional_vim_regex_highlighting = false,

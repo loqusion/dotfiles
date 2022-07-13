@@ -1,16 +1,14 @@
 -- https://github.com/lewis6991/spellsitter.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    'spellsitter'
+  }
+}
 
 function M.setup() end
 
 function M.config()
-  local ok, m = pcall(require, 'spellsitter')
-  if not ok then
-    return
-  end
-
-  M.spellsitter = m
   M.spellsitter.setup()
 end
 

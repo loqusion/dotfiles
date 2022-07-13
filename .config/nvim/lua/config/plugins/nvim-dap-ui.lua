@@ -1,11 +1,15 @@
 -- https://github.com/rcarriga/nvim-dap-ui
 
-local M = {}
+local M = {
+  safe_requires = {
+    'dapui'
+  }
+}
 
 function M.setup() end
 
 function M.config()
-  require('dapui').setup()
+  M.dapui.setup()
 end
 
 return M

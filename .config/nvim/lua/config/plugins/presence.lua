@@ -1,20 +1,14 @@
 -- https://github.com/andweeb/presence.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    'presence'
+  }
+}
 
 function M.setup() end
 
 function M.config()
-  local ok, m = pcall(require, 'presence')
-  if not ok then
-    vim.notify(
-      string.format('Failed to load config %s: %s', require('utils.api.path').current_filename(true), m),
-      vim.log.levels.ERROR
-    )
-    return
-  end
-
-  M.presence = m
   M.presence:setup {
     enable_line_number = true,
     debounce_timeout = 5,

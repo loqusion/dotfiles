@@ -1,12 +1,16 @@
 -- https://github.com/williamboman/nvim-lsp-installer
 
-local M = {}
+local M = {
+  safe_requires = {
+    {'nvim-lsp-installer', 'lsp_installer'}
+  }
+}
 
 function M.setup() end
 
 function M.config()
   -- required before lspconfig setup
-  require('nvim-lsp-installer').setup { automatic_installation = true }
+  M.lsp_installer.setup { automatic_installation = true }
 
   local lsp = require 'crows.lsp'
   local languages = require 'config.languages'

@@ -1,12 +1,16 @@
 -- https://gitlab.com/yorickpeterse/nvim-pqf.git
 
-local M = {}
+local M = {
+  safe_requires = {
+    'pqf'
+  }
+}
 
 function M.setup() end
 
 function M.config()
   local icons = require('utils.icons').diagnostics
-  require('pqf').setup {
+  M.pqf.setup {
     signs = {
       error = icons.Error,
       warning = icons.Warn,

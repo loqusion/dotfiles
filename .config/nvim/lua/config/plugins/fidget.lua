@@ -1,11 +1,15 @@
 -- https://github.com/j-hui/fidget.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    'fidget',
+  },
+}
 
 function M.setup() end
 
 function M.config()
-  require('fidget').setup {
+  M.fidget.setup {
     window = {
       blend = 100,
     },

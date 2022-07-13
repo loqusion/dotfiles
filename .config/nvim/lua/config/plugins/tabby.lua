@@ -1,22 +1,16 @@
 -- https://github.com/nanozuki/tabby.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    'tabby',
+  },
+}
 
 function M.setup() end
 
 function M.config()
   M.register_global_keys()
 
-  local ok, m = pcall(require, 'tabby')
-  if not ok then
-    vim.notify(
-      string.format('Failed to load config %s', require('utils.api.path').current_filename(true)),
-      vim.log.levels.ERROR
-    )
-    return
-  end
-
-  M.tabby = m
   M.tabby.setup()
 end
 

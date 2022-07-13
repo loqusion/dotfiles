@@ -132,7 +132,15 @@ local function add_config(spec)
         spec.setup = string.format("require('%s').setup()", config_path)
       end
       if spec.config == true then
-        spec.config = string.format("require('%s').config()", config_path)
+        spec.config = string.format(
+          [[
+            if require('utils.api').safe_load(require('%s')) then
+              require('%s').config()
+            end
+          ]],
+          config_path,
+          config_path
+        )
       end
     end
   end

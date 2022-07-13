@@ -1,21 +1,14 @@
 -- https://github.com/anuvyklack/hydra.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    'hydra'
+  }
+}
 
 function M.setup() end
 
 function M.config()
-  local ok, m = pcall(require, 'hydra')
-  if not ok then
-    vim.notify(
-      string.format('Failed to load config %s', require('utils.api.path').current_filename(true)),
-      vim.log.levels.ERROR
-    )
-    return
-  end
-
-  M.hydra = m
-
   M.spawn_hydra_side_scroll()
   M.spawn_hydra_window_resize()
 end

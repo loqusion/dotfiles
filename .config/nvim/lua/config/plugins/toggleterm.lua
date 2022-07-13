@@ -1,18 +1,23 @@
 -- https://github.com/akinsho/toggleterm.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    'toggleterm',
+    { 'toggleterm.terminal', 'terminal' },
+  },
+}
 
 function M.setup() end
 
 function M.config()
-  require('toggleterm').setup {
+  M.toggleterm.setup {
     direction = 'float',
     border = 'shadow',
     shell = vim.fn.getenv 'SHELL',
     open_mapping = [[<c-\>]],
   }
 
-  local Terminal = require('toggleterm.terminal').Terminal
+  local Terminal = M.terminal.Terminal
   local lazygit = Terminal:new {
     cmd = 'lazygit',
     hidden = true,

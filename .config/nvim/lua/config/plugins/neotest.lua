@@ -1,20 +1,17 @@
 ---@diagnostic disable: missing-parameter
 -- https://github.com/nvim-neotest/neotest
 
-local M = {}
+local M = {
+  safe_requires = {
+    'neotest'
+  }
+}
 
 function M.setup()
   M.register_global_keys()
 end
 
 function M.config()
-  local ok, m = pcall(require, 'neotest')
-  if not ok then
-    return
-  end
-
-  M.neotest = m
-
   M.neotest.setup {
     icons = {
       running = '↻',

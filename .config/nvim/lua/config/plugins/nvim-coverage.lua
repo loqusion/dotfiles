@@ -1,11 +1,17 @@
 -- https://github.com/andythigpen/nvim-coverage
 
-local M = {}
+local M = {
+  safe_requires = {
+    'coverage',
+  },
+}
 
 function M.setup() end
 
 function M.config()
-  require('config.test').coverage()
+  M.coverage.setup {
+    commands = true,
+  }
 end
 
 return M

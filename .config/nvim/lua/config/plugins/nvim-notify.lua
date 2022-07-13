@@ -1,26 +1,23 @@
 -- https://github.com/rcarriga/nvim-notify
 
-local M = {}
+local M = {
+  safe_requires = {
+    'notify',
+  },
+  icons = require('utils.icons').diagnostics
+}
 
 function M.setup() end
 
 function M.config()
-  local ok, m = pcall(require, 'notify')
-  if not ok then
-    return
-  end
-
-  local icons = require('utils.icons').diagnostics
-
-  M.notify = m
   M.notify.setup {
     timeout = 5000,
     stages = 'fade_in_slide_out',
     background_colour = '#ffcc66',
     icons = {
-      ERROR = icons.Error,
-      WARN = icons.Warn,
-      INFO = icons.Info,
+      ERROR = M.icons.Error,
+      WARN = M.icons.Warn,
+      INFO = M.icons.Info,
       DEBUG = '',
       TRACE = '✎',
     },

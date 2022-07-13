@@ -1,22 +1,16 @@
 -- https://github.com/kevinhwang91/nvim-hlslens
 
-local M = {}
+local M = {
+  safe_requires = {
+    'hlslens'
+  }
+}
 
 function M.setup()
   M.register_global_keys()
 end
 
 function M.config()
-  local ok, m = pcall(require, 'hlslens')
-  if not ok then
-    vim.notify(
-      string.format('Failed to load config %s: %s', require('utils.api.path').current_filename(true), m),
-      vim.log.levels.ERROR
-    )
-    return
-  end
-
-  M.hlslens = m
   M.hlslens.setup {
     build_position_cb = function(plist, _, _, _)
       require('scrollbar.handlers.search').handler.show(plist.start_pos)
