@@ -11,3 +11,11 @@ hrsh7th
 nvim
 cmp
 tabnine
+goto
+async
+boolean
+nowait
+boolean
+noremap
+Whichkey
+Opts
