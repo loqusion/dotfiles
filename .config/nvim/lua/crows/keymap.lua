@@ -1,3 +1,5 @@
+local options = require 'core.options'
+
 local keymap = {}
 
 ---@alias MapMode string|table<number, string>
@@ -43,6 +45,9 @@ local function to_native_opts(opts)
   end
 
   local opts_clone = vim.deepcopy(opts)
+  if opts.noremap ~= nil and opts.remap == nil then
+    opts.remap = not opts.noremap
+  end
   opts_clone.noremap = nil
   opts_clone.prefix = nil
   opts_clone.use_whichkey = nil
@@ -54,7 +59,7 @@ local function native_map(mappings, opts, prefix)
   prefix = prefix or ''
   for key, reg in pairs(mappings) do
     if key == 'name' then goto continue end
-    if #reg > 0 then
+    if #reg >= 2 then
       local mode = reg.mode or opts.mode or 'n'
       local merged_opts = to_native_opts(opts)
       for k, opt in pairs(reg) do
@@ -66,7 +71,7 @@ local function native_map(mappings, opts, prefix)
         merged_opts.desc = reg[2]
       end
       vim.keymap.set(mode, prefix .. key, reg[1], merged_opts)
-    else
+    elseif #reg == 0 then
       native_map(reg, opts, prefix .. key)
     end
     ::continue::
@@ -80,8 +85,9 @@ end
 ---@param opts? MapOptsWithoutMode
 function keymap.map(msg, mode, lhs, rhs, opts)
   opts = opts or {}
-  if opts.use_whichkey == false then
+  if options.disable_whichkey or opts.use_whichkey == false then
     opts = to_native_opts(opts)
+    opts.desc = msg
     vim.keymap.set(mode, lhs, rhs, opts)
     return
   end
@@ -100,7 +106,7 @@ end
 ---@param opts? MapOpts
 function keymap.maps(mappings, opts, use_whichkey)
   opts = opts or {}
-  if opts.use_whichkey == false or use_whichkey == false then
+  if options.disable_whichkey  or opts.use_whichkey == false or use_whichkey == false then
     native_map(mappings, opts)
     return
   end

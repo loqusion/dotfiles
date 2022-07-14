@@ -24,6 +24,9 @@ local options = {
   -- • https://github.com/
   -- • https://hub.fastgit.xyz/
   download_source = 'https://github.com/',
+  -- don't use whichkey for mappings
+  -- • boolean
+  disable_whichkey = true,
 }
 
 return options

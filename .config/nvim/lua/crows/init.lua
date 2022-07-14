@@ -28,6 +28,9 @@ local default_plugins = {
   {
     'folke/which-key.nvim',
     config = function()
+      if require('core.options').disable_whichkey then
+        return
+      end
       require('which-key').setup {
         plugins = {
           presets = {

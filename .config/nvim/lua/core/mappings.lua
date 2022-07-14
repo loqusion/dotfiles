@@ -76,7 +76,7 @@ local mappings = {
 key.maps(mappings.unmappings, {}, false)
 key.maps(mappings.normal, {}, false)
 key.maps(mappings.visual, { mode = 'x' }, false)
-key.maps(mappings.insert, { mode = 'i', false })
+key.maps(mappings.insert, { mode = 'i' }, false)
 key.maps(mappings.command, { mode = 'c' }, false)
 
 ---@return string

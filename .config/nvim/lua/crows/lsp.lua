@@ -90,18 +90,21 @@ end
 --- mapping lsp keys
 ---@param bufnr number buffer number
 local function mapping(bufnr)
-  local wk = require 'which-key'
+  -- local wk = require 'which-key'
+  local key = require('crows').key
   local mappings = {}
   for _, mapper in pairs(lsp.keys) do
     mappings[mapper[1]] = mapper[2]
   end
-  wk.register(mappings, { silent = true })
+  -- wk.register(mappings, { silent = true })
+  key.maps(mappings, {silent = true})
 
   local buf_mappings = {}
   for _, mapper in pairs(lsp.buffer_keys) do
     buf_mappings[mapper[1]] = mapper[2]
   end
-  wk.register(buf_mappings, { buffer = bufnr })
+  -- wk.register(buf_mappings, { buffer = bufnr })
+  key.maps(buf_mappings, {buffer = bufnr})
 end
 
 --- on attach function
