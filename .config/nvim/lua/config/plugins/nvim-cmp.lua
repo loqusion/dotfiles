@@ -45,6 +45,7 @@ function M.config()
       { name = 'buffer' },
       { name = 'neorg' },
       { name = 'nvim_lua' },
+      { name = 'cmp_tabnine' },
     }, {
       { name = 'npm', keyword_length = 4 },
     }),
@@ -79,12 +80,12 @@ function M.config()
         c = M.cmp.mapping.close(),
       },
       ['<C-y>'] = M.cmp.mapping(M.cmp.mapping.confirm { select = true }, { 'i', 's', 'c' }),
-      ['<Tab>'] = {
+      ['<Tab>'] = M.cmp.mapping {
         i = M.cmp.mapping(tab),
         s = M.cmp.mapping(tab),
         c = M.cmp.mapping.select_next_item(),
       },
-      ['<S-Tab>'] = {
+      ['<S-Tab>'] = M.cmp.mapping {
         i = M.cmp.mapping(stab),
         s = M.cmp.mapping(stab),
         c = M.cmp.mapping.select_prev_item(),

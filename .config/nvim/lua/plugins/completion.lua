@@ -61,6 +61,10 @@ completion.use {
     'hrsh7th/cmp-nvim-lsp-document-symbol',
     after = 'nvim-cmp',
   },
+  { -- Tabnine
+    'tzachar/cmp-tabnine',
+    run = './install.sh'
+  },
   { -- NPM package names and versions
     'David-Kunz/cmp-npm',
     after = 'nvim-cmp',
