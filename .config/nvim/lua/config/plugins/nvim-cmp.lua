@@ -51,6 +51,7 @@ function M.config()
     }),
     sorting = {
       comparators = {
+        require 'cmp_tabnine.compare',
         M.cmp.config.compare.offset,
         M.cmp.config.compare.exact,
         M.cmp.config.compare.score,
