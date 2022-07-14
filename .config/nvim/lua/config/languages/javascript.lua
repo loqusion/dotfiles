@@ -1,5 +1,5 @@
 local lspconfig_util = require 'lspconfig.util'
-local utils = require 'utils.api'
+local api = require 'utils.api'
 
 local javascript = {}
 
@@ -9,7 +9,7 @@ javascript.lsp_configs = {
       return lspconfig_util.root_pattern 'tsconfig.json'(fname)
         or lspconfig_util.root_pattern('package.json', 'jsconfig.json')(fname)
     end,
-    on_attach = utils.lsp.disable_formatting,
+    on_attach = api.lsp.disable_formatting,
   },
   tailwindcss = {
     root_dir = lspconfig_util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),

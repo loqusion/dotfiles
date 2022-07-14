@@ -6,7 +6,7 @@
 
 local lazy = require 'crows.lazy'
 local lua_dev = require 'lua-dev'
-local utils = require 'utils.api'
+local api = require 'utils.api'
 
 local lua = {}
 
@@ -47,7 +47,7 @@ lua.lsp_configs = {
         },
       },
     },
-    on_attach = utils.lsp.disable_formatting,
+    on_attach = api.lsp.disable_formatting,
   }),
 }
 
