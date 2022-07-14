@@ -82,13 +82,13 @@ function M.config()
       },
       ['<C-y>'] = M.cmp.mapping(M.cmp.mapping.confirm { select = true }, { 'i', 's', 'c' }),
       ['<Tab>'] = M.cmp.mapping {
-        i = M.cmp.mapping(tab),
-        s = M.cmp.mapping(tab),
+        i = tab,
+        s = tab,
         c = M.cmp.mapping.select_next_item(),
       },
       ['<S-Tab>'] = M.cmp.mapping {
-        i = M.cmp.mapping(stab),
-        s = M.cmp.mapping(stab),
+        i = stab,
+        s = stab,
         c = M.cmp.mapping.select_prev_item(),
       },
     },
