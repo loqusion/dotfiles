@@ -51,6 +51,7 @@ syntax.use { -- Treesitter
   {
     'lewis6991/spellsitter.nvim',
     after = 'nvim-treesitter',
+    config = true,
   },
 }
 
