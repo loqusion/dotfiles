@@ -30,11 +30,14 @@ function M.config()
       layout_strategy = 'flex',
       mappings = {
         i = {
-          ['<M-BS>'] = delete_line_before_cursor,
-          ['<M-f>'] = { '<S-Right>', type = 'command' },
-          ['<M-b>'] = { '<S-Left>', type = 'command' },
+          ['<C-b>'] = { '<Left>', type = 'command' },
+          ['<C-f>'] = { '<Right>', type = 'command' },
+          ['<M-f>'] = M.telescope_actions.preview_scrolling_down,
+          ['<M-d>'] = M.telescope_actions.preview_scrolling_up,
           ['<C-a>'] = { '<Home>', type = 'command' },
           ['<C-e>'] = { '<End>', type = 'command' },
+          ['<C-u>'] = delete_line_before_cursor,
+          ['<C-d>'] = false,
         },
         n = {
           ['<C-c>'] = M.telescope_actions.close,
