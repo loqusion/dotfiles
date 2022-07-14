@@ -1,7 +1,8 @@
 local api = {
   env = require 'utils.api.env',
-  yabai = require 'utils.api.yabai',
+  lsp = require 'utils.api.lsp',
   path = require 'utils.api.path',
+  yabai = require 'utils.api.yabai',
 }
 
 -- safely load all dependent plugins

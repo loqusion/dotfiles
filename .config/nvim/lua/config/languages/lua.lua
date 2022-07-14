@@ -6,13 +6,9 @@
 
 local lazy = require 'crows.lazy'
 local lua_dev = require 'lua-dev'
+local utils = require 'utils.api'
 
 local lua = {}
-
-lua.attach_callback = function(client, _)
-  client.resolved_capabilities.document_formatting = false
-  client.resolved_capabilities.document_range_formatting = false
-end
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
@@ -51,10 +47,7 @@ lua.lsp_configs = {
         },
       },
     },
-    on_attach = function(client, _)
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
-    end,
+    on_attach = utils.lsp.disable_formatting,
   }),
 }
 

@@ -1,18 +1,21 @@
-local util = require 'lspconfig.util'
+local lspconfig_util = require 'lspconfig.util'
+local utils = require 'utils.api'
 
 local javascript = {}
 
 javascript.lsp_configs = {
   tsserver = {
     root_dir = function(fname)
-      return util.root_pattern 'tsconfig.json'(fname) or util.root_pattern('package.json', 'jsconfig.json')(fname)
+      return lspconfig_util.root_pattern 'tsconfig.json'(fname)
+        or lspconfig_util.root_pattern('package.json', 'jsconfig.json')(fname)
     end,
+    on_attach = utils.lsp.disable_formatting,
   },
   tailwindcss = {
-    root_dir = util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
+    root_dir = lspconfig_util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
   },
   denols = {
-    root_dir = util.root_pattern 'deno_root',
+    root_dir = lspconfig_util.root_pattern 'deno_root',
     init_options = {
       enable = true,
       lint = true,
