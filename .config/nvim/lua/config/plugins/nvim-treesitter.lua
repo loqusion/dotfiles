@@ -35,7 +35,7 @@ function M.config()
       enable = false,
     },
     incremental_selection = {
-      enable = true,
+      enable = false,
       keymaps = {
         init_selection = 'gnn',
         scope_incremental = 'gna',

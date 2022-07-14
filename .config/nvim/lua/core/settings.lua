@@ -9,6 +9,7 @@ local settings = {
     makeleader = 'm',
     -- Avoid remapping of j and k
     no_man_maps = 1,
+    terminal_scrollback_buffer_size = 3000,
   },
   opt = {
     syntax = 'ON',

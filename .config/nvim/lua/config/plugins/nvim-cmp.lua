@@ -33,6 +33,21 @@ function M.config()
     completion = {
       completeopt = settings.opt.completeopt or 'menu,menuone,noselect',
     },
+    snippet = {
+      expand = function(args)
+        M.luasnip.lsp_expand(args.body)
+      end,
+    },
+    sources = M.cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
+      { name = 'path' },
+      { name = 'buffer' },
+      { name = 'neorg' },
+      { name = 'nvim_lua' },
+    }, {
+      { name = 'npm', keyword_length = 4 },
+    }),
     sorting = {
       comparators = {
         M.cmp.config.compare.offset,
@@ -45,45 +60,39 @@ function M.config()
         M.cmp.config.compare.order,
       },
     },
-    snippet = {
-      expand = function(args)
-        M.luasnip.lsp_expand(args.body)
-      end,
-    },
     formatting = {
       format = M.lspkind.cmp_format {
         mode = 'symbol',
         maxwidth = 50,
       },
     },
-    mapping = M.cmp.mapping.preset.insert {
-      ['<C-d>'] = M.cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = M.cmp.mapping.scroll_docs(4),
+    mapping = {
+      ['<CR>'] = M.cmp.mapping(M.cmp.mapping.confirm(), { 'i', 's', 'c' }),
+      ['<C-p>'] = M.cmp.mapping(M.cmp.mapping.select_prev_item(), { 'i', 's', 'c' }),
+      ['<C-n>'] = M.cmp.mapping(M.cmp.mapping.select_next_item(), { 'i', 's', 'c' }),
+      ['<C-b>'] = M.cmp.mapping(M.cmp.mapping.scroll_docs(-4), { 'i', 's', 'c' }),
+      ['<C-f>'] = M.cmp.mapping(M.cmp.mapping.scroll_docs(4), { 'i', 's', 'c' }),
       ['<C-Space>'] = M.cmp.mapping.complete(),
       ['<C-e>'] = M.cmp.mapping {
         i = M.cmp.mapping.abort(),
+        s = M.cmp.mapping.abort(),
         c = M.cmp.mapping.close(),
       },
-      ['<C-y>'] = M.cmp.mapping {
-        c = M.cmp.mapping.confirm { select = true },
+      ['<C-y>'] = M.cmp.mapping(M.cmp.mapping.confirm { select = true }, { 'i', 's', 'c' }),
+      ['<Tab>'] = {
+        i = M.cmp.mapping(tab),
+        s = M.cmp.mapping(tab),
+        c = M.cmp.mapping.select_next_item(),
       },
-      ['<Tab>'] = M.cmp.mapping(tab, { 'i', 's' }),
-      ['<S-Tab>'] = M.cmp.mapping(stab, { 'i', 's' }),
+      ['<S-Tab>'] = {
+        i = M.cmp.mapping(stab),
+        s = M.cmp.mapping(stab),
+        c = M.cmp.mapping.select_prev_item(),
+      },
     },
     experimental = {
       ghost_text = true,
     },
-    sources = M.cmp.config.sources({
-      { name = 'neorg' },
-      { name = 'npm', keyword_length = 4 },
-      -- { name = 'nvim_lsp_signature_help' },
-      { name = 'nvim_lsp' },
-      { name = 'luasnip' },
-      { name = 'nvim_lua' },
-    }, {
-      { name = 'path' },
-      { name = 'buffer' },
-    }),
   }
 
   M.cmp.setup.filetype('gitcommit', {
@@ -95,7 +104,6 @@ function M.config()
   })
 
   M.cmp.setup.cmdline('/', {
-    mapping = M.cmp.mapping.preset.cmdline(),
     sources = M.cmp.config.sources({
       { name = 'nvim_lsp_document_symbol' },
     }, {
@@ -104,7 +112,6 @@ function M.config()
   })
 
   M.cmp.setup.cmdline(':', {
-    mapping = M.cmp.mapping.preset.cmdline(),
     sources = M.cmp.config.sources({
       { name = 'path' },
     }, {
