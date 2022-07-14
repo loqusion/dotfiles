@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    'scrollbar'
-  }
+    'scrollbar',
+  },
 }
 
 function M.setup() end

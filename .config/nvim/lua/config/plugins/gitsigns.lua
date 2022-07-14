@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    'gitsigns'
-  }
+    'gitsigns',
+  },
 }
 
 function M.setup() end

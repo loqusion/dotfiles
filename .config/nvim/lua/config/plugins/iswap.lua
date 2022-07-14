@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    'iswap'
-  }
+    'iswap',
+  },
 }
 
 function M.setup()

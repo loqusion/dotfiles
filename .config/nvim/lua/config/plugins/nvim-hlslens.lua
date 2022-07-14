@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    'hlslens'
-  }
+    'hlslens',
+  },
 }
 
 function M.setup()

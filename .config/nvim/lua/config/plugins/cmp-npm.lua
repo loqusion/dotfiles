@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    {'cmp-npm', 'cmp_npm'}
-  }
+    { 'cmp-npm', 'cmp_npm' },
+  },
 }
 
 function M.setup() end

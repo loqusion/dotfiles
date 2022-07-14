@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    'spellsitter'
-  }
+    'spellsitter',
+  },
 }
 
 function M.setup() end

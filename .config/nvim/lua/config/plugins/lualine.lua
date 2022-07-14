@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    'lualine'
-  }
+    'lualine',
+  },
 }
 
 function M.setup() end

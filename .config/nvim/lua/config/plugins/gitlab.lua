@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    'pqf'
-  }
+    'pqf',
+  },
 }
 
 function M.setup() end

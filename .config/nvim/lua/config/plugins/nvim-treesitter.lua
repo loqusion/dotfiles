@@ -9,8 +9,8 @@
 
 local M = {
   safe_requires = {
-    {'nvim-treesitter.configs', 'treesitter_configs'}
-  }
+    { 'nvim-treesitter.configs', 'treesitter_configs' },
+  },
 }
 
 function M.setup()

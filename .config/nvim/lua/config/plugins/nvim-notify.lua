@@ -4,7 +4,7 @@ local M = {
   safe_requires = {
     'notify',
   },
-  icons = require('utils.icons').diagnostics
+  icons = require('utils.icons').diagnostics,
 }
 
 function M.setup() end

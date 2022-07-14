@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    {'nvim-lsp-installer', 'lsp_installer'}
-  }
+    { 'nvim-lsp-installer', 'lsp_installer' },
+  },
 }
 
 function M.setup() end

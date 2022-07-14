@@ -2,7 +2,7 @@
 
 local M = {
   safe_requires = {
-    'neorg'
+    'neorg',
   },
   mapleader = '<Leader>o',
 }

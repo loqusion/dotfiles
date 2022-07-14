@@ -2,14 +2,14 @@
 
 local M = {
   safe_requires = {
-    'project_nvim'
-  }
+    'project_nvim',
+  },
 }
 
 function M.setup() end
 
 function M.config()
-  M.project_nvim.setup{
+  M.project_nvim.setup {
     manual_mode = true, -- otherwise conflicts with auto-session
   }
 end

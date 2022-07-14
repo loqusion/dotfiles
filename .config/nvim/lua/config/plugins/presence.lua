@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    'presence'
-  }
+    'presence',
+  },
 }
 
 function M.setup() end

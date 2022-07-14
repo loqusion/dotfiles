@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    'octo'
-  }
+    'octo',
+  },
 }
 
 function M.setup() end

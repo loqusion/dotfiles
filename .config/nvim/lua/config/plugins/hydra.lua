@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    'hydra'
-  }
+    'hydra',
+  },
 }
 
 function M.setup() end

@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    'stabilize'
-  }
+    'stabilize',
+  },
 }
 
 function M.setup() end

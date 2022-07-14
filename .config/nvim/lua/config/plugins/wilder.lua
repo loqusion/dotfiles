@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    'wilder'
-  }
+    'wilder',
+  },
 }
 
 function M.setup() end

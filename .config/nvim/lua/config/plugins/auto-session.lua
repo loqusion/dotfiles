@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    {'auto-session', 'auto_session'}
-  }
+    { 'auto-session', 'auto_session' },
+  },
 }
 
 function M.setup() end

@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    {'git-conflict', 'git_conflict'}
-  }
+    { 'git-conflict', 'git_conflict' },
+  },
 }
 
 function M.setup() end

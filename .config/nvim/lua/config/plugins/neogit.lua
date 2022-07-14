@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    'neogit'
-  }
+    'neogit',
+  },
 }
 
 function M.setup() end

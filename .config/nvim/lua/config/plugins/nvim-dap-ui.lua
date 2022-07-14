@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    'dapui'
-  }
+    'dapui',
+  },
 }
 
 function M.setup() end

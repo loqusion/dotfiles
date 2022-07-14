@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    {'package-info', 'package_info'}
-  }
+    { 'package-info', 'package_info' },
+  },
 }
 
 function M.setup()

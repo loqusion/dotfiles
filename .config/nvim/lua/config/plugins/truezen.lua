@@ -2,7 +2,7 @@
 
 local M = {
   safe_requires = {
-    {'true-zen', 'true_zen'}
+    { 'true-zen', 'true_zen' },
   },
   mapleader = '<LocalLeader>z',
 }

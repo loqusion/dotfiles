@@ -63,7 +63,7 @@ completion.use {
   },
   { -- Tabnine
     'tzachar/cmp-tabnine',
-    run = './install.sh'
+    run = './install.sh',
   },
   { -- NPM package names and versions
     'David-Kunz/cmp-npm',

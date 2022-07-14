@@ -3,8 +3,8 @@
 
 local M = {
   safe_requires = {
-    'neotest'
-  }
+    'neotest',
+  },
 }
 
 function M.setup()

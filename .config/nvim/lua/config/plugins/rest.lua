@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    {'rest-nvim', 'rest'}
-  }
+    { 'rest-nvim', 'rest' },
+  },
 }
 
 function M.setup() end

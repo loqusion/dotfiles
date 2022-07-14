@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    {'nvim-dap-virtual-text', 'dap_virtual_text'}
-  }
+    { 'nvim-dap-virtual-text', 'dap_virtual_text' },
+  },
 }
 
 function M.setup() end

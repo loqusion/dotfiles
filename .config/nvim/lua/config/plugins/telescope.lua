@@ -10,8 +10,8 @@
 local M = {
   safe_requires = {
     'telescope',
-    {'telescope.actions', 'telescope_actions'}
-  }
+    { 'telescope.actions', 'telescope_actions' },
+  },
 }
 
 function M.setup()

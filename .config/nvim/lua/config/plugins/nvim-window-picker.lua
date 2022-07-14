@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    {'window-picker', 'window_picker'}
-  }
+    { 'window-picker', 'window_picker' },
+  },
 }
 
 function M.setup() end
