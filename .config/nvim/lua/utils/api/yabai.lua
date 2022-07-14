@@ -2,8 +2,17 @@ local nvim_env = require 'utils.api.env'
 
 local M = {}
 
+local function number_of_windows()
+  return tonumber(vim.fn.system 'yabai -m query --windows --space | jq length')
+end
+
 local function should_toggle_yabai()
-  return not (nvim_env.is_yabai_manually_disabled() or nvim_env.is_child_session() or nvim_env.is_ssh_session())
+  return not (
+      nvim_env.is_yabai_manually_disabled()
+      or nvim_env.is_child_session()
+      or nvim_env.is_ssh_session()
+      or number_of_windows() > 1
+    )
 end
 
 function M.float(action)
