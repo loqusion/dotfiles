@@ -3,3 +3,10 @@ treesitter
 filetypes
 neorg
 yabai
+do_filetype_lua
+filetype
+https
+github
+hrsh7th
+nvim
+cmp
