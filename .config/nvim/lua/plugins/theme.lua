@@ -162,9 +162,19 @@ theme.pre = function()
   vim.opt.termguicolors = true
 end
 theme.plugins = {
-  { 'sainnhe/gruvbox-material', opt = true },
-  { 'shaunsingh/nord.nvim', opt = true },
-  { 'sainnhe/edge', opt = true },
+  {
+    'sainnhe/gruvbox-material',
+    ptp = 'viml',
+    setup = true,
+  },
+  {
+    'shaunsingh/nord.nvim',
+  },
+  {
+    'sainnhe/edge',
+    ptp = 'viml',
+    setup = true,
+  },
   { 'rose-pine/neovim', opt = true, as = 'rose-pine' },
   { 'liuchengxu/space-vim-theme', opt = true },
   { 'olimorris/onedarkpro.nvim', opt = true },
