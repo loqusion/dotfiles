@@ -53,7 +53,7 @@ local lsp = {
     --   },
     -- },
     type_def = { '<leader>D', { vim.lsp.buf.type_definition, 'Goto type definition' } },
-    rename = { '<F2>', { vim.lsp.buf.rename, 'Rename symbol' } },
+    rename = { '<leader>r', { vim.lsp.buf.rename, 'Rename symbol' } },
     code_action = { '<leader><leader>', { vim.lsp.buf.code_action, 'Code action' } },
     list_ref = { 'gr', { '<cmd>TroubleToggle lsp_references<cr>', 'List references' } },
   },
@@ -90,21 +90,18 @@ end
 --- mapping lsp keys
 ---@param bufnr number buffer number
 local function mapping(bufnr)
-  -- local wk = require 'which-key'
   local key = require('crows').key
   local mappings = {}
   for _, mapper in pairs(lsp.keys) do
     mappings[mapper[1]] = mapper[2]
   end
-  -- wk.register(mappings, { silent = true })
-  key.maps(mappings, {silent = true})
+  key.maps(mappings, { silent = true })
 
   local buf_mappings = {}
   for _, mapper in pairs(lsp.buffer_keys) do
     buf_mappings[mapper[1]] = mapper[2]
   end
-  -- wk.register(buf_mappings, { buffer = bufnr })
-  key.maps(buf_mappings, {buffer = bufnr})
+  key.maps(buf_mappings, { buffer = bufnr })
 end
 
 --- on attach function
@@ -153,6 +150,7 @@ end
 
 function lsp.setup_null_ls(config)
   config.on_attach = make_on_attach(config.on_attach)
+  ---@diagnostic disable-next-line: redundant-parameter
   return require('null-ls').setup(config)
 end
 
