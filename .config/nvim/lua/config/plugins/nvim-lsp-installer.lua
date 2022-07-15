@@ -1,5 +1,7 @@
 -- https://github.com/williamboman/nvim-lsp-installer
 
+local util = require 'vim.lsp.util'
+
 local M = {
   safe_requires = {
     { 'nvim-lsp-installer', 'lsp_installer' },
@@ -12,6 +14,8 @@ function M.config()
   -- required before lspconfig setup
   M.lsp_installer.setup { automatic_installation = true }
 
+  M.override_handlers()
+
   local lsp = require 'crows.lsp'
   local languages = require 'config.languages'
 
@@ -22,6 +26,30 @@ function M.config()
       end
     end
   end
+end
+
+local old_location_handler = vim.lsp.handlers['textDocument/definition']
+--- set qflist, but don't open it automatically
+local function location_handler(param1, result, ctx, param4)
+  if vim.tbl_islist(result) then
+    old_location_handler(param1, result[1], ctx, param4)
+    if #result > 1 then
+      local client = vim.lsp.get_client_by_id(ctx.client_id)
+      vim.fn.setqflist({}, ' ', {
+        title = 'LSP locations',
+        items = util.locations_to_items(result, client.offset_encoding),
+      })
+    end
+  else
+    old_location_handler(param1, result, ctx, param4)
+  end
+end
+
+function M.override_handlers()
+  vim.lsp.handlers['textDocument/declaration'] = location_handler
+  vim.lsp.handlers['textDocument/definition'] = location_handler
+  vim.lsp.handlers['textDocument/typeDefinition'] = location_handler
+  vim.lsp.handlers['textDocument/implementation'] = location_handler
 end
 
 return M
