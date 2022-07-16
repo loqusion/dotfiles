@@ -41,9 +41,8 @@ local mappings = {
     ['<C-k>'] = { '<C-w>k', 'Move to above window' },
     ['<C-l>'] = { '<C-w>l', 'Move to right window' },
     ['<leader>'] = {
-      ['<leader>'] = { '<Cmd>echomsg "Use ,w instead"<CR>', 'Reminder' },
       w = { '<Cmd>silent update<CR>', 'Write (if modified)' },
-      q = { '<Cmd>qall<CR>', 'Exit Vim' },
+      -- q = { '<Cmd>qall<CR>', 'Exit Vim' },
       x = { '<Cmd>xit!<CR>', 'Write (if modified) and close window' },
     },
   },
