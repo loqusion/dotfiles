@@ -53,3 +53,4 @@ bufnr
 buf_mappings
 lspconfig
 unmanaged
+vscode
