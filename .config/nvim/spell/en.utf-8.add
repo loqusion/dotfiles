@@ -46,3 +46,10 @@ backticks
 TrueZen
 Keymap
 backtick
+param
+neotest
+lsp
+bufnr
+buf_mappings
+lspconfig
+unmanaged
