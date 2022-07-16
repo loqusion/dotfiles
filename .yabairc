@@ -71,6 +71,7 @@ yabai -m rule --add app="^Mail$" space=mail
 yabai -m rule --add app="^Messages$" space=mail
 yabai -m rule --add app="^Spotify$" space=media
 yabai -m rule --add app="^Discord$" space=social
+yabai -m rule --add app="^Microsoft Teams$" manage=off space=float
 yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Contacts$" manage=off
 yabai -m rule --add app="^Photo Booth$" manage=off
@@ -88,6 +89,7 @@ yabai -m rule --add app="^Dashlane$" manage=off
 yabai -m rule --add app="^Fantastical$" manage=off
 yabai -m rule --add app="^Alfred Preferences$" manage=off
 yabai -m rule --add app="^Notion$" manage=off
+yabai -m rule --add app="^Installer$" manage=off
 
 # signals
 yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &>/dev/null || yabai -m window --focus mouse &>/dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &>/dev/null"
