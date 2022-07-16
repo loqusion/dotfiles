@@ -21,9 +21,7 @@ function M.config()
       -- require 'neotest-jest' {
       --   jestCommand = 'yarn test --',
       -- },
-      require 'neotest-python' {
-        -- runner = 'pytest',
-      },
+      require 'neotest-python' {},
       require 'neotest-vim-test' {
         ignore_filetypes = {
           -- 'javascript',
