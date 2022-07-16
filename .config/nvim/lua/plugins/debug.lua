@@ -13,6 +13,7 @@ debug.use { -- DAP enhancements
   { -- UI for nvim-dap
     'rcarriga/nvim-dap-ui',
     after = 'nvim-dap',
+    setup = true,
     config = true,
   },
   { -- Virtual text support
@@ -26,7 +27,7 @@ debug.use { -- DAP configurations
   { -- Python DAP
     'mfussenegger/nvim-dap-python',
     after = 'nvim-dap',
-    config = [[require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')]],
+    config = true,
   },
 }
 

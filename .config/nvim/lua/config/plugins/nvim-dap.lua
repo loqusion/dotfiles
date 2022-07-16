@@ -1,82 +1,70 @@
 -- https://github.com/mfussenegger/nvim-dap
+local api = require 'utils.api'
 
 local M = {
   safe_requires = {
     'dap',
   },
+  dap_root_directory = api.path.join(vim.fn.stdpath 'config', 'lua', 'config', 'dap'),
 }
 
 function M.setup()
   M.register_global_keys()
-  vim.api.nvim_create_user_command('BreakpointToggle', 'lua require("dap").toggle_breakpoint()', {})
-  vim.api.nvim_create_user_command('Debug', 'lua require("dap").continue()', {})
-  vim.api.nvim_create_user_command('DapREPL', 'lua require("dap").repl.open()', {})
+  vim.api.nvim_create_user_command(
+    'DapBreakpoints',
+    'lua require("dap").list_breakpoints(true)',
+    { desc = 'Debug: List breakpoints', nargs = 0 }
+  )
+  vim.api.nvim_create_user_command(
+    'DapClearBreakpoints',
+    'lua require("dap").clear_breakpoints()',
+    { desc = 'Debug: Clear breakpoints', nargs = 0 }
+  )
 end
 
 function M.config()
-  M.dap.adapters.nlua = function(callback, config)
-    callback { type = 'server', host = config.host, port = config.port }
+  local file_list = vim.fn.globpath(M.dap_root_directory, '*.lua', false, true)
+
+  for _, file in ipairs(file_list) do
+    local dap_config = require('config.dap.' .. vim.fn.fnamemodify(file, ':t:r'))
+    M.dap.adapters = vim.tbl_deep_extend('force', M.dap.adapters, dap_config.adapters)
+    M.dap.configurations = vim.tbl_deep_extend('force', M.dap.configurations, dap_config.configurations)
   end
-
-  M.dap.configurations.lua = {
-    {
-      type = 'nlua',
-      request = 'attach',
-      name = 'Attach to running Neovim instance',
-      host = function()
-        local value = vim.fn.input 'Host [127.0.0.1]: '
-        if value ~= '' then
-          return value
-        end
-        return '127.0.0.1'
-      end,
-      port = function()
-        local val = tonumber(vim.fn.input 'Port: ')
-        assert(val, 'Please provide a port number')
-        return val
-      end,
-    },
-  }
-
-  -- lldb
-  M.dap.adapters.lldb = {
-    type = 'executable',
-    command = '/usr/bin/lldb-vscode',
-    name = 'lldb',
-  }
-
-  M.dap.configurations.cpp = {
-    {
-      name = 'Launch',
-      type = 'lldb',
-      request = 'launch',
-      program = function()
-        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-      end,
-      cwd = '${workspaceFolder}',
-      stopOnEntry = false,
-      args = {},
-      runInTerminal = false,
-    },
-  }
-
-  M.dap.configurations.c = M.dap.configurations.cpp
-  M.dap.configurations.rust = M.dap.configurations.cpp
 end
 
 function M.register_global_keys()
+  local lazy = require 'crows.lazy'
+
   require('crows').key.maps {
     ['<F5>'] = { '<Cmd>lua require("dap").continue()<CR>', 'Debug: Continue' },
+    ['<F17>'] = { -- <S-F5>
+      '<Cmd>lua require("dap").terminate()<CR>',
+      'Debug: Stop <S-F5>',
+    },
+    ['<F6>'] = { '<Cmd>lua require("dap").pause()<CR>', 'Debug: Pause' },
+    ['<F9>'] = { '<Cmd>lua require("dap").toggle_breakpoint()<CR>', 'Debug: Toggle breakpoint' },
+    ['<F21>'] = { -- <S-F9>
+      '<Cmd>lua require("dap").set_breakpoint(vim.fn.input("Condition: "))<CR>',
+      'Debug: Set conditional breakpoint <S-F9>',
+    },
     ['<F10>'] = { '<Cmd>lua require("dap").step_over()<CR>', 'Debug: Step over' },
     ['<F11>'] = { '<Cmd>lua require("dap").step_into()<CR>', 'Debug: Step into' },
-    ['<F12>'] = { '<Cmd>lua require("dap").step_out()<CR>', 'Debug: Step out' },
+    ['<F23>'] = { -- <S-F11>
+      '<Cmd>lua require("dap").step_out()<CR>',
+      'Debug: Step out <S-F11>',
+    },
     ['<Leader>'] = {
-      b = {
-        b = { '<Cmd>lua require("dap").toggle_breakpoint()<CR>', 'Toggle breakpoint' },
-        c = {
-          '<Cmd>lua require("dap").toggle_breakpoint(vim.fn.input("Condition: "))<CR>',
-          'Set conditional breakpoint',
-        },
+      d = {
+        r = { lazy.fn('dap', 'repl.toggle', { height = 15 }), 'Debug: Toggle REPL' },
+        l = { lazy.fn('dap', 'run_last'), 'Debug: Re-run last debug adapter/configuration' },
+        j = { lazy.fn('dap', 'down'), 'Debug: Down in current stacktrace without stepping' },
+        k = { lazy.fn('dap', 'up'), 'Debug: Up in current stacktrace without stepping' },
+        c = { lazy.fn('dap', 'run_to_cursor'), 'Debug: Continue execution to cursor position' },
+      },
+      b = { lazy.fn('dap', 'toggle_breakpoint'), 'Debug: Toggle breakpoint' },
+      B = {
+        '<Cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint Condition: "))<CR>',
+        'Debug: Set conditional breakpoint',
       },
     },
   }
