@@ -5,15 +5,19 @@
 source /opt/homebrew/share/antigen/antigen.zsh
 
 antigen use oh-my-zsh
+# antigen bundle nvm
 antigen bundle cargo
 antigen bundle git
-antigen bundle nvm
 antigen bundle rust
 antigen bundle rustup
 antigen bundle yarn
 
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen bundle lukechilds/zsh-nvm
+antigen bundle lukechilds/zsh-better-npm-completion
+antigen bundle buonomo/yarn-completion
 
 antigen apply
 
@@ -38,8 +42,8 @@ autoload -Uz compinit && compinit
 # aws completion
 complete -C '/usr/local/bin/aws_completer' aws
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# nvm completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # iTerm2 shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
