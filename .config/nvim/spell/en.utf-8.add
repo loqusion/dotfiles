@@ -54,3 +54,6 @@ buf_mappings
 lspconfig
 unmanaged
 vscode
+#nitial
+whitespace
+js
