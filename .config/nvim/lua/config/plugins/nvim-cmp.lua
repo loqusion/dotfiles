@@ -69,13 +69,23 @@ function M.config()
       },
     },
     mapping = {
-      ['<CR>'] = M.cmp.mapping{
+      ['<CR>'] = M.cmp.mapping {
         i = M.cmp.mapping.confirm(),
         s = M.cmp.mapping.confirm(),
         c = false,
       },
-      ['<C-p>'] = M.cmp.mapping(M.cmp.mapping.select_prev_item(), { 'i', 's', 'c' }),
-      ['<C-n>'] = M.cmp.mapping(M.cmp.mapping.select_next_item(), { 'i', 's', 'c' }),
+      ['<C-p>'] = M.cmp.mapping {
+        i = M.cmp.mapping.select_prev_item(),
+        s = M.cmp.mapping.select_prev_item(),
+        c = false,
+        -- { 'i', 's', 'c' },
+      },
+      ['<C-n>'] = M.cmp.mapping {
+        i = M.cmp.mapping.select_next_item(),
+        s = M.cmp.mapping.select_next_item(),
+        c = false,
+        -- { 'i', 's', 'c' },
+      },
       ['<C-b>'] = M.cmp.mapping(M.cmp.mapping.scroll_docs(-4), { 'i', 's', 'c' }),
       ['<C-f>'] = M.cmp.mapping(M.cmp.mapping.scroll_docs(4), { 'i', 's', 'c' }),
       ['<C-Space>'] = M.cmp.mapping.complete(),
