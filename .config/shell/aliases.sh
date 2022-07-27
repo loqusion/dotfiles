@@ -10,6 +10,7 @@ alias neovide='NEOVIDE_MULTIGRID=1 neovide'
 alias nvide='NVIM_DISABLE_YABAI_TOGGLE=true neovide'
 alias org='(cd ~ && NVIM_DISABLE_YABAI_TOGGLE=true nvim -c "packadd neorg | Neorg workspace main")'
 alias gtd='(cd ~ && NVIM_DISABLE_YABAI_TOGGLE=true nvim -c "packadd neorg | Neorg workspace gtd")'
+alias orgj='(cd ~ && NVIM_DISABLE_YABAI_TOGGLE=true nvim -c "packadd neorg | Neorg journal")'
 
 alias lg='lazygit'
 
