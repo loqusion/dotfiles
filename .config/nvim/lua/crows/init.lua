@@ -3,6 +3,7 @@
 local keymap = require 'crows.keymap'
 local lsp = require 'crows.lsp'
 local plugin = require 'crows.plugin'
+local api = require 'utils.api'
 
 ---@class CrowsModule
 ---@field key table
@@ -95,7 +96,7 @@ function crows.post_setup()
     if feature.post ~= nil then
       local ok, err = pcall(feature.post)
       if not ok then
-        vim.notify(err, 'warn')
+        api.notify(err, 'warn')
       end
     end
   end

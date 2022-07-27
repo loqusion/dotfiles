@@ -1,4 +1,5 @@
 local options = require 'core.options'
+local api = require 'utils.api'
 
 ---@type Feature
 local theme = {}
@@ -154,7 +155,7 @@ local function colorscheme_command(args)
   else
     local err_fmt =
       "Error: color scheme '%s' does not have a defined configuration. Add it to themes in %s or install it manually."
-    vim.notify(string.format(err_fmt, colorscheme, source_file), vim.log.levels.ERROR, {})
+    api.notify(string.format(err_fmt, colorscheme, source_file), vim.log.levels.ERROR, {})
   end
 end
 

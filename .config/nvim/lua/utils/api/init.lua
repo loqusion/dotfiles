@@ -5,6 +5,19 @@ local api = {
   yabai = require 'utils.api.yabai',
 }
 
+-- Display a notification to the user.
+--- @param msg any #string Content of the notification to show to the user.
+--- @param level any #number|nil One of the values from `vim.log.levels`.
+--- @param opts any #table|nil Optional parameters. Unused by default.
+function api.notify(msg, level, opts)
+  local ok, notify = pcall(require, 'notify')
+  if ok then
+    notify(msg, level, opts)
+  else
+    vim.notify(msg, level, opts)
+  end
+end
+
 -- safely load all dependent plugins
 function api.safe_load(M)
   if not M.safe_requires then
@@ -23,7 +36,7 @@ function api.safe_load(M)
 
     local ok, plugin = pcall(require, load_name)
     if not ok then
-      vim.notify(
+      api.notify(
         string.format('Failed to load config %s: %s', api.path.current_filename(false), plugin),
         'WARN',
         { title = 'plugin' }

@@ -1,11 +1,6 @@
 local ui = require('crows.utils').new_feat()
 
 ui.use {
-  'rcarriga/nvim-notify',
-  config = true,
-}
-
-ui.use {
   'Pocco81/TrueZen.nvim',
   cmd = { 'TZAtaraxis', 'TZFocus', 'TZMinimalist' },
   setup = true,

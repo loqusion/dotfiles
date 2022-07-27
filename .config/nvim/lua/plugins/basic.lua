@@ -9,6 +9,11 @@ basic.use { -- A small automated session manager
   config = true,
 }
 
+basic.use {
+  'rcarriga/nvim-notify',
+  config = true,
+}
+
 basic.use { -- improve vim select/input UI
   'stevearc/dressing.nvim',
   config = true,

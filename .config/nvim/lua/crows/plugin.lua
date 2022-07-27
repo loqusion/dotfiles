@@ -1,4 +1,4 @@
-local path = require 'utils.api.path'
+local api = require 'utils.api'
 
 ---@class PluginModule
 ---@field bootstrapped boolean is bootstrapped
@@ -96,8 +96,8 @@ end
 ---only returns config path if config/lua/<path> exists
 ---@param name string
 local function get_config_path(name)
-  local config_path = path.join('config', 'plugins', name:lower())
-  local config_file_path = path.join(vim.fn.stdpath 'config', 'lua', string.format('%s.lua', config_path))
+  local config_path = api.path.join('config', 'plugins', name:lower())
+  local config_file_path = api.path.join(vim.fn.stdpath 'config', 'lua', string.format('%s.lua', config_path))
 
   if vim.fn.filereadable(config_file_path) == 1 then
     return config_path
@@ -176,7 +176,7 @@ function plugin.source_compiled()
   local file = require('packer').config.compile_path
   local ok, err = pcall(vim.cmd, 'source ' .. file)
   if not ok then
-    vim.notify("source packer's compiled file fail: " .. tostring(err), 'warn')
+    api.notify("source packer's compiled file fail: " .. tostring(err), 'warn')
   end
 end
 
