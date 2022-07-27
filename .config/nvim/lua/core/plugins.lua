@@ -1,22 +1,19 @@
+local api = require 'utils.api'
+
 ---@type Feature[]
-local plugins = {
-  require 'plugins.basic',
-  require 'plugins.completion',
-  require 'plugins.editor',
-  require 'plugins.syntax',
-  require 'plugins.git',
-  require 'plugins.debug',
-  require 'plugins.external',
-  require 'plugins.run',
-  require 'plugins.terminal',
-  require 'plugins.ui',
-  require 'plugins.file_browser',
-  require 'plugins.search',
-  require 'plugins.theme',
-  require 'plugins.statusline', -- must load after theme
-  require 'plugins.lsp',
-  require 'plugins.languages',
-}
+local plugins = {}
+
+local plugin_root_directory = api.path.join(vim.fn.stdpath 'config', 'lua', 'plugins')
+local file_list = vim.fn.globpath(plugin_root_directory, '*', false, true)
+for _, file in ipairs(file_list) do
+  local mod_name = 'plugins.' .. vim.fn.fnamemodify(file, ':t:r')
+  local ok, mod = pcall(require, mod_name)
+  if ok then
+    table.insert(plugins, mod)
+  else
+    api.notify(mod, vim.log.levels.WARN)
+  end
+end
 
 require('crows').setup {
   modules = { 'plugins' },
