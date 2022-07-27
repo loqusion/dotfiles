@@ -45,13 +45,13 @@ function M.config()
       { name = 'buffer' },
       { name = 'neorg' },
       { name = 'nvim_lua' },
-      { name = 'cmp_tabnine' },
+      -- { name = 'cmp_tabnine' },
     }, {
       { name = 'npm', keyword_length = 4 },
     }),
     sorting = {
       comparators = {
-        require 'cmp_tabnine.compare',
+        -- require 'cmp_tabnine.compare',
         M.cmp.config.compare.offset,
         M.cmp.config.compare.exact,
         M.cmp.config.compare.score,
