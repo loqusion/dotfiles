@@ -2,8 +2,6 @@ local debug = require('crows.utils').new_feat()
 
 debug.use { -- Launch debug sessions, set breakpoints, step through code, inspect state
   'mfussenegger/nvim-dap',
-  requires = { 'jbyuki/one-small-step-for-vimkind' },
-  wants = 'one-small-step-for-vimkind',
   module = 'dap',
   setup = true,
   config = true,
@@ -24,6 +22,20 @@ debug.use { -- DAP enhancements
 }
 
 debug.use { -- DAP configurations
+  { -- JavaScript DAP
+    'mxsdev/nvim-dap-vscode-js',
+    after = 'nvim-dap',
+    config = true,
+  },
+  {
+    'microsoft/vscode-js-debug',
+    opt = true,
+    run = 'npm install --legacy-peer-deps && npm run compile',
+  },
+  {
+    'jbyuki/one-small-step-for-vimkind',
+    after = 'nvim-dap',
+  },
   { -- Python DAP
     'mfussenegger/nvim-dap-python',
     after = 'nvim-dap',
