@@ -32,7 +32,7 @@ function M.config()
           workspaces = {
             main = '~/notes',
             gtd = '~/notes/gtd',
-            example_gtd = '~/repos/gtd/gtd',
+            journal = '~/notes/journal',
           },
           default_workspace = 'main',
         },
@@ -50,7 +50,11 @@ function M.config()
           zen_mode = 'truezen',
         },
       },
-      ['core.norg.journal'] = {},
+      ['core.norg.journal'] = {
+        config = {
+          workspace = 'journal',
+        },
+      },
       ['core.export'] = {},
       ['core.export.markdown'] = {
         config = {
