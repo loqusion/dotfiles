@@ -14,14 +14,14 @@ javascript.lsp_configs = {
   tailwindcss = {
     root_dir = lspconfig_util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
   },
-  denols = {
-    root_dir = lspconfig_util.root_pattern 'deno_root',
-    init_options = {
-      enable = true,
-      lint = true,
-      unstable = true,
-    },
-  },
+  -- denols = {
+  --   root_dir = lspconfig_util.root_pattern 'deno_root',
+  --   init_options = {
+  --     enable = true,
+  --     lint = true,
+  --     unstable = true,
+  --   },
+  -- },
   graphql = {
     filetypes = { 'graphql' },
   },
@@ -38,6 +38,7 @@ javascript.lsp_configs = {
         validate = { enable = true },
       },
     },
+    on_attach = api.lsp.disable_formatting,
   },
   yamlls = {},
   -- eslint = {},
