@@ -20,6 +20,11 @@ function M.setup()
     'lua require("dap").clear_breakpoints()',
     { desc = 'Debug: Clear breakpoints', nargs = 0 }
   )
+  vim.api.nvim_create_user_command(
+    'DapLuaServer',
+    string.format('lua require("osv").launch({ port = %s })', require('config.dap.lua').port),
+    { desc = 'Debug: Start Lua debug adapter', nargs = 0 }
+  )
 end
 
 function M.config()
@@ -27,8 +32,12 @@ function M.config()
 
   for _, file in ipairs(file_list) do
     local dap_config = require('config.dap.' .. vim.fn.fnamemodify(file, ':t:r'))
-    M.dap.adapters = vim.tbl_deep_extend('force', M.dap.adapters, dap_config.adapters)
-    M.dap.configurations = vim.tbl_deep_extend('force', M.dap.configurations, dap_config.configurations)
+    if dap_config.adapters then
+      M.dap.adapters = vim.tbl_deep_extend('force', M.dap.adapters, dap_config.adapters)
+    end
+    if dap_config.configurations then
+      M.dap.configurations = vim.tbl_deep_extend('force', M.dap.configurations, dap_config.configurations)
+    end
   end
 end
 
