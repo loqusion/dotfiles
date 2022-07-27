@@ -10,11 +10,11 @@ function M.is_ssh_session()
 end
 
 function M.is_yabai_manually_disabled()
-  return vim.env.NVIM_DISABLE_YABAI_TOGGLE
+  return vim.env.NVIM_DISABLE_YABAI_TOGGLE == 'true'
 end
 
 function M.init()
-  if vim.env.NVIM_IS_PARENT_OPEN then
+  if vim.env.NVIM_IS_PARENT_OPEN == 'true' then
     vim.env.NVIM_IS_CHILD_SESSION = true
   else
     vim.env.NVIM_IS_PARENT_OPEN = true
