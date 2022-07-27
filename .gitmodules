@@ -1,3 +1,0 @@
-[submodule ".local/share/vscode-node-debug2"]
-	path = .local/share/vscode-node-debug2
-	url = https://github.com/microsoft/vscode-node-debug2
