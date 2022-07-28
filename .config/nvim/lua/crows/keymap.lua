@@ -106,7 +106,7 @@ end
 ---@param opts? MapOpts
 function keymap.maps(mappings, opts, use_whichkey)
   opts = opts or {}
-  if options.disable_whichkey  or opts.use_whichkey == false or use_whichkey == false then
+  if options.disable_whichkey or opts.use_whichkey == false or use_whichkey == false then
     native_map(mappings, opts)
     return
   end
