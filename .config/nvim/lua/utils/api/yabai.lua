@@ -1,4 +1,5 @@
 local nvim_env = require 'utils.api.env'
+local options = require 'core.options'
 
 local M = {}
 
@@ -8,7 +9,8 @@ end
 
 local function should_toggle_yabai()
   return not (
-      nvim_env.is_yabai_manually_disabled()
+      options.disable_yabai_toggle
+      or nvim_env.is_yabai_manually_disabled()
       or nvim_env.is_child_session()
       or nvim_env.is_ssh_session()
       or number_of_windows() > 1

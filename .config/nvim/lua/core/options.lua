@@ -27,6 +27,9 @@ local options = {
   -- don't use whichkey for mappings
   -- • boolean
   disable_whichkey = true,
+  -- don't toggle yabai float on enter/leave
+  -- • boolean
+  disable_yabai_toggle = true,
 }
 
 return options
