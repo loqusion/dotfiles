@@ -30,7 +30,7 @@ debug.use { -- DAP configurations
   {
     'microsoft/vscode-js-debug',
     opt = true,
-    run = 'npm install --legacy-peer-deps && npm run compile',
+    run = 'npm install --legacy-peer-deps && npm run compile && git restore package-lock.json',
   },
   {
     'jbyuki/one-small-step-for-vimkind',
