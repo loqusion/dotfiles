@@ -5,4 +5,9 @@ terminal.use {
   config = true,
 }
 
+terminal.use {
+  'sychen52/smart-term-esc.nvim',
+  config = true,
+}
+
 return terminal

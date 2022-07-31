@@ -45,7 +45,7 @@ function M.register_global_keys()
   key.map('Open lazygit', 'n', '<localleader>g', '<cmd> lua _lazygit_toggle()<cr>', {
     silent = true,
   })
-  vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
+  -- vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
 end
 
 function M.register_buffer_keys(bufnr)
