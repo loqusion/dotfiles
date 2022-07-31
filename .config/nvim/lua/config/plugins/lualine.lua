@@ -1,4 +1,5 @@
 -- https://github.com/nvim-lualine/lualine.nvim
+local settings = require 'core.settings'
 
 local M = {
   safe_requires = {
@@ -19,7 +20,7 @@ function M.config()
       section_separators = '',
       disabled_filetypes = {},
       always_divide_middle = true,
-      globalstatus = false,
+      globalstatus = settings.opt.laststatus == 3,
     },
     sections = {
       lualine_a = { 'mode' },
