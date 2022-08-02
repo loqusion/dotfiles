@@ -34,23 +34,16 @@ local configs = {
 
 return {
   adapters = {},
-  -- adapters = {
-  --   node2 = {
-  --     type = 'executable',
-  --     command = 'node',
-  --     args = { vim.env.HOME .. '/.local/share/vscode-node-debug2/out/src/nodeDebug.js' },
-  --   },
-  -- },
   configurations = {
     javascript = {
-      configs.jest,
       configs.node_launch,
       configs.node_attach,
+      configs.jest,
     },
     typescript = {
-      configs.jest,
       configs.node_launch,
       configs.node_attach,
+      configs.jest,
     },
   },
 }
