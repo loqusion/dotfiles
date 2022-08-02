@@ -2,7 +2,9 @@ local ui = require('crows.utils').new_feat()
 
 ui.use {
   'Pocco81/TrueZen.nvim',
-  cmd = { 'TZAtaraxis', 'TZFocus', 'TZMinimalist' },
+  -- '~/repos/truezen',
+  -- as = 'TrueZen.nvim',
+  cmd = { 'TZAtaraxis', 'TZFocus', 'TZMinimalist', 'TZNarrow' },
   setup = true,
   config = true,
 }

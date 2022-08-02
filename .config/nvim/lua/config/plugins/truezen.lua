@@ -12,20 +12,7 @@ function M.setup()
 end
 
 function M.config()
-  M.true_zen.setup {
-    integrations = {
-      gitsigns = true,
-      lualine = true,
-      twilight = false,
-    },
-  }
-
-  M.true_zen.after_mode_ataraxis_on = function()
-    vim.wo.list = false
-    vim.wo.showbreak = '  '
-    vim.opt.statusline = ' '
-    vim.wo.colorcolumn = ''
-  end
+  M.true_zen.setup {}
 end
 
 function M.register_global_keys()
@@ -35,6 +22,7 @@ function M.register_global_keys()
       z = { '<Cmd>silent TZAtaraxis<CR>', 'TrueZen Ataraxis' },
       f = { '<Cmd>silent TZFocus<CR>', 'TrueZen Focus' },
       m = { '<Cmd>silent TZMinimalist<CR>', 'TrueZen Minimalist' },
+      n = { ":<C-u>silent '<,'>TZNarrow<CR>", 'TrueZen Narrow', mode = { 'n', 'x' } },
     },
   }
 end
