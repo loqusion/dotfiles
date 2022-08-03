@@ -1,5 +1,10 @@
 local lspconfig_util = require 'lspconfig.util'
 local api = require 'utils.api'
+-- local yaml_config = require('yaml-companion').setup {}
+local ok, yaml_companion = pcall(require, 'yaml-companion')
+if not ok then
+  yaml_companion = nil
+end
 
 local javascript = {}
 
@@ -40,7 +45,8 @@ javascript.lsp_configs = {
     },
     on_attach = api.lsp.disable_formatting,
   },
-  yamlls = {},
+  ---@diagnostic disable-next-line: need-check-nil
+  yamlls = yaml_companion and yaml_companion.setup {} or {},
   -- eslint = {},
 }
 

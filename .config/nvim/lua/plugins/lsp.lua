@@ -80,6 +80,11 @@ lsp.use {
 lsp.use 'b0o/SchemaStore.nvim'
 
 lsp.use {
+  'someone-stole-my-name/yaml-companion.nvim',
+  module = 'yaml-companion',
+}
+
+lsp.use {
   'folke/trouble.nvim',
   requires = 'kyazdani42/nvim-web-devicons',
   config = true,
