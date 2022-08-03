@@ -13,7 +13,7 @@ function M.config()
   M.lualine.setup {
     options = {
       icons_enabled = true,
-      theme = require('plugins.theme').lualine,
+      -- theme = require('plugins.theme').lualine,
       -- component_separators = { left = '', right = '' },
       -- section_separators = { left = '', right = '' },
       component_separators = '',
@@ -53,6 +53,8 @@ function M.config()
     },
     extensions = {
       'fugitive',
+      'neo-tree',
+      'nvim-dap-ui',
       'quickfix',
       'symbols-outline',
       'toggleterm',
