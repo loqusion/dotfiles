@@ -76,6 +76,7 @@ source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases.sh"
 ###########
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(zoxide init zsh)"
 nvm use --lts &>/dev/null
 
 
