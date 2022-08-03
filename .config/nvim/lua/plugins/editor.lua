@@ -1,29 +1,5 @@
 local editor = require('crows.utils').new_feat()
 
-local function set_filetype()
-  vim.cmd [[filetype on]]
-  vim.cmd [[filetype plugin on]]
-  local filetypes = {
-    ['*html'] = 'html',
-    ['tsconfig.json'] = 'jsonc',
-  }
-  local ft_group = vim.api.nvim_create_augroup('filetypes', {})
-  for pattern, filetype in pairs(filetypes) do
-    vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
-      group = ft_group,
-      pattern = pattern,
-      command = 'setfiletype ' .. filetype,
-      once = true,
-    })
-  end
-end
-
-editor.pre = function()
-  -- vim.cmd [[syntax enable]]
-  -- set_filetype()
-  -- vim.cmd [[filetype indent on]]
-end
-
 editor.use { -- arpeggio
   'kana/vim-arpeggio',
   ptp = 'viml',
@@ -36,8 +12,7 @@ editor.use 'tpope/vim-sleuth'
 
 editor.use 'tpope/vim-abolish'
 
--- text objects
-editor.use {
+editor.use { -- text objects
   {
     'kana/vim-textobj-user',
     ptp = 'viml',
@@ -77,14 +52,12 @@ editor.use { -- Surround
   },
 }
 
--- unimpaired
-editor.use {
+editor.use { -- unimpaired
   'tpope/vim-unimpaired',
   config = true,
 }
 
--- splitjoin
-editor.use {
+editor.use { -- splitjoin
   'AndrewRadev/splitjoin.vim',
   ptp = 'viml',
   setup = true,
@@ -99,54 +72,47 @@ editor.use {
   end,
 }
 
--- switch
-editor.use {
+editor.use { -- switch
   'AndrewRadev/switch.vim',
   ptp = 'viml',
   keys = '<Plug>(Switch)',
   setup = true,
 }
 
--- comment
-editor.use {
+editor.use { -- comment
   'numToStr/Comment.nvim',
   config = true,
 }
 
--- niceblock
-editor.use {
+editor.use { -- niceblock
   'kana/vim-niceblock',
   ptp = 'viml',
   event = 'VimEnter',
   setup = true,
 }
 
--- close buffer with save prompt
-editor.use {
+editor.use { -- close buffer with save prompt
   'mhinz/vim-sayonara',
   ptp = 'viml',
   cmd = 'Sayonara',
   setup = true,
 }
 
--- speedy jk
-editor.use {
+editor.use { -- speedy jk
   'rhysd/accelerated-jk',
   ptp = 'viml',
   event = { 'BufRead', 'BufNewFile' },
   setup = true,
 }
 
--- lightspeed
-editor.use {
+editor.use { -- lightspeed
   'ggandor/lightspeed.nvim',
 }
 
 -- search highlight
 editor.use 'romainl/vim-cool'
 
--- indent hint
-editor.use {
+editor.use { -- indent hint
   'lukas-reineke/indent-blankline.nvim',
   config = true,
 }
@@ -196,8 +162,14 @@ editor.use { -- Swap function arguments, list elements, function parameters, and
   config = true,
 }
 
-editor.use {
+editor.use { -- Create custom submodes and menus
   'anuvyklack/hydra.nvim',
+  config = true,
+}
+
+editor.use { -- Smart, directional Neovim split resizing and navigation
+  'mrjones2014/smart-splits.nvim',
+  module = 'smart-splits',
   config = true,
 }
 

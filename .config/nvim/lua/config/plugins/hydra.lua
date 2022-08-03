@@ -33,10 +33,14 @@ function M.spawn_hydra_window_resize()
     mode = 'n',
     body = '<C-w>',
     heads = {
+      -- { '+', '<Cmd>lua require("smart-splits").resize_up(5)<CR>' },
+      -- { '-', '<Cmd>lua require("smart-splits").resize_down(5)<CR>', { desc = '↑/↓' } },
       { '+', '5<C-w>+' },
       { '-', '5<C-w>-', { desc = '↑/↓' } },
-      { '<', '5<C-w><lt>' },
-      { '>', '5<C-w>>', { desc = '←/→' } },
+      { '<', '<Cmd>lua require("smart-splits").resize_left(5)<CR>' },
+      { '>', '<Cmd>lua require("smart-splits").resize_right(5)<CR>', { desc = '←/→' } },
+      -- { '<', '5<C-w><lt>' },
+      -- { '>', '5<C-w>>', { desc = '←/→' } },
     },
   }
 end
