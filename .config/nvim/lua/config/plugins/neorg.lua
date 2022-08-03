@@ -37,6 +37,7 @@ function M.config()
           default_workspace = 'main',
         },
       },
+      ['core.norg.qol.toc'] = {},
       ['core.norg.completion'] = {
         config = { engine = 'nvim-cmp' },
       },
