@@ -109,6 +109,7 @@ function M.config()
   M.telescope.load_extension 'notify'
   M.telescope.load_extension 'repo'
   M.telescope.load_extension 'ui-select'
+  M.telescope.load_extension 'zoxide'
   require('config.plugins.project').load_telescope_extension()
 end
 
