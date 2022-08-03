@@ -4,6 +4,10 @@ local M = {}
 
 function M.setup()
   M.register_global_keys()
+  vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'Outline',
+    command = 'setlocal nolist',
+  })
 end
 
 function M.config() end
