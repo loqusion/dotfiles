@@ -1,6 +1,11 @@
 local ui = require('crows.utils').new_feat()
 
 ui.use {
+  'glepnir/dashboard-nvim',
+  config = true,
+}
+
+ui.use {
   'Pocco81/TrueZen.nvim',
   -- '~/repos/truezen',
   -- as = 'TrueZen.nvim',
