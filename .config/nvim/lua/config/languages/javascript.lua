@@ -1,10 +1,5 @@
 local lspconfig_util = require 'lspconfig.util'
 local api = require 'utils.api'
--- local yaml_config = require('yaml-companion').setup {}
-local ok, yaml_companion = pcall(require, 'yaml-companion')
-if not ok then
-  yaml_companion = nil
-end
 
 local javascript = {}
 
@@ -16,6 +11,7 @@ javascript.lsp_configs = {
     end,
     on_attach = api.lsp.disable_formatting,
   },
+  eslint = {},
   tailwindcss = {
     root_dir = lspconfig_util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
   },
@@ -45,9 +41,12 @@ javascript.lsp_configs = {
     },
     on_attach = api.lsp.disable_formatting,
   },
-  ---@diagnostic disable-next-line: need-check-nil
-  yamlls = yaml_companion and yaml_companion.setup {} or {},
-  -- eslint = {},
+  yamlls = {},
 }
+
+local yaml_companion_ok, yaml_companion = pcall(require, 'yaml-companion')
+if yaml_companion_ok then
+  javascript.lsp_configs.yamlls = yaml_companion.setup(javascript.lsp_configs.yamlls)
+end
 
 return javascript

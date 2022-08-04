@@ -19,7 +19,7 @@ function M.config()
     sources = {
       formatting.prettier,
       formatting.stylua,
-      diagnostics.eslint,
+      -- diagnostics.eslint,
       -- diagnostics.shellcheck,
       -- diagnostics.teal,
       -- diagnostics.vint,

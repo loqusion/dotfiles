@@ -50,6 +50,9 @@ function M.override_handlers()
   vim.lsp.handlers['textDocument/definition'] = location_handler
   vim.lsp.handlers['textDocument/typeDefinition'] = location_handler
   vim.lsp.handlers['textDocument/implementation'] = location_handler
+  vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false,
+  })
 end
 
 return M
