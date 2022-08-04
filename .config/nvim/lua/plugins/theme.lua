@@ -18,6 +18,7 @@ theme.use {
   { 'mcchrish/zenbones.nvim', requires = 'rktjmp/lush.nvim' },
   { 'catppuccin/nvim', as = 'catppuccin' },
   'folke/tokyonight.nvim',
+  'frankier/neovim-colors-solarized-truecolor-only',
   'f-person/auto-dark-mode.nvim',
 }
 
