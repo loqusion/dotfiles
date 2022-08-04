@@ -8,6 +8,13 @@ function M.setup()
     require('illuminate').on_attach(client)
   end)
   vim.g.Illuminate_delay = 100
+  vim.g.Illuminate_ftblacklist = {
+    'dashboard',
+    'help',
+    'man',
+    'markdown',
+    'neo-tree',
+  }
 end
 
 function M.config() end
