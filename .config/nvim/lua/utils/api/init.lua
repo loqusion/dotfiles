@@ -2,6 +2,7 @@ local api = {
   env = require 'utils.api.env',
   lsp = require 'utils.api.lsp',
   path = require 'utils.api.path',
+  sessions = require 'utils.api.sessions',
   yabai = require 'utils.api.yabai',
 }
 
