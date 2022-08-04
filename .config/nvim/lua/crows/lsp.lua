@@ -13,8 +13,6 @@
 ---@alias OnAttachFn function(client:table,bufnr:number)
 ---@alias CapsSetter function(caps:table):table
 
--- local opts = { noremap=true, silent=true }
-
 ---@type LspModule
 local lsp = {
   keys = {
@@ -30,8 +28,15 @@ local lsp = {
     diag_loclist = {
       '<localleader>q',
       {
-        vim.diagnostic.setloclist,
-        'Add buffer diagnostics to the location list.',
+        vim.diagnostic.setqflist,
+        'Add buffer diagnostics to the quickfix list',
+      },
+    },
+    diag_toggle = {
+      '<localleader>l',
+      {
+        '<Cmd>lua toggle_diagnostics()<CR>',
+        'Toggle lsp diagnostics globally',
       },
     },
   },
@@ -166,6 +171,19 @@ end
 function lsp.stop_all_clients()
   ---@diagnostic disable-next-line: missing-parameter
   vim.lsp.stop_client(vim.lsp.get_active_clients())
+end
+
+vim.g.saved_publish_diagnostics_handler = nil
+function _G.toggle_diagnostics()
+  if vim.g.saved_publish_diagnostics_handler then
+    vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.g.saved_publish_diagnostics_handler
+    vim.diagnostic.show()
+    vim.g.saved_publish_diagnostics_handler = nil
+  else
+    vim.g.saved_publish_diagnostics_handler = vim.lsp.handlers['textDocument/publishDiagnostics']
+    vim.diagnostic.hide()
+    vim.lsp.handlers['textDocument/publishDiagnostics'] = function() end
+  end
 end
 
 return lsp
