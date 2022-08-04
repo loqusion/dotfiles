@@ -22,6 +22,14 @@ function M.config()
   }
 end
 
+-- dashboard-nvim overrides
+function M.register_global_commands()
+  vim.cmd [[
+    command! SessionSave :lua require("persisted").save()
+    command! SessionLoad :lua require("persisted").load()
+  ]]
+end
+
 function M.load_telescope_extension()
   local ok, telescope = pcall(require, 'telescope')
   if ok then
