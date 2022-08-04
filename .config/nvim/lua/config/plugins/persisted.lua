@@ -19,6 +19,14 @@ function M.config()
         TroubleClose
       ]]
     end,
+    telescope = {
+      before_source = function()
+        if vim.g.persisting then
+          require('persisted').save()
+        end
+        vim.cmd [[%bdelete]]
+      end,
+    },
   }
 end
 
