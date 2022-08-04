@@ -1,4 +1,5 @@
 -- https://github.com/nvim-lualine/lualine.nvim
+
 local settings = require 'core.settings'
 
 local M = {
@@ -17,7 +18,7 @@ function M.config()
       -- component_separators = { left = '', right = '' },
       -- section_separators = { left = '', right = '' },
       component_separators = '',
-      section_separators = '',
+      section_separators = { left = '', right = '' },
       disabled_filetypes = {},
       always_divide_middle = true,
       globalstatus = settings.opt.laststatus == 3,
@@ -36,6 +37,13 @@ function M.config()
         { 'filename', path = 1 },
       },
       lualine_x = {
+        {
+          M.persisted_component,
+          separator = '|',
+          cond = function()
+            return vim.g.persisting ~= nil
+          end,
+        },
         { 'encoding', separator = '|' },
         { 'fileformat', icons_enabled = false, separator = '|' },
         { 'filetype', separator = '|' },
@@ -60,6 +68,14 @@ function M.config()
       'toggleterm',
     },
   }
+end
+
+function M.persisted_component()
+  if vim.g.persisting then
+    return ''
+  elseif vim.g.persisting == false then
+    return ''
+  end
 end
 
 return M
