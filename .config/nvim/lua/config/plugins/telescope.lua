@@ -5,7 +5,6 @@
 -- https://github.com/nvim-telescope/telescope-ui-select.nvim
 -- https://github.com/nvim-telescope/telescope-file-browser.nvim
 -- https://github.com/cljoly/telescope-repo.nvim
--- https://github.com/rmagatti/session-lens
 
 local M = {
   safe_requires = {
@@ -28,6 +27,11 @@ function M.config()
   M.telescope.setup {
     defaults = {
       layout_strategy = 'flex',
+      layout_config = {
+        flex = {
+          flip_columns = 200,
+        },
+      },
       mappings = {
         i = {
           ['<C-b>'] = { '<Left>', type = 'command' },
@@ -97,11 +101,6 @@ function M.config()
     },
   }
 
-  require('session-lens').setup {
-    theme_conf = { border = false },
-    previewer = true,
-  }
-
   M.telescope.load_extension 'dap'
   M.telescope.load_extension 'file_browser'
   M.telescope.load_extension 'frecency'
@@ -110,6 +109,7 @@ function M.config()
   M.telescope.load_extension 'repo'
   M.telescope.load_extension 'ui-select'
   M.telescope.load_extension 'zoxide'
+  require('config.plugins.persisted').load_telescope_extension()
   require('config.plugins.project').load_telescope_extension()
 end
 
@@ -136,7 +136,7 @@ function M.register_global_keys()
         r = { lazy.fn(tb, 'lsp_references'), 'Search LSP references in workspace' },
         c = { lazy.fn(tb, 'commands'), 'Search commands' },
         g = { lazy.fn('telescope', 'extensions.repo.list'), 'Search git repos' },
-        s = { lazy.fn('session-lens', 'search_session'), 'Search Session' },
+        s = { lazy.fn('telescope', 'extensions.persisted.persisted'), 'Search Session' },
         ["'"] = { lazy.fn(tb, 'marks'), 'Search marks' },
       },
       ['<space>'] = { lazy.fn(tb, 'buffers'), 'Buffers' },

@@ -4,8 +4,8 @@ basic.use 'lewis6991/impatient.nvim' -- Improve startup time
 
 basic.use 'antoinemadec/FixCursorHold.nvim' -- Fix Neovim `CursorHold` and `CursorHoldI`
 
-basic.use { -- A small automated session manager
-  'rmagatti/auto-session',
+basic.use { -- Automated session management
+  'olimorris/persisted.nvim',
   config = true,
 }
 

@@ -21,7 +21,6 @@ search.use {
     'telescope-ui-select.nvim',
     'telescope-file-browser.nvim',
     'telescope-repo.nvim',
-    'session-lens',
     'telescope-zoxide',
   },
   cmd = 'Telescope',
@@ -61,11 +60,6 @@ search.use {
   {
     'cljoly/telescope-repo.nvim',
     after = 'telescope.nvim',
-  },
-  {
-    'rmagatti/session-lens',
-    after = 'telescope.nvim',
-    module = 'session-lens',
   },
   {
     'jvgrootveld/telescope-zoxide',

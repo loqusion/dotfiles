@@ -10,7 +10,7 @@ function M.setup() end
 
 function M.config()
   M.project_nvim.setup {
-    manual_mode = true, -- otherwise conflicts with auto-session
+    manual_mode = true,
   }
 end
 
