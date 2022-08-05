@@ -24,7 +24,6 @@ function M.config()
         if vim.g.persisting then
           require('persisted').save()
         end
-        vim.cmd [[%bdelete]]
       end,
     },
   }
