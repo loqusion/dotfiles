@@ -11,8 +11,7 @@ function M.setup() end
 function M.config()
   M.persisted.setup {
     use_git_branch = true,
-    -- allowed_dirs = {'~/.*'},
-    -- ignored_dirs = { '~', '~/repos', '~/notes' },
+    allowed_dirs = { '~/repos', '~/.config/nvim' },
     before_save = function()
       vim.cmd [[
         Neotree close
