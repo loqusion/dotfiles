@@ -77,13 +77,6 @@ lsp.use {
   config = true,
 }
 
-lsp.use 'b0o/SchemaStore.nvim'
-
-lsp.use {
-  'someone-stole-my-name/yaml-companion.nvim',
-  module = 'yaml-companion',
-}
-
 lsp.use {
   'folke/trouble.nvim',
   requires = 'kyazdani42/nvim-web-devicons',
@@ -99,6 +92,20 @@ lsp.use { -- Preview native LSP's goto definition calls in floating windows
   keys = 'gp',
   setup = true,
   config = true,
+}
+
+lsp.use { -- Language-specific plugins
+  { -- Minimal `typescript-language-server` integration plugin with convenience commands
+    'jose-elias-alvarez/typescript.nvim',
+    module = 'typescript',
+  },
+  { -- JSON schemas
+    'b0o/SchemaStore.nvim',
+  },
+  { -- YAML schemas
+    'someone-stole-my-name/yaml-companion.nvim',
+    module = 'yaml-companion',
+  },
 }
 
 return lsp

@@ -44,6 +44,15 @@ javascript.lsp_configs = {
   yamlls = {},
 }
 
+local typescript_ok, typescript = pcall(require, 'typescript')
+if typescript_ok then
+  javascript.lsp_configs.tsserver = typescript.setup {
+    disable_commands = false,
+    debug = false,
+    server = javascript.lsp_configs.tsserver,
+  }
+end
+
 local yaml_companion_ok, yaml_companion = pcall(require, 'yaml-companion')
 if yaml_companion_ok then
   javascript.lsp_configs.yamlls = yaml_companion.setup(javascript.lsp_configs.yamlls)
