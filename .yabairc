@@ -97,9 +97,24 @@ unmanaged=(
   '^VLC'
   '^iTerm2$'
 )
+unmanaged_safari_titles=(
+  'General'
+  'Tabs'
+  'AutoFill'
+  'Passwords'
+  'Search'
+  'Security'
+  'Privacy'
+  'Websites'
+  'Extensions'
+  'Advanced'
+)
 
 for app in "${unmanaged[@]}"; do
   yabai -m  rule --add app="$app" manage=off
+done
+for safari_title in "${unmanaged_safari_titles[@]}"; do
+  yabai -m rule --add app='^Safari$' title="${safari_title}" manage=off
 done
 yabai -m rule --add title='Software Update' manage=off
 
