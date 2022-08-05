@@ -15,7 +15,12 @@ function M.config()
   ---@diagnostic disable-next-line: missing-parameter
   M.db.session_directory = vim.fn.expand(vim.fn.stdpath 'data' .. '/sessions/')
   M.db.custom_header = require('config.dashboard.headers').animegirl2
-  M.db.custom_center = M.custom_center()
+  local ok, custom_center = pcall(M.custom_center)
+  if ok then
+    M.db.custom_center = custom_center
+  else
+    api.notify(custom_center, vim.log.levels.ERROR)
+  end
 
   M.dumb_workaround()
 end
