@@ -23,6 +23,7 @@ function M.config()
         if vim.g.persisting then
           require('persisted').save()
         end
+        vim.api.nvim_input('<Esc>:%bd<CR>')
       end,
     },
   }
