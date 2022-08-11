@@ -90,7 +90,8 @@ local function canonical_name(spec)
     return spec.as
   end
   local name = type(spec) == 'string' and spec or spec[1]
-  return string.match(name, '/([%w%-_]+).?')
+  local last_slash_index = string.find(name, '/')
+  return string.match(name, '.*/([%w%-_]+).?', last_slash_index)
 end
 
 ---only returns config path if config/lua/<path> exists
@@ -147,12 +148,34 @@ local function add_config(spec)
   return spec
 end
 
+---@param spec PluginSpec
 local function strip_unused_config(spec)
-  if spec.setup == false then
+  if type(spec) == 'string' then
+    return spec
+  end ---@cast spec -string
+  if is_multi_spec(spec) then
+    for i, child in ipairs(spec) do
+      spec[i] = strip_unused_config(child)
+    end
+    return spec
+  end ---@cast spec -MultiPluginSpec
+
+  if spec.config == true or spec.setup == true then
+    api.notify(
+      string.format(
+        'Config file expected by spec but does not exist:\n%s\ncanonical name: %s',
+        vim.inspect(spec),
+        canonical_name(spec)
+      ),
+      'error'
+    )
+  end
+
+  if type(spec.setup) == 'boolean' then
     spec.setup = nil
   end
-  if spec.config == false then
-    spec.setup = nil
+  if type(spec.config) == 'boolean' then
+    spec.config = nil
   end
   return spec
 end
@@ -191,6 +214,18 @@ function plugin.sync(hook)
   hook = hook or plugin.source_compiled
   plugin.set_compiled_hook(hook)
   require('packer').sync()
+end
+
+function n(fn, ...)
+  if not fn then
+    return
+  end
+
+  local ok, result = pcall(fn, ...)
+  if ok then
+    return result
+  end
+  api.notify(result, 'debug')
 end
 
 function plugin.compile(hook)

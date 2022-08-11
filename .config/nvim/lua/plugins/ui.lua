@@ -6,9 +6,10 @@ ui.use {
 }
 
 ui.use {
-  'Pocco81/TrueZen.nvim',
-  -- '~/repos/truezen',
-  -- as = 'TrueZen.nvim',
+  -- 'Pocco81/true-zen.nvim',
+  -- 'loqusion/true-zen.nvim',
+  '~/repos/true-zen.nvim',
+  -- branch = 'some-fixes',
   cmd = { 'TZAtaraxis', 'TZFocus', 'TZMinimalist', 'TZNarrow' },
   setup = true,
   config = true,

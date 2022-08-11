@@ -1,4 +1,4 @@
--- https://github.com/Pocco81/TrueZen.nvim
+-- https://github.com/Pocco81/true-zen.nvim
 
 local M = {
   safe_requires = {
@@ -16,14 +16,11 @@ function M.config()
     modes = {
       ataraxis = {
         callbacks = {
-          open_pos = function()
+          open_post = function()
             vim.opt.showtabline = 0
           end,
         },
       },
-    },
-    integrations = {
-      lualine = true,
     },
   }
 end
@@ -35,8 +32,9 @@ function M.register_global_keys()
       z = { '<Cmd>silent TZAtaraxis<CR>', 'TrueZen Ataraxis' },
       f = { '<Cmd>silent TZFocus<CR>', 'TrueZen Focus' },
       m = { '<Cmd>silent TZMinimalist<CR>', 'TrueZen Minimalist' },
-      n = { ":<C-u>silent '<,'>TZNarrow<CR>", 'TrueZen Narrow', mode = { 'n', 'x' } },
+      n = { "<Cmd>'<,'>TZNarrow<CR>", 'TrueZen Narrow', mode = { 'n', 'x' } },
     },
+    ['<M-z>'] = { '<Cmd>silent TZAtaraxis<CR>', 'TrueZen Ataraxis' },
   }
 end
 
