@@ -79,7 +79,8 @@ key.maps(mappings.command, { mode = 'c' }, false)
 
 ---@return string
 local function canonical_name(name)
-  return string.match(name, '/([%w%-_]+).?')
+  local last_slash_index = string.find(name, '/')
+  return string.match(name, '.*/([%w%-_]+).?', last_slash_index)
 end
 
 ---@param name string
