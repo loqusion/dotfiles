@@ -111,7 +111,9 @@ local themes = {
   },
 }
 
-local command = 'colorscheme ' .. options.colorscheme
-vim.cmd(command)
+pcall(function()
+  local command = 'colorscheme ' .. options.colorscheme
+  vim.cmd(command)
+end)
 
 return theme
