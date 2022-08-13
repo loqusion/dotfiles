@@ -9,7 +9,10 @@ function M.setup()
   end)
   vim.g.Illuminate_delay = 100
   vim.g.Illuminate_ftblacklist = {
+    'NeogitStatus',
     'dashboard',
+    'git',
+    'gitcommit',
     'help',
     'man',
     'markdown',
