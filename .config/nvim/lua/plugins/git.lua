@@ -45,7 +45,7 @@ git.use { -- Same, but for GitLab
 
 git.use { -- Visualize and resolve conflicts
   'akinsho/git-conflict.nvim',
-  event = { 'BufRead', 'BufNewFile' },
+  -- event = { 'BufRead', 'BufNewFile' },
   config = true,
 }
 
