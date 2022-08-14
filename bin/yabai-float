@@ -13,12 +13,12 @@ is_floating ()
 is_iterm ()
 {
     local app=$(yabai -m query --windows --window | jq '.app')
-    local saved_nocasematch=$(shopt -p nocasematch)
+    local saved_nocasematch="$(shopt -p nocasematch)"
     shopt -s nocasematch
     [[ "$app" =~ 'iTerm2' ]]
     ret=$?
-    $saved_nocasematch
-    return $ret
+    eval "$saved_nocasematch"
+    return "$ret"
 }
 
 yabai_set_grid ()

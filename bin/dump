@@ -40,7 +40,7 @@ is_supported() {
 
 dump() {
   local prog="$1"
-  if [ -z "$prog" ] || ! is_supported "$prog"; then
+  if [ "$prog" = "" ] || ! is_supported "$prog"; then
     return 1
   fi
   echo "Dumping ${prog}..."
@@ -64,7 +64,7 @@ done
 
 for prog in "${progs_to_dump[@]}"; do
   set +e; dump "$prog"; status=$?; set -e
-  if [ $status -ne 0 ]; then
+  if [ "$status" -ne 0 ]; then
     invalid_input+=("$prog")
   fi
 done
