@@ -26,6 +26,7 @@ function M.config()
       -- diagnostics.eslint,
       -- diagnostics.teal,
       -- diagnostics.vint,
+      -- actions.shellcheck,
       -- actions.gitsigns,
       -- actions.refactoring.with { filetypes = { 'javascript', 'typescript', 'lua', 'python' } },
       -- actions.eslint,
