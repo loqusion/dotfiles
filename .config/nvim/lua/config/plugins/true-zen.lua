@@ -4,7 +4,7 @@ local M = {
   safe_requires = {
     { 'true-zen', 'true_zen' },
   },
-  mapleader = '<LocalLeader>z',
+  map_leader = 'gz',
 }
 
 function M.setup()
@@ -27,14 +27,12 @@ end
 
 function M.register_global_keys()
   require('crows').key.maps {
-    [M.mapleader] = {
-      name = 'TrueZen',
+    [M.map_leader] = {
       z = { '<Cmd>silent TZAtaraxis<CR>', 'TrueZen Ataraxis' },
       f = { '<Cmd>silent TZFocus<CR>', 'TrueZen Focus' },
       m = { '<Cmd>silent TZMinimalist<CR>', 'TrueZen Minimalist' },
       n = { "<Cmd>'<,'>TZNarrow<CR>", 'TrueZen Narrow', mode = { 'n', 'x' } },
     },
-    ['<M-z>'] = { '<Cmd>silent TZAtaraxis<CR>', 'TrueZen Ataraxis' },
   }
 end
 

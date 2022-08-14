@@ -17,10 +17,13 @@ function M.config()
 
   require('crows.lsp').setup_null_ls {
     sources = {
-      formatting.prettier,
+      formatting.prettierd,
       formatting.stylua,
+      formatting.yapf,
+      formatting.rustfmt,
+      formatting.shellharden,
+      diagnostics.shellcheck,
       -- diagnostics.eslint,
-      -- diagnostics.shellcheck,
       -- diagnostics.teal,
       -- diagnostics.vint,
       -- actions.gitsigns,

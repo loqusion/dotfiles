@@ -42,7 +42,7 @@ end
 
 function M.register_global_keys()
   local key = require('crows').key
-  key.map('Open lazygit', 'n', '<localleader>g', '<cmd> lua _lazygit_toggle()<cr>', {
+  key.map('Open lazygit', 'n', '<Space>g', '<cmd> lua _lazygit_toggle()<cr>', {
     silent = true,
   })
   -- vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])

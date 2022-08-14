@@ -27,7 +27,6 @@ function M.config()
       disable = {
         'vim',
         'help',
-        'c',
       },
     },
     indent = {
@@ -58,6 +57,9 @@ function M.config()
       enable = true,
       use_virtual_text = true,
       lint_events = { 'BufWrite', 'CursorHold' },
+    },
+    tree_setter = {
+      enable = true,
     },
     textobjects = {
       select = {

@@ -4,6 +4,7 @@ local M = {
   safe_requires = {
     'dapui',
   },
+  map_leader = '<Space>d'
 }
 
 function M.setup()
@@ -20,7 +21,7 @@ function M.register_global_keys()
 
   key.maps {
     ['<F2>'] = { lazy.fn('dapui', 'toggle'), 'Debug UI: Toggle layout' },
-    ['<LocalLeader>d'] = {
+    [M.map_leader] = {
       S = { lazy.fn('dapui', 'float_element', 'stacks'), 'Debug UI: Show stack frames' },
       w = { lazy.fn('dapui', 'float_element', 'watches'), 'Debug UI: Show watchlist' },
       s = { lazy.fn('dapui', 'float_element', 'scopes'), 'Debug UI: Show scopes' },

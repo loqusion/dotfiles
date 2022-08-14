@@ -118,29 +118,31 @@ function M.register_global_keys()
   local tb = 'telescope.builtin'
 
   require('crows').key.maps {
-    ['<LocalLeader>'] = {
+    ['<Space>'] = {
       s = {
-        name = 'telescope search',
-        f = { lazy.fn(tb, 'find_files'), 'Find files' },
+        name = 'Telescope',
+        f = { lazy.fn(tb, 'find_files'), 'Search files...' },
         v = {
           lazy.fn(tb, 'find_files', { cwd = vim.fn.stdpath 'config', hidden = false }),
-          'Find in Vim config',
+          'Search Vim config...',
         },
-        b = { lazy.fn(tb, 'current_buffer_fuzzy_find'), 'Find in current buffer' },
-        h = { lazy.fn(tb, 'help_tags'), 'Find help' },
-        m = { lazy.fn(tb, 'man_pages'), 'Find man pages' },
-        t = { lazy.fn(tb, 'tags'), 'Find tags' },
-        T = { lazy.fn(tb, 'colorscheme'), 'Select colorscheme' },
-        d = { lazy.fn(tb, 'grep_string'), 'Grep word under cursor' },
-        p = { lazy.fn(tb, 'live_grep'), 'Grep in files' },
+        b = { lazy.fn(tb, 'current_buffer_fuzzy_find'), 'Fuzzy find in current buffer...' },
+        h = { lazy.fn(tb, 'help_tags'), 'Go to help page...' },
+        m = { lazy.fn(tb, 'man_pages'), 'Go to man page...' },
+        -- t = { lazy.fn(tb, 'tags'), 'Find tags...' },
+        t = { lazy.fn(tb, 'lsp_dynamic_workspace_symbols'), 'Go to symbol in workspace...' },
+        o = { lazy.fn(tb, 'lsp_document_symbols'), 'Go to symbol in document...' },
+        -- T = { lazy.fn(tb, 'colorscheme'), 'Select colorscheme...' },
+        d = { lazy.fn(tb, 'grep_string'), 'Find word under cursor...' },
+        p = { lazy.fn(tb, 'live_grep'), 'Find in files...' },
         r = { lazy.fn(tb, 'lsp_references'), 'Search LSP references in workspace' },
-        c = { lazy.fn(tb, 'commands'), 'Search commands' },
-        g = { lazy.fn('telescope', 'extensions.repo.list'), 'Search git repos' },
-        s = { lazy.fn('telescope', 'extensions.persisted.persisted'), 'Search Session' },
-        ["'"] = { lazy.fn(tb, 'marks'), 'Search marks' },
+        c = { lazy.fn(tb, 'commands'), 'Show all commands...' },
+        g = { lazy.fn('telescope', 'extensions.repo.list'), 'Open git repo...' },
+        s = { lazy.fn('telescope', 'extensions.persisted.persisted'), 'Open session...' },
+        ["'"] = { lazy.fn(tb, 'marks'), 'Go to mark...' },
       },
-      ['<space>'] = { lazy.fn(tb, 'buffers'), 'Buffers' },
-      ['?'] = { lazy.fn(tb, 'oldfiles'), 'Find oldfiles' },
+      ['<space>'] = { lazy.fn(tb, 'buffers'), 'Go to buffer...' },
+      ['?'] = { lazy.fn(tb, 'oldfiles'), 'Go to recently opened...' },
     },
   }
 end

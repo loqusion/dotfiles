@@ -13,7 +13,7 @@ function M.register_global_keys()
     ['\\'] = { '<Cmd>Neotree toggle current reveal_force_cwd<CR>', 'Open neotree in current window' },
     ['|'] = { '<Cmd>Neotree reveal reveal_force_cwd<CR>', 'Reveal current file in neotree' },
     gF = { '<Cmd>Neotree float reveal_file=<cfile> reveal_force_cwd<CR>', 'Reveal file under cursor in neotree' },
-    ['<LocalLeader>'] = {
+    [vim.g.vscodeleader] = {
       b = { '<Cmd>Neotree toggle show buffers right<CR>', 'Show open buffers in neotree' },
     },
   }

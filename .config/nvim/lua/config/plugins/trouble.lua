@@ -5,6 +5,8 @@ local M = {
     'trouble',
   },
   icons = require('utils.icons').diagnostics,
+  -- TODO: Change
+  map_leader = '<LocalLeader>x',
 }
 
 function M.setup() end
@@ -24,14 +26,15 @@ end
 
 function M.register_global_keys()
   require('crows').key.maps {
-    ['<localleader>x'] = {
-      name = 'lsp trouble',
-      x = { '<cmd>TroubleToggle<cr>', 'Toggle Trouble' },
-      w = { '<cmd>Trouble workspace_diagnostics<cr>', 'Workspace diagnostics' },
-      d = { '<cmd>Trouble document_diagnostics<cr>', 'Document diagnostics' },
-      l = { '<cmd>Trouble loclist<cr>', "Items from the window's location list" },
-      q = { '<cmd>Trouble quickfix<cr>', 'Quickfix items' },
+    [M.map_leader] = {
+      name = 'Trouble',
+      x = { '<Cmd>TroubleToggle<CR>', 'Toggle Trouble' },
+      w = { '<Cmd>Trouble workspace_diagnostics<CR>', 'Workspace diagnostics' },
+      d = { '<Cmd>Trouble document_diagnostics<CR>', 'Document diagnostics' },
+      l = { '<Cmd>Trouble loclist<CR>', "Items from the window's location list" },
+      q = { '<Cmd>Trouble quickfix<CR>', 'Quickfix items' },
     },
+    ['<M-j>'] = { '<Cmd>TroubleToggle<CR>', 'Toggle Trouble' },
   }
 end
 

@@ -7,6 +7,7 @@ local settings = {
     mapleader = ',',
     maplocalleader = ' ',
     makeleader = 'm',
+    vscodeleader = '<M-k>',
     -- Avoid remapping of j and k
     no_man_maps = 1,
     terminal_scrollback_buffer_size = 3000,
@@ -36,7 +37,7 @@ local settings = {
     showmode = false,
     modeline = true,
     updatetime = 500,
-    timeoutlen = 500,
+    timeoutlen = 1000,
     showcmd = false,
     termguicolors = true,
     cursorline = true,

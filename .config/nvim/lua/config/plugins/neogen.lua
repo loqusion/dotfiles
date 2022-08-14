@@ -1,6 +1,9 @@
 -- https://github.com/danymat/neogen
 
-local M = {}
+local M = {
+  -- TODO: change
+  map_leader = vim.g.vscodeleader .. 'd',
+}
 
 function M.setup()
   M.register_global_keys()
@@ -10,7 +13,7 @@ function M.config() end
 
 function M.register_global_keys()
   require('crows').key.maps {
-    ['<localleader>d'] = {
+    [M.map_leader] = {
       name = 'Neogen annotations',
       f = {
         '<cmd>lua require("neogen").generate({ type = "func" })<cr>',

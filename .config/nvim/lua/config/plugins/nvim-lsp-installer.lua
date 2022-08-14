@@ -1,11 +1,13 @@
 -- https://github.com/williamboman/nvim-lsp-installer
 
 local util = require 'vim.lsp.util'
+local api = require 'utils.api'
 
 local M = {
   safe_requires = {
     { 'nvim-lsp-installer', 'lsp_installer' },
   },
+  lsp_root_directory = api.path.join(vim.fn.stdpath 'config', 'lua', 'config', 'languages'),
 }
 
 function M.setup() end
@@ -17,9 +19,10 @@ function M.config()
   M.override_handlers()
 
   local lsp = require 'crows.lsp'
-  local languages = require 'config.languages'
+  local file_list = vim.fn.globpath(M.lsp_root_directory, '*.lua', false, true)
 
-  for _, module in pairs(languages) do
+  for _, file in ipairs(file_list) do
+    local module = require('config.languages.' .. vim.fn.fnamemodify(file, ':t:r'))
     if module.lsp_configs then
       for name, config in pairs(module.lsp_configs) do
         lsp.set_config(name, config)

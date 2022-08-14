@@ -23,15 +23,15 @@ local lsp = {
         'Open diagnostic floating window',
       },
     },
-    diag_prev = { '[d', { vim.diagnostic.goto_prev, 'Goto prev diagnostic' } },
-    diag_next = { ']d', { vim.diagnostic.goto_next, 'Goto next diagnostic' } },
-    diag_loclist = {
-      '<localleader>q',
-      {
-        vim.diagnostic.setqflist,
-        'Add buffer diagnostics to the quickfix list',
-      },
-    },
+    diag_prev = { '[d', { vim.diagnostic.goto_prev, 'Go to previous diagnostic' } },
+    diag_next = { ']d', { vim.diagnostic.goto_next, 'Go to next diagnostic' } },
+    -- diag_loclist = {
+    --   '<localleader>q',
+    --   {
+    --     vim.diagnostic.setqflist,
+    --     'Add buffer diagnostics to the quickfix list',
+    --   },
+    -- },
     diag_toggle = {
       '<localleader>l',
       {

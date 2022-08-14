@@ -53,6 +53,10 @@ syntax.use { -- Treesitter
     after = 'nvim-treesitter',
     config = true,
   },
+  {
+    'TornaxO7/tree-setter',
+    after = 'nvim-treesitter',
+  },
 }
 
 -- better matching

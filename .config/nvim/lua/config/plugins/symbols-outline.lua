@@ -4,6 +4,7 @@ local M = {}
 
 function M.setup()
   M.register_global_keys()
+  M.register_global_commands()
   vim.api.nvim_create_autocmd('FileType', {
     pattern = 'Outline',
     command = 'setlocal nolist',
@@ -13,7 +14,13 @@ end
 function M.config() end
 
 function M.register_global_keys()
-  require('crows').key.map('Toggle symbols outline', 'n', '<localleader>so', '<cmd>SymbolsOutline<cr>')
+  require('crows').key.maps {
+    ['<Space>s;'] = { '<Cmd>SymbolsOutline<CR>', 'Toggle symbols outline' },
+  }
+end
+
+function M.register_global_commands()
+  vim.api.nvim_create_user_command('Outline', 'SymbolsOutline', {})
 end
 
 return M
