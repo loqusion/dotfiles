@@ -1,3 +1,5 @@
+local options = require 'core.options'
+
 ---@class LspModule
 ---@field keys LspKeyMappers
 ---@field buffer_keys LspKeyMappers
@@ -23,8 +25,8 @@ local lsp = {
         'Open diagnostic floating window',
       },
     },
-    diag_prev = { '[d', { vim.diagnostic.goto_prev, 'Go to previous diagnostic' } },
-    diag_next = { ']d', { vim.diagnostic.goto_next, 'Go to next diagnostic' } },
+    -- diag_prev = { '[d', { vim.diagnostic.goto_prev, 'Go to previous diagnostic' } },
+    -- diag_next = { ']d', { vim.diagnostic.goto_next, 'Go to next diagnostic' } },
     -- diag_loclist = {
     --   '<localleader>q',
     --   {
@@ -102,11 +104,14 @@ local function mapping(bufnr)
   end
   key.maps(mappings, { silent = true })
 
-  local buf_mappings = {}
-  for _, mapper in pairs(lsp.buffer_keys) do
-    buf_mappings[mapper[1]] = mapper[2]
+  -- these bindings shouldn't override lspsaga bindings
+  if not options.prefer_lspsaga then
+    local buf_mappings = {}
+    for _, mapper in pairs(lsp.buffer_keys) do
+      buf_mappings[mapper[1]] = mapper[2]
+    end
+    key.maps(buf_mappings, { buffer = bufnr })
   end
-  key.maps(buf_mappings, { buffer = bufnr })
 end
 
 --- on attach function

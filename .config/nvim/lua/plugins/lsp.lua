@@ -40,10 +40,23 @@ lsp.use {
   config = true,
 }
 
+lsp.use { -- LSP UI
+  'glepnir/lspsaga.nvim',
+  after = 'nvim-lsp-installer',
+  config = true,
+}
+
 lsp.use {
   'nvim-lua/lsp-status.nvim',
   disable = true,
   config = true,
+}
+
+lsp.use {
+  'kosayoda/nvim-lightbulb',
+  disable = true, -- handled by lspsaga
+  after = 'nvim-lsp-installer',
+  setup = true,
 }
 
 lsp.use {
@@ -57,12 +70,6 @@ lsp.use {
   disable = false,
   after = 'nvim-lsp-installer',
   config = true,
-}
-
-lsp.use {
-  'kosayoda/nvim-lightbulb',
-  after = 'nvim-lsp-installer',
-  setup = true,
 }
 
 lsp.use {

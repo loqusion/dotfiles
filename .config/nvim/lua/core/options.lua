@@ -30,6 +30,9 @@ local options = {
   -- don't toggle yabai float on enter/leave
   -- • boolean
   disable_yabai_toggle = true,
+  -- use lspsaga instead of default
+  -- • boolean
+  prefer_lspsaga = true,
 }
 
 return options
