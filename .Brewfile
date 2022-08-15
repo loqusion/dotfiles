@@ -33,7 +33,7 @@ brew "jq"
 brew "lolcat"
 brew "lua"
 brew "luarocks"
-brew "neovim"
+brew "neovim", args: ["HEAD"]
 brew "nmap"
 brew "node"
 brew "pyenv"
