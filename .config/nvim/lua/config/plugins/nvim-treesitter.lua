@@ -59,7 +59,7 @@ function M.config()
       lint_events = { 'BufWrite', 'CursorHold' },
     },
     tree_setter = {
-      enable = true,
+      enable = false,
     },
     textobjects = {
       select = {

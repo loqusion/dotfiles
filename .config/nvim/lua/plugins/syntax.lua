@@ -55,6 +55,7 @@ syntax.use { -- Treesitter
   },
   {
     'TornaxO7/tree-setter',
+    disable = true,
     after = 'nvim-treesitter',
   },
 }
