@@ -179,4 +179,9 @@ editor.use { -- Highlight and search for todo comments
   config = true,
 }
 
+editor.use { -- Peek lines during command `:{number}` in a non-obtrusive way
+  'nacro90/numb.nvim',
+  config = true,
+}
+
 return editor
