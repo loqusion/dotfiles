@@ -26,6 +26,8 @@ function M.config()
 
   M.telescope.setup {
     defaults = {
+      prompt_prefix = '🔭 ',
+      selection_caret = ' ',
       layout_strategy = 'flex',
       layout_config = {
         flex = {
