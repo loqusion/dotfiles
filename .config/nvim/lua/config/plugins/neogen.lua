@@ -1,6 +1,9 @@
 -- https://github.com/danymat/neogen
 
 local M = {
+  safe_requires = {
+    'neogen',
+  },
   -- TODO: change
   map_leader = vim.g.vscodeleader .. 'd',
 }
@@ -9,7 +12,11 @@ function M.setup()
   M.register_global_keys()
 end
 
-function M.config() end
+function M.config()
+  M.neogen.setup {
+    snippet_engine = 'luasnip',
+  }
+end
 
 function M.register_global_keys()
   require('crows').key.maps {

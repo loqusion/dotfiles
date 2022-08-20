@@ -95,8 +95,10 @@ completion.use { -- Powerful autopair plugin
 completion.use { -- A better annotation generator
   'danymat/neogen',
   requires = 'nvim-treesitter',
-  keys = { '<localleader>d', '<localleader>df', '<localleader>dc' },
+  module = 'neogen',
+  cmd = 'Neogen',
   setup = true,
+  config = true,
 }
 
 return completion
