@@ -76,6 +76,7 @@ lsp.use {
   'RRethy/vim-illuminate',
   after = 'nvim-lsp-installer',
   setup = true,
+  config = true,
 }
 
 lsp.use {

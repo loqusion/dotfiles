@@ -1,38 +1,45 @@
 -- https://github.com/RRethy/vim-illuminate
 
-local M = {}
+local M = {
+  safe_requires = {
+    'illuminate',
+  },
+}
 
 function M.setup()
-  require('crows.lsp').add_on_attach(function(client, bufnr)
-    M.register_buffer_keys(bufnr)
-    require('illuminate').on_attach(client)
-  end)
-  vim.g.Illuminate_delay = 100
-  vim.g.Illuminate_ftblacklist = {
-    'NeogitStatus',
-    'dashboard',
-    'git',
-    'gitcommit',
-    'help',
-    'man',
-    'markdown',
-    'neo-tree',
+  M.register_global_keys()
+end
+
+function M.config()
+  M.illuminate.configure {
+    delay = 100,
+    filetypes_denylist = {
+      'NeogitStatus',
+      'dashboard',
+      'fugitive',
+      'git',
+      'gitcommit',
+      'help',
+      'man',
+      'markdown',
+      'neo-tree',
+      'sagahover',
+      'toggleterm',
+    },
   }
 end
 
-function M.config() end
-
-function M.register_buffer_keys(bufnr)
-  require('crows').key.maps({
+function M.register_global_keys()
+  require('crows').key.maps {
     ['<F7>'] = {
-      '<Cmd>lua require("illuminate").next_reference({ wrap = true })<CR>',
+      '<Cmd>lua require("illuminate").goto_next_reference()<CR>',
       'Goto next reference',
     },
     ['<F19>'] = { -- <S-F7> doesn't work; see https://github.com/neovim/neovim/issues/7384
-      '<Cmd>lua require("illuminate").next_reference({ reverse = true, wrap = true })<CR>',
+      '<Cmd>lua require("illuminate").goto_prev_reference()<CR>',
       'Goto previous reference',
     },
-  }, { buffer = bufnr })
+  }
 end
 
 return M
