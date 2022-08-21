@@ -15,6 +15,7 @@ function M.config()
     delay = 100,
     filetypes_denylist = {
       'NeogitStatus',
+      'TelescopePrompt',
       'dashboard',
       'fugitive',
       'git',
