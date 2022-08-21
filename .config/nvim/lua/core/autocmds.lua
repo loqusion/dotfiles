@@ -32,25 +32,25 @@ vim.api.nvim_create_autocmd('VimLeave', {
   group = groups.yabai,
 })
 
--- local saved_cursorline = nil
--- vim.api.nvim_create_autocmd('WinLeave', {
---   desc = 'Hide cursorline',
---   pattern = '*',
---   callback = function()
---     saved_cursorline = vim.go.cursorline
---     vim.api.nvim_win_set_option(0, 'cursorline', false)
---   end,
---   group = groups.cursorline,
--- })
--- vim.api.nvim_create_autocmd('WinEnter', {
---   desc = 'Show cursorline',
---   pattern = '*',
---   callback = function()
---     local cursorline = saved_cursorline
---     if cursorline == nil then
---       cursorline = require('core.settings').opt.cursorline
---     end
---     vim.api.nvim_win_set_option(0, 'cursorline', cursorline)
---   end,
---   group = groups.cursorline,
--- })
+vim.api.nvim_create_autocmd('WinEnter', {
+  desc = 'Show cursorline',
+  pattern = '*',
+  callback = function()
+    if vim.w.saved_cursorline then
+      vim.w.saved_cursorline = nil
+      vim.wo.cursorline = true
+    end
+  end,
+  group = groups.cursorline,
+})
+vim.api.nvim_create_autocmd('WinLeave', {
+  desc = 'Hide cursorline',
+  pattern = '*',
+  callback = function()
+    if vim.wo.cursorline then
+      vim.w.saved_cursorline = true
+      vim.wo.cursorline = false
+    end
+  end,
+  group = groups.cursorline,
+})
