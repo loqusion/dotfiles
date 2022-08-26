@@ -57,19 +57,25 @@ function M.config()
     },
     formatting = {
       fields = { 'kind', 'abbr', 'menu' },
-      format = M.lspkind.cmp_format {
-        with_text = false,
-        maxwidth = 50,
-        before = function(entry, vim_item)
-          vim_item.abbr = M.get_abbr(vim_item, entry)
-          vim_item.dup = ({
-            buffer = 1,
-            path = 1,
-            nvim_lsp = 0,
-          })[entry.source.name] or 0
-          return vim_item
-        end,
-      },
+      format = function(entry, vim_item)
+        vim_item.abbr = M.get_abbr(vim_item, entry)
+        vim_item.dup = ({
+          buffer = 1,
+          path = 1,
+          nvim_lsp = 0,
+        })[entry.source.name] or 0
+
+        local kind = require('lspkind').cmp_format { mode = 'symbol_text', with_text = false, maxwidth = 50 } (
+          entry,
+          vim_item
+        )
+        local strings = vim.split(kind.kind, '%s', { trimempty = true })
+
+        kind.kind = string.format(' %s ', strings[1])
+        -- kind.menu = string.format('    (%s)', strings[2])
+
+        return kind
+      end,
     },
     mapping = {
       ['<CR>'] = M.cmp.mapping {
