@@ -184,4 +184,9 @@ editor.use { -- Peek lines during command `:{number}` in a non-obtrusive way
   config = true,
 }
 
+editor.use { -- Draw text diagrams
+  'jbyuki/venn.nvim',
+  wants = 'hydra.nvim',
+}
+
 return editor

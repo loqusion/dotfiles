@@ -12,9 +12,11 @@ function M.setup() end
 
 function M.config()
   M.lspsaga.init_lsp_saga {
+    finder_request_timeout = 99999,
     symbol_in_winbar = {
       enable = true,
     },
+    border_style = options.border_style,
   }
   M.register_global_keys()
 end
@@ -26,9 +28,9 @@ function M.register_global_keys()
 
     -- taken from core/mappings.lua
     local ctrl_f =
-    [[<Cmd>exe 'normal! ' .. max([winheight(0) - 2, 1]) .. "\<C-e>" .. (line('w$') >= line('$') ? 'L' : 'M')<CR>]]
+      [[<Cmd>exe 'normal! ' .. max([winheight(0) - 2, 1]) .. "\<C-e>" .. (line('w$') >= line('$') ? 'L' : 'M')<CR>]]
     local ctrl_b =
-    [[<Cmd>exe 'normal! ' .. max([winheight(0) - 2, 1]) .. "\<C-y>" .. (line('w0') <= 1 ? 'H' : 'M')<CR>]]
+      [[<Cmd>exe 'normal! ' .. max([winheight(0) - 2, 1]) .. "\<C-y>" .. (line('w0') <= 1 ? 'H' : 'M')<CR>]]
 
     key.maps({
       gD = { vim.lsp.buf.declaration, 'Goto declaration' },

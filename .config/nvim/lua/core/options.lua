@@ -14,6 +14,8 @@ local options = {
   -- Whether the background is transparent
   -- • boolean
   transparent_background = true,
+  -- Border style in floating windows
+  border_style = 'rounded',
   -- lint configuration file
   -- • string
   nvim_lint_dir = path.join(vim.fn.stdpath 'config', 'lint'),

@@ -5,6 +5,8 @@ local settings = require 'core.settings'
 local M = {
   safe_requires = {
     'cmp',
+    { 'cmp.types', 'types' },
+    { 'cmp.utils.str', 'str' },
     'luasnip',
     'lspkind',
   },
@@ -13,22 +15,6 @@ local M = {
 function M.setup() end
 
 function M.config()
-  local function tab(fallback)
-    if M.luasnip.expand_or_jumpable() then
-      M.luasnip.expand_or_jump()
-    else
-      fallback()
-    end
-  end
-
-  local function stab(fallback)
-    if M.luasnip.jumpable(-1) then
-      M.luasnip.jump(-1)
-    else
-      fallback()
-    end
-  end
-
   M.cmp.setup {
     completion = {
       completeopt = settings.opt.completeopt or 'menu,menuone,noselect',
@@ -42,7 +28,7 @@ function M.config()
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
       { name = 'path' },
-      { name = 'buffer' },
+      { name = 'buffer', keyword_length = 4 },
       { name = 'neorg' },
       { name = 'nvim_lua' },
       -- { name = 'cmp_tabnine' },
@@ -62,10 +48,27 @@ function M.config()
         M.cmp.config.compare.order,
       },
     },
+    window = {
+      completion = {
+        winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+        col_offset = -1,
+        side_padding = 0,
+      },
+    },
     formatting = {
+      fields = { 'kind', 'abbr', 'menu' },
       format = M.lspkind.cmp_format {
-        mode = 'symbol',
+        with_text = false,
         maxwidth = 50,
+        before = function(entry, vim_item)
+          vim_item.abbr = M.get_abbr(vim_item, entry)
+          vim_item.dup = ({
+            buffer = 1,
+            path = 1,
+            nvim_lsp = 0,
+          })[entry.source.name] or 0
+          return vim_item
+        end,
       },
     },
     mapping = {
@@ -94,13 +97,13 @@ function M.config()
       },
       ['<C-y>'] = M.cmp.mapping(M.cmp.mapping.confirm { select = true }, { 'i', 's', 'c' }),
       ['<Tab>'] = M.cmp.mapping {
-        i = tab,
-        s = tab,
+        i = M.tab,
+        s = M.tab,
         c = M.cmp.mapping.select_next_item(),
       },
       ['<S-Tab>'] = M.cmp.mapping {
-        i = stab,
-        s = stab,
+        i = M.stab,
+        s = M.stab,
         c = M.cmp.mapping.select_prev_item(),
       },
     },
@@ -131,6 +134,55 @@ function M.config()
     }, {
       { name = 'cmdline' },
     }),
+  })
+end
+
+function M.tab(fallback)
+  if M.luasnip.expand_or_jumpable() then
+    M.luasnip.expand_or_jump()
+  else
+    fallback()
+  end
+end
+
+function M.stab(fallback)
+  if M.luasnip.jumpable(-1) then
+    M.luasnip.jump(-1)
+  else
+    fallback()
+  end
+end
+
+function M.get_abbr(vim_item, entry)
+  local word = entry:get_insert_text()
+  if entry.completion_item.insertTextFormat == M.types.lsp.InsertTextFormat.Snippet then
+    word = vim.lsp.util.parse_snippet(word)
+  end
+  word = M.str.oneline(word)
+
+  -- concatenates the string
+  local max = 50
+  if string.len(word) >= max then
+    local before = string.sub(word, 1, math.floor((max - 3) / 2))
+    word = before .. '...'
+  end
+
+  if entry.completion_item.insertTextFormat == M.types.lsp.InsertTextFormat.Snippet
+      and string.sub(vim_item.abbr, -1, -1) == '~'
+  then
+    word = word .. '~'
+  end
+  return word
+end
+
+function M.register_buffer_autocmds()
+  local group = vim.api.nvim_create_augroup('cmp_custom', {})
+  vim.api.nvim_create_autocmd('FileType', {
+    pattern = '*',
+    callback = function()
+      vim.o.showbreak = ''
+    end,
+    group = group,
   })
 end
 

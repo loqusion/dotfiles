@@ -3,8 +3,8 @@
 local M = {}
 
 function M.entrance()
+  vim.g.arpeggio_timeoutlen = 40
   vim.cmd 'packadd vim-arpeggio'
-  vim.g.arpeggio_timeoutlen = 70
   M.register_global_keys()
 end
 

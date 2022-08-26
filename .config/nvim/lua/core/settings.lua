@@ -52,6 +52,7 @@ local settings = {
     equalalways = false,
     cedit = '<C-q>',
     mouse = 'ar',
+    mousemodel = 'extend',
     list = false,
     conceallevel = 2,
     concealcursor = 'nc',
