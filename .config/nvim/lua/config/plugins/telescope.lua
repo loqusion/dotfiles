@@ -149,4 +149,12 @@ function M.register_global_keys()
   }
 end
 
+function M.register_global_keys_for_todo()
+  require('crows').key.maps {
+    ['<Space>s'] = {
+      T = { '<Cmd>TodoTelescope<CR>', 'Todo comments' },
+    },
+  }
+end
+
 return M

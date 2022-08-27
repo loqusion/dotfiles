@@ -176,6 +176,8 @@ editor.use { -- Smart, directional Neovim split resizing and navigation
 editor.use { -- Highlight and search for todo comments
   'folke/todo-comments.nvim',
   requires = 'nvim-lua/plenary.nvim',
+  event = { 'BufRead', 'BufNewFile' },
+  setup = true,
   config = true,
 }
 

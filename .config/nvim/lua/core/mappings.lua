@@ -40,8 +40,6 @@ local mappings = {
     ['<C-l>'] = { '<C-w>l', 'Move to right window' },
     ['<leader>'] = {
       w = { '<Cmd>silent update<CR>', 'Write (if modified)' },
-      -- q = { '<Cmd>qall<CR>', 'Exit Vim' },
-      x = { '<Cmd>xit!<CR>', 'Write (if modified) and close window' },
     },
   },
   visual = { -- Visual mode
@@ -52,7 +50,6 @@ local mappings = {
   insert = { -- Insert mode
     ['<C-w>'] = { '<C-g>u<C-w>', '' },
     ['<C-u>'] = { '<C-g>u<C-u>', '' },
-    -- ['<C-k>'] = { '<C-o>D', '' },
   },
   command = { -- Command mode
     ['<C-b>'] = { '<Left>', '' },

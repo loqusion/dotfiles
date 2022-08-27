@@ -51,7 +51,7 @@ function M.config()
     window = {
       completion = {
         winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
-        col_offset = -1,
+        col_offset = -3,
         side_padding = 0,
       },
     },
@@ -65,14 +65,15 @@ function M.config()
           nvim_lsp = 0,
         })[entry.source.name] or 0
 
-        local kind = require('lspkind').cmp_format { mode = 'symbol_text', with_text = false, maxwidth = 50 } (
-          entry,
-          vim_item
-        )
-        local strings = vim.split(kind.kind, '%s', { trimempty = true })
+        local kind = M.lspkind.cmp_format { mode = 'symbol_text', with_text = false, maxwidth = 50 } (entry, vim_item)
 
+        -- if false or entry.source.name == 'cmdline' then
+        --   kind.kind = ''
+        -- else
+        local strings = vim.split(kind.kind, '%s', { trimempty = true })
         kind.kind = string.format(' %s ', strings[1])
         -- kind.menu = string.format('    (%s)', strings[2])
+        -- end
 
         return kind
       end,
@@ -140,6 +141,13 @@ function M.config()
     }, {
       { name = 'cmdline' },
     }),
+    -- window = {
+    --   completion = {
+    --     winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+    --     col_offset = 0,
+    --     side_padding = 0,
+    --   },
+    -- },
   })
 end
 

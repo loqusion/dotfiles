@@ -216,18 +216,6 @@ function plugin.sync(hook)
   require('packer').sync()
 end
 
-function n(fn, ...)
-  if not fn then
-    return
-  end
-
-  local ok, result = pcall(fn, ...)
-  if ok then
-    return result
-  end
-  api.notify(result, 'debug')
-end
-
 function plugin.compile(hook)
   use_plugins()
   hook = hook or plugin.source_compiled
