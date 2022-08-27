@@ -94,6 +94,16 @@ function M.config()
         s = M.cmp.mapping.select_next_item(),
         c = false,
       },
+      ['<Up>'] = M.cmp.mapping {
+        i = M.cmp.mapping.select_prev_item(),
+        s = M.cmp.mapping.select_prev_item(),
+        c = false,
+      },
+      ['<Down>'] = M.cmp.mapping {
+        i = M.cmp.mapping.select_next_item(),
+        s = M.cmp.mapping.select_next_item(),
+        c = false,
+      },
       ['<C-b>'] = M.cmp.mapping(M.cmp.mapping.scroll_docs(-4), { 'i', 's', 'c' }),
       ['<C-f>'] = M.cmp.mapping(M.cmp.mapping.scroll_docs(4), { 'i', 's', 'c' }),
       ['<C-Space>'] = M.cmp.mapping.complete(),
