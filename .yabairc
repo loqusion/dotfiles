@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # the scripting-addition must be loaded manually if
 # you are running yabai on macOS Big Sur. Uncomment
@@ -54,20 +54,22 @@ yabai -m space 5 --label mail
 yabai -m space 6 --label float
 
 # specific space settings
-yabai -m config --space mail  layout stack
-yabai -m config --space float layout float
+yabai -m config --space mail    layout stack
+yabai -m config --space social  layout stack
+yabai -m config --space float   layout float
 
 # window rules
 yabai -m rule --add app='^iTerm2$' grid=23:23:6:6:11:11
 
 # yabai -m rule --add app="^Dash$" space=code
-yabai -m rule --add app='^Dash$' title!='^(General|Downloads|Docsets|Web Search|Integration|Snippets|License)$' space=code grid=9:5:1:1:3:7
+yabai -m rule --add app='^Dash$' title!='^(General|Downloads|Docsets|Web Search|Integration|Snippets|License)$' grid=9:5:1:1:3:7
 # yabai -m rule --add app='^Firefox Developer Edition$' space=code
 yabai -m rule --add app='^Safari$' space=web
 yabai -m rule --add app='^Chrome$' space=web
 yabai -m rule --add app='^Brave$' space=web
 yabai -m rule --add app='^Spotify$' space=media
 yabai -m rule --add app='^Discord$' space=social
+yabai -m rule --add app='^Slack$' space=social
 yabai -m rule --add app='^Spark$' space=mail
 yabai -m rule --add app='^Spark$' title!='^Spark' manage=off
 yabai -m rule --add app='^Mail$' space=mail
