@@ -18,6 +18,4 @@ sh -c "$(gh api -q '.content | @base64d' repos/loqusion/dotfiles/contents/instal
 sh -c "$(gh api -q '.content | @base64d' repos/loqusion/dotfiles/contents/install-deps.sh)"
 ```
 
-# TODO: gh auth login --hostname github.com --git-protocol ssh --web
-
 [Inspiration for this setup](https://www.atlassian.com/git/tutorials/dotfiles)
