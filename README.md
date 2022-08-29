@@ -9,7 +9,12 @@ which gh >/dev/null 2>&1 || {
     } &&
     brew install gh
 } &&
+gh auth status >/dev/null 2>&1 || {
+    gh auth login --hostname github.com --git-protocol ssh --web
+} &&
 sh -c "$(gh api -q '.content | @base64d' repos/loqusion/dotfiles/contents/install.sh)"
 ```
+
+# TODO: gh auth login --hostname github.com --git-protocol ssh --web
 
 [Inspiration for this setup](https://www.atlassian.com/git/tutorials/dotfiles)
