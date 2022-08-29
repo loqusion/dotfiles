@@ -34,6 +34,7 @@ install_rust ()
 install_rust_deps ()
 {
   # todo
+  :
 }
 
 install_brew_deps
