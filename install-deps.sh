@@ -28,8 +28,15 @@ install_rust ()
 {
   if ! exists cargo; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  fi && {
-    # todo
-    true
-  }
+  fi
 }
+
+install_rust_deps ()
+{
+  # todo
+}
+
+install_brew_deps
+install_npm_deps
+install_pip_deps
+install_rust && install_rust_deps
