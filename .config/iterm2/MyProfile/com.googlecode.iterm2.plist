@@ -79124,6 +79124,10 @@
 	<integer>2</integer>
 	<key>MaxVertically</key>
 	<false/>
+	<key>NeverWarnAboutShortLivedSessions_93C8B635-53FD-40DE-A71F-49726E7D414B</key>
+	<true/>
+	<key>NeverWarnAboutShortLivedSessions_93C8B635-53FD-40DE-A71F-49726E7D414B_selection</key>
+	<integer>0</integer>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
