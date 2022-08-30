@@ -63,6 +63,7 @@ completion.use {
   },
   { -- Tabnine
     'tzachar/cmp-tabnine',
+    disable = true,
     run = './install.sh',
   },
   { -- NPM package names and versions
