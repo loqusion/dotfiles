@@ -1,4 +1,6 @@
+@angular/language-server
 @fsouza/prettierd
+bash-language-server
 gatsby-cli
 npm
 prettier
