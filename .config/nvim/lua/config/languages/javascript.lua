@@ -29,6 +29,7 @@ javascript.lsp_configs = {
   emmet_ls = {
     filetypes = { 'html', 'javascriptreact', 'typescriptreact', 'css', 'sass', 'scss', 'less', 'vue' },
   },
+  angularls = {},
   html = {},
   cssls = {},
   cssmodules_ls = {},
