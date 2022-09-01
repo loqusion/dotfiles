@@ -6,10 +6,8 @@ source /opt/homebrew/share/antigen/antigen.zsh
 
 antigen use oh-my-zsh
 # antigen bundle nvm
-antigen bundle cargo
 antigen bundle git
 antigen bundle rust
-antigen bundle rustup
 antigen bundle yarn
 
 antigen bundle zsh-users/zsh-autosuggestions
@@ -20,6 +18,14 @@ antigen bundle lukechilds/zsh-better-npm-completion
 antigen bundle buonomo/yarn-completion
 
 antigen apply
+
+###################
+##### install #####
+###################
+
+# key bindings and fuzzy completion
+[ -f ~/.fzf.zsh ] || $(brew --prefix)/opt/fzf/install
+
 
 ##################
 ##### config #####
