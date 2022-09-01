@@ -7,8 +7,8 @@ ui.use {
 
 ui.use {
   -- 'Pocco81/true-zen.nvim',
-  -- 'loqusion/true-zen.nvim',
-  '~/repos/true-zen.nvim',
+  'loqusion/true-zen.nvim',
+  -- '~/repos/true-zen.nvim',
   -- branch = 'some-fixes',
   cmd = { 'TZAtaraxis', 'TZFocus', 'TZMinimalist', 'TZNarrow' },
   setup = true,
@@ -34,6 +34,7 @@ ui.use {
   'simrat39/symbols-outline.nvim',
   cmd = { 'SymbolsOutline', 'SymbolsOutlineOpen', 'SymbolsOutlineClose' },
   setup = true,
+  config = true,
 }
 
 ui.use { -- Stabilize buffer content on window open-close events

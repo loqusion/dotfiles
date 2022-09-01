@@ -19,10 +19,9 @@ function M.config()
   M.override_handlers()
 
   local lsp = require 'crows.lsp'
-  local file_list = vim.fn.globpath(M.lsp_root_directory, '*.lua', false, true)
 
-  for _, file in ipairs(file_list) do
-    local module = require('config.languages.' .. vim.fn.fnamemodify(file, ':t:r'))
+  local languages = api.path.require_recursive 'config.languages'
+  for _, module in pairs(languages) do
     if module.lsp_configs then
       for name, config in pairs(module.lsp_configs) do
         lsp.set_config(name, config)

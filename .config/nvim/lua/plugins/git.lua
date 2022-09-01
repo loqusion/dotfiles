@@ -34,13 +34,21 @@ git.use { -- A Git wrapper so awesome, it should be illegal
     'GBrowse',
   },
 }
-git.use { -- Open GitHub URLs, omni-complete issues, issue URLs, and collaborators
-  'tpope/vim-rhubarb',
-  after = 'vim-fugitive',
-}
-git.use { -- Same, but for GitLab
-  'shumphrey/fugitive-gitlab.vim',
-  after = 'vim-fugitive',
+git.use { -- GBrowse
+  { -- GitHub
+    'tpope/vim-rhubarb',
+    after = 'vim-fugitive',
+  },
+  { -- GitLab
+    'shumphrey/fugitive-gitlab.vim',
+    after = 'vim-fugitive',
+  },
+  { -- Azure Devops
+    'cedarbaum/fugitive-azure-devops.vim',
+    after = 'vim-fugitive',
+    ptp = 'viml',
+    setup = true,
+  },
 }
 
 git.use { -- Visualize and resolve conflicts
