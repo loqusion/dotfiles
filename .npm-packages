@@ -1,3 +1,4 @@
+@angular/cli
 @angular/language-server
 @fsouza/prettierd
 bash-language-server
