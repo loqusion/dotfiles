@@ -54,6 +54,9 @@ complete -C '/usr/local/bin/aws_completer' aws
 # iTerm2 shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# Angular CLI autocompletion
+hash ng &>/dev/null && source <(ng completion script)
+
 
 #####################
 ### Aliases & env ###
