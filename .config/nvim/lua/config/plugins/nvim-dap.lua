@@ -28,10 +28,8 @@ function M.setup()
 end
 
 function M.config()
-  local file_list = vim.fn.globpath(M.dap_root_directory, '*.lua', false, true)
-
-  for _, file in ipairs(file_list) do
-    local dap_config = require('config.dap.' .. vim.fn.fnamemodify(file, ':t:r'))
+  local dap_configs = api.path.require_recursive 'config.dap'
+  for _, dap_config in pairs(dap_configs) do
     if dap_config.adapters then
       M.dap.adapters = vim.tbl_deep_extend('force', M.dap.adapters, dap_config.adapters)
     end

@@ -1,4 +1,5 @@
 local path = require 'utils.api.path'
+local company = require 'secret.company'
 
 local options = {
   -- Auto save Buffer
@@ -35,6 +36,9 @@ local options = {
   -- use lspsaga instead of default
   -- • boolean
   prefer_lspsaga = true,
+  -- changes some config
+  -- • Company
+  company = require 'secret.company',
 }
 
 return options

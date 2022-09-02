@@ -33,6 +33,7 @@ function M.config()
             main = '~/notes',
             gtd = '~/notes/gtd',
             journal = '~/notes/journal',
+            work = '~/notes/work',
           },
           default_workspace = 'main',
         },
@@ -56,15 +57,15 @@ function M.config()
           workspace = 'journal',
         },
       },
+      ['core.integrations.nvim-cmp'] = {},
+      ['core.integrations.telescope'] = {},
+      ['core.integrations.treesitter'] = {},
       ['core.export'] = {},
       ['core.export.markdown'] = {
         config = {
           extensions = 'all',
         },
       },
-      ['core.integrations.nvim-cmp'] = {},
-      ['core.integrations.telescope'] = {},
-      ['core.integrations.treesitter'] = {},
     },
   }
 

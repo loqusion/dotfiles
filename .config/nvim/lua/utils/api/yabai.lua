@@ -1,5 +1,6 @@
-local nvim_env = require 'utils.api.env'
-local options = require 'core.options'
+local lazy = require 'crows.lazy'
+local nvim_env = lazy.require 'utils.api.env'
+local options = lazy.require 'core.options'
 
 local M = {}
 

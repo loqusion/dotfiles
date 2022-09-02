@@ -6,11 +6,18 @@ completion.use { -- A more adventurous wildmenu
   config = true,
 }
 
-completion.use { -- Snippet Engine
-  'L3MON4D3/LuaSnip',
-  requires = 'rafamadriz/friendly-snippets',
-  event = { 'InsertEnter *', 'CmdlineEnter', 'CmdwinEnter', 'CursorHold' },
-  config = true,
+completion.use {
+  { -- Snippet Engine
+    'L3MON4D3/LuaSnip',
+    event = { 'InsertEnter *', 'CmdlineEnter', 'CmdwinEnter', 'CursorHold' },
+    config = true,
+  },
+  { -- VSCode snippets
+    'rafamadriz/friendly-snippets',
+  },
+  { -- Angular snippets
+    'johnpapa/vscode-angular-snippets',
+  },
 }
 completion.use { -- Pictograms for LSP/cmp
   'onsails/lspkind.nvim',

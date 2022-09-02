@@ -33,16 +33,26 @@ lsp.use {
   after = 'nvim-lspconfig',
 }
 
--- lsp configs initialized here
-lsp.use {
+lsp.use { -- Switched to mason.nvim
   'williamboman/nvim-lsp-installer',
+  disable = true,
   after = { 'nvim-lspconfig', 'cmp-nvim-lsp', 'lua-dev.nvim', 'null-ls.nvim' },
   config = true,
 }
 
+-- lsp configs initialized here
+lsp.use {
+  {
+    'williamboman/mason.nvim',
+    -- after = { 'nvim-lspconfig', 'cmp-nvim-lsp', 'lua-dev.nvim', 'null-ls.nvim' },
+    config = true,
+  },
+  'williamboman/mason-lspconfig.nvim',
+}
+
 lsp.use { -- LSP UI
   'glepnir/lspsaga.nvim',
-  after = 'nvim-lsp-installer',
+  after = 'mason.nvim',
   config = true,
 }
 
@@ -55,33 +65,33 @@ lsp.use {
 lsp.use {
   'kosayoda/nvim-lightbulb',
   disable = true, -- handled by lspsaga
-  after = 'nvim-lsp-installer',
+  after = 'mason.nvim',
   setup = true,
 }
 
 lsp.use {
   'folke/lsp-colors.nvim',
-  after = 'nvim-lsp-installer',
+  after = 'mason.nvim',
   config = true,
 }
 
 lsp.use {
   'ray-x/lsp_signature.nvim',
   disable = false,
-  after = 'nvim-lsp-installer',
+  after = 'mason.nvim',
   config = true,
 }
 
 lsp.use {
   'RRethy/vim-illuminate',
-  after = 'nvim-lsp-installer',
+  after = 'mason.nvim',
   setup = true,
   config = true,
 }
 
 lsp.use {
   'j-hui/fidget.nvim',
-  after = 'nvim-lsp-installer',
+  after = 'mason.nvim',
   config = true,
 }
 

@@ -1,6 +1,10 @@
 -- https://github.com/simrat39/symbols-outline.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    { 'symbols-outline', 'symbols_outline' }
+  }
+}
 
 function M.setup()
   M.register_global_keys()
@@ -11,7 +15,9 @@ function M.setup()
   })
 end
 
-function M.config() end
+function M.config()
+  M.symbols_outline.setup {}
+end
 
 function M.register_global_keys()
   require('crows').key.maps {
