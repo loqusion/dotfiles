@@ -1,5 +1,8 @@
 local path = require 'utils.api.path'
-local company = require 'secret.company'
+local ok, company = pcall(require, 'secret.company')
+if not ok then
+  company = nil
+end
 
 local options = {
   -- Auto save Buffer
@@ -38,7 +41,7 @@ local options = {
   prefer_lspsaga = true,
   -- changes some config
   -- • Company
-  company = require 'secret.company',
+  company = company or {},
 }
 
 return options
