@@ -8,7 +8,9 @@ local M = {
   },
 }
 
-function M.setup() end
+function M.setup()
+  M.register_global_keys()
+end
 
 function M.config()
   M.lspsaga.init_lsp_saga {
@@ -18,7 +20,6 @@ function M.config()
     },
     border_style = options.border_style,
   }
-  M.register_global_keys()
 end
 
 function M.register_global_keys()
