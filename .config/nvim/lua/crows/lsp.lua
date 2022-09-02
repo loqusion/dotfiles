@@ -182,11 +182,11 @@ vim.g.saved_publish_diagnostics_handler = nil
 function _G.toggle_diagnostics()
   if vim.g.saved_publish_diagnostics_handler then
     vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.g.saved_publish_diagnostics_handler
-    vim.diagnostic.show()
+    vim.diagnostic.enable()
     vim.g.saved_publish_diagnostics_handler = nil
   else
     vim.g.saved_publish_diagnostics_handler = vim.lsp.handlers['textDocument/publishDiagnostics']
-    vim.diagnostic.hide()
+    vim.diagnostic.disable()
     vim.lsp.handlers['textDocument/publishDiagnostics'] = function() end
   end
 end

@@ -52,6 +52,7 @@ lsp.use {
 
 lsp.use { -- LSP UI
   'glepnir/lspsaga.nvim',
+  module = 'lspsaga',
   after = 'mason.nvim',
   config = true,
 }
