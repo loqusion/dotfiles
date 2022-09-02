@@ -82112,6 +82112,8 @@
 	<integer>4</integer>
 	<key>URLHandlersByGuid</key>
 	<dict/>
+	<key>UseBorder</key>
+	<false/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>findMode_iTerm</key>
