@@ -15,7 +15,6 @@ function M.setup() end
 
 function M.config()
   -- required before lspconfig setup
-  -- M.lsp_installer.setup { automatic_installation = true }
   M.mason.setup()
   M.mason_lspconfig.setup {
     -- automatic_installation = true,
