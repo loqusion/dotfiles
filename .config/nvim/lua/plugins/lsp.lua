@@ -44,7 +44,7 @@ lsp.use { -- Switched to mason.nvim
 lsp.use {
   {
     'williamboman/mason.nvim',
-    -- after = { 'nvim-lspconfig', 'cmp-nvim-lsp', 'lua-dev.nvim', 'null-ls.nvim' },
+    after = { 'nvim-lspconfig', 'cmp-nvim-lsp', 'lua-dev.nvim', 'null-ls.nvim' },
     config = true,
   },
   'williamboman/mason-lspconfig.nvim',
@@ -52,10 +52,7 @@ lsp.use {
 
 lsp.use { -- LSP UI
   'glepnir/lspsaga.nvim',
-  module = 'lspsaga',
-  cmd = 'Lspsaga',
   after = 'mason.nvim',
-  setup = true,
   config = true,
 }
 
