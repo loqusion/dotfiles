@@ -37,7 +37,17 @@ install_rust_deps ()
   :
 }
 
+install_ghcup_deps ()
+{
+  if exists ghcup; then
+    for tool in ghc cabal hls stack; do
+      ghcup install "${tool}"
+    done
+  fi
+}
+
 install_brew_deps
 install_npm_deps
 install_pip_deps
 install_rust && install_rust_deps
+install_ghcup_deps
