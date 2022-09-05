@@ -1,3 +1,5 @@
+# shellcheck disable=all
+
 alias config='git --git-dir="$HOME/.local/share/dotfiles" --work-tree="$HOME"'
 alias c=config
 alias zshrc='$EDITOR "$HOME/.zshrc"'
