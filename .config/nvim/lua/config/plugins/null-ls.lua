@@ -22,6 +22,7 @@ function M.config()
       formatting.yapf,
       formatting.rustfmt,
       formatting.shellharden,
+      formatting.stylish_haskell,
       diagnostics.shellcheck,
       -- diagnostics.eslint,
       -- diagnostics.teal,

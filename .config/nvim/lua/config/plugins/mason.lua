@@ -19,7 +19,10 @@ function M.config()
   M.mason_lspconfig.setup {
     -- automatic_installation = true,
     automatic_installation = {
-      exclude = { 'angularls' },
+      exclude = {
+        'angularls',
+        'haskell-language-server',
+      },
     },
   }
 
