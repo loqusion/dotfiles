@@ -1,12 +1,25 @@
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 
-local M = {}
+local M = {
+  safe_requires = {
+    { 'neo-tree', 'neo_tree' },
+  },
+}
 
 function M.setup()
   M.register_global_keys()
+  vim.g.neo_tree_remove_legacy_commands = 1
 end
 
-function M.config() end
+function M.config()
+  M.neo_tree.setup {
+    default_component_configs = {
+      icon = {
+        default = '',
+      },
+    },
+  }
+end
 
 function M.register_global_keys()
   require('crows').key.maps {

@@ -11,6 +11,7 @@ file_browser.use {
     },
     cmd = 'Neotree',
     setup = true,
+    config = true,
   },
   { -- For neotree `w` mapping
     's1n7ax/nvim-window-picker',
