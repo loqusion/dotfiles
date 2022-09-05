@@ -37,6 +37,13 @@ install_rust_deps ()
   :
 }
 
+install_ghcup ()
+{
+  if ! exists ghcup; then
+    curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+  fi
+}
+
 install_ghcup_deps ()
 {
   if exists ghcup; then
@@ -50,4 +57,4 @@ install_brew_deps
 install_npm_deps
 install_pip_deps
 install_rust && install_rust_deps
-install_ghcup_deps
+install_ghcup && install_ghcup_deps
