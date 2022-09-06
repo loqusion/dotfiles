@@ -46,10 +46,10 @@ function M.register_global_keys()
     silent = true,
   })
   key.maps({
-    ['<S-M-y>'] = { '<C-\\><C-n><Cmd>1ToggleTerm<CR>', 'Open terminal 1' },
-    ['<S-M-u>'] = { '<C-\\><C-n><Cmd>2ToggleTerm<CR>', 'Open terminal 2' },
-    ['<S-M-i>'] = { '<C-\\><C-n><Cmd>3ToggleTerm<CR>', 'Open terminal 3' },
-    ['<S-M-o>'] = { '<C-\\><C-n><Cmd>4ToggleTerm<CR>', 'Open terminal 4' },
+    ['<C-M-y>'] = { '<C-\\><C-n><Cmd>1ToggleTerm<CR>', 'Open terminal 1' },
+    ['<C-M-u>'] = { '<C-\\><C-n><Cmd>2ToggleTerm<CR>', 'Open terminal 2' },
+    ['<C-M-i>'] = { '<C-\\><C-n><Cmd>3ToggleTerm<CR>', 'Open terminal 3' },
+    ['<C-M-o>'] = { '<C-\\><C-n><Cmd>4ToggleTerm<CR>', 'Open terminal 4' },
     -- ['<S-M-5>'] = { '<C-\\><C-n><Cmd>5ToggleTerm<CR>', 'Open terminal 5' },
     -- ['<S-M-6>'] = { '<C-\\><C-n><Cmd>6ToggleTerm<CR>', 'Open terminal 6' },
     -- ['<S-M-7>'] = { '<C-\\><C-n><Cmd>7ToggleTerm<CR>', 'Open terminal 7' },
