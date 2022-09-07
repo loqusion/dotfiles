@@ -14,6 +14,7 @@ function M.setup()
   vim.api.nvim_create_autocmd('FileType', {
     group = group,
     pattern = 'norg',
+    -- TODO: pass bufnr
     callback = M.register_buffer_keys,
   })
 end
@@ -85,6 +86,7 @@ function M.register_global_keys()
 end
 
 function M.register_buffer_keys()
+  -- TODO: map <Leader>f to = in neorg buffers
   require('crows').key.maps {
     [M.mapleader] = {
       p = { '<Cmd>Neorg presenter start<CR>', 'Neorg presenter' },

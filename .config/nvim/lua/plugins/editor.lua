@@ -143,6 +143,7 @@ editor.use { -- Neorg
     requires = 'nvim-lua/plenary.nvim',
     ft = 'norg',
     cmd = { 'NeorgStart', 'Neorg' },
+    keys = '<Leader>o',
     wants = { 'neorg-telescope' },
     setup = true,
     config = true,
