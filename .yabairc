@@ -59,20 +59,29 @@ yabai -m config --space social  layout stack
 yabai -m config --space float   layout float
 
 # window rules
-yabai -m rule --add app='^iTerm2$' grid=23:23:6:6:11:11
 
-yabai -m rule --add app='^Dash$' title!='^(General|Downloads|Docsets|Web Search|Integration|Snippets|License)$' grid=9:5:1:1:3:7
-yabai -m rule --add app='^Safari$' space=web
-yabai -m rule --add app='^Chrome$' space=web
-yabai -m rule --add app='^Brave$' space=web
-yabai -m rule --add app='^Spotify$' space=media
-yabai -m rule --add app='^Discord$' space=social
-yabai -m rule --add app='^Slack$' space=social
-yabai -m rule --add app='^Spark$' space=mail
-yabai -m rule --add app='^Spark$' title!='^Spark' manage=off
-yabai -m rule --add app='^Mail$' space=mail
-yabai -m rule --add app='^Messages$' space=mail
-yabai -m rule --add app='^Microsoft Teams$' space=float
+code=()
+web=(
+  '^Safari$'
+  '^Chrome$'
+  '^Brave$'
+  '^Firefox$'
+)
+media=(
+  '^Spotify$'
+)
+social=(
+  '^Discord$'
+  '^Slack$'
+)
+mail=(
+  '^Spark$'
+  '^Mail$'
+  '^Messages$'
+)
+float=(
+  '^Microsoft Teams$'
+)
 
 unmanaged_apps=(
   'Cisco'
@@ -89,6 +98,7 @@ unmanaged_apps=(
   '^Dictionary$'
   '^Fantastical$'
   '^Finder$'
+  '^GoTo$'
   '^Installer$'
   '^Microsoft Teams$'
   '^Notes$'
@@ -116,7 +126,26 @@ unmanaged_safari_titles=(
   'Advanced'
 )
 
-for app in "${unmanaged_apps[@]}"; do
+for app in "${code[@]}"; do
+  yabai -m rule --add app="$app" space=code
+done
+for app in "${web[@]}"; do
+  yabai -m rule --add app="$app" space=web
+done
+for app in "${media[@]}"; do
+  yabai -m rule --add app="$app" space=media
+done
+for app in "${social[@]}"; do
+  yabai -m rule --add app="$app" space=social
+done
+for app in "${mail[@]}"; do
+  yabai -m rule --add app="$app" space=mail
+done
+for app in "${float[@]}"; do
+  yabai -m rule --add app="$app" space=float
+done
+
+for app in "${unmanaged[@]}"; do
   yabai -m  rule --add app="$app" manage=off
 done
 for title in "${unmanaged_titles[@]}"; do
@@ -125,7 +154,11 @@ done
 for safari_title in "${unmanaged_safari_titles[@]}"; do
   yabai -m rule --add app='^Safari$' title="$safari_title" manage=off
 done
+
+yabai -m rule --add app='^iTerm2$' grid=23:23:6:6:11:11
 yabai -m rule --add title='Software Update' manage=off
+yabai -m rule --add app='^Dash$' title!='^(General|Downloads|Docsets|Web Search|Integration|Snippets|License)$' grid=9:5:1:1:3:7
+yabai -m rule --add app='^Spark$' title!='^Spark' manage=off
 
 # signals
 yabai -m signal --add event=window_destroyed active=yes action='yabai -m query --windows --window &>/dev/null || yabai -m window --focus mouse &>/dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &>/dev/null'
