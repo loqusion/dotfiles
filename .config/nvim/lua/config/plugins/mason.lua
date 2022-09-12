@@ -20,7 +20,7 @@ function M.config()
     -- automatic_installation = true,
     automatic_installation = {
       exclude = {
-        'angularls',
+        -- 'angularls',
         'haskell-language-server',
       },
     },
