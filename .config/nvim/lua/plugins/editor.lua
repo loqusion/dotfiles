@@ -192,4 +192,9 @@ editor.use { -- Draw text diagrams
   wants = 'hydra.nvim',
 }
 
+editor.use { -- nvimrc
+  'windwp/nvim-projectconfig',
+  config = true,
+}
+
 return editor
