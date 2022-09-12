@@ -68,6 +68,10 @@ completion.use {
     'hrsh7th/cmp-nvim-lsp-document-symbol',
     after = 'nvim-cmp',
   },
+  { -- dadbod
+    'kristijanhusak/vim-dadbod-completion',
+    after = 'nvim-cmp',
+  },
   { -- Tabnine
     'tzachar/cmp-tabnine',
     disable = true,

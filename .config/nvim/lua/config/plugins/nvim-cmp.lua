@@ -208,6 +208,25 @@ function M.register_buffer_autocmds()
     end,
     group = group,
   })
+
+  local filetype_sources = {
+    ['sql,mysql,plsql'] = {
+      { name = 'vim-dadbod-completion' },
+    },
+  }
+
+  local filetype_group = vim.api.nvim_create_augroup('cmp_custom_filetype', {})
+  for pattern, sources in pairs(filetype_sources) do
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = pattern,
+      callback = function()
+        M.cmp.setup.buffer {
+          sources = sources,
+        }
+      end,
+      group = filetype_group,
+    })
+  end
 end
 
 return M
