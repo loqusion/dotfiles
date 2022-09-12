@@ -17,8 +17,8 @@ ui.use {
 }
 
 ui.use {
-  -- 'folke/twilight.nvim',
-  'loqusion/twilight.nvim', -- Use this one until https://github.com/folke/twilight.nvim/issues/15 is resolved
+  'folke/twilight.nvim',
+  -- 'loqusion/twilight.nvim', -- Use this one until https://github.com/folke/twilight.nvim/issues/15 is resolved
   setup = true,
 }
 
