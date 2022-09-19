@@ -159,6 +159,8 @@ function M.config()
     --   },
     -- },
   })
+
+  M.register_filetype_autocmds()
 end
 
 function M.tab(fallback)
@@ -199,7 +201,7 @@ function M.get_abbr(vim_item, entry)
   return word
 end
 
-function M.register_buffer_autocmds()
+function M.register_filetype_autocmds()
   local group = vim.api.nvim_create_augroup('cmp_custom', {})
   vim.api.nvim_create_autocmd('FileType', {
     pattern = '*',
