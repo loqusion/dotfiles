@@ -10,7 +10,7 @@ function M.setup() end
 
 function M.config()
   M.persisted.setup {
-    use_git_branch = true,
+    use_git_branch = false,
     before_save = function()
       vim.cmd [[
         Neotree close
