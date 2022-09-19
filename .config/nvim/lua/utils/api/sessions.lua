@@ -4,7 +4,14 @@ local persisted = lazy.require 'persisted'
 local M = {}
 
 function M.load(file_path)
-  vim.cmd('source ' .. vim.fn.fnameescape(file_path))
+  local ok, err = pcall(vim.cmd, 'source ' .. vim.fn.fnameescape(file_path))
+  if not ok then
+    vim.api.nvim_echo({
+      { '[sessions.lua]: ', 'ErrorMsg' },
+      { 'Error loading the session! ', 'WarningMsg' },
+      { err, 'Normal' },
+    }, true, {})
+  end
 end
 
 function M.list()
