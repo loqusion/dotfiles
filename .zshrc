@@ -67,6 +67,10 @@ export PTPYTHON_CONFIG_HOME="$HOME/.config/ptpython"
 
 source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases.sh"
 
+if [[ -o rcs ]]; then
+    [ -x "${HOME}/.zshenv.local" ] && source "$HOME/.zshenv.local"
+fi
+
 # This is scuffed
 # # https://egeek.me/2020/04/18/enabling-locate-on-osx/
 # if which glocate > /dev/null; then
