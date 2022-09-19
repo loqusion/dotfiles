@@ -22,10 +22,8 @@ function M.register_global_keys()
       o = { '<Cmd>tabonly<CR>', 'Close other tabs' },
       n = { '<Cmd>tabnext<CR>', 'Goto next tab' },
       p = { '<Cmd>tabprev<CR>', 'Goto prev tab' },
-      m = {
-        p = { '<Cmd>-tabmove<CR>', 'Move current tab to previous position' },
-        n = { '<Cmd>+tabmove<CR>', 'Move current tab to next position' },
-      },
+      N = { '<Cmd>+tabmove<CR>', 'Move current tab to next position' },
+      P = { '<Cmd>-tabmove<CR>', 'Move current tab to previous position' },
     },
   }
 end
