@@ -97,6 +97,7 @@ unmanaged_apps=(
   '^Dash$'
   '^Dashlane$'
   '^Dictionary$'
+  '^ExpressVPN$'
   '^Fantastical$'
   '^Finder$'
   '^GoTo$'
