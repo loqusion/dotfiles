@@ -6,8 +6,8 @@ alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
-cmd + alt - j : yabai -m window --focus stack.prev
-cmd + alt - k : yabai -m window --focus stack.next
+cmd + alt - j : yabai -m window --focus stack.next
+cmd + alt - k : yabai -m window --focus stack.prev
 # alt - ;
 alt - 0x29 : yabai -m window --focus stack.recent
 
