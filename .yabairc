@@ -107,7 +107,6 @@ unmanaged_apps=(
   '^Notion$'
   '^Photo Booth$'
   '^Preview$'
-  '^Spark$'
   '^System Preferences$'
   '^VLC'
   '^iTerm2$'
