@@ -92,6 +92,7 @@ unmanaged_apps=(
   '^Alfred [0-9]+$'
   '^Alfred$'
   '^App Store$'
+  '^Archive Utility$'
   '^Calculator$'
   '^Contacts$'
   '^Dash$'
