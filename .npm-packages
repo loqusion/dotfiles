@@ -1,4 +1,3 @@
-@angular/cli
 @angular/language-server
 @fsouza/prettierd
 bash-language-server
@@ -10,4 +9,3 @@ typescript
 vim-language-server
 vscode-langservers-extracted
 write-good
-yarn
