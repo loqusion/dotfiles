@@ -110,6 +110,7 @@ unmanaged_apps=(
   '^Preview$'
   '^System Preferences$'
   '^VLC'
+  '^VMware'
   '^iTerm2$'
 )
 unmanaged_titles=(
