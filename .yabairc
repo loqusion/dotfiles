@@ -109,6 +109,7 @@ unmanaged_apps=(
   '^Photo Booth$'
   '^Preview$'
   '^System Preferences$'
+  '^TextEdit$'
   '^VLC'
   '^VMware'
   '^iTerm2$'
