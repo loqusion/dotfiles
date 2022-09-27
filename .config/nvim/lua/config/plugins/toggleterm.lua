@@ -45,16 +45,17 @@ function M.register_global_keys()
   key.map('Open lazygit', 'n', '<Space>g', '<cmd> lua _lazygit_toggle()<cr>', {
     silent = true,
   })
+  local function term_map(num)
+    return {
+      string.format('<C-\\><C-n><Cmd>%sToggleTerm<CR>', num),
+      string.format('Open terminal %s', num),
+    }
+  end
+
   key.maps({
-    ['<C-M-y>'] = { '<C-\\><C-n><Cmd>1ToggleTerm<CR>', 'Open terminal 1' },
-    ['<C-M-u>'] = { '<C-\\><C-n><Cmd>2ToggleTerm<CR>', 'Open terminal 2' },
-    ['<C-M-i>'] = { '<C-\\><C-n><Cmd>3ToggleTerm<CR>', 'Open terminal 3' },
-    ['<C-M-o>'] = { '<C-\\><C-n><Cmd>4ToggleTerm<CR>', 'Open terminal 4' },
-    -- ['<S-M-5>'] = { '<C-\\><C-n><Cmd>5ToggleTerm<CR>', 'Open terminal 5' },
-    -- ['<S-M-6>'] = { '<C-\\><C-n><Cmd>6ToggleTerm<CR>', 'Open terminal 6' },
-    -- ['<S-M-7>'] = { '<C-\\><C-n><Cmd>7ToggleTerm<CR>', 'Open terminal 7' },
-    -- ['<S-M-8>'] = { '<C-\\><C-n><Cmd>8ToggleTerm<CR>', 'Open terminal 8' },
-    -- ['<S-M-9>'] = { '<C-\\><C-n><Cmd>9ToggleTerm<CR>', 'Open terminal 9' },
+    ['<M-\\>'] = term_map(1),
+    ['<M-;>'] = term_map(2),
+    ["<M-'>"] = term_map(3),
   }, { mode = { 'n', 't' } })
 end
 
