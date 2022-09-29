@@ -35,6 +35,7 @@ brew "llvm"
 brew "lolcat"
 brew "lua"
 brew "luarocks"
+brew "lynx"
 brew "node@16"
 brew "mongosh"
 brew "neovim", args: ["HEAD"]
