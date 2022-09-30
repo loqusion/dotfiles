@@ -1,16 +1,13 @@
 local api = require 'utils.api'
 
----@type Feature[]
 local plugins = {}
 
 local mods = api.path.require_recursive 'plugins'
-for _, mod in pairs(mods) do
-  table.insert(plugins, mod)
+for path, mod in pairs(mods) do
+  local kind = path
+  plugins[kind] = mod.plugins
 end
 
-require('crows').setup {
-  modules = { 'plugins' },
-  features = plugins,
-}
+require('utils.aux.packer').entry(plugins)
 
 return plugins

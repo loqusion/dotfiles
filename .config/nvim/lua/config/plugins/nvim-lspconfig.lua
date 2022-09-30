@@ -1,3 +1,4 @@
+-- https://github.com/neovim/nvim-lspconfig
 -- https://github.com/williamboman/mason.nvim
 
 local util = require 'vim.lsp.util'
@@ -5,7 +6,6 @@ local api = require 'utils.api'
 
 local M = {
   safe_requires = {
-    -- { 'nvim-lsp-installer', 'lsp_installer' },
     'mason',
     { 'mason-lspconfig', 'mason_lspconfig' },
   },
@@ -27,6 +27,10 @@ function M.config()
   }
 
   local lsp = require 'crows.lsp'
+
+  -- use null-ls for formatting
+  lsp.add_on_attach(api.lsp.disable_formatting)
+
   local languages = api.path.require_recursive 'config.languages'
   for _, module in pairs(languages) do
     if module.lsp_configs then
