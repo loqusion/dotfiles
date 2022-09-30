@@ -4,7 +4,7 @@ syntax.use { -- Treesitter
   {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    event = { 'BufRead', 'BufNewFile' },
+    -- event = { 'BufRead', 'BufNewFile' },
     module = 'nvim-treesitter',
     setup = true,
     config = true,

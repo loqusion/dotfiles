@@ -2,7 +2,13 @@ local M = {}
 
 local is_prerelease = vim.version().prerelease
 
--- use null-ls for formatting
+function M.enable_formatting(client, _)
+  local cap = is_prerelease and client.server_capabilities or client.resolved_capabilities
+
+  cap.document_formatting = true
+  cap.document_range_formatting = true
+end
+
 function M.disable_formatting(client, _)
   local cap = is_prerelease and client.server_capabilities or client.resolved_capabilities
 

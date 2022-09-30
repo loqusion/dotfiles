@@ -6,8 +6,8 @@ local javascript = {}
 javascript.lsp_configs = {
   tsserver = {
     root_dir = function(fname)
-      return lspconfig_util.root_pattern 'tsconfig.json'(fname)
-        or lspconfig_util.root_pattern('package.json', 'jsconfig.json')(fname)
+      return lspconfig_util.root_pattern 'tsconfig.json' (fname)
+          or lspconfig_util.root_pattern('package.json', 'jsconfig.json')(fname)
     end,
     on_attach = api.lsp.disable_formatting,
   },
@@ -36,7 +36,14 @@ javascript.lsp_configs = {
   jsonls = {
     settings = {
       json = {
-        schemas = require('schemastore').json.schemas(),
+        schemas = require('schemastore').json.schemas {
+          replace = {
+            ['package.json'] = {
+              fileMatch = { 'package.json' },
+              url = 'https://json.schemastore.org/package.json',
+            },
+          },
+        },
         validate = { enable = true },
       },
     },

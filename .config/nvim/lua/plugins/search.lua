@@ -1,10 +1,6 @@
 local crows = require 'crows'
 local search = require('crows.utils').new_feat()
 
-search.post = function()
-  crows.key.map('Clear search', 'n', '<leader>/', '<cmd>nohlsearch<cr>')
-end
-
 -- telescope
 search.use {
   'nvim-telescope/telescope.nvim',

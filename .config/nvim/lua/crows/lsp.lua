@@ -129,10 +129,10 @@ end
 
 local function make_on_attach(local_on_attach)
   return function(client, bufnr)
+    on_attach(client, bufnr)
     if local_on_attach then
       local_on_attach(client, bufnr)
     end
-    on_attach(client, bufnr)
   end
 end
 

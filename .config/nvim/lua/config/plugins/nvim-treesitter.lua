@@ -30,8 +30,7 @@ function M.config()
       },
     },
     indent = {
-      -- Enabling this removes the leading space from /*...*...*/ comments! This is annoying!!
-      enable = false,
+      enable = true,
     },
     incremental_selection = {
       enable = false,

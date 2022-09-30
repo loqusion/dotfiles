@@ -1,16 +1,14 @@
 local lsp = require('crows.utils').new_feat()
 
-lsp.pre = function()
-  local signs = require('utils.icons').diagnostics
-  for sign, text in pairs(signs) do
-    local hl = 'DiagnosticSign' .. sign
-    vim.fn.sign_define(hl, { text = text, texthl = hl, linehl = '', numhl = '' })
-  end
-  vim.cmd [[
-    hi link LightBulbFloatWin YellowFloat
-    hi link LightBulbVirtualText YellowFloat
-  ]]
+local signs = require('utils.icons').diagnostics
+for sign, text in pairs(signs) do
+  local hl = 'DiagnosticSign' .. sign
+  vim.fn.sign_define(hl, { text = text, texthl = hl, linehl = '', numhl = '' })
 end
+vim.cmd [[
+  hi link LightBulbFloatWin YellowFloat
+  hi link LightBulbVirtualText YellowFloat
+]]
 
 lsp.use {
   'jose-elias-alvarez/null-ls.nvim',
@@ -33,21 +31,16 @@ lsp.use {
   after = 'nvim-lspconfig',
 }
 
-lsp.use { -- Switched to mason.nvim
-  'williamboman/nvim-lsp-installer',
-  disable = true,
-  after = { 'nvim-lspconfig', 'cmp-nvim-lsp', 'lua-dev.nvim', 'null-ls.nvim' },
-  config = true,
-}
-
 -- lsp configs initialized here
 lsp.use {
-  {
-    'williamboman/mason.nvim',
-    after = { 'nvim-lspconfig', 'cmp-nvim-lsp', 'lua-dev.nvim', 'null-ls.nvim' },
-    config = true,
-  },
-  'williamboman/mason-lspconfig.nvim',
+  { 'williamboman/mason.nvim', after = 'nvim-notify' },
+  { 'williamboman/mason-lspconfig.nvim', after = 'mason.nvim' },
+}
+
+lsp.use {
+  'neovim/nvim-lspconfig',
+  after = 'mason-lspconfig.nvim',
+  config = true,
 }
 
 lsp.use { -- LSP UI
