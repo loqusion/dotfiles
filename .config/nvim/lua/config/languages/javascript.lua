@@ -6,8 +6,8 @@ local javascript = {}
 javascript.lsp_configs = {
   tsserver = {
     root_dir = function(fname)
-      return lspconfig_util.root_pattern 'tsconfig.json' (fname)
-          or lspconfig_util.root_pattern('package.json', 'jsconfig.json')(fname)
+      return lspconfig_util.root_pattern 'tsconfig.json'(fname)
+        or lspconfig_util.root_pattern('package.json', 'jsconfig.json')(fname)
     end,
   },
   eslint = {},
@@ -52,11 +52,22 @@ javascript.lsp_configs = {
 
 local typescript_ok, typescript = pcall(require, 'typescript')
 if typescript_ok then
-  javascript.lsp_configs.tsserver = typescript.setup {
+  local saved_on_attach = javascript.lsp_configs.tsserver.on_attach
+  javascript.lsp_configs.tsserver = vim.tbl_extend('force', javascript.lsp_configs.tsserver, {
+    on_attach = function(...)
+      if saved_on_attach then
+        saved_on_attach(...)
+      end
+      api.lsp.disable_formatting(...)
+    end,
+  })
+  -- calls `lspconfig.tsserver.setup()`
+  typescript.setup {
     disable_commands = false,
     debug = false,
     server = javascript.lsp_configs.tsserver,
   }
+  javascript.lsp_configs.tsserver = nil
 end
 
 local yaml_companion_ok, yaml_companion = pcall(require, 'yaml-companion')
