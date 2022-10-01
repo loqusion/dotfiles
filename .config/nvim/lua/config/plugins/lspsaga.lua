@@ -6,6 +6,7 @@ local M = {
   safe_requires = {
     'lspsaga',
   },
+  has_v0_8 = vim.fn.has('nvim-0.8') ~= 0
 }
 
 function M.setup() end
@@ -17,7 +18,7 @@ function M.config()
       sign = false,
     },
     symbol_in_winbar = {
-      enable = true,
+      enable = M.has_v0_8,
     },
     border_style = options.border_style,
   }

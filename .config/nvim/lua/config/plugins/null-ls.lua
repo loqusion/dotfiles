@@ -37,11 +37,6 @@ end
 
 function M.register_global_keys()
   require('utils.api').lsp.map_formatting()
-  -- require('crows').key.maps({
-  --   ['<Leader>'] = {
-  --     f = { vim.lsp.buf.formatting, 'Format' },
-  --   },
-  -- }, {})
 end
 
 return M

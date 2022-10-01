@@ -47,7 +47,6 @@ lua.lsp_configs = {
         },
       },
     },
-    on_attach = api.lsp.disable_formatting,
   }),
 }
 

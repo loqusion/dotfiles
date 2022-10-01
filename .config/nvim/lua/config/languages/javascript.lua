@@ -9,7 +9,6 @@ javascript.lsp_configs = {
       return lspconfig_util.root_pattern 'tsconfig.json' (fname)
           or lspconfig_util.root_pattern('package.json', 'jsconfig.json')(fname)
     end,
-    on_attach = api.lsp.disable_formatting,
   },
   eslint = {},
   tailwindcss = {
@@ -47,7 +46,6 @@ javascript.lsp_configs = {
         validate = { enable = true },
       },
     },
-    on_attach = api.lsp.disable_formatting,
   },
   yamlls = {},
 }

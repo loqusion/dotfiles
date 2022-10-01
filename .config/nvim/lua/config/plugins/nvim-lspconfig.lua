@@ -29,7 +29,11 @@ function M.config()
   local lsp = require 'crows.lsp'
 
   -- use null-ls for formatting
-  lsp.add_on_attach(api.lsp.disable_formatting)
+  lsp.add_on_attach(function(client, ...)
+    if client.name ~= 'null-ls' then
+      api.lsp.disable_formatting(client, ...)
+    end
+  end)
 
   local languages = api.path.require_recursive 'config.languages'
   for _, module in pairs(languages) do
