@@ -93,6 +93,7 @@ local settings = {
     },
     clipboard = 'unnamedplus',
     autoread = true,
+    autowriteall = true,
     autoindent = true,
     smartindent = true,
     expandtab = true,
