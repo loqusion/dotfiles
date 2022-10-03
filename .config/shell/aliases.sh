@@ -4,6 +4,8 @@ alias config='git --git-dir="$HOME/.local/share/dotfiles" --work-tree="$HOME"'
 alias c=config
 alias zshrc='$EDITOR "$HOME/.zshrc"'
 
+alias fzp='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+
 alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
 
 # <command> --help | viman
@@ -21,4 +23,8 @@ alias lg='lazygit'
 alias caf='caffeinate -d'
 function linecount() {
     find "${1:-.}" -name "*.*" -print | xargs wc -l
+}
+
+function dict() {
+    curl "dict://dict.org/d:$1" | eval "${PAGER:-less}"
 }
