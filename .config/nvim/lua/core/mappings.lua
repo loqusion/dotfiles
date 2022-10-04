@@ -40,6 +40,7 @@ local mappings = {
     ['<C-l>'] = { '<C-w>l', 'Move to right window' },
     ['<leader>'] = {
       w = { '<Cmd>silent update<CR>', 'Write (if modified)' },
+      e = { '<Cmd>silent edit<CR>', 'Re-edit' },
     },
   },
   visual = { -- Visual mode
