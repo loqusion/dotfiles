@@ -6,17 +6,20 @@ local M = {
   },
 }
 
-function M.setup()
-  M.register_global_keys()
-  vim.g.neo_tree_remove_legacy_commands = 1
-end
+function M.setup() end
 
 function M.config()
+  M.register_global_keys()
+  vim.g.neo_tree_remove_legacy_commands = 1
+
   M.neo_tree.setup {
     default_component_configs = {
       icon = {
         default = '',
       },
+    },
+    window = {
+      position = 'current',
     },
   }
 end

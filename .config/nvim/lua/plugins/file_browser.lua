@@ -9,8 +9,6 @@ file_browser.use {
       'kyazdani42/nvim-web-devicons',
       'MunifTanjim/nui.nvim',
     },
-    cmd = 'Neotree',
-    setup = true,
     config = true,
   },
   { -- For neotree `w` mapping

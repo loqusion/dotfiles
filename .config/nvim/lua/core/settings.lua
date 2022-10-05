@@ -132,7 +132,7 @@ local settings = {
     'logiPat',
     'matchit',
     -- 'matchparen',
-    -- 'netrw',
+    'netrw',
     'netrwFileHandlers',
     'netrwPlugin',
     'netrwSettings',
