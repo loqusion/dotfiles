@@ -18,6 +18,9 @@ function M.config()
         default = '',
       },
     },
+    filesystem = {
+      hijack_netrw_behavior = 'open_current',
+    },
     window = {
       position = 'current',
     },
@@ -27,7 +30,7 @@ end
 function M.register_global_keys()
   require('crows').key.maps {
     ['\\'] = { '<Cmd>Neotree toggle current reveal_force_cwd<CR>', 'Open neotree in current window' },
-    ['|'] = { '<Cmd>Neotree reveal reveal_force_cwd<CR>', 'Reveal current file in neotree' },
+    ['|'] = { '<Cmd>Neotree toggle left reveal_force_cwd<CR>', 'Reveal current file in neotree' },
     gF = { '<Cmd>Neotree float reveal_file=<cfile> reveal_force_cwd<CR>', 'Reveal file under cursor in neotree' },
     [vim.g.vscodeleader] = {
       b = { '<Cmd>Neotree toggle show buffers right<CR>', 'Show open buffers in neotree' },
