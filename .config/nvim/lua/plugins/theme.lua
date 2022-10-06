@@ -4,11 +4,11 @@ local theme = require('crows.utils').new_feat()
 
 theme.use {
   'sainnhe/gruvbox-material',
-  'luisiacc/gruvbox-baby',
+  { 'luisiacc/gruvbox-baby'},
   'eddyekofo94/gruvbox-flat.nvim',
   'shaunsingh/nord.nvim',
   'sainnhe/edge',
-  { 'rose-pine/neovim', as = 'rose-pine' },
+  { 'rose-pine/neovim', as = 'rose-pine'},
   'liuchengxu/space-vim-theme',
   'olimorris/onedarkpro.nvim',
   'rebelot/kanagawa.nvim',
@@ -16,7 +16,7 @@ theme.use {
   'Shatur/neovim-ayu',
   'Mofiqul/dracula.nvim',
   { 'mcchrish/zenbones.nvim', requires = 'rktjmp/lush.nvim' },
-  { 'catppuccin/nvim', as = 'catppuccin' },
+  { 'catppuccin/nvim', as = 'catppuccin', config = true },
   'folke/tokyonight.nvim',
   'frankier/neovim-colors-solarized-truecolor-only',
   'f-person/auto-dark-mode.nvim',
@@ -111,9 +111,9 @@ local themes = {
   },
 }
 
-pcall(function()
-  local command = 'colorscheme ' .. options.colorscheme
-  vim.cmd(command)
-end)
+-- pcall(function()
+--   local command = 'colorscheme ' .. options.colorscheme
+--   vim.cmd(command)
+-- end)
 
 return theme
