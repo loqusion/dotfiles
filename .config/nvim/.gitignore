@@ -1,3 +1,4 @@
 plugin/packer_compiled.lua
 .luarc.json
 lua/secret
+spell
