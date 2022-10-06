@@ -28,3 +28,6 @@ function linecount() {
 function dict() {
     curl "dict://dict.org/d:$1" | eval "${PAGER:-less}"
 }
+
+alias tarify='tar czpvf'
+alias untar='tar xvf'
