@@ -4,7 +4,7 @@ local M = {
   safe_requires = {
     'dapui',
   },
-  map_leader = '<Space>d'
+  map_leader = '<Space>d',
 }
 
 function M.setup()

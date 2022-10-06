@@ -1,6 +1,6 @@
 local M = {}
 
-local has_v0_8 = vim.fn.has('nvim-0.8') ~= 0
+local has_v0_8 = vim.fn.has 'nvim-0.8' ~= 0
 
 function M.enable_formatting(client, _)
   local cap = has_v0_8 and client.server_capabilities or client.resolved_capabilities

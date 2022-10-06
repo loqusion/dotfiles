@@ -58,23 +58,23 @@ end
 local function native_map(mappings, opts, prefix)
   prefix = prefix or ''
   for key, reg in pairs(mappings) do
-    if key == 'name' then goto continue end
-    if #reg >= 2 then
-      local mode = reg.mode or opts.mode or 'n'
-      local merged_opts = to_native_opts(opts)
-      for k, opt in pairs(reg) do
-        if type(k) ~= 'number' and k ~= 'mode' then
-          merged_opts[k] = opt
+    if key ~= 'name' then
+      if #reg >= 2 then
+        local mode = reg.mode or opts.mode or 'n'
+        local merged_opts = to_native_opts(opts)
+        for k, opt in pairs(reg) do
+          if type(k) ~= 'number' and k ~= 'mode' then
+            merged_opts[k] = opt
+          end
         end
+        if reg[2] ~= 'which_key_ignore' then
+          merged_opts.desc = reg[2]
+        end
+        vim.keymap.set(mode, prefix .. key, reg[1], merged_opts)
+      elseif #reg == 0 then
+        native_map(reg, opts, prefix .. key)
       end
-      if reg[2] ~= 'which_key_ignore' then
-        merged_opts.desc = reg[2]
-      end
-      vim.keymap.set(mode, prefix .. key, reg[1], merged_opts)
-    elseif #reg == 0 then
-      native_map(reg, opts, prefix .. key)
     end
-    ::continue::
   end
 end
 

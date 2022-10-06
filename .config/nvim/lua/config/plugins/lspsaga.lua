@@ -6,7 +6,7 @@ local M = {
   safe_requires = {
     'lspsaga',
   },
-  has_v0_8 = vim.fn.has('nvim-0.8') ~= 0
+  has_v0_8 = vim.fn.has 'nvim-0.8' ~= 0,
 }
 
 function M.setup() end

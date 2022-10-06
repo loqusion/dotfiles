@@ -2,8 +2,8 @@
 
 local M = {
   safe_requires = {
-    { 'symbols-outline', 'symbols_outline' }
-  }
+    { 'symbols-outline', 'symbols_outline' },
+  },
 }
 
 function M.setup()

@@ -65,7 +65,7 @@ function M.config()
           nvim_lsp = 0,
         })[entry.source.name] or 0
 
-        local kind = M.lspkind.cmp_format { mode = 'symbol_text', with_text = false, maxwidth = 50 } (entry, vim_item)
+        local kind = M.lspkind.cmp_format { mode = 'symbol_text', with_text = false, maxwidth = 50 }(entry, vim_item)
 
         -- if false or entry.source.name == 'cmdline' then
         --   kind.kind = ''
@@ -193,8 +193,9 @@ function M.get_abbr(vim_item, entry)
     word = before .. '...'
   end
 
-  if entry.completion_item.insertTextFormat == M.types.lsp.InsertTextFormat.Snippet
-      and string.sub(vim_item.abbr, -1, -1) == '~'
+  if
+    entry.completion_item.insertTextFormat == M.types.lsp.InsertTextFormat.Snippet
+    and string.sub(vim_item.abbr, -1, -1) == '~'
   then
     word = word .. '~'
   end
