@@ -1,8 +1,21 @@
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 
+local options = require 'core.options'
+
 local M = {
   safe_requires = {
     { 'neo-tree', 'neo_tree' },
+  },
+  transparent_overrides = {
+    NeoTreeNormal = {
+      bg = 'NONE',
+    },
+    NeoTreeNormalNC = {
+      bg = 'NONE',
+    },
+    NeoTreeFloatBorder = {
+      bg = 'NONE',
+    },
   },
 }
 
@@ -25,12 +38,18 @@ function M.config()
       position = 'float',
     },
   }
+
+  if options.transparent_background then
+    for name, val in pairs(M.transparent_overrides) do
+      vim.api.nvim_set_hl(0, name, val)
+    end
+  end
 end
 
 function M.register_global_keys()
   require('crows').key.maps {
     ['\\'] = { '<Cmd>Neotree toggle float reveal_force_cwd<CR>', 'Open neotree in floating window' },
-    ['|'] = { '<Cmd>Neotree toggle left reveal_force_cwd<CR>', 'Reveal current file in neotree' },
+    ['|'] = { '<Cmd>Neotree toggle left<CR>', 'Reveal current file in neotree' },
     gF = { '<Cmd>Neotree float reveal_file=<cfile> reveal_force_cwd<CR>', 'Reveal file under cursor in neotree' },
     [vim.g.vscodeleader] = {
       b = { '<Cmd>Neotree toggle show buffers right<CR>', 'Show open buffers in neotree' },

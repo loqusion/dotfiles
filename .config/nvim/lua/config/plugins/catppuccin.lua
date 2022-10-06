@@ -13,6 +13,11 @@ local M = {
     'catppuccin',
   },
   flavor = flavors.mocha,
+  highlight_overrides = {
+    CursorLine = {
+      bg = '#303347',
+    },
+  },
 }
 
 function M.setup() end
@@ -20,6 +25,9 @@ function M.setup() end
 function M.config()
   vim.g.catppuccin_flavor = M.flavor
   M.catppuccin.setup {
+    compile = {
+      enable = true,
+    },
     transparent_background = options.transparent_background,
   }
 
@@ -30,7 +38,11 @@ end
 function M.register_global_autocmds()
   vim.api.nvim_create_autocmd('ColorScheme', {
     pattern = 'catppuccin',
-    command = [[hi CursorLine guibg=#303347 ]],
+    callback = function()
+      for name, val in pairs(M.highlight_overrides) do
+        vim.api.nvim_set_hl(0, name, val)
+      end
+    end,
   })
 end
 
