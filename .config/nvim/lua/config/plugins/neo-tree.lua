@@ -29,7 +29,7 @@ end
 
 function M.register_global_keys()
   require('crows').key.maps {
-    ['\\'] = { '<Cmd>Neotree toggle reveal_force_cwd<CR>', 'Open neotree in current window' },
+    ['\\'] = { '<Cmd>Neotree toggle float reveal_force_cwd<CR>', 'Open neotree in floating window' },
     ['|'] = { '<Cmd>Neotree toggle left reveal_force_cwd<CR>', 'Reveal current file in neotree' },
     gF = { '<Cmd>Neotree float reveal_file=<cfile> reveal_force_cwd<CR>', 'Reveal file under cursor in neotree' },
     [vim.g.vscodeleader] = {
