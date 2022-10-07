@@ -1,10 +1,22 @@
 local lazy = require 'crows.lazy'
 local persisted = lazy.require 'persisted'
+local persisted_utils = lazy.require 'persisted.utils'
 
 local M = {}
 
-function M.load(file_path)
-  local ok, err = pcall(vim.cmd, 'source ' .. vim.fn.fnameescape(file_path))
+function M.load(file_path, _opts)
+  local opts = _opts or {}
+  if not opts.should_save then
+    persisted.stop()
+  end
+  if vim.o.filetype == 'dashboard' then
+    vim.cmd [[
+      autocmd! dashboard-nvim
+      augroup! dashboard-nvim
+    ]]
+    vim.api.nvim_input('<Esc>:bd<CR>')
+  end
+  local ok, err = pcall(persisted_utils.load_session, file_path)
   if not ok then
     vim.api.nvim_echo({
       { '[sessions.lua]: ', 'ErrorMsg' },

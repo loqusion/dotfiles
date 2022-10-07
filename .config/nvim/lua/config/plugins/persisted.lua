@@ -4,6 +4,16 @@ local M = {
   safe_requires = {
     'persisted',
   },
+  telescope_config = {
+    before_source = function()
+      if vim.o.filetype ~= 'dashboard' then
+        if vim.g.persisting then
+          require('persisted').save()
+        end
+        vim.api.nvim_input '<Esc>:%bd<CR>'
+      end
+    end,
+  },
 }
 
 function M.setup() end
@@ -17,14 +27,7 @@ function M.config()
         TroubleClose
       ]]
     end,
-    telescope = {
-      before_source = function()
-        if vim.g.persisting then
-          require('persisted').save()
-        end
-        vim.api.nvim_input '<Esc>:%bd<CR>'
-      end,
-    },
+    telescope = telescope_config,
   }
 end
 
