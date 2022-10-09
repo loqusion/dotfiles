@@ -32,6 +32,7 @@ antigen apply
 ##################
 
 bindkey -e
+setopt EXTENDED_GLOB
 
 
 ##################
