@@ -22,10 +22,14 @@ function M.config()
   M.persisted.setup {
     use_git_branch = false,
     before_save = function()
+      vim.api.nvim_input '<Esc>:tabrewind<CR>'
       vim.cmd [[
         Neotree close
         TroubleClose
       ]]
+    end,
+    should_autosave = function()
+      return vim.bo.filetype ~= 'dashboard'
     end,
     telescope = telescope_config,
   }

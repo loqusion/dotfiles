@@ -39,7 +39,7 @@ function M.config()
           ['<C-b>'] = { '<Left>', type = 'command' },
           ['<C-f>'] = { '<Right>', type = 'command' },
           ['<M-f>'] = M.telescope_actions.preview_scrolling_down,
-          ['<M-d>'] = M.telescope_actions.preview_scrolling_up,
+          ['<M-b>'] = M.telescope_actions.preview_scrolling_up,
           ['<C-a>'] = { '<Home>', type = 'command' },
           ['<C-e>'] = { '<End>', type = 'command' },
           ['<C-u>'] = delete_line_before_cursor,

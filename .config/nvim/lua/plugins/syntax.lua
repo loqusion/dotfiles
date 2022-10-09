@@ -90,4 +90,10 @@ syntax.use { -- Horizontal highlights for text filetypes (markdown, neorg)
   config = true,
 }
 
+syntax.use { -- Add some color to your dreary neovim foldtext!
+  'milisims/foldhue.nvim',
+  disable = true,
+  config = true,
+}
+
 return syntax

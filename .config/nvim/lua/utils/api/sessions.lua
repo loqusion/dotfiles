@@ -6,9 +6,6 @@ local M = {}
 
 function M.load(file_path, _opts)
   local opts = _opts or {}
-  if not opts.should_save then
-    persisted.stop()
-  end
   if vim.o.filetype == 'dashboard' then
     vim.cmd [[
       autocmd! dashboard-nvim

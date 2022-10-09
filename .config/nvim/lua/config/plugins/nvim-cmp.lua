@@ -205,9 +205,9 @@ end
 function M.register_filetype_autocmds()
   local group = vim.api.nvim_create_augroup('cmp_custom', {})
   vim.api.nvim_create_autocmd('FileType', {
-    pattern = '*',
+    pattern = 'cmp_docs',
     callback = function()
-      vim.o.showbreak = ''
+      vim.wo.showbreak = ''
     end,
     group = group,
   })
