@@ -32,21 +32,6 @@ javascript.lsp_configs = {
   html = {},
   cssls = {},
   cssmodules_ls = {},
-  jsonls = {
-    settings = {
-      json = {
-        schemas = require('schemastore').json.schemas {
-          replace = {
-            ['package.json'] = {
-              fileMatch = { 'package.json' },
-              url = 'https://json.schemastore.org/package.json',
-            },
-          },
-        },
-        validate = { enable = true },
-      },
-    },
-  },
   yamlls = {},
 }
 
