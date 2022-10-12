@@ -18,7 +18,3 @@ config checkout
 config config --local status.showUntrackedFiles no
 config config --local branch.main.remote origin
 config config --local branch.main.merge refs/heads/main
-
-if ! which brew >/dev/null 2>&1; then
-  bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
