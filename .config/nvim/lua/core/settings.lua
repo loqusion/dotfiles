@@ -1,4 +1,5 @@
 local path = require 'utils.api.path'
+local options = require 'core.options'
 
 local settings = {
   g = {
@@ -72,7 +73,7 @@ local settings = {
     pumheight = 10,
     pumwidth = 0,
     pumblend = 10,
-    winblend = 10,
+    winblend = options.transparent_background and 0 or 10,
     ignorecase = true,
     smartcase = true,
     foldenable = true,
