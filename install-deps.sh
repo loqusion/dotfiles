@@ -5,6 +5,13 @@ exists ()
   command -v "$@" &>/dev/null
 }
 
+install_brew ()
+{
+  if ! exists brew; then
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+}
+
 install_brew_deps ()
 {
   brew bundle --global
@@ -12,7 +19,7 @@ install_brew_deps ()
 
 install_npm_deps ()
 {
-  if exists npm &>/dev/null && [ -r ~/.npm-packages ]; then
+  if exists npm && [ -r ~/.npm-packages ]; then
     npm install --global $(cat ~/.npm-packages)
   fi
 }
@@ -53,7 +60,7 @@ install_ghcup_deps ()
   fi
 }
 
-install_brew_deps
+install_brew && install_brew_deps
 install_npm_deps
 install_pip_deps
 install_rust && install_rust_deps
