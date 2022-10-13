@@ -61,7 +61,7 @@ end
 
 function M.register_buffer_keys(bufnr)
   require('crows').key.map('Close terminal', 'n', 'q', '<cmd>close<cr>', {
-    bufnr = bufnr,
+    buffer = bufnr,
     silent = true,
   })
 end
