@@ -18,9 +18,9 @@ function M.config()
     },
     adapters = {
       -- TODO: use neotest-jest when it gets better
-      -- require 'neotest-jest' {
-      --   jestCommand = 'yarn test --',
-      -- },
+      require 'neotest-jest' {
+        jestCommand = 'pnpm test --',
+      },
       require 'neotest-python' {},
       require 'neotest-vim-test' {
         ignore_filetypes = {
