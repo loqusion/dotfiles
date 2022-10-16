@@ -1,12 +1,10 @@
 -- https://github.com/sumneko/lua-language-server
--- https://github.com/folke/lua-dev.nvim
+-- https://github.com/folke/neodev.nvim
 
 -- https://github.com/sumneko/vscode-lua/blob/master/setting/schema.json
 -- https://github.com/xiyaowong/coc-sumneko-lua/blob/main/settings.md
 
-local lazy = require 'crows.lazy'
-local lua_dev = require 'lua-dev'
-local api = require 'utils.api'
+local neodev = require 'neodev'
 
 local lua = {}
 
@@ -23,8 +21,10 @@ local function workspace_files()
   return nil
 end
 
+neodev.setup {}
+
 lua.lsp_configs = {
-  sumneko_lua = vim.tbl_deep_extend('force', lua_dev.setup(), {
+  sumneko_lua = {
     cmd = { 'lua-language-server' },
     settings = {
       Lua = {
@@ -47,7 +47,7 @@ lua.lsp_configs = {
         },
       },
     },
-  }),
+  },
 }
 
 return lua

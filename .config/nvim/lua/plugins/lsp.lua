@@ -27,8 +27,9 @@ lsp.use {
 }
 
 lsp.use {
-  'folke/lua-dev.nvim',
+  'folke/neodev.nvim',
   after = 'nvim-lspconfig',
+  module = 'neodev',
 }
 
 -- lsp configs initialized here
