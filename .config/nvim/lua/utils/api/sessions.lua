@@ -8,10 +8,12 @@ function M.load(file_path, _opts)
   local opts = _opts or {}
   if vim.o.filetype == 'dashboard' then
     vim.cmd [[
-      autocmd! dashboard-nvim
-      augroup! dashboard-nvim
+      if exists('#dashboard-nvim')
+        autocmd! dashboard-nvim
+        augroup! dashboard-nvim
+      endif
     ]]
-    vim.api.nvim_input('<Esc>:bd<CR>')
+    vim.api.nvim_input '<Esc>:bd<CR>'
   end
   local ok, err = pcall(persisted_utils.load_session, file_path)
   if not ok then
