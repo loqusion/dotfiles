@@ -1,10 +1,9 @@
-@angular/cli
+@angular/language-server
 @fsouza/prettierd
 bash-language-server
 cypress
 gatsby-cli
 npm
-npmrc
 prettier
 typescript-language-server
 typescript
