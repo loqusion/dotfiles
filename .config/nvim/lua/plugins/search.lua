@@ -72,9 +72,8 @@ search.use { -- Quickfix
 
 search.use {
   'mhinz/vim-grepper',
-  disable = true,
   cmd = 'Grepper',
-  keys = '<plug>(GrepperOperator)',
+  keys = '<Plug>(GrepperOperator)',
   setup = function()
     vim.cmd [[
       let g:grepper = {}
