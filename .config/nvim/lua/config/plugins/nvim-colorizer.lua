@@ -10,7 +10,15 @@ function M.setup() end
 
 function M.config()
   M.colorizer.setup({
-    '*',
+    'html',
+    'css',
+    'sass',
+    'scss',
+    'javascript',
+    'javascriptreact',
+    'typescript',
+    'typescriptreact',
+    'lua',
   }, {
     RGB = true,
     RRGGBB = true,
