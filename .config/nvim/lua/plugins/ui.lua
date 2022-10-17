@@ -7,10 +7,17 @@ ui.use {
 }
 
 ui.use {
+  'folke/zen-mode.nvim',
+  cmd = 'ZenMode',
+  setup = true,
+  config = true,
+}
+
+ui.use {
   -- 'Pocco81/true-zen.nvim',
   'loqusion/true-zen.nvim',
   -- '~/repos/true-zen.nvim',
-  -- branch = 'some-fixes',
+  disable = true,
   cmd = { 'TZAtaraxis', 'TZFocus', 'TZMinimalist', 'TZNarrow' },
   setup = true,
   config = true,

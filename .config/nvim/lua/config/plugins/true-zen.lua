@@ -4,7 +4,7 @@ local M = {
   safe_requires = {
     { 'true-zen', 'true_zen' },
   },
-  map_leader = 'gz',
+  map_leader = '<LocalLeader>z',
 }
 
 function M.setup()
