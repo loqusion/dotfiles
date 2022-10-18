@@ -5,6 +5,7 @@ local settings = require 'core.settings'
 local M = {
   safe_requires = {
     'lualine',
+    'noice',
   },
 }
 
@@ -36,6 +37,11 @@ function M.config()
         { 'filename', path = 1 },
       },
       lualine_x = {
+        {
+          M.noice.api.statusline.mode.get,
+          cond = M.noice.api.statusline.mode.has,
+          color = { fg = '#ff9e64' },
+        },
         {
           M.persisted_component,
           separator = '|',

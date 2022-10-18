@@ -1,6 +1,16 @@
 local ui = require('crows.utils').new_feat()
 
 ui.use {
+  'folke/noice.nvim',
+  requires = {
+    'MunifTanjim/nui.nvim',
+    'rcarriga/nvim-notify',
+  },
+  event = 'VimEnter',
+  config = true,
+}
+
+ui.use {
   'glepnir/dashboard-nvim',
   config = true,
   after = 'persisted.nvim',

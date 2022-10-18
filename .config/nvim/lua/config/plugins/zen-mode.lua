@@ -16,16 +16,17 @@ function M.config()
   M.zen_mode.setup {
     window = {
       options = {
+        -- signcolumn = 'no',
         number = false,
         relativenumber = false,
         cursorline = true,
+        foldcolumn = '0',
         list = false,
-      }
+      },
     },
     plugins = {
-      twilight = {
-        enabled = false,
-      },
+      twilight = { enabled = false },
+      gitsigns = { enabled = true },
     },
     on_open = M.save_and_replace_keymaps,
     on_close = M.restore_keymaps,
