@@ -153,13 +153,6 @@ function M.config()
     }, {
       { name = 'cmdline' },
     }),
-    -- window = {
-    --   completion = {
-    --     winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
-    --     col_offset = 0,
-    --     side_padding = 0,
-    --   },
-    -- },
   })
 
   M.register_filetype_autocmds()
