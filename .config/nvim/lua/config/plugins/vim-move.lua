@@ -5,8 +5,15 @@ local M = {
 }
 
 function M.entrance()
-  vim.g.move_key_modifier = M.modifier
-  vim.g.move_key_modifier_visualmode = M.modifier
+  vim.g.move_map_keys = 0
+  M.register_global_keys()
+end
+
+function M.register_global_keys()
+  require('crows').key.maps({
+    ['<C-j>'] = { '<Plug>MoveBlockDown', 'Move line(s) down' },
+    ['<C-k>'] = { '<Plug>MoveBlockUp', 'Move line(s) up' },
+  }, { mode = 'x' })
 end
 
 return M
