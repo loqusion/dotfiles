@@ -176,6 +176,7 @@ vim.opt.shortmess:append {
   a = true,
   c = true,
   I = true,
+  F = true,
 }
 
 vim.opt.formatoptions:remove { 't' }
