@@ -5,7 +5,7 @@ local M = {
     'trouble',
   },
   icons = require('utils.icons').diagnostics,
-  map_leader = '<Leader>x',
+  map_leader = '<LocalLeader>x',
 }
 
 function M.setup() end
