@@ -79768,8 +79768,6 @@
 				<key>Red Component</key>
 				<real>0.99215686274509807</real>
 			</dict>
-			<key>Background Image Location</key>
-			<string></string>
 			<key>Badge Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -79816,7 +79814,7 @@
 			<key>Blur</key>
 			<true/>
 			<key>Blur Radius</key>
-			<real>12.094132313829787</real>
+			<real>5.4113281250000007</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -80528,7 +80526,7 @@
 			<key>Thin Strokes</key>
 			<integer>3</integer>
 			<key>Transparency</key>
-			<real>0.14927692819148936</real>
+			<real>0.24639295212765958</real>
 			<key>Unicode Normalization</key>
 			<integer>0</integer>
 			<key>Unicode Version</key>
