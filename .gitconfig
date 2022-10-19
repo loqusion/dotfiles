@@ -1,15 +1,27 @@
 [core]
 	editor = NVIM_DISABLE_YABAI_TOGGLE=true nvim
+	pager = delta
 [user]
 	name = John Bernard
 	email = 38332081+loqusion@users.noreply.github.com
 [init]
 	defaultBranch = main
+[interactive]
+	diffFilter = delta --color-only
+[add.interactive]
+	useBuiltin = false
 [pull]
 	rebase = true
 	ff = only
+[push]
+	autoSetupRemote = true
+[merge]
+	conflictstyle = diff3
 [diff]
-	tool = nvimdiff
+	colorMoved = default
+[delta]
+	navigate = true
+	light = false
 [difftool "nvimdiff"]
 	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [filter "lfs"]
@@ -17,5 +29,3 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[push]
-	autoSetupRemote = true
