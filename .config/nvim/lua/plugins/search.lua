@@ -87,6 +87,7 @@ search.use {
 search.use { -- *, #, n, N, etc
   {
     'kevinhwang91/nvim-hlslens',
+    disable = true, -- functionality provided by noice.nvim
     module = 'hlslens',
     setup = true,
     config = true,

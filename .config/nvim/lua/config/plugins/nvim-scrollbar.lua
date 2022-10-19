@@ -9,12 +9,7 @@ local M = {
 function M.setup() end
 
 function M.config()
-  M.scrollbar.setup {
-    handlers = {
-      search = true,
-    },
-  }
-  -- require('scrollbar.handlers.search').setup()
+  M.scrollbar.setup {}
 end
 
 return M
