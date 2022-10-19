@@ -6,6 +6,7 @@ progname="$(basename "$0")"
 script_dir="$(dirname "$0")"
 
 declare -a invalid_input
+declare -a errors
 
 supported=(
   brew
@@ -14,13 +15,11 @@ supported=(
 )
 
 usage() {
-  {
-    echo "Usage: ${progname} <package_manager>"
-    echo "Supported Package Managers"
-    print_all_supported
-    echo "Or, pass 'all' to dump all of them"
-  } >&2
-}
+  echo "Usage: ${progname} <package_manager>"
+  echo "Supported Package Managers"
+  print_all_supported
+  echo "Or, pass 'all' to dump all of them"
+} >&2
 
 print_all_supported() {
   for s in "${supported[@]}"; do
@@ -30,6 +29,7 @@ print_all_supported() {
 
 is_supported() {
   local prog="$1"
+  [ "$prog" = all ] && return 0
   for s in "${supported[@]}"; do
     if [ "$prog" = "$s" ]; then
       return 0
@@ -38,21 +38,37 @@ is_supported() {
   return 1
 }
 
-dump() {
+validate_args() {
+  local status=0
+  for prog in "$@"; do
+    if ! is_supported "$prog"; then
+      status=1
+      invalid_input+=("$prog")
+    fi
+  done
+  return $status
+}
+
+_dump() {
   local prog="$1"
-  if [ "$prog" = "" ] || ! is_supported "$prog"; then
-    return 1
-  fi
   echo "Dumping ${prog}..."
-  "${script_dir}/dump-${prog}.sh" >&2
+  "${script_dir}/dump-${prog}.sh" >&2 ; local status="$?"
   echo "Finished dumping $prog"
   echo
+  return "$status"
 }
 
 if [ $# -eq 0 ]; then
   usage
   exit 0
 fi
+
+validate_args "$@" || {
+  usage
+  echo
+  echo "Invalid input: ${invalid_input[*]}"
+  exit 1
+} >&2
 
 progs_to_dump=("$@")
 for arg in "$@"; do
@@ -63,19 +79,15 @@ for arg in "$@"; do
 done
 
 for prog in "${progs_to_dump[@]}"; do
-  set +e; dump "$prog"; status=$?; set -e
+  set +e; _dump "$prog"; status=$?; set -e
   if [ "$status" -ne 0 ]; then
-    invalid_input+=("$prog")
+    errors+=("$prog")
   fi
 done
 
-if [ ${#invalid_input} -gt 0 ]; then
-  {
-    usage
-    echo
-    echo "Invalid input: ${invalid_input[*]}"
-  } >&2
+if [ "${#errors}" -gt 0 ]; then
+  echo "Something went wrong!"
   exit 1
 else
-  echo "Done!" >&2
-fi
+  echo "Done!"
+fi >&2
