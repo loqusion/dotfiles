@@ -26,8 +26,8 @@ install_npm_deps ()
 
 install_pip_deps ()
 {
-  if exists pip3 && [ -r ~/.requirements.txt ]; then
-    pip3 install --requirement ~/.requirements.txt
+  if exists pipx && [ -r ~/.pip-requirements ]; then
+    cat "~/.pip-requirements" | awk '{ print $1 }' | xargs -L1 pipx install
   fi
 }
 
