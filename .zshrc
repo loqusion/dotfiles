@@ -20,6 +20,14 @@ antigen bundle buonomo/yarn-completion
 
 antigen apply
 
+
+###################
+###### utils ######
+###################
+
+[ -f ~/.config/shell/rc-utils.sh ] && . ~/.config/shell/rc-utils.sh
+
+
 ###################
 ##### install #####
 ###################
@@ -40,7 +48,7 @@ setopt EXTENDED_GLOB
 ### completion ###
 ##################
 
-if hash brew &>/dev/null; then
+if _rc_exists brew; then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
 
@@ -54,10 +62,13 @@ complete -C '/usr/local/bin/aws_completer' aws
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # iTerm2 shell integration
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+[ -e "${HOME}/.iterm2_shell_integration.zsh" ] && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Angular CLI autocompletion
-hash ng &>/dev/null && source <(ng completion script)
+_rc_exists ng && source <(ng completion script)
+
+# pipx completion
+eval "$(register-python-argcomplete pipx)"
 
 
 #####################
