@@ -5,7 +5,6 @@ alias c=config
 alias zshrc='$EDITOR "$HOME/.zshrc"'
 
 alias fzp='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
-alias sad='sad --pager "delta -s"'
 
 alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
 
