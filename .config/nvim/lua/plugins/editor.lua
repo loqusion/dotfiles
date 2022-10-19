@@ -197,4 +197,11 @@ editor.use { -- nvimrc
   config = true,
 }
 
+editor.use {
+ 'matze/vim-move',
+ ptp = 'viml',
+ event = 'VimEnter',
+ setup = true,
+}
+
 return editor
