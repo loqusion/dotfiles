@@ -9,6 +9,7 @@ antigen use oh-my-zsh
 antigen bundle git
 antigen bundle rust
 antigen bundle yarn
+antigen bundle pip
 
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting

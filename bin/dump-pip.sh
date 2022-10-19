@@ -1,3 +1,7 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-pip3 freeze >~/.requirements.txt
+if hash pip-chill &>/dev/null; then
+  pip-chill >~/.requirements.txt
+else
+  pip3 freeze >~/.requirements.txt
+fi
