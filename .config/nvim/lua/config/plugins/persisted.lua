@@ -21,6 +21,8 @@ function M.setup() end
 function M.config()
   M.persisted.setup {
     use_git_branch = false,
+    follow_cwd = true,
+    allowed_dirs = { '~/repos', '~/.config/nvim' },
     before_save = function()
       vim.api.nvim_input '<Esc>:tabrewind<CR>'
       vim.cmd [[
@@ -31,7 +33,7 @@ function M.config()
     should_autosave = function()
       return vim.bo.filetype ~= 'dashboard'
     end,
-    telescope = telescope_config,
+    telescope = M.telescope_config,
   }
 end
 
