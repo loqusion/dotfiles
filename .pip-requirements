@@ -1,0 +1,12 @@
+django
+flake8
+ipython
+mypy
+ptpython
+pylint
+pyright
+pytest
+send2trash
+shell-functools
+vim-vint
+yapf
