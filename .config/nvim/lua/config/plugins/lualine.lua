@@ -19,6 +19,7 @@ function M.config()
       --       
       component_separators = '',
       section_separators = { left = '', right = '' },
+      -- section_separators = { left = '', right = '' },
       disabled_filetypes = {},
       always_divide_middle = true,
       globalstatus = settings.opt.laststatus == 3,
