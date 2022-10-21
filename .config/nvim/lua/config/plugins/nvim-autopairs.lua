@@ -3,8 +3,6 @@
 local M = {
   safe_requires = {
     { 'nvim-autopairs', 'autopairs' },
-    { 'nvim-autopairs.completion.cmp', 'cmp_autopairs' },
-    'cmp',
   },
 }
 
@@ -16,8 +14,17 @@ function M.config()
     enable_check_bracket_line = true,
     check_ts = true,
   }
-  -- If you want insert `(` after select function or method item
-  M.cmp.event:on('confirm_done', M.cmp_autopairs.on_confirm_done { map_char = { tex = '' } })
+end
+
+function M.cmp_integration()
+  require('cmp').event:on(
+    'confirm_done',
+    require('nvim-autopairs.completion.cmp').on_confirm_done {
+      filetypes = {
+        tex = false,
+      },
+    }
+  )
 end
 
 return M

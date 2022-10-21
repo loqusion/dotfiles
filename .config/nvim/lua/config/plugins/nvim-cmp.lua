@@ -1,6 +1,7 @@
 -- https://github.com/hrsh7th/nvim-cmp
 
 local settings = require 'core.settings'
+local autopairs = require 'config.plugins.nvim-autopairs'
 
 local M = {
   safe_requires = {
@@ -156,6 +157,8 @@ function M.config()
   })
 
   M.register_filetype_autocmds()
+
+  autopairs.cmp_integration()
 end
 
 function M.tab(fallback)
