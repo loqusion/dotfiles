@@ -46,7 +46,7 @@ validate_args() {
       invalid_input+=("$prog")
     fi
   done
-  return $status
+  return "$status"
 }
 
 _dump() {
@@ -81,6 +81,7 @@ done
 for prog in "${progs_to_dump[@]}"; do
   set +e; _dump "$prog"; status=$?; set -e
   if [ "$status" -ne 0 ]; then
+    echo "$prog exited with $status" >&2
     errors+=("$prog")
   fi
 done
