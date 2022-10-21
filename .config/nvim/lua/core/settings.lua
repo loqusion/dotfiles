@@ -35,6 +35,7 @@ local settings = {
     -- lazyredraw = true,
     synmaxcol = 500,
     -- redrawtime = 0,
+    report = 50,
     showmode = false,
     modeline = true,
     updatetime = 500,
