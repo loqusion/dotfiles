@@ -205,4 +205,10 @@ editor.use {
   setup = true,
 }
 
+editor.use {
+  'ibhagwan/smartyank.nvim',
+  config = true,
+  event = 'CursorHold',
+}
+
 return editor
