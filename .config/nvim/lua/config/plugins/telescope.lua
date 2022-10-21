@@ -117,6 +117,7 @@ end
 
 function M.register_global_keys()
   local lazy = require 'crows.lazy'
+  local api = require 'utils.api'
   local tb = 'telescope.builtin'
 
   require('crows').key.maps {
@@ -127,6 +128,10 @@ function M.register_global_keys()
         v = {
           lazy.fn(tb, 'find_files', { cwd = vim.fn.stdpath 'config', hidden = false }),
           'Search Vim config...',
+        },
+        V = {
+          lazy.fn(tb, 'find_files', { cwd = api.path.join(vim.fn.stdpath 'data', 'site'), hidden = false }),
+          'Search plugins...',
         },
         b = { lazy.fn(tb, 'current_buffer_fuzzy_find'), 'Fuzzy find in current buffer...' },
         h = { lazy.fn(tb, 'help_tags'), 'Go to help page...' },

@@ -71,6 +71,8 @@ ui.use { -- Ultra fold
   'kevinhwang91/nvim-ufo',
   requires = 'kevinhwang91/promise-async',
   event = 'VimEnter',
+  setup = true,
+  config = true,
 }
 
 return ui

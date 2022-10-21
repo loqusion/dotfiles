@@ -101,7 +101,7 @@ editor.use { -- close buffer with save prompt
 editor.use { -- speedy jk
   'rhysd/accelerated-jk',
   ptp = 'viml',
-  event = { 'BufRead', 'BufNewFile' },
+  event = 'VimEnter',
   setup = true,
 }
 

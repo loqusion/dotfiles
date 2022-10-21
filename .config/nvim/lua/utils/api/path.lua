@@ -65,7 +65,7 @@ function path.require_recursive(moddirname, glob, root_dir, exclude)
   for _, file in ipairs(file_list) do
     local modname = vim.fn.fnamemodify(file, ':t:r')
     if modname ~= exclude then
-      local full_modname = path.join(moddirname, modname)
+      local full_modname = ('%s.%s'):format(moddirname, modname)
       local ok, mod = pcall(require, full_modname)
       if ok then
         ret[modname] = mod

@@ -84,8 +84,8 @@ git.use {
     'nvim-telescope/telescope.nvim',
     'kyazdani42/nvim-web-devicons',
   },
-  -- cmd = 'Octo',
-  -- module = 'octo',
+  cmd = 'Octo',
+  module = 'octo',
   config = true,
 }
 
