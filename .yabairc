@@ -12,9 +12,8 @@
 #  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)
 #
 sudo yabai --load-sa
-yabai -m signal --add event=dock_did_restart action='sudo yabai --load-sa'
+yabai -m signal --add event=dock_did_restart action='yabai --load-sa'
 
-# TODO: Figure out where to move this to prevent app chaos during restart
 yabai -m rule --add app='.*' manage=off
 
 # global settings
@@ -104,6 +103,7 @@ unmanaged_safari_titles=(
   'Websites'
   'Extensions'
   'Advanced'
+  'Choose Files to Upload'
 )
 
 # Spaces
@@ -128,11 +128,13 @@ done
 
 # Managed apps
 for app in "${managed_apps[@]}"; do
-  yabai -m rule --add app="$app" manage=on
+  if ! [[ "$app" =~ 'Safari' ]]; then
+    yabai -m rule --add app="$app" manage=on
+  fi
 done
-for safari_title in "${unmanaged_safari_titles[@]}"; do
-  yabai -m rule --add app='^Safari$' title="$safari_title" manage=off
-done
+# for safari_title in "${unmanaged_safari_titles[@]}"; do
+#   yabai -m rule --add app='^Safari$' title="$safari_title" manage=off
+# done
 yabai -m rule --add app='^Spark$' title!='^Spark' manage=off
 
 # yabai -m rule --add app='^iTerm2$' grid=23:23:6:6:11:11
