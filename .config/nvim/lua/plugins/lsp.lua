@@ -85,6 +85,7 @@ lsp.use {
 
 lsp.use {
   'j-hui/fidget.nvim',
+  disable = true, -- functionality provided by noice
   after = 'mason.nvim',
   config = true,
 }
