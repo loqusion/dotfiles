@@ -77,15 +77,15 @@ git.use { -- Git porcelain inside vim
 }
 
 git.use {
-  -- TODO: use pwntester/octo.nvim
-  'haydenmeade/octo.nvim',
+  'pwntester/octo.nvim',
   requires = {
+    -- also requires GitHub cli
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope.nvim',
     'kyazdani42/nvim-web-devicons',
   },
-  cmd = 'Octo',
-  module = 'octo',
+  -- cmd = 'Octo',
+  -- module = 'octo',
   config = true,
 }
 
