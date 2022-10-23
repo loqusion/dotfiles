@@ -26,13 +26,12 @@ function M.config()
   vim.g.catppuccin_flavor = M.flavor
   M.catppuccin.setup {
     compile = {
-      enable = true,
+      enable = false,
     },
     transparent_background = options.transparent_background,
   }
 
   M.register_global_autocmds()
-  vim.cmd [[colorscheme catppuccin]]
 end
 
 function M.register_global_autocmds()

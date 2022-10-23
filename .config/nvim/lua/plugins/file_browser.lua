@@ -22,6 +22,8 @@ file_browser.use {
 file_browser.use {
   'nanozuki/tabby.nvim',
   requires = 'kyazdani42/nvim-web-devicons',
+  event = 'ColorScheme',
+  setup = true,
   config = true,
 }
 

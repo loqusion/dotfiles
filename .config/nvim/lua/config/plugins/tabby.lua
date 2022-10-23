@@ -6,11 +6,11 @@ local M = {
   },
 }
 
-function M.setup() end
+function M.setup()
+  M.register_global_keys()
+end
 
 function M.config()
-  M.register_global_keys()
-
   M.tabby.setup()
 end
 
