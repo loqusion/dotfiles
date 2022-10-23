@@ -16,7 +16,9 @@ function M.load(file_path, _opts)
     vim.api.nvim_input '<Esc>:bd<CR>'
   end
   local ok, err = pcall(persisted_utils.load_session, file_path)
-  if not ok then
+  if ok then
+    persisted.start()
+  else
     vim.api.nvim_echo({
       { '[sessions.lua]: ', 'ErrorMsg' },
       { 'Error loading the session! ', 'WarningMsg' },
