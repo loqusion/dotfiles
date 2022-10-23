@@ -12,7 +12,7 @@ function M.config()
   M.smartyank.setup {
     highlight = {
       timeout = 80,
-    }
+    },
   }
 end
 
