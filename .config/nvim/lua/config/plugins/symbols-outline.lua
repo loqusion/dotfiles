@@ -21,7 +21,7 @@ end
 
 function M.register_global_keys()
   require('crows').key.maps {
-    ['<Space>s;'] = { '<Cmd>SymbolsOutline<CR>', 'Toggle symbols outline' },
+    ['<Space>;'] = { '<Cmd>SymbolsOutline<CR>', 'Toggle symbols outline' },
   }
 end
 
