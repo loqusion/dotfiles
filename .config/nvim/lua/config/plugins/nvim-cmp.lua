@@ -31,7 +31,7 @@ function M.config()
       { name = 'path' },
       { name = 'buffer', keyword_length = 4 },
       { name = 'neorg' },
-      { name = 'nvim_lua' },
+      -- { name = 'nvim_lua' },
       -- { name = 'cmp_tabnine' },
     }, {
       { name = 'npm', keyword_length = 4 },
@@ -60,25 +60,23 @@ function M.config()
     },
     formatting = {
       fields = { 'kind', 'abbr', 'menu' },
+      ---@param entry cmp.Entry
+      ---@param vim_item vim.CompletedItem
       format = function(entry, vim_item)
         vim_item.abbr = M.get_abbr(vim_item, entry)
         vim_item.dup = ({
           buffer = 1,
           path = 1,
-          nvim_lsp = 0,
+          nvim_lsp = 1,
         })[entry.source.name] or 0
 
-        local kind = M.lspkind.cmp_format { mode = 'symbol_text', with_text = false, maxwidth = 50 }(entry, vim_item)
+        ---@type vim.CompletedItem
+        local format = M.lspkind.cmp_format { mode = 'symbol_text', with_text = false, maxwidth = 50 }(entry, vim_item)
 
-        -- if false or entry.source.name == 'cmdline' then
-        --   kind.kind = ''
-        -- else
-        local strings = vim.split(kind.kind, '%s', { trimempty = true })
-        kind.kind = string.format(' %s ', strings[1])
-        -- kind.menu = string.format('    (%s)', strings[2])
-        -- end
+        local strings = vim.split(format.kind, '%s', { trimempty = true })
+        format.kind = (' %s '):format(strings[1])
 
-        return kind
+        return format
       end,
     },
     mapping = {
@@ -140,7 +138,7 @@ function M.config()
     }),
   })
 
-  M.cmp.setup.cmdline('/', {
+  M.cmp.setup.cmdline({ '/', '?' }, {
     sources = M.cmp.config.sources({
       { name = 'nvim_lsp_document_symbol' },
     }, {
@@ -177,7 +175,12 @@ function M.stab(fallback)
   end
 end
 
+---@param vim_item vim.CompletedItem
+---@param entry cmp.Entry
 function M.get_abbr(vim_item, entry)
+  if entry.source.name == 'nvim_lsp_document_symbol' then
+    return vim_item.abbr
+  end
   local word = entry:get_insert_text()
   if entry.completion_item.insertTextFormat == M.types.lsp.InsertTextFormat.Snippet then
     word = vim.lsp.util.parse_snippet(word)

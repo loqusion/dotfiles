@@ -14,14 +14,6 @@ javascript.lsp_configs = {
   tailwindcss = {
     root_dir = lspconfig_util.root_pattern('tailwind.config.js', 'tailwind.config.ts'),
   },
-  -- denols = {
-  --   root_dir = lspconfig_util.root_pattern 'deno_root',
-  --   init_options = {
-  --     enable = true,
-  --     lint = true,
-  --     unstable = true,
-  --   },
-  -- },
   graphql = {
     filetypes = { 'graphql' },
   },
@@ -37,16 +29,6 @@ javascript.lsp_configs = {
 
 local typescript_ok, typescript = pcall(require, 'typescript')
 if typescript_ok then
-  local saved_on_attach = javascript.lsp_configs.tsserver.on_attach
-  javascript.lsp_configs.tsserver = vim.tbl_extend('force', javascript.lsp_configs.tsserver, {
-    on_attach = function(...)
-      if saved_on_attach then
-        saved_on_attach(...)
-      end
-      api.lsp.disable_formatting(...)
-    end,
-  })
-  -- calls `lspconfig.tsserver.setup()`
   typescript.setup {
     disable_commands = false,
     debug = false,

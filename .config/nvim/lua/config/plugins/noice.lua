@@ -10,6 +10,7 @@ function M.setup() end
 
 function M.config()
   M.noice.setup {
+    lsp = { progress = { enabled = true } },
     views = {
       cmdline_popup = {
         position = {
@@ -19,7 +20,7 @@ function M.config()
       },
     },
     popupmenu = {
-      enabled = false,
+      enabled = true,
       backend = 'cmp',
     },
     hacks = {

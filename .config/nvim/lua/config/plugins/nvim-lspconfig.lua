@@ -28,12 +28,7 @@ function M.config()
 
   local lsp = require 'crows.lsp'
 
-  -- use null-ls for formatting
-  lsp.add_on_attach(function(client, ...)
-    if client.name ~= 'null-ls' then
-      api.lsp.disable_formatting(client, ...)
-    end
-  end)
+  lsp.add_on_attach(M.configure_formatting)
 
   local languages = api.path.require_recursive 'config.languages'
   for _, module in pairs(languages) do
@@ -47,6 +42,17 @@ function M.config()
   M.override_handlers()
 end
 
+function M.configure_formatting(client, buf)
+  local filetype = vim.api.nvim_buf_get_option(buf, 'filetype')
+  local enable_formatting = false
+  if require('config.plugins.null-ls').has_formatter(filetype) then
+    enable_formatting = client.name == 'null-ls'
+  else
+    enable_formatting = client.name ~= 'null-ls'
+  end
+  client.server_capabilities.documentFormattingProvider = enable_formatting
+end
+
 local old_location_handler = vim.lsp.handlers['textDocument/definition']
 --- set qflist, but don't open it automatically
 local function location_handler(param1, result, ctx, param4)
@@ -54,9 +60,11 @@ local function location_handler(param1, result, ctx, param4)
     old_location_handler(param1, result[1], ctx, param4)
     if #result > 1 then
       local client = vim.lsp.get_client_by_id(ctx.client_id)
+      local qf_items = util.locations_to_items(result, client.offset_encoding)
+      api.notify(vim.inspect(qf_items), vim.log.levels.INFO)
       vim.fn.setqflist({}, ' ', {
         title = 'LSP locations',
-        items = util.locations_to_items(result, client.offset_encoding),
+        items = qf_items,
       })
     end
   else

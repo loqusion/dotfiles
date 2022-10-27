@@ -62,6 +62,7 @@ completion.use {
   },
   { -- Neovim's Lua API
     'hrsh7th/cmp-nvim-lua',
+    disable = true,
     after = 'nvim-cmp',
   },
   { -- `textDocument/documentSymbol`

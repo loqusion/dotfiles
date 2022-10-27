@@ -28,8 +28,8 @@ lsp.use {
 
 lsp.use {
   'folke/neodev.nvim',
-  after = 'nvim-lspconfig',
-  module = 'neodev',
+  -- after = 'nvim-lspconfig',
+  -- module = 'neodev',
 }
 
 -- lsp configs initialized here
