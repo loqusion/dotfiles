@@ -67,7 +67,7 @@ brew "zsh-syntax-highlighting"
 brew "d12frosted/emacs-plus/emacs-plus@28", args: ["with-modern-icon", "with-no-titlebar"]
 brew "jesseduffield/lazygit/lazygit"
 brew "koekeishiya/formulae/skhd"
-brew "koekeishiya/formulae/yabai"
+brew "koekeishiya/formulae/yabai", args: ["HEAD"]
 brew "mongodb/brew/mongodb-community"
 brew "ms-jpq/sad/sad"
 cask "alfred"
