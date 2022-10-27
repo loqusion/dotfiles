@@ -10,6 +10,8 @@ local M = {
   filetype = 'dashboard',
 }
 
+local sessions = {}
+
 function M.setup() end
 
 function M.config()
@@ -31,43 +33,51 @@ function M.custom_center()
   local custom_center = {}
   local last_sessions = api.sessions.last(M.session_count)
   for _, session in ipairs(last_sessions) do
+    local desc = ' ' .. session.name
     table.insert(custom_center, {
       icon = '',
-      desc = ' ' .. session.name,
+      desc = desc,
       action = ('lua require("utils.api.sessions").load("%s")'):format(session.file_path),
     })
+    sessions[vim.trim(desc)] = session
   end
   return custom_center
 end
 
-local function get_entry_under_cursor()
+local function get_session_under_cursor()
   local current_line = vim.api.nvim_get_current_line()
-  local current_entry
   for _, entry in ipairs(M.db.custom_center) do
     local trimmed_desc = vim.trim(entry.desc)
     if current_line:find(vim.pesc(trimmed_desc)) ~= nil then
-      current_entry = entry
+      local session = sessions[trimmed_desc]
+      if not session then
+        api.notify(('Failed to get session from %s'):format(trimmed_desc), vim.log.levels.ERROR)
+        api.notify(vim.inspect(sessions), vim.log.levels.DEBUG)
+      end
+      return session
     end
   end
-  return current_entry
+  return nil
 end
 
-local function delete_session_under_cursor()
-  api.notify('Searching for session...', vim.log.levels.INFO)
-  local entry = get_entry_under_cursor()
-  if not entry then
+local function delete_session_under_cursor(cb)
+  local session = get_session_under_cursor()
+  if not session then
     api.notify('Failed to get session under cursor', vim.log.levels.ERROR)
-    api.notify(vim.inspect(M.db.custom_center), vim.log.levels.INFO)
+    api.notify(vim.inspect(M.db.custom_center), vim.log.levels.DEBUG)
     return
   end
-  api.notify(vim.inspect(entry), vim.log.levels.INFO)
-  local path = entry.file_path
+  local path = session.file_path
 
   vim.ui.input({
-    prompt = ('Delete [%s]?: '):format(path),
+    prompt = ('Delete [%s]?: '):format(session.name),
   }, function(response)
-    if response == 'y' then
+    local confirmed = response == 'y'
+    if confirmed then
       vim.fn.delete(vim.fn.expand(path))
+    end
+    if cb then
+      cb(confirmed)
     end
   end)
 end
@@ -78,7 +88,17 @@ function M.register_filetype_keys()
     pattern = M.filetype,
     callback = function()
       require('crows').key.maps({
-        dd = { delete_session_under_cursor, 'Delete session under cursor' },
+        D = {
+          function()
+            delete_session_under_cursor(function(confirmed)
+              if confirmed then
+                M.db.custom_center = M.custom_center()
+                M.db:instance(false, true)
+              end
+            end)
+          end,
+          'Delete session under cursor',
+        },
       }, { buffer = true })
     end,
     group = group,
