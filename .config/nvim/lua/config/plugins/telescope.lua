@@ -51,7 +51,13 @@ function M.config()
       },
     },
     pickers = {
+      colorscheme = {
+        enable_preview = true,
+      },
       commands = {
+        theme = 'ivy',
+      },
+      current_buffer_fuzzy_find = {
         theme = 'ivy',
       },
       find_files = {
@@ -116,7 +122,7 @@ function M.config()
 end
 
 function M.register_global_keys()
-  local lazy = require 'crows.lazy'
+  local lazy = require 'utils.api.lazy'
   local api = require 'utils.api'
   local tb = 'telescope.builtin'
 
@@ -124,31 +130,31 @@ function M.register_global_keys()
     ['<Space>'] = {
       s = {
         name = 'Telescope',
-        f = { lazy.fn(tb, 'find_files'), 'Search files...' },
-        v = {
-          lazy.fn(tb, 'find_files', { cwd = vim.fn.stdpath 'config', hidden = false }),
-          'Search Vim config...',
-        },
-        V = {
-          lazy.fn(tb, 'find_files', { cwd = api.path.join(vim.fn.stdpath 'data', 'site'), hidden = false }),
-          'Search plugins...',
-        },
         b = { lazy.fn(tb, 'current_buffer_fuzzy_find'), 'Fuzzy find in current buffer...' },
-        h = { lazy.fn(tb, 'help_tags'), 'Go to help page...' },
-        m = { lazy.fn(tb, 'man_pages'), 'Go to man page...' },
-        -- t = { lazy.fn(tb, 'tags'), 'Find tags...' },
-        t = { lazy.fn(tb, 'lsp_dynamic_workspace_symbols'), 'Go to symbol in workspace...' },
-        o = { lazy.fn(tb, 'lsp_document_symbols'), 'Go to symbol in document...' },
-        -- T = { lazy.fn(tb, 'colorscheme'), 'Select colorscheme...' },
+        c = { lazy.fn(tb, 'commands'), 'Show all commands...' },
         d = { lazy.fn(tb, 'grep_string'), 'Find word under cursor...' },
+        f = { lazy.fn(tb, 'find_files'), 'Search files...' },
+        g = { lazy.fn('telescope', 'extensions.repo.list'), 'Open git repo...' },
+        h = { lazy.fn(tb, 'help_tags'), 'Go to help page...' },
+        m = { lazy.fn(tb, 'marks'), 'Go to mark...' },
+        o = { lazy.fn(tb, 'lsp_document_symbols'), 'Go to symbol in document...' },
         p = { lazy.fn(tb, 'live_grep'), 'Find in files...' },
         r = { lazy.fn(tb, 'lsp_references'), 'Search LSP references in workspace' },
-        c = { lazy.fn(tb, 'commands'), 'Show all commands...' },
-        g = { lazy.fn('telescope', 'extensions.repo.list'), 'Open git repo...' },
-        s = { lazy.fn('telescope', 'extensions.persisted.persisted'), 'Open session...' },
-        ["'"] = { lazy.fn(tb, 'marks'), 'Go to mark...' },
+        T = { lazy.fn(tb, 'colorscheme'), 'Change colorscheme...' },
+        t = { lazy.fn(tb, 'lsp_dynamic_workspace_symbols'), 'Go to symbol in workspace...' },
+        V = {
+          lazy.fn(tb, 'find_files', {
+            cwd = api.path.join(vim.fn.stdpath 'data', 'site'),
+            hidden = false,
+          }),
+          'Search Neovim plugins...',
+        },
+        v = { lazy.fn(tb, 'find_files', {
+          cwd = vim.fn.stdpath 'config',
+          hidden = false,
+        }), 'Search Neovim config...' },
       },
-      ['<space>'] = { lazy.fn(tb, 'buffers'), 'Go to buffer...' },
+      ['<space>'] = { lazy.fn('telescope', 'extensions.persisted.persisted'), 'Open session...' },
       ['?'] = { lazy.fn(tb, 'oldfiles'), 'Go to recently opened...' },
     },
   }
@@ -157,7 +163,7 @@ end
 function M.register_global_keys_for_todo()
   require('crows').key.maps {
     ['<Space>s'] = {
-      T = { '<Cmd>TodoTelescope<CR>', 'Todo comments' },
+      ['/'] = { '<Cmd>TodoTelescope<CR>', 'Todo comments' },
     },
   }
 end

@@ -6,12 +6,16 @@ local M = {
   },
   telescope_config = {
     before_source = function()
-      if vim.o.filetype ~= 'dashboard' then
-        if vim.g.persisting then
-          require('persisted').save()
-        end
-        vim.api.nvim_input '<Esc>:%bd<CR>'
+      if vim.o.filetype == 'dashboard' then
+        require('persisted').start()
+        return
       end
+
+      if vim.g.persisting then
+        require('persisted').save()
+      end
+      -- Causes issues - see https://github.com/folke/noice.nvim/issues/95
+      -- vim.api.nvim_input '<Esc>:%bd<CR>'
     end,
   },
 }
@@ -20,8 +24,7 @@ function M.setup() end
 
 function M.config()
   M.persisted.setup {
-    use_git_branch = false,
-    follow_cwd = true,
+    branch_separator = '@@',
     allowed_dirs = { '~/repos', '~/.config/nvim' },
     before_save = function()
       vim.api.nvim_input '<Esc>:tabrewind<CR>'
@@ -33,7 +36,7 @@ function M.config()
     should_autosave = function()
       return vim.bo.filetype ~= 'dashboard'
     end,
-    telescope = M.telescope_config,
+    -- telescope = M.telescope_config,
   }
 end
 

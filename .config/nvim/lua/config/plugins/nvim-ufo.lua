@@ -1,6 +1,6 @@
 -- https://github.com/kevinhwang91/nvim-ufo
 
-local lazy = require 'crows.lazy'
+local lazy = require 'utils.api.lazy'
 
 local M = {
   safe_requires = {

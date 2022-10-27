@@ -1,6 +1,8 @@
 local api = {
   env = require 'utils.api.env',
+  lazy = require 'utils.api.lazy',
   lsp = require 'utils.api.lsp',
+  --map = require 'utils.api.map',
   path = require 'utils.api.path',
   sessions = require 'utils.api.sessions',
   yabai = require 'utils.api.yabai',

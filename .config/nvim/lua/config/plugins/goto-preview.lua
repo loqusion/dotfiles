@@ -15,7 +15,7 @@ function M.config()
 end
 
 function M.register_global_keys()
-  local lazy = require 'crows.lazy'
+  local lazy = require 'utils.api.lazy'
 
   require('crows').key.maps {
     gp = {

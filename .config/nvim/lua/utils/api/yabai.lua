@@ -1,4 +1,4 @@
-local lazy = require 'crows.lazy'
+local lazy = require 'utils.api.lazy'
 local nvim_env = lazy.require 'utils.api.env'
 local options = lazy.require 'core.options'
 

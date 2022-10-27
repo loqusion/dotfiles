@@ -1,4 +1,4 @@
-local lazy = require 'crows.lazy'
+local lazy = require 'utils.api.lazy'
 local persisted = lazy.require 'persisted'
 local persisted_utils = lazy.require 'persisted.utils'
 

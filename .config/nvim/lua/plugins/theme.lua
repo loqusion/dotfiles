@@ -4,7 +4,7 @@ local theme = require('crows.utils').new_feat()
 
 theme.use {
   'sainnhe/gruvbox-material',
-  { 'luisiacc/gruvbox-baby' },
+  'luisiacc/gruvbox-baby',
   'eddyekofo94/gruvbox-flat.nvim',
   'shaunsingh/nord.nvim',
   'sainnhe/edge',
