@@ -2,48 +2,18 @@
 -- https://github.com/folke/neodev.nvim
 
 -- https://github.com/sumneko/vscode-lua/blob/master/setting/schema.json
--- https://github.com/xiyaowong/coc-sumneko-lua/blob/main/settings.md
 
-local neodev = require 'neodev'
+require('neodev').setup()
 
 local lua = {}
 
--- local runtime_path = vim.split(package.path, ';')
--- table.insert(runtime_path, 'lua/?.lua')
--- table.insert(runtime_path, 'lua/?/init.lua')
-
--- local function workspace_files()
---   local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
---   if cwd == '~/.config/nvim' then
---     -- Make the server aware of Neovim runtime files, only in config cwd
---     return vim.api.nvim_get_runtime_file('', true)
---   end
---   return nil
--- end
-
-neodev.setup()
-
 lua.lsp_configs = {
-  ---@type lspconfig.settings.sumneko_lua
   sumneko_lua = {
-    -- cmd = { 'lua-language-server' },
     settings = {
       Lua = {
-        -- runtime = {
-        --   version = 'LuaJIT',
-        --   path = runtime_path,
-        -- },
         completion = {
           callSnippet = 'Replace',
-          -- autoRequire = false,
         },
-        -- diagnostics = {
-        --   globals = { 'vim' },
-        -- },
-        -- workspace = {
-        --   library = workspace_files(),
-        --   maxPreload = 5000,
-        -- },
       },
     },
   },
