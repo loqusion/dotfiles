@@ -149,10 +149,13 @@ function M.register_global_keys()
           }),
           'Search Neovim plugins...',
         },
-        v = { lazy.fn(tb, 'find_files', {
-          cwd = vim.fn.stdpath 'config',
-          hidden = false,
-        }), 'Search Neovim config...' },
+        v = {
+          lazy.fn(tb, 'find_files', {
+            cwd = vim.fn.stdpath 'config',
+            hidden = false,
+          }),
+          'Search Neovim config...',
+        },
       },
       ['<space>'] = { lazy.fn('telescope', 'extensions.persisted.persisted'), 'Open session...' },
       ['?'] = { lazy.fn(tb, 'oldfiles'), 'Go to recently opened...' },
