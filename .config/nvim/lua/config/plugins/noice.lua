@@ -19,6 +19,17 @@ function M.config()
         },
       },
     },
+    routes = {
+      {
+        filter = {
+          event = 'lsp',
+          kind = 'progress',
+          -- find = 'null.?ls',
+          find = 'code_action',
+        },
+        opts = { skip = true },
+      },
+    },
     popupmenu = {
       enabled = true,
       backend = 'cmp',

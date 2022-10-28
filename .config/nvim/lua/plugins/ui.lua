@@ -75,4 +75,10 @@ ui.use { -- Ultra fold
   config = true,
 }
 
+ui.use { -- Terminal image viewer
+  'edluffy/hologram.nvim',
+  disable = true,
+  config = true,
+}
+
 return ui

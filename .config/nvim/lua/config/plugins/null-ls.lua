@@ -29,7 +29,7 @@ function M.config()
       -- actions.shellcheck,
       -- actions.gitsigns,
       -- actions.refactoring.with { filetypes = { 'javascript', 'typescript', 'lua', 'python' } },
-      actions.eslint,
+      -- actions.eslint,
     },
   }
 end
