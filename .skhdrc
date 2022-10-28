@@ -97,7 +97,7 @@ shift + lctrl + alt - r : \
 alt + cmd - f         : yabai -m window --toggle zoom-fullscreen
 
 # float / unfloat window and center on screen
-shift + alt - space : ~/bin/yabai-float
+shift + alt - space : "${HOME}/.config/yabai/scripts/float.sh"
 
 # move floating window
 # alt + cmd - h : yabai -m window --move rel:-20:0
