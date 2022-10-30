@@ -79,7 +79,8 @@ local settings = {
     smartcase = true,
     foldenable = true,
     -- foldmethod = 'indent',
-    foldcolumn = '1',
+    -- wait until https://github.com/neovim/neovim/pull/17446 is merged
+    foldcolumn = '0',
     foldlevel = 100,
     foldlevelstart = 99,
     linebreak = true,
