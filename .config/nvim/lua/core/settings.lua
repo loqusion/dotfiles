@@ -1,4 +1,4 @@
-local path = require 'utils.api.path'
+local api = require 'utils.api'
 local options = require 'core.options'
 
 local settings = {
@@ -74,7 +74,7 @@ local settings = {
     pumheight = 10,
     pumwidth = 0,
     pumblend = 10,
-    -- winblend = options.transparent_background and 0 or 10,
+    winblend = (options.transparent_background and { nil } or { 10 })[1],
     ignorecase = true,
     smartcase = true,
     foldenable = true,
@@ -154,7 +154,7 @@ local settings = {
     -- 'zipPlugin',
   },
   env = {
-    BASH_ENV = path.join(vim.env.HOME, '.bashenv.sh'),
+    BASH_ENV = api.path.join(vim.env.HOME, '.bashenv.sh'),
   },
 }
 
@@ -198,7 +198,9 @@ vim.opt.formatoptions:append {
 for prefix, tab in pairs(settings) do
   if prefix ~= 'disable_builtin_plugins' then
     for key, value in pairs(tab) do
-      vim[prefix][key] = value
+      if value ~= nil then
+        vim[prefix][key] = value
+      end
     end
   else
     for _, plugin in ipairs(tab) do
