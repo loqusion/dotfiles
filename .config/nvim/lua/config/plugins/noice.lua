@@ -10,7 +10,18 @@ function M.setup() end
 
 function M.config()
   M.noice.setup {
-    lsp = { progress = { enabled = true } },
+    presets = {
+      -- command_palette = true,
+      lsp_doc_border = true,
+    },
+    lsp = {
+      progress = { enabled = true },
+      hover = { enabled = false },
+      signature = {
+        enabled = false,
+        auto_open = { enabled = false },
+      },
+    },
     views = {
       cmdline_popup = {
         position = {
@@ -24,8 +35,10 @@ function M.config()
         filter = {
           event = 'lsp',
           kind = 'progress',
-          -- find = 'null.?ls',
-          find = 'code_action',
+          any = {
+            { find = 'code_action' },
+            { find = 'sumneko_lua' },
+          },
         },
         opts = { skip = true },
       },

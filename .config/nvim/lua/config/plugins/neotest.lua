@@ -17,7 +17,6 @@ function M.config()
       running = '↻',
     },
     adapters = {
-      -- TODO: use neotest-jest when it gets better
       require 'neotest-jest' {
         jestCommand = 'pnpm test --',
       },

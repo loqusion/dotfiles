@@ -1,6 +1,7 @@
 -- https://github.com/nvim-lualine/lualine.nvim
 
 local settings = require 'core.settings'
+local api = require 'utils.api'
 
 local M = {
   safe_requires = {
@@ -44,11 +45,11 @@ function M.config()
           color = { fg = '#ff9e64' },
         },
         {
-          M.persisted_component,
+          M.session_component,
           separator = '|',
-          cond = function()
-            return vim.g.persisting ~= nil
-          end,
+          -- cond = function()
+          --   return api.sessions.is_session()
+          -- end,
         },
         { 'encoding', separator = '|' },
         { 'fileformat', icons_enabled = false, separator = '|' },
@@ -76,12 +77,11 @@ function M.config()
   }
 end
 
-function M.persisted_component()
-  if vim.g.persisting then
+function M.session_component()
+  if api.sessions.is_session() then
     return ''
-  elseif vim.g.persisting == false then
-    return ''
   end
+  return ''
 end
 
 return M

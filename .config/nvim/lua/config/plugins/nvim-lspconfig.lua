@@ -61,7 +61,7 @@ local function location_handler(param1, result, ctx, param4)
     if #result > 1 then
       local client = vim.lsp.get_client_by_id(ctx.client_id)
       local qf_items = util.locations_to_items(result, client.offset_encoding)
-      api.notify(vim.inspect(qf_items), vim.log.levels.INFO)
+      api.notify('Multiple results in qflist', vim.log.levels.INFO)
       vim.fn.setqflist({}, ' ', {
         title = 'LSP locations',
         items = qf_items,

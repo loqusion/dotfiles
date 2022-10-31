@@ -19,10 +19,8 @@ local configs = {
     name = 'Jest',
     type = 'pwa-node',
     request = 'launch',
-    -- trace = true, -- include debugger info
-    runtimeExecutable = 'node',
+    runtimeExecutable = '${workspaceFolder}/node_modules/.bin/jest',
     runtimeArgs = {
-      './node_modules/jest/bin/jest.js',
       '--runInBand',
     },
     rootPath = '${workspaceFolder}',

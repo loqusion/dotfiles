@@ -19,6 +19,7 @@ theme.use {
   { 'catppuccin/nvim', as = 'catppuccin', config = true },
   'folke/tokyonight.nvim',
   'frankier/neovim-colors-solarized-truecolor-only',
+  'overcache/NeoSolarized',
   'f-person/auto-dark-mode.nvim',
 }
 
@@ -37,6 +38,11 @@ local configs = {
   ['gruvbox-flat'] = {
     g = {
       gruvbox_transparent = options.transparent_background,
+    },
+  },
+  ['solarized'] = {
+    g = {
+      solarized_termtrans = options.transparent_background,
     },
   },
 }

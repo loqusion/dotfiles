@@ -1,4 +1,4 @@
-local function get_name_thing(path)
+local function basename_root(path)
   return vim.fn.fnamemodify(path, ':t:r')
 end
 
@@ -6,7 +6,7 @@ local memoized_colorscheme_list
 local function get_colorscheme_list()
   if not memoized_colorscheme_list then
     local file_list = vim.api.nvim_get_runtime_file('colors/*', true)
-    memoized_colorscheme_list = vim.tbl_map(get_name_thing, file_list)
+    memoized_colorscheme_list = vim.tbl_map(basename_root, file_list)
   end
   return memoized_colorscheme_list
 end
@@ -15,7 +15,7 @@ local memoized_omit_list
 local function get_omit_list()
   if not memoized_omit_list then
     local file_list = vim.fn.globpath(vim.env.VIMRUNTIME, 'colors/*', true, true)
-    memoized_omit_list = vim.tbl_map(get_name_thing, file_list)
+    memoized_omit_list = vim.tbl_map(basename_root, file_list)
   end
   return memoized_omit_list
 end

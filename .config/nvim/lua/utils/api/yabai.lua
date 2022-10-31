@@ -20,7 +20,7 @@ end
 
 function M.float(action)
   if should_toggle_yabai() then
-    vim.cmd([[silent !~/.config/yabai/scripts/float.sh]] .. action)
+    vim.cmd([[silent !~/.config/yabai/scripts/float.sh ]] .. action)
   end
 end
 

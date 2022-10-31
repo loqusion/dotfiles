@@ -14,7 +14,7 @@ local options = {
   -- • kind (default)options.
   icons_style = 'kind',
   -- theme style to use
-  colorscheme = 'gruvbox-flat',
+  colorscheme = 'gruvbox-material',
   -- Whether the background is transparent
   -- • boolean
   transparent_background = true,

@@ -37,7 +37,7 @@ function M.custom_center()
     table.insert(custom_center, {
       icon = '',
       desc = desc,
-      action = ('lua require("utils.api.sessions").load("%s")'):format(session.file_path),
+      action = ('lua require("utils.api.sessions").load("%s")'):format(session.filename),
     })
     sessions[vim.trim(desc)] = session
   end
@@ -67,14 +67,13 @@ local function delete_session_under_cursor(cb)
     api.notify(vim.inspect(M.db.custom_center), vim.log.levels.DEBUG)
     return
   end
-  local path = session.file_path
 
   vim.ui.input({
     prompt = ('Delete [%s]?: '):format(session.name),
   }, function(response)
     local confirmed = response == 'y'
     if confirmed then
-      vim.fn.delete(vim.fn.expand(path))
+      vim.fn.delete(vim.fn.expand(session.filename))
     end
     if cb then
       cb(confirmed)

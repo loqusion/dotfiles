@@ -11,6 +11,12 @@ basic.use { -- Automated session management
   config = true,
 }
 
+basic.use { -- Session manager
+  'Shatur/neovim-session-manager',
+  disable = true,
+  config = true,
+}
+
 basic.use {
   'rcarriga/nvim-notify',
   config = true,
