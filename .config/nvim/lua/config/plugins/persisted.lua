@@ -4,9 +4,12 @@ local M = {
   safe_requires = {
     'persisted',
   },
+  ignore_filetypes = {
+    'noice',
+  },
   telescope_config = {
     before_source = function()
-      if vim.o.filetype == 'dashboard' then
+      if not M.is_restorable_buffer_present() then
         require('persisted').start()
         return
       end
@@ -14,8 +17,6 @@ local M = {
       if vim.g.persisting then
         require('persisted').save()
       end
-      -- Causes issues - see https://github.com/folke/noice.nvim/issues/95
-      -- vim.api.nvim_input '<Esc>:%bd<CR>'
     end,
   },
 }
@@ -33,10 +34,8 @@ function M.config()
         TroubleClose
       ]]
     end,
-    should_autosave = function()
-      return vim.bo.filetype ~= 'dashboard'
-    end,
-    -- telescope = M.telescope_config,
+    should_autosave = M.is_restorable_buffer_present,
+    telescope = M.telescope_config,
   }
 end
 
@@ -53,6 +52,43 @@ function M.load_telescope_extension()
   if ok then
     telescope.load_extension 'persisted'
   end
+end
+
+---@private
+function M.is_restorable(buffer)
+  if #vim.api.nvim_buf_get_option(buffer, 'bufhidden') ~= 0 then
+    return false
+  end
+
+  local buftype = vim.api.nvim_buf_get_option(buffer, 'buftype')
+  if #buftype == 0 then
+    -- Normal buffer, check if it is listed.
+    if not vim.api.nvim_buf_get_option(buffer, 'buflisted') then
+      return false
+    end
+    -- Check if it has a filename.
+    if #vim.api.nvim_buf_get_name(buffer) == 0 then
+      return false
+    end
+  elseif buftype ~= 'terminal' then
+    return false
+  end
+
+  if vim.tbl_contains(M.ignore_filetypes, vim.api.nvim_buf_get_option(buffer, 'filetype')) then
+    return false
+  end
+
+  return true
+end
+
+---@private
+function M.is_restorable_buffer_present()
+  for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_valid(buffer) and M.is_restorable(buffer) then
+      return true
+    end
+  end
+  return false
 end
 
 return M

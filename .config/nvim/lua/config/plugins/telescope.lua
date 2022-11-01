@@ -117,7 +117,7 @@ function M.config()
   M.telescope.load_extension 'repo'
   M.telescope.load_extension 'ui-select'
   M.telescope.load_extension 'zoxide'
-  -- require('config.plugins.persisted').load_telescope_extension()
+  require('config.plugins.persisted').load_telescope_extension()
   require('config.plugins.project').load_telescope_extension()
 end
 
