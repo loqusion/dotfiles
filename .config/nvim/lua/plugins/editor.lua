@@ -7,9 +7,6 @@ editor.use { -- arpeggio
   setup = true,
 }
 
--- sleuth
-editor.use 'tpope/vim-sleuth'
-
 editor.use 'tpope/vim-abolish'
 
 editor.use { -- text objects
@@ -207,8 +204,14 @@ editor.use {
 
 editor.use {
   'ibhagwan/smartyank.nvim',
-  config = true,
   event = 'CursorHold',
+  config = true,
+}
+
+editor.use { -- automatic indent detection
+  'NMAC427/guess-indent.nvim',
+  event = 'VimEnter',
+  config = true,
 }
 
 return editor
