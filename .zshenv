@@ -25,7 +25,7 @@ export SVN_EDITOR="vim"
 export DOWNLOADER="wget -S"
 
 #--------- fzf -------------------#
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+export FZF_DEFAULT_COMMAND='fd --strip-cwd-prefix'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 #--------- compiler stuff --------#
