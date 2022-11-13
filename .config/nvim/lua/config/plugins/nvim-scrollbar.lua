@@ -9,7 +9,11 @@ local M = {
 function M.setup() end
 
 function M.config()
-  M.scrollbar.setup {}
+  M.scrollbar.setup {
+    handlers = {
+      diagnostic = false,
+    },
+  }
 end
 
 return M
