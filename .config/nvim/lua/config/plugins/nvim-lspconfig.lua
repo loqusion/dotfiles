@@ -3,6 +3,7 @@
 
 local util = require 'vim.lsp.util'
 local api = require 'utils.api'
+local options = require 'core.options'
 
 local M = {
   safe_requires = {
@@ -40,6 +41,9 @@ function M.config()
   end
 
   M.override_handlers()
+  M.style_handlers()
+  M.highlights()
+  M.register_global_autocmds()
 end
 
 function M.configure_formatting(client, buf)
@@ -79,6 +83,26 @@ function M.override_handlers()
   vim.lsp.handlers['textDocument/implementation'] = location_handler
   vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
+  })
+end
+
+function M.style_handlers()
+  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = options.border_style })
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    { border = options.border_style }
+  )
+end
+
+function M.highlights()
+  vim.api.nvim_set_hl(0, 'NormalFloat', { link = 'Normal' })
+  vim.api.nvim_set_hl(0, 'FloatBorder', { link = 'Green' })
+end
+
+function M.register_global_autocmds()
+  vim.api.nvim_create_autocmd('ColorScheme', {
+    pattern = '*',
+    callback = M.highlights,
   })
 end
 

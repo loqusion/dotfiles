@@ -37,8 +37,9 @@ local options = {
   -- • boolean
   disable_yabai_toggle = true,
   -- use lspsaga instead of default
+  -- Note: setting to false will still leave breadcrumbs enabled
   -- • boolean
-  prefer_lspsaga = true,
+  prefer_lspsaga = false,
   -- changes some config
   -- • Company
   company = company or {},

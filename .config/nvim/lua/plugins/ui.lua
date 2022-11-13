@@ -56,6 +56,7 @@ ui.use {
 
 ui.use { -- Stabilize buffer content on window open-close events
   'luukvbaal/stabilize.nvim',
+  disable = true,
   config = true,
 }
 
