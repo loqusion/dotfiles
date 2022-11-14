@@ -7,18 +7,20 @@ local M = {
   ignore_filetypes = {
     'noice',
   },
-  telescope_config = {
-    before_source = function()
-      if not M.is_restorable_buffer_present() then
-        require('persisted').start()
-        return
-      end
+}
 
-      if vim.g.persisting then
-        require('persisted').save()
-      end
-    end,
-  },
+M.telescope_config = {
+  before_source = function()
+    -- close all running lsp servers
+    vim.lsp.stop_client(vim.lsp.get_active_clients())
+    require('utils.api').buffers.delete_listed()
+
+    if not M.is_restorable_buffer_present() then
+      require('persisted').start()
+    elseif vim.g.persisting then
+      require('persisted').save()
+    end
+  end,
 }
 
 function M.setup() end

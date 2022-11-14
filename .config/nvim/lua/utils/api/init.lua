@@ -1,4 +1,5 @@
 local api = {
+  buffers = require('utils.api.buffers'),
   env = require 'utils.api.env',
   lazy = require 'utils.api.lazy',
   lsp = require 'utils.api.lsp',

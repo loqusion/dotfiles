@@ -43,7 +43,7 @@ function M.config()
     },
     autotag = {
       enable = true,
-      filetypes = { 'html', 'javascript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'markdown' },
+      -- filetypes = { 'html', 'javascript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'markdown' },
     },
     context_commentstring = {
       -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring#commentnvim
