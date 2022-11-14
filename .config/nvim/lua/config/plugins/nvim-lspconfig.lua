@@ -92,6 +92,9 @@ function M.style_handlers()
     vim.lsp.handlers.signature_help,
     { border = options.border_style }
   )
+  vim.diagnostic.config {
+    float = { border = options.border_style },
+  }
 end
 
 function M.highlights()
