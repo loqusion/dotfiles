@@ -2,6 +2,7 @@ local yabai = require 'utils.api.yabai'
 
 local groups = {
   cursorline = vim.api.nvim_create_augroup('cursorline', {}),
+  colorscheme = vim.api.nvim_create_augroup('colorscheme-fallback', {}),
   yabai = vim.api.nvim_create_augroup('yabai', {}),
 }
 
@@ -32,25 +33,24 @@ vim.api.nvim_create_autocmd('VimLeave', {
   group = groups.yabai,
 })
 
--- vim.api.nvim_create_autocmd('WinEnter', {
---   desc = 'Show cursorline',
---   pattern = '*',
---   callback = function()
---     if vim.w.saved_cursorline then
---       vim.w.saved_cursorline = nil
---       vim.wo.cursorline = true
---     end
---   end,
---   group = groups.cursorline,
--- })
--- vim.api.nvim_create_autocmd('WinLeave', {
---   desc = 'Hide cursorline',
---   pattern = '*',
---   callback = function()
---     if vim.wo.cursorline then
---       vim.w.saved_cursorline = true
---       vim.wo.cursorline = false
---     end
---   end,
---   group = groups.cursorline,
--- })
+-- Fallback treesitter highlights
+vim.api.nvim_create_autocmd('ColorScheme', {
+  desc = 'Fallback treesitter highlights',
+  pattern = '*',
+  callback = function()
+    local links = {
+      ['@property.class.css'] = '@string',
+      ['@property.id.css'] = '@type',
+      ['@string.plain'] = '@constant.builtin',
+      ['@type.tag'] = '@keyword.operator',
+    }
+
+    for from, to in pairs(links) do
+      vim.api.nvim_set_hl(0, from, {
+        default = true,
+        link = to,
+      })
+    end
+  end,
+  group = groups.colorscheme,
+})
