@@ -30,7 +30,7 @@ function M.config()
       },
     },
     indent = {
-      enable = false,
+      enable = true,
     },
     incremental_selection = {
       enable = false,

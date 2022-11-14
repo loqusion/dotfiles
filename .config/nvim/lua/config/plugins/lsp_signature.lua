@@ -1,4 +1,5 @@
 -- https://github.com/ray-x/lsp_signature.nvim
+local options = require 'core.options'
 
 local M = {
   safe_requires = {
@@ -14,7 +15,7 @@ function M.config()
       bind = true,
       floating_window = false,
       handler_opts = {
-        border = 'rounded',
+        border = options.border_style,
       },
       shadow_blend = 69,
       -- transparency = 10,

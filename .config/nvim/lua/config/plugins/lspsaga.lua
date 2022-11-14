@@ -34,17 +34,17 @@ function M.register_global_keys()
       gd = { vim.lsp.buf.definition, 'Goto definition' },
       gI = { vim.lsp.buf.implementation, 'Goto implementation' },
       ['<leader>D'] = { vim.lsp.buf.type_definition, 'Goto type definition' },
-      gh = { '<Cmd>Lspsaga hover_doc<CR>', 'Hover doc' },
-      gr = { '<Cmd>Lspsaga lsp_finder<CR>', 'Display hover information' },
-      ['<Leader>r'] = { '<Cmd>Lspsaga rename<CR>', 'Rename' },
-      ['<Leader><Leader>'] = { '<Cmd>Lspsaga code_action<CR>', 'Code action' },
-      [']d'] = { '<Cmd>Lspsaga diagnostic_jump_next<CR>', 'Go to next diagnostic' },
-      ['[d'] = { '<Cmd>Lspsaga diagnostic_jump_prev<CR>', 'Go to previous diagnostic' },
-      ['<Leader>ld'] = { '<Cmd>Lspsaga show_line_diagnostics<CR>', 'Show line diagnostics' },
-      ['<Leader>cd'] = { '<Cmd>Lspsaga show_cursor_diagnostics<CR>', 'Show cursor diagnostics' },
+      gh = { '<Cmd>Lspsaga hover_doc<CR>', '[Lspsaga] Hover doc' },
+      gr = { '<Cmd>Lspsaga lsp_finder<CR>', '[Lspsaga] Display hover information' },
+      ['<Leader>r'] = { '<Cmd>Lspsaga rename<CR>', '[Lspsaga] Rename' },
+      ['<Leader><Leader>'] = { '<Cmd>Lspsaga code_action<CR>', '[Lspsaga] Code action' },
+      [']d'] = { '<Cmd>Lspsaga diagnostic_jump_next<CR>', '[Lspsaga] Go to next diagnostic' },
+      ['[d'] = { '<Cmd>Lspsaga diagnostic_jump_prev<CR>', '[Lspsaga] Go to previous diagnostic' },
+      ['<Leader>ld'] = { '<Cmd>Lspsaga show_line_diagnostics<CR>', '[Lspsaga] Show line diagnostics' },
+      ['<Leader>cd'] = { '<Cmd>Lspsaga show_cursor_diagnostics<CR>', '[Lspsaga] Show cursor diagnostics' },
     }, { silent = true })
     key.maps({
-      ['<Leader><Leader>'] = { '<Cmd>Lspsaga range_code_action<CR>', 'Code action' },
+      ['<Leader><Leader>'] = { '<Cmd>Lspsaga range_code_action<CR>', '[Lspsaga] Code action' },
     }, { silent = true, mode = 'v' })
   end
 end

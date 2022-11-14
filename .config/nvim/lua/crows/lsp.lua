@@ -25,15 +25,6 @@ local lsp = {
         'Open diagnostic floating window',
       },
     },
-    diag_prev = { '[d', { vim.diagnostic.goto_prev, 'Go to previous diagnostic' } },
-    diag_next = { ']d', { vim.diagnostic.goto_next, 'Go to next diagnostic' } },
-    -- diag_loclist = {
-    --   '<localleader>q',
-    --   {
-    --     vim.diagnostic.setqflist,
-    --     'Add buffer diagnostics to the quickfix list',
-    --   },
-    -- },
     diag_toggle = {
       '<localleader>l',
       {
@@ -48,6 +39,8 @@ local lsp = {
     hover = { 'gh', { vim.lsp.buf.hover, 'Display hover information' } },
     goto_impl = { 'gI', { vim.lsp.buf.implementation, 'Goto implementation' } },
     sign_help = { '<C-k>', { vim.lsp.buf.signature_help, 'Display signature information', mode = 'i' } },
+    diag_prev = { '[d', { vim.diagnostic.goto_prev, 'Go to previous diagnostic' } },
+    diag_next = { ']d', { vim.diagnostic.goto_next, 'Go to next diagnostic' } },
     -- add_folder = { '<leader>wa', { vim.lsp.buf.add_workspace_folder, 'Add workspace folder' } },
     -- del_folder = { '<leader>wr', { vim.lsp.buf.remove_workspace_folder, 'Remove workspace folder' } },
     -- list_folders = {

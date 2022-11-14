@@ -26,6 +26,7 @@ local mappings = {
   normal = { -- Normal mode
     ['>'] = { '>>', 'Indent current line' },
     ['<'] = { '<<', 'Dedent current line' },
+    ['*'] = { '*N', 'Select' },
     ['#'] = { '<C-^>', 'Switch to alternate buffer' },
     l = { l, 'which_key_ignore' },
     Q = { 'q', 'Start recording macro' },
@@ -46,6 +47,8 @@ local mappings = {
   visual = { -- Visual mode
     ['>'] = { '>gv', 'Indent selection' },
     ['<'] = { '<gv', 'Dedent selection' },
+    -- ['*'] = { '*N', 'Select' },
+    -- ['#'] = { '#N', 'Select backwards' },
     p = { 'P', 'Put without yank to unnamed register' },
   },
   insert = { -- Insert mode
