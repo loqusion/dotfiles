@@ -25,8 +25,8 @@ local lsp = {
         'Open diagnostic floating window',
       },
     },
-    -- diag_prev = { '[d', { vim.diagnostic.goto_prev, 'Go to previous diagnostic' } },
-    -- diag_next = { ']d', { vim.diagnostic.goto_next, 'Go to next diagnostic' } },
+    diag_prev = { '[d', { vim.diagnostic.goto_prev, 'Go to previous diagnostic' } },
+    diag_next = { ']d', { vim.diagnostic.goto_next, 'Go to next diagnostic' } },
     -- diag_loclist = {
     --   '<localleader>q',
     --   {
