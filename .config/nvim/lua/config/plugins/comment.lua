@@ -7,48 +7,21 @@ local M = {
 }
 
 function M.config()
+  local pre_hook = M.ts_context_commentstring_integration_hook()
+
   M.Comment.setup {
-    pre_hook = function(ctx)
-      -- Only calculate commentstring for jsx/tsx filetypes
-      if vim.bo.filetype == 'javascriptreact' or vim.bo.filetype == 'typescriptreact' then
-        local U = require 'Comment.utils'
-
-        -- Determine whether to use linewise or blockwise commentstring
-        local type = ctx.ctype == U.ctype.line and '__default' or '__multiline'
-
-        -- Determine the location where to calculate commentstring from
-        local location = nil
-        if ctx.ctype == U.ctype.block then
-          location = require('ts_context_commentstring.utils').get_cursor_location()
-        elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-          location = require('ts_context_commentstring.utils').get_visual_start_location()
-        end
-
-        return require('ts_context_commentstring.internal').calculate_commentstring {
-          key = type,
-          location = location,
-        }
-      end
-      -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring#commentnvim
-      -- require('Comment').setup {
-      --   pre_hook = function(ctx)
-      --     local U = require 'Comment.utils'
-      --
-      --     local location = nil
-      --     if ctx.ctype == U.ctype.block then
-      --       location = require('ts_context_commentstring.utils').get_cursor_location()
-      --     elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-      --       location = require('ts_context_commentstring.utils').get_visual_start_location()
-      --     end
-      --
-      --     return require('ts_context_commentstring.internal').calculate_commentstring {
-      --       key = ctx.ctype == U.ctype.line and '__default' or '__multiline',
-      --       location = location,
-      --     }
-      --   end,
-      -- }
-    end,
+    pre_hook = pre_hook,
   }
+end
+
+-- https://github.com/JoosepAlviste/nvim-ts-context-commentstring#commentnvim
+function M.ts_context_commentstring_integration_hook()
+  local pre_hook
+  local ok, t = pcall(require, 'ts_context_commentstring.integrations.comment_nvim')
+  if ok then
+    pre_hook = t.create_pre_hook()
+  end
+  return pre_hook
 end
 
 return M
