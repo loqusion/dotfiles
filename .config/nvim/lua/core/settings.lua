@@ -15,9 +15,6 @@ local settings = {
   },
   opt = {
     -- syntax = 'ON',
-    encoding = 'utf-8',
-    fileencoding = 'utf-8',
-    fileformat = 'unix',
     fileformats = { 'unix', 'dos', 'mac' },
     filetype = 'plugin',
     shell = 'bash',
