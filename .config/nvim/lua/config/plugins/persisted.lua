@@ -13,12 +13,12 @@ M.telescope_config = {
   before_source = function()
     -- close all running lsp servers
     vim.lsp.stop_client(vim.lsp.get_active_clients())
-    require('utils.api').buffers.delete_listed()
 
     if not M.is_restorable_buffer_present() then
       require('persisted').start()
     elseif vim.g.persisting then
       require('persisted').save()
+      require('utils.api').buffers.delete_listed()
     end
   end,
 }
