@@ -48,17 +48,17 @@ yabai -m config right_padding                12
 yabai -m config window_gap                   8
 
 # mission-control desktop labels
-yabai -m space 1 --label code
+yabai -m space 1 --label float
 yabai -m space 2 --label web
-yabai -m space 3 --label social
-yabai -m space 4 --label media
-yabai -m space 5 --label mail
-yabai -m space 6 --label float
+yabai -m space 3 --label code
+yabai -m space 4 --label social
+yabai -m space 5 --label media
+yabai -m space 6 --label mail
 
 # specific space settings
+yabai -m config --space float   layout float
 yabai -m config --space mail    layout stack
 yabai -m config --space social  layout stack
-yabai -m config --space float   layout float
 
 # window rules
 
@@ -139,7 +139,8 @@ yabai -m rule --add app='^Spark$' title!='^Spark' manage=off
 
 # yabai -m rule --add app='^iTerm2$' grid=23:23:6:6:11:11
 # yabai -m space code --gap abs:0 --padding abs:0:0:0:0
-yabai -m space code --toggle gap; yabai -m space code --toggle padding
+# disable gap for code space
+# yabai -m space code --toggle gap; yabai -m space code --toggle padding
 yabai -m rule --add app='^Dash$' title!='^(General|Downloads|Docsets|Web Search|Integration|Snippets|License)$' grid=9:5:1:1:3:7
 yabai -m rule --add app='^GitHub Desktop$' grid=9:5:1:1:3:7
 
