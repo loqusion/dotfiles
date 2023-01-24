@@ -17,9 +17,9 @@ javascript.lsp_configs = {
   graphql = {
     filetypes = { 'graphql' },
   },
-  emmet_ls = {
-    filetypes = { 'html', 'javascriptreact', 'typescriptreact', 'css', 'sass', 'scss', 'less', 'vue' },
-  },
+  -- emmet_ls = {
+  --   filetypes = { 'html', 'javascriptreact', 'typescriptreact', 'css', 'sass', 'scss', 'less', 'vue' },
+  -- },
   angularls = {},
   html = {},
   cssls = {},
