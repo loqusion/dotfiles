@@ -36,6 +36,7 @@ function M.custom_center()
     local desc = ' ' .. session.name
     table.insert(custom_center, {
       icon = '',
+      icon_hl = { link = 'Yellow' },
       desc = desc,
       action = ('lua require("utils.api.sessions").load("%s")'):format(session.filename),
     })
