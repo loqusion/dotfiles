@@ -100,4 +100,11 @@ search.use { -- *, #, n, N, etc
   },
 }
 
+search.use { -- Structural search and replace
+  'cshuaimin/ssr.nvim',
+  module = 'ssr',
+  setup = true,
+  config = true,
+}
+
 return search

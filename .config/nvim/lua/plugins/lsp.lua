@@ -45,7 +45,9 @@ lsp.use {
 }
 
 lsp.use { -- LSP UI
-  'glepnir/lspsaga.nvim',
+  -- too many breaking changes 💀
+  -- 'glepnir/lspsaga.nvim',
+  'loqusion/lspsaga.nvim',
   after = 'mason.nvim',
   config = true,
 }

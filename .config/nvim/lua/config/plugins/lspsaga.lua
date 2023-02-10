@@ -12,7 +12,7 @@ local M = {
 function M.setup() end
 
 function M.config()
-  M.lspsaga.init_lsp_saga {
+  M.lspsaga.setup {
     finder_request_timeout = 99999,
     code_action_lightbulb = {
       sign = false,

@@ -10,7 +10,11 @@ function M.setup() end
 
 function M.config()
   M.dressing.setup {
-    input = { winblend = 0 },
+    input = {
+      win_options = {
+        winblend = 0,
+      },
+    },
   }
 end
 
