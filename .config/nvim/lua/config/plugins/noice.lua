@@ -37,7 +37,6 @@ function M.config()
           kind = 'progress',
           any = {
             { find = 'code_action' },
-            { find = 'sumneko_lua' },
           },
         },
         opts = { skip = true },

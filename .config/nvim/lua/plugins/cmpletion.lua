@@ -1,3 +1,5 @@
+-- This file is named cmpletion because `require 'completion'` does NOT work
+
 local completion = require('crows.utils').new_feat()
 
 completion.use { -- A more adventurous wildmenu

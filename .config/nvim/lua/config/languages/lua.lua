@@ -8,7 +8,8 @@ require('neodev').setup()
 local lua = {}
 
 lua.lsp_configs = {
-  sumneko_lua = {
+  -- sumneko_lua = {
+  lua_ls = {
     settings = {
       Lua = {
         completion = {

@@ -27,4 +27,9 @@ basic.use { -- improve vim select/input UI
   config = true,
 }
 
+basic.use {
+  'kyazdani42/nvim-web-devicons',
+  config = true,
+}
+
 return basic

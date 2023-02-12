@@ -3,6 +3,7 @@ local yabai = require 'utils.api.yabai'
 local groups = {
   cursorline = vim.api.nvim_create_augroup('cursorline', {}),
   colorscheme = vim.api.nvim_create_augroup('colorscheme-fallback', {}),
+  lsp = vim.api.nvim_create_augroup('lsp-custom', {}),
   yabai = vim.api.nvim_create_augroup('yabai', {}),
 }
 
@@ -53,4 +54,17 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     end
   end,
   group = groups.colorscheme,
+})
+
+-- Disable linting .env files
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  desc = 'Disable linting for .env files',
+  pattern = '.env,.env.*',
+  callback = function(props)
+    vim.diagnostic.disable(props.bufnr)
+    vim.defer_fn(function()
+      vim.diagnostic.reset(nil, props.bufnr)
+    end, 300)
+  end,
+  group = groups.lsp,
 })
