@@ -1,4 +1,4 @@
-local basic = require('crows.utils').new_feat()
+local basic = require('utils.api').feat.new()
 
 basic.use { 'wbthomason/packer.nvim', opt = true }
 

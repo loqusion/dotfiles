@@ -1,4 +1,4 @@
-local languages = require('crows.utils').new_feat()
+local languages = require('utils.api').feat.new()
 
 -- fish
 languages.use { -- Fish

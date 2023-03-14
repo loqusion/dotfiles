@@ -7,7 +7,7 @@ function M.entrance()
 end
 
 function M.register_global_keys()
-  local key = require('crows').key
+  local key = require('utils.api').key
   for _, mode in ipairs { 'n', 'x' } do
     key.map(
       'Open in browser',

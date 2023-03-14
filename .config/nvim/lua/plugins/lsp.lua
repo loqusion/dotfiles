@@ -1,4 +1,4 @@
-local lsp = require('crows.utils').new_feat()
+local lsp = require('utils.api').feat.new()
 
 local signs = require('utils.icons').diagnostics
 for sign, text in pairs(signs) do

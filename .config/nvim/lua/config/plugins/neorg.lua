@@ -74,7 +74,7 @@ function M.config()
 end
 
 function M.register_global_keys()
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     [M.mapleader] = {
       name = 'Neorg commands (global)',
       s = { '<Cmd>NeorgStart<CR>', 'Start Neorg' },
@@ -87,7 +87,7 @@ end
 
 function M.register_buffer_keys()
   -- TODO: map <Leader>f to = in neorg buffers
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     [M.mapleader] = {
       p = { '<Cmd>Neorg presenter start<CR>', 'Neorg presenter' },
     },

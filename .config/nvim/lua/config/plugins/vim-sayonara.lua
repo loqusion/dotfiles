@@ -7,7 +7,7 @@ function M.entrance()
 end
 
 function M.register_global_keys()
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     ['<Leader>'] = {
       q = { '<Cmd>Sayonara<CR>', 'Sayonara' },
       Q = { '<Cmd>Sayonara!<CR>', 'Sayonara!' },

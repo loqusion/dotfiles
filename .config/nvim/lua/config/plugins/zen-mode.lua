@@ -34,7 +34,7 @@ function M.config()
 end
 
 function M.register_global_keys()
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     [M.map_leader] = {
       z = { '<Cmd>silent ZenMode<CR>', 'Zen Mode' },
     },
@@ -42,7 +42,7 @@ function M.register_global_keys()
 end
 
 function M.register_buffer_keys(buffer)
-  require('crows').key.maps({
+  require('utils.api').key.maps({
     q = { '<Cmd>close<CR>', 'Close Zen window' },
   }, { buffer = buffer })
 end

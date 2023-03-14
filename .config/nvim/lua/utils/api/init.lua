@@ -1,9 +1,10 @@
 local api = {
   buffers = require('utils.api.buffers'),
   env = require 'utils.api.env',
+  feat = require 'utils.api.feat',
+  key = require 'utils.api.keymap',
   lazy = require 'utils.api.lazy',
   lsp = require 'utils.api.lsp',
-  --map = require 'utils.api.map',
   path = require 'utils.api.path',
   sessions = require 'utils.api.sessions',
   yabai = require 'utils.api.yabai',

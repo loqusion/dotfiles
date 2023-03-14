@@ -124,7 +124,7 @@ function M.config()
 end
 
 function M.register_global_keys()
-  local key = require('crows').key
+  local key = require('utils.api').key
   key.map('Select treesitter unit', 'x', 'iu', ':lua require("treesitter-unit").select()<CR>')
   key.map('Select treesitter unit', 'x', 'au', ':lua require("treesitter-unit").select(true)<CR>')
   key.map('Select treesitter unit', 'o', 'iu', ':<C-u>lua require("treesitter-unit").select()<CR>')

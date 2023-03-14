@@ -87,7 +87,7 @@ function M.register_filetype_keys()
   vim.api.nvim_create_autocmd('FileType', {
     pattern = M.filetype,
     callback = function()
-      require('crows').key.maps({
+      require('utils.api').key.maps({
         D = {
           function()
             delete_session_under_cursor(function(confirmed)

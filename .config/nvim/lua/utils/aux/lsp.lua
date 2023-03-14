@@ -90,7 +90,7 @@ end
 --- mapping lsp keys
 ---@param bufnr number buffer number
 local function mapping(bufnr)
-  local key = require('crows').key
+  local key = require('utils.api').key
   local mappings = {}
   for _, mapper in pairs(lsp.keys) do
     mappings[mapper[1]] = mapper[2]

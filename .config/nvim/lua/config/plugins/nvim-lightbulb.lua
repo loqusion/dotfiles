@@ -5,7 +5,7 @@ local M = {
 }
 
 function M.setup()
-  require('crows.lsp').add_on_attach(function(_, bufnr)
+  require('utils.aux.lsp').add_on_attach(function(_, bufnr)
     local group = vim.api.nvim_create_augroup('lsp_aucmds', {})
     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI', 'CursorMoved', 'CursorMovedI' }, {
       group = group,

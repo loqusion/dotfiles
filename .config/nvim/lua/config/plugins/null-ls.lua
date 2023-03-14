@@ -15,7 +15,7 @@ function M.config()
   local actions = M.null_ls.builtins.code_actions
   local formatting = M.null_ls.builtins.formatting
 
-  require('crows.lsp').setup_null_ls {
+  require('utils.aux.lsp').setup_null_ls {
     sources = {
       formatting.prettierd,
       formatting.stylua,

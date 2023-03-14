@@ -1,4 +1,4 @@
-local editor = require('crows.utils').new_feat()
+local editor = require('utils.api').feat.new()
 
 editor.use { -- arpeggio
   'kana/vim-arpeggio',

@@ -1,4 +1,4 @@
-local key = require('crows').key
+local key = require('utils.api').key
 
 -- Unmap
 key.maps({

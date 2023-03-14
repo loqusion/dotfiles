@@ -1,4 +1,4 @@
-local statusline = require('crows.utils').new_feat()
+local statusline = require('utils.api').feat.new()
 
 statusline.use {
   'nvim-lualine/lualine.nvim',

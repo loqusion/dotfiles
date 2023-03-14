@@ -27,7 +27,7 @@ function M.config()
 end
 
 function M.register_global_keys()
-  require('crows').key.maps({
+  require('utils.api').key.maps({
     ['<Leader>sr'] = {
       function()
         require('ssr').open()

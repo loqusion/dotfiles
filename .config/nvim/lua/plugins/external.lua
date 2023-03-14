@@ -1,4 +1,4 @@
-local external = require('crows.utils').new_feat()
+local external = require('utils.api').feat.new()
 
 external.use {
   'tyru/open-browser.vim',

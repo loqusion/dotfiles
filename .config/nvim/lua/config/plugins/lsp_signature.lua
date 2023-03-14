@@ -10,7 +10,7 @@ local M = {
 function M.setup() end
 
 function M.config()
-  require('crows.lsp').add_on_attach(function(_, bufnr)
+  require('utils.aux.lsp').add_on_attach(function(_, bufnr)
     M.lsp_signature.on_attach({
       bind = true,
       floating_window = false,

@@ -1,5 +1,5 @@
 local path = require 'utils.api.path'
-local key = require('crows').key
+local key = require('utils.api').key
 
 local function c_ctrl_k()
   vim.cmd [[exe 'normal! ' .. repeat("\<Del>", strchars(getcmdline()[getcmdpos() - 1:]))]]

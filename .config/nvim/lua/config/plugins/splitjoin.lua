@@ -9,7 +9,7 @@ function M.entrance()
 end
 
 function M.register_global_keys()
-  require('crows').key.maps({
+  require('utils.api').key.maps({
     ['<Leader>s'] = {
       j = { '<cmd>SplitjoinSplit<cr>', 'Split line' },
       k = { '<cmd>SplitjoinJoin<cr>', 'Join line' },

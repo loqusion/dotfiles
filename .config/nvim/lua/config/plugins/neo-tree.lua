@@ -47,7 +47,7 @@ function M.config()
 end
 
 function M.register_global_keys()
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     ['\\'] = { '<Cmd>Neotree toggle float reveal_force_cwd<CR>', 'Open neotree in floating window' },
     ['|'] = { '<Cmd>Neotree toggle left<CR>', 'Reveal current file in neotree' },
     gF = { '<Cmd>Neotree float reveal_file=<cfile> reveal_force_cwd<CR>', 'Reveal file under cursor in neotree' },

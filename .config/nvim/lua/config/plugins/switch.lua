@@ -8,7 +8,7 @@ function M.entrance()
 end
 
 function M.register_global_keys()
-  require('crows').key.map('Switch', 'n', '_', '<Plug>(Switch)')
+  require('utils.api').key.map('Switch', 'n', '_', '<Plug>(Switch)')
 end
 
 return M

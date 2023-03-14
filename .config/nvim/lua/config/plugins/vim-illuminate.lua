@@ -32,7 +32,7 @@ function M.config()
 end
 
 function M.register_global_keys()
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     ['<F7>'] = {
       '<Cmd>lua require("illuminate").goto_next_reference()<CR>',
       'Goto next reference',

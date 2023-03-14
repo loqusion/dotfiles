@@ -38,7 +38,7 @@ function M.register_global_keys()
   local lazy = require 'utils.api.lazy'
   local neotest = lazy.require 'neotest'
 
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     ['<Leader>n'] = {
       name = 'Neotest',
       r = {

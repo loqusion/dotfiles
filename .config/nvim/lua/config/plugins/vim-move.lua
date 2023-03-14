@@ -10,7 +10,7 @@ function M.entrance()
 end
 
 function M.register_global_keys()
-  require('crows').key.maps({
+  require('utils.api').key.maps({
     ['<C-j>'] = { '<Plug>MoveBlockDown', 'Move line(s) down' },
     ['<C-k>'] = { '<Plug>MoveBlockUp', 'Move line(s) up' },
   }, { mode = 'x' })

@@ -25,7 +25,7 @@ function M.register_filetype_autocmds()
 end
 
 function M.register_buffer_keys(bufnr)
-  require('crows').key.maps({
+  require('utils.api').key.maps({
     ['<CR>'] = { '<Plug>RestNvim', 'Rest Nvim' },
   }, { buffer = bufnr })
 end

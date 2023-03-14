@@ -1,4 +1,4 @@
-local terminal = require('crows.utils').new_feat()
+local terminal = require('utils.api').feat.new()
 
 terminal.use {
   'akinsho/toggleterm.nvim',

@@ -9,7 +9,7 @@ local M = {
 }
 
 function M.setup()
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     zR = { lazy.fn('ufo', 'openAllFolds'), 'Open all folds (UFO)' },
     zM = { lazy.fn('ufo', 'closeAllFolds'), 'Close all folds (UFO)' },
     zr = { lazy.fn('ufo', 'openFoldsExceptKinds'), 'Open folds (UFO)' },

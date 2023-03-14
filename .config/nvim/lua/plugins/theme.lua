@@ -1,6 +1,6 @@
 local options = require 'core.options'
 
-local theme = require('crows.utils').new_feat()
+local theme = require('utils.api').feat.new()
 
 theme.use {
   'sainnhe/gruvbox-material',

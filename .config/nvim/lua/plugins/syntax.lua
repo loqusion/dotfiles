@@ -1,4 +1,4 @@
-local syntax = require('crows.utils').new_feat()
+local syntax = require('utils.api').feat.new()
 
 syntax.use { -- Treesitter
   {

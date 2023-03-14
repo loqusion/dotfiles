@@ -23,7 +23,7 @@ function M.register_global_keys()
     conceallevel = vim.go.conceallevel ~= 0 and vim.go.conceallevel or 2,
     laststatus = vim.go.laststatus ~= 0 and vim.go.laststatus or 3,
   }
-  require('crows').key.maps({
+  require('utils.api').key.maps({
     ['<Plug>(unimpaired-enable)'] = {
       a = { ':<C-U>set conceallevel=' .. defaults.conceallevel .. '<CR>', 'Enable conceallevel' },
       g = { ':<C-U>set laststatus=' .. defaults.laststatus .. '<CR>', 'Enable laststatus' },

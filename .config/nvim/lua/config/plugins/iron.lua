@@ -31,7 +31,7 @@ end
 
 function M.register_global_keys()
   local lazy = require 'utils.api.lazy'
-  local key = require('crows').key
+  local key = require('utils.api').key
 
   key.maps({
     ['y'] = {

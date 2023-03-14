@@ -42,7 +42,7 @@ end
 function M.register_global_keys()
   local lazy = require 'utils.api.lazy'
 
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     ['<F5>'] = { '<Cmd>lua require("dap").continue()<CR>', 'Debug: Continue' },
     ['<F17>'] = { -- <S-F5>
       '<Cmd>lua require("dap").terminate()<CR>',

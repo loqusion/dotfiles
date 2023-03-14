@@ -9,7 +9,7 @@ end
 function M.config() end
 
 function M.register_global_keys()
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     K = {
       '<Plug>DashSearch',
       'Search for the word under the cursor in docsets corresponding to the current keyword setup',

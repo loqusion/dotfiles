@@ -19,7 +19,7 @@ function M.config()
 end
 
 function M.register_global_keys()
-  require('crows').key.maps({
+  require('utils.api').key.maps({
     n = {
       [[<Cmd>call execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
       'Goto next match',

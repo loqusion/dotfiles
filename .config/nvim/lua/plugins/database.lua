@@ -1,4 +1,4 @@
-local database = require('crows.utils').new_feat()
+local database = require('utils.api').feat.new()
 
 database.use {
   { -- Interact with databases

@@ -9,7 +9,7 @@ local M = {
 function M.setup() end
 
 function M.config()
-  require('crows.lsp').add_caps_setter(M.cmp_nvim_lsp.default_capabilities)
+  require('utils.aux.lsp').add_caps_setter(M.cmp_nvim_lsp.default_capabilities)
 end
 
 return M

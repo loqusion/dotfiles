@@ -1,5 +1,4 @@
-local crows = require 'crows'
-local search = require('crows.utils').new_feat()
+local search = require('utils.api').feat.new()
 
 -- telescope
 search.use {

@@ -1,4 +1,4 @@
-local git = require('crows.utils').new_feat()
+local git = require('utils.api').feat.new()
 
 git.use { -- A Git wrapper so awesome, it should be illegal
   'tpope/vim-fugitive',

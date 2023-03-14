@@ -1,4 +1,4 @@
-local debug = require('crows.utils').new_feat()
+local debug = require('utils.api').feat.new()
 
 debug.use { -- Launch debug sessions, set breakpoints, step through code, inspect state
   'mfussenegger/nvim-dap',

@@ -41,7 +41,7 @@ function M.config()
 end
 
 function M.register_global_keys()
-  local key = require('crows').key
+  local key = require('utils.api').key
   key.map('Open lazygit', 'n', '<Space>g', '<cmd> lua _lazygit_toggle()<cr>', {
     silent = true,
   })
@@ -60,7 +60,7 @@ function M.register_global_keys()
 end
 
 function M.register_buffer_keys(bufnr)
-  require('crows').key.map('Close terminal', 'n', 'q', '<cmd>close<cr>', {
+  require('utils.api').key.map('Close terminal', 'n', 'q', '<cmd>close<cr>', {
     buffer = bufnr,
     silent = true,
   })

@@ -27,7 +27,7 @@ function M.config()
     },
   }
 
-  local lsp = require 'crows.lsp'
+  local lsp = require 'utils.aux.lsp'
 
   lsp.add_on_attach(M.configure_formatting)
 

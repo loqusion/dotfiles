@@ -1,4 +1,4 @@
-local ui = require('crows.utils').new_feat()
+local ui = require('utils.api').feat.new()
 
 ui.use {
   'folke/noice.nvim',

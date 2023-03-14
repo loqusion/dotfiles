@@ -28,7 +28,7 @@ function M.config()
     current_function = false,
   }
   M.lsp_status.register_progress()
-  require('crows.lsp').add_on_attach(function(client, _)
+  require('utils.aux.lsp').add_on_attach(function(client, _)
     require('lsp_status').on_attach(client)
   end)
 end

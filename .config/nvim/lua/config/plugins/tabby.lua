@@ -15,7 +15,7 @@ function M.config()
 end
 
 function M.register_global_keys()
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     ['<leader>t'] = {
       c = { '<Cmd>$tabnew<CR>', 'Create new tab' },
       x = { '<Cmd>tabclose<CR>', 'Close current tab' },

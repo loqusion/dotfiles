@@ -17,7 +17,7 @@ end
 function M.register_global_keys()
   local lazy = require 'utils.api.lazy'
 
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     gp = {
       name = 'Preview',
 

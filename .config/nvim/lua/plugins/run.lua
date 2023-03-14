@@ -1,4 +1,4 @@
-local run = require('crows.utils').new_feat()
+local run = require('utils.api').feat.new()
 
 run.use { -- Asynchronous build and test dispatcher
   'tpope/vim-dispatch',

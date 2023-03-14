@@ -15,7 +15,7 @@ function M.config()
 end
 
 function M.register_global_keys()
-  require('crows').key.map('Swap two fields interactively', 'n', '<Leader>sp', '<Cmd>ISwap<CR>')
+  require('utils.api').key.map('Swap two fields interactively', 'n', '<Leader>sp', '<Cmd>ISwap<CR>')
 end
 
 return M

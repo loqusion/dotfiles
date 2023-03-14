@@ -24,7 +24,7 @@ function M.config()
 end
 
 function M.register_global_keys()
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     [M.map_leader] = {
       name = 'Trouble',
       x = { '<Cmd>TroubleToggle<CR>', 'Toggle Trouble' },
@@ -40,7 +40,7 @@ function M.register_global_keys()
 end
 
 function M.register_global_keys_for_todo()
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     [M.map_leader] = {
       name = 'Trouble',
       t = { '<Cmd>TodoTrouble<CR>', 'Todo list' },

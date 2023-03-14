@@ -18,7 +18,7 @@ end
 
 function M.register_buffer_keys(bufnr)
   local gs = package.loaded.gitsigns
-  local key = require('crows').key
+  local key = require('utils.api').key
 
   local function next_hunk()
     if vim.wo.diff then

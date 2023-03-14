@@ -27,7 +27,7 @@ end
 
 function M.register_global_keys()
   if options.prefer_lspsaga then
-    local key = require 'crows.keymap'
+    local key = require('utils.api').key
 
     key.maps({
       gD = { vim.lsp.buf.declaration, 'Goto declaration' },

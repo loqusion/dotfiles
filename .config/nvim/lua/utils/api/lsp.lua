@@ -21,7 +21,7 @@ end
 M.format = has_v0_8 and format_async or vim.lsp.buf.formatting
 
 function M.map_formatting()
-  require('crows').key.maps({
+  require('utils.api').key.maps({
     ['<Leader>'] = {
       f = { M.format, 'Format' },
     },

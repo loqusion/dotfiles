@@ -126,7 +126,7 @@ function M.register_global_keys()
   local api = require 'utils.api'
   local tb = 'telescope.builtin'
 
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     ['<Space>'] = {
       s = {
         name = 'Telescope',
@@ -164,7 +164,7 @@ function M.register_global_keys()
 end
 
 function M.register_global_keys_for_todo()
-  require('crows').key.maps {
+  require('utils.api').key.maps {
     ['<Space>s'] = {
       ['/'] = { '<Cmd>TodoTelescope<CR>', 'Todo comments' },
     },

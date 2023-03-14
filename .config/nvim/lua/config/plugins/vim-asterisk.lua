@@ -7,7 +7,7 @@ function M.entrance()
 end
 
 function M.register_global_mappings()
-  require('crows').key.maps({
+  require('utils.api').key.maps({
     ['*'] = { '<Plug>(asterisk-z*)', '' },
     ['#'] = { '<Plug>(asterisk-z#)', '' },
     ['g*'] = { '<Plug>(asterisk-gz*)', '' },
