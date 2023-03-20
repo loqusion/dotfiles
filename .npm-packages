@@ -5,6 +5,7 @@ cypress
 gatsby-cli
 npm
 prettier
+react-devtools
 typescript-language-server
 typescript
 vim-language-server
