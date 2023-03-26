@@ -25,6 +25,7 @@ function M.config()
       'markdown',
       'neo-tree',
       'norg',
+      'plugin',
       'sagahover',
       'toggleterm',
     },
