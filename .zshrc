@@ -48,8 +48,9 @@ setopt EXTENDED_GLOB
 ### completion ###
 ##################
 
+fpath+=~/.zfunc
 if _rc_exists brew; then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  fpath+="$(brew --prefix)/share/zsh/site-functions"
 fi
 
 autoload -Uz bashcompinit && bashcompinit -i
