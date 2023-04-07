@@ -37,8 +37,8 @@ alt + shift - w : yabai -m space --destroy
 # fast focus desktop
 alt - p : yabai -m space --focus prev
 alt - n : yabai -m space --focus next
-# alt - ;
-alt - 0x29 : yabai -m space --focus recent
+# `
+alt - 0x32 : yabai -m space --focus recent
 alt - 1 : yabai -m space --focus 1
 alt - 2 : yabai -m space --focus 2
 alt - 3 : yabai -m space --focus 3
