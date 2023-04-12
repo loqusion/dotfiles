@@ -10,6 +10,7 @@ alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
 
 # <command> --help | viman
 alias viman='NVIM_DISABLE_YABAI_TOGGLE=true nvim -c Man\!'
+alias svim='nvim -c SessionLoad'
 alias neovide='NEOVIDE_MULTIGRID=1 neovide'
 alias nvide='NVIM_DISABLE_YABAI_TOGGLE=true neovide'
 alias org='(cd ~ && NVIM_DISABLE_YABAI_TOGGLE=true nvim -c "packadd neorg | Neorg workspace main")'
