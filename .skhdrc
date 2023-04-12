@@ -11,6 +11,10 @@ cmd + alt - k : yabai -m window --focus stack.prev
 # alt - ;
 # alt - 0x29 : yabai -m window --focus stack.recent
 
+# toggle between stack/bsp layout
+ctrl + alt + cmd - s : yabai -m config layout \
+                       "$([ `yabai -m query --windows --space | jq '.[0]."stack-index"'` -eq 0 ] && echo stack || echo bsp)"
+
 # move window
 shift + alt - h : yabai -m window --warp west
 shift + alt - j : yabai -m window --warp south
