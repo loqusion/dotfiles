@@ -8,6 +8,7 @@ local M = {
   },
   session_count = 5,
   filetype = 'dashboard',
+  header = require('config.dashboard.headers').animegirl12,
 }
 
 local sessions = {}
@@ -17,7 +18,7 @@ function M.setup() end
 function M.config()
   ---@diagnostic disable-next-line: missing-parameter
   M.db.session_directory = vim.fn.expand(vim.fn.stdpath 'data' .. '/sessions/')
-  M.db.custom_header = require('config.dashboard.headers').animegirl2
+  M.db.custom_header = M.header
   local ok, custom_center = pcall(M.custom_center)
   if ok then
     M.db.custom_center = custom_center

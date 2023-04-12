@@ -14,6 +14,7 @@ ui.use {
   -- too many breaking changes 💀
   -- 'glepnir/dashboard-nvim',
   'loqusion/dashboard-nvim',
+  disable = true,
   config = true,
   after = 'persisted.nvim',
 }
