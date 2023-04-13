@@ -56,6 +56,53 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   group = groups.colorscheme,
 })
 
+vim.api.nvim_create_autocmd('ColorScheme', {
+  desc = 'Make colorscheme transparent',
+  pattern = '*',
+  callback = function()
+    local transparent_hl_groups = {
+      'Normal',
+      'NormalNC',
+      'Terminal',
+      'EndOfBuffer',
+      'FoldColumn',
+      'Folded',
+      'SignColumn',
+      'ToolbarLine',
+      'RedSign',
+      'OrangeSign',
+      'YellowSign',
+      'GreenSign',
+      'AquaSign',
+      'BlueSign',
+      'PurpleSign',
+      'NeoTreeNormal',
+      'NeoTreeEndOfBuffer',
+      'NeoTreeVertSplit',
+    }
+    local transparent_hl_groups2 = {
+      'StatusLine',
+      'StatusLineTerm',
+      'StatusLineNC',
+      'StatusLineTermNC',
+      'TabLine',
+      'TabLineFill',
+      'TabLineSel',
+    }
+
+    if require('core.options').transparent_background then
+      for _, hl_group in ipairs(transparent_hl_groups) do
+        vim.cmd('hi ' .. hl_group .. ' ctermbg=NONE guibg=NONE')
+        -- vim.api.nvim_set_hl(0, hl_group, {
+        --   bg = 'NONE',
+        --   ctermbg = 'NONE',
+        -- })
+      end
+    end
+  end,
+  group = groups.colorscheme,
+})
+
 -- Disable linting .env files
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   desc = 'Disable linting for .env files',
