@@ -10,4 +10,9 @@ terminal.use {
   config = true,
 }
 
+terminal.use {
+  'willothy/flatten.nvim',
+  config = true,
+}
+
 return terminal
