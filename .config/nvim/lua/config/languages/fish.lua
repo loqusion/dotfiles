@@ -1,3 +1,0 @@
-local fish = {}
-
-return fish
