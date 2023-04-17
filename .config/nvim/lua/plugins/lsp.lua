@@ -29,7 +29,7 @@ return {
         bashls = {},
         cssls = {},
         dockerls = {},
-        denols = {},
+        -- denols = {},
         gopls = {
           hints = {
             assignVariableTypes = true,
