@@ -5,6 +5,11 @@ return {
   },
 
   {
+    "shaunsingh/oxocarbon.nvim",
+    event = "VeryLazy",
+  },
+
+  {
     "catppuccin/nvim",
     event = "VeryLazy",
     name = "catppuccin",

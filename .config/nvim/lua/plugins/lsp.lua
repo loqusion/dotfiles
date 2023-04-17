@@ -29,6 +29,7 @@ return {
         bashls = {},
         cssls = {},
         dockerls = {},
+        denols = {},
         gopls = {
           hints = {
             assignVariableTypes = true,
@@ -55,6 +56,7 @@ return {
             },
           },
         },
+        svelte = {},
         teal_ls = {},
         tsserver = {
           settings = {

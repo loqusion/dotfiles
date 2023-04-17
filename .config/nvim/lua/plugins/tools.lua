@@ -47,4 +47,11 @@ return {
     cmd = "PasteImg",
     build = "brew install pngpaste",
   },
+
+  -- chatgpt
+  {
+    "jackMort/ChatGPT.nvim",
+    cmd = { "ChatGPTActAs", "ChatGPT" },
+    opts = {},
+  },
 }
