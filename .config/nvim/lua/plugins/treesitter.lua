@@ -1,11 +1,13 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    ---@type TSConfig
     opts = {
       ensure_installed = {
         "bash",
         "c",
         "html",
+        "http",
         "javascript",
         "json",
         "lua",
@@ -22,6 +24,7 @@ return {
         "vimdoc",
         "yaml",
       },
+      auto_install = true,
     },
   },
 }

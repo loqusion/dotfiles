@@ -144,15 +144,45 @@ return {
   {
     "mizlan/iswap.nvim",
     cmd = { "ISwap", "ISwapWith" },
+    -- stylua: ignore
     keys = {
-      {
-        "<leader>cs",
-        function()
-          require("iswap").iswap_with()
-        end,
-        desc = "Swap",
-      },
+      { "<leader>cs", function() require("iswap").iswap_with() end, desc = "Swap" },
     },
     opts = {},
+  },
+
+  -- Peek lines during `:{num}`
+  {
+    "nacro90/numb.nvim",
+    event = "CmdlineEnter",
+    opts = {
+      show_numbers = true,
+      show_cursorline = true,
+      number_only = false,
+      centered_peeking = true,
+    },
+  },
+
+  -- structural search and replace
+  {
+    "cshuaimin/ssr.nvim",
+    -- stylua: ignore
+    keys = {
+      { "<leader>sr", function() require("ssr").open() end, mode = { "n", "x" }, desc = "Replace (ssr)" },
+    },
+  },
+  {
+    "windwp/nvim-spectre",
+    -- stylua: ignore
+    keys = {
+      { "<leader>sr", false },
+      { "<leader>sR", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+    },
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      { "<leader>sR", false },
+    },
   },
 }

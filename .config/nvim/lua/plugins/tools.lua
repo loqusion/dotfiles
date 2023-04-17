@@ -30,4 +30,21 @@ return {
       vim.fn["arpeggio#map"]("i", "", 0, "jk", "<Esc>")
     end,
   },
+
+  -- copy-paste over ssh with osc52
+  {
+    "ibhagwan/smartyank.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- we already have this
+      highlight = { enabled = false },
+    },
+  },
+
+  -- paste image in markdown
+  {
+    "ekickx/clipboard-image.nvim",
+    cmd = "PasteImg",
+    build = "brew install pngpaste",
+  },
 }

@@ -1,5 +1,7 @@
 local opt = vim.opt
 
+vim.g.maplocalleader = [[\]]
+
 opt.backup = true -- Save backups to ~/.local/state/backup/
 opt.backupdir:remove(".")
 opt.display = { "uhex" } -- Show unprintable characters as <xx>
