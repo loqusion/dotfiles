@@ -71,3 +71,5 @@ return {
   -- Border style in floating windows
   border = "rounded",
 }
+
+-- vim: foldmethod=marker foldlevel=0

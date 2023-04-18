@@ -21,10 +21,10 @@ return {
     config = true,
   },
 
-  -- {
-  --   "windwp/nvim-ts-autotag",
-  --   ft = { "html", "javascript", "javascriptreact", "typescriptreact", "svelte", "vue", "markdown" },
-  -- },
+  {
+    "windwp/nvim-ts-autotag",
+    event = "BufReadPost",
+  },
 
   -- modern matchit and matchparen
   {
@@ -37,6 +37,7 @@ return {
 
   {
     "RRethy/nvim-treesitter-endwise",
+    event = "BufReadPost",
   },
 
   -- color highlighter
@@ -71,7 +72,6 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    -- #ffffff
     ---@type TSConfig
     opts = {
       ensure_installed = {
@@ -96,17 +96,17 @@ return {
         "yaml",
       },
       auto_install = true,
-    },
-    -- autotag = {enable = true},
-    endwise = { enable = true },
-    matchup = { enable = true },
-    query_linter = {
-      enable = true,
-      use_virtual_text = true,
-      lint_events = { "BufWrite", "CursorHold" },
-    },
-    playground = {
-      enable = true,
+      autotag = { enable = true },
+      endwise = { enable = true },
+      matchup = { enable = true },
+      query_linter = {
+        enable = true,
+        use_virtual_text = true,
+        lint_events = { "BufWrite", "CursorHold" },
+      },
+      playground = {
+        enable = true,
+      },
     },
   },
 }

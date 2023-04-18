@@ -43,6 +43,7 @@ local nvim_surround_spec = {
     mappings = vim.tbl_filter(function(m)
       return m[1] and #m[1] > 0
     end, mappings)
+
     return vim.list_extend(mappings, keys)
   end,
   ---@type user_options
@@ -184,5 +185,51 @@ return {
     keys = {
       { "<leader>sR", false },
     },
+  },
+
+  {
+    "echasnovski/mini.ai",
+    opts = function(_, opts)
+      if require("lazyvim.util").has("which-key.nvim") then
+        ---@type table<string, string|table>
+        local i = {
+          t = "Tag",
+          T = "Tag including white-space",
+          e = "Entire Buffer",
+        }
+        local a = vim.deepcopy(i)
+        for k, v in pairs(a) do
+          ---@cast v string
+          a[k] = v:gsub(" including.*", "")
+        end
+
+        local ic = vim.deepcopy(i)
+        local ac = vim.deepcopy(a)
+        for key, name in pairs({ n = "Next", l = "Last" }) do
+          i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
+          a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
+        end
+        require("which-key").register({
+          mode = { "o", "x" },
+          i = i,
+          a = a,
+        })
+      end
+
+      return vim.tbl_deep_extend("force", opts, {
+        custom_textobjects = {
+          t = { "<(%w-)%f[^<%w][^<>]->.-</%1>", "^<.->%s*().-()%s*</[^/]->$" },
+          T = { "<(%w-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
+          e = function()
+            local from = { line = 1, col = 1 }
+            local to = {
+              line = vim.fn.line("$"),
+              col = math.max(vim.fn.getline("$"):len(), 1),
+            }
+            return { from = from, to = to }
+          end,
+        },
+      })
+    end,
   },
 }
