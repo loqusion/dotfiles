@@ -18,6 +18,7 @@ map("n", "gV", "v`[o`]", { desc = "Switch to VISUAL using last insertion/yank" }
 map("n", "<leader>w=", "<C-w>=", { desc = "Equalize windows" })
 map("n", "<leader>wT", "<C-w>T", { desc = "Break out into a new tab" })
 map("n", "<leader>wx", "<C-w>x", { desc = "Swap current with next" })
+map("n", "<leader>wo", "<C-w>o", { desc = "Close other windows" })
 
 map({ "n", "x" }, "x", '"_x', { desc = "Delete char" })
 map({ "n", "x" }, "X", '"_X', { desc = "Delete prev char" })

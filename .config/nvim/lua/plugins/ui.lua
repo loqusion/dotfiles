@@ -15,6 +15,13 @@ return {
   },
 
   {
+    "rcarriga/nvim-notify",
+    opts = {
+      background_colour = "#000000",
+    },
+  },
+
+  {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
     keys = { { "<leader>cS", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
@@ -106,6 +113,7 @@ return {
   -- fun screensavers
   {
     "folke/drop.nvim",
+    cond = not style.transparent, -- https://github.com/folke/drop.nvim/issues/7
     event = "VeryLazy",
     config = function()
       math.randomseed(os.time())
@@ -120,14 +128,14 @@ return {
     event = "WinNew",
     dependencies = {
       { "anuvyklack/middleclass" },
-      { "anuvyklack/animation.nvim", enabled = false },
+      { "anuvyklack/animation.nvim", cond = style.animation },
     },
     keys = { { "<leader>Z", "<cmd>WindowsMaximize<cr>", desc = "Zoom" } },
     config = function()
       vim.o.winwidth = 5
       vim.o.equalalways = false
       require("windows").setup({
-        animation = { enable = false, duration = 150 },
+        animation = { enable = style.animation, duration = 150 },
       })
     end,
   },

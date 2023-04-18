@@ -67,8 +67,10 @@ return {
   ---   | 'zenwritten'
   -- }}}
   colorscheme = "duskfox",
-  transparent = false,
+  transparent = true,
+  animation = false,
   -- Border style in floating windows
+  ---@type _.NuiBorderStyle
   border = "rounded",
 }
 
