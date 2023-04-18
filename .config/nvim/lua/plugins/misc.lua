@@ -1,4 +1,9 @@
 return {
+  {
+    "antoinemadec/FixCursorHold.nvim",
+    event = "VeryLazy",
+  },
+
   -- discord presence
   {
     "andweeb/presence.nvim",
