@@ -3,6 +3,8 @@ local prefer = {
   nvim_surround = true,
 }
 
+local completion_menu = require("utils.completion-menu")
+
 local nvim_autopairs_spec = {
   "windwp/nvim-autopairs",
   event = "InsertEnter",
@@ -74,12 +76,38 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-emoji",
+      "onsails/lspkind.nvim",
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
+      return vim.tbl_deep_extend("force", opts, completion_menu, {
+        completion = {
+          completeopt = "menu.menuone,noselect",
+        },
+        sources = cmp.config.sources(vim.list_extend(opts.sources, {
+          { name = "emoji" },
+          { name = "neorg" },
+        })),
+        mapping = {
+          ["<CR>"] = cmp.mapping.confirm({ select = false }),
+        },
+      })
     end,
+  },
+
+  {
+    "L3MON4D3/LuaSnip",
+    -- stylua: ignore
+    keys = {
+      {
+        "<tab>",
+        function()
+          return require("luasnip").expand_or_jumpable(1) and "<Plug>luasnip-expand-or-jump" or "<tab>"
+        end,
+        expr = true, silent = true, mode = "i",
+      },
+    },
   },
 
   {
