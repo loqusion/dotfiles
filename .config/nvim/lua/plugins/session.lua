@@ -6,7 +6,7 @@ local utils = require("utils")
 
 local function save_dirsession(opts)
   opts = vim.tbl_deep_extend("force", opts or {}, { notify = false })
-  require("resession").save_tab(require("lazyvim.util").get_root(), opts)
+  require("resession").save(require("lazyvim.util").get_root(), opts)
 end
 
 local function create_save_on_close_autocmd()
@@ -18,10 +18,11 @@ local function create_save_on_close_autocmd()
   })
 end
 
-local _save_on_close = true
-local function toggle_save_on_close()
-  _save_on_close = not _save_on_close
+local _save_on_close = vim.fn.argc() <= 0
+local function toggle_save_on_close(force)
+  _save_on_close = vim.F.if_nil(force, not _save_on_close)
   if _save_on_close then
+    create_save_on_close_autocmd()
   else
     vim.api.nvim_del_augroup_by_id(utils.augroup("resession_save_on_close"))
   end
@@ -35,17 +36,17 @@ return {
     "stevearc/resession.nvim",
     enabled = prefer.resession,
     dependencies = {
-      "stevearc/three.nvim",
+      -- "stevearc/three.nvim",
       "klen/nvim-config-local",
     },
     event = "VeryLazy",
     -- stylua: ignore
     keys = {
-      { "<leader>qS", toggle_save_on_close, desc = "Session Stop", },
       { "<leader>qs", save_dirsession, desc = "Session Save" },
       { "<leader>qr", function() require("resession").load() end, desc = "Session Restore" },
     ---@diagnostic disable-next-line: missing-parameter
       { "<leader>qd", function() require("resession").delete() end, desc = "Session Delete" },
+      { "<leader>qS", toggle_save_on_close, desc = "Session Stop", },
       {
         "ZZ",
         function()
@@ -65,7 +66,11 @@ return {
         local lutil = require("lazyvim.util")
         return vim.startswith(vim.api.nvim_buf_get_name(buffer), lutil.get_root())
       end,
-      extensions = { config_local = {}, three = {}, quickfix = {} },
+      extensions = {
+        config_local = {},
+        -- three = {},
+        quickfix = {},
+      },
     },
     config = function(_, opts)
       local resession = require("resession")
@@ -76,7 +81,7 @@ return {
           if not require("resession").default_buf_filter(buffer) then
             return false
           end
-          return visible_buffers[buffer] or require("three").is_buffer_in_any_tab(buffer)
+          return visible_buffers[buffer] -- or require("three").is_buffer_in_any_tab(buffer)
         end,
       }))
 
@@ -99,7 +104,9 @@ return {
         end, 50)
       end
 
-      create_save_on_close_autocmd()
+      if _save_on_close then
+        create_save_on_close_autocmd()
+      end
     end,
   },
 }
