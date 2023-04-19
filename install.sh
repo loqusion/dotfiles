@@ -9,7 +9,11 @@ if [ -e "${DEST}" ]; then
   exit 1
 fi
 
-alias config='/usr/bin/git --git-dir="$DEST" --work-tree=$HOME'
+config ()
+{
+  /usr/bin/git --git-dir="$DEST" --work-tree="$HOME" "$@"
+}
+
 git clone --bare git@github.com:loqusion/dotfiles.git "$DEST"
 
 config config --local core.sparseCheckout true
