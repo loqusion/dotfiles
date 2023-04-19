@@ -1,16 +1,6 @@
-return {
-  -- discord presence
-  {
-    "andweeb/presence.nvim",
-    event = "VeryLazy",
-    opts = {
-      enable_line_number = true,
-      debounce_timeout = 5,
-      main_image = "file",
-      neovim_image_text = "hi",
-    },
-  },
+local Utils = require("utils")
 
+return {
   -- rest client
   {
     "rest-nvim/rest.nvim",
@@ -33,15 +23,16 @@ return {
     "Olical/conjure",
     event = "VeryLazy",
     init = function()
-      local wk = require("which-key")
-      wk.register({
-        mode = { "n" },
-        ["<localleader>e"] = { name = "+evaluate" },
-        ["<localleader>ec"] = { name = "+comment" },
-        ["<localleader>l"] = { name = "+log" },
-        -- ["<localleader>c"] = { name = "+repl" },
-        -- ["<localleader>r"] = { name = "+reset" },
-      })
+      if Utils.has("which-key.nvim") then
+        require("which-key").register({
+          mode = { "n" },
+          ["<localleader>e"] = { name = "+evaluate" },
+          ["<localleader>ec"] = { name = "+comment" },
+          ["<localleader>l"] = { name = "+log" },
+          -- ["<localleader>c"] = { name = "+repl" },
+          -- ["<localleader>r"] = { name = "+reset" },
+        })
+      end
       vim.g["conjure#mapping#prefix"] = "<localleader>"
       vim.g["conjure#mapping#doc_word"] = false
       vim.g["conjure#mapping#def_word"] = false

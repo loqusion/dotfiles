@@ -1,4 +1,5 @@
 local style = require("config.style")
+local Utils = require("utils")
 
 return {
   {
@@ -81,6 +82,9 @@ return {
   {
     "folke/twilight.nvim",
     cmd = "Twilight",
+    keys = {
+      { "<leader>ut", "<Cmd>Twilight<CR>", desc = "Toggle Twilight" },
+    },
   },
 
   -- floating winbar
@@ -178,9 +182,11 @@ return {
       { "<leader>bdh", "<Cmd>BufferLineCloseLeft<CR>", desc = "Buffers to left" },
     },
     init = function()
-      require("which-key").register({
-        ["<leader>bd"] = { name = "+delete" },
-      })
+      if Utils.has("which-key.nvim") then
+        require("which-key").register({
+          ["<leader>bd"] = { name = "+delete" },
+        })
+      end
     end,
   },
 

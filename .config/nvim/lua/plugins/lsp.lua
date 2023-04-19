@@ -2,7 +2,7 @@ local prefer = {
   lsp_inlay_hints = true,
 }
 
-local Util = require("lazyvim.util")
+local Utils = require("utils")
 
 return {
   {
@@ -134,7 +134,7 @@ return {
       "someone-stole-my-name/yaml-companion.nvim",
     },
     opts = function(_, opts)
-      if Util.has("yaml-companion.nvim") then
+      if Utils.has("yaml-companion.nvim") then
         local yaml_companion = require("yaml-companion")
         opts.servers.yamlls = yaml_companion.setup(opts.servers.yamlls)
       end
@@ -143,12 +143,13 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     config = function()
-      if Util.has("yaml-companion.nvim") then
+      if Utils.has("yaml-companion.nvim") then
         require("telescope").load_extension("yaml_schema")
       end
     end,
   },
 
+  -- preview LSP definition
   {
     "rmagatti/goto-preview",
     -- stylua: ignore

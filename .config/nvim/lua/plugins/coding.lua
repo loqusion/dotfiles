@@ -3,6 +3,7 @@ local prefer = {
   nvim_surround = false,
 }
 
+local Utils = require("utils")
 local completion_menu = require("utils.completion-menu")
 
 local nvim_autopairs_spec = {
@@ -111,14 +112,9 @@ return {
 
   {
     "danymat/neogen",
+    -- stylua: ignore
     keys = {
-      {
-        "<leader>cc",
-        function()
-          require("neogen").generate({})
-        end,
-        desc = "Neogen comment",
-      },
+      { "<leader>cc", function() require("neogen").generate({ }) end, desc = "Neogen comment" },
     },
     opts = { snippet_engine = "luasnip" },
   },
@@ -131,15 +127,9 @@ return {
 
   {
     "ThePrimeagen/refactoring.nvim",
+    -- stylua: ignore
     keys = {
-      {
-        "<leader>r",
-        function()
-          require("refactoring").select_refactor()
-        end,
-        mode = "x",
-        desc = "Refactoring",
-      },
+      { "<leader>r", function() require("refactoring").select_refactor() end, mode = "x", desc = "Refactoring" },
     },
     opts = {},
   },
@@ -217,7 +207,7 @@ return {
   {
     "echasnovski/mini.ai",
     opts = function(_, opts)
-      if require("lazyvim.util").has("which-key.nvim") then
+      if Utils.has("which-key.nvim") then
         ---@type table<string, string|table>
         local i = {
           t = "Tag",

@@ -2,7 +2,7 @@ local prefer = {
   resession = false,
 }
 
-local utils = require("utils")
+local Utils = require("utils")
 
 local function save_dirsession(opts)
   opts = vim.tbl_deep_extend("force", opts or {}, { notify = false })
@@ -11,7 +11,7 @@ end
 
 local function create_save_on_close_autocmd()
   vim.api.nvim_create_autocmd("VimLeavePre", {
-    group = utils.augroup("resession_save_on_close"),
+    group = Utils.augroup("resession_save_on_close"),
     callback = function()
       save_dirsession()
     end,
@@ -24,7 +24,7 @@ local function toggle_save_on_close(force)
   if _save_on_close then
     create_save_on_close_autocmd()
   else
-    vim.api.nvim_del_augroup_by_id(utils.augroup("resession_save_on_close"))
+    vim.api.nvim_del_augroup_by_id(Utils.augroup("resession_save_on_close"))
   end
 end
 
@@ -36,7 +36,7 @@ return {
     "stevearc/resession.nvim",
     enabled = prefer.resession,
     dependencies = {
-      -- "stevearc/three.nvim",
+      "stevearc/three.nvim",
       "klen/nvim-config-local",
     },
     event = "VeryLazy",
@@ -66,11 +66,7 @@ return {
         local lutil = require("lazyvim.util")
         return vim.startswith(vim.api.nvim_buf_get_name(buffer), lutil.get_root())
       end,
-      extensions = {
-        config_local = {},
-        -- three = {},
-        quickfix = {},
-      },
+      extensions = { config_local = {}, three = {}, quickfix = {} },
     },
     config = function(_, opts)
       local resession = require("resession")
@@ -81,7 +77,7 @@ return {
           if not require("resession").default_buf_filter(buffer) then
             return false
           end
-          return visible_buffers[buffer] -- or require("three").is_buffer_in_any_tab(buffer)
+          return visible_buffers[buffer] or require("three").is_buffer_in_any_tab(buffer)
         end,
       }))
 
