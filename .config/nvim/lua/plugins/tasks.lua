@@ -57,4 +57,11 @@ return {
       },
     },
   },
+
+  {
+    "stevearc/overseer.nvim",
+    -- TODO: proper lazy loading
+    event = "VeryLazy",
+    config = true,
+  },
 }

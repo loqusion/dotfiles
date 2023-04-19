@@ -25,5 +25,5 @@ map({ "n", "x" }, "X", '"_X', { desc = "Delete prev char" })
 
 map("n", "l", l, { desc = "which_key_ignore" })
 
-map("n", "ZZ", "<Nop>", { desc = "which_key_ignore" })
+-- map("n", "ZZ", "<Nop>", { desc = "which_key_ignore" })
 map({ "n", "i", "c", "v", "o", "t", "l" }, "<MiddleMouse>", "<Nop>", { desc = "which_key_ignore" })

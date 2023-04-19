@@ -28,8 +28,8 @@ return {
     opts = {
       load = {
         ["core.defaults"] = {},
-        ["core.norg.concealer"] = {},
-        ["core.norg.completion"] = {
+        ["core.concealer"] = {},
+        ["core.completion"] = {
           config = { engine = "nvim-cmp" },
         },
         ["core.integrations.nvim-cmp"] = {},
@@ -150,8 +150,5 @@ return {
       { "<leader>bD", function() require("close_buffers").delete({ type = "this", force = true }) end, desc = 'Current buffer (Force)' },
     },
   },
-  {
-    "echasnovski/mini.bufremove",
-    enabled = false,
-  },
+  { "echasnovski/mini.bufremove", enabled = false },
 }

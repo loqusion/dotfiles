@@ -1,4 +1,24 @@
+local style = require("config.style")
+
 return {
+  {
+    "akinsho/toggleterm.nvim",
+    keys = function(plugin)
+      return {
+        { plugin.opts.open_mapping, desc = "Toggle Terminal" },
+      }
+    end,
+    opts = {
+      direction = "float",
+      border = "shadow",
+      shell = vim.env.SHELL,
+      open_mapping = [[<C-\>]],
+      float_opts = {
+        border = style.border,
+      },
+    },
+  },
+
   {
     "anuvyklack/hydra.nvim",
     keys = { "zl", "zh", "zL", "zH" },
