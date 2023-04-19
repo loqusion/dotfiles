@@ -29,7 +29,7 @@ local function get_abbr(vim_item, entry)
   return word
 end
 
-return {
+local completion_menu = {
   window = {
     completion = {
       col_offset = -3,
@@ -61,6 +61,32 @@ return {
       format.kind = (" %s "):format(strings[1])
 
       return format
+    end,
+  },
+}
+
+return {
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-emoji",
+      "onsails/lspkind.nvim",
+    },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      local cmp = require("cmp")
+      return vim.tbl_deep_extend("force", opts, completion_menu, {
+        completion = {
+          completeopt = "menu.menuone,noselect",
+        },
+        sources = cmp.config.sources(vim.list_extend(opts.sources, {
+          { name = "emoji" },
+          { name = "neorg" },
+        })),
+        mapping = {
+          ["<CR>"] = cmp.mapping.confirm({ select = false }),
+        },
+      })
     end,
   },
 }

@@ -21,7 +21,9 @@ return {
   -- obsidian
   {
     "epwalsh/obsidian.nvim",
+    enabled = false,
     version = "",
+    event = "VeryLazy",
     opts = {
       dir = "~/Obsidian/Vault 1",
       completion = {

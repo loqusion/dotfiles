@@ -4,7 +4,6 @@ local prefer = {
 }
 
 local Utils = require("utils")
-local completion_menu = require("utils.completion-menu")
 
 local nvim_autopairs_spec = {
   "windwp/nvim-autopairs",
@@ -71,30 +70,6 @@ return {
 
   prefer.nvim_surround and nvim_surround_spec or {},
   { "echasnovski/mini.surround", enabled = not prefer.nvim_surround },
-
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-emoji",
-      "onsails/lspkind.nvim",
-    },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      return vim.tbl_deep_extend("force", opts, completion_menu, {
-        completion = {
-          completeopt = "menu.menuone,noselect",
-        },
-        sources = cmp.config.sources(vim.list_extend(opts.sources, {
-          { name = "emoji" },
-          { name = "neorg" },
-        })),
-        mapping = {
-          ["<CR>"] = cmp.mapping.confirm({ select = false }),
-        },
-      })
-    end,
-  },
 
   {
     "L3MON4D3/LuaSnip",
