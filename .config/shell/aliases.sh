@@ -10,7 +10,7 @@ alias rustdoc='rustup doc --toolchain=stable-x86_64-apple-darwin'
 
 # <command> --help | viman
 alias viman='NVIM_DISABLE_YABAI_TOGGLE=true nvim -c Man\!'
-alias svim='nvim -c SessionLoad'
+alias cvim='nvim -'
 alias neovide='NEOVIDE_MULTIGRID=1 neovide'
 alias nvide='NVIM_DISABLE_YABAI_TOGGLE=true neovide'
 alias org='(cd ~ && NVIM_DISABLE_YABAI_TOGGLE=true nvim -c "packadd neorg | Neorg workspace main")'
@@ -23,11 +23,11 @@ alias lg='lazygit'
 
 alias caf='caffeinate -d'
 function linecount() {
-    find "${1:-.}" -name "*.*" -print | xargs wc -l
+	find "${1:-.}" -name "*.*" -print | xargs wc -l
 }
 
 function dict() {
-    curl "dict://dict.org/d:$1" | eval "${PAGER:-less}"
+	curl "dict://dict.org/d:$1" | eval "${PAGER:-less}"
 }
 
 alias tarify='tar czpvf'
