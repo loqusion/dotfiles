@@ -68,7 +68,7 @@ return {
   ---   | 'zenburned'
   ---   | 'zenwritten'
   -- }}}
-  colorscheme = "duskfox",
+  colorscheme = "carbonfox",
   transparent = (not utils.is_ssh()) and true,
   animation = false,
   -- Border style in floating windows

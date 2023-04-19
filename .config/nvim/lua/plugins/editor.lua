@@ -144,10 +144,10 @@ return {
     cmd = { "BDelete", "BWipeout" },
     -- stylua: ignore
     keys = {
-      { "<leader>bdi", function() require("close_buffers").delete({ type = "hidden" }) end, desc = 'Delete h[i]dden buffers' },
-      { "<leader>bdo", function() require("close_buffers").delete({ type = "other" }) end, desc = 'Delete other buffers' },
-      { "<leader>bdd", function() require("close_buffers").delete({ type = "this" }) end, desc = 'Delete Buffer' },
-      { "<leader>bD", function() require("close_buffers").delete({ type = "this", force = true }) end, desc = 'Delete Buffer (Force)' },
+      { "<leader>bdi", function() require("close_buffers").delete({ type = "hidden" }) end, desc = 'H[i]dden buffers' },
+      { "<leader>bdo", function() require("close_buffers").delete({ type = "other" }) end, desc = 'Other buffers' },
+      { "<leader>bdd", function() require("close_buffers").delete({ type = "this" }) end, desc = 'Current buffer' },
+      { "<leader>bD", function() require("close_buffers").delete({ type = "this", force = true }) end, desc = 'Current buffer (Force)' },
     },
   },
   {

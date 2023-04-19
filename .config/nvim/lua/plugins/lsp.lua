@@ -24,6 +24,11 @@ return {
     },
     ---@class PluginLspOpts
     opts = {
+      diagnostics = {
+        virtual_text = {
+          -- prefix = "icons",
+        },
+      },
       ---@type lspconfig.options
       servers = {
         bashls = {},

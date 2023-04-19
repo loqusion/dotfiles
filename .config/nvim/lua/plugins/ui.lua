@@ -144,8 +144,8 @@ return {
     "akinsho/bufferline.nvim",
       -- stylua: ignore
     keys = {
-      { "<leader>bdl", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete buffers to right" },
-      { "<leader>bdh", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete buffers to left" },
+      { "<leader>bdl", "<Cmd>BufferLineCloseRight<CR>", desc = "Buffers to right" },
+      { "<leader>bdh", "<Cmd>BufferLineCloseLeft<CR>", desc = "Buffers to left" },
     },
     init = function()
       require("which-key").register({
