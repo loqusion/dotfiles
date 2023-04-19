@@ -32,3 +32,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export CC=$(which clang)
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
+if [ -e "$HOME/.zshenv.private" ]; then
+  source "$HOME/.zshenv.private"
+fi
