@@ -79124,6 +79124,10 @@
 	<integer>2</integer>
 	<key>MaxVertically</key>
 	<false/>
+	<key>NeverWarnAboutShortLivedSessions_8E7D8A7C-208D-43E1-8E7E-44AAE07412E0</key>
+	<true/>
+	<key>NeverWarnAboutShortLivedSessions_8E7D8A7C-208D-43E1-8E7E-44AAE07412E0_selection</key>
+	<integer>0</integer>
 	<key>NeverWarnAboutShortLivedSessions_93C8B635-53FD-40DE-A71F-49726E7D414B</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_93C8B635-53FD-40DE-A71F-49726E7D414B_selection</key>
@@ -80412,7 +80416,7 @@
 			<key>Non-ASCII Ligatures</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>SpaceMonoNerdFontCompleteM-Regular 14</string>
+			<string>TerminessTTFNerdFontCompleteM-Medium 16</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<true/>
 			<key>Open Toolbelt</key>
@@ -80526,7 +80530,7 @@
 			<key>Thin Strokes</key>
 			<integer>3</integer>
 			<key>Transparency</key>
-			<real>0.2487616356382979</real>
+			<real>0.097589760638297843</real>
 			<key>Unicode Normalization</key>
 			<integer>0</integer>
 			<key>Unicode Version</key>
@@ -81518,6 +81522,8 @@
 			<integer>0</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
+			<key>Initial Text</key>
+			<string></string>
 			<key>Initial Use Transparency</key>
 			<true/>
 			<key>Jobs to Ignore</key>
