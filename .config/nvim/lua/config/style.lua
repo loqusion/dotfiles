@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 return {
   -- {{{
   ---@type
@@ -67,7 +69,7 @@ return {
   ---   | 'zenwritten'
   -- }}}
   colorscheme = "duskfox",
-  transparent = true,
+  transparent = (not utils.is_ssh()) and true,
   animation = false,
   -- Border style in floating windows
   ---@type _.NuiBorderStyle

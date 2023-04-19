@@ -3,7 +3,12 @@ return {
   {
     "nvim-neotest/neotest",
     dependencies = {
-      "antoinemadec/FixCursorHold.nvim",
+      {
+        "antoinemadec/FixCursorHold.nvim", -- https://github.com/antoinemadec/FixCursorHold.nvim/issues/13
+        init = function()
+          vim.g.cursorhold_updatetime = 50
+        end,
+      },
       "haydenmeade/neotest-jest",
       "nvim-neotest/neotest-python",
       "akinsho/neotest-go",

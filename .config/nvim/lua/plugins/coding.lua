@@ -1,6 +1,6 @@
 local prefer = {
   nvim_autopairs = false,
-  nvim_surround = true,
+  nvim_surround = false,
 }
 
 local completion_menu = require("utils.completion-menu")
@@ -48,7 +48,6 @@ local nvim_surround_spec = {
 
     return vim.list_extend(mappings, keys)
   end,
-  ---@type user_options
   opts = {
     keymaps = {
       insert = false,
