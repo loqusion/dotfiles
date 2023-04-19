@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-set -u
+set -eu
 
 DEST=${DOT_DEST:-"$HOME/.local/share/dotfiles/"}
 
