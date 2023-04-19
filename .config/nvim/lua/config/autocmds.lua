@@ -1,4 +1,4 @@
-local Util = require("utils")
+local Util = require("config.utils")
 
 -- show cursor line only in active window
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {

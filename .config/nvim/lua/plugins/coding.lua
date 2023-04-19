@@ -3,7 +3,7 @@ local prefer = {
   nvim_surround = false,
 }
 
-local Utils = require("utils")
+local Utils = require("config.utils")
 
 local nvim_autopairs_spec = {
   "windwp/nvim-autopairs",

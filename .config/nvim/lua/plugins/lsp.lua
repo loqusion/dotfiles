@@ -2,7 +2,7 @@ local prefer = {
   lsp_inlay_hints = true,
 }
 
-local Utils = require("utils")
+local Utils = require("config.utils")
 
 return {
   {

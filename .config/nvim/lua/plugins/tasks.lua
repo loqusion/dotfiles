@@ -1,4 +1,4 @@
-local Utils = require("utils")
+local Utils = require("config.utils")
 
 return {
   -- run tests
