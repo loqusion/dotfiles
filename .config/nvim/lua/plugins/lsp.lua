@@ -26,7 +26,7 @@ return {
     opts = {
       diagnostics = {
         virtual_text = {
-          -- prefix = "icons",
+          prefix = "icons",
         },
       },
       ---@type lspconfig.options
