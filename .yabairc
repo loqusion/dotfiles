@@ -86,7 +86,7 @@ mail=(
 float=()
 
 managed_apps=(
-  '^iTerm.?$'
+	# '^iTerm.?$'
   "${code[@]}"
   "${web[@]}"
   "${media[@]}"

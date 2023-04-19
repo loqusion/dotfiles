@@ -2,9 +2,10 @@
 alt - return : "${HOME}/.config/yabai/scripts/open_iterm2.sh"
 
 # focus window
+# TODO: remap
+# alt - j : yabai -m window --focus south
+# alt - k : yabai -m window --focus north
 alt - h : yabai -m window --focus west
-alt - j : yabai -m window --focus south
-alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
 cmd + alt - j : yabai -m window --focus stack.next
 cmd + alt - k : yabai -m window --focus stack.prev
