@@ -14,17 +14,4 @@ function M.has(plugin)
   return require("lazy.core.config").plugins[plugin] ~= nil
 end
 
----@param opts table<string, any>
-function M.load_dirsession(opts)
-  local lutil = require("lazyvim.util")
-  if lutil.has("persistence.nvim") then
-    require("persistence").load()
-  elseif lutil.has("resession.nvim") then
-    opts = vim.tbl_deep_extend("force", opts or {}, { silence_errors = true })
-    require("resession").load(lutil.get_root(), opts)
-  else
-    vim.notify("Failed to load session; session plugin not found", vim.log.levels.ERROR)
-  end
-end
-
 return M
