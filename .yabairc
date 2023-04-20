@@ -62,7 +62,9 @@ yabai -m config --space social  layout stack
 
 # window rules
 
-code=()
+code=(
+  '^kitty$'
+)
 web=(
   # '^Safari$'
   '^Chrome$'
