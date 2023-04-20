@@ -1,12 +1,10 @@
+coverage
 django
-flake8
 ipython
 mypy
+pipenv
+poetry
 ptpython
-pylint
-pyright
-pytest
 send2trash
 shell-functools
 vim-vint
-yapf
