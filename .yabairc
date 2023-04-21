@@ -1,51 +1,40 @@
 #!/usr/bin/env bash
 
-# the scripting-addition must be loaded manually if
-# you are running yabai on macOS Big Sur. Uncomment
-# the following line to have the injection performed
-# when the config is executed during startup.
-#
-# for this to work you must configure sudo such that
-# it will be able to run the command without password
-#
-# see this wiki page for information:
-#  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)
-#
-yabai -m signal --add event=dock_did_restart action='sudo yabai --load-sa'
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
 yabai -m rule --add app='.*' manage=off
 
 # global settings
-yabai -m config mouse_follows_focus          off
-yabai -m config focus_follows_mouse          off
-yabai -m config window_origin_display        default
-yabai -m config window_placement             second_child
-yabai -m config window_topmost               off
-yabai -m config window_shadow                on
-yabai -m config window_opacity               off
+yabai -m config mouse_follows_focus off
+yabai -m config focus_follows_mouse off
+yabai -m config window_origin_display default
+yabai -m config window_placement second_child
+yabai -m config window_topmost off
+yabai -m config window_shadow on
+yabai -m config window_opacity off
 # yabai -m config window_opacity_duration      0.0
-yabai -m config active_window_opacity        1.0
-yabai -m config normal_window_opacity        0.9
-yabai -m config window_border                off
-yabai -m config window_border_width          6
-yabai -m config active_window_border_color   0xff775759
-yabai -m config normal_window_border_color   0xff555555
-yabai -m config insert_feedback_color        0xaad75f5f
-yabai -m config split_ratio                  0.50
-yabai -m config auto_balance                 off
-yabai -m config mouse_modifier               fn
-yabai -m config mouse_action1                move
-yabai -m config mouse_action2                resize
-yabai -m config mouse_drop_action            swap
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 0.9
+yabai -m config window_border off
+yabai -m config window_border_width 6
+yabai -m config active_window_border_color 0xff775759
+yabai -m config normal_window_border_color 0xff555555
+yabai -m config insert_feedback_color 0xaad75f5f
+yabai -m config split_ratio 0.50
+yabai -m config auto_balance off
+yabai -m config mouse_modifier fn
+yabai -m config mouse_action1 move
+yabai -m config mouse_action2 resize
+yabai -m config mouse_drop_action swap
 
 # general space settings
-yabai -m config layout                       bsp
-yabai -m config top_padding                  12
-yabai -m config bottom_padding               12
-yabai -m config left_padding                 12
-yabai -m config right_padding                12
-yabai -m config window_gap                   8
+yabai -m config layout bsp
+yabai -m config top_padding 12
+yabai -m config bottom_padding 12
+yabai -m config left_padding 12
+yabai -m config right_padding 12
+yabai -m config window_gap 8
 
 # mission-control desktop labels
 yabai -m space 1 --label float
@@ -56,96 +45,96 @@ yabai -m space 5 --label media
 yabai -m space 6 --label mail
 
 # specific space settings
-yabai -m config --space float   layout float
-yabai -m config --space mail    layout stack
-yabai -m config --space social  layout stack
+yabai -m config --space float layout float
+yabai -m config --space mail layout stack
+yabai -m config --space social layout stack
 
 # window rules
 
 code=(
-  '^kitty$'
+	'^kitty$'
+	'^deno$'
 )
 web=(
-  # '^Safari$'
-  '^Chrome$'
-  '^Brave$'
-  '^Firefox$'
-  '^Cypress$'
+	# '^Safari$'
+	'^Chrome$'
+	'^Brave$'
+	'^Firefox$'
+	'^Cypress$'
 )
 media=(
-  '^Spotify$'
+	'^Spotify$'
 )
 social=(
-  '^Discord$'
-  '^Slack$'
+	'^Discord$'
+	'^Slack$'
 )
 mail=(
-  '^Spark$'
-  '^Spark Desktop$'
-  '^Mail$'
-  '^Messages$'
+	'^Spark$'
+	'^Spark Desktop$'
+	'^Mail$'
+	'^Messages$'
 )
 float=()
 
 managed_apps=(
 	# '^iTerm.?$'
-  "${code[@]}"
-  "${web[@]}"
-  "${media[@]}"
-  "${social[@]}"
-  "${mail[@]}"
+	"${code[@]}"
+	"${web[@]}"
+	"${media[@]}"
+	"${social[@]}"
+	"${mail[@]}"
 )
 unmanaged_safari_titles=(
-  'General'
-  'Tabs'
-  'AutoFill'
-  'Passwords'
-  'Search'
-  'Security'
-  'Privacy'
-  'Websites'
-  'Extensions'
-  'Advanced'
-  'Choose Files to Upload'
+	'General'
+	'Tabs'
+	'AutoFill'
+	'Passwords'
+	'Search'
+	'Security'
+	'Privacy'
+	'Websites'
+	'Extensions'
+	'Advanced'
+	'Choose Files to Upload'
 )
 
 # Spaces
 for app in "${code[@]}"; do
-  yabai -m rule --add app="$app" space=code
+	yabai -m rule --add app="$app" space=code
 done
 for app in "${web[@]}"; do
-  yabai -m rule --add app="$app" space=web
+	yabai -m rule --add app="$app" space=web
 done
 for app in "${media[@]}"; do
-  yabai -m rule --add app="$app" space=media
+	yabai -m rule --add app="$app" space=media
 done
 for app in "${social[@]}"; do
-  yabai -m rule --add app="$app" space=social
+	yabai -m rule --add app="$app" space=social
 done
 for app in "${mail[@]}"; do
-  yabai -m rule --add app="$app" space=mail
+	yabai -m rule --add app="$app" space=mail
 done
 for app in "${float[@]}"; do
-  yabai -m rule --add app="$app" space=float
+	yabai -m rule --add app="$app" space=float
 done
 
 # Managed apps
 for app in "${managed_apps[@]}"; do
-  yabai -m rule --add app="$app" manage=on
+	yabai -m rule --add app="$app" manage=on
 done
 # for safari_title in "${unmanaged_safari_titles[@]}"; do
 #   yabai -m rule --add app='^Safari$' title="$safari_title" manage=off
 # done
-yabai -m rule --add app='^Spark' title!='^Spark' manage=off
 
-# yabai -m rule --add app='^iTerm2$' grid=23:23:6:6:11:11
-# yabai -m space code --gap abs:0 --padding abs:0:0:0:0
-# disable gap for code space
-# yabai -m space code --toggle gap; yabai -m space code --toggle padding
+yabai -m rule --add app='^Spark' title!='^Spark' manage=off
 yabai -m rule --add app='^Dash$' title!='^(General|Downloads|Docsets|Web Search|Integration|Snippets|License)$' grid=9:5:1:1:3:7
 yabai -m rule --add app='^GitHub Desktop$' grid=9:5:1:1:3:7
 
 # signals
 yabai -m signal --add event=window_destroyed active=yes action='yabai -m query --windows --window &>/dev/null || yabai -m window --focus mouse &>/dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &>/dev/null'
+
+# https://github.com/koekeishiya/yabai/wiki/Tips-and-tricks#auto-updating-from-head-via-brew
+# YABAI_CERT=yabai-cert sh -c "$(cat ~/.config/yabai/scripts/update-yabai.sh)"
 
 echo 'yabai configuration loaded..'
