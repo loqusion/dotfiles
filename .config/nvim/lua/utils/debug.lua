@@ -1,5 +1,3 @@
--- selene: allow(global_usage)
-
 local M = {}
 
 function M.get_loc()
