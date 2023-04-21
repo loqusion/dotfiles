@@ -1,18 +1,73 @@
 local style = require("config.style")
-local Utils = require("config.utils")
+local Utils = require("utils")
 
 return {
   {
     "folke/noice.nvim",
-    opts = {
-      presets = {
-        bottom_search = true,
-        command_palette = true,
-        long_message_to_split = true,
-        inc_rename = true,
-        lsp_doc_border = style.border,
-      },
-    },
+    opts = function(_, opts)
+      local focused = true
+      vim.api.nvim_create_autocmd("FocusGained", {
+        group = Utils.augroup("noice_focus"),
+        pattern = "*",
+        callback = function()
+          focused = true
+        end,
+      })
+      vim.api.nvim_create_autocmd("FocusLost", {
+        group = Utils.augroup("noice_focus"),
+        pattern = "*",
+        callback = function()
+          focused = false
+        end,
+      })
+
+      return vim.tbl_deep_extend("force", opts, {
+        lsp = {
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+          },
+        },
+        routes = {
+          { -- desktop notifications when unfocused
+            filter = {
+              cond = function()
+                return not focused
+              end,
+            },
+            view = "notify_send",
+            opts = { stop = false },
+          },
+          { -- file write
+            filter = {
+              event = "msg_show",
+              find = "%d+L, %d+B",
+            },
+            view = "mini",
+          },
+        },
+        presets = {
+          bottom_search = true,
+          command_palette = true,
+          long_message_to_split = true,
+          inc_rename = true,
+          lsp_doc_border = style.border,
+        },
+      })
+    end,
+    config = function(_, opts)
+      require("noice").setup(opts)
+      vim.api.nvim_create_autocmd("FileType", {
+        group = Utils.augroup("noice_markdown"),
+        pattern = "markdown",
+        callback = function(event)
+          vim.schedule(function()
+            require("noice.text.markdown").keys(event.buf)
+          end)
+        end,
+      })
+    end,
   },
 
   {
@@ -42,12 +97,18 @@ return {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
     keys = { { "<leader>cS", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
+    deactivate = function()
+      vim.cmd([[SymbolsOutlineClose]])
+    end,
     config = true,
   },
 
   {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
+    deactivate = function()
+      vim.cmd([[UndotreeHide]])
+    end,
     init = function()
       vim.g.undotree_SetFocusWhenToggle = 1
     end,
@@ -145,17 +206,26 @@ return {
   -- auto-resize windows
   {
     "anuvyklack/windows.nvim",
-    event = "WinNew",
+    enabled = true,
     dependencies = {
       { "anuvyklack/middleclass" },
       { "anuvyklack/animation.nvim", cond = style.animation },
     },
+    event = "WinNew",
     keys = { { "<leader>Z", "<cmd>WindowsMaximize<cr>", desc = "Zoom" } },
     config = function()
-      vim.o.winwidth = 5
-      vim.o.equalalways = false
+      -- vim.o.winwidth = 5
+      -- vim.o.equalalways = false
       require("windows").setup({
-        animation = { enable = style.animation, duration = 150 },
+        animation = {
+          enable = style.animation,
+          duration = 150,
+        },
+        -- FIXME: file types are not ignored
+        ignore = {
+          buftype = { "quickfix" },
+          filetype = { "NvimTree", "neo-tree", "undotree", "gundo", "Outline" },
+        },
       })
     end,
   },
@@ -167,13 +237,6 @@ return {
       { "<leader>bdl", "<Cmd>BufferLineCloseRight<CR>", desc = "Buffers to right" },
       { "<leader>bdh", "<Cmd>BufferLineCloseLeft<CR>", desc = "Buffers to left" },
     },
-    init = function()
-      if Utils.has("which-key.nvim") then
-        require("which-key").register({
-          ["<leader>bd"] = { name = "+delete" },
-        })
-      end
-    end,
   },
 
   -- Ultra fold
@@ -213,11 +276,21 @@ return {
     end,
   },
 
-  -- better diffing
   {
-    "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
-    keys = { { "<leader>gd", "<Cmd>DiffviewOpen<CR>", desc = "Diffview" } },
-    config = true,
+    "akinsho/toggleterm.nvim",
+    keys = function(plugin)
+      return {
+        { plugin.opts.open_mapping, desc = "Toggle Terminal" },
+      }
+    end,
+    opts = {
+      direction = "float",
+      border = "shadow",
+      shell = vim.env.SHELL,
+      open_mapping = [[<C-\>]],
+      float_opts = {
+        border = style.border,
+      },
+    },
   },
 }

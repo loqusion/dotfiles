@@ -2,26 +2,13 @@ local style = require("config.style")
 
 return {
   {
-    "akinsho/toggleterm.nvim",
-    keys = function(plugin)
-      return {
-        { plugin.opts.open_mapping, desc = "Toggle Terminal" },
-      }
-    end,
-    opts = {
-      direction = "float",
-      border = "shadow",
-      shell = vim.env.SHELL,
-      open_mapping = [[<C-\>]],
-      float_opts = {
-        border = style.border,
-      },
-    },
-  },
-
-  {
     "anuvyklack/hydra.nvim",
-    keys = { "zl", "zh", "zL", "zH" },
+    keys = {
+      { "zl", desc = "Scroll right" },
+      { "zh", desc = "Scroll left" },
+      { "zL", desc = "Half screen to the right" },
+      { "zH", desc = "Half screen to the left" },
+    },
     config = function()
       local Hydra = require("hydra")
       Hydra({
@@ -35,23 +22,6 @@ return {
           { "L", "zL" },
         },
         config = { hint = false },
-      })
-    end,
-  },
-
-  -- rest client
-  {
-    "rest-nvim/rest.nvim",
-    ft = "http",
-    config = function(_, opts)
-      require("rest-nvim").setup(opts)
-      vim.api.nvim_create_autocmd("FileType", {
-        group = vim.api.nvim_create_augroup("loqusion_http", {}),
-        pattern = "http",
-        callback = function()
-          local buffer = vim.api.nvim_get_current_buf()
-          vim.keymap.set("n", "<CR>", "<Plug>RestNvim", { desc = "Rest", buffer = buffer })
-        end,
       })
     end,
   },

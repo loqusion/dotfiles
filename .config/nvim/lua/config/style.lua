@@ -1,4 +1,4 @@
-local utils = require("config.utils")
+local utils = require("utils")
 
 return {
   -- {{{
@@ -8,7 +8,7 @@ return {
   ---   | 'ayu-light'
   ---   | 'ayu-mirage'
   ---   | 'carbonfox'
-  ---   | 'catppucin'
+  ---   | 'catppuccin'
   ---   | 'catppuccin-frappe'
   ---   | 'catppuccin-latte'
   ---   | 'catppuccin-macchiato'
@@ -68,7 +68,7 @@ return {
   ---   | 'zenburned'
   ---   | 'zenwritten'
   -- }}}
-  colorscheme = "carbonfox",
+  colorscheme = "catppuccin",
   transparent = (not utils.is_ssh()) and true,
   animation = false,
   -- Border style in floating windows

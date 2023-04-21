@@ -1,69 +1,4 @@
----@param vim_item vim.CompletedItem
----@param entry cmp.Entry
-local function get_abbr(vim_item, entry)
-  local types = require("cmp.types")
-  local str = require("cmp.utils.str")
-
-  if entry.source.name == "nvim_lsp_document_symbol" then
-    return vim_item.abbr
-  end
-  local word = entry:get_insert_text()
-  if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
-    word = vim.lsp.util.parse_snippet(word)
-  end
-  word = str.oneline(word)
-
-  -- concatenates the string
-  local max = 50
-  if string.len(word) >= max then
-    local before = string.sub(word, 1, math.floor((max - 3) / 2))
-    word = before .. "..."
-  end
-
-  if
-    entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet
-    and string.sub(vim_item.abbr, -1, -1) == "~"
-  then
-    word = word .. "~"
-  end
-  return word
-end
-
-local completion_menu = {
-  window = {
-    completion = {
-      col_offset = -3,
-      side_padding = 0,
-    },
-    documentation = {
-      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-    },
-  },
-  formatting = {
-    ---@type cmp.ItemField[]
-    fields = { "kind", "abbr", "menu" },
-    ---@param entry cmp.Entry
-    ---@param vim_item vim.CompletedItem
-    format = function(entry, vim_item)
-      vim_item.abbr = get_abbr(vim_item, entry)
-      vim_item.dup = ({
-        buffer = 1,
-        path = 1,
-        nvim_lsp = 1,
-      })[entry.source.name] or 0
-
-      ---@type vim.CompletedItem
-      local format =
-        require("lspkind").cmp_format({ mode = "symbol_text", with_text = false, maxwidth = 50 })(entry, vim_item)
-
-      local strings = vim.split(format.kind, "%s", { trimempty = true })
-
-      format.kind = (" %s "):format(strings[1])
-
-      return format
-    end,
-  },
-}
+local style = require("config.style")
 
 return {
   {
@@ -72,10 +7,16 @@ return {
       "hrsh7th/cmp-emoji",
       "onsails/lspkind.nvim",
     },
+    config = function(_, opts)
+      local cmp = require("cmp")
+      -- force overwrite copilot's mapping
+      opts.mapping["<CR>"] = cmp.mapping.confirm({ select = false })
+      cmp.setup(opts)
+    end,
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
-      return vim.tbl_deep_extend("force", opts, completion_menu, {
+      return vim.tbl_deep_extend("force", opts, {
         completion = {
           completeopt = "menu.menuone,noselect",
         },
@@ -83,8 +24,39 @@ return {
           { name = "emoji" },
           { name = "neorg" },
         })),
-        mapping = {
-          ["<CR>"] = cmp.mapping.confirm({ select = false }),
+        window = {
+          completion = {
+            col_offset = -3,
+            side_padding = 0,
+          },
+          documentation = {
+            winhighlight = vim
+              .iter({
+                Normal = style.transparent and "Pmenu" or nil,
+                FloatBorder = style.transparent and "Pmenu" or nil,
+                Search = "NONE",
+              })
+              :fold("", function(acc, hl_from, hl_to)
+                if hl_to == nil then
+                  return acc
+                end
+
+                local hl_pair = ("%s:%s"):format(hl_from, hl_to)
+                return acc == "" and hl_pair or hl_pair .. "," .. acc
+              end),
+          },
+        },
+        formatting = {
+          ---@type cmp.ItemField[]
+          fields = { "kind", "abbr", "menu" },
+          ---@param item vim.CompletedItem
+          format = function(_, item)
+            local icons = require("lazyvim.config").icons.kinds
+            if icons[item.kind] then
+              item.kind = (" %s"):format(icons[item.kind])
+            end
+            return item
+          end,
         },
       })
     end,

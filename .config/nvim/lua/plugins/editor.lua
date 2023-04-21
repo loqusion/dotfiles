@@ -1,4 +1,33 @@
+local Util = require("utils")
+
 return {
+  {
+    "folke/which-key.nvim",
+    opts = function(_, opts)
+      ---@type table<string, { name: string, plugins: string[]}>
+      local defaults = {
+        ["<leader>bd"] = { name = "+delete", plugins = { "bufferline.nvim", "close-buffers.nvim", "mini.bufremove" } },
+        ["<leader>t"] = { name = "+test/task", plugins = { "neotest", "overseer.nvim" } },
+        ["<localleader>e"] = { name = "+evaulate", plugins = { "conjure" } },
+        ["<localleader>ec"] = { name = "+comment", plugins = { "conjure" } },
+        ["<localleader>l"] = { name = "+log", plugins = { "conjure" } },
+      }
+
+      ---@param prefix string
+      ---@param spec { name: string, plugins: string[] }
+      defaults = vim.map(function(prefix, spec)
+        if not vim.iter(spec.plugins):any(Util.has) then
+          return nil
+        end
+        return { prefix, { name = spec.name } }
+      end, defaults)
+
+      return vim.tbl_deep_extend("force", opts, {
+        defaults = defaults,
+      })
+    end,
+  },
+
   -- window picker for neo-tree
   {
     "s1n7ax/nvim-window-picker",
@@ -10,6 +39,14 @@ return {
   {
     "chaoren/vim-wordmotion",
     event = "VeryLazy",
+    keys = {
+      { "av", mode = { "x", "o" }, desc = "a word (within variable)" },
+      { "iv", mode = { "x", "o" }, desc = "inner word (within variable)" },
+      { "w" },
+      { "e" },
+      { "b" },
+      { "ge" },
+    },
     init = function()
       vim.g.wordmotion_mappings = {
         aw = "av",
@@ -102,33 +139,6 @@ return {
     end,
   },
 
-  -- visualize and resolve conflicts
-  {
-    "akinsho/git-conflict.nvim",
-    version = "",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      default_mappings = false,
-    },
-    config = function(_, opts)
-      require("git-conflict").setup(opts)
-      vim.api.nvim_create_autocmd("User", {
-        group = "GitConflictCommands",
-        pattern = "GitConflictDetected",
-        callback = function()
-          local buffer = vim.api.nvim_get_current_buf()
-          local function map(mode, l, r, desc)
-            vim.keymap.set(mode, l, r, { buffer = buffer, desc = "Git Conflict: " .. desc })
-          end
-          map("n", "co", "<Plug>(git-conflict-ours)", "Choose Ours")
-          map("n", "cb", "<Plug>(git-conflict-both)", "Choose Both")
-          map("n", "c0", "<Plug>(git-conflict-none)", "Choose None")
-          map("n", "ct", "<Plug>(git-conflict-theirs)", "Choose Theirs")
-        end,
-      })
-    end,
-  },
-
   -- display test coverage
   {
     "andythigpen/nvim-coverage",
@@ -144,11 +154,18 @@ return {
     cmd = { "BDelete", "BWipeout" },
     -- stylua: ignore
     keys = {
-      { "<leader>bdi", function() require("close_buffers").delete({ type = "hidden" }) end, desc = 'H[i]dden buffers' },
-      { "<leader>bdo", function() require("close_buffers").delete({ type = "other" }) end, desc = 'Other buffers' },
+      { "<leader>bdi", function() require("close_buffers").delete({ type = "hidden" }) require("bufferline.ui").refresh() end, desc = 'H[i]dden buffers' },
+      { "<leader>bdo", function() require("close_buffers").delete({ type = "other" }) require("bufferline.ui").refresh() end, desc = 'Other buffers' },
       { "<leader>bdd", function() require("close_buffers").delete({ type = "this" }) end, desc = 'Current buffer' },
       { "<leader>bD", function() require("close_buffers").delete({ type = "this", force = true }) end, desc = 'Current buffer (Force)' },
     },
   },
   { "echasnovski/mini.bufremove", enabled = false },
+
+  {
+    "NMAC427/guess-indent.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    cmd = "GuessIndent",
+    opts = {},
+  },
 }

@@ -3,7 +3,7 @@ local prefer = {
   nvim_surround = false,
 }
 
-local Utils = require("config.utils")
+local Utils = require("utils")
 
 local nvim_autopairs_spec = {
   "windwp/nvim-autopairs",
@@ -127,7 +127,7 @@ return {
   -- switch with predefined replacements
   {
     "AndrewRadev/switch.vim",
-    keys = { "-", "<Plug>(Switch)" },
+    keys = { "-", "<Plug>(Switch)", desc = "Switch" },
     init = function()
       vim.g.switch_mapping = "-"
     end,
@@ -176,15 +176,51 @@ return {
     "nvim-telescope/telescope.nvim",
     keys = {
       { "<leader>sR", false },
+      { "<leader>su", "<cmd>Telescope resume<CR>", desc = "Res[u]me" },
     },
   },
 
   {
     "echasnovski/mini.ai",
-    opts = function(_, opts)
+    opts = {
+      custom_textobjects = {
+        t = { "<(%w-)%f[^<%w][^<>]->.-</%1>", "^<.->%s*().-()%s*</[^/]->$" },
+        T = { "<(%w-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
+        e = function()
+          local from = { line = 1, col = 1 }
+          local to = {
+            line = vim.fn.line("$"),
+            col = math.max(vim.fn.getline("$"):len(), 1),
+          }
+          return { from = from, to = to }
+        end,
+      },
+    },
+    config = function(_, opts)
+      require("mini.ai").setup(opts)
       if Utils.has("which-key.nvim") then
         ---@type table<string, string|table>
         local i = {
+          [" "] = "Whitespace",
+          ['"'] = 'Balanced "',
+          ["'"] = "Balanced '",
+          ["`"] = "Balanced `",
+          ["("] = "Balanced (",
+          [")"] = "Balanced ) including white-space",
+          [">"] = "Balanced > including white-space",
+          ["<lt>"] = "Balanced <",
+          ["]"] = "Balanced ] including white-space",
+          ["["] = "Balanced [",
+          ["}"] = "Balanced } including white-space",
+          ["{"] = "Balanced {",
+          ["?"] = "User Prompt",
+          _ = "Underscore",
+          a = "Argument",
+          b = "Balanced ), ], }",
+          c = "Class",
+          f = "Function",
+          o = "Block, conditional, loop",
+          q = "Quote `, \", '",
           t = "Tag",
           T = "Tag including white-space",
           e = "Entire Buffer",
@@ -207,21 +243,6 @@ return {
           a = a,
         })
       end
-
-      return vim.tbl_deep_extend("force", opts, {
-        custom_textobjects = {
-          t = { "<(%w-)%f[^<%w][^<>]->.-</%1>", "^<.->%s*().-()%s*</[^/]->$" },
-          T = { "<(%w-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
-          e = function()
-            local from = { line = 1, col = 1 }
-            local to = {
-              line = vim.fn.line("$"),
-              col = math.max(vim.fn.getline("$"):len(), 1),
-            }
-            return { from = from, to = to }
-          end,
-        },
-      })
     end,
   },
 }

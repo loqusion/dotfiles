@@ -1,4 +1,4 @@
-local Utils = require("config.utils")
+local Utils = require("utils")
 
 return {
   -- run tests
@@ -18,9 +18,6 @@ return {
       "vim-test/vim-test",
     },
     keys = function()
-      require("which-key").register({
-        ["<leader>t"] = { name = "+test" },
-      })
       -- stylua: ignore
       return {
         { "<leader>tr", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run all in buffer" },
@@ -100,5 +97,22 @@ return {
     -- TODO: proper lazy loading
     event = "VeryLazy",
     config = true,
+  },
+
+  -- rest client
+  {
+    "rest-nvim/rest.nvim",
+    ft = "http",
+    config = function(_, opts)
+      require("rest-nvim").setup(opts)
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("loqusion_http", {}),
+        pattern = "http",
+        callback = function()
+          local buffer = vim.api.nvim_get_current_buf()
+          vim.keymap.set("n", "<CR>", "<Plug>RestNvim", { desc = "Rest", buffer = buffer })
+        end,
+      })
+    end,
   },
 }

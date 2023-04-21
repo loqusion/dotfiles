@@ -2,14 +2,16 @@ local prefer = {
   lsp_inlay_hints = true,
 }
 
-local Utils = require("config.utils")
+local Utils = require("utils")
 
 return {
   {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "selene",
         "stylua",
+        "luacheck",
         "shellcheck",
         "shfmt",
         "flake8",
@@ -95,6 +97,26 @@ return {
     },
   },
 
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      vim.list_extend(opts.sources, {
+        nls.builtins.diagnostics.markdownlint,
+        nls.builtins.diagnostics.selene.with({
+          condition = function(utils)
+            return utils.root_has_file({ "selene.toml" })
+          end,
+        }),
+        nls.builtins.diagnostics.luacheck.with({
+          condition = function(utils)
+            return utils.root_has_file({ "luacheckrc" })
+          end,
+        }),
+      })
+    end,
+  },
+
   -- inlay hints
   {
     "lvimuser/lsp-inlayhints.nvim",
@@ -154,11 +176,9 @@ return {
     "rmagatti/goto-preview",
     -- stylua: ignore
     keys = {
-      ---@diagnostic disable-next-line: missing-parameter
-      { "gpd", function() require("goto-preview").goto_preview_definition() end, desc = "Preview Definition" },
-      ---@diagnostic disable-next-line: missing-parameter
-      { "gpi", function() require("goto-preview").goto_preview_implementation() end, desc = "Preview Implementation" },
-      { "gP", function() require("goto-preview").close_all_win() end, desc = "Preview: Close windows" },
+      { "gpd", function() require("goto-preview").goto_preview_definition({}) end,     desc = "Preview Definition" },
+      { "gpi", function() require("goto-preview").goto_preview_implementation({}) end, desc = "Preview Implementation" },
+      { "gP",  function() require("goto-preview").close_all_win() end,                 desc = "Preview: Close windows" },
     },
     opts = {},
   },
