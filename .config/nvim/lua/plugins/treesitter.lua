@@ -71,6 +71,11 @@ return {
   },
 
   {
+    "jxnblk/vim-mdx-js",
+    event = "BufReadPre",
+  },
+
+  {
     "nvim-treesitter/nvim-treesitter",
     ---@type TSConfig
     opts = {

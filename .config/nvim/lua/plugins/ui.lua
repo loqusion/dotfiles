@@ -186,7 +186,8 @@ return {
     opts = {
       themes = {
         markdown = { colorscheme = "tokyonight-storm" },
-        help = { colorscheme = "oxocarbon", background = "dark" },
+        ["markdown.mdx"] = { colorscheme = "tokyonight-storm" },
+        help = { colorscheme = "gruvbox", background = "dark" },
       },
     },
   },

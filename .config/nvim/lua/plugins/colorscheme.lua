@@ -19,6 +19,7 @@ return {
   { "frankier/neovim-colors-solarized-truecolor-only", event = "VeryLazy", init = function() vim.g.solarized_termtrans = style.transparent end },
   -- stylua: ignore
   { "liuchengxu/space-vim-theme", event = "VeryLazy", init = function() vim.g.space_vim_transp_bg = style.transparent end },
+  { "folke/tokyonight.nvim", opts = { transparent = style.transparent } },
   -- stylua: ignore
   { "mcchrish/zenbones.nvim", event = "VeryLazy", dependencies = "rktjmp/lush.nvim", init = function() vim.g.zenbones_transparent_background = style.transparent end },
   -- { 'f-person/auto-dark-mode.nvim', event = 'VeryLazy'},
