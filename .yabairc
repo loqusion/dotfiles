@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
+# load script addons {{{
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
+# }}}
 
-yabai -m rule --add app='.*' manage=off
-
-# global settings
+# config: global {{{
 yabai -m config mouse_follows_focus off
 yabai -m config focus_follows_mouse off
 yabai -m config window_origin_display default
@@ -29,62 +29,95 @@ yabai -m config mouse_action2 resize
 yabai -m config mouse_drop_action swap
 
 # general space settings
+gap=12
 yabai -m config layout bsp
-yabai -m config top_padding 12
-yabai -m config bottom_padding 12
-yabai -m config left_padding 12
-yabai -m config right_padding 12
+yabai -m config top_padding $gap
+yabai -m config bottom_padding $gap
+yabai -m config left_padding $gap
+yabai -m config right_padding $gap
 yabai -m config window_gap 8
+# }}}
 
-# mission-control desktop labels
-yabai -m space 1 --label float
-yabai -m space 2 --label web
-yabai -m space 3 --label code
-yabai -m space 4 --label social
-yabai -m space 5 --label media
-yabai -m space 6 --label mail
+# unmanage apps by default {{{
+yabai -m rule --add app='.*' manage=off
+# }}}
 
-# specific space settings
-yabai -m config --space float layout float
-yabai -m config --space mail layout stack
-yabai -m config --space social layout stack
-
-# window rules
-
-code=(
-	'^kitty$'
-	'^deno$'
+# config: spaces {{{
+spaces=(
+	social
+	media
+	web
+	code
+	notes
+	mail
+	float
 )
+# }}}
+
+# config: apps to assign to spaces {{{
+# shellcheck disable=SC2034
+social=(
+	'^Discord$'
+	'^Slack$'
+)
+# shellcheck disable=SC2034
+media=(
+	'^Spotify$'
+)
+# shellcheck disable=SC2034
 web=(
-	# '^Safari$'
+	'^Safari$'
 	'^Chrome$'
 	'^Brave$'
 	'^Firefox$'
 	'^Cypress$'
 )
-media=(
-	'^Spotify$'
+# shellcheck disable=SC2034
+code=(
+	'^kitty$'
+	'^deno$'
 )
-social=(
-	'^Discord$'
-	'^Slack$'
+# shellcheck disable=SC2034
+notes=(
+	'^Obsidian$'
 )
+# shellcheck disable=SC2034
 mail=(
 	'^Spark$'
 	'^Spark Desktop$'
 	'^Mail$'
 	'^Messages$'
 )
+# shellcheck disable=SC2034
 float=()
+# }}}
 
-managed_apps=(
-	# '^iTerm.?$'
-	"${code[@]}"
-	"${web[@]}"
-	"${media[@]}"
-	"${social[@]}"
-	"${mail[@]}"
-)
+# create spaces that don't exist {{{
+current_number_of_spaces="$(yabai -m query --displays | jq '.[0].spaces | length')"
+spaces_to_create="$((${#spaces[@]} - current_number_of_spaces))"
+for ((i = 0; i < spaces_to_create; i++)); do
+	yabai -m space --create
+done
+# }}}
+
+# assign apps to spaces {{{
+for ((i = 0; i < ${#spaces}; i++)); do
+	space="${spaces[$i]}"
+	yabai -m space $((i + 1)) --label "$space"
+	for app in "${!space}"; do
+		yabai -m rule --add app="$app" space="$space" manage=on
+		yabai -m rule --add app="$app" manage=on
+	done
+done
+# }}}
+
+# settings: space specific {{{
+yabai -m config --space float layout float
+yabai -m config --space mail layout stack
+yabai -m config --space social layout stack
+# }}}
+
+# settings: unmanaged {{{
 unmanaged_safari_titles=(
 	'General'
 	'Tabs'
@@ -98,43 +131,28 @@ unmanaged_safari_titles=(
 	'Advanced'
 	'Choose Files to Upload'
 )
+# }}}
 
-# Spaces
-for app in "${code[@]}"; do
-	yabai -m rule --add app="$app" space=code
+# unmanage windows {{{
+for safari_title in "${unmanaged_safari_titles[@]}"; do
+	yabai -m rule --add app='^Safari$' title="$safari_title" manage=off
 done
-for app in "${web[@]}"; do
-	yabai -m rule --add app="$app" space=web
-done
-for app in "${media[@]}"; do
-	yabai -m rule --add app="$app" space=media
-done
-for app in "${social[@]}"; do
-	yabai -m rule --add app="$app" space=social
-done
-for app in "${mail[@]}"; do
-	yabai -m rule --add app="$app" space=mail
-done
-for app in "${float[@]}"; do
-	yabai -m rule --add app="$app" space=float
-done
-
-# Managed apps
-for app in "${managed_apps[@]}"; do
-	yabai -m rule --add app="$app" manage=on
-done
-# for safari_title in "${unmanaged_safari_titles[@]}"; do
-#   yabai -m rule --add app='^Safari$' title="$safari_title" manage=off
-# done
-
 yabai -m rule --add app='^Spark' title!='^Spark' manage=off
+# }}}
+
+# settings: grid {{{
 yabai -m rule --add app='^Dash$' title!='^(General|Downloads|Docsets|Web Search|Integration|Snippets|License)$' grid=9:5:1:1:3:7
 yabai -m rule --add app='^GitHub Desktop$' grid=9:5:1:1:3:7
+# }}}
 
-# signals
+# signals {{{
+# shellcheck disable=SC2016
 yabai -m signal --add event=window_destroyed active=yes action='yabai -m query --windows --window &>/dev/null || yabai -m window --focus mouse &>/dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &>/dev/null'
+# }}}
 
 # https://github.com/koekeishiya/yabai/wiki/Tips-and-tricks#auto-updating-from-head-via-brew
 # YABAI_CERT=yabai-cert sh -c "$(cat ~/.config/yabai/scripts/update-yabai.sh)"
 
 echo 'yabai configuration loaded..'
+
+# vim:foldmethod=marker:foldlevel=0
