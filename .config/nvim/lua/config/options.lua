@@ -1,4 +1,6 @@
+local style = require("config.style")
 local opt = vim.opt
+local g = vim.g
 
 vim.g.maplocalleader = [[\]]
 opt.backup = true -- Save backups to ~/.local/state/backup/
@@ -21,3 +23,15 @@ opt.showbreak = "  ↳  " -- Show where line wraps
 opt.showcmd = false -- Don't show command in statusline
 opt.spelllang = { "en_us", "cjk" }
 opt.virtualedit = "block" -- Allow positioning cursor where there is no text in visual block mode
+
+if vim.g.neovide then
+  local function alpha()
+    return string.format("%x", math.floor((255 * g.transparency) or 0.8))
+  end
+  opt.guifont = "JetBrainsMono Nerd Font Mono:h14"
+  g.neovide_transparency = 0.0
+  g.transparency = 0.9
+  g.neovide_background_color = "#0f1117" .. alpha()
+  g.neovide_input_macos_alt_is_meta = true
+  g.neovide_cursor_vfx_mode = "railgun"
+end

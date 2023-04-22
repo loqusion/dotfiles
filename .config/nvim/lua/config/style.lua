@@ -69,7 +69,7 @@ return {
   ---   | 'zenwritten'
   -- }}}
   colorscheme = "catppuccin",
-  transparent = (not utils.is_ssh()) and true,
+  transparent = not utils.is_ssh() and not vim.g.neovide and true,
   animation = false,
   -- Border style in floating windows
   ---@type _.NuiBorderStyle

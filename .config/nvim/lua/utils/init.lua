@@ -13,8 +13,10 @@ end
 local M = {}
 
 ---@param name string
-function M.augroup(name)
-  return vim.api.nvim_create_augroup("loqusion_" .. name, { clear = false })
+function M.augroup(name, prefix)
+  prefix = vim.F.if_nil("prefix", "loqusion")
+  local augroup_name = vim.fn.join({ prefix, name }, "_")
+  return vim.api.nvim_create_augroup(augroup_name, { clear = false })
 end
 
 function M.is_ssh()

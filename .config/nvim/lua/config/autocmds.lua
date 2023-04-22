@@ -1,8 +1,8 @@
-local Util = require("utils")
+local Utils = require("utils")
 
 -- show cursor line only in active window
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
-  group = Util.augroup("cursorline"),
+  group = Utils.augroup("cursorline"),
   callback = function()
     local ok, cl = pcall(vim.api.nvim_win_get_var, 0, "auto-cursorline")
     if ok and cl then
@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
   end,
 })
 vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
-  group = Util.augroup("cursorline"),
+  group = Utils.augroup("cursorline"),
   callback = function()
     local cl = vim.wo.cursorline
     if cl then
@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 
 -- hide line numbers in spectre panel
 vim.api.nvim_create_autocmd("FileType", {
-  group = Util.augroup("spectre"),
+  group = Utils.augroup("spectre"),
   pattern = "spectre_panel",
   callback = function()
     vim.wo.number = false
@@ -33,12 +33,25 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- reload yabai+skhd on config change
 vim.api.nvim_create_autocmd("BufWritePost", {
-  group = Util.augroup("yabai"),
+  group = Utils.augroup("yabai"),
   pattern = { ".yabairc", ".skhdrc" },
   callback = function()
     vim.notify("Reloading yabai+skhd")
     vim.fn.system('launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"')
     vim.fn.system('launchctl kickstart -k "gui/${UID}/homebrew.mxcl.skhd"')
+  end,
+})
+
+-- close some filetypes with <q>
+vim.api.nvim_create_autocmd("FileType", {
+  group = Utils.augroup("close_with_q", "lazyvim"),
+  pattern = {
+    "OverseerList",
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })

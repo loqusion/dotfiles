@@ -76,6 +76,11 @@ return {
   },
 
   {
+    "NoahTheDuke/vim-just",
+    event = "BufReadPre",
+  },
+
+  {
     "nvim-treesitter/nvim-treesitter",
     ---@type TSConfig
     opts = {

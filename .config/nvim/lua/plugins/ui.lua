@@ -30,7 +30,8 @@ return {
           },
         },
         routes = {
-          { -- desktop notifications when unfocused
+          {
+            -- desktop notifications when unfocused
             filter = {
               cond = function()
                 return not focused
@@ -39,7 +40,8 @@ return {
             view = "notify_send",
             opts = { stop = false },
           },
-          { -- file write
+          {
+            -- file write
             filter = {
               event = "msg_show",
               find = "%d+L, %d+B",
@@ -87,7 +89,7 @@ return {
   ██║    ██║  ██║██║  ██║██║   ██║╚════██║██║██║  ██║██║╚██╗██║
   ███████╗█████╔╝╚███████╗██████╔╝███████║██║╚█████╔╝██║ ╚████║
   ╚══════╝╚════╝  ╚════██║╚═════╝ ╚══════╝╚═╝ ╚════╝ ╚═╝  ╚═══╝
-                       ╚═╝                                      
+                       ╚═╝
   ]]
       opts.section.header.val = vim.split(logo, "\n")
     end,
@@ -233,10 +235,10 @@ return {
 
   {
     "akinsho/bufferline.nvim",
-      -- stylua: ignore
+    -- stylua: ignore
     keys = {
       { "<leader>bdl", "<Cmd>BufferLineCloseRight<CR>", desc = "Buffers to right" },
-      { "<leader>bdh", "<Cmd>BufferLineCloseLeft<CR>", desc = "Buffers to left" },
+      { "<leader>bdh", "<Cmd>BufferLineCloseLeft<CR>",  desc = "Buffers to left" },
     },
   },
 
@@ -293,5 +295,14 @@ return {
         border = style.border,
       },
     },
+  },
+
+  {
+    "nvim-colortils/colortils.nvim",
+    cmd = "Colortils",
+    keys = {
+      -- { "<leader>someethign", "<cmd>Colortils<cr>", desc = "Colortils" },
+    },
+    config = true,
   },
 }
