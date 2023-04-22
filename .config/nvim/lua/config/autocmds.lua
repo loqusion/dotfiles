@@ -32,3 +32,13 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.wo.signcolumn = "no"
   end,
 })
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+  group = Util.augroup("yabai"),
+  pattern = { ".yabairc", ".skhdrc" },
+  callback = function()
+    vim.notify("Reloading yabai+skhd")
+    vim.fn.system('launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"')
+    vim.fn.system('launchctl kickstart -k "gui/${UID}/homebrew.mxcl.skhd"')
+  end,
+})
