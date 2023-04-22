@@ -44,8 +44,8 @@ yabai -m rule --add app='.*' manage=off
 
 # config: spaces {{{
 spaces=(
-	social
 	media
+	social
 	web
 	code
 	notes
@@ -58,12 +58,13 @@ spaces=(
 # shellcheck disable=SC2034
 social=(
 	'^Discord$'
-	'^Slack$'
 	'^Element$'
+	'^Slack$'
 )
 # shellcheck disable=SC2034
 media=(
 	'^Spotify$'
+	'^VLC$'
 )
 # shellcheck disable=SC2034
 web=(
@@ -80,6 +81,7 @@ code=(
 )
 # shellcheck disable=SC2034
 notes=(
+	'^Notion$'
 	'^Obsidian$'
 )
 # shellcheck disable=SC2034
@@ -112,13 +114,13 @@ for ((i = 0; i < ${#spaces}; i++)); do
 done
 # }}}
 
-# settings: space specific {{{
+# config: space specific {{{
 yabai -m config --space float layout float
 yabai -m config --space mail layout stack
 yabai -m config --space social layout stack
 # }}}
 
-# settings: unmanaged {{{
+# config: unmanaged {{{
 unmanaged_safari_titles=(
 	'General'
 	'Tabs'
@@ -141,7 +143,7 @@ done
 yabai -m rule --add app='^Spark' title!='^Spark' manage=off
 # }}}
 
-# settings: grid {{{
+# config: grid {{{
 yabai -m rule --add app='^Dash$' title!='^(General|Downloads|Docsets|Web Search|Integration|Snippets|License)$' grid=9:5:1:1:3:7
 yabai -m rule --add app='^GitHub Desktop$' grid=9:5:1:1:3:7
 # }}}
