@@ -15,12 +15,12 @@ return {
 
       ---@param prefix string
       ---@param spec { name: string, plugins: string[] }
-      defaults = vim.map(function(prefix, spec)
-        if not vim.iter(spec.plugins):any(Util.has) then
-          return nil
+      defaults = vim.iter(defaults):fold({}, function(acc, prefix, spec)
+        if vim.iter(spec.plugins):any(Util.has) then
+          acc[prefix] = { name = spec.name }
         end
-        return { prefix, { name = spec.name } }
-      end, defaults)
+        return acc
+      end)
 
       return vim.tbl_deep_extend("force", opts, {
         defaults = defaults,
@@ -97,12 +97,12 @@ return {
         vim.fn.setreg(vim.v.register, body, type)
       end
 
-      for cmd, desc in pairs({ ["]p"] = "Put forward", ["[p"] = "Put backward" }) do
+      for cmd, desc in pairs({ ["]p"] = "Put forward",["[p"] = "Put backward" }) do
         vim.keymap.set("n", cmd, function()
           put(cmd)
         end, { desc = desc })
       end
-      for cmd, desc in pairs({ ["]P"] = "Put forward", ["[P"] = "Put backward" }) do
+      for cmd, desc in pairs({ ["]P"] = "Put forward",["[P"] = "Put backward" }) do
         vim.keymap.set("n", cmd, function()
           put(cmd, "c")
         end, { desc = desc })
@@ -154,10 +154,36 @@ return {
     cmd = { "BDelete", "BWipeout" },
     -- stylua: ignore
     keys = {
-      { "<leader>bdi", function() require("close_buffers").delete({ type = "hidden" }) require("bufferline.ui").refresh() end, desc = 'H[i]dden buffers' },
-      { "<leader>bdo", function() require("close_buffers").delete({ type = "other" }) require("bufferline.ui").refresh() end, desc = 'Other buffers' },
-      { "<leader>bdd", function() require("close_buffers").delete({ type = "this" }) end, desc = 'Current buffer' },
-      { "<leader>bD", function() require("close_buffers").delete({ type = "this", force = true }) end, desc = 'Current buffer (Force)' },
+      {
+        "<leader>bdi",
+        function()
+          require("close_buffers").delete({ type = "hidden" })
+          require("bufferline.ui").refresh()
+        end,
+        desc =
+        'H[i]dden buffers'
+      },
+      {
+        "<leader>bdo",
+        function()
+          require("close_buffers").delete({ type = "other" })
+          require("bufferline.ui").refresh()
+        end,
+        desc =
+        'Other buffers'
+      },
+      {
+        "<leader>bdd",
+        function() require("close_buffers").delete({ type = "this" }) end,
+        desc =
+        'Current buffer'
+      },
+      {
+        "<leader>bD",
+        function() require("close_buffers").delete({ type = "this", force = true }) end,
+        desc =
+        'Current buffer (Force)'
+      },
     },
   },
   { "echasnovski/mini.bufremove", enabled = false },
