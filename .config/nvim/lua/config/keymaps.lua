@@ -29,4 +29,6 @@ map("n", "<leader>wT", "<C-w>T", { desc = "Break out into a new tab" })
 map("n", "<leader>wx", "<C-w>x", { desc = "Swap current with next" })
 map("n", "<leader>wo", "<C-w>o", { desc = "Close other windows" })
 
+map("n", "<leader>ue", "<cmd>edit<cr>", { desc = "Re-edit file" })
+
 map("n", "<leader>cR", Utils.runlua, { desc = "Run Lua" })

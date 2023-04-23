@@ -54,4 +54,10 @@ return {
     cmd = "PasteImg",
     build = "brew install pngpaste",
   },
+
+  {
+    "klen/nvim-config-local",
+    lazy = false,
+    config = true,
+  },
 }

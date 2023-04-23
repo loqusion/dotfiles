@@ -1,5 +1,5 @@
 local prefer = {
-  lsp_inlay_hints = true,
+  lsp_inlay_hints = false,
 }
 
 local Utils = require("utils")
@@ -15,6 +15,7 @@ return {
         "shellcheck",
         "shfmt",
         "flake8",
+        "markdownlint",
       },
     },
   },
@@ -49,7 +50,6 @@ return {
         },
         html = {},
         marksman = {},
-        pyright = {},
         rust_analyzer = {
           settings = {
             ["rust-analyzer"] = {

@@ -20,17 +20,17 @@ return {
     keys = function()
       -- stylua: ignore
       return {
-        { "<leader>tr", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run all in buffer" },
-        { "<leader>ts", function() require("neotest").run.run({ suite = true }) end, desc = "Run test suite" },
-        { "<leader>tn", function() require("neotest").run.run() end, desc = "Run nearest test" },
-        { "<leader>td", function() require("neotest").run.run({ strategy = "dap" }) end, desc = "Debug nearest test" },
-        { "<leader>tl", function() require("neotest").run.run_last() end, desc = "Run last test" },
-        { "<leader>tD", function() require("neotest").run.run_last({ strateg = "dap" }) end, desc = "Debug last test" },
-        { "<leader>ta", function() require("neotest").run.attach() end, desc = "Attach to running test" },
-        { "<leader>to", function() require("neotest").output.open({ enter = true }) end, desc = "Open test output" },
-        { "<leader>tO", function() require("neotest").output.open({ enter = true, short = true }) end, desc = "Open short test output", },
-        { "<leader>tp", function() require("neotest").summary.toggle() end, desc = "Toggle summary" },
-        { "<leader>tm", function() require("neotest").summary.run_marked() end, desc = "Summary for marked tests" },
+        -- { "<leader>tr", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run all in buffer" },
+        -- { "<leader>ts", function() require("neotest").run.run({ suite = true }) end, desc = "Run test suite" },
+        -- { "<leader>tn", function() require("neotest").run.run() end, desc = "Run nearest test" },
+        -- { "<leader>td", function() require("neotest").run.run({ strategy = "dap" }) end, desc = "Debug nearest test" },
+        -- { "<leader>tl", function() require("neotest").run.run_last() end, desc = "Run last test" },
+        -- { "<leader>tD", function() require("neotest").run.run_last({ strateg = "dap" }) end, desc = "Debug last test" },
+        -- { "<leader>ta", function() require("neotest").run.attach() end, desc = "Attach to running test" },
+        -- { "<leader>to", function() require("neotest").output.open({ enter = true }) end, desc = "Open test output" },
+        -- { "<leader>tO", function() require("neotest").output.open({ enter = true, short = true }) end, desc = "Open short test output", },
+        -- { "<leader>tp", function() require("neotest").summary.toggle() end, desc = "Toggle summary" },
+        -- { "<leader>tm", function() require("neotest").summary.run_marked() end, desc = "Summary for marked tests" },
         { "[T", function() require("neotest").jump.prev({ status = "failed" }) end, desc = "Previous failed test" },
         { "]T", function() require("neotest").jump.next({ status = "failed" }) end, desc = "Next failed test" },
       }
@@ -55,6 +55,42 @@ return {
         -- }),
       },
     },
+  },
+
+  -- task runner and job management
+  {
+    "stevearc/overseer.nvim",
+    -- TODO: proper lazy loading
+    event = "VeryLazy",
+    -- stylua: ignore
+    keys = {
+      { "<leader>uo", function() require("overseer").toggle() end, desc = "Toggle Overseer" },
+      { "<leader>tr", "<cmd>OverseerRun<cr>", desc = "Run Overseer" },
+    },
+    opts = {
+      templates = { "builtin", "user.run_script" },
+      task_list = {
+        bindings = {
+          ["<C-l>"] = false,
+          ["<C-h>"] = false,
+          ["["] = false,
+          ["]"] = false,
+          L = "IncreaseDetail",
+          H = "DecreaseDetail",
+          ["<C-[>"] = "DecreaseWidth",
+          ["<C-]>"] = "IncreaseWidth",
+        },
+      },
+    },
+  },
+  {
+    "nvim-neotest/neotest",
+    dependencies = { "stevearc/overseer.nvim" },
+    opts = function(_, opts)
+      vim.tbl_deep_extend("force", opts, {
+        consumers = { overseer = require("neotest.consumers.overseer") },
+      })
+    end,
   },
 
   -- conjure
@@ -89,14 +125,6 @@ return {
       local cmp = require("cmp")
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "conjure" } }))
     end,
-  },
-
-  -- task runner and job management
-  {
-    "stevearc/overseer.nvim",
-    -- TODO: proper lazy loading
-    event = "VeryLazy",
-    config = true,
   },
 
   -- rest client

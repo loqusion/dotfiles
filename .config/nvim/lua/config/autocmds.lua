@@ -49,6 +49,7 @@ vim.api.nvim_create_autocmd("FileType", {
   group = Utils.augroup("close_with_q", "lazyvim"),
   pattern = {
     "OverseerList",
+    "fugitive",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

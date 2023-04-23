@@ -102,7 +102,19 @@ return {
     deactivate = function()
       vim.cmd([[SymbolsOutlineClose]])
     end,
-    config = true,
+    opts = function()
+      local icons = require("lazyvim.config").icons.kinds
+      local symbols = vim.tbl_deep_extend("force", {}, require("symbols-outline.config").defaults.symbols)
+      for name, icon in pairs(symbols) do
+        local lazy_icon = icons[name]
+        if lazy_icon then
+          icon.icon = vim.trim(lazy_icon)
+        end
+      end
+      return {
+        symbols = symbols,
+      }
+    end,
   },
 
   {
@@ -239,6 +251,8 @@ return {
     keys = {
       { "<leader>bdl", "<Cmd>BufferLineCloseRight<CR>", desc = "Buffers to right" },
       { "<leader>bdh", "<Cmd>BufferLineCloseLeft<CR>",  desc = "Buffers to left" },
+      { "<c-s-h>", "<Cmd>BufferLineMovePrev<CR>",  desc = "Move buffer left" },
+      { "<c-s-l>", "<Cmd>BufferLineMoveNext<CR>",  desc = "Move buffer right" },
     },
   },
 
@@ -301,7 +315,7 @@ return {
     "nvim-colortils/colortils.nvim",
     cmd = "Colortils",
     keys = {
-      -- { "<leader>someethign", "<cmd>Colortils<cr>", desc = "Colortils" },
+      { "<leader>co", "<cmd>Colortils picker<cr>", desc = "Colortils" },
     },
     config = true,
   },
