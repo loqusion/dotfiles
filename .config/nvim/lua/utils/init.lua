@@ -28,6 +28,17 @@ function M.has(plugin)
   return require("lazy.core.config").plugins[plugin] ~= nil
 end
 
+function M.disable_autoformat(root_dir)
+  root_dir = vim.F.if_nil(root_dir, vim.loop.cwd())
+  vim.api.nvim_create_autocmd("BufReadPost", {
+    group = M.augroup("disable_autoformat"),
+    pattern = root_dir .. "*",
+    callback = function(event)
+      vim.b[event.buf].autoformat = false
+    end,
+  })
+end
+
 function M.exists(fname)
   local stat = vim.loop.fs_stat(fname)
   return (stat and stat.type and true) or false
