@@ -25,6 +25,12 @@ require("lazy").setup({
     lazy = true,
     version = false,
   },
+  ---@diagnostic disable-next-line: assign-type-mismatch
+  dev = {
+    path = "~/repos",
+    patterns = { "loqusion" },
+    fallback = true,
+  },
   install = { colorscheme = { "tokyonight", "habamax" } },
   checker = { enabled = true },
   performance = {

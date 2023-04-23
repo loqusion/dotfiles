@@ -17,9 +17,9 @@ return {
   ---   | 'dayfox'
   ---   | 'delek'
   ---   | 'desert'
-  ---   | 'duskfox'
   ---   | 'dracula'
   ---   | 'duckbones'
+  ---   | 'duskfox'
   ---   | 'edge'
   ---   | 'evening'
   ---   | 'forestbones'
@@ -33,6 +33,7 @@ return {
   ---   | 'kanagawabones'
   ---   | 'lunaperche'
   ---   | 'neobones'
+  ---   | 'neosolarized'
   ---   | 'nightfox'
   ---   | 'nord'
   ---   | 'nordbones'
@@ -52,7 +53,6 @@ return {
   ---   | 'seoulbones'
   ---   | 'shine'
   ---   | 'slate'
-  ---   | 'solarized'
   ---   | 'space_vim_theme'
   ---   | 'terafox'
   ---   | 'tokyobones'
@@ -69,6 +69,7 @@ return {
   ---   | 'zenwritten'
   -- }}}
   colorscheme = "catppuccin",
+  background = "dark",
   transparent = not utils.is_ssh() and not vim.g.neovide and true,
   animation = false,
   -- Border style in floating windows

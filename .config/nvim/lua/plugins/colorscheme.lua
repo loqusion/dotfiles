@@ -15,8 +15,18 @@ return {
   { "olimorris/onedarkpro.nvim", event = "VeryLazy", opts = { options = { transparency = style.transparent } } },
   { "shaunsingh/oxocarbon.nvim", event = "VeryLazy" },
   { "rose-pine/neovim", event = "VeryLazy", name = "rose-pine", opts = { disable_background = style.transparent } },
-  -- stylua: ignore
-  { "frankier/neovim-colors-solarized-truecolor-only", event = "VeryLazy", init = function() vim.g.solarized_termtrans = style.transparent end },
+  {
+    "svrana/neosolarized.nvim",
+    dev = true,
+    dependencies = { "tjdevries/colorbuddy.nvim" },
+    event = "VeryLazy",
+    opts = function()
+      return {
+        background_set = not style.transparent,
+        -- background_color = require("colorbuddy.").Color.new("custom_bg", "#fdf6e3"),
+      }
+    end,
+  },
   -- stylua: ignore
   { "liuchengxu/space-vim-theme", event = "VeryLazy", init = function() vim.g.space_vim_transp_bg = style.transparent end },
   { "folke/tokyonight.nvim", opts = { transparent = style.transparent } },

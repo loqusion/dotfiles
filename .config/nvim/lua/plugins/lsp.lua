@@ -1,7 +1,3 @@
-local prefer = {
-  lsp_inlay_hints = true,
-}
-
 return {
   {
     "williamboman/mason.nvim",

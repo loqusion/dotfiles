@@ -97,12 +97,12 @@ return {
         vim.fn.setreg(vim.v.register, body, type)
       end
 
-      for cmd, desc in pairs({ ["]p"] = "Put forward",["[p"] = "Put backward" }) do
+      for cmd, desc in pairs({ ["]p"] = "Put forward", ["[p"] = "Put backward" }) do
         vim.keymap.set("n", cmd, function()
           put(cmd)
         end, { desc = desc })
       end
-      for cmd, desc in pairs({ ["]P"] = "Put forward",["[P"] = "Put backward" }) do
+      for cmd, desc in pairs({ ["]P"] = "Put forward", ["[P"] = "Put backward" }) do
         vim.keymap.set("n", cmd, function()
           put(cmd, "c")
         end, { desc = desc })
@@ -160,8 +160,7 @@ return {
           require("close_buffers").delete({ type = "hidden" })
           require("bufferline.ui").refresh()
         end,
-        desc =
-        'H[i]dden buffers'
+        desc = "H[i]dden buffers",
       },
       {
         "<leader>bdo",
@@ -169,20 +168,21 @@ return {
           require("close_buffers").delete({ type = "other" })
           require("bufferline.ui").refresh()
         end,
-        desc =
-        'Other buffers'
+        desc = "Other buffers",
       },
       {
         "<leader>bdd",
-        function() require("close_buffers").delete({ type = "this" }) end,
-        desc =
-        'Current buffer'
+        function()
+          require("close_buffers").delete({ type = "this" })
+        end,
+        desc = "Current buffer",
       },
       {
         "<leader>bD",
-        function() require("close_buffers").delete({ type = "this", force = true }) end,
-        desc =
-        'Current buffer (Force)'
+        function()
+          require("close_buffers").delete({ type = "this", force = true })
+        end,
+        desc = "Current buffer (Force)",
       },
     },
   },
@@ -192,6 +192,13 @@ return {
     "NMAC427/guess-indent.nvim",
     event = { "BufReadPre", "BufNewFile" },
     cmd = "GuessIndent",
+    opts = {},
+  },
+
+  {
+    "ecthelionvi/NeoComposer.nvim",
+    dependencies = { "kkharji/sqlite.lua" },
+    keys = { "q" },
     opts = {},
   },
 }

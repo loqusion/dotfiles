@@ -3,6 +3,7 @@ local opt = vim.opt
 local g = vim.g
 
 vim.g.maplocalleader = [[\]]
+opt.background = style.background
 opt.backup = true -- Save backups to ~/.local/state/backup/
 opt.backupdir:remove(".")
 opt.display = { "uhex" } -- Show unprintable characters as <xx>

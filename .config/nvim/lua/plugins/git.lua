@@ -29,6 +29,7 @@ return {
   -- better diffing
   {
     "sindrets/diffview.nvim",
+    enable = false,
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
     keys = { { "<leader>gd", "<Cmd>DiffviewOpen<CR>", desc = "Diffview" } },
     config = true,
@@ -36,6 +37,7 @@ return {
 
   {
     "tpope/vim-fugitive",
+    dependencies = { "tpope/vim-rhubarb" },
     cmd = {
       "G",
       "Git",
@@ -54,10 +56,5 @@ return {
       "Gvsplit",
       "Gtabedit",
     },
-  },
-  {
-    "tpope/vim-rhubarb",
-    dependencies = "tpope/vim-fugitive",
-    cmd = "GBrowse",
   },
 }
