@@ -57,7 +57,10 @@ return {
 
   {
     "klen/nvim-config-local",
+    cond = not vim.o.exrc,
     lazy = false,
-    config = true,
+    opts = {
+      config_files = { ".nvim.lua", ".nvimrc", ".vimrc.lua", ".vimrc" },
+    },
   },
 }
