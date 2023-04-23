@@ -1,8 +1,6 @@
 local prefer = {
-  lsp_inlay_hints = false,
+  lsp_inlay_hints = true,
 }
-
-local Utils = require("utils")
 
 return {
   {
@@ -50,47 +48,8 @@ return {
         },
         html = {},
         marksman = {},
-        rust_analyzer = {
-          settings = {
-            ["rust-analyzer"] = {
-              procMacro = { enable = true },
-              cargo = { allFeatures = true },
-              ---@diagnostic disable-next-line: assign-type-mismatch
-              checkOnSave = {
-                command = "clippy",
-                extraArgs = { "--no-deps" },
-              },
-            },
-          },
-        },
         svelte = {},
         teal_ls = {},
-        tsserver = {
-          settings = {
-            typescript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-            javascript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-          },
-        },
         vimls = {},
         yamlls = {},
       },
@@ -120,9 +79,7 @@ return {
   -- inlay hints
   {
     "lvimuser/lsp-inlayhints.nvim",
-    cond = prefer.lsp_inlay_hints,
     event = "LspAttach",
-    opts = {},
     config = function(_, opts)
       require("lsp-inlayhints").setup(opts)
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -136,38 +93,6 @@ return {
           require("lsp-inlayhints").on_attach(client, args.buf)
         end,
       })
-    end,
-  },
-
-  -- rust tools
-  {
-    "simrat39/rust-tools.nvim",
-    enabled = false,
-    ft = "rust",
-    opts = {
-      tools = { inlay_hints = { auto = not prefer.lsp_inlay_hints } },
-    },
-  },
-
-  -- yaml schemas
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      "someone-stole-my-name/yaml-companion.nvim",
-    },
-    opts = function(_, opts)
-      if Utils.has("yaml-companion.nvim") then
-        local yaml_companion = require("yaml-companion")
-        opts.servers.yamlls = yaml_companion.setup(opts.servers.yamlls)
-      end
-    end,
-  },
-  {
-    "nvim-telescope/telescope.nvim",
-    config = function()
-      if Utils.has("yaml-companion.nvim") then
-        require("telescope").load_extension("yaml_schema")
-      end
     end,
   },
 
