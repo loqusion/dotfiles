@@ -57,39 +57,39 @@ spaces=(
 # config: apps to assign to spaces {{{
 # shellcheck disable=SC2034
 social=(
-	'^Discord$'
-	'^Element$'
-	'^Slack$'
+	Discord
+	Element
+	Slack
 )
 # shellcheck disable=SC2034
 media=(
-	'^Spotify$'
-	'^VLC$'
+	Spotify
+	VLC
 )
 # shellcheck disable=SC2034
 web=(
-	'^Safari$'
-	'^Chrome$'
-	'^Brave$'
-	'^Firefox$'
-	'^Cypress$'
+	Safari
+	Chrome
+	Brave
+	Firefox
+	Cypress
 )
 # shellcheck disable=SC2034
 code=(
-	'^kitty$'
-	'^deno$'
+	kitty
+	deno
 )
 # shellcheck disable=SC2034
 notes=(
-	'^Notion$'
-	'^Obsidian$'
+	Notion
+	Obsidian
 )
 # shellcheck disable=SC2034
 mail=(
-	'^Spark$'
-	'^Spark Desktop$'
-	'^Mail$'
-	'^Messages$'
+	Spark
+	'Spark Desktop'
+	Mail
+	Messages
 )
 # shellcheck disable=SC2034
 float=()
@@ -108,39 +108,44 @@ for ((i = 0; i < ${#spaces}; i++)); do
 	space="${spaces[$i]}"
 	yabai -m space $((i + 1)) --label "$space"
 	for app in "${!space}"; do
-		yabai -m rule --add app="$app" space="$space" manage=on
-		yabai -m rule --add app="$app" manage=on
+		yabai -m rule --add app="^${app}$" space="$space" manage=on
 	done
 done
 # }}}
 
 # config: space specific {{{
-yabai -m config --space float layout float
-yabai -m config --space mail layout stack
 yabai -m config --space social layout stack
+yabai -m config --space notes layout stack
+yabai -m config --space mail layout stack
+yabai -m config --space float layout float
 # }}}
 
 # config: unmanaged {{{
+unmanaged=(
+	safari
+)
 unmanaged_safari_titles=(
-	'General'
-	'Tabs'
-	'AutoFill'
-	'Passwords'
-	'Search'
-	'Security'
-	'Privacy'
-	'Websites'
-	'Extensions'
-	'Advanced'
+	General
+	Tabs
+	AutoFill
+	Passwords
+	Search
+	Security
+	Privacy
+	Websites
+	Extensions
+	Advanced
 	'Choose Files to Upload'
 )
 # }}}
 
 # unmanage windows {{{
+for app in "${unmanaged[@]}"; do
+	yabai -m rule --add app="^$app$" manage=off
+done
 for safari_title in "${unmanaged_safari_titles[@]}"; do
 	yabai -m rule --add app='^Safari$' title="$safari_title" manage=off
 done
-yabai -m rule --add app='^Spark' title!='^Spark' manage=off
 # }}}
 
 # config: grid {{{
