@@ -50,7 +50,7 @@
   "lush.nvim": { "branch": "main", "commit": "39d91f09cde4c96f09015716fce6f91bca1eaa9a" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "463e5e7441c17c0f9fba35b3016e7691a78983b9" },
   "mason-nvim-dap.nvim": { "branch": "main", "commit": "ab69c2e7da555b30f60b69c3614c0c142f2a70cc" },
-  "mason.nvim": { "branch": "main", "commit": "d76949e3b92a8a184bac683227c1024920fe763b" },
+  "mason.nvim": { "branch": "main", "commit": "9a68a4bd997b72cee4132459e0fd99eea0cdc627" },
   "middleclass": { "branch": "master", "commit": "9fab4d5bca67262614960960ca35c4740eb2be2c" },
   "mini.ai": { "branch": "main", "commit": "fdb8dd34c326040f99b178536eeaee41d1efe643" },
   "mini.bracketed": { "branch": "main", "commit": "b27cd5bb4f2a1a3da3f3e4953e060777d3427ead" },

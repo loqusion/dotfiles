@@ -17,15 +17,11 @@ return {
   { "rose-pine/neovim", event = "VeryLazy", name = "rose-pine", opts = { disable_background = style.transparent } },
   {
     "svrana/neosolarized.nvim",
+    enabled = false,
     dev = true,
     dependencies = { "tjdevries/colorbuddy.nvim" },
     event = "VeryLazy",
-    opts = function()
-      return {
-        background_set = not style.transparent,
-        -- background_color = require("colorbuddy.").Color.new("custom_bg", "#fdf6e3"),
-      }
-    end,
+    opts = { background_set = not style.transparent },
   },
   -- stylua: ignore
   { "liuchengxu/space-vim-theme", event = "VeryLazy", init = function() vim.g.space_vim_transp_bg = style.transparent end },
