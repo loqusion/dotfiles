@@ -68,7 +68,8 @@ media=(
 )
 # shellcheck disable=SC2034
 web=(
-	Safari
+	# unmanaged but assigned to space
+	# Safari
 	Chrome
 	Brave
 	Firefox
@@ -111,6 +112,7 @@ for ((i = 0; i < ${#spaces}; i++)); do
 		yabai -m rule --add app="^${app}$" space="$space" manage=on
 	done
 done
+yabai -m rule --add app="^Safari$" space=web
 # }}}
 
 # config: space specific {{{
