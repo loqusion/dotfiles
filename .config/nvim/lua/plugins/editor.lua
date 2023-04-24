@@ -198,7 +198,7 @@ return {
   {
     "ecthelionvi/NeoComposer.nvim",
     dependencies = { "kkharji/sqlite.lua" },
-    keys = { "q" },
+    keys = { "q", "Q", "<m-q>" },
     opts = {},
   },
 }

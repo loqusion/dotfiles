@@ -251,8 +251,8 @@ return {
     keys = {
       { "<leader>bdl", "<Cmd>BufferLineCloseRight<CR>", desc = "Buffers to right" },
       { "<leader>bdh", "<Cmd>BufferLineCloseLeft<CR>",  desc = "Buffers to left" },
-      { "<c-s-h>", "<Cmd>BufferLineMovePrev<CR>",  desc = "Move buffer left" },
-      { "<c-s-l>", "<Cmd>BufferLineMoveNext<CR>",  desc = "Move buffer right" },
+      { "<c-s-h>",     "<Cmd>BufferLineMovePrev<CR>",   desc = "Move buffer left" },
+      { "<c-s-l>",     "<Cmd>BufferLineMoveNext<CR>",   desc = "Move buffer right" },
     },
   },
 
@@ -265,11 +265,33 @@ return {
     keys = {
       { "zR", function() require("ufo").openAllFolds() end },
       { "zM", function() require("ufo").closeAllFolds() end },
+      { "zr", function() require("ufo").openFoldsExceptKinds() end },
+      { "zm", function() require("ufo").closeFoldsWith() end },
     },
     opts = {
-      provider_selector = function()
-        return { "treesitter", "indent" }
+      close_fold_kinds = { "imports" },
+      provider_selector = function(_, filetype)
+        local ts = { "treesitter", "indent" }
+        local providers = {
+          lua = ts,
+          zsh = ts,
+        }
+        return providers[filetype]
       end,
+    },
+  },
+  -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      capabilities = {
+        textDocument = {
+          foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true,
+          },
+        },
+      },
     },
   },
 
@@ -286,7 +308,12 @@ return {
             condition = { true, builtin.not_empty },
             click = "v:lua.ScLa",
           },
-          { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+          {
+            text = { builtin.foldfunc },
+            -- stylua: ignore
+            condition = { function() return not require("zen-mode.view").is_open() end, },
+            click = "v:lua.ScFa",
+          },
           { text = { "%s" }, click = "v:lua.ScSa" },
         },
       })
