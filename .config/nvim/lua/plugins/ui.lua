@@ -254,6 +254,15 @@ return {
       { "<c-s-h>",     "<Cmd>BufferLineMovePrev<CR>",   desc = "Move buffer left" },
       { "<c-s-l>",     "<Cmd>BufferLineMoveNext<CR>",   desc = "Move buffer right" },
     },
+    opts = {
+      options = {
+        hover = {
+          enabled = true,
+          delay = 10,
+          reveal = { "close" },
+        },
+      },
+    },
   },
 
   -- Ultra fold

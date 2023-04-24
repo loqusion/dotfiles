@@ -15,6 +15,7 @@ opt.helpheight = 12 -- Minimum height of the help window
 opt.linebreak = true -- Only break lines between punctuation and white space
 opt.listchars:append({ precedes = "«", extends = "»" }) -- Text beyond horizontal window boundaries
 opt.mousemodel = "extend"
+opt.mousemoveevent = true
 opt.relativenumber = false -- Relative line numbers
 opt.shell = "bash" -- Shell to use for ! and :! commands
 opt.shiftwidth = 0 -- Use 'tabstop' value instead
