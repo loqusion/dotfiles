@@ -2,6 +2,8 @@
 #### antigen #####
 ##################
 
+ulimit -S -n 2048
+
 source /opt/homebrew/share/antigen/antigen.zsh
 
 antigen use oh-my-zsh
