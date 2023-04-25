@@ -1,3 +1,5 @@
 .npmrc
 .zshenv.private
 .zshenv.*.private
+fish_variables
+secrets.fish
