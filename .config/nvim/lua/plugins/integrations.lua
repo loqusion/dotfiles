@@ -16,6 +16,14 @@ return {
   {
     "jackMort/ChatGPT.nvim",
     cmd = { "ChatGPTActAs", "ChatGPT" },
+    keys = {
+      {
+        "<leader>oc",
+        function()
+          require("chatgpt").openChat()
+        end,
+      },
+    },
     opts = {},
   },
 

@@ -28,6 +28,14 @@ return {
     end,
   },
 
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      filesystem = {
+        find_by_full_path_words = true,
+      },
+    },
+  },
   -- window picker for neo-tree
   {
     "s1n7ax/nvim-window-picker",
@@ -152,7 +160,6 @@ return {
   {
     "kazhala/close-buffers.nvim",
     cmd = { "BDelete", "BWipeout" },
-    -- stylua: ignore
     keys = {
       {
         "<leader>bdi",
@@ -186,8 +193,15 @@ return {
       },
     },
   },
-  { "echasnovski/mini.bufremove", enabled = false },
+  {
+    "echasnovski/mini.bufremove",
+    keys = {
+      { "<leader>bd", false },
+      { "<leader>bD", false },
+    },
+  },
 
+  -- indent detection
   {
     "NMAC427/guess-indent.nvim",
     event = { "BufReadPre", "BufNewFile" },
@@ -195,10 +209,20 @@ return {
     opts = {},
   },
 
+  -- better macros
   {
     "ecthelionvi/NeoComposer.nvim",
     dependencies = { "kkharji/sqlite.lua" },
-    keys = { "q", "Q", "<m-q>" },
+    keys = { "q", "Q", "<m-q>", "<c-p>", "<c-n>" },
     opts = {},
+  },
+
+  -- strip trailing whitespace on save
+  {
+    "mcauley-penney/tidy.nvim",
+    event = "BufWritePre",
+    opts = {
+      filetype_exclude = { "markdown", "diff" },
+    },
   },
 }

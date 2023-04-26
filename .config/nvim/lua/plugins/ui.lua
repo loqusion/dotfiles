@@ -96,6 +96,31 @@ return {
   },
 
   {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    opts = {
+      sections = {
+        lualine_y = {
+          {
+            function()
+              local tors = vim.o.expandtab and "spaces" or "tab size"
+              local size = vim.o.tabstop
+              return ("%s: %s"):format(tors, size)
+            end,
+            cond = function()
+              return vim.o.modifiable
+            end,
+          },
+        },
+        lualine_z = {
+          { "progress", separator = " ", padding = { left = 1, right = 0 } },
+          { "location", padding = { left = 0, right = 1 } },
+        },
+      },
+    },
+  },
+
+  {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
     keys = { { "<leader>cS", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
@@ -133,6 +158,13 @@ return {
     cmd = "ZenMode",
     keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
     opts = {
+      window = {
+        options = {
+          number = false,
+          relativenumber = false,
+          foldcolumn = "0",
+        },
+      },
       plugins = {
         gitsigns = true,
         tmux = true,
@@ -317,12 +349,7 @@ return {
             condition = { true, builtin.not_empty },
             click = "v:lua.ScLa",
           },
-          {
-            text = { builtin.foldfunc },
-            -- stylua: ignore
-            condition = { function() return not require("zen-mode.view").is_open() end, },
-            click = "v:lua.ScFa",
-          },
+          { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
           { text = { "%s" }, click = "v:lua.ScSa" },
         },
       })

@@ -68,7 +68,7 @@ return {
   ---   | 'zenburned'
   ---   | 'zenwritten'
   -- }}}
-  colorscheme = "catppuccin",
+  colorscheme = "carbonfox",
   background = "dark",
   transparent = not utils.is_ssh() and not vim.g.neovide and true,
   animation = false,
