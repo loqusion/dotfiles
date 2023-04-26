@@ -2,6 +2,7 @@
 .DS_STORE
 configstore
 gh/hosts.yml
+github-copilot
 iterm2
 qBittorrent
 yarn
