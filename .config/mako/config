@@ -1,0 +1,22 @@
+layer=overlay
+font=Roboto 12
+anchor=top-center
+max-icon-size=64
+icons=1
+icon-path=/home/loqusion/.local/share/icons/Fluent:/usr/share/icons/Adwaita
+default-timeout=5000
+background-color=#FFFFFFee
+text-color=#000000cc
+border-radius=8
+border-color=#00000033
+border-size=1
+
+[urgency=low]
+border-color=#394b70
+
+[urgency=normal]
+border-color=#00000033
+
+[urgency=high]
+border-color=#ff757f
+default-timeout=0

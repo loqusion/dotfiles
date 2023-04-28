@@ -4,7 +4,7 @@ set -gx SUDO_EDITOR $EDITOR
 
 set -Ux fish_user_paths
 fish_add_path ~/.cargo/bin
-fish_add_path ~/bin
+fish_add_path ~/.bin
 
 set -U fish_greeting ""
 

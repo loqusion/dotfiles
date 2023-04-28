@@ -2,8 +2,8 @@ function tldr --wraps='tldr'
     # make sure env has colors
     set -l nl 0
     command tldr -r $argv \
-        | gsed -zr "s/^#[^\n]+\n//" \
-        | gsed -r 's/^`/..command../; s/`$//; s/\{\{//g; s/}}//g; s/^> (.*)$/_\1_/' | mdcat | while read -l line
+        | sed -zr "s/^#[^\n]+\n//" \
+        | sed -r 's/^`/..command../; s/`$//; s/\{\{//g; s/}}//g; s/^> (.*)$/_\1_/' | mdcat | while read -l line
         if test $line = ""
             set nl 1
             continue
