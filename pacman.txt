@@ -8,7 +8,12 @@ blueman
 bluez
 bluez-utils
 brightnessctl
+browsh
 btop
+catppuccin-gtk-theme-frappe
+catppuccin-gtk-theme-latte
+catppuccin-gtk-theme-macchiato
+catppuccin-gtk-theme-mocha
 cliphist
 dhcpcd
 discord_arch_electron
@@ -18,6 +23,8 @@ exa
 fd
 firefox
 fish
+fluent-gtk-theme
+fluent-icon-theme-git
 fzf
 gammastep
 git
@@ -29,8 +36,10 @@ htop
 hyprland
 hyprpaper
 hyprpicker-git
+imagemagick
 intel-ucode
 iwd
+jq
 kitty
 lazygit
 lib32-nvidia-utils
@@ -48,9 +57,9 @@ neovim-symlinks
 network-manager-applet
 networkmanager
 networkmanager-openvpn
+notion-app-enhanced
 nvidia-dkms
 obs-studio
-obsidian
 openssh
 pacman-contrib
 paru
@@ -65,12 +74,15 @@ qt5ct
 qt6-wayland
 ripgrep
 rofi-lbonn-wayland-git
+rofimoji
 rtx
+sassc
 slurp
 spotify-launcher
 starship
 steam
 sway-git
+swayidle
 swaylock
 tealdeer
 texinfo
@@ -89,5 +101,6 @@ wireplumber
 wl-clip-persist-git
 wl-clipboard
 wlsunset-git
+wtype
 xdg-desktop-portal-hyprland-git
 zoxide
