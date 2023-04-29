@@ -20,41 +20,41 @@ return {
     keys = function()
       -- stylua: ignore
       return {
-        -- { "<leader>tr", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run all in buffer" },
-        -- { "<leader>ts", function() require("neotest").run.run({ suite = true }) end, desc = "Run test suite" },
-        -- { "<leader>tn", function() require("neotest").run.run() end, desc = "Run nearest test" },
-        -- { "<leader>td", function() require("neotest").run.run({ strategy = "dap" }) end, desc = "Debug nearest test" },
-        -- { "<leader>tl", function() require("neotest").run.run_last() end, desc = "Run last test" },
+        { "<leader>tr", function() require("neotest").run.run() end, desc = "Run Nearest" },
+        { "<leader>tR", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run File" },
+        { "<leader>tA", function() require("neotest").run.run({ suite = true }) end, desc = "Run Suite" },
+        { "<leader>td", function() require("neotest").run.run({ strategy = "dap" }) end, desc = "Debug Nearest" },
+        { "<leader>tl", function() require("neotest").run.run_last() end, desc = "Run last test" },
+        { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Toggle summary" },
+        { "<leader>tS", function() require("neotest").run.stop() end, desc = "Stop" },
         -- { "<leader>tD", function() require("neotest").run.run_last({ strateg = "dap" }) end, desc = "Debug last test" },
         -- { "<leader>ta", function() require("neotest").run.attach() end, desc = "Attach to running test" },
-        -- { "<leader>to", function() require("neotest").output.open({ enter = true }) end, desc = "Open test output" },
-        -- { "<leader>tO", function() require("neotest").output.open({ enter = true, short = true }) end, desc = "Open short test output", },
-        -- { "<leader>tp", function() require("neotest").summary.toggle() end, desc = "Toggle summary" },
         -- { "<leader>tm", function() require("neotest").summary.run_marked() end, desc = "Summary for marked tests" },
+        { "<leader>to", function() require("neotest").output.open({ enter = true, short = true }) end, desc = "Output (short)", },
+        { "<leader>tO", function() require("neotest").output.open({ enter = true }) end, desc = "Output" },
         { "[T", function() require("neotest").jump.prev({ status = "failed" }) end, desc = "Previous failed test" },
         { "]T", function() require("neotest").jump.next({ status = "failed" }) end, desc = "Next failed test" },
       }
     end,
-    opts = {
-      icons = {
-        running = "↻",
-      },
-      adapters = {
-        -- require("neotest-jest")({
-        --   jestCommand = "pnpm test --",
-        -- }),
-        -- require("neotest-python")({}),
-        -- require("neotest-vim-test")({
-        --   ignore_filetypes = {
-        --     -- 'javascript',
-        --     -- 'typescript',
-        --     -- 'javascriptreact',
-        --     -- 'typescriptreact',
-        --     "python",
-        --   },
-        -- }),
-      },
-    },
+    opts = function()
+      return {
+        adapters = {
+          -- require("neotest-jest")({
+          --   jestCommand = "pnpm test --",
+          -- }),
+          require("neotest-python")({}),
+          require("neotest-vim-test")({
+            ignore_filetypes = {
+              -- 'javascript',
+              -- 'typescript',
+              -- 'javascriptreact',
+              -- 'typescriptreact',
+              "python",
+            },
+          }),
+        },
+      }
+    end,
   },
 
   -- task runner and job management
@@ -62,10 +62,11 @@ return {
     "stevearc/overseer.nvim",
     -- TODO: proper lazy loading
     event = "VeryLazy",
-    -- stylua: ignore
     keys = {
-      { "<leader>uo", function() require("overseer").toggle() end, desc = "Toggle Overseer" },
-      { "<leader>tr", "<cmd>OverseerRun<cr>", desc = "Run Overseer" },
+      { "<leader>rr", "<cmd>OverseerRun<cr>", desc = "Task" },
+      { "<leader>ru", "<cmd>OverseerToggle<cr>", desc = "Overseer UI" },
+      { "<leader>rq", "<cmd>OverseerQuickAction<cr>", desc = "Quick action" },
+      { "<leader>rQ", "<cmd>OverseerTaskAction<cr>", desc = "Action" },
     },
     opts = {
       templates = { "builtin", "user.run_script" },

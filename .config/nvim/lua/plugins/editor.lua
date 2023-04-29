@@ -7,7 +7,8 @@ return {
       ---@type table<string, { name: string, plugins: string[]}>
       local defaults = {
         ["<leader>bd"] = { name = "+delete", plugins = { "bufferline.nvim", "close-buffers.nvim", "mini.bufremove" } },
-        ["<leader>t"] = { name = "+test/task", plugins = { "neotest", "overseer.nvim" } },
+        ["<leader>r"] = { name = "+run", plugins = { "overseer.nvim" } },
+        ["<leader>t"] = { name = "+test", plugins = { "neotest" } },
         ["<localleader>e"] = { name = "+evaulate", plugins = { "conjure" } },
         ["<localleader>ec"] = { name = "+comment", plugins = { "conjure" } },
         ["<localleader>l"] = { name = "+log", plugins = { "conjure" } },

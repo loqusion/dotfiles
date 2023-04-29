@@ -4,11 +4,41 @@ return {
   { "Shatur/neovim-ayu", event = "VeryLazy" },
   { "catppuccin/nvim", event = "VeryLazy", name = "catppuccin", opts = { transparent_background = style.transparent } },
   { "Mofiqul/dracula.nvim", event = "VeryLazy", opts = { transparent_bg = style.transparent } },
-  -- stylua: ignore
-  { "sainnhe/edge", event = "VeryLazy", init = function() vim.g.edge_transparent_background = style.transparent end },
-  { "ellisonleao/gruvbox.nvim", event = "VeryLazy", opts = { transparent_mode = style.transparent } },
-  -- stylua: ignore
-  { "luisiacc/gruvbox-baby", event = "VeryLazy", init = function() vim.gruvbox_baby_transparent_mode = style.transparent end },
+  {
+    "sainnhe/edge",
+    event = "VeryLazy",
+    init = function()
+      vim.g.edge_transparent_background = style.transparent
+    end,
+  },
+  {
+    "ellisonleao/gruvbox.nvim",
+    event = "VeryLazy",
+    opts = {
+      transparent_mode = style.transparent,
+      overrides = {
+        CursorLineFold = { bg = "NONE" },
+        CursorLineNr = { bg = "NONE" },
+        CursorLineSign = { bg = "NONE" },
+        FoldColumn = { bg = "NONE" },
+        SignColumn = { bg = "NONE" },
+        GruvboxAquaSign = { bg = "NONE" },
+        GruvboxBlueSign = { bg = "NONE" },
+        GruvboxGreenSign = { bg = "NONE" },
+        GruvboxOrangeSign = { bg = "NONE" },
+        GruvboxPurpleSign = { bg = "NONE" },
+        GruvboxRedSign = { bg = "NONE" },
+        GruvboxYellowSign = { bg = "NONE" },
+      },
+    },
+  },
+  {
+    "luisiacc/gruvbox-baby",
+    event = "VeryLazy",
+    init = function()
+      vim.gruvbox_baby_transparent_mode = style.transparent
+    end,
+  },
   { "rebelot/kanagawa.nvim", event = "VeryLazy", opts = { transparent = style.transparent } },
   { "EdenEast/nightfox.nvim", event = "VeryLazy", opts = { options = { transparent = style.transparent } } },
   { "shaunsingh/nord.nvim", event = "VeryLazy" },

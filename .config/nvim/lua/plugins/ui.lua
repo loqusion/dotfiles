@@ -261,20 +261,31 @@ return {
     },
     event = "WinNew",
     keys = { { "<leader>Z", "<cmd>WindowsMaximize<cr>", desc = "Zoom" } },
-    config = function()
-      -- vim.o.winwidth = 5
-      -- vim.o.equalalways = false
-      require("windows").setup({
-        animation = {
-          enable = style.animation,
-          duration = 150,
+    opts = {
+      animation = {
+        enable = style.animation,
+        duration = 150,
+      },
+      -- FIXME: file types are not ignored
+      ignore = {
+        buftype = { "quickfix" },
+        filetype = {
+          "NvimTree",
+          "Outline",
+          "gundo",
+          "neo-tree",
+          "neotest-summary",
+          "undotree",
         },
-        -- FIXME: file types are not ignored
-        ignore = {
-          buftype = { "quickfix" },
-          filetype = { "NvimTree", "neo-tree", "undotree", "gundo", "Outline" },
-        },
-      })
+      },
+    },
+    config = function(_, opts)
+      if style.animation then
+        vim.o.winwidth = 5
+        vim.o.winminwidth = 5
+        vim.o.equalalways = false
+      end
+      require("windows").setup(opts)
     end,
   },
 

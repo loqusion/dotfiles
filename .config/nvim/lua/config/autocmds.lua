@@ -50,6 +50,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = {
     "OverseerList",
     "fugitive",
+    "neotest-*",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
