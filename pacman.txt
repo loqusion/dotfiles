@@ -45,9 +45,12 @@ network-manager-applet
 networkmanager
 networkmanager-openvpn
 obs-studio
+obsidian
 openssh
 paru
 pipewire
+pipewire-alsa
+pipewire-pulse
 playerctl
 polkit-gnome
 qt5-wayland
@@ -58,7 +61,7 @@ rtx
 slurp
 spotify-launcher
 starship
-sway
+sway-git
 swaylock
 tealdeer
 texinfo
@@ -70,6 +73,7 @@ ttf-nerd-fonts-symbols-1000-em-mono
 ttf-victor-mono-nerd
 unzip
 vlc
+volumectl
 waybar-hyprland-git
 wget
 wireplumber
