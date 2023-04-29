@@ -11,6 +11,9 @@ set -U fish_greeting ""
 set -Ux LESS -RFQM
 set -Ux MANPAGER "nvim +Man!"
 
+set -Ux DOTBARE_DIR "$HOME/.local/share/dotfiles"
+set -Ux DOTBARE_TREE $HOME
+
 abbr mv "mv -iv"
 abbr cp "cp -riv"
 abbr mkdir "mkdir -vp"
@@ -23,7 +26,7 @@ abbr vd "cd ~/.config/nvim; nvim"
 abbr sv sudoedit
 abbr vsudo sudoedit
 
-abbr c config
+abbr c dotbare
 abbr lg lazygit
 
 abbr df "grc /bin/df -h"

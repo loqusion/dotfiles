@@ -1,5 +1,3 @@
-local Utils = require("utils")
-
 return {
   {
     "neovim/nvim-lspconfig",
@@ -22,6 +20,12 @@ return {
 
       opts.servers.tsserver = vim.tbl_deep_extend("force", opts.servers.tsserver, inlay_hints_opts)
       opts.servers.eslint = {}
+    end,
+  },
+  {
+    "williamboman/mason.nvim",
+    opts = function(_, opts)
+      table.insert(opts.ensure_installed, "prettierd")
     end,
   },
 }
