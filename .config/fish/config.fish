@@ -11,13 +11,11 @@ set -U fish_greeting ""
 set -Ux LESS -RFQM
 set -Ux MANPAGER "nvim +Man!"
 
-set -Ux DOTBARE_DIR "$HOME/.local/share/dotfiles"
-set -Ux DOTBARE_TREE $HOME
-
 abbr mv "mv -iv"
 abbr cp "cp -riv"
 abbr mkdir "mkdir -vp"
 abbr l ll
+abbr grep rg
 
 abbr vim nvim
 abbr vi nvim
@@ -29,7 +27,7 @@ abbr vsudo sudoedit
 abbr c dotbare
 abbr lg lazygit
 
-abbr df "grc /bin/df -h"
+abbr df "df -h"
 abbr caf 'caffeinate -d'
 abbr tarify "tar czpvf"
 abbr untar "tar xvf"
