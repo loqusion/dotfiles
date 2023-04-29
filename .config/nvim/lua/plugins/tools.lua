@@ -1,5 +1,3 @@
-local style = require("config.style")
-
 return {
   {
     "anuvyklack/hydra.nvim",
@@ -62,5 +60,11 @@ return {
     opts = {
       config_files = { ".nvim.lua", ".nvimrc", ".vimrc.lua", ".vimrc" },
     },
+  },
+
+  {
+    "chrishrb/gx.nvim",
+    event = "VeryLazy",
+    config = true,
   },
 }
