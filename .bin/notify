@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 function get_icon {
-	fd -1 -p "scalable.*$1" ~/.local/share/icons/Fluent ||
-		fd -1 -p "$1" ~/.local/share/icons/Fluent ||
+	fd -1 -p "scalable.*$1" /usr/share/icons/Fluent ||
+		fd -1 -p "$1" /usr/share/icons/Fluent ||
 		echo "$1"
 }
 
