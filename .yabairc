@@ -38,10 +38,6 @@ yabai -m config right_padding $gap
 yabai -m config window_gap 8
 # }}}
 
-# unmanage apps by default {{{
-yabai -m rule --add app='.*' manage=off
-# }}}
-
 # config: spaces {{{
 spaces=(
 	media
@@ -120,34 +116,6 @@ yabai -m config --space social layout stack
 yabai -m config --space notes layout stack
 yabai -m config --space mail layout stack
 yabai -m config --space float layout float
-# }}}
-
-# config: unmanaged {{{
-unmanaged=(
-	safari
-)
-unmanaged_safari_titles=(
-	General
-	Tabs
-	AutoFill
-	Passwords
-	Search
-	Security
-	Privacy
-	Websites
-	Extensions
-	Advanced
-	'Choose Files to Upload'
-)
-# }}}
-
-# unmanage windows {{{
-for app in "${unmanaged[@]}"; do
-	yabai -m rule --add app="^$app$" manage=off
-done
-for safari_title in "${unmanaged_safari_titles[@]}"; do
-	yabai -m rule --add app='^Safari$' title="$safari_title" manage=off
-done
 # }}}
 
 # config: grid {{{
