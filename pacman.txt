@@ -1,6 +1,7 @@
 adobe-source-han-sans-cn-fonts
 adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
+atool
 base
 base-devel
 bat
@@ -47,6 +48,7 @@ libva-nvidia-driver
 linux
 linux-firmware
 linux-headers
+lynx
 mako
 man-db
 man-pages
@@ -58,6 +60,7 @@ network-manager-applet
 networkmanager
 networkmanager-openvpn
 notion-app-enhanced
+noto-fonts-emoji
 nvidia-dkms
 obs-studio
 openssh
@@ -69,9 +72,12 @@ pipewire-pulse
 playerctl
 plocate
 polkit-gnome
+poppler
+python-pillow
 qt5-wayland
 qt5ct
 qt6-wayland
+ranger
 ripgrep
 rofi-lbonn-wayland-git
 rofimoji
@@ -87,10 +93,12 @@ swaylock
 tealdeer
 texinfo
 topgrade
+transmission-cli
 tree
 ttf-jetbrains-mono
 ttf-ms-fonts
 ttf-nerd-fonts-symbols-1000-em-mono
+ttf-opensans
 ttf-victor-mono-nerd
 unzip
 vlc
