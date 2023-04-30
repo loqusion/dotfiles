@@ -26,6 +26,7 @@ firefox
 fish
 fluent-gtk-theme
 fluent-icon-theme-git
+fwupd
 fzf
 gammastep
 git
@@ -42,6 +43,7 @@ intel-ucode
 iwd
 jq
 kitty
+laptop-mode-tools
 lazygit
 lib32-nvidia-utils
 libva-nvidia-driver
@@ -92,6 +94,7 @@ swayidle
 swaylock
 tealdeer
 texinfo
+thermald
 topgrade
 transmission-cli
 tree
@@ -100,6 +103,7 @@ ttf-ms-fonts
 ttf-nerd-fonts-symbols-1000-em-mono
 ttf-opensans
 ttf-victor-mono-nerd
+udisks2
 unzip
 vlc
 volumectl
@@ -111,4 +115,6 @@ wl-clipboard
 wlsunset-git
 wtype
 xdg-desktop-portal-hyprland-git
+xdg-user-dirs
+xorg-xhost
 zoxide
