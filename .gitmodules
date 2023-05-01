@@ -10,3 +10,9 @@
 [submodule ".config/catppuccin/bat"]
 	path = .config/catppuccin/bat
 	url = https://github.com/catppuccin/bat
+[submodule ".config/catppuccin/btop"]
+	path = .config/catppuccin/btop
+	url = https://github.com/catppuccin/btop
+[submodule ".config/catppuccin/cava"]
+	path = .config/catppuccin/cava
+	url = https://github.com/catppuccin/cava
