@@ -5,8 +5,8 @@ set -euo pipefail
 progname="$(basename "$0")"
 script_dir="$(dirname "$0")"
 
-declare -a invalid_input
-declare -a errors
+invalid_input=()
+errors=()
 
 supported=(
 	brew
@@ -91,7 +91,7 @@ for prog in "${progs_to_dump[@]}"; do
 	fi
 done
 
-if [ "${#errors}" -gt 0 ]; then
+if [ "${#errors[@]}" -gt 0 ]; then
 	echo "Something went wrong!"
 	exit 1
 else
