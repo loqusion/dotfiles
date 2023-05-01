@@ -39,15 +39,15 @@ yabai -m config window_gap 8
 # }}}
 
 # config: spaces {{{
-spaces=(
-	media
-	social
-	web
-	code
-	notes
-	mail
-	float
-)
+# spaces=(
+# 	media
+# 	social
+# 	web
+# 	code
+# 	notes
+# 	mail
+# 	float
+# )
 # }}}
 
 # config: apps to assign to spaces {{{
@@ -64,8 +64,7 @@ media=(
 )
 # shellcheck disable=SC2034
 web=(
-	# unmanaged but assigned to space
-	# Safari
+	Safari
 	Chrome
 	Brave
 	Firefox
@@ -93,29 +92,40 @@ float=()
 # }}}
 
 # create spaces that don't exist {{{
-current_number_of_spaces="$(yabai -m query --displays | jq '.[0].spaces | length')"
-spaces_to_create="$((${#spaces[@]} - current_number_of_spaces))"
-for ((i = 0; i < spaces_to_create; i++)); do
-	yabai -m space --create
-done
+# current_number_of_spaces="$(yabai -m query --displays | jq '.[0].spaces | length')"
+# spaces_to_create="$((${#spaces[@]} - current_number_of_spaces))"
+# for ((i = 0; i < spaces_to_create; i++)); do
+# 	yabai -m space --create
+# done
 # }}}
 
-# assign apps to spaces {{{
-for ((i = 0; i < ${#spaces}; i++)); do
-	space="${spaces[$i]}"
-	yabai -m space $((i + 1)) --label "$space"
-	for app in "${!space}"; do
-		yabai -m rule --add app="^${app}$" space="$space" manage=on
-	done
+# label spaces & assign apps to spaces {{{
+# for ((i = 0; i < ${#spaces}; i++)); do
+# 	space="${spaces[$i]}"
+# 	yabai -m space $((i + 1)) --label "$space"
+# for app in "${!space}"; do
+# 	yabai -m rule --add app="^${app}$" space="$space" manage=on
+# done
+# done
+# }}}
+
+# config: unmanaged apps {{{
+unmanaged=(
+	ExpressVPN
+)
+# }}}
+
+# unmanage apps {{{
+for app in "${unmanaged[@]}"; do
+	yabai -m rule --add app="^${app}$" manage=off
 done
-yabai -m rule --add app="^Safari$" space=web
 # }}}
 
 # config: space specific {{{
-yabai -m config --space social layout stack
-yabai -m config --space notes layout stack
-yabai -m config --space mail layout stack
-yabai -m config --space float layout float
+# yabai -m config --space social layout stack
+# yabai -m config --space notes layout stack
+# yabai -m config --space mail layout stack
+# yabai -m config --space float layout float
 # }}}
 
 # config: grid {{{
