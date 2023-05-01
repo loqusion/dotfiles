@@ -50,6 +50,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = {
     "OverseerList",
     "fugitive",
+    "fugitiveblame",
     "neotest-*",
   },
   callback = function(event)
