@@ -2,11 +2,15 @@
 
 function get_icon {
 	fd -1 -p "scalable.*$1" /usr/share/icons/Fluent ||
-		fd -1 -p "$1" /usr/share/icons/Fluent ||
-		echo "$1"
+		fd -1 -p "$1" /usr/share/icons/Fluent
 }
 
 icon=$(get_icon "$1")
-shift
 
-notify-send -i "$icon" "$@"
+args=()
+if [ -n "$icon" ]; then
+	args+=(-i "$icon")
+	shift
+fi
+
+notify-send "${args[@]}" "$@"

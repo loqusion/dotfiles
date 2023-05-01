@@ -1,3 +1,9 @@
 [submodule ".config/kitty/kitty-themes"]
 	path = .config/kitty/kitty-themes
 	url = https://github.com/dexpota/kitty-themes
+[submodule ".config/dotfiles-hyprland"]
+	path = .config/hypr/amadeuswm
+	url = https://github.com/AmadeusWM/dotfiles-hyprland
+[submodule ".config/hypr/.AmadeusWM"]
+	path = .config/hypr/.AmadeusWM
+	url = https://github.com/loqusion/dotfiles-hyprland-AmadeusWM
