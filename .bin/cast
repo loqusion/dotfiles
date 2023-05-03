@@ -1,0 +1,11 @@
+#!/bin/bash
+
+notify=~/.bin/notify
+
+if pkill -INT wf-recorder; then
+  $notify screenshot 'Video Captured'
+else
+  nohup wf-recorder -c libx264rgb -g "$(slurp -d)" -f "$(xdg-user-dir VIDEOS)/$(date +%Y-%m-%d_%H-%M-%S).mp4" &
+  disown
+  $notify screenshot 'Video Capture Started'
+fi

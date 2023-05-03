@@ -16,3 +16,18 @@
 [submodule ".config/catppuccin/cava"]
 	path = .config/catppuccin/cava
 	url = https://github.com/catppuccin/cava
+[submodule ".config/catppuccin/k9s"]
+	path = .config/catppuccin/k9s
+	url = https://github.com/catppuccin/k9s
+[submodule ".config/catppuccin/lazygit"]
+	path = .config/catppuccin/lazygit
+	url = https://github.com/catppuccin/lazygit
+[submodule ".config/catppuccin/zellij"]
+	path = .config/catppuccin/zellij
+	url = https://github.com/catppuccin/zellij
+[submodule ".config/catppuccin/dunst"]
+	path = .config/catppuccin/dunst
+	url = https://github.com/catppuccin/dunst
+[submodule ".config/catppuccin/rofi"]
+	path = .config/catppuccin/rofi
+	url = https://github.com/catppuccin/rofi

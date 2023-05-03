@@ -9,8 +9,8 @@ get_value() {
 
 gnome_schema="org.gnome.desktop.interface"
 gtk_theme="$(grep 'gtk-theme-name' "$config" | get_value)"
-icon_theme="$(grep 'gtk-theme-name' "$config" | get_value)"
-cursor_theme="$(grep 'gtk-theme-name' "$config" | get_value)"
+icon_theme="$(grep 'gtk-icon-theme-name' "$config" | get_value)"
+cursor_theme="$(grep 'gtk-cursor-theme-name' "$config" | get_value)"
 font_name="$(grep 'gtk-font-name' "$config" | get_value)"
 gsettings set "$gnome_schema" gtk-theme "$gtk_theme"
 gsettings set "$gnome_schema" icon-theme "$icon_theme"
