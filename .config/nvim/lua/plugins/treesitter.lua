@@ -81,6 +81,16 @@ return {
   },
 
   {
+    "fladson/vim-kitty",
+    event = "BufReadPre",
+  },
+
+  {
+    "baskerville/vim-sxhkdrc",
+    event = "BufReadPre",
+  },
+
+  {
     "nvim-treesitter/nvim-treesitter",
     ---@type TSConfig
     opts = {
