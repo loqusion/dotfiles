@@ -38,115 +38,15 @@ yabai -m config right_padding $gap
 yabai -m config window_gap 8
 # }}}
 
-# unmanage apps by default {{{
-yabai -m rule --add app='.*' manage=off
-# }}}
-
-# config: spaces {{{
-spaces=(
-	media
-	social
-	web
-	code
-	notes
-	mail
-	float
-)
-# }}}
-
-# config: apps to assign to spaces {{{
-# shellcheck disable=SC2034
-social=(
-	Discord
-	Element
-	Slack
-)
-# shellcheck disable=SC2034
-media=(
-	Spotify
-	VLC
-)
-# shellcheck disable=SC2034
-web=(
-	# unmanaged but assigned to space
-	# Safari
-	Chrome
-	Brave
-	Firefox
-	Cypress
-)
-# shellcheck disable=SC2034
-code=(
-	kitty
-	deno
-)
-# shellcheck disable=SC2034
-notes=(
-	Notion
-	Obsidian
-)
-# shellcheck disable=SC2034
-mail=(
-	Spark
-	'Spark Desktop'
-	Mail
-	Messages
-)
-# shellcheck disable=SC2034
-float=()
-# }}}
-
-# create spaces that don't exist {{{
-current_number_of_spaces="$(yabai -m query --displays | jq '.[0].spaces | length')"
-spaces_to_create="$((${#spaces[@]} - current_number_of_spaces))"
-for ((i = 0; i < spaces_to_create; i++)); do
-	yabai -m space --create
-done
-# }}}
-
-# assign apps to spaces {{{
-for ((i = 0; i < ${#spaces}; i++)); do
-	space="${spaces[$i]}"
-	yabai -m space $((i + 1)) --label "$space"
-	for app in "${!space}"; do
-		yabai -m rule --add app="^${app}$" space="$space" manage=on
-	done
-done
-yabai -m rule --add app="^Safari$" space=web
-# }}}
-
-# config: space specific {{{
-yabai -m config --space social layout stack
-yabai -m config --space notes layout stack
-yabai -m config --space mail layout stack
-yabai -m config --space float layout float
-# }}}
-
 # config: unmanaged {{{
 unmanaged=(
-	safari
-)
-unmanaged_safari_titles=(
-	General
-	Tabs
-	AutoFill
-	Passwords
-	Search
-	Security
-	Privacy
-	Websites
-	Extensions
-	Advanced
-	'Choose Files to Upload'
+	Fantastical
 )
 # }}}
 
 # unmanage windows {{{
 for app in "${unmanaged[@]}"; do
 	yabai -m rule --add app="^$app$" manage=off
-done
-for safari_title in "${unmanaged_safari_titles[@]}"; do
-	yabai -m rule --add app='^Safari$' title="$safari_title" manage=off
 done
 # }}}
 

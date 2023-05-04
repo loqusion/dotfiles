@@ -61,7 +61,7 @@ cmd + alt - k : yabai -m window --focus stack.prev
 shift + alt - 0 : yabai -m space --balance
 
 alt + cmd - f         : yabai -m window --toggle zoom-fullscreen
-shift + alt - space : "${HOME}/.config/yabai/scripts/float.sh"
+shift + alt - space : bash "${HOME}/.config/yabai/scripts/float.sh"
 
 # picture-in-picture
 # alt - p : yabai -m window --toggle sticky;\
@@ -103,7 +103,7 @@ ctrl + shift + alt - n  : yabai -m space --create && \
                           index="$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index')" && \
                           yabai -m window --space "${index}" && \
                           yabai -m space --focus "${index}"
-ctrl + shift - n        : yabai -m space --create && \
+ctrl + alt - n          : yabai -m space --create && \
                           index="$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index')" && \
                           yabai -m space --focus "${index}"
 alt + shift - w         : yabai -m space --destroy
@@ -123,9 +123,6 @@ ctrl + cmd - 2  : yabai -m window --display 2; yabai -m display --focus 2
 # toggle between stack/bsp layout
 ctrl + alt + cmd - s : yabai -m config layout \
                        "$([ `yabai -m query --windows --space | jq '.[0]."stack-index"'` -eq 0 ] && echo stack || echo bsp)"
-
-# Enable / Disable gaps in current workspace
-lctrl + alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
 
 # reset
 shift + lctrl + alt - r : \
