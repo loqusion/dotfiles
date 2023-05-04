@@ -291,20 +291,15 @@ return {
 
   {
     "akinsho/bufferline.nvim",
-    -- stylua: ignore
     keys = {
       { "<leader>bdl", "<Cmd>BufferLineCloseRight<CR>", desc = "Buffers to right" },
-      { "<leader>bdh", "<Cmd>BufferLineCloseLeft<CR>",  desc = "Buffers to left" },
-      { "<c-s-h>",     "<Cmd>BufferLineMovePrev<CR>",   desc = "Move buffer left" },
-      { "<c-s-l>",     "<Cmd>BufferLineMoveNext<CR>",   desc = "Move buffer right" },
+      { "<leader>bdh", "<Cmd>BufferLineCloseLeft<CR>", desc = "Buffers to left" },
+      { "<c-s-h>", "<Cmd>BufferLineMovePrev<CR>", desc = "Move buffer left" },
+      { "<c-s-l>", "<Cmd>BufferLineMoveNext<CR>", desc = "Move buffer right" },
     },
     opts = {
       options = {
-        hover = {
-          enabled = true,
-          delay = 10,
-          reveal = { "close" },
-        },
+        show_buffer_close_icons = false,
       },
     },
   },
