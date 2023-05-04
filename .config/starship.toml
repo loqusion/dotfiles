@@ -6,7 +6,8 @@ right_format = """$all"""
 
 [character]
 # Note the use of Catppuccin color 'maroon'
-success_symbol = "[[♥](green) ❯](maroon)"
+# success_symbol = "[[♥](green) ❯](maroon)"
+success_symbol = "[❯](green)"
 error_symbol = "[❯](red)"
 vicmd_symbol = "[❮](green)"
 
