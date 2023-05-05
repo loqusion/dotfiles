@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-pacman -Qeq >~/pacman.txt
+pacman -Qeq >~/.pacman.txt
