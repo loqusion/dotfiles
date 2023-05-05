@@ -31,3 +31,6 @@
 [submodule ".config/catppuccin/rofi"]
 	path = .config/catppuccin/rofi
 	url = https://github.com/catppuccin/rofi
+[submodule ".config/catppuccin/obs"]
+	path = .config/catppuccin/obs
+	url = https://github.com/catppuccin/obs
