@@ -37,3 +37,6 @@
 [submodule ".config/catppuccin/steam"]
 	path = .config/catppuccin/steam
 	url = https://github.com/catppuccin/steam
+[submodule ".config/catppuccin/element"]
+	path = .config/catppuccin/element
+	url = https://github.com/catppuccin/element
