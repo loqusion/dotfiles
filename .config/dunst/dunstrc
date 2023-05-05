@@ -3,7 +3,7 @@ frame_color = "#89B4FA"
 separator_color= frame
 corner_radius = 10
 progress_bar_corner_radius = 5
-font = "TerminessTTF Nerd Font 14"
+font = "Space Grotesk 14"
 
 [urgency_low]
 background = "#1E1E2E"
