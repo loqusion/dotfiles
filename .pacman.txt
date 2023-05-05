@@ -8,6 +8,7 @@ base
 base-devel
 bat
 bc
+betterdiscordctl
 blueberry-wayland
 bluez
 bluez-utils
@@ -109,6 +110,7 @@ poppler
 python-pillow
 python-pip
 python-pyxdg
+qbittorrent
 qt5-wayland
 qt6-wayland
 ranger
