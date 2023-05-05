@@ -12,6 +12,9 @@ return {
       -- force overwrite copilot's mapping
       opts.mapping["<CR>"] = cmp.mapping.confirm({ select = false })
       cmp.setup(opts)
+      vim.keymap.set({ "i", "s" }, "<C-e>", function()
+        return require("luasnip").choice_active() and "<Plug>luasnip-next-choice" or "<C-e>"
+      end, { expr = true, silent = true })
     end,
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
