@@ -11,11 +11,6 @@ return {
           vim.g.cursorhold_updatetime = 50
         end,
       },
-      "haydenmeade/neotest-jest",
-      "nvim-neotest/neotest-python",
-      "akinsho/neotest-go",
-      "nvim-neotest/neotest-vim-test",
-      "vim-test/vim-test",
     },
     keys = function()
       -- stylua: ignore
@@ -53,22 +48,14 @@ return {
             },
           }),
         },
-        icons = {
-          expanded = "",
-          child_prefix = "",
-          child_indent = "",
-          final_child_prefix = "",
-          non_collapsible = "",
-          collapsed = "",
-          passed = "",
-          running = "",
-          failed = "",
-          unknown = "",
-          skipped = "",
-        },
+        quickfix = { open = false },
       }
     end,
   },
+  "haydenmeade/neotest-jest",
+  "nvim-neotest/neotest-python",
+  "akinsho/neotest-go",
+  { "nvim-neotest/neotest-vim-test", dependencies = "vim-test/vim-test" },
 
   -- task runner and job management
   {
