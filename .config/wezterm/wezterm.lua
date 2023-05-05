@@ -20,6 +20,8 @@ config.window_padding = {
 -- disable title bar, but keep resize
 config.window_decorations = 'RESIZE'
 
+config.window_close_confirmation = 'NeverPrompt'
+
 config.scrollback_lines = 10000
 
 return compose(config, { color_scheme, font, tab, keymaps })
