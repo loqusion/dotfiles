@@ -34,3 +34,6 @@
 [submodule ".config/catppuccin/obs"]
 	path = .config/catppuccin/obs
 	url = https://github.com/catppuccin/obs
+[submodule ".config/catppuccin/steam"]
+	path = .config/catppuccin/steam
+	url = https://github.com/catppuccin/steam
