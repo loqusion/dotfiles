@@ -1,8 +1,3 @@
-# Installing dotfiles onto a new system
-
-```sh
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/loqusion/dotfiles/main/install.sh)"
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/loqusion/dotfiles/main/install-deps.sh)"
-```
+# Arch Linux + MacOS dotfiles
 
 [Inspiration for this setup](https://www.atlassian.com/git/tutorials/dotfiles)
