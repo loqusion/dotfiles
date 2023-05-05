@@ -3,11 +3,11 @@ rofi="rofi -theme $HOME/.config/rofi/config/powermenu.rasi"
 
 uptime=$(uptime -p | sed -e 's/up //g')
 
-shutdown="襤Shutdown"
-reboot="ﰇ Restart"
-lock=" Lock"
-suspend="鈴Sleep"
-logout=" Logout"
+shutdown="襤"
+reboot="ﰇ"
+lock=""
+suspend="鈴"
+logout=""
 ddir="$HOME/.config/rofi/config"
 
 # Ask for confirmation
