@@ -3,6 +3,7 @@ adobe-source-han-sans-cn-fonts
 adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
 atool
+avizo
 base
 base-devel
 bat
@@ -47,6 +48,8 @@ git
 git-delta
 github-cli
 glow
+gnome-keyring
+gobject-introspection
 grc
 grim
 htop
@@ -59,6 +62,7 @@ intel-ucode
 iptables-nft
 iwd
 jq
+just
 kitty
 laptop-mode-tools
 lazygit
@@ -69,8 +73,8 @@ light-git
 linux
 linux-firmware
 linux-headers
-lxappearance-gtk3
 lynx
+mailspring
 man-db
 man-pages
 mdcat
@@ -104,7 +108,7 @@ polkit-gnome
 poppler
 python-pillow
 python-pip
-python311
+python-pyxdg
 qt5-wayland
 qt6-wayland
 ranger
@@ -133,18 +137,19 @@ tmux-plugin-manager
 topgrade
 transmission-cli
 tree
+ttf-google-fonts-typewolf
 ttf-iosevka-nerd
 ttf-jetbrains-mono
 ttf-ms-fonts
 ttf-nerd-fonts-symbols-mono
-ttf-opensans
+ttf-victor-mono
 ttf-victor-mono-nerd
 udisks2
 uim
 unzip
 vlc
-volumectl
 waybar-hyprland-git
+wezterm
 wf-recorder
 wget
 wireplumber
@@ -155,6 +160,7 @@ wofi
 wtype
 xdg-desktop-portal-hyprland-git
 xdg-user-dirs
+xkeysnail
 xorg-xhost
 zellij
 zoxide
