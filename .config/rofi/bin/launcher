@@ -6,5 +6,5 @@ rofi \
 	-drun-match-fields all \
 	-drun-display-format "{name}" \
 	-no-drun-show-actions \
-	-terminal kitty \
+	-terminal wezterm \
 	-theme "$HOME"/.config/rofi/config/launcher.rasi

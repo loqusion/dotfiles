@@ -17,7 +17,7 @@ abbr mkdir "mkdir -vp"
 abbr l ll
 abbr grep rg
 abbr cat bat
-abbr icat kitty +kitten icat
+abbr icat wezterm imgcat
 
 abbr vim nvim
 abbr vi nvim
