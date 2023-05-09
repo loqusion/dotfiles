@@ -31,16 +31,6 @@ return {
         },
         routes = {
           {
-            -- desktop notifications when unfocused
-            filter = {
-              cond = function()
-                return not focused
-              end,
-            },
-            view = "notify_send",
-            opts = { stop = false },
-          },
-          {
             -- file write
             filter = {
               event = "msg_show",
