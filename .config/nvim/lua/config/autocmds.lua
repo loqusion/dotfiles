@@ -1,6 +1,7 @@
 local Utils = require("utils")
 
 -- show cursor line only in active window
+local excluded_filetypes = { ["neo-tree"] = true }
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
   group = Utils.augroup("cursorline"),
   callback = function()
@@ -15,7 +16,7 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
   group = Utils.augroup("cursorline"),
   callback = function()
     local cl = vim.wo.cursorline
-    if cl then
+    if cl and not excluded_filetypes[vim.bo.filetype] then
       vim.api.nvim_win_set_var(0, "auto-cursorline", cl)
       vim.wo.cursorline = false
     end
