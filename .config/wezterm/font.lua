@@ -1,36 +1,40 @@
 local wezterm = require 'wezterm'
+local use_cursive_italics = true
+local cursive_font = 'Victor Mono'
 
 return function(config)
   config.font = wezterm.font 'JetBrains Mono'
   config.font_size = 12.0
-  config.font_rules = {
-    {
-      italic = true,
-      intensity = 'Bold',
-      font = wezterm.font {
-        family = 'Victor Mono',
-        weight = 'Bold',
-        style = 'Italic',
+  if use_cursive_italics then
+    config.font_rules = {
+      {
+        italic = true,
+        intensity = 'Bold',
+        font = wezterm.font {
+          family = cursive_font,
+          weight = 'Bold',
+          style = 'Italic',
+        },
       },
-    },
-    {
-      italic = true,
-      intensity = 'Half',
-      font = wezterm.font {
-        family = 'Victor Mono',
-        weight = 'DemiBold',
-        style = 'Italic',
+      {
+        italic = true,
+        intensity = 'Half',
+        font = wezterm.font {
+          family = cursive_font,
+          weight = 'DemiBold',
+          style = 'Italic',
+        },
       },
-    },
-    {
-      italic = true,
-      intensity = 'Normal',
-      font = wezterm.font {
-        family = 'Victor Mono',
-        style = 'Italic',
+      {
+        italic = true,
+        intensity = 'Normal',
+        font = wezterm.font {
+          family = cursive_font,
+          style = 'Italic',
+        },
       },
-    },
-  }
+    }
+  end
   config.window_frame = {
     -- The font used in the tab bar.
     -- Roboto Bold is the default; this font is bundled
