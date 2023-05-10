@@ -40,3 +40,6 @@
 [submodule ".config/catppuccin/element"]
 	path = .config/catppuccin/element
 	url = https://github.com/catppuccin/element
+[submodule ".config/catppuccin/fcitx5"]
+	path = .config/catppuccin/fcitx5
+	url = https://github.com/catppuccin/fcitx5
