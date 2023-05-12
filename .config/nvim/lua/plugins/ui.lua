@@ -370,6 +370,12 @@ return {
       },
     },
   },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = function(_, opts)
+      table.insert(opts.filetype_exclude, "toggleterm")
+    end,
+  },
 
   {
     "nvim-colortils/colortils.nvim",
