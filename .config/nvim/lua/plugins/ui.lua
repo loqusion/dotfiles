@@ -5,22 +5,6 @@ return {
   {
     "folke/noice.nvim",
     opts = function(_, opts)
-      local focused = true
-      vim.api.nvim_create_autocmd("FocusGained", {
-        group = Utils.augroup("noice_focus"),
-        pattern = "*",
-        callback = function()
-          focused = true
-        end,
-      })
-      vim.api.nvim_create_autocmd("FocusLost", {
-        group = Utils.augroup("noice_focus"),
-        pattern = "*",
-        callback = function()
-          focused = false
-        end,
-      })
-
       return vim.tbl_deep_extend("force", opts, {
         lsp = {
           override = {
