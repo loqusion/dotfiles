@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+usage() {
+	echo "Usage: $(basename "$0") [start|stop]" >&2
+}
+
+start() {
+	sudo systemctl start openvpn-client@us.protonvpn.net.udp.service
+}
+
+stop() {
+	sudo systemctl stop openvpn-client@us.protonvpn.net.udp.service
+}
+
+case "$1" in
+start) start ;;
+stop) stop ;;
+*) usage && exit 1 ;;
+esac
