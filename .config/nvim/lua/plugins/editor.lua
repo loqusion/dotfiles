@@ -226,4 +226,10 @@ return {
       filetype_exclude = { "markdown", "diff" },
     },
   },
+
+  {
+    "keaising/im-select.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
 }

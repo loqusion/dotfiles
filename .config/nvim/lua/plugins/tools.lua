@@ -33,6 +33,8 @@ return {
     end,
     config = function()
       vim.fn["arpeggio#map"]("i", "", 0, "jk", "<Esc>")
+      -- Full-width jk during IME
+      vim.fn["arpeggio#map"]("i", "", 0, "ｊｋ", "<Esc>")
     end,
   },
 
