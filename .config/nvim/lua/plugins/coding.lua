@@ -245,7 +245,16 @@ return {
     },
   },
 
-  { "echasnovski/mini.comment", enabled = not prefer.comment_nvim },
+  {
+    "echasnovski/mini.comment",
+    opts = {
+      mappings = {
+        comment = prefer.comment_nvim and "" or nil,
+        comment_line = prefer.comment_nvim and "" or nil,
+        textobject = nil,
+      },
+    },
+  },
   { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
   {
     "numToStr/Comment.nvim",
@@ -257,18 +266,4 @@ return {
       }
     end,
   },
-
-  -- -- Revert https://github.com/LazyVim/LazyVim/commit/44df743
-  -- { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
-  -- {
-  --   "echasnovski/mini.comment",
-  --   opts = {
-  --     hooks = {
-  --       pre = function()
-  --         vim.notify_once("hi")
-  --         require("ts_context_commentstring.internal").update_commentstring({})
-  --       end,
-  --     },
-  --   },
-  -- },
 }
