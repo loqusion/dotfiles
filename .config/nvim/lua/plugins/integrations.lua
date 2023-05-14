@@ -22,6 +22,7 @@ return {
         function()
           require("chatgpt").openChat()
         end,
+        desc = "ChatGPT",
       },
     },
     opts = {},
