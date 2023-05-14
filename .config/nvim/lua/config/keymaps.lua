@@ -33,7 +33,9 @@ map("n", "<leader>ue", "<cmd>edit<cr>", { desc = "Re-edit file" })
 map("n", "<leader>uf", function()
   local lazyvim_format = require("lazyvim.plugins.lsp.format")
   lazyvim_format.toggle()
-  require("tidy").enabled = lazyvim_format.autoformat == true
+  if require("utils").has("tidy.nvim") then
+    require("tidy").enabled = lazyvim_format.autoformat == true
+  end
 end, { desc = "Toggle format on Save" })
 
 map("n", "<leader>cR", Utils.runlua, { desc = "Run Lua" })
