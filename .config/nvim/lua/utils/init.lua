@@ -35,6 +35,7 @@ function M.disable_autoformat(root_dir)
     pattern = root_dir .. "*",
     callback = function(event)
       vim.b[event.buf].autoformat = false
+      vim.b[event.buf].tidy_enabled = false
     end,
   })
 end
