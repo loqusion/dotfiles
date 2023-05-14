@@ -52,7 +52,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- reload yabai+skhd on config change
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = Utils.augroup("yabai"),
-  pattern = { ".yabairc", ".skhdrc" },
+  pattern = { "yabairc", "skhdrc", ".yabairc", ".skhdrc" },
   callback = function()
     vim.notify("Reloading yabai+skhd")
     vim.fn.system('launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"')
