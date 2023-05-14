@@ -24,7 +24,9 @@ if vim.env.VIMCONFIG then
   return debug.switch(vim.env.VIMCONFIG)
 end
 
--- require("utils.profile").start()
+---@diagnostic disable-next-line: unused-local
+local profiler = require("utils.profile")
+-- profiler.start()
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "LazyVimStarted",
