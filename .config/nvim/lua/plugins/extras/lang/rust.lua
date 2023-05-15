@@ -7,7 +7,7 @@ return {
     enabled = false,
     ft = "rust",
     opts = {
-      tools = { inlay_hints = { auto = not Utils.has("lvimuser/lsp-inlayhints.nvim") } },
+      tools = { inlay_hints = { auto = not Utils.has("lsp-inlayhints.nvim") } },
     },
   },
   {
