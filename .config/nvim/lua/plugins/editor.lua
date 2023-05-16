@@ -227,6 +227,7 @@ return {
     },
   },
 
+  -- switch input method automatically depending on mode
   {
     "keaising/im-select.nvim",
     event = "VeryLazy",
