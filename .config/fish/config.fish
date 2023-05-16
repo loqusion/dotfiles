@@ -17,6 +17,7 @@ abbr mv "mv -iv"
 abbr cp "cp -riv"
 abbr mkdir "mkdir -vp"
 abbr l ll
+abbr tree "exa --tree"
 abbr grep rg
 abbr icat wezterm imgcat
 
