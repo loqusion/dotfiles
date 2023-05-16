@@ -66,31 +66,6 @@ return {
   },
 
   {
-    "MTDL9/vim-log-highlighting",
-    event = "BufReadPre",
-  },
-
-  {
-    "jxnblk/vim-mdx-js",
-    event = "BufReadPre",
-  },
-
-  {
-    "NoahTheDuke/vim-just",
-    event = "BufReadPre",
-  },
-
-  {
-    "fladson/vim-kitty",
-    event = "BufReadPre",
-  },
-
-  {
-    "baskerville/vim-sxhkdrc",
-    event = "BufReadPre",
-  },
-
-  {
     "nvim-treesitter/nvim-treesitter",
     ---@type TSConfig
     opts = {
