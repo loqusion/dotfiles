@@ -348,12 +348,6 @@ return {
       },
     },
   },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    opts = function(_, opts)
-      table.insert(opts.filetype_exclude, "toggleterm")
-    end,
-  },
 
   {
     "nvim-colortils/colortils.nvim",
@@ -362,5 +356,25 @@ return {
       { "<leader>co", "<cmd>Colortils picker<cr>", desc = "Colortils" },
     },
     config = true,
+  },
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = function(_, opts)
+      table.insert(opts.filetype_exclude, "toggleterm")
+    end,
+  },
+  {
+    "echasnovski/mini.indentscope",
+    init = function()
+      local indent_blankline = require("lazy.core.config").spec.plugins["indent-blankline.nvim"]
+      local indent_blankline_opts = require("lazy.core.plugin").values(indent_blankline, "opts", false)
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = indent_blankline_opts.filetype_exclude,
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+    end,
   },
 }
