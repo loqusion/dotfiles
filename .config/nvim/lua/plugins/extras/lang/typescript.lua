@@ -19,6 +19,7 @@ return {
       }
 
       opts.servers.tsserver = vim.tbl_deep_extend("force", opts.servers.tsserver, inlay_hints_opts)
+      opts.servers.denols = {}
     end,
   },
   {
