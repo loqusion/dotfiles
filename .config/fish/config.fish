@@ -18,7 +18,6 @@ abbr cp "cp -riv"
 abbr mkdir "mkdir -vp"
 abbr l ll
 abbr tree "exa --tree"
-abbr grep rg
 abbr icat wezterm imgcat
 
 abbr vim nvim
@@ -32,6 +31,7 @@ abbr c dotbare
 abbr lg lazygit
 
 abbr df "df -h"
+abbr du "du -h"
 abbr caf 'caffeinate -d'
 abbr tarify "tar czpvf"
 abbr untar "tar xvf"
