@@ -61,7 +61,7 @@ cmd + alt - k : yabai -m window --focus stack.prev
 shift + alt - 0 : yabai -m space --balance
 
 alt + cmd - f         : yabai -m window --toggle zoom-fullscreen
-shift + alt - space : bash "${HOME}/.config/yabai/scripts/float.sh"
+alt + shift - space : "$HOME/.config/yabai/scripts/float.sh"
 
 # picture-in-picture
 # alt - p : yabai -m window --toggle sticky;\
