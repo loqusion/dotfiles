@@ -62,30 +62,34 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    opts = {
-      options = {
-        component_separators = "|",
-        section_separators = { left = "", right = "" },
-      },
-      sections = {
-        lualine_y = {
-          {
-            function()
-              local tors = vim.o.expandtab and "spaces" or "tab size"
-              local size = vim.o.shiftwidth ~= 0 and vim.o.shiftwidth or vim.o.tabstop
-              return ("%s: %s"):format(tors, size)
-            end,
-            cond = function()
-              return vim.o.modifiable
-            end,
+    opts = function(_, opts)
+      table.insert(opts.sections.lualine_x, 2, { "overseer" })
+
+      vim.tbl_deep_extend("force", opts, {
+        options = {
+          component_separators = "|",
+          section_separators = { left = "", right = "" },
+        },
+        sections = {
+          lualine_y = {
+            {
+              function()
+                local tors = vim.o.expandtab and "spaces" or "tab size"
+                local size = vim.o.shiftwidth ~= 0 and vim.o.shiftwidth or vim.o.tabstop
+                return ("%s: %s"):format(tors, size)
+              end,
+              cond = function()
+                return vim.o.modifiable
+              end,
+            },
+          },
+          lualine_z = {
+            { "progress", separator = " ", padding = { left = 1, right = 0 } },
+            { "location", padding = { left = 0, right = 1 } },
           },
         },
-        lualine_z = {
-          { "progress", separator = " ", padding = { left = 1, right = 0 } },
-          { "location", padding = { left = 0, right = 1 } },
-        },
-      },
-    },
+      })
+    end,
   },
 
   {
