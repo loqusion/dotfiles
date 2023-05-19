@@ -32,9 +32,10 @@ abbr lg lazygit
 
 abbr df "df -h"
 abbr du "du -h"
-abbr caf 'caffeinate -d'
+abbr caf "caffeinate -d"
 abbr tarify "tar czpvf"
 abbr untar "tar xvf"
+abbr glow "glow -p"
 
 # tabtab source for packages
 # uninstall by removing these lines
