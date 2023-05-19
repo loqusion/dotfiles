@@ -136,6 +136,7 @@ return {
       plugins = {
         gitsigns = true,
         tmux = true,
+        twilight = false,
       },
     },
   },
