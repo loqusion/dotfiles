@@ -72,7 +72,7 @@ return {
           {
             function()
               local tors = vim.o.expandtab and "spaces" or "tab size"
-              local size = vim.o.tabstop
+              local size = vim.o.shiftwidth ~= 0 and vim.o.shiftwidth or vim.o.tabstop
               return ("%s: %s"):format(tors, size)
             end,
             cond = function()
