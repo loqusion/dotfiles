@@ -6,6 +6,11 @@ return {
     dependencies = {
       "hrsh7th/cmp-emoji",
       "onsails/lspkind.nvim",
+      {
+        "David-Kunz/cmp-npm",
+        event = { "BufRead package.json" },
+        config = true,
+      },
     },
     config = function(_, opts)
       local cmp = require("cmp")
@@ -21,11 +26,12 @@ return {
       local cmp = require("cmp")
       return vim.tbl_deep_extend("force", opts, {
         completion = {
-          completeopt = "menu.menuone,noselect",
+          completeopt = "menu,menuone,noselect",
         },
         sources = cmp.config.sources(vim.list_extend(opts.sources, {
           { name = "emoji" },
           { name = "neorg" },
+          { name = "npm", keyword_length = 3 },
         })),
         window = {
           completion = {
