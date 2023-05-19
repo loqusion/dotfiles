@@ -5,6 +5,7 @@ vim.api.nvim_create_autocmd("FileType", {
   group = Utils.augroup("close_with_q", "lazyvim"),
   pattern = {
     "OverseerList",
+    "dap-float",
     "fugitive",
     "fugitiveblame",
     "neotest-*",
