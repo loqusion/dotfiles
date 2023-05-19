@@ -7,11 +7,13 @@ return {
       ---@type table<string, { name: string, plugins: string[]}>
       local defaults = {
         ["<leader>bd"] = { name = "+delete", plugins = { "bufferline.nvim", "close-buffers.nvim", "mini.bufremove" } },
+        ["<leader>o"] = { name = "+open", plugins = { "peek.nvim", "ChatGPT.nvim" } },
         ["<leader>r"] = { name = "+run", plugins = { "overseer.nvim" } },
         ["<leader>t"] = { name = "+test", plugins = { "neotest" } },
         ["<localleader>e"] = { name = "+evaulate", plugins = { "conjure" } },
         ["<localleader>ec"] = { name = "+comment", plugins = { "conjure" } },
         ["<localleader>l"] = { name = "+log", plugins = { "conjure" } },
+        ["gp"] = { name = "+preview", plugins = { "goto-preview" } },
       }
 
       ---@param prefix string
@@ -24,6 +26,7 @@ return {
       end)
 
       return vim.tbl_deep_extend("force", opts, {
+        show_help = false,
         defaults = defaults,
       })
     end,
