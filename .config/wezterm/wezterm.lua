@@ -13,4 +13,7 @@ end
 
 config.scrollback_lines = 10000
 
+-- temporary workaround for https://github.com/wez/wezterm/issues/1701
+config.enable_wayland = false
+
 return compose(config, { color_scheme, font, tab, keymaps, window })
