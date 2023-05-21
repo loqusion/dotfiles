@@ -1,4 +1,7 @@
 function la --wraps='exa --color=always --icons --group-directories-first --all' --description 'alias la exa --color=always --icons --group-directories-first --all'
-    exa --color=always --icons --group-directories-first --all $argv || ls -FA --color=always $argv
-
+    if command -q exa
+        exa --color=always --icons --group-directories-first --all $argv
+    else
+        command ls -FA --color=always $argv
+    end
 end
