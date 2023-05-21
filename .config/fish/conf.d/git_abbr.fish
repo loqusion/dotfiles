@@ -186,11 +186,12 @@ abbr grs- 'git reset --'
 abbr grm 'git rm'
 abbr grmc 'git rm --cached'
 
-abbr grst 'git restore'
-abbr grsts 'git restore --source'
-abbr grstst 'git restore --staged'
+abbr grt 'git restore'
+abbr grts 'git restore --source'
+abbr grtst 'git restore --staged'
+abbr grt! 'git restore --worktree --staged'
 
-abbr grt 'cd (git rev-parse --show-toplevel || echo .)'
+abbr groot 'cd (git rev-parse --show-toplevel || echo .)'
 
 abbr gs 'git status'
 abbr gss 'git status --short'
