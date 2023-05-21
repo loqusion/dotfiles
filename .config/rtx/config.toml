@@ -1,7 +1,3 @@
 [tools]
-go = "latest"
-lua = "latest"
 node = "latest"
 pnpm = "latest"
-python = "latest"
-rust = "latest"
