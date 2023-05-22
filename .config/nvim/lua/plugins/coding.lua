@@ -63,6 +63,7 @@ return {
   -- switch with predefined replacements
   {
     "AndrewRadev/switch.vim",
+    enabled = false,
     keys = { "-", "<Plug>(Switch)", desc = "Switch" },
     init = function()
       vim.g.switch_mapping = "-"
