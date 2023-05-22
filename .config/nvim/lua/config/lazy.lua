@@ -22,6 +22,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.ui.mini-animate", enabled = style.animation },
     { import = "plugins" },
     { import = "plugins.extras.lang" },
+    { import = "plugins.extras.dap" },
   },
   defaults = {
     lazy = true,
