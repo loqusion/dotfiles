@@ -21,10 +21,8 @@ return {
           dap_python.resolve_python = function()
             local pyright = require("lspconfig.configs").pyright
             local _, python_path = python.get_path(pyright.get_root_dir())
-            d(python_path)
             return python_path
           end
-          d(debugpy_path)
           dap_python.setup(("%s/venv/bin/python"):format(debugpy_path))
         end,
       },
