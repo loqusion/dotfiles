@@ -11,8 +11,6 @@ set -U fish_greeting ""
 set -Ux LESS -RFQM
 set -Ux MANPAGER "nvim +Man!"
 
-set -Ux CC (which clang)
-
 abbr mv "mv -iv"
 abbr cp "cp -riv"
 abbr mkdir "mkdir -vp"
