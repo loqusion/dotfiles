@@ -1,5 +1,5 @@
 [core]
-	editor = NVIM_DISABLE_YABAI_TOGGLE=true nvim
+	editor = nvim
 	pager = delta
 [user]
 	name = John Bernard
