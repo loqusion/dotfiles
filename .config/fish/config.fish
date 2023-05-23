@@ -14,7 +14,6 @@ set -Ux MANPAGER "nvim +Man!"
 abbr mv "mv -iv"
 abbr cp "cp -riv"
 abbr mkdir "mkdir -vp"
-abbr rm "trash -v"
 abbr l ll
 abbr tree "exa --tree"
 abbr icat wezterm imgcat
