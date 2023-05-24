@@ -1,6 +1,16 @@
 local Utils = require("utils")
 
 return {
+  {
+    "williamboman/mason.nvim",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
+        "rust-analyzer",
+        "rustfmt",
+      })
+    end,
+  },
+
   -- rust tools
   {
     "simrat39/rust-tools.nvim",
