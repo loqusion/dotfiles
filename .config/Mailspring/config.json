@@ -1,0 +1,243 @@
+{
+  "*": {
+    "env": "production",
+    "core": {
+      "themes": [
+        "ui-light"
+      ],
+      "disabledPackages": [
+        "message-view-on-github",
+        "personal-level-indicators",
+        "phishing-detection",
+        "nylas-private-salesforce",
+        "github-contact-card",
+        "keybase",
+        "composer-markdown",
+        "composer-scheduler",
+        "composer-mail-merge",
+        "send-and-archive",
+        "main-calendar"
+      ],
+      "workspace": {
+        "mode": "split",
+        "showImportant": false,
+        "menubarStyle": "autohide"
+      },
+      "keymapTemplate": "Gmail",
+      "tutorial": {
+        "seen": [
+          "ThreadSearchBar",
+          "ActivityListButton"
+        ]
+      },
+      "notifications": {
+        "enabled": false,
+        "sounds": false,
+        "countBadge": "hide"
+      },
+      "theme": "Catppuccin-Mocha"
+    },
+    "identity": {
+      "id": "4f652932-b49c-4aac-9505-4ef37558bb67",
+      "firstName": "John",
+      "lastName": "Bernard",
+      "emailAddress": "loqusion@gmail.com",
+      "object": "identity",
+      "createdAt": "2023-05-04T22:11:47.000Z",
+      "stripePlan": "Basic",
+      "stripePlanEffective": "Basic",
+      "stripeCustomerId": "cus_Npq3CZ8BxdePWq",
+      "stripePeriodEnd": "2023-06-04T22:11:46.000Z",
+      "featureUsage": {
+        "snooze": {
+          "quota": 15,
+          "period": "weekly",
+          "usedInPeriod": 0,
+          "featureLimitName": "basic-limit"
+        },
+        "send-later": {
+          "quota": 5,
+          "period": "weekly",
+          "usedInPeriod": 0,
+          "featureLimitName": "basic-limit"
+        },
+        "thread-sharing": {
+          "quota": 3,
+          "period": "weekly",
+          "usedInPeriod": 0,
+          "featureLimitName": "basic-limit"
+        },
+        "link-tracking": {
+          "quota": 5,
+          "period": "weekly",
+          "usedInPeriod": 0,
+          "featureLimitName": "basic-limit"
+        },
+        "open-tracking": {
+          "quota": 5,
+          "period": "weekly",
+          "usedInPeriod": 0,
+          "featureLimitName": "basic-limit"
+        },
+        "contact-profiles": {
+          "quota": 3,
+          "period": "weekly",
+          "usedInPeriod": 0,
+          "featureLimitName": "basic-limit"
+        },
+        "send-reminders": {
+          "quota": 5,
+          "period": "weekly",
+          "usedInPeriod": 0,
+          "featureLimitName": "basic-limit"
+        },
+        "translation": {
+          "quota": 50,
+          "period": "weekly",
+          "usedInPeriod": 0,
+          "featureLimitName": "basic-limit"
+        }
+      }
+    },
+    "accounts": [
+      {
+        "id": "3c90e367",
+        "metadata": [],
+        "name": "John Bernard",
+        "provider": "gmail",
+        "emailAddress": "loqusion@gmail.com",
+        "settings": {
+          "imap_host": "imap.gmail.com",
+          "imap_port": 993,
+          "imap_username": "loqusion@gmail.com",
+          "imap_security": "SSL / TLS",
+          "imap_allow_insecure_ssl": false,
+          "smtp_host": "smtp.gmail.com",
+          "smtp_port": 587,
+          "smtp_username": "loqusion@gmail.com",
+          "smtp_security": "STARTTLS",
+          "smtp_allow_insecure_ssl": false,
+          "container_folder": "",
+          "refresh_client_id": "662287800555-pdiq3r3puob8a44locitndbocua7c30f.apps.googleusercontent.com"
+        },
+        "label": "loqusion@gmail.com",
+        "autoaddress": {
+          "type": "bcc",
+          "value": ""
+        },
+        "aliases": [],
+        "syncState": "ok",
+        "authedAt": 1683239567.914,
+        "color": "",
+        "__cls": "Account"
+      },
+      {
+        "id": "954245a1",
+        "metadata": [],
+        "name": "rasnauf",
+        "provider": "gmail",
+        "emailAddress": "rasnauf@gmail.com",
+        "settings": {
+          "imap_host": "imap.gmail.com",
+          "imap_port": 993,
+          "imap_username": "rasnauf@gmail.com",
+          "imap_security": "SSL / TLS",
+          "imap_allow_insecure_ssl": false,
+          "smtp_host": "smtp.gmail.com",
+          "smtp_port": 587,
+          "smtp_username": "rasnauf@gmail.com",
+          "smtp_security": "STARTTLS",
+          "smtp_allow_insecure_ssl": false,
+          "container_folder": "",
+          "refresh_client_id": "662287800555-pdiq3r3puob8a44locitndbocua7c30f.apps.googleusercontent.com"
+        },
+        "label": "rasnauf@gmail.com",
+        "autoaddress": {
+          "type": "bcc",
+          "value": ""
+        },
+        "aliases": [],
+        "syncState": "ok",
+        "authedAt": 1683239736.875,
+        "color": "",
+        "__cls": "Account"
+      },
+      {
+        "id": "73bdf729",
+        "metadata": [],
+        "name": "John Bernard",
+        "provider": "gmail",
+        "emailAddress": "john3bernard@gmail.com",
+        "settings": {
+          "imap_host": "imap.gmail.com",
+          "imap_port": 993,
+          "imap_username": "john3bernard@gmail.com",
+          "imap_security": "SSL / TLS",
+          "imap_allow_insecure_ssl": false,
+          "smtp_host": "smtp.gmail.com",
+          "smtp_port": 587,
+          "smtp_username": "john3bernard@gmail.com",
+          "smtp_security": "STARTTLS",
+          "smtp_allow_insecure_ssl": false,
+          "container_folder": "",
+          "refresh_client_id": "662287800555-pdiq3r3puob8a44locitndbocua7c30f.apps.googleusercontent.com"
+        },
+        "label": "john3bernard@gmail.com",
+        "autoaddress": {
+          "type": "bcc",
+          "value": ""
+        },
+        "aliases": [],
+        "syncState": "ok",
+        "authedAt": 1683239806.073,
+        "color": "",
+        "__cls": "Account"
+      },
+      {
+        "id": "cea4a96f",
+        "metadata": [],
+        "name": "John Bernard",
+        "provider": "gmail",
+        "emailAddress": "me@johnrbernard.com",
+        "settings": {
+          "imap_host": "imap.gmail.com",
+          "imap_port": 993,
+          "imap_username": "me@johnrbernard.com",
+          "imap_security": "SSL / TLS",
+          "imap_allow_insecure_ssl": false,
+          "smtp_host": "smtp.gmail.com",
+          "smtp_port": 587,
+          "smtp_username": "me@johnrbernard.com",
+          "smtp_security": "STARTTLS",
+          "smtp_allow_insecure_ssl": false,
+          "container_folder": "",
+          "refresh_client_id": "662287800555-pdiq3r3puob8a44locitndbocua7c30f.apps.googleusercontent.com"
+        },
+        "label": "me@johnrbernard.com",
+        "autoaddress": {
+          "type": "bcc",
+          "value": ""
+        },
+        "aliases": [],
+        "syncState": "ok",
+        "authedAt": 1683239866.299,
+        "color": "",
+        "__cls": "Account"
+      }
+    ],
+    "accountsVersion": 7,
+    "containerFolderDefault": "",
+    "signatures": {
+      "initial": {
+        "id": "initial",
+        "title": "Default",
+        "body": "<div><table cellPadding=\"0\" cellSpacing=\"0\"><tbody><tr><td colSpan=\"2\"><div style=\"padding-bottom:15px\"><div><strong>John</strong></div></div></td></tr><tr><td style=\"vertical-align:top\"></td><td><div style=\"font-size:0.9em;white-space:nowrap;border-left:2px solid gray;margin-left:20px;padding-left:20px\"><div><div></div><div></div></div></div></td></tr></tbody></table></div>",
+        "data": {
+          "title": "",
+          "templateName": "SignatureB",
+          "name": "John"
+        }
+      }
+    }
+  }
+}
