@@ -212,6 +212,7 @@ abbr gstall 'git stash --all'
 
 abbr gsi 'git submodule init'
 abbr gsu 'git submodule update'
+abbr gsui 'git submodule update --init'
 
 abbr gsw 'git switch'
 abbr gswc 'git switch --create'
