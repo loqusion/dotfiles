@@ -56,7 +56,7 @@ abbr gclean 'git clean --interactive -d'
 abbr gpristine 'git reset --hard && git clean -dffx'
 abbr gcm 'git checkout (git_main_branch)'
 abbr gcd 'git checkout (git_develop_branch)'
-abbr gcmsg 'git commit --message'
+abbr gcmsg 'git commit -v --message'
 
 abbr gco 'git checkout'
 abbr gcor 'git checkout --recurse-submodules'
