@@ -1,2 +1,4 @@
 # Configured per-machine by loqusion/bootstrap
+local.conf
 monitors.conf
+nvidia.conf
