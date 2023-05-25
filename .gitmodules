@@ -33,7 +33,7 @@
 	url = https://github.com/catppuccin/rofi
 [submodule ".config/catppuccin/obs"]
 	path = .config/catppuccin/obs
-	url = https://github.com/catppuccin/obs
+	url = https://github.com/loqusion/obs
 [submodule ".config/catppuccin/steam"]
 	path = .config/catppuccin/steam
 	url = https://github.com/catppuccin/steam
