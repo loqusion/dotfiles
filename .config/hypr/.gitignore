@@ -1,4 +1,5 @@
 # Configured per-machine by loqusion/bootstrap
+hyprlandd.conf
 local.conf
 monitors.conf
 nvidia.conf
