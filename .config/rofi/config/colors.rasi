@@ -1,12 +1,12 @@
 * {
-  bg: #1e1d2fff;
-  bga: #89dcebff;
-  fg: #d9e0eeff;
-  fga: #f28fadff;
-  bdr: #96cdfbff;
-  sel: #1e1e2eff;
-  ugt: #f28fadff;
-  img: #fae3b0ff;
+  BG: #1e1d2fff;
+  BGA: #89dcebff;
+  FG: #d9e0eeff;
+  FGA: #f28fadff;
+  BDR: #96cdfbff;
+  SEL: #1e1e2eff;
+  UGT: #f28fadff;
+  IMG: #fae3b0ff;
   off: #575268ff;
   on: #abe9b3ff;
 }
