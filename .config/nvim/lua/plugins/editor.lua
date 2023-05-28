@@ -90,6 +90,7 @@ return {
     "echasnovski/mini.bracketed",
     event = "BufReadPost",
     opts = {
+      comment = { suffix = "" },
       window = { suffix = "" },
       quickfix = { suffix = "" },
       treesitter = { suffix = "n" },
