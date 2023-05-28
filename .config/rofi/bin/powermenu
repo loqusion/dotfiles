@@ -19,20 +19,19 @@ confirm() {
 chosen=$($POWERMENU -sep '|' -p "UP - $UPTIME" -dmenu -selected-row 0 <<<"$LOCK|$SUSPEND|$LOGOUT|$REBOOT|$SHUTDOWN")
 case $chosen in
 "$LOCK")
-	~/.bin/lock.sh
+	swaylock
 	;;
 "$SUSPEND")
 	ans=$(confirm &)
 	[[ "$ans" =~ ^[Yy] ]] && {
-		amixer set Master mute
-		~/.bin/lock.sh
+		# amixer set Master mute
 		systemctl suspend
 	}
 	;;
 "$LOGOUT")
 	ans=$(confirm &)
 	[[ "$ans" =~ ^[Yy] ]] &&
-		bspc quit
+		hyprctl dispatch exit
 	;;
 "$REBOOT")
 	ans=$(confirm &)
