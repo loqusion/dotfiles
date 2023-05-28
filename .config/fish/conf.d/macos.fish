@@ -5,7 +5,7 @@ if test (uname) = Darwin
     ulimit -n 200000
     ulimit -u 2048
 
-    set -Ux CC (which clang)
-    set -Ux LDFLAGS -L/opt/homebrew/opt/llvm/lib
-    set -Ux CPPFLAGS -I/opt/homebrew/opt/llvm/include
+    set -gx CC (which clang)
+    set -gx LDFLAGS -L/opt/homebrew/opt/llvm/lib
+    set -gx CPPFLAGS -I/opt/homebrew/opt/llvm/include
 end
