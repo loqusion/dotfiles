@@ -1,0 +1,4 @@
+lock swaylock
+before-sleep 'hyprctl dispatch dpms off'
+after-resume 'hyprctl dispatch dpms on'
+idlehint 300
