@@ -251,4 +251,30 @@ return {
       require("telescope").load_extension("package_info")
     end,
   },
+
+  {
+    "adelarsq/image_preview.nvim",
+    event = "VeryLazy",
+    config = true,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = function(_, opts)
+      return vim.tbl_deep_extend("force", opts, {
+        filesystem = {
+          window = {
+            mappings = { ["<leader>p"] = "image_wezterm" },
+          },
+          commands = {
+            image_wezterm = function(state)
+              local node = state.tree:get_node()
+              if node.type == "file" then
+                require("image_preview").PreviewImage(node.path)
+              end
+            end,
+          },
+        },
+      })
+    end,
+  },
 }
