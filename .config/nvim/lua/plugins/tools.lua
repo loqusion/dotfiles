@@ -52,7 +52,7 @@ return {
   {
     "ekickx/clipboard-image.nvim",
     cmd = "PasteImg",
-    build = "brew install pngpaste",
+    build = 'test "$(uname -s)" = "Darwin" && brew install pngpaste',
   },
 
   {
