@@ -36,6 +36,21 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       filesystem = {
+        window = {
+          mappings = {
+            ["o"] = "open_in_external_program",
+          },
+        },
+        commands = {
+          open_in_external_program = function(state)
+            local node = state.tree:get_node()
+            if node.type == "file" then
+              local cmdname = jit.os == "Linux" and "xdg-open" or "open"
+              local cmd = ("%s %s"):format(cmdname, vim.fn.shellescape(node.path))
+              vim.fn.jobstart(cmd, { detach = true })
+            end
+          end,
+        },
         find_by_full_path_words = true,
       },
     },
