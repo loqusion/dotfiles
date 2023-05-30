@@ -31,6 +31,7 @@ abbr lg lazygit
 
 abbr df "df -h"
 abbr du "du -h"
+abbr bc "bc -ql"
 abbr caf "caffeinate -d"
 abbr tarify "tar czpvf"
 abbr untar "tar xvf"
