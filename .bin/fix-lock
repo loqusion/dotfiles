@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+WAYLAND_DISPLAY=wayland-1 swaylock -f
