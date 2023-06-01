@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=mpv Webcam
+GenericName=Webcam
+Comment=View webcam
+Icon=mpv
+Exec=~/.bin/webcam
+Terminal=false
+Categories=Video
+StartupWMClass=mpv
