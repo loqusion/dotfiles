@@ -1,6 +1,6 @@
 {
     "label" : "lock",
-    "action" : "sleep 1; swaylockd",
+    "action" : "sleep 1; swaylock",
     "text" : "Lock",
     "keybind" : "l"
 }
