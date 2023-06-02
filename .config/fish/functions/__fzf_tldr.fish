@@ -1,14 +1,16 @@
 function __fzf_tldr --description "Search tldr using fzf"
-    set -l os (uname)
+    set -f os (uname)
     if test $os = Linux
-        set -l pages linux
+        set -f pages linux
+        set -f cache ~/.cache
     else if test $os = Darwin
-        set -l pages osx
+        set -f pages osx
+        set -f cache ~/Library/Caches
     end
-    fd --print0 --extension md . ~/Library/Caches/tealdeer/tldr-pages/pages/{$pages,common} \
+    fd --print0 --extension md . $cache/tealdeer/tldr-pages/pages/{$pages,common} \
         | sed -z 's/.*\///; s/\.md$//' \
         | fzf --read0 --query=(commandline) --preview 'fish -c "tldr {}"' --preview-window right:75% \
-        | read -lz cmd
+        | read -fz cmd
 
     if test $status -eq 0
         # trim any surrounding white space
