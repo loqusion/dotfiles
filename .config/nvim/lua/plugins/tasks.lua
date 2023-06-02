@@ -36,6 +36,7 @@ return {
           },
         },
       },
+      quickfix = { open = false },
     },
   },
 
