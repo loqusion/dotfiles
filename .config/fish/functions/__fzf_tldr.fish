@@ -7,10 +7,10 @@ function __fzf_tldr --description "Search tldr using fzf"
         set -f pages osx
         set -f cache ~/Library/Caches
     end
-    fd --print0 --extension md . $cache/tealdeer/tldr-pages/pages/{$pages,common} \
-        | sed -z 's/.*\///; s/\.md$//' \
-        | fzf --read0 --query=(commandline) --preview 'fish -c "tldr {}"' --preview-window right:75% \
-        | read -fz cmd
+    fd --extension md . $cache/tealdeer/tldr-pages/pages/{$pages,common} \
+        | sed 's/.*\///; s/\.md$//' \
+        | fzf --query=(commandline) --preview 'fish -c "tldr {}"' --preview-window right:75% \
+        | read -f cmd
 
     if test $status -eq 0
         # trim any surrounding white space
