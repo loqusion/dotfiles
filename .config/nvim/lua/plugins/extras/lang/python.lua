@@ -55,8 +55,16 @@ return {
 
       vim.list_extend(opts.sources, {
         custom.formatting.blackd_client,
-        nls.builtins.diagnostics.flake8,
-        nls.builtins.diagnostics.pylint.with({}),
+        nls.builtins.diagnostics.flake8.with({
+          condition = function(utils)
+            return utils.root_has_file(".flake8")
+          end,
+        }),
+        nls.builtins.diagnostics.pylint.with({
+          condition = function(utils)
+            return utils.root_has_file(".pylintrc")
+          end,
+        }),
         nls.builtins.formatting.autoflake,
         nls.builtins.formatting.isort,
       })
