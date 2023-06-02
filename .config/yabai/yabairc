@@ -42,6 +42,7 @@ yabai -m config window_gap 8
 # config: unmanaged {{{
 unmanaged=(
 	Fantastical
+	Raycast
 )
 # }}}
 
