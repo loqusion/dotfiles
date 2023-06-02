@@ -11,65 +11,33 @@ return {
           vim.g.cursorhold_updatetime = 50
         end,
       },
+      "haydenmeade/neotest-jest",
+      "nvim-neotest/neotest-python",
+      { "nvim-neotest/neotest-vim-test", dependencies = "vim-test/vim-test" },
     },
-    keys = function()
-      -- stylua: ignore
-      return {
-        { "<leader>tr", function() require("neotest").run.run() end, desc = "Run Nearest" },
-        { "<leader>tR", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run File" },
-        { "<leader>tA", function() require("neotest").run.run({ suite = true }) end, desc = "Run Suite" },
-        { "<leader>td", function() require("neotest").run.run({ strategy = "dap" }) end, desc = "Debug Nearest" },
-        { "<leader>tl", function() require("neotest").run.run_last() end, desc = "Run last test" },
-        { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Toggle summary" },
-        { "<leader>tS", function() require("neotest").run.stop() end, desc = "Stop" },
-        -- { "<leader>tD", function() require("neotest").run.run_last({ strategy = "dap" }) end, desc = "Debug last test" },
-        -- { "<leader>ta", function() require("neotest").run.attach() end, desc = "Attach to running test" },
-        -- { "<leader>tm", function() require("neotest").summary.run_marked() end, desc = "Summary for marked tests" },
-        { "<leader>to", function() require("neotest").output.open({ enter = true, short = true }) end, desc = "Output (short)", },
-        { "<leader>tO", function() require("neotest").output.open({ enter = true }) end, desc = "Output" },
-        { "[T", function() require("neotest").jump.prev({ status = "failed" }) end, desc = "Previous failed test" },
-        { "]T", function() require("neotest").jump.next({ status = "failed" }) end, desc = "Next failed test" },
-      }
-    end,
-    opts = function()
-      return {
-        adapters = {
-          -- require("neotest-jest")({
-          --   jestCommand = "pnpm test --",
-          -- }),
-          require("neotest-python")({}),
-          require("neotest-vim-test")({
-            ignore_filetypes = {
-              -- 'javascript',
-              -- 'typescript',
-              -- 'javascriptreact',
-              -- 'typescriptreact',
-              "python",
-            },
-          }),
+    -- stylua: ignore
+    keys = {
+      { "<leader>tA", function() require("neotest").run.run({ suite = true }) end, desc = "Run Suite" },
+      { "<leader>tl", function() require("neotest").run.run_last() end, desc = "Run last test" },
+      { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true, short = true }) end, desc = "Show Output" },
+      -- { "<leader>tD", function() require("neotest").run.run_last({ strategy = "dap" }) end, desc = "Debug last test" },
+      -- { "<leader>ta", function() require("neotest").run.attach() end, desc = "Attach to running test" },
+      -- { "<leader>tm", function() require("neotest").summary.run_marked() end, desc = "Summary for marked tests" },
+      { "[T", function() require("neotest").jump.prev({ status = "failed" }) end, desc = "Previous failed test" },
+      { "]T", function() require("neotest").jump.next({ status = "failed" }) end, desc = "Next failed test" },
+    },
+    opts = {
+      adapters = {
+        -- ["neotest-jest"] = {},
+        ["neotest-python"] = {},
+        ["neotest-vim-test"] = {
+          ignore_filetypes = {
+            "python",
+          },
         },
-        quickfix = { open = false },
-      }
-    end,
-    config = function(_, opts)
-      -- get neotest namespace (api call creates or returns namespace)
-      local neotest_ns = vim.api.nvim_create_namespace("neotest")
-      vim.diagnostic.config({
-        virtual_text = {
-          format = function(diagnostic)
-            local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
-            return message
-          end,
-        },
-      }, neotest_ns)
-
-      require("neotest").setup(opts)
-    end,
+      },
+    },
   },
-  "haydenmeade/neotest-jest",
-  "nvim-neotest/neotest-python",
-  "akinsho/neotest-go",
-  { "nvim-neotest/neotest-vim-test", dependencies = "vim-test/vim-test" },
 
   -- task runner and job management
   {
