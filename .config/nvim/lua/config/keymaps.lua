@@ -15,6 +15,9 @@ local function unmap(modes, lhs, opts)
   vim.keymap.del(modes, lhs, opts)
 end
 
+unmap("n", "<leader>ft")
+unmap("n", "<leader>fT")
+unmap({ "n", "t" }, "<C-/>")
 unmap("t", "<C-h>")
 unmap("t", "<C-j>")
 unmap("t", "<C-k>")
