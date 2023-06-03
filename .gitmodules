@@ -2,7 +2,7 @@
 	path = .config/kitty/kitty-themes
 	url = https://github.com/dexpota/kitty-themes
 [submodule ".config/hypr/.AmadeusWM"]
-	path = .config/hypr/.AmadeusWM
+	path = .config/AmadeusWM
 	url = https://github.com/loqusion/dotfiles-hyprland-AmadeusWM
 [submodule ".config/catppuccin/fish"]
 	path = .config/catppuccin/fish
