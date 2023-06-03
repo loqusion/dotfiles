@@ -36,3 +36,5 @@ abbr caf "caffeinate -d"
 abbr tarify "tar czpvf"
 abbr untar "tar xvf"
 abbr glow "glow -p"
+
+direnv hook fish | source
