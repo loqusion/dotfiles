@@ -1,5 +1,3 @@
-local utils = require("utils")
-
 return {
   -- {{{
   ---@type
@@ -70,7 +68,7 @@ return {
   -- }}}
   colorscheme = "catppuccin-mocha",
   background = "dark",
-  transparent = not utils.is_ssh() and not vim.g.neovide and true,
+  transparent = true,
   animation = false,
   -- Border style in floating windows
   ---@type _.NuiBorderStyle
