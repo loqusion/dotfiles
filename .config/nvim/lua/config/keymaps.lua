@@ -22,7 +22,6 @@ unmap("t", "<C-h>")
 unmap("t", "<C-j>")
 unmap("t", "<C-k>")
 unmap("t", "<C-l>")
-unmap("t", "<C-w>")
 
 map({ "n", "i", "c", "v", "o", "t", "l" }, "<MiddleMouse>", "<Nop>", { desc = "which_key_ignore" })
 
