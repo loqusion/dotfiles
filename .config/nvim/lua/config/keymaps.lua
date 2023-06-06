@@ -18,6 +18,7 @@ end
 unmap("n", "<leader>ft")
 unmap("n", "<leader>fT")
 unmap({ "n", "t" }, "<C-/>")
+unmap({ "n", "t" }, "<C-_>")
 unmap("t", "<C-h>")
 unmap("t", "<C-j>")
 unmap("t", "<C-k>")
