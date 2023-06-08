@@ -43,18 +43,9 @@ return {
 
   {
     "jose-elias-alvarez/null-ls.nvim",
-    dependencies = {
-      "CKolkey/ts-node-action",
-      -- stylua: ignore
-      keys = {
-        { "-", function() require("ts-node-action").node_action() end, desc = "Trigger Node Action" },
-      },
-      opts = {},
-    },
     opts = function(_, opts)
       local nls = require("null-ls")
       vim.list_extend(opts.sources, {
-        nls.builtins.code_actions.ts_node_action,
         nls.builtins.diagnostics.markdownlint,
         nls.builtins.diagnostics.selene.with({
           condition = function(utils)

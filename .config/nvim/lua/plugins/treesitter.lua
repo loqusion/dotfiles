@@ -65,6 +65,16 @@ return {
     },
   },
 
+  -- switch.vim, but with treesitter
+  {
+    "CKolkey/ts-node-action",
+    keys = {
+      -- stylua: ignore
+      { "-", function() require("ts-node-action").node_action() end, desc = "Trigger Node Action" },
+    },
+    opts = {},
+  },
+
   {
     "nvim-treesitter/nvim-treesitter",
     ---@type TSConfig
