@@ -14,7 +14,7 @@ return {
   -- rust tools
   {
     "simrat39/rust-tools.nvim",
-    enabled = false,
+    enabled = true,
     ft = "rust",
     opts = {
       tools = { inlay_hints = { auto = not Utils.has("lsp-inlayhints.nvim") } },
@@ -22,8 +22,12 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      rust_analyzer = {
+    opts = function(_, opts)
+      if Utils.has("rust-tools.nvim") then
+        return
+      end
+
+      opts.rust_analyzer = {
         settings = {
           ["rust-analyzer"] = {
             procMacro = { enable = true },
@@ -35,7 +39,7 @@ return {
             },
           },
         },
-      },
-    },
+      }
+    end,
   },
 }
