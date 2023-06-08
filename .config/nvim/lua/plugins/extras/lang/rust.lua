@@ -42,4 +42,18 @@ return {
       }
     end,
   },
+
+  {
+    "Saecki/crates.nvim",
+    event = "BufRead Cargo.toml",
+    opts = {
+      null_ls = { enabled = true },
+    },
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      table.insert(opts.sources, { name = "crates" })
+    end,
+  },
 }
