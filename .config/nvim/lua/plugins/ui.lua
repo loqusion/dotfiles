@@ -63,6 +63,20 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = function(_, opts)
+      local function assert_lualine(actual, expected, name)
+        return assert(
+          string.gsub(actual, "%s", "") == string.gsub(expected, "%s", ""),
+          ("Expected `%s` to be `%s`; found `%s` \nCheck https://github.com/LazyVim/LazyVim to see if its lualine config changed"):format(
+            name,
+            expected,
+            actual
+          )
+        )
+      end
+
+      -- notification and error when upstream lualine_a changes
+      assert_lualine(vim.inspect(opts.sections.lualine_a), '{ "mode" }', "opts.sections.lualine_a")
+
       table.insert(opts.sections.lualine_x, 2, { "overseer" })
 
       opts.options = vim.tbl_deep_extend("force", opts.options, {
@@ -70,6 +84,9 @@ return {
         section_separators = { left = "", right = "" },
       })
       opts.sections = vim.tbl_deep_extend("force", opts.sections, {
+        lualine_a = {
+          { "mode", separator = { left = "", right = "" } },
+        },
         lualine_y = {
           {
             function()
@@ -84,7 +101,7 @@ return {
         },
         lualine_z = {
           { "progress", separator = " ", padding = { left = 1, right = 0 } },
-          { "location", padding = { left = 0, right = 1 } },
+          { "location", padding = { left = 0, right = 1 }, separator = { right = "" } },
         },
       })
     end,
