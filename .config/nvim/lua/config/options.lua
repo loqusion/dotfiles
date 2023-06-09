@@ -19,6 +19,7 @@ opt.mousemoveevent = true
 opt.relativenumber = false -- Relative line numbers
 opt.shell = "bash" -- Shell to use for ! and :! commands
 opt.shiftwidth = 0 -- Use 'tabstop' value instead
+opt.swapfile = false -- Don't use swapfile
 -- opt.showbreak = "↪ " -- Show where line wraps
 opt.showcmd = false -- Don't show command in statusline
 opt.spelllang = { "en_us", "cjk" }
