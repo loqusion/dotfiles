@@ -41,11 +41,12 @@ map("n", "<leader>wT", "<C-w>T", { desc = "Break out into a new tab" })
 map("n", "<leader>wx", "<C-w>x", { desc = "Swap current with next" })
 map("n", "<leader>wo", "<C-w>o", { desc = "Close other windows" })
 
-map("n", "<leader>ue", "<cmd>edit<cr>", { desc = "Re-edit file" })
+map("n", "<leader>fe", "<cmd>edit<cr>", { desc = "Re-edit file" })
+
 map("n", "<leader>uf", function()
   local lazyvim_format = require("lazyvim.plugins.lsp.format")
   lazyvim_format.toggle()
-  if require("utils").has("tidy.nvim") then
+  if Utils.has("tidy.nvim") then
     require("tidy").enabled = lazyvim_format.autoformat == true
   end
 end, { desc = "Toggle format on Save" })
