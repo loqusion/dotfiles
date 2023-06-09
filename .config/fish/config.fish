@@ -2,8 +2,12 @@ set -gx EDITOR (which nvim)
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 
+set -gx GOPATH $HOME/.go
+set -gx CARGO_HOME $HOME/.cargo
+
 set -Ux fish_user_paths
-fish_add_path ~/.cargo/bin
+fish_add_path $CARGO_HOME/bin
+fish_add_path $GOPATH/bin
 fish_add_path ~/.bin
 
 set -U fish_greeting ""
