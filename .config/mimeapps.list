@@ -1,2 +1,3 @@
 [Default Applications]
 inode/directory=org.gnome.Nautilus.desktop
+x-scheme-handler/notion=notion-app.desktop
