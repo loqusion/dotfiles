@@ -111,6 +111,8 @@ return {
       vim.g["conjure#mapping#doc_word"] = false
       vim.g["conjure#mapping#def_word"] = false
 
+      vim.g["conjure#extract#tree_sitter#enabled"] = true
+
       -- TODO: add virtualenv support
       vim.g["conjure#client#python#stdio#command"] = "python3 -iq"
 

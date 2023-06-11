@@ -56,4 +56,15 @@ return {
       table.insert(opts.sources, { name = "crates" })
     end,
   },
+
+  {
+    "Olical/conjure",
+    dependencies = {
+      "evcxr/evcxr",
+      build = {
+        "rustup component add rust-src",
+        "cargo install evcxr_repl",
+      },
+    },
+  },
 }

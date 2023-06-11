@@ -30,6 +30,7 @@
   "dressing.nvim": { "branch": "master", "commit": "f16d7586fcdd8b2e3850d0abb7e46f944125cc25" },
   "drop.nvim": { "branch": "main", "commit": "276f0a9e26c86946567cd91759ee08e0f21ec96c" },
   "edge": { "branch": "master", "commit": "358cb6688ac577470a4eafcb53bdd63899dfc937" },
+  "evcxr": { "branch": "main", "commit": "ffcb85cbc071fb243bd4da9f78083d400e760f8e" },
   "flit.nvim": { "branch": "main", "commit": "f60e4b3d49bb5a5e97cfffe66f2e671eb422078e" },
   "friendly-snippets": { "branch": "main", "commit": "0eb246a7dbb06d3d9e560696be210241cc27c081" },
   "git-conflict.nvim": { "branch": "main", "commit": "8d962d83cae924a314965f738ed1e05a4000d682" },
