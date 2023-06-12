@@ -22,7 +22,9 @@ return function(config)
   }
 
   local pane = {
+    { key = '\\', mods = mod, action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
     { key = '|', mods = mod, action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+    { key = '-', mods = mod, action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
     { key = '_', mods = mod, action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
     { key = 'Z', mods = mod, action = act.TogglePaneZoomState },
     { key = 'W', mods = mod, action = act.CloseCurrentPane { confirm = true } },
