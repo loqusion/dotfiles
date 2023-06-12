@@ -1,7 +1,14 @@
 local Utils = require("utils")
 
+---@return LazyKeysHandler
+local function get_keys_handler()
+  local keys_handler = require("lazy.core.handler").handlers.keys
+  ---@cast keys_handler LazyKeysHandler
+  return keys_handler
+end
+
 local function map(mode, lhs, rhs, opts)
-  local keys = require("lazy.core.handler").handlers.keys
+  local keys = get_keys_handler()
   ---@cast keys LazyKeysHandler
   -- do not create the keymap if a lazy keys handler exists
   if not keys.active[keys.parse({ lhs, mode = mode }).id] then
@@ -52,3 +59,13 @@ map("n", "<leader>uf", function()
 end, { desc = "Toggle format on Save" })
 
 map("n", "<leader>cR", Utils.runlua, { desc = "Run Lua" })
+
+if Utils.has("smart-splits.nvim") then
+  -- manually map to override LazyVim mappings
+  local smart_splits = require("lazy.core.config").spec.plugins["smart-splits.nvim"]
+  local smart_splits_keys = require("lazy.core.plugin").values(smart_splits, "keys", true)
+  local get_opts = get_keys_handler().opts
+  for _, keys in ipairs(smart_splits_keys) do
+    map(keys.mode or "n", keys[1], keys[2], get_opts(keys))
+  end
+end
