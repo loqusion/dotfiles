@@ -8,8 +8,6 @@
 	defaultBranch = main
 [interactive]
 	diffFilter = delta --color-only
-[add.interactive]
-	useBuiltin = false
 [pull]
 	rebase = true
 	ff = only
