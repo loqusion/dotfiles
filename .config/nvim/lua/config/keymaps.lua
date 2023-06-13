@@ -22,6 +22,10 @@ local function unmap(modes, lhs, opts)
   vim.keymap.del(modes, lhs, opts)
 end
 
+unmap("n", "<C-Up>")
+unmap("n", "<C-Down>")
+unmap("n", "<C-Left>")
+unmap("n", "<C-Right>")
 unmap("n", "<leader>ft")
 unmap("n", "<leader>fT")
 unmap({ "n", "t" }, "<C-/>")
