@@ -2,8 +2,6 @@
 ---@field mod fun(): table
 ---@field resolved table<string, string>
 
-local incline1 = "#FC56B1"
-
 ---@type table<string, PaletteModule>
 local modules = {
   catppuccin = {
@@ -13,12 +11,12 @@ local modules = {
     resolved = {
       error = "red",
       warning = "yellow",
-      info = "sapphire",
+      info = "sky",
       hint = "teal",
-      search = "peach",
+      search = "sapphire",
       misc = "mauve",
       incline0 = "base",
-      incline1 = incline1,
+      incline1 = "flamingo",
     },
   },
   tokyonight = {
@@ -29,7 +27,7 @@ local modules = {
       search = "orange",
       misc = "purple",
       incline0 = "black",
-      incline1 = incline1,
+      incline1 = "#FC56B1",
     },
   },
 }
@@ -85,5 +83,4 @@ local M = setmetatable({}, {
   end,
 })
 
----@cast M table<string, string>
 return M
