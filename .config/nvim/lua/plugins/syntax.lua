@@ -10,11 +10,6 @@ return {
   },
 
   {
-    "NoahTheDuke/vim-just",
-    event = "BufReadPre",
-  },
-
-  {
     "fladson/vim-kitty",
     event = "BufReadPre",
   },

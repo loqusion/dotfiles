@@ -131,4 +131,10 @@ return {
       },
     },
   },
+  {
+    "IndianBoy42/tree-sitter-just",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = true,
+  },
 }
