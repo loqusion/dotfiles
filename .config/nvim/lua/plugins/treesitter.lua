@@ -131,8 +131,11 @@ return {
       },
     },
   },
+
+  -- justfile tree-sitter highlighting
   {
     "IndianBoy42/tree-sitter-just",
+    enabled = false,
     event = { "BufReadPost", "BufNewFile" },
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = true,

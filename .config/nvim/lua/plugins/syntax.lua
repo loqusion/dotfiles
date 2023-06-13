@@ -10,6 +10,14 @@ return {
   },
 
   {
+    "NoahTheDuke/vim-just",
+    enabled = function()
+      return not require("utils").has("tree-sitter-just")
+    end,
+    event = "BufReadPre",
+  },
+
+  {
     "fladson/vim-kitty",
     event = "BufReadPre",
   },
