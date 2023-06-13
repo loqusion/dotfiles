@@ -75,8 +75,20 @@ return {
   -- window picker for neo-tree
   {
     "s1n7ax/nvim-window-picker",
-    version = "",
-    config = true,
+    version = "2.*",
+    opts = function()
+      local palette = require("utils.palette")
+      return {
+        highlights = {
+          statusline = {
+            unfocused = { fg = palette.text, bg = palette.green },
+          },
+          winbar = {
+            unfocused = { fg = palette.text, bg = palette.green },
+          },
+        },
+      }
+    end,
   },
 
   -- motions respect camelCase, snake_case, etc

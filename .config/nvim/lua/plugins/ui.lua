@@ -173,13 +173,12 @@ return {
     "b0o/incline.nvim",
     event = "BufReadPre",
     config = function()
-      local colors = require("tokyonight.colors").setup()
+      local palette = require("utils.palette")
       require("incline").setup({
-        -- TODO: setup highlight groups for other colorschemes
         highlight = {
           groups = {
-            InclineNormal = { guibg = "#FC56B1", guifg = colors.black },
-            InclineNormalNC = { guifg = "#FC56B1", guibg = colors.black },
+            InclineNormal = { guibg = palette.incline1, guifg = palette.incline0 },
+            InclineNormalNC = { guifg = palette.incline1, guibg = palette.incline0 },
           },
         },
         window = { margin = { vertical = 0, horizontal = 1 } },
@@ -197,17 +196,24 @@ return {
     event = "BufReadPost",
     config = function()
       local scrollbar = require("scrollbar")
-      local colors = require("tokyonight.colors")
+      local palette = require("utils.palette")
       scrollbar.setup({
-        handle = { color = colors.bg_highlight },
-        excluded_filetypes = { "prompt", "TelescopePrompt", "noice", "notify" },
+        handle = { color = palette.overlay0 },
+        excluded_filetypes = {
+          "TelescopePrompt",
+          "cmp_docs",
+          "cmp_menu",
+          "noice",
+          "notify",
+          "prompt",
+        },
         marks = {
-          Search = { color = colors.orange },
-          Error = { color = colors.error },
-          Warn = { color = colors.warning },
-          Info = { color = colors.info },
-          Hint = { color = colors.hint },
-          Misc = { color = colors.purple },
+          Search = { color = palette.search },
+          Error = { color = palette.error },
+          Warn = { color = palette.warning },
+          Info = { color = palette.info },
+          Hint = { color = palette.hint },
+          Misc = { color = palette.misc },
         },
         handlers = { cursor = false },
       })
