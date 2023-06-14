@@ -151,9 +151,11 @@ if status --is-interactive
     abbr gl 'git pull'
     abbr gpl 'git pull'
     abbr gplo 'git pull origin'
-    abbr gplom 'git pull origin master'
+    abbr gplom 'git pull origin (git_main_branch)'
+    abbr gploc 'git pull origin (git_current_branch)'
     abbr gplu 'git pull upstream'
-    abbr gplum 'git pull upstream master'
+    abbr gplum 'git pull upstream (git_main_branch)'
+    abbr gpluc 'git pull upstream (git_current_branch)'
     abbr gpr 'git pull --rebase'
 
     abbr gr 'git remote'
@@ -235,8 +237,6 @@ if status --is-interactive
     abbr gupav 'git pull --rebase --autostash --verbose'
     abbr gupom 'git pull --rebase origin (git_main_branch)'
     abbr gupomi 'git pull --rebase=interactive origin (git_main_branch)'
-    abbr glum 'git pull upstream (git_main_branch)'
-    abbr gluc 'git pull upstream (git_current_branch)'
 
     abbr gwch 'git whatchanged -p --abbrev-commit --pretty=medium'
 
