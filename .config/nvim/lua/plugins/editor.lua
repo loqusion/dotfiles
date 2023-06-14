@@ -81,10 +81,10 @@ return {
       return {
         highlights = {
           statusline = {
-            unfocused = { fg = palette.text, bg = palette.green },
+            unfocused = { fg = palette.incline0, bg = palette.incline1 },
           },
           winbar = {
-            unfocused = { fg = palette.text, bg = palette.green },
+            unfocused = { fg = palette.incline0, bg = palette.incline1 },
           },
         },
       }
