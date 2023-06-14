@@ -194,6 +194,9 @@ return {
   {
     "petertriho/nvim-scrollbar",
     event = "BufReadPost",
+    dependencies = {
+      "kevinhwang91/nvim-hlslens",
+    },
     config = function()
       local scrollbar = require("scrollbar")
       local palette = require("utils.palette")
@@ -217,6 +220,7 @@ return {
         },
         handlers = { cursor = false },
       })
+      require("scrollbar.handlers.search").setup({ override_lens = function() end })
     end,
   },
 
