@@ -1,3 +1,5 @@
+local memoized = {}
+
 ---@class PaletteModule
 ---@field mod fun(): table
 ---@field resolved table<string, string>
@@ -32,8 +34,6 @@ local modules = {
   },
 }
 
-local Module = {}
-
 local function get_base_colorscheme(colorscheme)
   if string.match(colorscheme, "^catppuccin") then
     return "catppuccin"
@@ -41,6 +41,10 @@ local function get_base_colorscheme(colorscheme)
     return "tokyonight"
   end
 end
+
+local function noop() end
+
+local Module = {}
 
 function Module.new(colorscheme)
   local base_colorscheme = get_base_colorscheme(colorscheme)
@@ -51,6 +55,7 @@ function Module.new(colorscheme)
   local self = setmetatable(
     vim.tbl_deep_extend("force", {
       base_colorscheme = base_colorscheme,
+      mod = noop,
       resolved = {},
     }, modules[base_colorscheme]),
     { __index = Module }
@@ -70,15 +75,19 @@ end
 local M = setmetatable({}, {
   __index = function(_, key)
     local colorscheme = vim.g.colors_name
-    local mod = Module.new(colorscheme)
+    local mod = memoized[colorscheme] or Module.new(colorscheme)
     if not mod then
       vim.notify_once(
-        ("Palette: colorscheme not supported: %s -- add support in "):format(colorscheme),
+        ("Palette: colorscheme not fully supported: %s\nadd support in:\n    %s\nor add a blank module to hide this warning."):format(
+          colorscheme,
+          debug.getinfo(1, "S").source:sub(2)
+        ),
         vim.log.levels.WARN
       )
       return nil
     end
 
+    memoized[colorscheme] = mod
     return mod:color(key)
   end,
 })
