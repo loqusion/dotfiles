@@ -2,5 +2,5 @@
 
 pkill hyprpaper
 nohup hyprpaper &>/dev/null &
-echo $?
+echo "$!"
 disown
