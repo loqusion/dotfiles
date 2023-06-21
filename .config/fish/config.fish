@@ -41,4 +41,6 @@ abbr tarify "tar czpvf"
 abbr untar "tar xvf"
 abbr glow "glow -p"
 
+abbr rman rusty-man
+
 rtx activate fish | source
