@@ -45,6 +45,10 @@ function M.exists(fname)
   return (stat and stat.type and true) or false
 end
 
+function M.escape_pattern(text)
+  return text:gsub("([^%w])", "%%%1")
+end
+
 function M.fqn(fname)
   fname = vim.fn.fnamemodify(fname, ":p")
   return vim.loop.fs_realpath(fname) or fname

@@ -81,6 +81,8 @@ return {
     },
     opts = function()
       local dap = require("dap")
+      local dapui = require("dap.ui")
+
       dap.configurations.rust = vim.deepcopy(dap.configurations.c)
       local did_config = false
       for _, v in pairs(dap.configurations.rust) do
@@ -89,8 +91,23 @@ return {
           v.program = function()
             local target_dir =
               vim.fn.json_decode(vim.fn.system("cargo metadata --format-version 1 | jq '.target_directory'"))
-            local name = vim.fn.json_decode(vim.fn.system("cargo metadata --format-version 1 | jq '.packages[0].name'"))
-            return ("%s/debug/%s"):format(target_dir, name)
+            local target_debug_dir = ("%s/debug"):format(target_dir)
+
+            local pattern = ("%s/?$"):format(Utils.escape_pattern(target_debug_dir))
+
+            local executable_names = vim.fs.find(function(name, path)
+              if not path:match(pattern) then
+                return false
+              end
+              local full_path = ("%s/%s"):format(path, name)
+              return vim.loop.fs_access(full_path, "X") or false
+            end, { path = target_debug_dir, type = "file", limit = math.huge })
+            if #executable_names == 0 then
+              vim.notify(("Could not find any executables in %s"):format(target_debug_dir), vim.log.levels.WARN)
+              return
+            end
+
+            return dapui.pick_if_many(executable_names, "Pick an executable:", tostring)
           end
         end
       end
