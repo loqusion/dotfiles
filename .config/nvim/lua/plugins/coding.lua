@@ -1,5 +1,5 @@
 local prefer = {
-  nvim_autopairs = false,
+  nvim_autopairs = true,
   nvim_surround = false,
   comment_nvim = true,
 }
@@ -187,7 +187,7 @@ return {
   {
     "windwp/nvim-autopairs",
     enabled = prefer.nvim_autopairs,
-    event = "InsertEnter",
+    event = "VeryLazy",
     opts = {
       fast_wrap = {},
       enable_check_bracket_line = true,
