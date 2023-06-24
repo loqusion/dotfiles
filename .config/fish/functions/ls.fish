@@ -2,6 +2,6 @@ function ls --wraps='exa --color=always --icons --group-directories-first' --des
     if isatty 1 && command -q exa
         exa --color=always --icons --group-directories-first $argv
     else
-        command ls -F --color=always $argv
+        command ls --color=auto $argv
     end
 end

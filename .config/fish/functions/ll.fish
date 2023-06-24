@@ -2,7 +2,7 @@ function ll --wraps='exa --color=always --icons --group-directories-first --all 
     if isatty 1 && command -q exa
         exa --color=always --icons --group-directories-first --all --long $argv
     else
-        command ls -lFA --color=always $argv
+        command ls -lA --color=always $argv
     end
 
 end
