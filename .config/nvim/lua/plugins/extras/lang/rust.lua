@@ -17,6 +17,27 @@ local function get_codelldb_paths()
   return codelldb_path, liblldb_path
 end
 
+local function dap_rust_program()
+  local target_dir = vim.fn.json_decode(vim.fn.system("cargo metadata --format-version 1 | jq '.target_directory'"))
+  local target_debug_dir = ("%s/debug"):format(target_dir)
+
+  local pattern = ("%s/?$"):format(Utils.escape_pattern(target_debug_dir))
+
+  local executable_names = vim.fs.find(function(name, path)
+    if not path:match(pattern) then
+      return false
+    end
+    local full_path = ("%s/%s"):format(path, name)
+    return vim.loop.fs_access(full_path, "X") or false
+  end, { path = target_debug_dir, type = "file", limit = math.huge })
+  if #executable_names == 0 then
+    vim.notify(("Could not find any executables in %s"):format(target_debug_dir), vim.log.levels.WARN)
+    return
+  end
+
+  return require("dap.ui").pick_if_many(executable_names, "Pick an executable:", tostring)
+end
+
 return {
   {
     "williamboman/mason.nvim",
@@ -81,34 +102,13 @@ return {
     },
     opts = function()
       local dap = require("dap")
-      local dapui = require("dap.ui")
-
       dap.configurations.rust = vim.deepcopy(dap.configurations.c)
+
       local did_config = false
       for _, v in pairs(dap.configurations.rust) do
         if v.name == "LLDB: Launch" then
+          v.program = dap_rust_program
           did_config = true
-          v.program = function()
-            local target_dir =
-              vim.fn.json_decode(vim.fn.system("cargo metadata --format-version 1 | jq '.target_directory'"))
-            local target_debug_dir = ("%s/debug"):format(target_dir)
-
-            local pattern = ("%s/?$"):format(Utils.escape_pattern(target_debug_dir))
-
-            local executable_names = vim.fs.find(function(name, path)
-              if not path:match(pattern) then
-                return false
-              end
-              local full_path = ("%s/%s"):format(path, name)
-              return vim.loop.fs_access(full_path, "X") or false
-            end, { path = target_debug_dir, type = "file", limit = math.huge })
-            if #executable_names == 0 then
-              vim.notify(("Could not find any executables in %s"):format(target_debug_dir), vim.log.levels.WARN)
-              return
-            end
-
-            return dapui.pick_if_many(executable_names, "Pick an executable:", tostring)
-          end
         end
       end
 
