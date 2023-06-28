@@ -67,6 +67,9 @@ return {
       { "<leader>rA", "<cmd>OverseerTaskAction<cr>", desc = "Action" },
     },
     opts = {
+      strategy = {
+        "toggleterm",
+      },
       templates = { "builtin", "user.run_script" },
       task_list = {
         bindings = {
