@@ -1,3 +1,18 @@
+local function os_capture(cmd, raw)
+  local f = assert(io.popen(cmd, 'r'))
+  local s = assert(f:read '*a')
+  f:close()
+  if raw then
+    return s
+  end
+  s = string.gsub(s, '^%s+', '')
+  s = string.gsub(s, '%s+$', '')
+  s = string.gsub(s, '[\n\r]+', ' ')
+  return s
+end
+
+local uname = os_capture 'uname -s'
+
 return function(config)
   config.window_padding = {
     left = 0,
@@ -6,7 +21,7 @@ return function(config)
     bottom = 0,
   }
   -- disable title bar, but keep resize
-  config.window_decorations = 'RESIZE'
+  config.window_decorations = uname == 'Darwin' and 'TITLE | RESIZE' or 'RESIZE'
   config.window_background_opacity = 0.90
   config.window_close_confirmation = 'NeverPrompt'
 end
