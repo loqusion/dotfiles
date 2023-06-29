@@ -73,4 +73,14 @@ return {
       cursor_follows_swapped_bufs = true,
     },
   },
+
+  {
+    "cormacrelf/dark-notify",
+    cond = jit.os == "OSX",
+    event = "ColorScheme",
+    build = "command -V dark-notify || brew install cormacrelf/tap/dark-notify",
+    config = function(_, opts)
+      require("dark_notify").run(opts)
+    end,
+  },
 }
