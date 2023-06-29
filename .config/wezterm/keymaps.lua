@@ -21,6 +21,10 @@ return function(config)
     { key = 'Z', mods = 'CTRL|SHIFT', action = disable },
   }
 
+  local debug_ = {
+    { key = 'D', mods = 'CTRL|SHIFT', action = act.ShowDebugOverlay },
+  }
+
   local pane = {
     { key = '\\', mods = mod, action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
     { key = '|', mods = mod, action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
@@ -30,7 +34,7 @@ return function(config)
     { key = 'W', mods = mod, action = act.CloseCurrentPane { confirm = true } },
   }
 
-  for _, vv in ipairs { disabled, pane, smart_splits.keys } do
+  for _, vv in ipairs { disabled, debug_, pane, smart_splits.keys } do
     for _, v in ipairs(vv) do
       table.insert(config.keys, v)
     end
