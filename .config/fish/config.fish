@@ -40,6 +40,7 @@ abbr caf "caffeinate -d"
 abbr tarify "tar czpvf"
 abbr untar "tar xvf"
 abbr glow "glow -p"
+abbr ub unbuffer
 
 abbr rman rusty-man
 
