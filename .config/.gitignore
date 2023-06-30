@@ -85,8 +85,8 @@
 !/swayidle/**
 !/swaylock/
 !/swaylock/**
-!/systemd/user
-!/systemd/user**
+!/systemd/
+!/systemd/**
 !/tabtab/
 !/tabtab/**
 !/uebersicht/
@@ -119,6 +119,7 @@
 # Non-config
 /btop/btop.log
 /lazygit/state.yml
+/systemd/**/*.wants/**
 
 # Dangerous!!!
 /gh/hosts.yml
