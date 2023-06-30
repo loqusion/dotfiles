@@ -1,0 +1,6 @@
+[Unit]
+Description=Apply gamma filter
+
+[Service]
+Type=oneshot
+ExecStart="/usr/bin/bash" ~/.config/hypr/scripts/gamma.sh auto
