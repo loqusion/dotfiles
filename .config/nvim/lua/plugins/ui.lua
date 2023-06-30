@@ -278,11 +278,9 @@ return {
       },
     },
     config = function(_, opts)
-      if style.animation then
-        vim.o.winwidth = 5
-        vim.o.winminwidth = 5
-        vim.o.equalalways = false
-      end
+      vim.o.winwidth = 5
+      vim.o.winminwidth = 5
+      vim.o.equalalways = false
       require("windows").setup(opts)
     end,
   },
