@@ -26,10 +26,60 @@ return {
     end,
   },
 
+  -- git signs
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = function(_, opts)
+      local on_attach = opts.on_attach
+      opts.on_attach = function(buffer)
+        local function map(mode, l, r, desc)
+          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+        end
+
+        map("n", "<leader>gb", "<Cmd>Gitsigns blame_line<CR>", "Blame current line")
+
+        on_attach(buffer)
+      end
+    end,
+  },
+
+  -- toggle git blame annotations
+  {
+    "f-person/git-blame.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    keys = {
+      { "<leader>gB", "<Cmd>GitBlameToggle<CR>", desc = "Git Blame" },
+    },
+    init = function()
+      vim.g.gitblame_enabled = 0
+    end,
+  },
+
+  -- show history of commits under the cursor
+  {
+    "rhysd/git-messenger.vim",
+    event = "BufRead",
+    keys = {
+      { "<leader>gm", "<Plug>(git-messenger)", desc = "Git Messenger" },
+    },
+  },
+
+  {
+    "ruifm/gitlinker.nvim",
+    -- stylua: ignore
+    keys = {
+      { "<leader>gy", desc = "Copy permalink", mode = "n" },
+      { "<leader>gy", desc = "Copy permalink to range", mode = "x" },
+      { "<leader>gY", function() require("gitlinker").get_repo_url() end, desc = "Copy link to repo", mode = "n" },
+    },
+    opts = {
+      mappings = "<leader>gy",
+    },
+  },
+
   -- better diffing
   {
     "sindrets/diffview.nvim",
-    enable = false,
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
     keys = { { "<leader>gd", "<Cmd>DiffviewOpen<CR>", desc = "Diffview" } },
     config = true,
@@ -56,5 +106,11 @@ return {
       "Gvsplit",
       "Gtabedit",
     },
+  },
+
+  {
+    "pwntester/octo.nvim",
+    cmd = "Octo",
+    config = true,
   },
 }
