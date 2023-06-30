@@ -76,7 +76,7 @@ return {
 
   {
     "cormacrelf/dark-notify",
-    cond = jit.os == "OSX",
+    enabled = jit.os == "OSX",
     event = "ColorScheme",
     build = "command -V dark-notify || brew install cormacrelf/tap/dark-notify",
     config = function(_, opts)
