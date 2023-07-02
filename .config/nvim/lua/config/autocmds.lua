@@ -60,3 +60,12 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     vim.fn.system('launchctl kickstart -k "gui/${UID}/homebrew.mxcl.skhd"')
   end,
 })
+
+-- disable autoformat for PKGBUILD
+vim.api.nvim_create_autocmd("BufRead", {
+  group = Utils.augroup("pkgbuild"),
+  pattern = "PKGBUILD",
+  callback = function(event)
+    vim.b[event.buf].autoformat = false
+  end,
+})
