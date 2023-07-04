@@ -16,16 +16,13 @@ return {
 
   {
     "neovim/nvim-lspconfig",
-    ---@class PluginLspOpts
+    ---@type PluginLspOpts
     opts = {
       servers = {
+        ---@type lspconfig.options.pyright
         pyright = {
           before_init = function(_, config)
-            local venv, python_path = python.get_path(config.root_dir)
-            if venv then
-              vim.env.VIRTUAL_ENV = venv
-              vim.notify(("VIRTUAL_ENV = %s"):format(venv), vim.log.levels.INFO)
-            end
+            local python_path = python.get_path(python.ensure_venv(config.root_dir))
             config.settings.python.pythonPath = python_path
           end,
         },
