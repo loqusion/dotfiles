@@ -30,13 +30,17 @@ function M.get_venv(workspace)
   return nil
 end
 
----Get VIRTUAL_ENV from workspace and set it as environment variable.
+--- Activate virtualenv in workspace and return path.
 ---@param workspace string
 ---@return string|nil venv
-function M.ensure_venv(workspace)
+function M.activate_venv(workspace)
   local venv = M.get_venv(workspace)
-  if venv then
-    vim.env.VIRTUAL_ENV = venv
+  if venv and vim.env.VIRTUAL_ENV ~= venv then
+    if vim.fn.executable(path.join(venv, "bin", "activate")) then
+      vim.system({ "source", path.join(venv, "bin", "activate.fish") }, { timeout = 5000 }):wait()
+    else
+      vim.env.VIRTUAL_ENV = venv
+    end
   end
   return venv
 end

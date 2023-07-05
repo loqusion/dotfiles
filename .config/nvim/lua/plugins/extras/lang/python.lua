@@ -22,7 +22,8 @@ return {
         ---@type lspconfig.options.pyright
         pyright = {
           before_init = function(_, config)
-            local python_path = python.get_path(python.ensure_venv(config.root_dir))
+            local venv = python.activate_venv(config.root_dir)
+            local python_path = python.get_path(venv)
             config.settings.python.pythonPath = python_path
           end,
         },
