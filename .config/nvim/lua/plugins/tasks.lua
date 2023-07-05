@@ -98,6 +98,7 @@ return {
   -- conjure
   {
     "Olical/conjure",
+    enabled = false,
     event = "VeryLazy",
     init = function()
       if Utils.has("which-key.nvim") then
@@ -132,11 +133,18 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "PaterJason/cmp-conjure",
+      {
+        "PaterJason/cmp-conjure",
+        cond = function()
+          return Utils.has("conjure")
+        end,
+      },
     },
     opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "conjure" } }))
+      if Utils.has("conjure") then
+        local cmp = require("cmp")
+        opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "conjure" } }))
+      end
     end,
   },
 

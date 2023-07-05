@@ -77,6 +77,7 @@ return {
 
   {
     "Olical/conjure",
+    optional = true,
     dependencies = {
       "evcxr/evcxr",
       build = {
