@@ -82,6 +82,13 @@ return {
           end,
         }),
         nls.builtins.diagnostics.mypy.with({
+          condition = function(utils)
+            return utils.root_has_file("mypy.ini", "pyproject.toml")
+          end,
+          runtime_condition = function(params)
+            local root_dir = require("lazyvim.util").get_root()
+            return vim.startswith(params.bufname, root_dir)
+          end,
           extra_args = function(utils)
             local venv = python.activate_venv(utils.root_dir)
             local python_path = python.get_path(venv)
