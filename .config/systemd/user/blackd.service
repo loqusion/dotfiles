@@ -1,0 +1,8 @@
+[Unit]
+Description=Daemonized Black formatter for Python
+
+[Service]
+ExecStart=/usr/bin/blackd
+
+[Install]
+WantedBy=default.target
