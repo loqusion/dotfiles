@@ -33,13 +33,6 @@ return {
   },
 
   {
-    "williamboman/mason.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { "rustfmt" })
-    end,
-  },
-
-  {
     "simrat39/rust-tools.nvim",
     lazy = true,
     opts = {
