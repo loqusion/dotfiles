@@ -2,8 +2,17 @@ local wezterm = require 'wezterm'
 local use_cursive_italics = true
 local cursive_font = 'Victor Mono'
 
-return function(config)
-  config.font = wezterm.font 'JetBrains Mono'
+---@param font string
+local function nerd(font)
+  if not font:find 'Nerd Font' then
+    font = font:gsub(' Mono', 'Mono', 1) .. ' Nerd Font'
+  end
+  return font
+end
+
+return function(config, ZigQual)
+  print(ZigQual)
+  config.font = wezterm.font(nerd 'JetBrains Mono')
   config.font_size = 12.0
   if use_cursive_italics then
     config.font_rules = {
@@ -11,7 +20,7 @@ return function(config)
         italic = true,
         intensity = 'Bold',
         font = wezterm.font {
-          family = cursive_font,
+          family = nerd(cursive_font),
           weight = 'Bold',
           style = 'Italic',
         },
@@ -20,7 +29,7 @@ return function(config)
         italic = true,
         intensity = 'Half',
         font = wezterm.font {
-          family = cursive_font,
+          family = nerd(cursive_font),
           weight = 'DemiBold',
           style = 'Italic',
         },
@@ -29,7 +38,7 @@ return function(config)
         italic = true,
         intensity = 'Normal',
         font = wezterm.font {
-          family = cursive_font,
+          family = nerd(cursive_font),
           style = 'Italic',
         },
       },
