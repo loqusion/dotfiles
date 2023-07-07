@@ -1,8 +1,9 @@
 *
-
 !/.gitignore
 
+
 # Tracked config directories
+
 !/AmadeusWM/
 !/AmadeusWM/**
 !/anyrun/
@@ -25,6 +26,8 @@
 !/fish/**
 !/fontconfig/
 !/fontconfig/**
+!/fuzzel/
+!/fuzzel/**
 !/gammastep/
 !/gammastep/**
 !/gh/
@@ -108,7 +111,9 @@
 !/zellij/
 !/zellij/**
 
+
 # Tracked config files
+
 !/electron-flags.conf
 !/mimeapps.list
 !/starship.toml
@@ -116,13 +121,18 @@
 !/user-dirs.dirs
 !/user-dirs.locale
 
+
 # Non-config
+
 /btop/btop.log
 /lazygit/state.yml
 /systemd/**/*.wants/**
 
+
 # Dangerous!!!
+
 /gh/hosts.yml
+
 
 .DS_STORE
 fish_variables
