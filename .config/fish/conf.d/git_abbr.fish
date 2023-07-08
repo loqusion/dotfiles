@@ -164,6 +164,8 @@ if status --is-interactive
     abbr grmv 'git remote rename'
     abbr grrm 'git remote remove'
     abbr grset 'git remote set-url'
+    abbr grssh 'git remote set-url origin (gh repo view --json sshUrl -q .sshUrl)'
+    abbr grurl 'git remote set-url origin (gh repo view --json url -q .url)'
     abbr gru 'git remote update'
     abbr grv 'git remote -v'
     abbr grvv 'git remote -vvv'
