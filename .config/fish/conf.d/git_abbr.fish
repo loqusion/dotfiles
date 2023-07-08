@@ -13,14 +13,15 @@ if status --is-interactive
     abbr gaa 'git add --all --verbose'
     abbr gapa 'git add --patch --verbose'
     abbr gau 'git add --update --verbose'
+
     abbr gap 'git apply'
     abbr gapt 'git apply --3way'
 
     abbr gb 'git branch'
     abbr gba 'git branch --all'
     abbr gbd 'git branch --delete'
-    abbr gbda 'git branch --no-color --merged | grep -vE "^([+*]|\s*($(git_main_branch)|$(git_develop_branch))\s*$)" | xargs git branch --delete 2>/dev/null'
     abbr gbD 'git branch --delete --force'
+    abbr gbda 'git branch --no-color --merged | grep -vE "^([+*]|\s*($(git_main_branch)|$(git_develop_branch))\s*\$)" | xargs git branch --delete 2>/dev/null'
     function gbg -d 'gone branches???'
         git branch -vv | grep ": gone\]"
     end
@@ -29,14 +30,15 @@ if status --is-interactive
     alias gbgD "set res (gbg | awk '{print \$1}') && test -n \$res && echo \$res | xargs git branch -D"
     abbr gbnm 'git branch --no-merged'
     abbr gbr 'git branch --remote'
+    abbr gbdr 'git branch --delete --remote'
 
     abbr gbl 'git blame -w'
 
     abbr gbs 'git bisect'
+    abbr gbss 'git bisect start'
     abbr gbsb 'git bisect bad'
     abbr gbsg 'git bisect good'
     abbr gbsr 'git bisect reset'
-    abbr gbss 'git bisect start'
 
     abbr gc 'git commit -v'
     abbr gc! 'git commit -v --amend'
@@ -44,11 +46,14 @@ if status --is-interactive
     abbr gca 'git commit -v --all'
     abbr gca! 'git commit -v --all --amend'
     abbr gcan! 'git commit -v --all --no-edit --amend'
-    abbr gcans! 'git commit -v --all --signoff --no-edit --amend'
+    abbr gcm 'git commit --message'
     abbr gcam 'git commit --all --message'
+    abbr gci "git commit -v --allow-empty --message 'Make it so.'"
+
     abbr gcsm 'git commit --signoff --message'
     abbr gcas 'git commit --all --signoff'
     abbr gcasm 'git commit --all --signoff --message'
+    abbr gcans! 'git commit -v --all --signoff --no-edit --amend'
 
     abbr gcf 'git config --list'
 
@@ -65,7 +70,6 @@ if status --is-interactive
     abbr gcs 'git commit --gpg-sign'
     abbr gcss 'git commit --gpg-sign --signoff'
     abbr gcssm 'git commit --gpg-sign --signoff --message'
-    abbr gci "git commit -v --allow-empty --message 'Make it so.'"
 
     abbr gcount 'git shortlog -sn'
 
@@ -139,10 +143,10 @@ if status --is-interactive
     abbr gpf 'git push --force-with-lease --force-if-includes'
     abbr gpf! 'git push --force'
     abbr gpt 'git push --tags'
-    abbr gptf 'git push --tags --force-with-lease'
+    abbr gptf 'git push --tags --force-with-lease --force-if-includes'
     abbr gptf! 'git push --tags --force'
     abbr gpoat 'git push origin --all && git push origin --tags'
-    abbr gpoatf! 'git push origin --all --force-with-lease && git push origin --tags --force-with-lease'
+    abbr gpoatf 'git push origin --all --force-with-lease --force-if-includes && git push origin --tags --force-with-lease --force-if-includes'
     abbr gpoatf! 'git push origin --all --force && git push origin --tags --force'
     abbr gpod 'git push origin --delete'
     abbr gpu 'git push upstream'
@@ -150,13 +154,14 @@ if status --is-interactive
 
     abbr gl 'git pull'
     abbr gpl 'git pull'
+    abbr gpld 'git pull'
     abbr gplo 'git pull origin'
     abbr gplom 'git pull origin (git_main_branch)'
     abbr gploc 'git pull origin (git_current_branch)'
     abbr gplu 'git pull upstream'
     abbr gplum 'git pull upstream (git_main_branch)'
     abbr gpluc 'git pull upstream (git_current_branch)'
-    abbr gpr 'git pull --rebase'
+    abbr gplr 'git pull --rebase'
 
     abbr gr 'git remote'
     abbr gra 'git remote add'
@@ -203,7 +208,7 @@ if status --is-interactive
     abbr gsb 'git status --short --branch'
 
     abbr gsh 'git show'
-    abbr gsps 'git show --pretty=short --show-signature'
+    abbr gshp 'git show --pretty=short --show-signature'
 
     abbr gst 'git stash push'
     abbr gsta 'git stash apply'
@@ -211,13 +216,15 @@ if status --is-interactive
     abbr gstd 'git stash drop'
     abbr gstl 'git stash list'
     abbr gstp 'git stash pop'
-    abbr gsts 'git stash show --text'
+    abbr gsts 'git stash show --text --include-untracked'
     abbr gstu 'git stash push --include-untracked'
     abbr gstall 'git stash --all'
 
-    abbr gsi 'git submodule init'
-    abbr gsu 'git submodule update'
-    abbr gsui 'git submodule update --init'
+    abbr gsba 'git submodule add'
+    abbr gsbi 'git submodule init'
+    abbr gsbu 'git submodule update'
+    abbr gsbui 'git submodule update --init'
+    abbr gsbur 'git submodule update --remote'
 
     abbr gsw 'git switch'
     abbr gswc 'git switch --create'
@@ -247,7 +254,7 @@ if status --is-interactive
 
     abbr gwt 'git worktree'
     abbr gwta 'git worktree add'
-    abbr gwtls 'git worktree list'
+    abbr gwtl 'git worktree list'
     abbr gwtmv 'git worktree move'
     abbr gwtrm 'git worktree remove'
 
