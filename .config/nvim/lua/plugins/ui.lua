@@ -390,7 +390,7 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = function(_, opts)
-      table.insert(opts.filetype_exclude, "toggleterm")
+      vim.list_extend(opts.filetype_exclude, { "man", "toggleterm" })
     end,
   },
   {
