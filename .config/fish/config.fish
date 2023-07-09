@@ -15,7 +15,7 @@ set -U fish_greeting ""
 set -Ux LESS -RFQM
 set -Ux MANPAGER "nvim +Man!"
 
-if string match -rq '^wezterm' (which_term)
+if string match -riq '^wezterm' $TERM_PROGRAM
     alias nvim "TERM=wezterm $(which nvim)"
     alias ssh "TERM=wezterm $(which ssh)"
 end
