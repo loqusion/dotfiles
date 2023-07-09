@@ -17,6 +17,7 @@ set -Ux MANPAGER "nvim +Man!"
 
 if string match -rq '^wezterm' (which_term)
     alias nvim "TERM=wezterm $(which nvim)"
+    alias ssh "TERM=wezterm $(which ssh)"
 end
 
 abbr mv "mv -iv"
