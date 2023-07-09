@@ -101,7 +101,6 @@ return {
           end,
         }),
         custom.formatting.blackd_client,
-        nls.builtins.formatting.ruff,
       })
     end,
   },
