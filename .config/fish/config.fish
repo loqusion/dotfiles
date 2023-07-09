@@ -15,6 +15,10 @@ set -U fish_greeting ""
 set -Ux LESS -RFQM
 set -Ux MANPAGER "nvim +Man!"
 
+if string match -rq '^wezterm' (which_term)
+    alias nvim "TERM=wezterm $(which nvim)"
+end
+
 abbr mv "mv -iv"
 abbr cp "cp -riv"
 abbr mkdir "mkdir -vp"
