@@ -18,6 +18,7 @@ return function(config)
     { key = ')', mods = 'CTRL', action = disable },
     { key = ')', mods = 'CTRL|SHIFT', action = disable },
     { key = 'L', mods = 'CTRL|SHIFT', action = disable },
+    { key = 'H', mods = 'CTRL|SHIFT', action = disable },
     { key = 'Z', mods = 'CTRL|SHIFT', action = disable },
   }
 
