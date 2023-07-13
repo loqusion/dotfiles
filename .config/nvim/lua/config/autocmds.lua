@@ -69,3 +69,16 @@ vim.api.nvim_create_autocmd("BufRead", {
     vim.b[event.buf].autoformat = false
   end,
 })
+
+-- launch.json auto load
+require("lazyvim.util").on_load("nvim-dap", function()
+  local function load_launchjs()
+    require("dap.ext.vscode").load_launchjs(nil, { rt_lldb = { "rust" } })
+  end
+
+  load_launchjs()
+  vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = "launch.json",
+    callback = load_launchjs,
+  })
+end)
