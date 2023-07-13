@@ -10,8 +10,7 @@ local function nerd(font)
   return font
 end
 
-return function(config, ZigQual)
-  print(ZigQual)
+return function(config)
   config.font = wezterm.font(nerd 'JetBrains Mono')
   config.font_size = 12.0
   if use_cursive_italics then
