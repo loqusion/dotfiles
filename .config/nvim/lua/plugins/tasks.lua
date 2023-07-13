@@ -101,7 +101,7 @@ return {
     enabled = false,
     event = "VeryLazy",
     init = function()
-      if Utils.has("which-key.nvim") then
+      require("lazyvim.util").on_load("which-key.nvim", function()
         require("which-key").register({
           mode = { "n" },
           ["<localleader>e"] = { name = "+evaluate" },
@@ -110,7 +110,7 @@ return {
           -- ["<localleader>c"] = { name = "+repl" },
           -- ["<localleader>r"] = { name = "+reset" },
         })
-      end
+      end)
       vim.g["conjure#mapping#prefix"] = "<localleader>"
       vim.g["conjure#mapping#doc_word"] = false
       vim.g["conjure#mapping#def_word"] = false
