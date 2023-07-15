@@ -71,12 +71,5 @@ return {
   {
     "Olical/conjure",
     optional = true,
-    dependencies = {
-      "evcxr/evcxr",
-      build = {
-        "rustup component add rust-src",
-        "cargo install evcxr_repl",
-      },
-    },
   },
 }
