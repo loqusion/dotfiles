@@ -70,7 +70,7 @@ return {
       strategy = {
         "toggleterm",
       },
-      templates = { "builtin", "user.run_script" },
+      templates = { "builtin", "user.run_script", "user.rust" },
       task_list = {
         bindings = {
           ["<C-l>"] = false,
