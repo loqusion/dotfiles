@@ -49,7 +49,6 @@ return {
     optional = true,
     opts = function()
       local dap = require("dap")
-      dap.configurations.rust = vim.deepcopy(dap.configurations.c)
 
       local did_config = false
       for _, v in pairs(dap.configurations.rust) do
