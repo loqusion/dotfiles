@@ -50,19 +50,25 @@ return {
     opts = function()
       local dap = require("dap")
 
-      local did_config = false
-      for _, v in pairs(dap.configurations.rust) do
-        if v.name == "LLDB: Launch" then
-          v.program = dap_rust_program
-          did_config = true
-        end
+      if not dap.configurations.rust then
+        dap.configurations.rust = {}
       end
 
-      if not did_config then
-        vim.notify(
-          "Failed to configure rust dap -- could not find c config with name 'LLDB: Launch'",
-          vim.log.levels.ERROR
-        )
+      local r = vim.iter(dap.configurations.rust):find(function(v)
+        return v.name == "LLDB: Launch"
+      end)
+      if r then
+        r.program = dap_rust_program
+      else
+        table.insert(dap.configurations.rust, {
+          args = {},
+          cwd = "${workspaceFolder}",
+          name = "LLDB: Launch",
+          program = dap_rust_program,
+          request = "launch",
+          stopOnEntry = false,
+          type = "codelldb",
+        })
       end
     end,
   },
