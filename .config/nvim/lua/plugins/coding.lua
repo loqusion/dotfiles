@@ -32,7 +32,7 @@ return {
     "ThePrimeagen/refactoring.nvim",
     -- stylua: ignore
     keys = {
-      { "<leader>r", function() require("refactoring").select_refactor() end, mode = "x", desc = "Refactoring" },
+      { "<leader>r", function() require("refactoring").select_refactor({}) end, mode = "x", desc = "Refactoring" },
     },
     opts = {},
   },
