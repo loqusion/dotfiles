@@ -1,11 +1,3 @@
-local prefer = {
-  nvim_autopairs = true,
-  nvim_surround = false,
-  comment_nvim = true,
-}
-
-local Utils = require("utils")
-
 return {
   {
     "L3MON4D3/LuaSnip",
@@ -180,91 +172,6 @@ return {
           a = a,
         })
       end)
-    end,
-  },
-
-  { "echasnovski/mini.pairs", enabled = not prefer.nvim_autopairs },
-  {
-    "windwp/nvim-autopairs",
-    enabled = prefer.nvim_autopairs,
-    event = "VeryLazy",
-    opts = {
-      fast_wrap = {},
-      enable_check_bracket_line = true,
-      check_ts = true,
-    },
-    config = function(_, opts)
-      require("nvim-autopairs").setup(opts)
-      -- cmp integration
-      local cmp = require("cmp")
-      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-    end,
-  },
-
-  { "echasnovski/mini.surround", enabled = not prefer.nvim_surround },
-  {
-    "kylechui/nvim-surround",
-    enabled = prefer.nvim_surround,
-    version = "*",
-    ---@param plugin LazyPlugin
-    ---@param keys LazyKeys
-    keys = function(plugin, keys)
-      ---@cast plugin any
-      local opts = plugin.opts
-      local mappings = {
-        { opts.keymaps.insert, desc = "Insert surrounding", mode = { "i" } },
-        { opts.keymaps.insert_line, desc = "Insert surrounding w/ new lines", mode = { "i" } },
-        { opts.keymaps.normal, desc = "Add surrounding" },
-        { opts.keymaps.normal_cur, desc = "Add surrounding cur line" },
-        { opts.keymaps.normal_line, desc = "Add surrounding w/ new lines" },
-        { opts.keymaps.normal_cur_line, desc = "Add surrounding cur line w/ new lines" },
-        { opts.keymaps.visual, desc = "Add surrounding", mode = { "x" } },
-        { opts.keymaps.visual_line, desc = "Add surrounding w/ new lines", mode = { "x" } },
-        { opts.keymaps.delete, desc = "Delete surrounding" },
-        { opts.keymaps.change, desc = "Change surrounding" },
-      }
-      mappings = vim.tbl_filter(function(m)
-        return m[1] and #m[1] > 0
-      end, mappings)
-
-      return vim.list_extend(mappings, keys)
-    end,
-    opts = {
-      keymaps = {
-        insert = false,
-        insert_line = false,
-        normal = "ys",
-        normal_cur = "yss",
-        normal_line = "yS",
-        normal_cur_line = "ySS",
-        visual = "S",
-        visual_line = "gS",
-        delete = "ds",
-        change = "cs",
-      },
-    },
-  },
-
-  {
-    "echasnovski/mini.comment",
-    opts = {
-      mappings = {
-        comment = prefer.comment_nvim and "" or nil,
-        comment_line = prefer.comment_nvim and "" or nil,
-        textobject = nil,
-      },
-    },
-  },
-  { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
-  {
-    "numToStr/Comment.nvim",
-    enabled = prefer.comment_nvim,
-    event = "VeryLazy",
-    opts = function()
-      return {
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-      }
     end,
   },
 }
