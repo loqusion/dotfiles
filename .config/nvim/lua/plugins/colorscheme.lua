@@ -2,7 +2,17 @@ local style = require("config.style")
 
 return {
   { "Shatur/neovim-ayu", event = "VeryLazy" },
-  { "catppuccin/nvim", event = "VeryLazy", name = "catppuccin", opts = { transparent_background = style.transparent } },
+  {
+    "catppuccin/nvim",
+    event = "VeryLazy",
+    name = "catppuccin",
+    opts = {
+      transparent_background = style.transparent,
+      integrations = {
+        navic = { enabled = true, custom_bg = style.transparent and "NONE" or "lualine" },
+      },
+    },
+  },
   { "Mofiqul/dracula.nvim", event = "VeryLazy", opts = { transparent_bg = style.transparent } },
   {
     "sainnhe/edge",
