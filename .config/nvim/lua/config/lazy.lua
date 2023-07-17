@@ -28,7 +28,7 @@ require("lazy").setup({
     { import = "plugins.extras.dap" },
     { import = "plugins.extras.coding.autopairs" },
     { import = "plugins.extras.coding.comment" },
-    -- { import = "plugins.extras.coding.surround" },
+    { import = "plugins.extras.coding.surround", enabled = true },
   },
   defaults = {
     lazy = true,
