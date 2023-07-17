@@ -64,6 +64,7 @@ return {
     },
   },
 
+  -- copy link to remote repo
   {
     "ruifm/gitlinker.nvim",
     -- stylua: ignore
@@ -85,6 +86,7 @@ return {
     config = true,
   },
 
+  -- fugitive
   {
     "tpope/vim-fugitive",
     dependencies = { "tpope/vim-rhubarb" },
@@ -108,6 +110,7 @@ return {
     },
   },
 
+  -- GitHub interface
   {
     "pwntester/octo.nvim",
     cmd = "Octo",

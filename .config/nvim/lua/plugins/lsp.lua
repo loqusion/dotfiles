@@ -75,8 +75,9 @@ return {
             return
           end
           local client = vim.lsp.get_client_by_id(args.data.client_id)
-          ---@diagnostic disable-next-line: missing-parameter
-          require("lsp-inlayhints").on_attach(client, args.buf)
+          if client then
+            require("lsp-inlayhints").on_attach(client, args.buf)
+          end
         end,
       })
     end,

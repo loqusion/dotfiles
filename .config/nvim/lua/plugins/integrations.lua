@@ -49,6 +49,7 @@ return {
     opts = { theme = "dark" },
   },
 
+  -- use common keybinds for navigating multiplexer
   {
     "mrjones2014/smart-splits.nvim",
     lazy = false, -- see https://github.com/mrjones2014/smart-splits.nvim#wezterm
@@ -74,6 +75,7 @@ return {
     },
   },
 
+  -- auto dark mode (macOS only)
   {
     "cormacrelf/dark-notify",
     enabled = jit.os == "OSX",

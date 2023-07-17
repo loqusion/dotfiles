@@ -252,7 +252,7 @@ return {
   -- auto-resize windows
   {
     "anuvyklack/windows.nvim",
-    enabled = true,
+    enabled = false,
     dependencies = {
       { "anuvyklack/middleclass" },
       { "anuvyklack/animation.nvim", cond = style.animation },
@@ -285,6 +285,7 @@ return {
     end,
   },
 
+  -- tabline-like bufferline
   {
     "akinsho/bufferline.nvim",
     keys = {

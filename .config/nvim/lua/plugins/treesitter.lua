@@ -21,6 +21,7 @@ return {
     config = true,
   },
 
+  -- auto close/rename html tags
   {
     "windwp/nvim-ts-autotag",
     event = "BufReadPost",

@@ -1,4 +1,5 @@
 return {
+  -- contextual keybinds
   {
     "anuvyklack/hydra.nvim",
     keys = {
@@ -55,6 +56,7 @@ return {
     build = 'test "$(uname -s)" = "Darwin" && brew install pngpaste',
   },
 
+  -- execute project-specific config
   {
     "klen/nvim-config-local",
     cond = not vim.o.exrc,
@@ -64,6 +66,8 @@ return {
     },
   },
 
+  -- open links without netrw, and more
+  --    (lazy.nvim, github issues, package.json dependencies, brewfile)
   {
     "chrishrb/gx.nvim",
     event = "VeryLazy",

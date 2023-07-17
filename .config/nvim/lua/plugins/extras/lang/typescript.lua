@@ -1,5 +1,18 @@
 return {
   {
+    "vuki656/package-info.nvim",
+    event = "BufRead package.json",
+    opts = {
+      hide_up_to_date = true,
+      package_manager = "pnpm",
+    },
+    config = function(_, opts)
+      require("package-info").setup(opts)
+      require("telescope").load_extension("package_info")
+    end,
+  },
+
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       if type(opts.ensure_installed) == "table" then
