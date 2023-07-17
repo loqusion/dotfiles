@@ -1,6 +1,6 @@
 screenshots
 clock
-indicator
+indicator-idle-visible
 indicator-radius=100
 indicator-thickness=7
 effect-blur=7x5
@@ -10,7 +10,6 @@ key-hl-color=880033
 line-color=00000000
 inside-color=00000088
 separator-color=00000000
-grace=10
 fade-in=0.2
 ignore-empty-password
 timestr=%I:%M %p
