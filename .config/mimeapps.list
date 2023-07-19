@@ -2,6 +2,8 @@
 inode/directory=org.gnome.Nautilus.desktop
 x-scheme-handler/notion=notion-app.desktop
 image/gif=mpv.desktop
+application/pdf=org.pwmt.zathura.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;
+application/pdf=org.pwmt.zathura.desktop;
