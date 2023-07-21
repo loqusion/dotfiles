@@ -134,10 +134,18 @@ return {
       load = {
         ["core.defaults"] = {},
         ["core.concealer"] = {},
+        ["core.dirman"] = {
+          config = {
+            workspaces = {
+              notes = "~/Documents/notes",
+            },
+          },
+        },
         ["core.completion"] = {
           config = { engine = "nvim-cmp" },
         },
-        ["core.integrations.nvim-cmp"] = {},
+        ["core.export"] = {},
+        ["core.summary"] = {},
       },
     },
   },
@@ -157,10 +165,8 @@ return {
       local function put(cmd, regtype)
         local body = vim.fn.getreg(vim.v.register)
         local type = vim.fn.getregtype(vim.v.register)
-        ---@diagnostic disable-next-line: param-type-mismatch
         vim.fn.setreg(vim.v.register, body, regtype or "l")
-        ---@diagnostic disable-next-line: missing-parameter
-        bracketed.register_put_region()
+        bracketed.register_put_region(cmd)
         vim.cmd(('normal! "%s%s'):format(vim.v.register, cmd:lower()))
         ---@diagnostic disable-next-line: param-type-mismatch
         vim.fn.setreg(vim.v.register, body, type)
