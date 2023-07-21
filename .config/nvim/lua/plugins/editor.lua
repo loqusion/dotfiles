@@ -326,4 +326,57 @@ return {
       })
     end,
   },
+
+  -- open files from a terminal buffer in current neovim instance
+  {
+    "willothy/flatten.nvim",
+    commit = "d92c93959e9ac52a00002d6fd64c2d2ca5dd7192",
+    dependencies = {
+      { "willothy/wezterm.nvim", config = true },
+    },
+    lazy = false,
+    priority = 1001,
+    -- https://github.com/willothy/flatten.nvim#advanced-configuration-examples
+    opts = {
+      window = { open = "alternate" },
+      callbacks = {
+        should_block = function(argv)
+          return vim.tbl_contains(argv, "-b")
+        end,
+        one_per = {
+          kitty = false,
+          wezterm = false,
+        },
+        post_open = function(bufnr, winnr, ft, is_blocking)
+          if is_blocking then
+            require("toggleterm").toggle()
+            -- else
+            --   vim.api.nvim_set_current_win(winnr)
+            --
+            --   local wezterm_pane = tonumber(os.getenv("WEZTERM_PANE"))
+            --   if wezterm_pane then
+            --     require("wezterm").switch_pane.id(wezterm_pane)
+            --   else
+            --     vim.notify("Failed to read $WEZTERM_PANE", vim.log.levels.WARN)
+            --   end
+          end
+
+          if ft == "gitcommit" or ft == "gitrebase" then
+            vim.api.nvim_create_autocmd("BufWritePost", {
+              buffer = bufnr,
+              once = true,
+              callback = vim.schedule_wrap(function()
+                vim.api.nvim_buf_delete(bufnr, {})
+              end),
+            })
+          end
+        end,
+        block_end = function()
+          vim.schedule(function()
+            require("toggleterm").toggle()
+          end)
+        end,
+      },
+    },
+  },
 }
