@@ -114,8 +114,9 @@
 
 # Tracked config files
 
-!/electron-flags.conf
+!/dz65rgb_v3.layout.json
 !/electron*-flags.conf
+!/electron-flags.conf
 !/mimeapps.list
 !/starship.toml
 !/topgrade.toml
