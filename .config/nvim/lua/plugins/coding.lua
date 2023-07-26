@@ -1,3 +1,5 @@
+local tabout = require("utils.tabout")
+
 return {
   {
     "L3MON4D3/LuaSnip",
@@ -6,11 +8,35 @@ return {
       {
         "<tab>",
         function()
-          return require("luasnip").expand_or_jumpable(1) and "<Plug>luasnip-expand-or-jump" or "<tab>"
+          if require("luasnip").expand_or_jumpable(1) then
+            return "<Plug>luasnip-expand-or-jump"
+          else
+            return "<Plug>(Tabout)"
+          end
         end,
         expr = true, silent = true, mode = "i",
       },
     },
+  },
+
+  {
+    "abecodes/tabout.nvim",
+    -- stylua: ignore
+    keys = {
+      { "<Plug>(Tabout)", function() tabout.tabout() end, mode = "i" },
+      { "<Plug>(TaboutMulti)", function() tabout.taboutMulti() end, mode = "i" },
+      { "<Plug>(TaboutBack)", function() tabout.taboutBack() end, mode = "i" },
+      { "<Plug>(TaboutBackMulti)", function() tabout.taboutBackMulti() end, mode = "i" },
+    },
+    opts = {
+      -- Disable default keybinds to avoid conflicts
+      tabkey = "",
+      backwards_tabkey = "",
+    },
+    config = function(_, opts)
+      -- WARN: Using internal api which may change in the future
+      require("tabout.config").setup(opts)
+    end,
   },
 
   {
