@@ -3,7 +3,7 @@ local python = require("utils.python")
 return {
   {
     "mfussenegger/nvim-dap",
-
+    optional = true,
     dependencies = {
       {
         "mfussenegger/nvim-dap-python",
