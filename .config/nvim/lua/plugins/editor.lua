@@ -366,7 +366,7 @@ return {
               buffer = bufnr,
               once = true,
               callback = vim.schedule_wrap(function()
-                vim.api.nvim_buf_delete(bufnr, {})
+                require("close_buffers").delete({ type = bufnr })
               end),
             })
           end
