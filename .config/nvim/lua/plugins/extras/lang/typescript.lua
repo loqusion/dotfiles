@@ -1,14 +1,12 @@
 return {
   {
-    "vuki656/package-info.nvim",
-    event = "BufRead package.json",
-    opts = {
-      hide_up_to_date = true,
-      package_manager = "pnpm",
-    },
-    config = function(_, opts)
-      require("package-info").setup(opts)
-      require("telescope").load_extension("package_info")
+    "williamboman/mason.nvim",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
+        "prettier",
+        "prettierd",
+        "rustywind",
+      })
     end,
   },
 
@@ -33,25 +31,28 @@ return {
         includeInlayFunctionLikeReturnTypeHints = true,
         includeInlayEnumMemberValueHints = true,
       }
-      local inlay_hints_opts = {
+      local extra_opts = {
         settings = {
           typescript = { inlayHints = inlay_hints },
           javascript = { inlayHints = inlay_hints },
         },
       }
 
-      opts.servers.tsserver = vim.tbl_deep_extend("force", opts.servers.tsserver, inlay_hints_opts)
+      opts.servers.tsserver = vim.tbl_deep_extend("force", opts.servers.tsserver, extra_opts)
       opts.servers.denols = {}
     end,
   },
+
   {
-    "williamboman/mason.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "prettier",
-        "prettierd",
-        "rustywind",
-      })
+    "vuki656/package-info.nvim",
+    event = "BufRead package.json",
+    opts = {
+      hide_up_to_date = true,
+      package_manager = "pnpm",
+    },
+    config = function(_, opts)
+      require("package-info").setup(opts)
+      require("telescope").load_extension("package_info")
     end,
   },
 }
