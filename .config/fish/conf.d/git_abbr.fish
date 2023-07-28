@@ -218,6 +218,7 @@ if status --is-interactive
     abbr gstp 'git stash pop'
     abbr gsts 'git stash show --text --include-untracked'
     abbr gstu 'git stash push --include-untracked'
+    abbr gstuo 'git stash push; git stash push --include-untracked; git stash pop stash@{1}'
     abbr gstall 'git stash --all'
 
     abbr gsba 'git submodule add'
