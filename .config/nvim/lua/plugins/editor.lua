@@ -281,7 +281,9 @@ return {
     "ecthelionvi/NeoComposer.nvim",
     dependencies = { "kkharji/sqlite.lua" },
     keys = { "q", "Q", "<m-q>", "<c-p>", "<c-n>" },
-    opts = {},
+    opts = {
+      queue_most_recent = true,
+    },
   },
 
   -- strip trailing whitespace on save
