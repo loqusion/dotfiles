@@ -341,46 +341,54 @@ return {
     lazy = false,
     priority = 1001,
     -- https://github.com/willothy/flatten.nvim#advanced-configuration-examples
-    opts = {
-      window = { open = "alternate" },
-      callbacks = {
-        should_block = function(argv)
-          return vim.tbl_contains(argv, "-b")
-        end,
-        one_per = {
-          kitty = false,
-          wezterm = false,
-        },
-        post_open = function(bufnr, winnr, ft, is_blocking)
-          if is_blocking then
-            require("toggleterm").toggle()
-            -- else
-            --   vim.api.nvim_set_current_win(winnr)
-            --
-            --   local wezterm_pane = tonumber(os.getenv("WEZTERM_PANE"))
-            --   if wezterm_pane then
-            --     require("wezterm").switch_pane.id(wezterm_pane)
-            --   else
-            --     vim.notify("Failed to read $WEZTERM_PANE", vim.log.levels.WARN)
-            --   end
-          end
+    opts = function()
+      ---@type Terminal?
+      local saved_terminal
 
-          if ft == "gitcommit" or ft == "gitrebase" then
-            vim.api.nvim_create_autocmd("BufWritePost", {
-              buffer = bufnr,
-              once = true,
-              callback = vim.schedule_wrap(function()
-                require("close_buffers").delete({ type = bufnr })
-              end),
-            })
-          end
-        end,
-        block_end = function()
-          vim.schedule(function()
-            require("toggleterm").toggle()
-          end)
-        end,
-      },
-    },
+      return {
+        window = { open = "alternate" },
+        callbacks = {
+          should_block = function(argv)
+            return vim.tbl_contains(argv, "-b")
+          end,
+          one_per = {
+            kitty = false,
+            wezterm = false,
+          },
+          pre_open = function()
+            local term = require("toggleterm.terminal")
+            local termid = term.get_focused_id()
+            saved_terminal = term.get(termid)
+          end,
+          post_open = function(bufnr, winnr, ft, is_blocking)
+            if is_blocking then
+              if saved_terminal then
+                saved_terminal:close()
+              else
+                vim.notify("Failed to get focused terminal", vim.log.levels.WARN)
+              end
+            end
+
+            if ft == "gitcommit" or ft == "gitrebase" then
+              vim.api.nvim_create_autocmd("BufWritePost", {
+                buffer = bufnr,
+                once = true,
+                callback = vim.schedule_wrap(function()
+                  require("close_buffers").delete({ type = bufnr })
+                end),
+              })
+            end
+          end,
+          block_end = function()
+            vim.schedule(function()
+              if saved_terminal then
+                saved_terminal:open()
+                saved_terminal = nil
+              end
+            end)
+          end,
+        },
+      }
+    end,
   },
 }
