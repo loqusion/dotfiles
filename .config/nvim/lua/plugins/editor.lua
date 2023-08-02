@@ -105,25 +105,31 @@ return {
     end,
   },
 
-  -- motions respect camelCase, snake_case, etc
+  -- motions respect camelCase, snake_case, etc (using for inner word textobjects)
   {
     "chaoren/vim-wordmotion",
     event = "VeryLazy",
     keys = {
-      { "av", mode = { "x", "o" }, desc = "a word (within variable)" },
-      { "iv", mode = { "x", "o" }, desc = "inner word (within variable)" },
-      { "w" },
-      { "e" },
-      { "b" },
-      { "ge" },
+      { "av", "<Plug>WordMotion_aw", mode = { "x", "o" }, desc = "a word (within variable)" },
+      { "iv", "<Plug>WordMotion_iw", mode = { "x", "o" }, desc = "inner word (within variable)" },
     },
     init = function()
-      vim.g.wordmotion_mappings = {
-        aw = "av",
-        iw = "iv",
-        ["<C-R><C-W>"] = "",
-      }
+      vim.g.wordmotion_nomap = true
     end,
+  },
+
+  -- motions respect camelCase, snake_case, etc
+  {
+    "chrisgrieser/nvim-spider",
+    event = "VeryLazy",
+    -- stylua: ignore
+    keys = {
+      { "w",  function() require("spider").motion("w") end,  mode = { "n", "o", "x" }, desc = "Next word" },
+      { "e",  function() require("spider").motion("e") end,  mode = { "n", "o", "x" }, desc = "Previous word" },
+      { "b",  function() require("spider").motion("b") end,  mode = { "n", "o", "x" }, desc = "End of word" },
+      { "ge", function() require("spider").motion("ge") end, mode = { "n", "o", "x" }, desc = "Previous end of word" },
+    },
+    opts = {},
   },
 
   -- neorg
