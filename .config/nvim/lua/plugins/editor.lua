@@ -122,13 +122,56 @@ return {
   {
     "chrisgrieser/nvim-spider",
     event = "VeryLazy",
-    -- stylua: ignore
-    keys = {
-      { "w",  function() require("spider").motion("w") end,  mode = { "n", "o", "x" }, desc = "Next word" },
-      { "e",  function() require("spider").motion("e") end,  mode = { "n", "o", "x" }, desc = "Previous word" },
-      { "b",  function() require("spider").motion("b") end,  mode = { "n", "o", "x" }, desc = "End of word" },
-      { "ge", function() require("spider").motion("ge") end, mode = { "n", "o", "x" }, desc = "Previous end of word" },
-    },
+    keys = function()
+      local skipInsignificantPunctuation = true
+
+      return {
+        {
+          "w",
+          function()
+            require("spider").motion("w", { skipInsignificantPunctuation = skipInsignificantPunctuation })
+          end,
+          mode = { "n", "o", "x" },
+          desc = "Next word",
+        },
+        {
+          "e",
+          function()
+            require("spider").motion("e", { skipInsignificantPunctuation = skipInsignificantPunctuation })
+          end,
+          mode = { "n", "o", "x" },
+          desc = "Previous word",
+        },
+        {
+          "b",
+          function()
+            require("spider").motion("b", { skipInsignificantPunctuation = skipInsignificantPunctuation })
+          end,
+          mode = { "n", "o", "x" },
+          desc = "End of word",
+        },
+        {
+          "ge",
+          function()
+            require("spider").motion("ge", { skipInsignificantPunctuation = skipInsignificantPunctuation })
+          end,
+          mode = { "n", "o", "x" },
+          desc = "Previous end of word",
+        },
+        {
+          "<leader>uS",
+          function()
+            skipInsignificantPunctuation = not skipInsignificantPunctuation
+            if skipInsignificantPunctuation then
+              require("lazy.core.util").info("Enabled Spider", { title = "Spider" })
+            else
+              require("lazy.core.util").warn("Disabled Spider", { title = "Spider" })
+            end
+          end,
+          desc = "Toggle Spider",
+        },
+      }
+    end,
     opts = {},
   },
 
