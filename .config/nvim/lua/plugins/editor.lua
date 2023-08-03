@@ -397,4 +397,9 @@ return {
       }
     end,
   },
+
+  {
+    "Tummetott/reticle.nvim",
+    opts = {},
+  },
 }
