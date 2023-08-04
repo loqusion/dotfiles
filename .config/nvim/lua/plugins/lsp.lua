@@ -96,21 +96,4 @@ return {
     },
     opts = {},
   },
-
-  -- render diagnostics using virtual lines on top of the real lines of code
-  {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    enabled = true,
-    event = "LspAttach",
-    config = true,
-  },
-  {
-    "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      if Utils.has("lsp_lines.nvim") then
-        opts.diagnostics.virtual_text = false
-        opts.diagnostics.virtual_lines = true
-      end
-    end,
-  },
 }
