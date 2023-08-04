@@ -441,8 +441,38 @@ return {
     end,
   },
 
+  -- only show 'cursorline' in current window
   {
     "Tummetott/reticle.nvim",
     opts = {},
+  },
+
+  -- scope buffers to tabpages
+  {
+    "tiagovla/scope.nvim",
+    enabled = false,
+    lazy = false,
+    cmd = { "ScopeSaveState", "ScopeLoadState" },
+    init = function()
+      vim.opt.sessionoptions:append({ "buffers", "tabpages", "globals" })
+      vim.api.nvim_create_autocmd("SessionLoadPost", {
+        group = Util.augroup("scope"),
+        callback = function()
+          vim.cmd([[ScopeLoadState]])
+        end,
+      })
+    end,
+    config = true,
+  },
+  {
+    "folke/persistence.nvim",
+    optional = true,
+    opts = {
+      pre_save = function()
+        if Util.has("scope.nvim") then
+          vim.cmd([[ScopeSaveState]])
+        end
+      end,
+    },
   },
 }
