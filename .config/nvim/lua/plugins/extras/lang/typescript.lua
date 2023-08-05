@@ -1,3 +1,6 @@
+local Utils = require("utils")
+local style = require("config.style")
+
 return {
   {
     "williamboman/mason.nvim",
@@ -54,5 +57,29 @@ return {
       require("package-info").setup(opts)
       require("telescope").load_extension("package_info")
     end,
+  },
+
+  {
+    -- "bennypowers/nvim-regexplainer",
+    "loqusion/nvim-regexplainer",
+    dev = true,
+    keys = {
+      {
+        "gR",
+        function()
+          require("regexplainer").show()
+        end,
+        desc = "Show Regexplainer (custom)",
+      },
+    },
+    ---@type RegexplainerOptions
+    opts = {
+      debug = true,
+      mode = "narrative",
+      display = "popup",
+      popup = {
+        border = { style = style.border },
+      },
+    },
   },
 }
