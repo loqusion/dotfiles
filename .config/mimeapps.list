@@ -7,3 +7,4 @@ application/pdf=org.pwmt.zathura.desktop
 [Added Associations]
 image/gif=mpv.desktop;
 application/pdf=org.pwmt.zathura.desktop;
+font/woff2=org.gnome.FontViewer.desktop;
