@@ -105,6 +105,15 @@ return {
     end,
   },
 
+  {
+    "folke/flash.nvim",
+    -- stylua: ignore
+    keys = {
+      { "m", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "S", false },
+    },
+  },
+
   -- motions respect camelCase, snake_case, etc (using for inner word textobjects)
   {
     "chaoren/vim-wordmotion",
