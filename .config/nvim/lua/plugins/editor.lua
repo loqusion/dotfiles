@@ -105,6 +105,7 @@ return {
     end,
   },
 
+  -- navigate code with search labels, enhanced character motions, and Treesitter integration
   {
     "folke/flash.nvim",
     keys = function()
