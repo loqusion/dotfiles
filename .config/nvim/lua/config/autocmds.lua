@@ -27,6 +27,18 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- quickfix options
+vim.api.nvim_create_autocmd("FileType", {
+  group = Utils.augroup("quickfix"),
+  pattern = "qf",
+  callback = function()
+    vim.wo.number = true
+    vim.wo.relativenumber = false
+    vim.wo.signcolumn = "no"
+    vim.wo.foldcolumn = 0
+  end,
+})
+
 -- reload yabai+skhd on config change
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = Utils.augroup("yabai"),
