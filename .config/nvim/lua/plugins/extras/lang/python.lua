@@ -7,7 +7,6 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "autoflake",
         "black",
-        "blackd-client",
         "isort",
         "mypy",
         "pylint",
@@ -59,21 +58,6 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")
-      local custom = {
-        formatting = {
-          blackd_client = nls.builtins.formatting.black.with({
-            meta = {
-              url = "https://github.com/disrupted/blackd-client",
-              description = "black, as a daemon, for improved formatting speed",
-            },
-            generator_opts = {
-              command = "blackd-client",
-              args = {},
-              to_stdin = true,
-            },
-          }),
-        },
-      }
 
       vim.list_extend(opts.sources, {
         nls.builtins.diagnostics.flake8.with({
@@ -100,7 +84,7 @@ return {
             return utils.root_has_file(".pylintrc")
           end,
         }),
-        custom.formatting.blackd_client,
+        nls.builtins.formatting.blackd,
       })
     end,
   },
