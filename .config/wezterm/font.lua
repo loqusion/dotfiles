@@ -1,6 +1,9 @@
 local wezterm = require 'wezterm'
+
 local use_cursive_italics = true
+local primary_font = 'JetBrains Mono'
 local cursive_font = 'Victor Mono'
+local emoji_font = 'Twemoji'
 
 ---@param font string
 local function nerd(font)
@@ -11,7 +14,7 @@ local function nerd(font)
 end
 
 return function(config)
-  config.font = wezterm.font(nerd 'JetBrains Mono')
+  config.font = wezterm.font_with_fallback { nerd(primary_font), emoji_font }
   config.font_size = 12.0
   if use_cursive_italics then
     config.font_rules = {
