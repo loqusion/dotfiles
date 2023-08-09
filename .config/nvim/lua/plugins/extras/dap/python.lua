@@ -18,10 +18,6 @@ return {
           local debugpy = mason_registry.get_package("debugpy")
           local debugpy_path = debugpy:get_install_path()
 
-          dap_python.resolve_python = function()
-            local pyright = require("lspconfig.configs").pyright
-            return python.get_path(pyright.get_root_dir())
-          end
           dap_python.setup(("%s/venv/bin/python"):format(debugpy_path))
         end,
       },
