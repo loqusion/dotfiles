@@ -1,5 +1,3 @@
-local python = require("utils.python")
-
 return {
   {
     "mfussenegger/nvim-dap",
