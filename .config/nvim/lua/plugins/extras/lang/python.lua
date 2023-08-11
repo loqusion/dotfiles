@@ -40,10 +40,6 @@ return {
           end,
         },
         ruff_lsp = {
-          ---@param client lsp.Client
-          on_attach = function(client, _)
-            client.server_capabilities.hoverProvider = false
-          end,
           before_init = function(_, config)
             local venv = python.activate_venv(config.root_dir)
             local python_path = python.get_path(venv)
