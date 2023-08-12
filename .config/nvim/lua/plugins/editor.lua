@@ -284,9 +284,32 @@ return {
   -- display test coverage
   {
     "andythigpen/nvim-coverage",
-    cmd = { "Coverage", "CoverageSummary" },
+    keys = {
+      { "<leader>tcC", "<Cmd>Coverage<CR>", desc = "Load" },
+      { "<leader>tcc", "<Cmd>CoverageToggle<CR>", desc = "Toggle" },
+      { "<leader>tcs", "<Cmd>CoverageSummary<CR>", desc = "Summary" },
+    },
+    cmd = {
+      "Coverage",
+      "CoverageClear",
+      "CoverageHide",
+      "CoverageLoad",
+      "CoverageLoadLcov",
+      "CoverageShow",
+      "CoverageSummary",
+      "CoverageToggle",
+    },
     opts = {
       commands = true,
+    },
+  },
+  {
+    "folke/which-key.nvim",
+    optional = true,
+    opts = {
+      defaults = {
+        ["<leader>tc"] = { name = "+coverage" },
+      },
     },
   },
 
