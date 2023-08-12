@@ -39,6 +39,15 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- yaml options
+vim.api.nvim_create_autocmd("FileType", {
+  group = Utils.augroup("ft_yaml"),
+  pattern = "yaml",
+  callback = function()
+    vim.opt_local.iskeyword:append("-")
+  end,
+})
+
 -- reload yabai+skhd on config change
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = Utils.augroup("yabai"),
