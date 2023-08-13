@@ -50,6 +50,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- auto reload configs
 
+-- yabai
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = Utils.augroup("config_reload"),
   pattern = { "yabairc", "skhdrc", ".yabairc", ".skhdrc" },
@@ -60,6 +61,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   end,
 })
 
+-- hyprpaper
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = Utils.augroup("config_reload"),
   pattern = "hyprpaper.conf",
@@ -67,6 +69,16 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     vim.notify("Reloading hyprpaper")
     vim.fn.system("pkill hyprpaper")
     vim.fn.system(("nohup hyprpaper -c %s >/dev/null 2>&1 & disown"):format(event.file))
+  end,
+})
+
+-- hyprshade
+vim.api.nvim_create_autocmd("BufWritePost", {
+  group = Utils.augroup("config_reload"),
+  pattern = { "hyprshade.toml", "hyprshade/config.toml" },
+  callback = function()
+    vim.notify("Regenerating hyprshade")
+    vim.fn.system("hyprshade install")
   end,
 })
 
