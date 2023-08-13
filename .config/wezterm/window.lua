@@ -1,3 +1,5 @@
+local transparent = true
+
 local function os_capture(cmd, raw)
   local f = assert(io.popen(cmd, 'r'))
   local s = assert(f:read '*a')
@@ -22,6 +24,6 @@ return function(config)
   }
   -- disable title bar, but keep resize
   config.window_decorations = uname == 'Darwin' and 'TITLE | RESIZE' or 'RESIZE'
-  config.window_background_opacity = 0.90
+  config.window_background_opacity = transparent and 0.90 or 1.00
   config.window_close_confirmation = 'NeverPrompt'
 end
