@@ -3,7 +3,7 @@ Description=Apply screen filter on schedule
 
 [Timer]
 OnCalendar=*-*-* 06:00:00
-OnCalendar=*-*-* 19:00:00
+OnCalendar=*-*-* 20:00:00
 
 [Install]
 WantedBy=timers.target
