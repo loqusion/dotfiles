@@ -48,14 +48,25 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- reload yabai+skhd on config change
+-- auto reload configs
+
 vim.api.nvim_create_autocmd("BufWritePost", {
-  group = Utils.augroup("yabai"),
+  group = Utils.augroup("config_reload"),
   pattern = { "yabairc", "skhdrc", ".yabairc", ".skhdrc" },
   callback = function()
     vim.notify("Reloading yabai+skhd")
     vim.fn.system('launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"')
     vim.fn.system('launchctl kickstart -k "gui/${UID}/homebrew.mxcl.skhd"')
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+  group = Utils.augroup("config_reload"),
+  pattern = "hyprpaper.conf",
+  callback = function(event)
+    vim.notify("Reloading hyprpaper")
+    vim.fn.system("pkill hyprpaper")
+    vim.fn.system(("nohup hyprpaper -c %s >/dev/null 2>&1 & disown"):format(event.file))
   end,
 })
 
