@@ -1,5 +1,5 @@
 [submodule ".config/kitty/kitty-themes"]
-	path = .config/kitty/kitty-themes
+	path = .config/kitty/themes
 	url = https://github.com/dexpota/kitty-themes
 [submodule ".config/hypr/.AmadeusWM"]
 	path = .config/AmadeusWM
