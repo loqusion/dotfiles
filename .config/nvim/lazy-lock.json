@@ -162,6 +162,7 @@
   "vim-test": { "branch": "master", "commit": "837640f1cb74067aa326d533a8b4609800a55a8d" },
   "vim-wordmotion": { "branch": "master", "commit": "81d9bd298376ab0dc465c85d55afa4cb8d5f47a1" },
   "vimtex": { "branch": "master", "commit": "877de3ba5de5f766e5bfa1c3fb0d2ecfcd18f868" },
+  "virtcolumn.nvim": { "branch": "main", "commit": "cd9485d64a0763c5572272e03d70cbff1f91fde0" },
   "wezterm.nvim": { "branch": "main", "commit": "918da25519311f04134a8b36a96429a2b8785c53" },
   "which-key.nvim": { "branch": "main", "commit": "7ccf476ebe0445a741b64e36c78a682c1c6118b7" },
   "yaml-companion.nvim": { "branch": "main", "commit": "4de1e1546abc461f62dee02fcac6a02debd6eb9e" },
