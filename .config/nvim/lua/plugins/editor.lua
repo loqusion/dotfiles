@@ -514,4 +514,9 @@ return {
       end,
     },
   },
+
+  {
+    "xiyaowong/virtcolumn.nvim",
+    event = "VeryLazy",
+  },
 }
