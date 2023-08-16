@@ -1,0 +1,35 @@
+live_config_reload = true
+import = ["~/.config/alacritty/theme.toml"]
+
+[env]
+# TERM = "alacritty"
+
+[window]
+# opacity = 0.9
+# option_as_alt = "OnlyLeft"
+
+[font]
+size = 12.0
+offset = { x = 0, y = 0 }
+glyph_offset = { x = 0, y = 0 }
+builtin_box_drawing = true
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+
+[font.italic]
+family = "VictorMono Nerd Font"
+
+[font.bold_italic]
+family = "VictorMono Nerd Font"
+
+[cursor]
+style.blinking = "On"
+blink_interval = 500
+blink_timeout = 10
+
+[mouse]
+hide_when_typing = true
+
+[debug]
+persistent_logging = false
