@@ -22,5 +22,5 @@ opt.swapfile = false -- Don't use swapfile
 -- opt.showbreak = "↪ " -- Show where line wraps
 opt.showcmd = false -- Don't show command in statusline
 opt.spelllang = { "en_us", "cjk" }
-opt.textwidth = 80 -- Maximum width of text
+opt.textwidth = 120 -- Maximum width of text
 opt.virtualedit = "block" -- Allow positioning cursor where there is no text in visual block mode
