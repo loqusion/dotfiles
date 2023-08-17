@@ -131,6 +131,7 @@
 /btop/btop.log
 /lazygit/state.yml
 /systemd/**/*.wants/**
+/nvim/spell/**
 
 
 # Dangerous!!!
