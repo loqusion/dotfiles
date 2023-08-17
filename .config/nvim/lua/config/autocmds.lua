@@ -48,6 +48,15 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- kdl options
+vim.api.nvim_create_autocmd("FileType", {
+  group = Utils.augroup("ft_kdl"),
+  pattern = "kdl",
+  callback = function()
+    vim.opt_local.commentstring = "// %s"
+  end,
+})
+
 -- auto reload configs
 
 -- yabai
