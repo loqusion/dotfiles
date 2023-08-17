@@ -48,9 +48,9 @@ window#waybar.solo {
 }
 
 /*
-CSS provided by Flick0
-more can be read here: https://github.com/Alexays/Waybar/wiki/Module:-Workspaces
-*/
+ * CSS provided by Flick0
+ * see: https://github.com/Alexays/Waybar/wiki/Module:-Workspaces
+ */
 #workspaces {
   min-height: 45px;
   font-size: 16px;
