@@ -28,10 +28,9 @@ window#waybar.solo {
   transition: 0.1s all ease;
   color: #eae9f0;
   background-color: unset;
-  transition: 0.1s all ease;
-  color: #eae9f0;
   opacity: 1;
   padding: 0px;
+  margin-right: 16px;
 }
 
 /*
@@ -63,8 +62,6 @@ window#waybar.solo {
   transition: 0.1s all ease;
   color: #eae9f0;
   background-color: unset;
-  transition: 0.1s all ease;
-  color: #eae9f0;
   opacity: 1;
 }
 
@@ -168,8 +165,6 @@ window#waybar.solo {
   transition: 0.1s all ease;
   color: #eae9f0;
   background-color: unset;
-  transition: 0.1s all ease;
-  color: #eae9f0;
   opacity: 1;
   padding-right: 15px;
 }
@@ -178,8 +173,6 @@ window#waybar.solo {
   transition: 0.1s all ease;
   color: #eae9f0;
   background-color: unset;
-  transition: 0.1s all ease;
-  color: #eae9f0;
   opacity: 1;
 }
 

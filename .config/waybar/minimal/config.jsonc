@@ -8,13 +8,13 @@
     "tray",
     "custom/recorder",
     "custom/notification",
-    "idle_inhibitor",
     "backlight",
     "pulseaudio",
     "bluetooth",
     "network",
     "battery",
-    "clock"
+    "clock",
+    "idle_inhibitor"
   ],
   "custom/launcher": {
     "format": "",

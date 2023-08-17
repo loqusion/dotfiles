@@ -34,9 +34,6 @@ $teal: #72b69c;
 
 @mixin button-box-high {
   @include button-box;
-  transition: 0.1s all ease;
-  color: $fg0;
-
   opacity: 1;
 }
 
@@ -69,6 +66,7 @@ window#waybar.solo {
 .modules-right {
   @include button-box-high;
   padding: 0px;
+  margin-right: 16px;
 }
 
 /*

@@ -6,22 +6,20 @@
   "modules-center": ["custom/appname"],
   "modules-right": [
     "tray",
-    "custom/dunst",
+    "custom/recorder",
+    "custom/notification",
     "backlight",
     "pulseaudio",
     "bluetooth",
     "network",
     "battery",
-    "clock"
+    "clock",
+    "idle_inhibitor"
   ],
   "custom/launcher": {
     "format": "",
     "on-click": "wofi --show drun -o DP-3",
     "on-click-right": "killall wofi"
-  },
-  "custom/apatheia": {
-    "format": "{}",
-    "exec": "python ~/.config/hypr/themes/minimal/waybar/modules/Apatheia/main.py"
   },
   "wlr/workspaces": {
     "format": "{icon}",
@@ -64,74 +62,6 @@
     "max-length": 80,
     "tooltip": false
   },
-  "clock": {
-    "interval": 1,
-    "format": "{:%a %d %b - %H:%M:%S}",
-    "on-click": "morgen"
-  },
-  "battery": {
-    "format": "{icon}",
-    "format-alt": "{time} {icon} ",
-    "format-icons": ["", "", "", "", "", "", "", "", "", ""],
-    "format-charging": "",
-    "interval": 30,
-    "states": {
-      "warning": 25,
-      "critical": 10
-    },
-    "tooltip-format": "At {capacity}%"
-  },
-  "network": {
-    "format": "{icon}",
-    "format-alt": "{bandwidthDownBytes} {icon}",
-    "format-alt-click": "click-right",
-    "format-icons": {
-      "wifi": ["", "", ""],
-      "ethernet": [""],
-      "disconnected": ["睊"]
-    },
-    "on-click": "hyprctl dispatch exec '[float; size 600 600;move 100%-620 70] gnome-control-center wifi'",
-    "tooltip-format": "{ipaddr}/{cidr}"
-  },
-  "bluetooth": {
-    "format": "",
-    "format-disabled": "",
-    "format-connected": "",
-    "tooltip-format": "{controller_alias}\t{controller_address}",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "on-click": "blueberry"
-  },
-  "pulseaudio": {
-    "format": "{icon}",
-    "format-muted": "婢",
-    "format-icons": {
-      "phone": [" ", " ", " "],
-      "default": ["奄", "奔", "墳"]
-    },
-    "scroll-step": 10,
-    "on-click": "myxer",
-    "tooltip-format": "At {volume}%"
-  },
-  "custom/spotify": {
-    "interval": 1,
-    "return-type": "json",
-    "exec": "~/.config/hypr/themes/minimal/waybar/modules/spotify.sh",
-    "exec-if": "pgrep spotify",
-    "escape": true
-  },
-  "custom/storage": {
-    "format": "{} ",
-    "format-alt": "{percentage}% ",
-    "format-alt-click": "click-right",
-    "return-type": "json",
-    "interval": 60,
-    "exec": "~/.config/hypr/themes/minimal/waybar/modules/storage.sh"
-  },
-  "custom/terminal": {
-    "format": "",
-    "on-click": "kitty --title=\"kitty-qalculate\" --hold qalc"
-  },
   "custom/appname": {
     "width": "500",
     "format": "{}",
@@ -139,22 +69,105 @@
     "signal": 9,
     "exec": "hyprctl activewindow -j | jq \"[.class,.title]\" | jq --raw-output 'join(\" ✦ \")' | cut -c -80"
   },
+  "clock": {
+    "interval": 1,
+    "format": "{:%a %d %b - %I:%M %p}",
+    "on-click": "morgen"
+  },
+  "battery": {
+    "format": "{icon}",
+    "format-alt": "{time} {icon} ",
+    "format-icons": ["", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂"],
+    "format-charging": "󰂄",
+    "interval": 30,
+    "states": {
+      "warning": 25,
+      "critical": 10
+    },
+    "tooltip-format": "{capacity}%"
+  },
+  "network": {
+    "format": "{icon}",
+    "format-alt": "{bandwidthDownBytes} {icon}",
+    "format-alt-click": "click-right",
+    "format-icons": {
+      "wifi": ["", "", ""],
+      "ethernet": ["󰈁"],
+      "disconnected": ["󰖪"],
+      "disabled": ["󰖪"]
+    },
+    // "on-click": "hyprctl dispatch exec '[float; size 600 600;move 100%-620 70] gnome-control-center wifi'",
+    "tooltip-format": "{ipaddr}/{cidr}",
+    "min-length": 2
+  },
+  "bluetooth": {
+    "format": "󰂯",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "blueberry"
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "",
+    "format-icons": {
+      "phone": ["󰋋󰕿", "󰋋󰖀", "󰋋󰕾"],
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "scroll-step": 10,
+    "on-click": "pavucontrol",
+    "tooltip-format": "{volume}%"
+  },
   "backlight": {
     "format": "{icon}",
     "format-alt": "{percent}% {icon}",
     "format-alt-click": "click-right",
-    "format-icons": [""],
+    "format-icons": [""],
     "on-scroll-down": "light -U 10",
     "on-scroll-up": "light -A 10"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-alt": "{icon} {status}",
+    "format-alt-click": "click-right",
+    "format-icons": {
+      "activated": "󰒳",
+      "deactivated": "󰒲"
+    }
   },
   "tray": {
     "icon-size": 18,
     "spacing": 10
   },
-  "custom/dunst": {
-    "format": "{}",
-    "exec": "~/.config/hypr/themes/minimal/waybar/modules/dunst.sh",
-    "on-click": "dunstctl set-paused toggle",
-    "restart-interval": 1
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true,
+    "min-length": 3
+  },
+  "custom/recorder": {
+    "format": "",
+    "return-type": "json",
+    "interval": 4,
+    "exec": "echo '{\"class\": \"recording\"}'",
+    "exec-if": "pgrep wf-recorder",
+    "min-length": 3
   }
 }

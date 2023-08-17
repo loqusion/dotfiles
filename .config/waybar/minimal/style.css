@@ -148,8 +148,12 @@ window#waybar.solo {
   padding-bottom: 3px;
 }
 
+#idle_inhibitor {
+  margin-right: 16px;
+}
+
 #clock {
-  margin: 0px 16px 0px 10px;
+  margin: 0px 10px 0px 10px;
   font-weight: bold;
 }
 
