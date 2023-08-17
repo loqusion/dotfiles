@@ -27,11 +27,35 @@ family = "VictorMono Nerd Font"
 
 [cursor]
 style.blinking = "On"
+style.shape = "Beam"
+vi_mode_style.shape = "Underline"
 blink_interval = 500
 blink_timeout = 10
 
 [mouse]
 hide_when_typing = true
+
+[[hints.enabled]]
+regex = '''(?:https?://|git@|git://|ssh://|ftp://|file:///)\S+'''
+hyperlinks = true
+post_processing = true
+mouse = { enabled = true }
+action = "Copy"
+
+[[hints.enabled]]
+# Too slow
+regex = '''\[[^]]*\]\(([^)]+)\)|(?:https?://|git@|git://|ssh://|ftp://|file:///)\S+|--- a/(\S+)|\+\+\+ b/(\S+)|sha256:([0-9a-f]{64})|(?:[.\w\-@~]+)?(?:/[.\w\-@]+)+|#[0-9a-fA-F]{6}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|[0-9a-f]{7,40}|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|[A-f0-9:]+:+[A-f0-9:]+[%\w\d]+|0x[0-9a-fA-F]+|[0-9]{4,}'''
+action = "Copy"
+binding = { key = "Space", mods = "Control | Shift", mode = "~Search" }
+
+[[mouse.bindings]]
+mouse = "Middle"
+action = "None"
+
+[[keyboard.bindings]]
+key = "Space"
+mods = "Control | Shift"
+action = "None"
 
 [debug]
 persistent_logging = false
