@@ -1,5 +1,5 @@
 build *FLAGS:
-  sass --no-source-map style.scss style.css {{FLAGS}}
+  npx sass --no-source-map style.scss style.css {{FLAGS}}
 
 watch:
   @just build --watch
