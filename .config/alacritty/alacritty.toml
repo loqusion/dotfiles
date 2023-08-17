@@ -18,9 +18,11 @@ builtin_box_drawing = true
 family = "JetBrainsMono Nerd Font"
 
 [font.italic]
+style = "Italic"
 family = "VictorMono Nerd Font"
 
 [font.bold_italic]
+style = "Bold Italic"
 family = "VictorMono Nerd Font"
 
 [cursor]
