@@ -38,4 +38,9 @@ return {
     "Fymyte/rasi.vim",
     event = "BufReadPre",
   },
+
+  {
+    "theRealCarneiro/hyprland-vim-syntax",
+    event = "BufReadPre",
+  },
 }
