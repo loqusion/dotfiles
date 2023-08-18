@@ -137,6 +137,7 @@
 # Dangerous!!!
 
 /gh/hosts.yml
+/pdm/config.toml
 
 
 .DS_STORE
