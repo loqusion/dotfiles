@@ -77,7 +77,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   callback = function(event)
     vim.notify("Reloading hyprpaper")
     vim.fn.system("pkill hyprpaper")
-    vim.fn.system(("nohup hyprpaper -c %s >/dev/null 2>&1 & disown"):format(event.file))
+    vim.fn.system(("nohup hyprpaper --config %s >/dev/null 2>&1 & disown"):format(event.file))
   end,
 })
 
