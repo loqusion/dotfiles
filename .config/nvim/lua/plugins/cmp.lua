@@ -6,6 +6,7 @@ return {
     dependencies = {
       "hrsh7th/cmp-emoji",
       "onsails/lspkind.nvim",
+      "lukas-reineke/cmp-under-comparator",
       {
         "David-Kunz/cmp-npm",
         event = { "BufRead package.json" },
@@ -24,6 +25,7 @@ return {
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
+      local compare = cmp.config.compare
       return vim.tbl_deep_extend("force", opts, {
         completion = {
           completeopt = "menu,menuone,noselect",
@@ -33,6 +35,21 @@ return {
           { name = "neorg" },
           { name = "npm", keyword_length = 3 },
         })),
+        sorting = {
+          comparators = {
+            compare.offset,
+            compare.exact,
+            -- compare.scopes,
+            compare.score,
+            require("cmp-under-comparator").under,
+            compare.recently_used,
+            compare.locality,
+            compare.kind,
+            -- compare.sort_text,
+            compare.length,
+            compare.order,
+          },
+        },
         window = {
           completion = {
             col_offset = -3,
