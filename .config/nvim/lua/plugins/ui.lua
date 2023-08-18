@@ -244,6 +244,7 @@ return {
   -- fun screensavers
   {
     "folke/drop.nvim",
+    enabled = false,
     cond = not style.transparent, -- https://github.com/folke/drop.nvim/issues/7
     event = "VeryLazy",
     config = function()
