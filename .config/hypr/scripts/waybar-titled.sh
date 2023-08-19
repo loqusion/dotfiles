@@ -3,9 +3,16 @@
 # Change waybar title
 
 signal() {
-	if [[ ${1:0:12} == "activewindow" && ${1:0:14} != "activewindowv2" ]]; then
+	local event
+	event=$(cut -d'>' -f1 <<<"$1")
+
+	logger -p user.debug "Hyprland event: $event"
+
+	case $event in
+	activewindow | closewindow)
 		pkill -RTMIN+9 waybar
-	fi
+		;;
+	esac
 }
 
 SOCKET="UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
