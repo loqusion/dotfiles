@@ -16,47 +16,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- hide line numbers in spectre panel
-vim.api.nvim_create_autocmd("FileType", {
-  group = Utils.augroup("spectre"),
-  pattern = "spectre_panel",
-  callback = function()
-    vim.wo.number = false
-    vim.wo.relativenumber = false
-    vim.wo.signcolumn = "no"
-  end,
-})
-
--- quickfix options
-vim.api.nvim_create_autocmd("FileType", {
-  group = Utils.augroup("quickfix"),
-  pattern = "qf",
-  callback = function()
-    vim.wo.number = true
-    vim.wo.relativenumber = false
-    vim.wo.signcolumn = "no"
-    vim.wo.foldcolumn = 0
-  end,
-})
-
--- yaml options
-vim.api.nvim_create_autocmd("FileType", {
-  group = Utils.augroup("ft_yaml"),
-  pattern = "yaml",
-  callback = function()
-    vim.opt_local.iskeyword:append("-")
-  end,
-})
-
--- kdl options
-vim.api.nvim_create_autocmd("FileType", {
-  group = Utils.augroup("ft_kdl"),
-  pattern = "kdl",
-  callback = function()
-    vim.opt_local.commentstring = "// %s"
-  end,
-})
-
 -- auto reload configs
 
 -- yabai
