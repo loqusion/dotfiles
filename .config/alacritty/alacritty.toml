@@ -15,15 +15,15 @@ glyph_offset = { x = 0, y = 0 }
 builtin_box_drawing = true
 
 [font.normal]
-family = "JetBrainsMono Nerd Font Emoji"
+family = "JetBrainsMono Nerd Font"
 
 [font.italic]
 style = "Italic"
-family = "VictorMono Nerd Font Emoji"
+family = "VictorMono Nerd Font"
 
 [font.bold_italic]
 style = "Bold Italic"
-family = "VictorMono Nerd Font Emoji"
+family = "VictorMono Nerd Font"
 
 [cursor]
 style.blinking = "On"
