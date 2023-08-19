@@ -3,8 +3,10 @@ inode/directory=org.gnome.Nautilus.desktop
 x-scheme-handler/notion=notion-app.desktop
 image/gif=mpv.desktop
 application/pdf=org.pwmt.zathura.desktop
+image/vnd.microsoft.icon=feh.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;
 application/pdf=org.pwmt.zathura.desktop;
 font/woff2=org.gnome.FontViewer.desktop;
+image/vnd.microsoft.icon=feh.desktop;
