@@ -51,6 +51,9 @@ abbr untar "tar xvf"
 abbr glow "glow -p"
 abbr ub unbuffer
 
+abbr zj zellij
+abbr zja "zellij attach"
+
 abbr rman rusty-man
 
 rtx activate fish | source
