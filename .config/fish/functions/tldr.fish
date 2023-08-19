@@ -1,4 +1,9 @@
 function tldr --wraps='tldr'
+    if test (count $argv) -gt 1 || string match -q -- '*-*' $argv
+        command tldr $argv
+        return $status
+    end
+
     # make sure env has colors
     set -l nl 0
     command tldr -r $argv \
