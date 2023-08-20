@@ -1,10 +1,10 @@
 # Configured per-machine by loqusion/bootstrap
-hyprpaper.conf
-monitors.conf
-nvidia.conf
+/hyprpaper.conf
+/monitors.conf
+/nvidia.conf
 
 # Local config
-local.conf
+/local.conf
 
 # Debugging
-hyprlandd.conf
+/hyprlandd.conf
