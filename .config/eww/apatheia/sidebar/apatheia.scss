@@ -2,20 +2,20 @@
   border-radius: 12px 12px;
   padding: 2rem;
   // margin: 30px 0px;
-  border: 2px solid rgba($primary, 0.1);
+  border: 2px solid rgba($color-primary, 0.1);
 }
 
 .apatheia-content {
-  font-family: mononoki Nerd Font;
+  font-family: $font-family-tertiary;
   font-size: 1.2em;
-  color: $white;
+  color: $color-white;
 }
 
 .apatheia-author {
-  font-family: mononoki Nerd Font;
+  font-family: $font-family-tertiary;
   font-style: italic;
   font-weight: bold;
   font-size: 1.2em;
-  color: $primary;
+  color: $color-primary;
   margin-top: 0.3rem;
 }

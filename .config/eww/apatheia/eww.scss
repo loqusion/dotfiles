@@ -1,29 +1,35 @@
-* {
-  all: unset;
-  font-family: feather;
-  font-family: mononoki Nerd Font;
-}
+$font-family-primary: "JetBrainsMono Nerd Font";
+$font-family-secondary: "Inter Nerd Font";
+$font-family-tertiary: "Mononoki Nerd Font";
 
-$background-bar: rgba(11, 10, 16, 1);
-$background: rgba(11, 10, 16, 1);
-$widget-background: rgba(17, 16, 25, 1);
-$shadow: rgba(0, 0, 0, 0.3);
-$grey: rgba(105, 101, 124, 0.7);
+$spacing-1: 15px;
 
-$black: #282a36;
-$red: #e97193; // #F37F97;
-$green: #aac5a0; // #5ADECD;
-$yellow: #f6d6b3; // #F2A272;
-$orange: #f2c798; // #F2A272;
-$blue: #a8c5e6; // #BAB4D9; //#8897F4;
-$purple: #dfa7e7; // #C574DD;
-$purple2: #ecdbee; // #C574DD;
-$teal: #72b69c; // #79E6F3;
-$white: #eae9f0; // #FDFDFD;
+$color-primary: #eacded; // #F37F97;
+$color-secondary: #71e9c2; // #F37F97;
+$color-tertiary: #f0db93;
 
-$primary: #eacded; // #F37F97;
-$secondary: #71e9c2; // #F37F97;
-$tertiary: #f0db93;
+$color-grey: rgba(105, 101, 124, 0.7);
+$color-black: #282a36;
+$color-red: #e97193; // #F37F97;
+$color-green: #aac5a0; // #5ADECD;
+$color-yellow: #f6d6b3; // #F2A272;
+$color-orange: #f2c798; // #F2A272;
+$color-blue: #a8c5e6; // #BAB4D9; //#8897F4;
+$color-purple: #dfa7e7; // #C574DD;
+$color-purple2: #ecdbee; // #C574DD;
+$color-teal: #72b69c; // #79E6F3;
+$color-white: #eae9f0; // #FDFDFD;
+
+$color-shadow: rgba(0, 0, 0, 0.3);
+
+$color-bg-0: rgba(11, 10, 16, 1);
+$color-bg-1: rgba(11, 10, 16, 1);
+$color-bg-widget: rgba(17, 16, 25, 1);
 
 @import "widgets.scss";
 @import "sidebar.scss";
+
+* {
+  all: unset;
+  font-family: $font-family-tertiary;
+}
