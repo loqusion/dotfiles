@@ -5,7 +5,7 @@ import = ["~/.config/alacritty/theme.toml"]
 # TERM = "alacritty"
 
 [window]
-# opacity = 0.9
+opacity = 0.9
 # option_as_alt = "OnlyLeft"
 
 [font]
