@@ -1,9 +1,9 @@
 (include "notifications.yuck")
+(include "sidebar.yuck")
 (include "sidebar/music.yuck")
 (include "sidebar/apatheia.yuck")
 (include "sidebar/sys-tray.yuck")
 (include "sidebar/clipboard.yuck")
-(include "sidebar.yuck")
 
 ;;; Variables
 (defvar music_reveal false)
