@@ -145,6 +145,7 @@ return {
           local from = { line = 1, col = 1 }
           local to = {
             line = vim.fn.line("$"),
+            ---@diagnostic disable-next-line: param-type-mismatch
             col = math.max(vim.fn.getline("$"):len(), 1),
           }
           return { from = from, to = to }
@@ -199,5 +200,13 @@ return {
         })
       end)
     end,
+  },
+
+  -- infer parentheses for lisp-like languages
+  {
+    "eraserhd/parinfer-rust",
+    enabled = false, -- TODO: re-enable when it's not buggy?
+    event = "VeryLazy",
+    build = "cargo build --release",
   },
 }
