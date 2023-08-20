@@ -1,13 +1,12 @@
-;; includes
-(include "yuck/variables.yuck")
-(include "yuck/notifications.yuck")
-(include "yuck/sidebar/music.yuck")
-(include "yuck/sidebar/apatheia.yuck")
-(include "yuck/sidebar/sys-tray.yuck")
-(include "yuck/sidebar/clipboard.yuck")
-(include "yuck/sidebar/sidebar.yuck")
+(include "notifications.yuck")
+(include "sidebar/music.yuck")
+(include "sidebar/apatheia.yuck")
+(include "sidebar/sys-tray.yuck")
+(include "sidebar/clipboard.yuck")
+(include "sidebar.yuck")
 
-;; Variables
+;;; Variables
+(defvar music_reveal false)
 (defpoll clock_time :interval "5s" "date '+\%H\%M'")
 (defpoll clock_date :interval "1h" "date '+%b %d, %Y'")
 (defpoll calendar_day :interval "2h" "date '+%d'")
@@ -24,8 +23,17 @@
   | awk -F':' '{if($2=="yes")print$1}'`)
 (deflisten workspace "scripts/workspace")
 (deflisten appname "scripts/appname")
+(defpoll song           :interval "5s"  "scripts/music title")
+(defpoll song_artist    :interval "5s"  "scripts/music artist")
+(defpoll song_status    :interval "5s"  "scripts/music status")
+(defpoll song_perc      :interval "1s"  "scripts/music percent")
+(defpoll cover_art      :interval "5s"  "scripts/music coverloc")
+(defpoll playpause      :interval "1s"  "scripts/music statusicon")
+(defpoll player_volume  :interval "5s"  'bc <<< "$(playerctl volume)*100"')
+;; (defpoll song_time      :interval "1s"  "scripts/music timeS")
 
-; https://github.com/elkowar/eww/issues/382#issuecomment-1281693594
+
+;;; https://github.com/elkowar/eww/issues/382#issuecomment-1281693594
 
 (defvar eww "eww -c $HOME/.config/hypr/themes/apatheia/eww/bar")
 
@@ -36,7 +44,7 @@
 (defvar time_rev false)
 
 
-;; widgets
+;;; Widgets
 
 (defwidget launcher []
   (box
@@ -105,7 +113,7 @@
           :tooltip "${brightness_percent}%"
           :max 100
           :min 0
-          :onchange "light -S {}" ))
+          :onchange "light -S {}"))
       (label
         :text ""
         :class "bright_icon"
@@ -131,7 +139,7 @@
           :tooltip "${volume_percent}%"
           :max 100
           :min 0
-          :onchange "amixer -D pulse sset Master {}%" ))
+          :onchange "amixer -D pulse sset Master {}%"))
       (button
         :onclick "scripts/pop audio_ctl"
         :class "volume_icon"
@@ -161,9 +169,9 @@
   (label
     :class "module-wif"
     :text {strength == "" ? offline :
-    strength < 26 ? slow :
-    strength < 51 ? okay :
-    strength < 76 ? good : excellent}))
+           strength < 26 ? slow :
+           strength < 51 ? okay :
+           strength < 76 ? good : excellent}))
 
 (defwidget bat []
   (box
@@ -208,7 +216,7 @@
       :spacing "0"
       (label
         :text clock_time
-        :class "clock_time_class" )
+        :class "clock_time_class")
       (revealer :transition "slideleft"
                 :reveal time_rev
                 :duration "350ms"
@@ -245,7 +253,7 @@
     :width "150"))
 
 
-;;define widget groups
+;;; Widget Groups
 (defwidget left []
   (box
     :orientation "h"
@@ -275,9 +283,8 @@
     (bat)
     (mem)
     (sep)
-    (clock_module)
+    (clock_module)))
     ; (notif_button)
-    ))
 
 (defwidget bar_layout []
   (centerbox
@@ -287,7 +294,7 @@
     (center)
     (right)))
 
-;; bars for your 3 screens (one for each)
+;;; bars for your 3 screens (one for each)
 (defwindow bar0
   :monitor 0
   :exclusive false
@@ -343,7 +350,7 @@
           :class "speaker_text"
           :text "speaker"
           :valign "center"
-          :halign "left" )
+          :halign "left")
         (box
           :class "speaker_bar"
           :halign "center"
@@ -377,7 +384,7 @@
           :class "mic_text"
           :text "mic"
           :valign "center"
-          :halign "left" )
+          :halign "left")
         (box
           :class "mic_bar"
           :halign "center"
@@ -391,18 +398,18 @@
             :max 100
             :min 0))))))
 
-  (defwindow audio_ctl0
-    :stacking "fg"
-    :focusable "false"
-    :screen 1
-    :monitor 0
-    :geometry (geometry
-                :x "20"
-                :y "7%"
-                :anchor "top right"
-                :width "280px"
-                :height "60px")
-    (audio))
+(defwindow audio_ctl0
+  :stacking "fg"
+  :focusable "false"
+  :screen 1
+  :monitor 0
+  :geometry (geometry
+              :x "20"
+              :y "7%"
+              :anchor "top right"
+              :width "280px"
+              :height "60px")
+  (audio))
 
 (defwindow audio_ctl1
   :stacking "fg"
@@ -430,7 +437,7 @@
               :height "60px")
   (audio))
 
-;; Define System widget
+;;; System widget
 (defwidget system []
   (box
     :class "sys_win"
@@ -559,7 +566,7 @@
     :height "120px")
   (system))
 
-;;Calendar Widget
+;;; Calendar Widget
 (defwidget cal []
   (box
     :class "cal"

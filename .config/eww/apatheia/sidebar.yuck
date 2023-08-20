@@ -1,6 +1,6 @@
-;; string literal widgets as variables are possible but not efficient
+;;; string literal widgets as variables are possible but not efficient
 
-;; seperate sidebar for each possible primary monitor
+;;; seperate sidebar for each possible primary monitor
 (defwindow sidebar0
   :geometry (geometry
               :x "0px"
@@ -44,7 +44,7 @@
       (side))))
 (defvar side false)
 
-;; background
+;;; background
 (defwidget side []
   (box
     :class "side"

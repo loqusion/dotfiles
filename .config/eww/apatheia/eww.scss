@@ -1,0 +1,29 @@
+* {
+  all: unset;
+  font-family: feather;
+  font-family: mononoki Nerd Font;
+}
+
+$background-bar: rgba(11, 10, 16, 1);
+$background: rgba(11, 10, 16, 1);
+$widget-background: rgba(17, 16, 25, 1);
+$shadow: rgba(0, 0, 0, 0.3);
+$grey: rgba(105, 101, 124, 0.7);
+
+$black: #282a36;
+$red: #e97193; // #F37F97;
+$green: #aac5a0; // #5ADECD;
+$yellow: #f6d6b3; // #F2A272;
+$orange: #f2c798; // #F2A272;
+$blue: #a8c5e6; // #BAB4D9; //#8897F4;
+$purple: #dfa7e7; // #C574DD;
+$purple2: #ecdbee; // #C574DD;
+$teal: #72b69c; // #79E6F3;
+$white: #eae9f0; // #FDFDFD;
+
+$primary: #eacded; // #F37F97;
+$secondary: #71e9c2; // #F37F97;
+$tertiary: #f0db93;
+
+@import "widgets.scss";
+@import "sidebar.scss";
