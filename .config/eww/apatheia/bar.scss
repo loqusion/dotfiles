@@ -184,10 +184,14 @@ tooltip label {
 
 .workspace-button {
   margin: 0px 7px 0px 0px;
-  color: $color-white;
+  color: $color-grey;
 
-  &.focused {
-    color: $color-red;
+  &.workspace-exists {
+    color: $color-white;
+
+    &.focused {
+      color: $color-red;
+    }
   }
 }
 

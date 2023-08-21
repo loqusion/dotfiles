@@ -50,16 +50,14 @@
         :path "assets/blossom.png"
         :image-width 28))))
 
-(deflisten workspaces_json "./scripts/workspaces.py")
 (defvar WORKSPACE_ICONS '["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"]')
+(deflisten workspaces_json "./scripts/workspaces.py")
 (defwidget workspace-button [id]
   (button
-    :class "workspace-button workspace-${id}${id == workspaces_json.focused ? ' focused' : ''}"
-    :onclick "notify-send -e workspace '${id}'"
-    ;; :onclick "hyprctl dispatch exec 'switch-workspace.sh ${id}'"
-    :onrightclick "hyprctl dispatch workspace ${id} && 'default_app.sh'"
-    {WORKSPACE_ICONS[id - 1]}
-    ))
+    :class "workspace-button${matches(workspaces_json.workspaces, id) ? ' workspace-exists' : ''}${id == workspaces_json.focused ? ' focused' : ''}"
+    :onclick "hyprctl dispatch workspace ${id}"
+    :onrightclick "~/.config/hypr/scripts/workspace.sh ${id}"
+    {WORKSPACE_ICONS[id - 1]}))
 (defwidget workspaces []
   (eventbox
     :onscroll "echo {} | sed -e 's/up/-1/g' -e 's/down/+1/g' | xargs hyprctl dispatch workspace"
@@ -69,12 +67,8 @@
       :orientation "h"
       :spacing 5
       :space-evenly false
-      (for id in {workspaces_json.workspaces}
-        (workspace-button :id id))
-      ;; (literal
-      ;;   :content workspaces_literal
-      ;;   :valign "center")
-      )))
+      (for id in "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+        (workspace-button :id id)))))
 
 (defwidget appnames []
   (eventbox

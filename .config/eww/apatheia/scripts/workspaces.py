@@ -52,10 +52,20 @@ def get_workspaces_thing():
     )
 
 
+def get_focused_monitor() -> str:
+    hyprctl_pipe = subprocess.run(
+        ["hyprctl", "monitors", "-j"], capture_output=True, encoding="utf-8"
+    )
+    monitors_json: list[dict] = json.loads(hyprctl_pipe.stdout)
+    return next(filter(lambda x: x["focused"], monitors_json))["name"]
+
+
 class Workspaces:
     workspace_dict: WorkspaceDict = {}
+    monitor: str
 
     def __init__(self, workspaces: Iterable[int] | None = None):
+        self.monitor = get_focused_monitor()
         if workspaces is None:
             self.workspace_dict = Workspaces.get_workspaces()
         else:
@@ -92,13 +102,16 @@ class Workspaces:
     def handle_event(self, event: str, args: list[str]) -> None:
         match event:
             case "focusedmon":
-                id_ = int(args[1])
+                monitor, id_ = args[0], int(args[1])
+                self.monitor = monitor
                 self.focus(id_)
             case "workspace":
                 id_ = int(args[0])
                 self.focus(id_)
             case "moveworkspace":
-                pass
+                id_, monitor = int(args[0]), args[1]
+                if self.monitor == monitor:
+                    self.focus(id_)
             case "createworkspace":
                 id_ = int(args[0])
                 self.create(id_)
