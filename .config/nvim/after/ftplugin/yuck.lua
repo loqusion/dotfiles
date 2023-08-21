@@ -5,4 +5,5 @@ vim.opt_local.lispwords:append({
   "defvar",
   "defwidget",
   "defwindow",
+  "for",
 })
