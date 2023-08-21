@@ -1,0 +1,204 @@
+.sys_sep {
+  color: $color-bg-widget;
+  font-size: 18;
+  margin: 0px 10px 0px 10px;
+}
+
+.sys_text_bat_sub,
+.sys_text_mem_sub {
+  font-size: 16;
+  color: $color-white;
+  margin: 2px 0px 0px 25px;
+}
+
+.sys_text_bat,
+.sys_text_mem {
+  font-size: 21;
+  font-weight: bold;
+  margin: 0px 0px 0px 25px;
+}
+
+.sys_icon_bat,
+.sys_icon_mem {
+  font-size: 30;
+  margin: 30px;
+}
+
+.sys_win {
+  background-color: $color-bg-1;
+  border-radius: 25px;
+}
+
+.sys_bat {
+  color: $color-green;
+  background-color: $color-bg-widget;
+  border-radius: 10px;
+}
+
+.sys_mem {
+  color: $color-orange;
+  background-color: $color-bg-widget;
+  border-radius: 10px;
+}
+
+.sys_icon_bat,
+.sys_text_bat {
+  color: $color-green;
+}
+
+.sys_icon_mem,
+.sys_text_mem {
+  color: $color-orange;
+}
+
+.sys_bat_box {
+  border-radius: 16px;
+  margin: 15px 10px 0px 20px;
+}
+
+.sys_mem_box {
+  border-radius: 16px;
+  margin: 10px 10px 15px 20px;
+}
+
+.app-name {
+  color: $color-purple2;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0px 0px 0px;
+}
+
+// XXX: ???
+.sys-date {
+  all: unset;
+  background-color: $color-bg-widget;
+  padding: 33px 27px 27px 27px;
+  border-radius: 12px;
+  color: $color-blue;
+  font-size: 18px;
+  font-style: italic;
+  font-family: Cartograph CF;
+  box-shadow: 0px 0px 6px 6px rgb(0, 0, 0, 0.4);
+}
+
+// .stats-box {
+//     all: unset;
+//     background-color: $color-bg-widget;
+//     padding: 20px 25px 20px 25px;
+//     border-radius: 12px;
+//     // box-shadow: 0px 0px 6px 6px rgb(0, 0, 0, .4);
+// }
+
+// .stats-icon {
+//     font-size: 28px;
+//     color: $color-red;
+//     font-family: JetBrainsMono Nerd Font Mono;
+// }
+
+scale trough {
+  all: unset;
+  background-color: $color-bg-widget;
+  box-shadow: 0 2px 3px 2px $color-shadow;
+  border-radius: 16px;
+  min-height: 10px;
+  min-width: 70px;
+  margin: 0px 5px 0px 10px;
+}
+
+.scale highlight {
+  background-image: linear-gradient(
+    to right,
+    $color-red 30%,
+    $color-purple 50%,
+    $color-red 100% * 50
+  );
+  border-radius: 15px;
+}
+
+.buttons {
+  opacity: 1;
+  background-color: $color-bg-widget;
+  border-radius: 12px;
+  padding: 15px;
+  font-family: $font-family-primary;
+  // margin-bottom: 30px;
+  // box-shadow: 0px 0px 6px 6px rgb(0, 0, 0, .4);
+}
+
+.poweroff,
+.reboot,
+.firmware,
+.exit,
+.restart {
+  margin: 0px;
+  padding: 8px 12px;
+  padding-right: 20px;
+  font-family: $font-family-tertiary;
+  font-size: 28px;
+  background-color: $color-primary;
+
+  border-radius: 16px 8px;
+}
+
+.poweroff {
+  background-color: $color-red;
+  color: $color-bg-widget;
+}
+
+.reboot {
+  background-color: $color-green;
+  color: $color-bg-widget;
+}
+
+.exit {
+  background-color: $color-yellow;
+  color: $color-bg-widget;
+}
+
+.firmware {
+  color: $color-primary;
+  background-color: $color-bg-1;
+}
+
+.restart {
+  color: $color-primary;
+  background-color: $color-bg-1;
+}
+
+.fetch {
+  font-size: 20px;
+  border-radius: 12px;
+  background-color: $color-bg-widget;
+  padding: 30px 55px 30px 55px;
+  // box-shadow: 0px 0px 6px 6px rgb(0, 0, 0, .4);
+}
+
+.wm {
+  font-family: $font-family-primary;
+  font-weight: bold;
+  color: $color-primary;
+}
+
+.host {
+  font-family: $font-family-primary;
+  font-weight: bold;
+  color: $color-primary;
+}
+
+.uptime {
+  font-family: $font-family-primary;
+  font-weight: bold;
+  color: $color-primary;
+}
+
+.packages {
+  font-family: $font-family-primary;
+  font-weight: bold;
+  color: $color-primary;
+}
+
+.kernal {
+  font-family: $font-family-primary;
+  font-weight: bold;
+  color: $color-primary;
+}

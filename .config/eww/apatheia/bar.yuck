@@ -1,20 +1,15 @@
 (include "./notifications.yuck")
 
+;;; Depending on setup
 (defvar LAUNCHER_CMD "fuzzel")
+(defpoll essid :interval "100s" "iwgetid -r")
+(defpoll wlan_strength :interval "100s" "iwconfig wlan0 | grep -oP '(?<=Signal level=-)\d+'")
 
-(defpoll clock_time :interval "5s" "date '+\%H⁝\%M'")
-(defpoll clock_date :interval "1h" "date '+%b %d, %Y'")
 (defpoll calendar_day :interval "2h" "date '+%d'")
 (defpoll calendar_year :interval "2h" "date '+%Y'")
 (defpoll volume_percent :interval "1s" "scripts/sbvol --get")
 ; (defpoll mic_percent :interval "3s" "amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%' | head -n 1")
 (defpoll mic_percent :interval "3s" "amixer -D pulse sget Capture | grep 'Mono:' | awk -F'[][]' '{ print $2 }' | tr -d '%' | head -n 1")
-; (defpoll COL_WLAN :interval "1m" "scripts/wifi --COL")
-; (defpoll ESSID_WLAN :interval "1m" "scripts/wifi --ESSID")
-(defpoll ESSID_WLAN :interval "100s" "nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d: -f2")
-; (defpoll WLAN_ICON :interval "1m" "scripts/wifi --ICON")
-(defpoll WLAN_ICON :interval "100s" `nmcli -t -f SIGNAL,ACTIVE device wifi \
-  | awk -F':' '{if($2=="yes")print$1}'`)
 (defpoll song           :interval "5s"  "scripts/music title")
 (defpoll song_artist    :interval "5s"  "scripts/music artist")
 (defpoll song_status    :interval "5s"  "scripts/music status")
@@ -31,9 +26,7 @@
 
 (defvar music_reveal false)
 (defvar vol_reveal false)
-(defvar br_reveal false)
 (defvar control_reveal false)
-(defvar wifi_rev false)
 (defvar time_rev false)
 
 ;;; Toplevel
@@ -44,7 +37,7 @@
     :orientation "h"
     (left)
     (center)
-    (right)))
+    (right :is-laptop false)))
 (defwidget left []
   (box
     :class "left"
@@ -61,7 +54,7 @@
     :orientation "h"
     :space-evenly false
     (appnames)))
-(defwidget right []
+(defwidget right [?is-laptop]
   (box
     :class "right"
     :halign "end"
@@ -69,13 +62,15 @@
     :space-evenly false
     (bright)
     (volume)
-    ;; (wifi)
-    ;; (sep)
-    ;; (bat)
-    ;; (mem)
-    ;; (sep)
+    (wifi)
+    (sep)
+    (box
+      :visible is-laptop
+      (battery))
+    (memory)
+    (sep)
     (clock)
-    (notif_button)))
+    (notifications)))
 
 
 ;;; Utils
@@ -161,24 +156,25 @@
             :cursor "pointer"
             :onclick "hyprctl dispatch killactive 1" ""))))))
 
+(defvar brightness_reveal false)
 (defpoll brightness_percent :interval "5s" "light")
 (defwidget bright []
   (eventbox
-    :onhover "${EWW_CMD} update br_reveal=true"
-    :onhoverlost "${EWW_CMD} update br_reveal=false"
+    :onhover "${EWW_CMD} update brightness_reveal=true"
+    :onhoverlost "${EWW_CMD} update brightness_reveal=false"
     (box
-      :class "module"
-      :space-evenly "false"
+      :class "brightness"
       :orientation "h"
       :spacing "3"
+      :space-evenly false
       (revealer
         :transition "slideright"
-        :reveal br_reveal
+        :reveal brightness_reveal
         :duration "350ms"
         (scale
           :class "brightbar"
-          :value brightness_percent
           :orientation "h"
+          :value brightness_percent
           :tooltip "${brightness_percent}%"
           :max 100
           :min 0
@@ -213,34 +209,34 @@
         :class "volume_icon"
         "󰕾"))))
 
+(defvar essid_reveal false)
 (defwidget wifi []
   (eventbox
-    :onhover "${EWW_CMD} update wifi_rev=true"
-    :onhoverlost "${EWW_CMD} update wifi_rev=false"
+    :onhover "${EWW_CMD} update essid_reveal=true"
+    :onhoverlost "${EWW_CMD} update essid_reveal=false"
     (box
       :vexpand "false"
       :hexpand "false"
       :space-evenly "false"
       (revealer
         :transition "slideright"
-        :reveal wifi_rev
         :duration "350ms"
+        :reveal essid_reveal
         (label
-          :class "module_essid"
-          :text ESSID_WLAN))
+          :class "wifi-essid"
+          :text essid))
       (button
         :onclick "~/.config/hypr/scripts/exec_wofi wifi"
-        ;  (_network :strength WLAN_ICON :offline "󰤮" :excellent "󰤨" :good "󰤥" :okay "󰤢" :slow "󰤟"
-        (_network :strength WLAN_ICON :offline "󰖪" :excellent "" :good "" :okay "" :slow "")))))
+        (_network :strength wlan_strength :offline "󰤮" :excellent "󰤨" :good "󰤥" :okay "󰤢" :slow "󰤟")))))
 (defwidget _network [strength offline excellent good okay slow]
   (label
-    :class "module-wif"
+    :class "wifi"
     :text {strength == "" ? offline :
            strength < 26 ? slow :
            strength < 51 ? okay :
            strength < 76 ? good : excellent}))
 
-(defwidget bat []
+(defwidget battery []
   (box
     :class "bat_module"
     :vexpand "false"
@@ -255,7 +251,7 @@
         :tooltip "battery on ${EWW_BATTERY["BAT0"].capacity}%"
         ""))))
 
-(defwidget mem []
+(defwidget memory []
   (box
     :class "mem_module"
     :vexpand "false"
@@ -272,28 +268,30 @@
         :wrap false
         ""))))
 
+(defpoll clock_date :interval "1h" "date '+%b %d, %Y'")
 (defwidget clock []
   (eventbox
     :onhover "${EWW_CMD} update time_rev=true"
     :onhoverlost "${EWW_CMD} update time_rev=false"
     (box
-      :class "module"
-      :space-evenly "false"
+      :class "clock"
       :orientation "h"
       :spacing "0"
+      :space-evenly false
       (label
-        :text clock_time
-        :class "clock_time_class")
-      (revealer :transition "slideleft"
-                :reveal time_rev
-                :duration "350ms"
-                (button
-                  :class "clock_date_class"
-                  :onclick "scripts/pop calendar" clock_date)))))
+        :class "time"
+        :text {formattime(EWW_TIME, "%H⁝%M")})
+      (revealer
+        :transition "slideleft"
+        :reveal time_rev
+        :duration "350ms"
+        (button
+          :class "date"
+          :onclick "scripts/pop calendar" clock_date)))))
 
-(defwidget notif_button []
+(defwidget notifications []
   (box
-    :class "notif_button"
+    :class "notifications"
     :space-evenly "false"
     :orientation "h"
     (button

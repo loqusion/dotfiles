@@ -1,0 +1,61 @@
+.notification {
+  all: unset;
+  background-color: $color-bg-widget;
+  padding: 20px 25px 20px 17px;
+  margin: 0px 15px 0px 15px;
+  border-radius: 12px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: $color-primary;
+}
+
+.notification-header {
+  all: unset;
+  background-color: $color-bg-widget;
+  padding: 20px 25px 20px 17px;
+  margin: 20px 15px 10px 15px;
+  border-radius: 12px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: $color-primary;
+}
+
+.notification-icon {
+  color: $color-white;
+  font-size: 36px;
+  margin: 0px 20px 0px 10px;
+}
+
+.notification-appname {
+  font-family: $font-family-secondary;
+  font-size: 14px;
+  font-weight: bold;
+  color: $color-orange;
+}
+
+.notification-summary {
+  font-family: $font-family-secondary;
+  font-size: 18px;
+  font-weight: bold;
+  color: $color-white;
+}
+
+.notification-body {
+  font-family: $font-family-secondary;
+  font-size: 14px;
+  color: $color-white;
+}
+
+.notification-label {
+  font-family: $font-family-tertiary;
+  font-size: 30px;
+  color: $color-blue;
+  margin: 0px 50px 0px 0px;
+}
+
+.notification-action {
+  font-family: $font-family-tertiary;
+  font-size: 36px;
+  color: $color-white;
+  margin: 0px 0px 0px 20px;
+}

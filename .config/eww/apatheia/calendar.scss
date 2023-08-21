@@ -1,0 +1,49 @@
+.cal {
+  background-color: $color-bg-1;
+  font-family: $font-family-primary;
+  font-size: 22px;
+  font-weight: normal;
+  border-radius: 25px;
+
+  .cal-in {
+    padding: 10px 10px 10px 10px;
+    color: $color-white;
+
+    .cal {
+      &.highlight {
+        padding: 20px;
+      }
+
+      padding: 10px 10px 10px 10px;
+      margin-left: 10px;
+    }
+  }
+}
+
+calender {
+  color: $color-red;
+}
+
+calendar:selected {
+  color: $color-red;
+}
+
+calendar.header {
+  font-family: $font-family-primary;
+  color: $color-purple;
+  font-weight: bold;
+}
+
+calendar.button {
+  color: $color-purple;
+  font-weight: bold;
+}
+
+calendar.highlight {
+  color: $color-red;
+  font-weight: bold;
+}
+
+calendar:indeterminate {
+  color: $color-black;
+}
