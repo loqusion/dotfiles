@@ -1,36 +1,7 @@
-;;; string literal widgets as variables are possible but not efficient
-
-;;; seperate sidebar for each possible primary monitor
-(defwindow sidebar0
-  :geometry (geometry
-              :x "0px"
-              :width "1px"
-              ; :height "100%"
-              :anchor "top left")
-  :stacking "fg"
-  :monitor 0
-  (sidebar))
-
-(defwindow sidebar1
-  :geometry (geometry
-              :x "0px"
-              :width "1px"
-              ; :height "100%"
-              :anchor "top left")
-  :stacking "fg"
-  :monitor 1
-  (sidebar))
-
-(defwindow sidebar2
-  :geometry (geometry
-              :x "0px"
-              :width "1px"
-              ; :height "100%"
-              :anchor "top left")
-  :stacking "fg"
-  :monitor 2
-  (sidebar))
-
+(include "./sidebar/music.yuck")
+(include "./sidebar/apatheia.yuck")
+(include "./sidebar/sys-tray.yuck")
+(include "./sidebar/clipboard.yuck")
 
 (defwidget sidebar []
   (eventbox

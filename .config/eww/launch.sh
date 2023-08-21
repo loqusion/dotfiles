@@ -16,13 +16,14 @@ primary_monitor_id() {
 killall -q eww
 while pgrep -x eww >/dev/null; do sleep 1; done
 
-${EWW_CMD} daemon && sleep 1
+${EWW_CMD} daemon # && sleep 1
+${EWW_CMD} close-all
 
 PRIMARY_MONITOR_ID=$(primary_monitor_id)
 if [ -n "$PRIMARY_MONITOR_ID" ]; then
 	${EWW_CMD} open "sidebar$PRIMARY_MONITOR_ID"
 else
-	notify-send "eww" "No primary monitor found"
+	notify-send -e "eww" "No primary monitor found"
 fi
 
 for id in $(hyprctl monitors -j | jq -r '.[] | .id'); do
