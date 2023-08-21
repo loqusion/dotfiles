@@ -7,7 +7,7 @@ import logging
 import os
 import subprocess
 from socket import AF_UNIX, SOCK_STREAM, socket
-from typing import TYPE_CHECKING, Final, cast
+from typing import TYPE_CHECKING, Any, Final, cast
 
 from boltons.iterutils import flatten
 from boltons.socketutils import BufferedSocket
@@ -61,6 +61,16 @@ def get_focused_monitor() -> str:
     return next(filter(lambda x: x["focused"], monitors_json))["name"]
 
 
+def try_parse_id(id_: str, ctx: Any) -> int | None:
+    try:
+        return int(id_)
+    except ValueError:
+        if id_ != "special":
+            logging.error(f"Could not parse id {id_}")
+            logging.error(f"Full event: {ctx}")
+        return None
+
+
 class Workspaces:
     workspace_dict: WorkspaceDict = {}
     monitor: str
@@ -103,28 +113,31 @@ class Workspaces:
     def handle_event(self, event: str, args: list[str]) -> None:
         match event:
             case "focusedmon":
-                monitor, id_ = args[0], int(args[1])
+                monitor, id_ = args[0], try_parse_id(args[1], (event, args))
                 self.monitor = monitor
-                self.focus(id_)
-            case "workspace":
-                id_ = int(args[0])
-                self.focus(id_)
-            case "moveworkspace":
-                id_, monitor = int(args[0]), args[1]
-                if self.monitor == monitor:
+                if id_ is not None:
                     self.focus(id_)
+            case "workspace":
+                id_ = try_parse_id(args[0], (event, args))
+                if id_ is not None:
+                    self.focus(id_)
+            case "moveworkspace":
+                id_, monitor = try_parse_id(args[0], (event, args)), args[1]
+                if self.monitor == monitor:
+                    if id_ is not None:
+                        self.focus(id_)
+                    else:
+                        logging.error(
+                            f"Unknown state: {event} to monitor {monitor} with id parsing error"  # noqa: E501
+                        )
             case "createworkspace":
-                try:
-                    id_ = int(args[0])
-                except ValueError:
-                    if args[0] != "special":
-                        logging.error(f"Could not parse id {args[0]}")
-                        logging.error(f"Full event: {event} {args}")
-                    return
-                self.create(id_)
+                id_ = try_parse_id(args[0], (event, args))
+                if id_ is not None:
+                    self.create(id_)
             case "destroyworkspace":
-                id_ = int(args[0])
-                self.remove(id_)
+                id_ = try_parse_id(args[0], (event, args))
+                if id_ is not None:
+                    self.remove(id_)
 
 
 def hyprland_events() -> Iterator[tuple[str, list[str]]]:
