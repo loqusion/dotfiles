@@ -57,5 +57,14 @@ key = "Space"
 mods = "Control | Shift"
 action = "None"
 
+[[keyboard.bindings]]
+key = "L"
+mods = "Control | Shift"
+chars = '\x1b[76;5u'
+[[keyboard.bindings]]
+key = "H"
+mods = "Control | Shift"
+chars = '\x1b[72;5u'
+
 [debug]
 persistent_logging = false
