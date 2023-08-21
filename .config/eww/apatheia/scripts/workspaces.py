@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 import subprocess
 from socket import AF_UNIX, SOCK_STREAM, socket
@@ -113,7 +114,13 @@ class Workspaces:
                 if self.monitor == monitor:
                     self.focus(id_)
             case "createworkspace":
-                id_ = int(args[0])
+                try:
+                    id_ = int(args[0])
+                except ValueError:
+                    if args[0] != "special":
+                        logging.error(f"Could not parse id {args[0]}")
+                        logging.error(f"Full event: {event} {args}")
+                    return
                 self.create(id_)
             case "destroyworkspace":
                 id_ = int(args[0])
@@ -140,7 +147,12 @@ def main():
 
 
 if __name__ == "__main__":
+    LOG_FILE = "/tmp/user/workspaces.log"
+    os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
+    logging.basicConfig(level=logging.DEBUG, filename=LOG_FILE)
     try:
         main()
     except KeyboardInterrupt:
         pass
+    except Exception as e:
+        logging.critical(e, exc_info=True)
