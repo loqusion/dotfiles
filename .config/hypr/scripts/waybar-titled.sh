@@ -6,8 +6,6 @@ signal() {
 	local event
 	event=$(cut -d'>' -f1 <<<"$1")
 
-	logger -p user.debug "Hyprland event: $event"
-
 	case $event in
 	activewindow | closewindow)
 		pkill -RTMIN+9 waybar
