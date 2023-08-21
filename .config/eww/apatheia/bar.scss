@@ -3,30 +3,28 @@
 /** General **/
 
 .bar {
-  padding: 4px;
+  padding: 4px 14px;
   margin: 10px $spacing-1 0px;
   border-radius: 12px;
   background-color: $color-bg-0;
   box-shadow: 0 6px 5px 2px $color-shadow;
 }
 
+// TODO: eliminate
 .module {
   margin: 0px 0px 0px 0px;
   border-radius: 10px 10px 0px 10px;
 }
 
-.side {
-  padding: 15px 15px 15px 15px;
-  margin: 65px 15px 15px 15px;
-  border-width: 0px;
-  border-radius: 16px;
-  background-color: $color-bg-1;
-  box-shadow: 0 6px 5px 2px $color-shadow;
-}
-
 .center {
   margin: 0px 0px 0px 0px;
   border-radius: 0px 0px 0px 0px;
+}
+
+.sep {
+  color: $color-grey;
+  font-size: 24px;
+  margin: 0px 8px 0px 8px;
 }
 
 /** tooltip!! **/
@@ -43,6 +41,51 @@ tooltip label {
 }
 
 /** Widgets **/
+
+.workspaces {
+  font-size: 28px;
+
+  .workspace-button {
+    color: $color-grey;
+
+    &.exists,
+    &:hover {
+      color: $color-white;
+
+      &.focused {
+        color: $color-red;
+      }
+    }
+  }
+}
+
+.app-button {
+  color: $color-purple2;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 12px 0px 12px;
+
+  &.close-button {
+    color: $color-red;
+  }
+}
+
+.brightbar trough highlight {
+  background-image: linear-gradient(
+    to right,
+    $color-yellow 30%,
+    $color-white 50%,
+    $color-yellow 100% * 50
+  );
+  border-radius: 10px;
+}
+
+.bright_icon {
+  // font-family: $font-family-primary;
+  font-size: 24;
+  color: $color-yellow;
+  margin: 0px 15px 0px 0px;
+}
 
 .clock_time_class,
 .clock_minute_class {
@@ -76,16 +119,6 @@ tooltip label {
 .batbar {
   color: $color-green;
   background-color: $color-bg-widget;
-  border-radius: 10px;
-}
-
-.brightbar trough highlight {
-  background-image: linear-gradient(
-    to right,
-    $color-yellow 30%,
-    $color-white 50%,
-    $color-yellow 100% * 50
-  );
   border-radius: 10px;
 }
 
@@ -145,24 +178,6 @@ tooltip label {
   margin: 10px;
 }
 
-.bright_icon {
-  // font-family: $font-family-primary;
-  font-size: 24;
-  color: $color-yellow;
-  margin: 0px 15px 0px 0px;
-}
-
-.separ {
-  color: $color-grey;
-  // font-weight: bold;
-  font-size: 24px;
-  margin: 0px 8px 0px 8px;
-}
-
-.launcher {
-  background-color: rgba(00, 00, 00, 0);
-}
-
 .mem_module {
   background-color: rgba(00, 00, 00, 0);
   border-radius: 16px;
@@ -174,30 +189,6 @@ tooltip label {
   border-radius: 16px;
   margin: 0px 10px 0px 5px;
 }
-
-.workspaces {
-  font-size: 28px;
-  font-weight: normal;
-  // margin: 10px 0px 0px 10px;
-  background-color: rgba(00, 00, 00, 0);
-}
-
-.workspace-button {
-  margin: 0px 7px 0px 0px;
-  color: $color-grey;
-
-  &.workspace-exists {
-    color: $color-white;
-
-    &.focused {
-      color: $color-red;
-    }
-  }
-}
-
-// .workspace-button.focused {
-//   color: $color-red;
-// }
 
 // Calendar
 .cal {
@@ -322,29 +313,6 @@ calendar:indeterminate {
 
 .app-icon {
   margin: 8px 10px 0px 0px;
-}
-
-.app-button {
-  color: $color-purple2;
-  font-size: 20px;
-  font-weight: bold;
-  margin: 0px 12px 0px 12px;
-}
-
-.color-var1 {
-  color: $color-green;
-}
-
-.color-var2 {
-  color: $color-purple;
-}
-
-.color-var3 {
-  color: $color-red;
-}
-
-.launcher-icon {
-  margin-left: 10px;
 }
 
 .audio-box {

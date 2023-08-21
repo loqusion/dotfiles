@@ -2,3 +2,12 @@
 @import "sidebar/clipboard.scss";
 @import "sidebar/music.scss";
 @import "sidebar/sys-tray.scss";
+
+.side {
+  padding: 15px 15px 15px 15px;
+  margin: 65px 15px 15px 15px;
+  border-width: 0px;
+  border-radius: 16px;
+  background-color: $color-bg-1;
+  box-shadow: 0 6px 5px 2px $color-shadow;
+}

@@ -1,0 +1,71 @@
+(defwidget audio []
+  (box
+    :class "audio-box"
+    :orientation "v"
+    :space-evenly "false"
+    :vexpand "false"
+    :hexpand "false"
+    (box
+      :halign "v"
+      :space-evenly "false"
+      :hexpand "false"
+      :vexpand "false"
+      (box
+        :class "speaker_icon"
+        :orientation "v")
+      (box
+        :orientation "v"
+        :halign "center"
+        :vexpand "false"
+        :hexpand "false"
+        (label
+          :class "speaker_text"
+          :text "speaker"
+          :valign "center"
+          :halign "left")
+        (box
+          :class "speaker_bar"
+          :halign "center"
+          :vexpand "false"
+          :hexpand "false"
+          (scale
+            :value volume_percent
+            :orientation "h"
+            :onchange "amixer -D pulse sset Master {}%"
+            :tooltip "volume on ${volume_percent}%"
+            :max 100
+            :min 0))))
+    (label
+      :text "_____________________________________"
+      :class "audio_sep"
+      :halign "center")
+    (box
+      :halign "v"
+      :space-evenly "false"
+      :hexpand "false"
+      :vexpand "false"
+      (box
+        :class "mic_icon"
+        :orientation "v")
+      (box
+        :orientation "v"
+        :halign "center"
+        :vexpand "false"
+        :hexpand "false"
+        (label
+          :class "mic_text"
+          :text "mic"
+          :valign "center"
+          :halign "left")
+        (box
+          :class "mic_bar"
+          :halign "center"
+          :vexpand "false"
+          :hexpand "false"
+          (scale
+            :value mic_percent
+            :orientation "h"
+            :tooltip "mic on ${mic_percent}%"
+            :onchange "amixer -D pulse sset Capture {}%"
+            :max 100
+            :min 0))))))

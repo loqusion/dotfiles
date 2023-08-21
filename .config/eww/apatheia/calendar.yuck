@@ -1,0 +1,9 @@
+(defwidget cal []
+  (box
+    :class "cal"
+    :orientation "v"
+    (box
+      :class "cal-in"
+      (calendar
+        :day calendar_day
+        :year calendar_year))))
