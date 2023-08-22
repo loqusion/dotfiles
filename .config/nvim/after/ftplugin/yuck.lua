@@ -7,3 +7,5 @@ vim.opt_local.lispwords:append({
   "defwindow",
   "for",
 })
+vim.opt_local.comments = "n:;"
+vim.opt_local.commentstring = "; %s"
