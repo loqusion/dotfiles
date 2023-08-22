@@ -124,6 +124,7 @@
     :onrightclick "~/.config/hypr/scripts/workspace.sh ${id}"
     {WORKSPACE_ICONS[id - 1]}))
 
+
 (deflisten appname "scripts/appname")
 (defwidget appnames []
   (eventbox
@@ -134,8 +135,19 @@
       :space-evenly "false"
       :vexpand "false"
       :hexpand "false"
-      (literal
-        :content appname)
+      (box
+        :orientation "h"
+        :halign "start"
+        :space-evenly false
+        (image
+          :class "app-icon"
+          :path "$ICONPATH"
+          :image-width "36")
+        (label
+          :class "app-name"
+          :limit-width "35"
+          :text "$TITLE"
+          :tooltip "$TITLE"))
       (revealer
         :transition "slideright"
         :reveal control_reveal

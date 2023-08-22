@@ -21,7 +21,8 @@ ${EWW_CMD} close-all
 
 PRIMARY_MONITOR_ID=$(primary_monitor_id)
 if [ -n "$PRIMARY_MONITOR_ID" ]; then
-	${EWW_CMD} open "sidebar$PRIMARY_MONITOR_ID"
+	true
+	# ${EWW_CMD} open "sidebar$PRIMARY_MONITOR_ID"
 else
 	notify-send -e "eww" "No primary monitor found"
 fi

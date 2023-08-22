@@ -1,5 +1,5 @@
 (include "./bar.yuck")
-(include "./sidebar.yuck")
+;; (include "./sidebar.yuck")
 
 (defwindow bar0
   :monitor 0
@@ -22,121 +22,119 @@
   :windowtype "dock"
   (bar))
 
-(defwindow audio_ctl0
-  :stacking "fg"
-  :focusable "false"
-  :screen 1
-  :monitor 0
-  :geometry (geometry
-              :x "20"
-              :y "7%"
-              :anchor "top right"
-              :width "280px"
-              :height "60px")
-  (audio))
+;; (defwindow audio_ctl0
+;;   :stacking "fg"
+;;   :focusable "false"
+;;   :screen 1
+;;   :monitor 0
+;;   :geometry (geometry
+;;               :x "20"
+;;               :y "7%"
+;;               :anchor "top right"
+;;               :width "280px"
+;;               :height "60px")
+;;   (audio))
+;; (defwindow audio_ctl1
+;;   :stacking "fg"
+;;   :focusable "false"
+;;   :screen 1
+;;   :monitor 1
+;;   :geometry (geometry
+;;               :x "20"
+;;               :y "7%"
+;;               :anchor "top right"
+;;               :width "280px"
+;;               :height "60px")
+;;   (audio))
+;; (defwindow audio_ctl2
+;;   :stacking "fg"
+;;   :focusable "false"
+;;   :screen 1
+;;   :monitor 2
+;;   :geometry (geometry
+;;               :x "20"
+;;               :y "7%"
+;;               :anchor "top right"
+;;               :width "280px"
+;;               :height "60px")
+;;   (audio))
 
-(defwindow audio_ctl1
-  :stacking "fg"
-  :focusable "false"
-  :screen 1
-  :monitor 1
-  :geometry (geometry
-              :x "20"
-              :y "7%"
-              :anchor "top right"
-              :width "280px"
-              :height "60px")
-  (audio))
-(defwindow audio_ctl2
-  :stacking "fg"
-  :focusable "false"
-  :screen 1
-  :monitor 2
-  :geometry (geometry
-              :x "20"
-              :y "7%"
-              :anchor "top right"
-              :width "280px"
-              :height "60px")
-  (audio))
+;; (defwindow system0
+;;   :stacking "fg"
+;;   :focusable "false"
+;;   :screen 1
+;;   :monitor 0
+;;   :geometry
+;;   (geometry
+;;     :x "20"
+;;     :y "65px"
+;;     :anchor "top right"
+;;     :width "290px"
+;;     :height "120px")
+;;   (system))
+;; (defwindow system1
+;;   :stacking "fg"
+;;   :focusable "false"
+;;   :screen 1
+;;   :monitor 1
+;;   :geometry
+;;   (geometry
+;;     :x "20"
+;;     :y "65px"
+;;     :anchor "top right"
+;;     :width "290px"
+;;     :height "120px")
+;;   (system))
 
-(defwindow system0
-  :stacking "fg"
-  :focusable "false"
-  :screen 1
-  :monitor 0
-  :geometry
-  (geometry
-    :x "20"
-    :y "65px"
-    :anchor "top right"
-    :width "290px"
-    :height "120px")
-  (system))
-(defwindow system1
-  :stacking "fg"
-  :focusable "false"
-  :screen 1
-  :monitor 1
-  :geometry
-  (geometry
-    :x "20"
-    :y "65px"
-    :anchor "top right"
-    :width "290px"
-    :height "120px")
-  (system))
+;; (defwindow calendar0
+;;   :stacking "fg"
+;;   :focusable "false"
+;;   :screen 1
+;;   :monitor 0
+;;   :geometry (geometry
+;;               :x "20"
+;;               :y "65px"
+;;               :anchor "top right"
+;;               :width "270px"
+;;               :height "60px")
+;;   (cal))
+;; (defwindow calendar1
+;;   :stacking "fg"
+;;   :focusable "false"
+;;   :screen 1
+;;   :monitor 1
+;;   :geometry (geometry
+;;               :x "20"
+;;               :y "65px"
+;;               :anchor "top right"
+;;               :width "270px"
+;;               :height "60px")
+;;   (cal))
 
-(defwindow calendar0
-  :stacking "fg"
-  :focusable "false"
-  :screen 1
-  :monitor 0
-  :geometry (geometry
-              :x "20"
-              :y "65px"
-              :anchor "top right"
-              :width "270px"
-              :height "60px")
-  (cal))
-(defwindow calendar1
-  :stacking "fg"
-  :focusable "false"
-  :screen 1
-  :monitor 1
-  :geometry (geometry
-              :x "20"
-              :y "65px"
-              :anchor "top right"
-              :width "270px"
-              :height "60px")
-  (cal))
-
-;;; Sidebars
-(defwindow sidebar0
-  :geometry (geometry
-              :x "0px"
-              :width "1px"
-              ; :height "100%"
-              :anchor "top left")
-  :stacking "fg"
-  :monitor 0
-  (sidebar))
-(defwindow sidebar1
-  :geometry (geometry
-              :x "0px"
-              :width "1px"
-              ; :height "100%"
-              :anchor "top left")
-  :stacking "fg"
-  :monitor 1
-  (sidebar))
-(defwindow sidebar2
-  :geometry (geometry
-              :x "0px"
-              :width "1px"
-              ; :height "100%"
-              :anchor "top left")
-  :stacking "fg"
-  :monitor 2
-  (sidebar))
+;; (defwindow sidebar0
+;;   :geometry (geometry
+;;               :x "0px"
+;;               :width "1px"
+;;               ; :height "100%"
+;;               :anchor "top left")
+;;   :stacking "fg"
+;;   :monitor 0
+;;   (sidebar))
+;; (defwindow sidebar1
+;;   :geometry (geometry
+;;               :x "0px"
+;;               :width "1px"
+;;               ; :height "100%"
+;;               :anchor "top left")
+;;   :stacking "fg"
+;;   :monitor 1
+;;   (sidebar))
+;; (defwindow sidebar2
+;;   :geometry (geometry
+;;               :x "0px"
+;;               :width "1px"
+;;               ; :height "100%"
+;;               :anchor "top left")
+;;   :stacking "fg"
+;;   :monitor 2
+;;   (sidebar))
