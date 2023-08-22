@@ -23,6 +23,7 @@ end
 
 abbr mv "mv -iv"
 abbr cp "cp -riv"
+abbr rm "trash -v"
 abbr mkdir "mkdir -vp"
 abbr l ll
 abbr tree "ls --tree"
