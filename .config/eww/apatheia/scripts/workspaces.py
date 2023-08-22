@@ -30,37 +30,6 @@ LISTENED_EVENTS: Final = [
 WorkspaceDict = dict[int, bool]
 
 
-def get_focused_workspace_id() -> int:
-    hyprctl_pipe = subprocess.run(
-        ["hyprctl", "monitors", "-j"], capture_output=True, encoding="utf-8"
-    )
-    monitors_json: list[dict] = json.loads(hyprctl_pipe.stdout)
-    return next(filter(lambda x: x["focused"], monitors_json))["activeWorkspace"]["id"]
-
-
-def get_workspaces_thing():
-    hyprctl_pipe = subprocess.run(
-        ["hyprctl", "workspaces", "-j"], capture_output=True, encoding="utf-8"
-    )
-    workspaces_json: list[dict] = json.loads(hyprctl_pipe.stdout)
-    focused_id = get_focused_workspace_id()
-
-    return list(
-        map(
-            lambda x: (x["id"], x["id"] == focused_id),
-            filter(lambda x: x["id"] >= 0, workspaces_json),
-        )
-    )
-
-
-def get_focused_monitor() -> str:
-    hyprctl_pipe = subprocess.run(
-        ["hyprctl", "monitors", "-j"], capture_output=True, encoding="utf-8"
-    )
-    monitors_json: list[dict] = json.loads(hyprctl_pipe.stdout)
-    return next(filter(lambda x: x["focused"], monitors_json))["name"]
-
-
 def try_parse_id(id_: str, ctx: Any) -> int | None:
     try:
         return int(id_)
@@ -71,44 +40,79 @@ def try_parse_id(id_: str, ctx: Any) -> int | None:
         return None
 
 
+class Hyprctl:
+    @staticmethod
+    def cmd(subcommand: str):
+        return subprocess.run(
+            ["hyprctl", subcommand, "-j"], capture_output=True, encoding="utf-8"
+        )
+
+    @staticmethod
+    def getobj(obj: str):
+        pipe = Hyprctl.cmd(obj)
+        return json.loads(pipe.stdout)
+
+    @staticmethod
+    def all_workspaces() -> list[int]:
+        workspaces: list[dict] = Hyprctl.getobj("workspaces")
+        return list(
+            map(
+                lambda w: w["id"],
+                filter(lambda w: w["id"] >= 0, workspaces),
+            )
+        )
+
+    @staticmethod
+    def focused_workspace() -> int:
+        monitors: list[dict] = Hyprctl.getobj("monitors")
+        try:
+            focused_monitor = next(filter(lambda x: x["focused"], monitors))
+        except StopIteration:
+            logging.warning(f"Failed to get focused monitor from {monitors}")
+            return 1
+        return focused_monitor["activeWorkspace"]["id"]
+
+    @staticmethod
+    def focused_monitor() -> str:
+        monitors: list[dict] = Hyprctl.getobj("monitors")
+        try:
+            focused_monitor = next(filter(lambda m: m["focused"], monitors))
+        except StopIteration:
+            logging.warning(f"Failed to get focused monitor from {monitors}")
+            return ""
+        return focused_monitor["name"]
+
+
 class Workspaces:
-    workspace_dict: WorkspaceDict = {}
+    workspace_set: set[int]
+    focused_id: int
     monitor: str
 
     def __init__(self, workspaces: Iterable[int] | None = None):
-        self.monitor = get_focused_monitor()
         if workspaces is None:
-            self.workspace_dict = Workspaces.get_workspaces()
-        else:
-            self.workspace_dict = {id_: False for id_ in workspaces}
-
-    @staticmethod
-    def get_workspaces() -> WorkspaceDict:
-        return {x: y for x, y in get_workspaces_thing()}
-
-    def to_json(self) -> str:
-        return json.dumps(
-            {
-                "workspaces": sorted([w for w in self.workspace_dict]),
-                "focused": next(
-                    filter(lambda x: self.workspace_dict[x], self.workspace_dict.keys())
-                ),
-            }
-        )
+            workspaces = Hyprctl.all_workspaces()
+        self.workspace_set = {id_ for id_ in workspaces}
+        self.focused_id = Hyprctl.focused_workspace()
+        self.monitor = Hyprctl.focused_monitor()
 
     def __repr__(self) -> str:
-        return f"Workspaces({self.workspace_dict})"
+        return f"Workspaces({self.workspace_set})"
+
+    def json(self) -> str:
+        obj = {
+            "workspaces": sorted([w for w in self.workspace_set]),
+            "focused": self.focused_id,
+        }
+        return json.dumps(obj)
 
     def focus(self, id_: int) -> None:
-        for x in self.workspace_dict:
-            self.workspace_dict[x] = False
-        self.workspace_dict[id_] = True
+        self.focused_id = id_
 
     def create(self, id_: int) -> None:
-        self.workspace_dict[id_] = False
+        self.workspace_set.add(id_)
 
     def remove(self, id_: int) -> None:
-        self.workspace_dict.pop(id_, None)
+        self.workspace_set.remove(id_)
 
     def handle_event(self, event: str, args: list[str]) -> None:
         match event:
@@ -152,11 +156,11 @@ def hyprland_events() -> Iterator[tuple[str, list[str]]]:
 
 def main():
     workspaces = Workspaces()
-    print(workspaces.to_json(), flush=True)
+    print(workspaces.json(), flush=True)
     for event, args in hyprland_events():
         workspaces.handle_event(event, args)
         if event in LISTENED_EVENTS:
-            print(workspaces.to_json(), flush=True)
+            print(workspaces.json(), flush=True)
 
 
 if __name__ == "__main__":
