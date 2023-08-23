@@ -96,6 +96,8 @@
 !/systemd/**
 !/tabtab/
 !/tabtab/**
+!/tmux/
+!/tmux/**
 !/uebersicht/
 !/uebersicht/**
 !/user-tmpfiles.d/
