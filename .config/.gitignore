@@ -133,6 +133,7 @@
 # Non-config
 
 /btop/btop.log
+/tmux/plugins/
 /lazygit/state.yml
 /systemd/**/*.wants/**
 /nvim/spell/**
