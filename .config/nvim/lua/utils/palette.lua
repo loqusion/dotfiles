@@ -3,11 +3,13 @@ local memoized = {}
 ---@class PaletteModule
 ---@field mod fun(): table
 ---@field resolved table<string, string>
+---@field colorscheme table<string, string> Alternate colorschemes used for styler.nvim; accessed through `palette.colorscheme.*`
 
 ---@type table<string, PaletteModule>
 local modules = {
   catppuccin = {
     mod = function()
+      ---@diagnostic disable-next-line: return-type-mismatch
       return require("catppuccin.palettes").get_palette()
     end,
     resolved = {
@@ -20,6 +22,10 @@ local modules = {
       incline0 = "base",
       incline1 = "flamingo",
     },
+    colorscheme = {
+      secondary = "nightfox",
+      tertiary = "gruvbox",
+    },
   },
   tokyonight = {
     mod = function()
@@ -31,32 +37,27 @@ local modules = {
       incline0 = "black",
       incline1 = "#FC56B1",
     },
+    colorscheme = {},
   },
 }
-
-local function get_base_colorscheme(colorscheme)
-  if string.match(colorscheme, "^catppuccin") then
-    return "catppuccin"
-  elseif string.match(colorscheme, "^tokyonight") then
-    return "tokyonight"
-  end
-end
 
 local function noop() end
 
 local Module = {}
 
 function Module.new(colorscheme)
-  local base_colorscheme = get_base_colorscheme(colorscheme)
+  local base_colorscheme = Module._base_colorscheme(colorscheme)
   if not base_colorscheme then
     return nil
   end
 
   local self = setmetatable(
+    ---@diagnostic disable-next-line: param-type-mismatch
     vim.tbl_deep_extend("force", {
       base_colorscheme = base_colorscheme,
       mod = noop,
       resolved = {},
+      colorscheme = {},
     }, modules[base_colorscheme]),
     { __index = Module }
   )
@@ -72,6 +73,15 @@ function Module:color(colorname)
   return self.mod()[colorname]
 end
 
+function Module._base_colorscheme(colorscheme)
+  for base, _ in pairs(modules) do
+    if string.match(colorscheme, ("^%s"):format(base)) then
+      return base
+    end
+  end
+  return nil
+end
+
 local M = setmetatable({}, {
   __index = function(_, key)
     local colorscheme = vim.g.colors_name
@@ -85,6 +95,10 @@ local M = setmetatable({}, {
         vim.log.levels.WARN
       )
       return nil
+    end
+
+    if key == "colorscheme" then
+      return mod.colorscheme
     end
 
     memoized[colorscheme] = mod

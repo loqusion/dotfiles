@@ -232,13 +232,16 @@ return {
   {
     "folke/styler.nvim",
     event = "VeryLazy",
-    opts = {
-      themes = {
-        markdown = { colorscheme = "tokyonight-storm" },
-        ["markdown.mdx"] = { colorscheme = "tokyonight-storm" },
-        help = { colorscheme = "gruvbox", background = "dark" },
-      },
-    },
+    opts = function()
+      local palette = require("utils.palette")
+      return {
+        themes = {
+          markdown = { colorscheme = palette.colorscheme.secondary },
+          ["markdown.mdx"] = { colorscheme = palette.colorscheme.secondary },
+          help = { colorscheme = "gruvbox", background = palette.colorscheme.tertiary },
+        },
+      }
+    end,
   },
 
   -- fun screensavers
