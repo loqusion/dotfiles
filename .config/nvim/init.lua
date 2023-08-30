@@ -39,6 +39,7 @@ vim.api.nvim_create_autocmd("User", {
 
 require("config.lazy")
 require("config.neovide")
+require("config.commands")
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",

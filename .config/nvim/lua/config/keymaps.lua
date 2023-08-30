@@ -73,5 +73,3 @@ if Utils.has("smart-splits.nvim") then
     map(keys.mode or "n", keys[1], keys[2], get_opts(keys))
   end
 end
-
-require("config.commands")
