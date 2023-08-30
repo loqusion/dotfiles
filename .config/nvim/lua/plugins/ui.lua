@@ -238,7 +238,7 @@ return {
         themes = {
           markdown = { colorscheme = palette.colorscheme.secondary },
           ["markdown.mdx"] = { colorscheme = palette.colorscheme.secondary },
-          help = { colorscheme = "gruvbox", background = palette.colorscheme.tertiary },
+          help = { colorscheme = palette.colorscheme.tertiary, background = "dark" },
         },
       }
     end,
