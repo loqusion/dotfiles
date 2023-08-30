@@ -1,5 +1,3 @@
-local Utils = require("utils")
-
 return {
   {
     "williamboman/mason.nvim",
@@ -40,6 +38,11 @@ return {
         teal_ls = {},
         vimls = {},
         yamlls = {},
+      },
+      capabilities = {
+        -- workaround for performance issue
+        -- see https://github.com/neovim/neovim/issues/23291#issuecomment-1686709265
+        workspace = { didChangeWatchedFiles = { dynamicRegistration = false } },
       },
     },
   },
