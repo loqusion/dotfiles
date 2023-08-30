@@ -515,8 +515,20 @@ return {
     },
   },
 
+  -- display a character as the colorcolumn
   {
     "xiyaowong/virtcolumn.nvim",
     event = "VeryLazy",
+  },
+
+  -- forever undo
+  {
+    "kevinhwang91/nvim-fundo",
+    dependencies = { "kevinhwang91/promise-async" },
+    event = "VeryLazy",
+    build = function()
+      require("fundo").install()
+    end,
+    config = true,
   },
 }
