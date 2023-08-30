@@ -28,6 +28,30 @@ return {
     opts = {},
   },
 
+  -- obsidian
+  {
+    "IlyasYOY/obs.nvim",
+    dependencies = { "IlyasYOY/coredor.nvim" },
+    cmd = {
+      "ObsNvimBacklinks",
+      "ObsNvimDailyNote",
+      "ObsNvimFindInJournal",
+      "ObsNvimFindInNotes",
+      "ObsNvimFindNote",
+      "ObsNvimFollowLink",
+      "ObsNvimMove",
+      "ObsNvimNewNote",
+      "ObsNvimRename",
+      "ObsNvimTemplate",
+    },
+    opts = {
+      vault_home = "~/Documents/Public",
+      journal = {
+        template_name = "daily",
+      },
+    },
+  },
+
   -- markdown preview
   {
     "toppair/peek.nvim",
