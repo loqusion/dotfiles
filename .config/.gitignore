@@ -86,6 +86,8 @@
 !/rtx/**
 !/skhd/
 !/skhd/**
+!/spotifyd/
+!/spotifyd/**
 !/stylua/
 !/stylua/**
 !/swayidle/
