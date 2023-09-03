@@ -16,6 +16,7 @@ return {
   ---   | 'delek'
   ---   | 'desert'
   ---   | 'dracula'
+  ---   | 'dracula-soft'
   ---   | 'duckbones'
   ---   | 'duskfox'
   ---   | 'edge'
