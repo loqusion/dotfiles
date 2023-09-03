@@ -1,7 +1,31 @@
 local style = require("config.style")
 
 return {
-  { "Shatur/neovim-ayu", event = "VeryLazy" },
+  {
+    "Shatur/neovim-ayu",
+    name = "ayu",
+    event = "VeryLazy",
+    opts = function(_, opts)
+      local transparency_overrides = {
+        Normal = { bg = "None" },
+        ColorColumn = { bg = "None" },
+        SignColumn = { bg = "None" },
+        Folded = { bg = "None" },
+        FoldColumn = { bg = "None" },
+        -- CursorLine = { bg = "None" },
+        -- CursorColumn = { bg = "None" },
+        WhichKeyFloat = { bg = "None" },
+        VertSplit = { bg = "None" },
+      }
+      if style.transparent then
+        opts = vim.tbl_deep_extend("force", opts, { overrides = transparency_overrides })
+      end
+      return opts
+    end,
+    config = function(_, opts)
+      require("ayu").setup(opts)
+    end,
+  },
   {
     "catppuccin/nvim",
     event = "VeryLazy",
