@@ -483,6 +483,7 @@ return {
   -- only show 'cursorline' in current window
   {
     "Tummetott/reticle.nvim",
+    event = "VeryLazy",
     opts = {},
   },
 
