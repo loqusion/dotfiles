@@ -94,7 +94,7 @@ local M = setmetatable({}, {
         ),
         vim.log.levels.WARN
       )
-      return nil
+      return { colorscheme = {} }
     end
 
     if key == "colorscheme" then
