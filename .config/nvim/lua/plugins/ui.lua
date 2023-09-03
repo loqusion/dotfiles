@@ -232,15 +232,19 @@ return {
   {
     "folke/styler.nvim",
     event = "VeryLazy",
-    opts = function()
+    opts = function(_, opts)
+      opts.themes = {} -- required, or else neovim goes apeshit
       local palette = require("utils.palette")
-      return {
-        themes = {
-          markdown = { colorscheme = palette.colorscheme.secondary },
-          ["markdown.mdx"] = { colorscheme = palette.colorscheme.secondary },
-          help = { colorscheme = palette.colorscheme.tertiary, background = "dark" },
-        },
-      }
+      if #palette.colorscheme > 0 then
+        vim.tbl_deep_extend("force", opts, {
+          themes = {
+            markdown = { colorscheme = palette.colorscheme.secondary },
+            ["markdown.mdx"] = { colorscheme = palette.colorscheme.secondary },
+            help = { colorscheme = palette.colorscheme.tertiary, background = "dark" },
+          },
+        })
+      end
+      return opts
     end,
   },
 
