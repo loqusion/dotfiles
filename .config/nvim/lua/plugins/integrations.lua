@@ -109,4 +109,10 @@ return {
       require("dark_notify").run(opts)
     end,
   },
+
+  -- auto sync terminal background with neovim colorscheme
+  {
+    "typicode/bg.nvim",
+    lazy = false,
+  },
 }
