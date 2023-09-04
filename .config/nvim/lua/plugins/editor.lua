@@ -484,7 +484,19 @@ return {
   {
     "Tummetott/reticle.nvim",
     event = "VeryLazy",
-    opts = {},
+    opts = {
+      always = {
+        cursorline = {
+          "neo-tree",
+        },
+      },
+      never = {
+        cursorline = {
+          "TelescopePrompt",
+          "DressingInput",
+        },
+      },
+    },
   },
 
   -- scope buffers to tabpages
