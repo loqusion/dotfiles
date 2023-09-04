@@ -492,8 +492,9 @@ return {
       },
       never = {
         cursorline = {
-          "TelescopePrompt",
           "DressingInput",
+          "TelescopePrompt",
+          "toggleterm",
         },
       },
     },
