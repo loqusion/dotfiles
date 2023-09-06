@@ -78,7 +78,7 @@
   "battery": {
     "format": "{icon}",
     "format-alt": "{time} {icon} ",
-    "format-icons": ["", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂"],
+    "default": ["󰂃", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "format-charging": "󰂄",
     "interval": 30,
     "states": {
