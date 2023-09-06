@@ -110,12 +110,18 @@
     "format-icons": {
       "default": "󰂯",
       "disabled": "󰂲",
-      "connected": "󰂱"
+      "off": "󰂲",
+      "on": "󰂯",
+      "connected": "󰂱",
+      "discoverable": "󰂯",
+      "discovering": "󰂯",
+      "pairable": "󰂯"
     },
-    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format": "{status}: {controller_alias}\t{controller_address}",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "on-click": "blueberry"
+    "on-click": "blueberry",
+    "min-length": 1
   },
   "pulseaudio": {
     "format": "{icon}",
@@ -163,7 +169,7 @@
       "dnd-inhibited-none": ""
     },
     "return-type": "json",
-    "exec-if": "which swaync-client",
+    "exec-if": "pgrep swaync",
     "exec": "swaync-client -swb",
     "on-click": "sleep 0.1; swaync-client -t -sw",
     // "on-click-released": "swaync-client -t -sw",
