@@ -1,3 +1,6 @@
+[env]
+_ALACRITTY_THEME = "catppuccin"
+
 [[colors.indexed_colors]]
 color = "0xF8BD96"
 index = 16
