@@ -3,6 +3,10 @@ keybinds clear-defaults=true {
         bind "Alt c" { Copy; }
     }
 
+    locked {
+        bind "Alt g" { SwitchToMode "Normal"; }
+    }
+
     resize {
         bind "Alt r" { SwitchToMode "Normal"; }
         bind "h" "Left" { Resize "Increase Left"; }
@@ -67,7 +71,7 @@ keybinds clear-defaults=true {
     }
 
     scroll {
-        bind "Alt g" { SwitchToMode "Normal"; }
+        bind "Alt s" { SwitchToMode "Normal"; }
         bind "e" { EditScrollback; SwitchToMode "Normal"; }
         bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
@@ -81,7 +85,7 @@ keybinds clear-defaults=true {
     }
 
     search {
-        bind "Alt g" { SwitchToMode "Normal"; }
+        bind "Alt s" { SwitchToMode "Normal"; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
         bind "j" "Down" { ScrollDown; }
         bind "k" "Up" { ScrollUp; }
@@ -126,6 +130,8 @@ keybinds clear-defaults=true {
     tmux {}
 
     shared_except "locked" {
+        bind "Alt g" { SwitchToMode "Locked"; }
+
         // Navigation
         bind "Alt h" "Alt Left"  { MoveFocusOrTab "Left"; }
         bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
@@ -157,7 +163,7 @@ keybinds clear-defaults=true {
         bind "Alt r" { SwitchToMode "Resize"; }
     }
     shared_except "scroll" "locked" {
-        bind "Alt g" { SwitchToMode "Scroll"; }
+        bind "Alt s" { SwitchToMode "Scroll"; }
     }
     shared_except "session" "locked" {
         bind "Alt q" { SwitchToMode "Session"; }
