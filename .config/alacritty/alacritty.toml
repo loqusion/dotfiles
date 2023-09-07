@@ -25,7 +25,7 @@ family = "VictorMono Nerd Font"
 
 [cursor]
 style.blinking = "On"
-style.shape = "Beam"
+style.shape = "Block"
 vi_mode_style.shape = "Underline"
 blink_interval = 500
 blink_timeout = 10
@@ -38,7 +38,7 @@ regex = '''(?:https?://|git@|git://|ssh://|ftp://|file:///)\S+'''
 hyperlinks = true
 post_processing = true
 mouse = { enabled = true }
-action = "Copy"
+command = "xdg-open"
 
 # [[hints.enabled]]
 # # Too slow
@@ -50,11 +50,7 @@ action = "Copy"
 mouse = "Middle"
 action = "None"
 
-[[keyboard.bindings]]
-key = "Space"
-mods = "Control | Shift"
-action = "None"
-
+# FIXME: Keybinds don't work
 [[keyboard.bindings]]
 key = "L"
 mods = "Control | Shift"
