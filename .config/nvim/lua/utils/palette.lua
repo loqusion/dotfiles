@@ -1,12 +1,5 @@
-local memoized = {}
-
----@class PaletteModule
----@field mod fun(): table
----@field resolved table<string, string>
----@field colorscheme table<string, string> Alternate colorschemes used for styler.nvim; accessed through `palette.colorscheme.*`
-
----@type table<string, PaletteModule>
-local modules = {
+---@type table<BaseColorscheme, PaletteInfo>
+local palette_info = {
   catppuccin = {
     mod = function()
       ---@diagnostic disable-next-line: return-type-mismatch
@@ -41,8 +34,14 @@ local modules = {
   },
 }
 
-local function noop() end
+---@class PaletteInfo
+---@field mod fun(): table
+---@field resolved table<string, string>
+---@field colorscheme table<string, string> Alternate colorschemes used for styler.nvim; accessed through `palette.colorscheme.*`
 
+---@alias BaseColorscheme string
+
+local memoized = {}
 local Module = {}
 
 function Module.new(colorscheme)
@@ -55,10 +54,12 @@ function Module.new(colorscheme)
     ---@diagnostic disable-next-line: param-type-mismatch
     vim.tbl_deep_extend("force", {
       base_colorscheme = base_colorscheme,
-      mod = noop,
+      mod = function()
+        return {}
+      end,
       resolved = {},
       colorscheme = {},
-    }, modules[base_colorscheme]),
+    }, palette_info[base_colorscheme]),
     { __index = Module }
   )
 
@@ -73,8 +74,12 @@ function Module:color(colorname)
   return self.mod()[colorname]
 end
 
+---Given a colorscheme name, return the "base" colorscheme.
+---E.g. if given "catppuccin-mocha", will return "catppuccin".
+---@param colorscheme string
+---@return BaseColorscheme|nil
 function Module._base_colorscheme(colorscheme)
-  for base, _ in pairs(modules) do
+  for base, _ in pairs(palette_info) do
     if string.match(colorscheme, ("^%s"):format(base)) then
       return base
     end
