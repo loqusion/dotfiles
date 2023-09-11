@@ -22,12 +22,18 @@ return {
     opts = {
       servers = {
         ---@type lspconfig.options.pyright
+        ---@diagnostic disable-next-line: missing-fields
         pyright = {
           ---@param client lsp.Client
           on_attach = function(client, _)
             client.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(function(_, result, ctx, config)
               local function filter_pyright(diagnostic)
-                return string.lower(diagnostic.source) ~= "pyright"
+                diagnostic = diagnostic or {}
+                local source = diagnostic.source
+                if type(source) ~= "string" then
+                  return true
+                end
+                return string.lower(source) ~= "pyright"
               end
               result.diagnostics = vim.tbl_filter(filter_pyright, result.diagnostics)
               vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
