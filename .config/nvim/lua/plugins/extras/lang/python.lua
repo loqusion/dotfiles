@@ -1,5 +1,3 @@
-local python = require("utils.python")
-
 return {
   {
     "williamboman/mason.nvim",
@@ -39,18 +37,6 @@ return {
               vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
             end, {})
           end,
-          before_init = function(_, config)
-            local venv = python.activate_venv(config.root_dir)
-            local python_path = python.get_path(venv)
-            config.settings.python.pythonPath = python_path
-          end,
-        },
-        ruff_lsp = {
-          before_init = function(_, config)
-            local venv = python.activate_venv(config.root_dir)
-            local python_path = python.get_path(venv)
-            config.settings.interpreter = { python_path }
-          end,
         },
       },
     },
@@ -73,12 +59,8 @@ return {
           end,
           runtime_condition = function(params)
             local root_dir = require("lazyvim.util").get_root()
-            return vim.startswith(params.bufname, root_dir)
-          end,
-          extra_args = function(utils)
-            local venv = python.activate_venv(utils.root_dir)
-            local python_path = python.get_path(venv)
-            return { "--python-executable", python_path }
+            local venv = ("%s/.venv"):format(root_dir)
+            return vim.startswith(params.bufname, root_dir) and not vim.startswith(params.bufname, venv)
           end,
         }),
         nls.builtins.diagnostics.pylint.with({
