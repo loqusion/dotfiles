@@ -1,12 +1,12 @@
 [misc]
 # Don't ask for confirmations
-#assume_yes = true
+assume_yes = true
 
 # Disable specific steps - same options as the command line flag
 #disable = ["system", "emacs"]
 
 # Ignore failures for these steps
-#ignore_failures = ["powershell"]
+ignore_failures = ["spicetify"]
 
 # Run specific steps - same options as the command line flag
 #only = ["system", "emacs"]
