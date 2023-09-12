@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-if pgrep waybar; then
+if pgrep waybar &>/dev/null; then
 	pkill waybar
 else
-	~/.config/waybar/launch.sh "$@"
+	exec ~/.config/waybar/launch.sh "$@"
 fi
