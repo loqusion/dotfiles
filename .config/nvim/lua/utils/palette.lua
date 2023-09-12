@@ -101,12 +101,12 @@ local M = setmetatable({}, {
       )
       return { colorscheme = {} }
     end
+    memoized[colorscheme] = mod
 
     if key == "colorscheme" then
       return mod.colorscheme
     end
 
-    memoized[colorscheme] = mod
     return mod:color(key)
   end,
 })
