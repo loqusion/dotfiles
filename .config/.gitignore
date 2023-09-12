@@ -36,6 +36,8 @@
 !/gammastep/**
 !/gh/
 !/gh/**
+!/git/
+!/git/**
 !/glow/
 !/glow/**
 !/gtk-3.0/

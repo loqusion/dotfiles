@@ -17,6 +17,9 @@
 	conflictstyle = diff3
 [diff]
 	colorMoved = default
+[diff "lockb"]
+	textconv = bun
+	binary = true
 [delta]
 	navigate = true
 	light = false
