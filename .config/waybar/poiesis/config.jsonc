@@ -2,7 +2,7 @@
   "layer": "top",
   "position": "top",
   "height": 35,
-  "modules-left": ["wlr/workspaces"],
+  "modules-left": ["hyprland/workspaces"],
   "modules-center": ["custom/appname"],
   "modules-right": [
     "tray",
@@ -21,7 +21,7 @@
     "on-click": "wofi --show drun -o DP-3",
     "on-click-right": "killall wofi"
   },
-  "wlr/workspaces": {
+  "hyprland/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
     "sort-by-number": true,
