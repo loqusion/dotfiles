@@ -12,7 +12,7 @@ fish_add_path ~/.local/bin
 
 set -U fish_greeting ""
 
-set -Ux LESS -RFQM
+set -Ux LESS -rFQM
 set -Ux MANPAGER "nvim +Man!"
 
 if string match -riq '^wezterm' $TERM_PROGRAM
