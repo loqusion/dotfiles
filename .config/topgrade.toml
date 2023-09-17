@@ -3,10 +3,10 @@
 assume_yes = true
 
 # Disable specific steps - same options as the command line flag
-#disable = ["system", "emacs"]
+disable = ["spicetify"]
 
 # Ignore failures for these steps
-ignore_failures = ["spicetify"]
+ignore_failures = ["firmware"]
 
 # Run specific steps - same options as the command line flag
 #only = ["system", "emacs"]
