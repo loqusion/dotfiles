@@ -46,3 +46,6 @@
 [submodule ".config/catppuccin/discord"]
 	path = .config/catppuccin/discord
 	url = https://github.com/catppuccin/discord
+[submodule ".config/catppuccin/tty"]
+	path = .config/catppuccin/tty
+	url = https://github.com/catppuccin/tty
