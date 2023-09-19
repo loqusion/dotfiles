@@ -26,7 +26,6 @@ abbr rm trash
 abbr mkdir "mkdir -vp"
 abbr l ll
 abbr tree "ls --tree"
-abbr icat wezterm imgcat
 
 abbr vim nvim
 abbr vi nvim
