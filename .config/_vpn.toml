@@ -1,0 +1,9 @@
+default = "proton"
+
+[config.proton]
+command.on = "sudo systemctl restart openvpn-client@us.protonvpn.net.udp.service"
+command.off = "sudo systemctl stop openvpn-client@us.protonvpn.net.udp.service"
+
+[config.home]
+command.on = "sudo systemctl restart wg-quick@wg0.service"
+command.off = "sudo systemctl stop wg-quick@wg0.service"

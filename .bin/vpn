@@ -1,19 +1,92 @@
-#!/usr/bin/env bash
+#!/usr/bin/python
 
-usage() {
-	echo "Usage: $(basename "$0") [start|stop]" >&2
-}
+from __future__ import annotations
 
-start() {
-	sudo systemctl start openvpn-client@us.protonvpn.net.udp.service
-}
+import os
+import sys
+from argparse import ArgumentParser
+from dataclasses import dataclass
+from typing import TypedDict
 
-stop() {
-	sudo systemctl stop openvpn-client@us.protonvpn.net.udp.service
-}
+import tomllib
 
-case "$1" in
-start) start ;;
-stop) stop ;;
-*) usage && exit 1 ;;
-esac
+
+class VpnCommands(TypedDict):
+    on: str
+    off: str
+
+
+@dataclass
+class VpnConfig:
+    command: VpnCommands
+
+    def __post_init__(self):
+        self.command = VpnCommands(**self.command)
+
+    def run(self, command_name: str) -> int:
+        command = self.command[command_name]
+        return os.system(command)
+
+
+@dataclass
+class Config:
+    default: str
+    config: dict[str, VpnConfig]
+
+    def __post_init__(self):
+        self.config = {k: VpnConfig(**v) for k, v in self.config.items()}
+
+    @staticmethod
+    def xdg_config_home() -> str:
+        return os.environ.get("XDG_CONFIG_HOME", os.path.expanduser("~/.config"))
+
+    @classmethod
+    def load(cls, path: str | None = None) -> Config:
+        if path is None:
+            path = os.path.join(cls.xdg_config_home(), "_vpn.toml")
+        with open(path, "rb") as f:
+            return cls(**tomllib.load(f))
+
+
+def arg_parser(config: Config) -> ArgumentParser:
+    parser = ArgumentParser(
+        prog="vpn",
+        description="VPN management tool",
+        epilog="This is a tool to manage VPN connections",
+    )
+    parser.add_argument("command", choices=["on", "off"])
+    parser.add_argument("name", nargs="?", choices=config.config.keys())
+    return parser
+
+
+def run_all(config: Config, command: str) -> int:
+    ret = 0
+    for vpn in config.config.values():
+        ret = vpn.run(command) if ret == 0 else ret
+    return ret
+
+
+def main() -> int:
+    config = Config.load()
+    args = arg_parser(config).parse_args()
+
+    vpn = config.config.get(args.name or config.default)
+
+    ret = 0
+    match args.command:
+        case "on":
+            ret = run_all(config, "off")
+            ret = vpn.run("on") if ret == 0 else ret
+        case "off":
+            if args.name is None:
+                ret = run_all(config, "off")
+            else:
+                ret = vpn.run("off")
+        case _:
+            raise ValueError(f"Unknown command: {args.command}")
+
+    return ret
+
+
+if __name__ == "__main__":
+    sys.exit(main())

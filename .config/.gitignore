@@ -124,6 +124,7 @@
 
 # Tracked config files
 
+!/_vpn.toml
 !/dz65rgb_v3.layout.json
 !/electron*-flags.conf
 !/electron-flags.conf
