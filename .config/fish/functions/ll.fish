@@ -1,6 +1,6 @@
-function ll --wraps='exa --color=always --icons --group-directories-first --all --long' --description 'alias ll exa --color=always --icons --group-directories-first --all --long'
-    if isatty 1 && command -q exa
-        exa --color=always --icons --group-directories-first --all --long $argv
+function ll --wraps='eza --color=always --icons --group-directories-first --all --long' --description 'alias ll eza --color=always --icons --group-directories-first --all --long'
+    if isatty 1 && command -q eza
+        eza --color=always --icons --group-directories-first --all --long $argv
     else
         command ls -lA --color=always $argv
     end
