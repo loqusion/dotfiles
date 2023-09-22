@@ -243,8 +243,7 @@ if status --is-interactive
 
     abbr gup 'git pull --rebase'
     abbr gupv 'git pull --rebase --verbose'
-    abbr gupa 'git pull --rebase --autostash'
-    abbr gupav 'git pull --rebase --autostash --verbose'
+    abbr gupa 'git pull --rebase --autostash --verbose'
     abbr gupom 'git pull --rebase origin (git_main_branch)'
     abbr gupomi 'git pull --rebase=interactive origin (git_main_branch)'
 
