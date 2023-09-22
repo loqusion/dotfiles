@@ -146,7 +146,7 @@ keybinds clear-defaults=true {
         // Pane manipulation
         bind "Alt n" { NewPane; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
-        bind "Alt -" "Alt _" { Resize "Decrease"; }
+        bind "Alt -"         { Resize "Decrease"; }
 
         // Swap layouts
         bind "Alt [" { PreviousSwapLayout; }
