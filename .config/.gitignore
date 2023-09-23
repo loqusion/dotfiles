@@ -131,6 +131,7 @@
 !/mimeapps.list
 !/retroarch/
 !/retroarch/*.cfg
+!/retroarch/config/
 !/retroarch/config/**
 !/starship.toml
 !/topgrade.toml
