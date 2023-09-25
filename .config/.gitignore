@@ -58,6 +58,8 @@
 !/luarocks/**
 !/mako/
 !/mako/**
+!/marksman/
+!/marksman/**
 !/mpv/
 !/mpv/**
 !/nap/
