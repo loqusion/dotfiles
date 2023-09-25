@@ -120,11 +120,11 @@ return {
     },
   },
 
-  -- justfile tree-sitter highlighting
+  -- justfile tree-sitter highlighting (doesn't work)
   {
     "IndianBoy42/tree-sitter-just",
     enabled = false,
-    event = { "BufReadPost", "BufNewFile" },
+    lazy = false,
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = true,
   },
