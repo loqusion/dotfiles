@@ -403,6 +403,7 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = function(_, opts)
+      opts.filetype_exclude = vim.F.if_nil(opts.filetype_exclude, {})
       vim.list_extend(opts.filetype_exclude, { "OverseerForm", "man", "toggleterm" })
     end,
   },
@@ -411,12 +412,14 @@ return {
     init = function()
       local indent_blankline = require("lazy.core.config").spec.plugins["indent-blankline.nvim"]
       local indent_blankline_opts = require("lazy.core.plugin").values(indent_blankline, "opts", false)
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = indent_blankline_opts.filetype_exclude,
-        callback = function()
-          vim.b.miniindentscope_disable = true
-        end,
-      })
+      if indent_blankline_opts.filetype_exclude then
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = indent_blankline_opts.filetype_exclude,
+          callback = function()
+            vim.b.miniindentscope_disable = true
+          end,
+        })
+      end
     end,
   },
 }
