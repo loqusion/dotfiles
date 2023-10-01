@@ -126,6 +126,9 @@
 
 # Tracked config files
 
+!/PCSX2/
+!/PCSX2/inis/
+!/PCSX2/inis/*.ini
 !/_vpn.toml
 !/dz65rgb_v3.layout.json
 !/electron*-flags.conf
