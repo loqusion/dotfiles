@@ -1,5 +1,11 @@
 local Utils = require("utils")
 
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+  callback = function()
+    vim.fn.jobstart("", { detach = true })
+  end,
+})
+
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
   group = Utils.augroup("close_with_q", "lazyvim"),
