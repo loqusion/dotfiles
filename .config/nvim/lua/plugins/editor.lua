@@ -380,6 +380,7 @@ return {
   -- strip trailing whitespace on save
   {
     "mcauley-penney/tidy.nvim",
+    enabled = false,
     event = "BufWritePre",
     opts = {
       filetype_exclude = { "markdown", "diff" },

@@ -48,7 +48,36 @@ return {
   },
 
   {
+    "stevearc/conform.nvim",
+    formatters_by_ft = {
+      ["_"] = { "trim_whitespace" },
+    },
+    opts = {
+      formatters = {},
+    },
+  },
+
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters = {
+        luacheck = {
+          condition = function(ctx)
+            return vim.fs.find({ "luacheckrc" }, { path = ctx.filename, upward = true })
+          end,
+        },
+        selene = {
+          condition = function(ctx)
+            return vim.fs.find({ "selene.toml" }, { path = ctx.filename, upward = true })
+          end,
+        },
+      },
+    },
+  },
+
+  {
     "nvimtools/none-ls.nvim",
+    enabled = false,
     opts = function(_, opts)
       local nls = require("null-ls")
       vim.list_extend(opts.sources, {

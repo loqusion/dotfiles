@@ -43,6 +43,16 @@ return {
   },
 
   {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        python = { "isort", "black" },
+      },
+    },
+  },
+
+  {
     "nvimtools/none-ls.nvim",
     optional = true,
     opts = function(_, opts)
