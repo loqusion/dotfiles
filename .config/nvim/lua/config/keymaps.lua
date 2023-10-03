@@ -1,4 +1,5 @@
 local Utils = require("utils")
+local LvUtils = require("lazyvim.util")
 
 ---@return LazyKeysHandler
 local function get_keys_handler()
@@ -61,6 +62,10 @@ map("n", "<leader>uf", function()
     require("tidy").enabled = lazyvim_format.autoformat == true
   end
 end, { desc = "Toggle format on Save" })
+-- stylua: ignore start
+map("n", "<leader>ul", function() LvUtils.toggle("relativenumber") end, { desc = "Toggle Relative Line Numbers" })
+map("n", "<leader>uL", function() LvUtils.toggle_number() end, { desc = "Toggle Line Numbers" })
+-- stylua: ignore end
 
 map("n", "<leader>cR", Utils.runlua, { desc = "Run Lua" })
 
