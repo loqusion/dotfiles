@@ -316,8 +316,9 @@ return {
   -- Ultra fold
   {
     "kevinhwang91/nvim-ufo",
+    optional = true,
     dependencies = "kevinhwang91/promise-async",
-    event = "BufReadPost",
+    -- event = "BufReadPost",
     -- stylua: ignore
     keys = {
       { "zR", function() require("ufo").openAllFolds() end },
@@ -325,51 +326,52 @@ return {
       { "zr", function() require("ufo").openFoldsExceptKinds() end },
       { "zm", function() require("ufo").closeFoldsWith() end },
     },
-    opts = {
-      close_fold_kinds = { "imports" },
-      provider_selector = function(_, filetype)
-        local ts = { "treesitter", "indent" }
-        local providers = {
-          lua = ts,
-          zsh = ts,
-        }
-        return providers[filetype]
-      end,
-    },
+    -- opts = {
+    --   close_fold_kinds = { "imports" },
+    --   provider_selector = function(_, filetype)
+    --     local ts = { "treesitter", "indent" }
+    --     local providers = {
+    --       lua = ts,
+    --       zsh = ts,
+    --     }
+    --     return providers[filetype]
+    --   end,
+    -- },
   },
   -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      capabilities = {
-        textDocument = {
-          foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-          },
-        },
-      },
-    },
-  },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     capabilities = {
+  --       textDocument = {
+  --         foldingRange = {
+  --           dynamicRegistration = false,
+  --           lineFoldingOnly = true,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
 
   -- 'statuscolumn' customization
   {
     "luukvbaal/statuscol.nvim",
+    optional = true,
     event = "BufReadPost",
-    config = function()
-      local builtin = require("statuscol.builtin")
-      require("statuscol").setup({
-        segments = {
-          {
-            text = { builtin.lnumfunc, " " },
-            condition = { true, builtin.not_empty },
-            click = "v:lua.ScLa",
-          },
-          { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
-          { text = { "%s" }, click = "v:lua.ScSa" },
-        },
-      })
-    end,
+    -- config = function()
+    --   local builtin = require("statuscol.builtin")
+    --   require("statuscol").setup({
+    --     segments = {
+    --       {
+    --         text = { builtin.lnumfunc, " " },
+    --         condition = { true, builtin.not_empty },
+    --         click = "v:lua.ScLa",
+    --       },
+    --       { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
+    --       { text = { "%s" }, click = "v:lua.ScSa" },
+    --     },
+    --   })
+    -- end,
   },
 
   {
@@ -402,7 +404,6 @@ return {
 
   {
     "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
     opts = function(_, opts)
       vim.list_extend(opts.exclude.filetypes, { "OverseerForm", "man", "toggleterm" })
     end,

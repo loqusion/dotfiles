@@ -9,7 +9,7 @@ opt.colorcolumn = { "+1" }
 opt.cursorline = true
 opt.display = { "uhex" } -- Show unprintable characters as <xx>
 opt.equalalways = false -- Splitting or closing a window won't automatically resize all windows
-opt.fillchars:append({ diff = "╱", fold = " ", foldopen = "", foldsep = " ", foldclose = "", eob = " " })
+-- opt.fillchars:append({ diff = "╱", fold = " ", foldopen = "", foldsep = " ", foldclose = "", eob = " " })
 opt.foldcolumn = "1"
 opt.foldlevel = 99
 opt.helpheight = 12 -- Minimum height of the help window
