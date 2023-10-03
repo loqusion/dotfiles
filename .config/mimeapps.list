@@ -8,6 +8,10 @@ text/markdown=org.gnome.gedit.desktop
 text/plain=org.gnome.gedit.desktop
 x-scheme-handler/discord-475456035851599874=discord-475456035851599874.desktop
 x-scheme-handler/discord-455712169795780630=discord-455712169795780630.desktop
+application/x-ms-dos-executable=wine.desktop
+image/png=feh.desktop
+image/jpeg=feh.desktop
+x-scheme-handler/discord-719647875465871400=discord-719647875465871400.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;
@@ -16,3 +20,6 @@ font/woff2=org.gnome.FontViewer.desktop;
 image/vnd.microsoft.icon=feh.desktop;
 text/markdown=org.gnome.gedit.desktop;
 text/plain=org.gnome.gedit.desktop;
+application/x-ms-dos-executable=wine.desktop;
+image/png=feh.desktop;
+image/jpeg=feh.desktop;
