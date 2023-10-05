@@ -76,6 +76,7 @@ return {
   -- use common keybinds for navigating multiplexer
   {
     "mrjones2014/smart-splits.nvim",
+    enabled = false,
     lazy = false, -- see https://github.com/mrjones2014/smart-splits.nvim#wezterm
     -- stylua: ignore
     keys = {
@@ -97,6 +98,14 @@ return {
       at_edge = "stop",
       cursor_follows_swapped_bufs = true,
     },
+  },
+
+  -- use common keybinds for navigating zellij
+  {
+    "loqusion/zellij.nvim",
+    dev = true,
+    lazy = false,
+    config = true,
   },
 
   -- auto dark mode (macOS only)
