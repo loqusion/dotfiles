@@ -1,3 +1,9 @@
+if status is-interactive && set -q START_ZELLIJ
+    set -gx ZELLIJ_AUTO_START true
+    set -gx ZELLIJ_AUTO_EXIT true
+    eval (zellij setup --generate-auto-start fish | string collect)
+end
+
 set -gx EDITOR (which nvim)
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
