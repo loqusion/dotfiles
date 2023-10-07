@@ -100,14 +100,6 @@ return {
     },
   },
 
-  -- use common keybinds for navigating zellij
-  {
-    "loqusion/zellij.nvim",
-    dev = true,
-    lazy = false,
-    config = true,
-  },
-
   -- auto dark mode (macOS only)
   {
     "cormacrelf/dark-notify",
