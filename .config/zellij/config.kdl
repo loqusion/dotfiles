@@ -133,10 +133,15 @@ keybinds clear-defaults=true {
         bind "Alt g" { SwitchToMode "Locked"; }
 
         // Navigation
-        bind "Ctrl h" "Alt Left"  { MoveFocusOrTab "Left"; }
-        bind "Ctrl l" "Alt Right" { MoveFocusOrTab "Right"; }
-        bind "Ctrl j" "Alt Up"    { MoveFocus "Down"; }
-        bind "Ctrl k" "Alt Down"  { MoveFocus "Up"; }
+        bind "Alt h" "Alt Left"  { MoveFocusOrTab "Left"; }
+        bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
+        bind "Alt Up"    { MoveFocus "Down"; }
+        bind "Alt Down"  { MoveFocus "Up"; }
+        // TODO: Bind these when smart-splits.nvim supports zellij
+        // bind "Ctrl h" "Alt Left"  { MoveFocusOrTab "Left"; }
+        // bind "Ctrl l" "Alt Right" { MoveFocusOrTab "Right"; }
+        // bind "Ctrl j" "Alt Up"    { MoveFocus "Down"; }
+        // bind "Ctrl k" "Alt Down"  { MoveFocus "Up"; }
 
         // Pane manipulation
         bind "Alt n" { NewPane; }
