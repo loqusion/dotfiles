@@ -80,6 +80,7 @@ pre_sudo = true
 #"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
 #"Custom command using interactive shell (unix)" = "-i vim_upgrade"
 "Fish Update Completions" = "fish_update_completions"
+"Dotfiles" = "dotbare pull --rebase --autostash"
 
 [brew]
 #greedy_cask = true
