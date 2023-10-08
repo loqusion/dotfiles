@@ -49,10 +49,11 @@ return {
 
   {
     "stevearc/conform.nvim",
-    formatters_by_ft = {
-      ["_"] = { "trim_whitespace" },
-    },
     opts = {
+      -- log_level = vim.log.levels.DEBUG,
+      formatters_by_ft = {
+        ["_"] = { "trim_whitespace" },
+      },
       formatters = {},
     },
   },
