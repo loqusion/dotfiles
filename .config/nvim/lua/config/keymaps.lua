@@ -1,5 +1,5 @@
-local Utils = require("utils")
 local LvUtils = require("lazyvim.util")
+local Utils = require("utils")
 
 ---@return LazyKeysHandler
 local function get_keys_handler()
