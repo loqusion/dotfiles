@@ -1,14 +1,16 @@
 local wezterm = require 'wezterm'
 
-local use_cursive_italics = true
-local primary_font = 'JetBrains Mono'
-local cursive_font = 'Victor Mono'
+local use_different_italics = false
+local primary_font = 'Maple Mono SC NF'
+local italic_font = 'Victor Mono'
 local emoji_font = 'Twemoji'
 
 ---@param font string
-local function nerd(font)
-  if not font:find 'Nerd Font' then
-    font = font:gsub(' Mono', 'Mono', 1) .. ' Nerd Font'
+---@param suffix string?
+local function nerd(font, suffix)
+  suffix = suffix or 'Nerd Font'
+  if not (font:find 'Nerd Font' or font:find 'NF') then
+    font = font:gsub(' Mono', 'Mono', 1) .. ' ' .. suffix
   end
   return font
 end
@@ -16,13 +18,13 @@ end
 return function(config)
   config.font = wezterm.font_with_fallback { nerd(primary_font), emoji_font }
   config.font_size = 12.0
-  if use_cursive_italics then
+  if use_different_italics then
     config.font_rules = {
       {
         italic = true,
         intensity = 'Bold',
         font = wezterm.font {
-          family = nerd(cursive_font),
+          family = nerd(italic_font),
           weight = 'Bold',
           style = 'Italic',
         },
@@ -31,7 +33,7 @@ return function(config)
         italic = true,
         intensity = 'Half',
         font = wezterm.font {
-          family = nerd(cursive_font),
+          family = nerd(italic_font),
           weight = 'DemiBold',
           style = 'Italic',
         },
@@ -40,7 +42,7 @@ return function(config)
         italic = true,
         intensity = 'Normal',
         font = wezterm.font {
-          family = nerd(cursive_font),
+          family = nerd(italic_font),
           style = 'Italic',
         },
       },
