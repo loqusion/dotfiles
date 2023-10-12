@@ -1,19 +1,6 @@
 return {
   { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
 
-  -- Context lines
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "BufReadPre",
-    config = true,
-  },
-
-  -- auto close/rename html tags
-  {
-    "windwp/nvim-ts-autotag",
-    event = "BufReadPost",
-  },
-
   -- modern matchit and matchparen
   {
     "andymass/vim-matchup",
@@ -118,14 +105,5 @@ return {
         enable = true,
       },
     },
-  },
-
-  -- justfile tree-sitter highlighting (doesn't work)
-  {
-    "IndianBoy42/tree-sitter-just",
-    enabled = false,
-    lazy = false,
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    config = true,
   },
 }
