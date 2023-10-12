@@ -52,7 +52,7 @@ return {
     opts = {
       -- log_level = vim.log.levels.DEBUG,
       formatters_by_ft = {
-        ["_"] = { "trim_whitespace" },
+        ["_"] = { "trim_whitespace", "trim_newlines" },
       },
       formatters = {},
     },
