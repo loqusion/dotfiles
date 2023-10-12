@@ -113,23 +113,12 @@ return {
 
   {
     "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    keys = { { "<leader>cS", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
+    keys = {
+      { "<leader>cS", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" },
+      { "<leader>cs", false },
+    },
     deactivate = function()
       vim.cmd([[SymbolsOutlineClose]])
-    end,
-    opts = function()
-      local icons = require("lazyvim.config").icons.kinds
-      local symbols = vim.tbl_deep_extend("force", {}, require("symbols-outline.config").defaults.symbols)
-      for name, icon in pairs(symbols) do
-        local lazy_icon = icons[name]
-        if lazy_icon then
-          icon.icon = vim.trim(lazy_icon)
-        end
-      end
-      return {
-        symbols = symbols,
-      }
     end,
   },
 
