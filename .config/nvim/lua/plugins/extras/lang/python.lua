@@ -69,7 +69,7 @@ return {
             return utils.root_has_file("mypy.ini", "pyproject.toml")
           end,
           runtime_condition = function(params)
-            local root_dir = require("lazyvim.util").get_root()
+            local root_dir = require("lazyvim.util").root.get()
             local venv = ("%s/.venv"):format(root_dir)
             return vim.startswith(params.bufname, root_dir) and not vim.startswith(params.bufname, venv)
           end,
