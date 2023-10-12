@@ -33,14 +33,4 @@ return {
     event = "BufReadPre",
     commit = "2f788c627efa7a50baa5766cfacf1852528eca28",
   },
-
-  {
-    "Fymyte/rasi.vim",
-    event = "BufReadPre",
-  },
-
-  {
-    "theRealCarneiro/hyprland-vim-syntax",
-    event = "BufReadPre",
-  },
 }
