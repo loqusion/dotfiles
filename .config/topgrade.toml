@@ -81,6 +81,7 @@ pre_sudo = true
 #"Custom command using interactive shell (unix)" = "-i vim_upgrade"
 "Fish Update Completions" = "fish_update_completions"
 "Dotfiles" = "dotbare pull --rebase --autostash"
+"Bootstrap" = 'bdump.sh'
 
 [brew]
 #greedy_cask = true
