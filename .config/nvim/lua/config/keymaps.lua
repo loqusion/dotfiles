@@ -9,14 +9,9 @@ local function get_keys_handler()
 end
 
 local function map(mode, lhs, rhs, opts)
-  local keys = get_keys_handler()
-  ---@cast keys LazyKeysHandler
-  -- do not create the keymap if a lazy keys handler exists
-  if not keys.active[keys.parse({ lhs, mode = mode }).id] then
-    opts = opts or {}
-    opts.silent = opts.silent ~= false
-    vim.keymap.set(mode, lhs, rhs, opts)
-  end
+  opts = opts or {}
+  opts.silent = opts.silent ~= false
+  vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 local function unmap(modes, lhs, opts)
@@ -55,16 +50,9 @@ map("n", "<leader>wo", "<C-w>o", { desc = "Close other windows" })
 
 map("n", "<leader>fe", "<cmd>edit<cr>", { desc = "Re-edit file" })
 
-map("n", "<leader>uf", function()
-  local lazyvim_format = require("lazyvim.plugins.lsp.format")
-  lazyvim_format.toggle()
-  if Utils.has("tidy.nvim") then
-    require("tidy").enabled = lazyvim_format.autoformat == true
-  end
-end, { desc = "Toggle format on Save" })
 -- stylua: ignore start
 map("n", "<leader>ul", function() LvUtils.toggle("relativenumber") end, { desc = "Toggle Relative Line Numbers" })
-map("n", "<leader>uL", function() LvUtils.toggle_number() end, { desc = "Toggle Line Numbers" })
+map("n", "<leader>uL", function() LvUtils.toggle.number() end, { desc = "Toggle Line Numbers" })
 -- stylua: ignore end
 
 map("n", "<leader>cR", Utils.runlua, { desc = "Run Lua" })
