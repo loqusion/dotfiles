@@ -55,6 +55,7 @@ return {
   -- markdown preview
   {
     "toppair/peek.nvim",
+    enabled = false,
     build = "deno task --quiet build:fast",
     keys = {
       {
