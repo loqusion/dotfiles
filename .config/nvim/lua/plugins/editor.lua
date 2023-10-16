@@ -1,4 +1,5 @@
 local Util = require("utils")
+local style = require("config.style")
 
 return {
   {
@@ -546,5 +547,23 @@ return {
       require("fundo").install()
     end,
     config = true,
+  },
+
+  -- highlights for text filetypes
+  {
+    "lukas-reineke/headlines.nvim",
+    optional = true,
+    opts = function(_, opts)
+      local highlight = {
+        codeblock_highlight = not style.transparent and nil,
+        fat_headlines = false,
+      }
+      return vim.tbl_deep_extend("force", opts, {
+        markdown = highlight,
+        rmd = highlight,
+        norg = highlight,
+        org = highlight,
+      })
+    end,
   },
 }
