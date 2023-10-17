@@ -488,6 +488,9 @@ return {
     "Tummetott/reticle.nvim",
     event = "VeryLazy",
     opts = {
+      on_startup = {
+        cursorline = true,
+      },
       always = {
         cursorline = {
           "neo-tree",
@@ -497,6 +500,8 @@ return {
         cursorline = {
           "DressingInput",
           "TelescopePrompt",
+          "alpha",
+          "dashboard",
           "toggleterm",
         },
       },
