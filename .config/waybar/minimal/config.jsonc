@@ -73,7 +73,7 @@
     "interval": 1,
     "format": "{:%I:%M %p}",
     "format-alt": "{:%d - %I:%M %p}",
-    "tooltip-format": "{:%d %B (%A)}"
+    "tooltip-format": "{:%d %B (%a)}"
   },
   "battery": {
     "format": "{icon}",
