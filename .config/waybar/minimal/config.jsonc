@@ -71,8 +71,9 @@
   },
   "clock": {
     "interval": 1,
-    "format": "{:%a %d %b - %I:%M %p}",
-    "on-click": "morgen"
+    "format": "{:%I:%M %p}",
+    "format-alt": "{:%d - %I:%M %p}",
+    "tooltip-format": "{:%d %B (%A)}"
   },
   "battery": {
     "format": "{icon}",
