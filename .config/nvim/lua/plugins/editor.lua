@@ -571,4 +571,13 @@ return {
       })
     end,
   },
+
+  -- nerd icon picker
+  {
+    "2kabhishek/nerdy.nvim",
+    cmd = "Nerdy",
+    keys = {
+      { "<leader>ci", "<Cmd>Nerdy<CR>", desc = "Pick icon" },
+    },
+  },
 }
