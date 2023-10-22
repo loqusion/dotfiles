@@ -3,7 +3,7 @@ return {
   {
     "akinsho/git-conflict.nvim",
     version = "",
-    event = { "BufReadPre", "BufNewFile" },
+    event = "LazyFile",
     opts = {
       default_mappings = false,
     },
@@ -46,7 +46,7 @@ return {
   -- toggle git blame annotations
   {
     "f-person/git-blame.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    event = "LazyFile",
     keys = {
       { "<leader>gB", "<Cmd>GitBlameToggle<CR>", desc = "Git Blame" },
     },
@@ -58,7 +58,7 @@ return {
   -- show history of commits under the cursor
   {
     "rhysd/git-messenger.vim",
-    event = "BufRead",
+    event = "LazyFile",
     keys = {
       { "<leader>gm", "<Plug>(git-messenger)", desc = "Git Messenger" },
     },

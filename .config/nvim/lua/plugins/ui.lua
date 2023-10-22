@@ -166,7 +166,7 @@ return {
   -- floating winbar
   {
     "b0o/incline.nvim",
-    event = "BufReadPre",
+    event = "LazyFile",
     config = function()
       local palette = require("utils.palette")
       require("incline").setup({

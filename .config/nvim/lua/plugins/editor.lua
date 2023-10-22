@@ -363,7 +363,7 @@ return {
   -- indent detection
   {
     "NMAC427/guess-indent.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    event = "LazyFile",
     cmd = "GuessIndent",
     opts = {},
   },
