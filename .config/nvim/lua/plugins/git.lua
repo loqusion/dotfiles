@@ -50,9 +50,9 @@ return {
     keys = {
       { "<leader>gB", "<Cmd>GitBlameToggle<CR>", desc = "Git Blame" },
     },
-    init = function()
-      vim.g.gitblame_enabled = 0
-    end,
+    opts = {
+      enabled = false,
+    },
   },
 
   -- show history of commits under the cursor
