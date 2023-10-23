@@ -68,12 +68,12 @@ return {
       linters = {
         luacheck = {
           condition = function(ctx)
-            return vim.fs.find({ "luacheckrc" }, { path = ctx.filename, upward = true })
+            return #vim.fs.find({ "luacheckrc" }, { path = ctx.filename, upward = true }) > 0
           end,
         },
         selene = {
           condition = function(ctx)
-            return vim.fs.find({ "selene.toml" }, { path = ctx.filename, upward = true })
+            return #vim.fs.find({ "selene.toml" }, { path = ctx.filename, upward = true }) > 0
           end,
         },
       },
