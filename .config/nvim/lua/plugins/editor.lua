@@ -503,6 +503,7 @@ return {
           "alpha",
           "dashboard",
           "toggleterm",
+          "noice",
         },
       },
     },
