@@ -503,6 +503,10 @@ return {
           "alpha",
           "dashboard",
           "toggleterm",
+        },
+      },
+      ignore = {
+        cursorline = {
           "noice",
         },
       },
