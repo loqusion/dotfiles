@@ -53,6 +53,23 @@ return {
   },
 
   {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = {
+      linters_by_ft = {
+        python = { "mypy" },
+      },
+      linters = {
+        mypy = {
+          condition = function(ctx)
+            return #vim.fs.find({ "mypy.ini", "pyproject.toml" }, { path = ctx.filename, upward = true }) > 0
+          end,
+        },
+      },
+    },
+  },
+
+  {
     "nvimtools/none-ls.nvim",
     optional = true,
     opts = function(_, opts)
