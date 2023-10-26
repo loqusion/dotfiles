@@ -53,6 +53,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   callback = function()
     vim.notify("Regenerating hyprshade")
     vim.fn.system("hyprshade install")
+    vim.fn.system("systemctl --user daemon-reload")
   end,
 })
 
