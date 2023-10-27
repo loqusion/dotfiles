@@ -42,6 +42,7 @@ end
 map("n", "l", l, { desc = "which_key_ignore" })
 
 map("n", "gV", "v`[o`]", { desc = "Switch to VISUAL using last insertion/yank" })
+-- map("x", "g=", [[<Esc><Cmd>s/\%V.*\%V./\=eval("TODO")<CR>]], { desc = "Evaluate expression" })
 
 map("n", "<leader>w=", "<C-w>=", { desc = "Equalize windows" })
 map("n", "<leader>wT", "<C-w>T", { desc = "Break out into a new tab" })
