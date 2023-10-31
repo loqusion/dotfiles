@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+set -euo pipefail
+shopt -s failglob
+
+OUT_DEVICE=${1:-}
+
+TMP_DIR=/tmp/archiso
+VENDOR_PROFILES=/usr/share/archiso/configs
+DEFAULT_PROFILE=releng
+PROFILE=${DEFAULT_PROFILE}
+
+_validate() {
+	if ((EUID != 0)); then
+		echo "Error: must be run as root" >&2
+		exit 1
+	elif [[ -z "$OUT_DEVICE" ]]; then
+		echo "Error: no output device specified" >&2
+		exit 1
+	elif [[ ! -b "$OUT_DEVICE" ]]; then
+		echo "Error: $OUT_DEVICE is not a block device" >&2
+		exit 1
+	fi
+	mountpoint=$(lsblk -o MOUNTPOINT "$OUT_DEVICE" | sed -e '/^MOUNTPOINT$/d' -e '/^$/d')
+	if [[ -n "$mountpoint" ]]; then
+		echo "Error: $OUT_DEVICE or one of its partitions is mounted" >&2
+		exit 1
+	fi
+}
+
+_fetch_iso() {
+	mkdir -p "$TMP_DIR"
+	mkarchiso -v -w "$TMP_DIR/work" -o "$TMP_DIR/out" "$VENDOR_PROFILES/$PROFILE" >&2
+	echo "$TMP_DIR"/out/archlinux-*.iso
+}
+
+# https://wiki.archlinux.org/title/USB_flash_installation_medium#Using_basic_command_line_utilities
+_install_iso() {
+	local iso=$1
+	pv "$iso" >"$OUT_DEVICE"
+}
+
+sudo -v
+
+_validate
+ISO=$(_fetch_iso)
+_install_iso "$ISO"
