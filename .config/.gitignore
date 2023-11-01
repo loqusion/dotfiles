@@ -142,7 +142,7 @@
 !/retroarch/config/**
 !/starship.toml
 !/topgrade.toml
-!/user-dirs.dirs
+# !/user-dirs.dirs
 !/user-dirs.locale
 
 
