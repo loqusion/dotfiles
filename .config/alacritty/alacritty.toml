@@ -13,15 +13,17 @@ glyph_offset = { x = 0, y = 0 }
 builtin_box_drawing = true
 
 [font.normal]
-family = "Maple Mono SC NF"
-# family = "JetBrainsMono Nerd Font"
+# family = "Maple Mono SC NF"
+family = "JetBrainsMono Nerd Font"
 
-# [font.italic]
-# style = "Italic"
+[font.italic]
+style = "Italic"
+family = "Maple Mono SC NF"
 # family = "VictorMono Nerd Font"
-#
-# [font.bold_italic]
-# style = "Bold Italic"
+
+[font.bold_italic]
+style = "Bold Italic"
+family = "Maple Mono SC NF"
 # family = "VictorMono Nerd Font"
 
 [cursor]
