@@ -1,12 +1,19 @@
 local wezterm = require 'wezterm'
 
-local use_different_italics = false
-local primary_font = 'Maple Mono SC NF'
-local italic_font = 'Victor Mono'
-local emoji_font = 'Twemoji'
+local use_different_italics = true
+local font = {
+  jetbrains = 'JetBrains Mono',
+  maple = 'Maple Mono SC NF',
+  victor = 'Victor Mono',
+  twemoji = 'Twemoji',
+}
+local primary_font = font.jetbrains
+local italic_font = font.maple
+local emoji_font = font.twemoji
 
 ---@param font string
 ---@param suffix string?
+---@diagnostic disable-next-line: redefined-local
 local function nerd(font, suffix)
   suffix = suffix or 'Nerd Font'
   if not (font:find 'Nerd Font' or font:find 'NF') then
