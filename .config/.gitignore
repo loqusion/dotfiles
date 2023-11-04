@@ -92,8 +92,6 @@
 !/rtx/**
 !/skhd/
 !/skhd/**
-!/spotifyd/
-!/spotifyd/**
 !/stylua/
 !/stylua/**
 !/swayidle/
@@ -159,6 +157,7 @@
 
 /gh/hosts.yml
 /pdm/config.toml
+/spotifyd/spotifyd.conf
 
 
 .DS_STORE
