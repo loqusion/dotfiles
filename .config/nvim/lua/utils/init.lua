@@ -28,6 +28,10 @@ function M.has(plugin)
   return require("lazy.core.config").plugins[plugin] ~= nil
 end
 
+function M.lua_version()
+  return _VERSION:match("%d+%.%d+") or "5.1"
+end
+
 function M.disable_autoformat(root_dir)
   root_dir = vim.F.if_nil(root_dir, vim.loop.cwd())
   vim.api.nvim_create_autocmd("BufReadPost", {

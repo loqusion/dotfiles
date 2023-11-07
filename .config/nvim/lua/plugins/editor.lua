@@ -35,6 +35,15 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
+    dependencies = {
+      {
+        "3rd/image.nvim",
+        build = ("luarocks --local install --lua-version %s magick"):format(Util.lua_version()),
+        opts = {
+          backend = vim.env.KITTY_WINDOW_ID and "kitty" or "ueberzug",
+        },
+      },
+    },
     keys = {
       { "<leader>fe", false },
       { "<leader>fE", false },
@@ -57,7 +66,9 @@ return {
       filesystem = {
         window = {
           mappings = {
-            ["o"] = "open_in_external_program",
+            -- FIXME: conflicts with new mappings
+            -- ["o"] = "open_in_external_program",
+            ["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = Util.has("image.nvim") } },
           },
         },
         commands = {
