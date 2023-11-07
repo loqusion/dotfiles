@@ -37,6 +37,9 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua"
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua"
+
 require("config.lazy")
 require("config.neovide")
 require("config.commands")
