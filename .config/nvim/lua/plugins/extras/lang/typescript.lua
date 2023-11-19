@@ -1,4 +1,3 @@
-local Utils = require("utils")
 local style = require("config.style")
 
 return {
@@ -63,22 +62,21 @@ return {
     -- "bennypowers/nvim-regexplainer",
     "loqusion/nvim-regexplainer",
     dev = true,
+    -- stylua: ignore
     keys = {
-      {
-        "gR",
-        function()
-          require("regexplainer").show()
-        end,
-        desc = "Show Regexplainer (custom)",
-      },
+      { "gR", function() require("regexplainer").show() end, desc = "Show Regexplainer (custom)" },
     },
     ---@type RegexplainerOptions
     opts = {
       debug = true,
       mode = "narrative",
       display = "popup",
+      ---@class NuiPopupBufferOptions
       popup = {
-        border = { style = style.border },
+        border = {
+          style = style.border,
+          padding = { 0, 1 },
+        },
       },
     },
   },

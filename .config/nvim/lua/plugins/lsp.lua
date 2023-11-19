@@ -27,7 +27,7 @@ return {
           prefix = "icons",
         },
       },
-      ---@type lspconfig.options
+      ---@class lspconfig.options
       servers = {
         bashls = {},
         cssls = {},

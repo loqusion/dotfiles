@@ -19,7 +19,7 @@ return {
     keys = {
       { "<leader>tA", function() require("neotest").run.run({ suite = true }) end, desc = "Run Suite" },
       { "<leader>tl", function() require("neotest").run.run_last() end, desc = "Run last test" },
-      { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true, short = true }) end, desc = "Show Output" },
+      { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true, short = true }) end, desc = "Show Output" }, ---@diagnostic disable-line: missing-fields
       -- { "<leader>tD", function() require("neotest").run.run_last({ strategy = "dap" }) end, desc = "Debug last test" },
       -- { "<leader>ta", function() require("neotest").run.attach() end, desc = "Attach to running test" },
       -- { "<leader>tm", function() require("neotest").summary.run_marked() end, desc = "Summary for marked tests" },
