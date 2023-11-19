@@ -52,7 +52,7 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    ---@type TSConfig
+    ---@class TSConfig
     opts = {
       ensure_installed = {
         "bash",
@@ -93,7 +93,6 @@ return {
       },
       auto_install = true,
       autotag = { enable = true },
-      context_commentstring = { enable = true, enable_autocmd = false },
       endwise = { enable = true },
       matchup = { enable = true },
       query_linter = {

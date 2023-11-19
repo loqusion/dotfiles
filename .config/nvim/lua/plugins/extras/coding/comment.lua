@@ -9,7 +9,15 @@ return {
       },
     },
   },
-  { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    lazy = true,
+    init = function()
+      -- speed up loading
+      vim.g.skip_ts_context_commentstring_module = true
+    end,
+    opts = { enable_autocmd = false },
+  },
   {
     "numToStr/Comment.nvim",
     event = "VeryLazy",
