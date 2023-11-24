@@ -15,7 +15,7 @@ local emoji_font = font.twemoji
 ---@param suffix string?
 ---@diagnostic disable-next-line: redefined-local
 local function nerd(font, suffix)
-  suffix = suffix or 'Nerd Font'
+  suffix = suffix or 'NF'
   if not (font:find 'Nerd Font' or font:find 'NF') then
     font = font:gsub(' Mono', 'Mono', 1) .. ' ' .. suffix
   end

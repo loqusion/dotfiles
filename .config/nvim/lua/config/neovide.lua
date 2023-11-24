@@ -2,8 +2,8 @@ local style = require("config.style")
 local g = vim.g
 local opt = vim.opt
 
-local normal_font = "JetBrainsMono Nerd Font:h14"
-local italic_font = "VictorMono Nerd Font"
+local normal_font = "JetBrainsMono NF:h14"
+local italic_font = "VictorMono NF"
 
 local function alpha()
   return string.format("%x", math.floor((255 * g.transparency) or 0.8))
