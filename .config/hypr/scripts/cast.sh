@@ -4,10 +4,6 @@ notify() {
 	notify-send -t 3000 -a 'wf-recorder' -e 'wf-recorder' "$@"
 }
 
-slurp() {
-	command slurp -d -F 'Terminess TTF Nerd Font'
-}
-
 pkill --euid "$USER" --signal SIGINT wf-recorder && notify 'Saved recording' && exit
 
 XDG_VIDEOS_DIR=${XDG_VIDEOS_DIR:-$(xdg-user-dir VIDEOS)}
