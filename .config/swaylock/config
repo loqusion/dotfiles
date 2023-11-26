@@ -1,13 +1,16 @@
-# screenshots
-# effect-blur=7x5
-# indicator
-# indicator-idle-visible
+#!/hint/conf
 
-image=~/Pictures/Wallpapers/Erikaz-And-Dlanor-A-Knox.jpg
-scaling=fill
+screenshots
+effect-blur=5x5
+indicator
+indicator-idle-visible
+
+# image=~/Pictures/Wallpapers/Erikaz-And-Dlanor-A-Knox.jpg
+# scaling=fill
 
 effect-vignette=0.5:0.5
-fade-in=0.2
+# Broken in swaylock-effects-improved
+# fade-in=0.2
 
 font=Bahnschrift
 clock
