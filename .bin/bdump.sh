@@ -10,7 +10,7 @@ _git() {
 }
 
 _git_resolved_head() {
-	git symbolic-ref --short --quiet HEAD || git rev-parse HEAD
+	_git symbolic-ref --short --quiet HEAD || git rev-parse HEAD
 }
 
 saved_ref=$(_git_resolved_head)
