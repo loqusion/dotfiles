@@ -9,7 +9,11 @@ _git() {
 	git -C "$BOOTSTRAP_DIR" "$@"
 }
 
-saved_ref=$(_git rev-parse HEAD)
+_git_resolved_head() {
+	git symbolic-ref --short --quiet HEAD || git rev-parse HEAD
+}
+
+saved_ref=$(_git_resolved_head)
 finish() {
 	set +e
 	_git checkout -q "$saved_ref"
