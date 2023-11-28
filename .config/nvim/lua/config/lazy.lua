@@ -39,6 +39,7 @@ require("lazy").setup({
     { import = "plugins.extras.coding.comment" },
     { import = "plugins.extras.coding.surround", enabled = true },
     { import = "plugins.extras.dap" },
+    { import = "plugins.extras.formatting" },
     { import = "plugins.extras.lang" },
   },
   defaults = {
