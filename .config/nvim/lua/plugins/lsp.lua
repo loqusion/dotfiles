@@ -30,7 +30,15 @@ return {
       ---@class lspconfig.options
       servers = {
         bashls = {},
-        cssls = {},
+        cssls = {
+          settings = {
+            css = {
+              lint = {
+                unknownAtRules = "ignore",
+              },
+            },
+          },
+        },
         dockerls = {},
         html = {},
         marksman = {},
