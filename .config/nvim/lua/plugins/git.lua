@@ -40,6 +40,8 @@ return {
 
         on_attach(buffer)
       end
+      -- TODO: remove after https://github.com/LazyVim/LazyVim/issues/2039 is fixed
+      opts._extmark_signs = false
     end,
   },
 
