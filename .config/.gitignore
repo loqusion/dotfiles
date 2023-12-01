@@ -28,6 +28,8 @@
 !/fcitx5/**
 !/fish/
 !/fish/**
+!/font-manager/
+!/font-manager/**
 !/fontconfig/
 !/fontconfig/**
 !/fuzzel/
