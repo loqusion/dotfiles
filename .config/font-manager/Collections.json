@@ -135,6 +135,21 @@
             ],
             "size" : 98
         },
+        "Emoji" : {
+            "name" : "Emoji",
+            "icon" : null,
+            "comment" : null,
+            "index" : 2,
+            "requires-update" : false,
+            "active" : true,
+            "children" : {            },
+            "families" : [
+                "Apple Color Emoji",
+                "Segoe UI Emoji",
+                "Twemoji"
+            ],
+            "size" : 3
+        },
         "Coding" : {
             "name" : "Coding",
             "icon" : null,
@@ -502,21 +517,6 @@
                 "Z003"
             ],
             "size" : 5
-        },
-        "Emoji" : {
-            "name" : "Emoji",
-            "icon" : null,
-            "comment" : null,
-            "index" : 2,
-            "requires-update" : false,
-            "active" : true,
-            "children" : {            },
-            "families" : [
-                "Apple Color Emoji",
-                "Segoe UI Emoji",
-                "Twemoji"
-            ],
-            "size" : 3
         }
     }
 }
