@@ -22,6 +22,8 @@ application/x-extension-shtml=firefox.desktop
 application/xhtml+xml=firefox.desktop
 application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
+application/x-tiled-tsx=org.gnome.gedit.desktop
+font/woff=org.gnome.FontManager.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;
@@ -43,3 +45,6 @@ application/x-extension-shtml=firefox.desktop;
 application/xhtml+xml=firefox.desktop;
 application/x-extension-xhtml=firefox.desktop;
 application/x-extension-xht=firefox.desktop;
+application/x-tiled-tsx=org.gnome.gedit.desktop;
+application/octet-stream=org.gnome.gedit.desktop;
+font/woff=org.gnome.FontManager.desktop;
