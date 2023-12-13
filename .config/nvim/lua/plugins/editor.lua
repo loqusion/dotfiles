@@ -8,6 +8,7 @@ return {
       ---@type table<string, { name: string, plugins: string[]}>
       local defaults = {
         ["<leader>bd"] = { name = "+delete", plugins = { "bufferline.nvim", "close-buffers.nvim", "mini.bufremove" } },
+        ["<leader>n"] = { name = "+notes", plugins = { "telekasten.nvim" } },
         ["<leader>o"] = { name = "+open", plugins = { "peek.nvim", "ChatGPT.nvim" } },
         ["<leader>r"] = { name = "+run", plugins = { "overseer.nvim" } },
         ["<localleader>e"] = { name = "+evaulate", plugins = { "conjure" } },

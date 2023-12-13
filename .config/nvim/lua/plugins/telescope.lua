@@ -40,4 +40,24 @@ return {
       },
     },
   },
+
+  {
+    "renerocksai/telekasten.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    cmd = "Telekasten",
+    keys = {
+      { "<leader>nf", "<Cmd>Telekasten find_notes<CR>", desc = "Find" },
+      { "<leader>ng", "<Cmd>Telekasten search_notes<CR>", desc = "Search" },
+      { "<leader>nd", "<Cmd>Telekasten goto_today<CR>", desc = "Today" },
+      { "<leader>nz", "<Cmd>Telekasten follow_link<CR>", desc = "Follow link", ft = { "telekasten" } },
+      { "<leader>nn", "<Cmd>Telekasten new_note<CR>", desc = "New" },
+      { "<leader>nc", "<Cmd>Telekasten show_calendar<CR>", desc = "Calendar" },
+      { "<leader>nb", "<Cmd>Telekasten show_backlinks<CR>", desc = "Show backlinks", ft = { "telekasten" } },
+      { "<leader>nI", "<Cmd>Telekasten insert_img_link<CR>", desc = "Insert image link" },
+      { "[[", "<Cmd>Telekasten insert_link<CR>", desc = "Insert link", ft = { "telekasten" }, mode = "i" },
+    },
+    opts = {
+      home = vim.fn.expand("~/Documents/Notes"),
+    },
+  },
 }
