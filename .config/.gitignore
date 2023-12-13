@@ -72,6 +72,8 @@
 !/nap/**
 !/neofetch/
 !/neofetch/**
+!/nix/
+!/nix/**
 !/nvim/
 !/nvim/**
 !/nwg-look/
