@@ -4,6 +4,8 @@ if status is-interactive && set -q START_ZELLIJ
     eval (zellij setup --generate-auto-start fish | string collect)
 end
 
+set -gx LOCALE_ARCHIVE /usr/lib/locale/locale-archive
+
 set -gx EDITOR (which nvim)
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
