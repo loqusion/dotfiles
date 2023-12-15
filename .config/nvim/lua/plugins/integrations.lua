@@ -77,7 +77,7 @@ return {
   -- use common keybinds for navigating multiplexer
   {
     "mrjones2014/smart-splits.nvim",
-    enabled = false,
+    cond = vim.env.WEZTERM_UNIX_SOCKET ~= nil,
     lazy = false, -- see https://github.com/mrjones2014/smart-splits.nvim#wezterm
     -- stylua: ignore
     keys = {
