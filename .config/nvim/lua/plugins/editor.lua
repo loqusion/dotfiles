@@ -501,7 +501,7 @@ return {
     event = "VeryLazy",
     opts = {
       on_startup = {
-        cursorline = true,
+        cursorline = vim.go.cursorline,
       },
       always = {
         cursorline = {
