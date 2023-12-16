@@ -33,7 +33,7 @@ abbr cp "cp -riv"
 abbr rm trash
 abbr mkdir "mkdir -vp"
 abbr l ll
-abbr tree "ls --tree"
+abbr tree "eza --tree"
 abbr b bat
 
 abbr vim nvim
