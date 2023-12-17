@@ -1,0 +1,1 @@
+abbr hm home-manager
