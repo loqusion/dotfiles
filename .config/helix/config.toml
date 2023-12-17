@@ -1,3 +1,7 @@
+[editor]
+middle-click-paste = false
+cursorline = true
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
