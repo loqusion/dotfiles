@@ -1,8 +1,15 @@
+theme = "onedark"
+
 [editor]
-middle-click-paste = false
+line-number = "absolute"
 cursorline = true
+middle-click-paste = false
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
+
+[editor.smart-tab]
+enable = true
+supersede-menu = true
