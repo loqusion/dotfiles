@@ -39,7 +39,7 @@ abbr b bat
 abbr vim nvim
 abbr vi nvim
 abbr v nvim
-abbr vd "cd ~/.config/nvim; nvim"
+abbr vd "cd ~/.config/nvim && nvim"
 abbr sv sudoedit
 abbr vsudo sudoedit
 abbr vup "dotbare commit -v -m 'chore(vim): upgrade' ~/.config/nvim/lazy-lock.json && dotbare push"
