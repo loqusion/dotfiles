@@ -49,3 +49,6 @@
 [submodule ".config/catppuccin/tty"]
 	path = .config/catppuccin/tty
 	url = https://github.com/catppuccin/tty
+[submodule ".config/home-manager"]
+	path = .config/home-manager
+	url = https://github.com/loqusion/dotfiles-nix
