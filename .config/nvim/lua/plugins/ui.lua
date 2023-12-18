@@ -414,4 +414,12 @@ return {
       end
     end,
   },
+
+  {
+    "carbon-steel/detour.nvim",
+    cmd = "Detour",
+    keys = {
+      { "<leader>wD", "<Cmd>Detour<CR>", desc = "Detour" },
+    },
+  },
 }
