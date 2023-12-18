@@ -46,8 +46,6 @@
 !/glow/**
 !/gtk-3.0/
 !/gtk-3.0/**
-!/helix/
-!/helix/**
 !/home-manager/
 !/home-manager/**
 !/htop/
