@@ -44,9 +44,6 @@ abbr sv sudoedit
 abbr vsudo sudoedit
 abbr vup "dotbare commit -v -m 'chore(vim): upgrade' ~/.config/nvim/lazy-lock.json && dotbare push"
 
-abbr hx helix
-abbr xxd hx
-
 abbr c dotbare
 abbr lg lazygit
 
