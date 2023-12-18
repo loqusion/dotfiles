@@ -101,7 +101,7 @@
   "nvim-fundo": { "branch": "main", "commit": "a0d105d4588ffe43cc7e40220b1b6c1313156330" },
   "nvim-hlslens": { "branch": "main", "commit": "8ffc64bb6b624612cf762982b92633f283f7a715" },
   "nvim-lint": { "branch": "master", "commit": "32f98300881f38f4e022391f240188fec42f74db" },
-  "nvim-lspconfig": { "branch": "master", "commit": "e50a8fcd6267cb9b2d2a880dcf3a8ac113b75abc" },
+  "nvim-lspconfig": { "branch": "master", "commit": "eb81c7ea08d6f01d5fa4cf09e58c708efadf9b2f" },
   "nvim-navic": { "branch": "master", "commit": "8649f694d3e76ee10c19255dece6411c29206a54" },
   "nvim-notify": { "branch": "master", "commit": "e4a2022f4fec2d5ebc79afa612f96d8b11c627b3" },
   "nvim-scrollbar": { "branch": "main", "commit": "35f99d559041c7c0eff3a41f9093581ceea534e8" },
