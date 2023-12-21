@@ -387,6 +387,10 @@ return {
     keys = { "q", "Q", "<m-q>", "<c-p>", "<c-n>" },
     opts = {
       queue_most_recent = true,
+      keymaps = {
+        play_macro = "q",
+        toggle_record = "Q",
+      },
     },
   },
 
