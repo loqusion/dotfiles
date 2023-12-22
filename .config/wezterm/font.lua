@@ -25,6 +25,7 @@ end
 return function(config)
   config.font = wezterm.font_with_fallback { nerd(primary_font), emoji_font }
   config.font_size = 12.5
+  config.cell_width = 1
   if use_different_italics then
     config.font_rules = {
       {
@@ -76,5 +77,4 @@ return function(config)
     -- the window is not focused
     inactive_titlebar_bg = '#1e2030',
   }
-  config.cell_width = 0.9
 end
