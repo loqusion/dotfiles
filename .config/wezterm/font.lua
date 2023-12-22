@@ -24,7 +24,7 @@ end
 
 return function(config)
   config.font = wezterm.font_with_fallback { nerd(primary_font), emoji_font }
-  config.font_size = 12.0
+  config.font_size = 12.5
   if use_different_italics then
     config.font_rules = {
       {
