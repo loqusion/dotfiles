@@ -69,6 +69,8 @@ return {
     opts = {
       -- log_level = vim.log.levels.DEBUG,
       formatters_by_ft = {
+        ["markdown"] = { "prettierd", "injected" },
+        ["markdown.mdx"] = { "prettierd", "injected" },
         ["_"] = { "trim_whitespace", "trim_newlines" },
       },
       formatters = {},
