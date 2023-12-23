@@ -73,4 +73,19 @@ return {
     event = "VeryLazy",
     config = true,
   },
+
+  {
+    "loqusion/star.nvim",
+    dev = true,
+    keys = {
+      { "*", mode = { "n", "x" } },
+      { "g*", mode = { "n", "x" } },
+    },
+    opts = {
+      keys = {
+        ["#"] = false,
+        ["g#"] = false,
+      },
+    },
+  },
 }
