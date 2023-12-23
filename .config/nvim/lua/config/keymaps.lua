@@ -31,7 +31,10 @@ unmap("t", "<C-j>")
 unmap("t", "<C-k>")
 unmap("t", "<C-l>")
 
-map({ "n", "i", "c", "v", "o", "t", "l" }, "<MiddleMouse>", "<Nop>", { desc = "which_key_ignore" })
+for _, x in ipairs({ false, "2", "3", "4" }) do
+  local lhs = (x == false and "<MiddleMouse>" or ("<%s-MiddleMouse>"):format(x))
+  map({ "n", "i", "c", "v", "o", "t", "l" }, lhs, "<Nop>", { desc = "which_key_ignore" })
+end
 
 map({ "n", "x" }, "x", '"_x', { desc = "Delete char" })
 map({ "n", "x" }, "X", '"_X', { desc = "Delete prev char" })
