@@ -51,7 +51,7 @@ class Config:
 def arg_parser(config: Config) -> ArgumentParser:
     parser = ArgumentParser(
         prog="vpn",
-        description="VPN management tool",
+        description="Very basic VPN management tool",
         epilog="This is a tool to manage VPN connections",
     )
     parser.add_argument("command", choices=["on", "off"])
