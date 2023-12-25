@@ -60,4 +60,6 @@ abbr ub unbuffer
 abbr zj zellij
 abbr zja "zellij attach"
 
-rtx activate fish | source
+if command -q rtx
+    rtx activate fish | source
+end
