@@ -15,7 +15,7 @@
   "clangd_extensions.nvim": { "branch": "main", "commit": "34c8eaa12be192e83cd4865ce2375e9f53e728f2" },
   "clipboard-image.nvim": { "branch": "main", "commit": "d1550dc26729b7954f95269952e90471b838fa25" },
   "close-buffers.nvim": { "branch": "master", "commit": "3acbcad1211572342632a6c0151f839e7dead27f" },
-  "cmake-tools.nvim": { "branch": "master", "commit": "3dee40dac91f7dfde031cc709960b488e72adcb5" },
+  "cmake-tools.nvim": { "branch": "master", "commit": "5c39242383f5db39b04248bb5c65e0b72f984b22" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-emoji": { "branch": "main", "commit": "19075c36d5820253d32e2478b6aaf3734aeaafa0" },
   "cmp-npm": { "branch": "main", "commit": "2337f109f51a09297596dd6b538b70ccba92b4e4" },
