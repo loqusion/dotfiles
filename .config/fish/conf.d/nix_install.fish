@@ -22,4 +22,8 @@ function install-home-manager
     if not nix-shell -p home-manager --run "home-manager switch"
         return
     end
+
+    # remove useless shit
+    rm -rf ~/.local/state/nix/profile/bin/man*
+    rm -rf ~/.local/state/nix/profile/bin/apropos
 end
