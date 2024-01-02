@@ -94,6 +94,7 @@ return {
       auto_install = true,
       autotag = { enable = true },
       endwise = { enable = true },
+      indent = { enable = false }, -- been acting up lately
       matchup = { enable = true },
       query_linter = {
         enable = true,
