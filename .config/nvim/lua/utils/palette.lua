@@ -79,8 +79,9 @@ end
 ---@param colorscheme string
 ---@return BaseColorscheme|nil
 function Module._base_colorscheme(colorscheme)
+  local escape_pattern = require("utils").escape_pattern
   for base, _ in pairs(palette_info) do
-    if string.match(colorscheme, ("^%s"):format(base)) then
+    if string.match(colorscheme, ("^%s"):format(escape_pattern(base))) then
       return base
     end
   end
