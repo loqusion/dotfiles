@@ -168,12 +168,46 @@ return {
     "b0o/incline.nvim",
     event = "LazyFile",
     config = function()
-      local palette = require("utils.palette")
+      local function get_palette()
+        local ok, incline0, incline1 = pcall(function()
+          local palette = require("utils.palette")
+          if not palette.supported then
+            return "", ""
+          end
+          return palette.incline0, palette.incline1
+        end)
+
+        if not ok then
+          return
+        end
+
+        if incline0 == nil or incline1 == nil then
+          vim.notify_once(
+            ("Please ensure `incline0` and `incline1` are defined for colorscheme '%s' in palette.lua,\nor set them to `\"\"` explicitly."):format(
+              vim.g.colors_name
+            ),
+            vim.log.levels.WARN,
+            { title = "incline.nvim" }
+          )
+          return
+        end
+
+        if incline0 == false then
+          incline0 = nil
+        end
+        if incline1 == false then
+          incline1 = nil
+        end
+        return incline0, incline1
+      end
+
+      local incline0, incline1 = get_palette()
+
       require("incline").setup({
         highlight = {
           groups = {
-            InclineNormal = { guibg = palette.incline1, guifg = palette.incline0 },
-            InclineNormalNC = { guifg = palette.incline1, guibg = palette.incline0 },
+            InclineNormal = { guibg = incline1, guifg = incline0 },
+            InclineNormalNC = { guifg = incline1, guibg = incline0 },
           },
         },
         window = { margin = { vertical = 0, horizontal = 1 } },

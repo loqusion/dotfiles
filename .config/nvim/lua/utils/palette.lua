@@ -1,3 +1,10 @@
+---@class PaletteInfo
+---@field mod fun(): table
+---@field resolved table<string, string>
+---@field colorscheme table<string, string> Alternate colorschemes used for styler.nvim; accessed through `palette.colorscheme.*`
+
+---@alias BaseColorscheme string
+
 ---@type table<BaseColorscheme, PaletteInfo>
 local palette_info = {
   catppuccin = {
@@ -34,16 +41,25 @@ local palette_info = {
   },
 }
 
----@class PaletteInfo
----@field mod fun(): table
----@field resolved table<string, string>
----@field colorscheme table<string, string> Alternate colorschemes used for styler.nvim; accessed through `palette.colorscheme.*`
+local my_memo = {}
 
----@alias BaseColorscheme string
+---@generic T
+---@param f fun(...): T
+---@return T
+local function memoized(f, ...)
+  local args = { ... }
+  local key = vim.inspect(args)
+  if not my_memo[key] then
+    my_memo[key] = f(...)
+  end
+  return my_memo[key]
+end
 
-local memoized = {}
+---@class PaletteModule : PaletteInfo
 local Module = {}
 
+---@param colorscheme string
+---@return PaletteModule|nil
 function Module.new(colorscheme)
   local base_colorscheme = Module._base_colorscheme(colorscheme)
   if not base_colorscheme then
@@ -66,16 +82,19 @@ function Module.new(colorscheme)
   return self
 end
 
+---@param colorname string
+---@return string|nil
 function Module:color(colorname)
-  colorname = self.resolved[colorname] or colorname
-  if string.match(colorname, "^#%w%w%w%w%w%w") then
-    return colorname
+  local colorname_or_color = self.resolved[colorname] or colorname
+  if colorname_or_color == "" or string.match(colorname_or_color, "^#%w%w%w%w%w%w") then
+    return colorname_or_color
   end
-  return self.mod()[colorname]
+  return self.mod()[colorname_or_color]
 end
 
 ---Given a colorscheme name, return the "base" colorscheme.
 ---E.g. if given "catppuccin-mocha", will return "catppuccin".
+---@private
 ---@param colorscheme string
 ---@return BaseColorscheme|nil
 function Module._base_colorscheme(colorscheme)
@@ -91,23 +110,31 @@ end
 local M = setmetatable({}, {
   __index = function(_, key)
     local colorscheme = vim.g.colors_name
-    local mod = memoized[colorscheme] or Module.new(colorscheme)
+    ---@type PaletteModule|nil
+    local mod = memoized(Module.new, colorscheme)
     if not mod then
       vim.notify_once(
-        ("Palette: colorscheme not fully supported: %s\nadd support in:\n    %s\nor add a blank module to hide this warning."):format(
+        ([[Palette for colorscheme '%s' not defined.
+Add '%s' to `palette_info` in %s,
+or add a blank module to hide this warning.]]):format(
           colorscheme,
-          debug.getinfo(1, "S").source:sub(2)
+          colorscheme,
+          vim.fs.basename(debug.getinfo(1, "S").source:sub(2))
         ),
-        vim.log.levels.WARN
+        vim.log.levels.WARN,
+        { title = "palette.lua" }
       )
-      return { colorscheme = {} }
+      return ({
+        colorscheme = {},
+        supported = false,
+      })[key]
     end
-    memoized[colorscheme] = mod
 
     if key == "colorscheme" then
       return mod.colorscheme
+    elseif key == "supported" then
+      return true
     end
-
     return mod:color(key)
   end,
 })
