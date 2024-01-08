@@ -78,7 +78,8 @@ return {
   { "shaunsingh/nord.nvim", event = "VeryLazy" },
   { "olimorris/onedarkpro.nvim", event = "VeryLazy", opts = { options = { transparency = style.transparent } } },
   { "shaunsingh/oxocarbon.nvim", event = "VeryLazy" },
-  { "rose-pine/neovim", event = "VeryLazy", name = "rose-pine", opts = { disable_background = style.transparent } },
+  -- stylua: ignore
+  { "rose-pine/neovim", event = "VeryLazy", name = "rose-pine", opts = { styles = { transparency = style.transparent } } },
   {
     "svrana/neosolarized.nvim",
     enabled = false,
