@@ -27,6 +27,16 @@ local palette_info = {
       tertiary = "gruvbox",
     },
   },
+  ["rose-pine"] = {
+    mod = function()
+      return require("rose-pine.palette")
+    end,
+    resolved = {
+      incline0 = "surface",
+      incline1 = "rose",
+    },
+    colorscheme = {},
+  },
   tokyonight = {
     mod = function()
       return require("tokyonight.colors")
