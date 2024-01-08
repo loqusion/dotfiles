@@ -130,7 +130,7 @@
   "refactoring.nvim": { "branch": "master", "commit": "28c5a33a0c489eb559396d9424b042ccfdb03b14" },
   "rest.nvim": { "branch": "main", "commit": "84e81a19ab24ccf05c9233d34d4dfce61c233abe" },
   "reticle.nvim": { "branch": "main", "commit": "d0995b3cbd7bffc61355f04fccf526ed59b4c23a" },
-  "rose-pine": { "branch": "main", "commit": "080c8a1bbf3f9a50883bf5670d79babd477aff45" },
+  "rose-pine": { "branch": "main", "commit": "680e2889e50c851a4044d7c182defcaaaeb9b309" },
   "rust-tools.nvim": { "branch": "master", "commit": "676187908a1ce35ffcd727c654ed68d851299d3e" },
   "smartyank.nvim": { "branch": "master", "commit": "b048fec8c6b7d122adab6f78606057d59975ece7" },
   "space-vim-theme": { "branch": "master", "commit": "4790dbba31f678f75af4f4c7a1465008542bd979" },
