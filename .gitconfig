@@ -2,7 +2,7 @@
 	editor = nvim
 	pager = delta
 [user]
-	name = John Bernard
+	name = loqusion
 	email = 38332081+loqusion@users.noreply.github.com
 [init]
 	defaultBranch = main
