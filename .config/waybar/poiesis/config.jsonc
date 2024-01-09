@@ -72,8 +72,8 @@
   "clock": {
     "interval": 1,
     "format": "{:%I:%M %p}",
-    "format-alt": "{:%d - %I:%M %p}",
-    "tooltip-format": "{:%d %B (%a)}"
+    "format-alt": "{:%Y-%m-%d %I:%M %p}",
+    "tooltip-format": "{:%Y-%m-%d (%a)}"
   },
   "battery": {
     "format": "{icon}",
