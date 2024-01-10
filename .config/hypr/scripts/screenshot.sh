@@ -66,10 +66,10 @@ with_feedback() {
 		if ! is_silent "$output"; then
 			notify "${output^}"
 		fi
-		return 1
-	else
-		notify "$(transform_output "$output")"
+		return $status
 	fi
+
+	notify "$(transform_output "$output")"
 }
 
 restore_shader() {
