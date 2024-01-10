@@ -9,6 +9,8 @@ SILENT_OUTPUT=(
 	"selection cancelled"
 )
 
+shader=""
+
 is_silent() {
 	local output
 
@@ -70,11 +72,25 @@ with_feedback() {
 	fi
 }
 
+restore_shader() {
+	if [ -n "$shader" ]; then
+		hyprshade on "$shader"
+	fi
+}
+
+save_shader() {
+	shader=$(hyprshade current)
+	hyprshade off
+	trap restore_shader EXIT
+}
+
 case "$GRIMBLAST_TARGET" in
 output)
+	save_shader
 	with_feedback grimblast "$GRIMBLAST_COMMAND" output
 	;;
 area)
+	save_shader
 	with_feedback grimblast "$GRIMBLAST_COMMAND" area
 	;;
 *)
