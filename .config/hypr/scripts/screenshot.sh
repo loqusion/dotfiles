@@ -69,8 +69,8 @@ with_feedback() {
 	local output status
 
 	output=$("$@" 2>&1)
-	restore_shader
 	status=$?
+	restore_shader
 	if [ $status -ne 0 ]; then
 		if ! is_silent "$output"; then
 			notify "${output^}"
