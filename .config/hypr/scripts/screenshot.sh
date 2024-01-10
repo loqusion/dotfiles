@@ -4,10 +4,14 @@ GRIMBLAST_TARGET=$1
 GRIMBLAST_COMMAND=copysave
 
 APP=grimblast
+EDIT_APP=gimp
 
 SILENT_OUTPUT=(
 	"selection cancelled"
 )
+
+ACTION_VIEW="view"
+ACTION_EDIT="edit"
 
 shader=""
 
@@ -31,7 +35,7 @@ notify_success() {
 	notify \
 		-i "$output" "$(transform_output "$output")"
 	# TODO: this isn't working properly; see https://gitlab.gnome.org/GNOME/libnotify/-/issues/37
-	# -A view="View" -A edit="Edit" \
+	# -A "${ACTION_VIEW}=View" -A "${ACTION_EDIT}=Edit" \
 }
 
 transform_output() {
@@ -78,8 +82,20 @@ with_feedback() {
 		return $status
 	fi
 
-	# TODO: once the above issue is fixed, execute the action
 	action=$(notify_success "$output")
+	case "$action" in
+	"$ACTION_VIEW")
+		xdg-open "$output"
+		;;
+	"$ACTION_EDIT")
+		nohup "$EDIT_APP" "$output" >/dev/null 2>&1 &
+		disown
+		;;
+	*)
+		echo "Unknown action: $action" >&2
+		return 1
+		;;
+	esac
 }
 
 restore_shader() {
@@ -104,7 +120,7 @@ area)
 	with_feedback grimblast "$GRIMBLAST_COMMAND" area
 	;;
 *)
-	echo "Usage: $0 <output|area>"
+	echo "Usage: $0 <output|area>" >&2
 	exit 1
 	;;
 esac
