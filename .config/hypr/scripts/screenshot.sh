@@ -26,6 +26,14 @@ notify() {
 	notify-send -t 3000 -a "$APP" -e "$APP" "$@"
 }
 
+notify_success() {
+	local output=$1
+	notify \
+		-i "$output" "$(transform_output "$output")"
+	# TODO: this isn't working properly; see https://gitlab.gnome.org/GNOME/libnotify/-/issues/37
+	# -A view="View" -A edit="Edit" \
+}
+
 transform_output() {
 	local output=$1
 	local target
@@ -61,6 +69,7 @@ with_feedback() {
 	local output status
 
 	output=$("$@" 2>&1)
+	restore_shader
 	status=$?
 	if [ $status -ne 0 ]; then
 		if ! is_silent "$output"; then
@@ -69,7 +78,8 @@ with_feedback() {
 		return $status
 	fi
 
-	notify "$(transform_output "$output")"
+	# TODO: once the above issue is fixed, execute the action
+	action=$(notify_success "$output")
 }
 
 restore_shader() {
