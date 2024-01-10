@@ -9,6 +9,7 @@ return {
       "lukas-reineke/cmp-under-comparator",
       {
         "David-Kunz/cmp-npm",
+        enabled = false,
         event = { "BufRead package.json" },
         config = true,
       },
