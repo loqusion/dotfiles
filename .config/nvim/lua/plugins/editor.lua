@@ -133,6 +133,15 @@ return {
         { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
       }
     end,
+    opts = {
+      modes = {
+        -- My problem with search is that flash.nvim will interpret part of a word
+        -- I type as a jump label when the word is not found in the document and exit
+        -- search, and then the rest of the word I type is interpreted as vim
+        -- commands, resulting in who-knows-what.
+        search = { enabled = false },
+      },
+    },
   },
 
   -- motions respect camelCase, snake_case, etc (using for inner word textobjects)
