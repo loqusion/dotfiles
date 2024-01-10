@@ -65,7 +65,9 @@ if status --is-interactive
     abbr gcmsg 'git commit -v --message'
 
     abbr gco 'git checkout'
+    abbr gcoo 'git checkout --ours'
     abbr gcor 'git checkout --recurse-submodules'
+    abbr gcot 'git checkout --theirs'
 
     abbr gcs 'git commit --gpg-sign'
     abbr gcss 'git commit --gpg-sign --signoff'
