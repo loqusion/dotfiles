@@ -26,3 +26,10 @@ opt.spelllang = { "en_us", "cjk" }
 opt.tabstop = 4 -- Default tab width 4 spaces
 opt.textwidth = 120 -- Maximum width of text
 opt.virtualedit = "block" -- Allow positioning cursor where there is no text in visual block mode
+
+local normal_font = "JetBrainsMono NF:h14"
+local italic_font = "VictorMono NF"
+opt.guifont = {
+  normal_font,
+  italic_font,
+}
