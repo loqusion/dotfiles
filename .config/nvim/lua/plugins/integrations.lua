@@ -1,3 +1,5 @@
+local style = require("config.style")
+
 return {
   -- discord presence
   {
@@ -116,5 +118,19 @@ return {
   {
     "typicode/bg.nvim",
     lazy = false,
+  },
+
+  {
+    "tim-harding/neophyte",
+    event = "VeryLazy",
+    opts = {
+      bg_override = {
+        -- #1E1E2E
+        r = 30,
+        g = 30,
+        b = 46,
+        a = style.transparent and 230 or 255,
+      },
+    },
   },
 }
