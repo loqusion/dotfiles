@@ -1,5 +1,6 @@
 local style = require("config.style")
 local opt = vim.opt
+local o = vim.o
 
 vim.g.maplocalleader = [[\]]
 opt.background = style.background
@@ -27,9 +28,11 @@ opt.tabstop = 4 -- Default tab width 4 spaces
 opt.textwidth = 120 -- Maximum width of text
 opt.virtualedit = "block" -- Allow positioning cursor where there is no text in visual block mode
 
-local normal_font = "JetBrainsMono NF:h14"
-local italic_font = "VictorMono NF"
-opt.guifont = {
+local normal_font = "JetBrainsMono NF"
+local italic_font = "Maple Mono SC NF"
+local font_options = "h14"
+o.guifont = vim.fn.join({
   normal_font,
   italic_font,
-}
+}, ",") .. ":" .. font_options
+o.linespace = -1

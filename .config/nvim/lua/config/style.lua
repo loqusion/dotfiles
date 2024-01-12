@@ -1,3 +1,11 @@
+local should_override_transparent = vim.g.neovide and true or false
+local function override_transparent(transparent)
+  if should_override_transparent then
+    return false
+  end
+  return transparent
+end
+
 return {
   -- {{{
   ---@type
@@ -69,7 +77,7 @@ return {
   -- }}}
   colorscheme = "catppuccin-macchiato",
   background = "dark",
-  transparent = true,
+  transparent = override_transparent(true),
   animation = false,
   -- Border style in floating windows
   ---@type _.NuiBorderStyle
