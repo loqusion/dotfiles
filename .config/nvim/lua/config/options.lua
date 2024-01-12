@@ -30,7 +30,7 @@ opt.virtualedit = "block" -- Allow positioning cursor where there is no text in 
 
 local normal_font = "JetBrainsMono NF"
 local italic_font = "Maple Mono SC NF"
-local font_options = "h14"
+local font_options = "h13"
 o.guifont = vim.fn.join({
   normal_font,
   italic_font,
