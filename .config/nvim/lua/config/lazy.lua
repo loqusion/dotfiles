@@ -33,6 +33,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.ui.alpha" },
     { import = "lazyvim.plugins.extras.ui.mini-animate", enabled = style.animation },
     { import = "lazyvim.plugins.extras.util.dot" },
+    { import = "lazyvim.plugins.extras.util.project" },
     { import = "plugins" },
     { import = "plugins.extras.coding.autopairs" },
     { import = "plugins.extras.coding.backseat" },
