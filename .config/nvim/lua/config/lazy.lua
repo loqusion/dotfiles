@@ -42,6 +42,7 @@ require("lazy").setup({
     { import = "plugins.extras.dap" },
     { import = "plugins.extras.formatting" },
     { import = "plugins.extras.lang" },
+    { import = "plugins.extras.vscode" },
   },
   defaults = {
     lazy = true,
