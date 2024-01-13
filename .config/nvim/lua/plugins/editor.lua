@@ -39,6 +39,7 @@ return {
     dependencies = {
       {
         "3rd/image.nvim",
+        cond = not vim.g.neovide,
         build = ("luarocks --local install --lua-version %s magick"):format(Util.lua_version()),
         opts = {
           backend = vim.env.KITTY_WINDOW_ID and "kitty" or "ueberzug",
