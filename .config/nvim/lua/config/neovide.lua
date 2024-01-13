@@ -1,14 +1,14 @@
-local style = require("config.style")
 local g = vim.g
 
-local function alpha()
-  return string.format("%x", math.floor((255 * g.transparency) or 0.8))
-end
+local transparent = true
+local unify_transparency = false
+local opacity = transparent and 0.9 or 1.0
 
 if vim.g.neovide then
-  g.neovide_transparency = style.transparent and 0.9 or 1.0
-  g.transparency = style.transparent and 0.9 or 1.0
-  g.neovide_background_color = "#1E1E2E" -- .. alpha()
+  -- NOTE: g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
+  g.neovide_transparency = unify_transparency and 0.0 or opacity
+  g.transparency = unify_transparency and opacity or 1.0
+  g.neovide_background_color = "#1E1E2E"
 
   g.neovide_cursor_vfx_mode = "railgun"
   g.neovide_input_macos_alt_is_meta = true
