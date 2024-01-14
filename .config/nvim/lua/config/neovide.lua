@@ -9,6 +9,7 @@ if vim.g.neovide then
   g.neovide_transparency = unify_transparency and 0.0 or opacity
   g.transparency = unify_transparency and opacity or 1.0
   g.neovide_background_color = "#1E1E2E"
+  g.neovide_underline_stroke_scale = 0.1
 
   g.neovide_cursor_vfx_mode = "railgun"
   g.neovide_input_macos_alt_is_meta = true
