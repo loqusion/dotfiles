@@ -24,6 +24,8 @@ application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
 application/x-tiled-tsx=neovide.desktop
 font/woff=org.gnome.FontManager.desktop
+application/xml=neovide.desktop
+application/rss+xml=neovide.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;
@@ -48,3 +50,5 @@ application/x-extension-xht=firefox.desktop;
 application/x-tiled-tsx=neovide.desktop;
 application/octet-stream=neovide.desktop;
 font/woff=org.gnome.FontManager.desktop;
+application/xml=neovide.desktop;
+application/rss+xml=neovide.desktop;
