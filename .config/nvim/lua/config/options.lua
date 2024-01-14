@@ -39,4 +39,4 @@ o.guifont = vim.fn.join({
   italic_font,
   emoji_font,
 }, ",") .. ":" .. vim.fn.join(font_options, ":")
-o.linespace = -1
+o.linespace = -2
