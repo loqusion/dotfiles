@@ -90,6 +90,7 @@ return {
         "vim",
         "vimdoc",
         "yaml",
+        "styled",
       },
       auto_install = true,
       autotag = { enable = true },
