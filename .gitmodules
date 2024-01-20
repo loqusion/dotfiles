@@ -51,5 +51,5 @@
 	url = https://github.com/catppuccin/tty
 [submodule ".config/home-manager"]
 	path = .config/home-manager
-	url = https://github.com/loqusion/dotfiles-nix
+	url = git@github.com:loqusion/dotfiles-nix.git
 	shallow = false
