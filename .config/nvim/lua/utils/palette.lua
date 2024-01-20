@@ -1,7 +1,7 @@
 ---@class PaletteInfo
 ---@field mod fun(): table
 ---@field resolved table<string, string>
----@field colorscheme table<string, string> Alternate colorschemes used for styler.nvim; accessed through `palette.colorscheme.*`
+---@field colorscheme? table<string, string> Alternate colorschemes used for styler.nvim; accessed through `palette.colorscheme.*`
 
 ---@alias BaseColorscheme string
 
@@ -27,6 +27,15 @@ local palette_info = {
       tertiary = "gruvbox",
     },
   },
+  gruvbox = {
+    mod = function()
+      return require("gruvbox").palette
+    end,
+    resolved = {
+      incline0 = "dark0_hard",
+      incline1 = "bright_red",
+    },
+  },
   ["rose-pine"] = {
     mod = function()
       return require("rose-pine.palette")
@@ -35,7 +44,6 @@ local palette_info = {
       incline0 = "surface",
       incline1 = "rose",
     },
-    colorscheme = {},
   },
   tokyonight = {
     mod = function()
@@ -47,7 +55,6 @@ local palette_info = {
       incline0 = "black",
       incline1 = "#FC56B1",
     },
-    colorscheme = {},
   },
 }
 
