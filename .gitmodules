@@ -52,3 +52,4 @@
 [submodule ".config/home-manager"]
 	path = .config/home-manager
 	url = https://github.com/loqusion/dotfiles-nix
+	shallow = false
