@@ -3,7 +3,10 @@
 assume_yes = true
 
 # Disable specific steps - same options as the command line flag
-disable = ["spicetify"]
+disable = [
+    "micro",
+    "spicetify",
+]
 
 # Ignore failures for these steps
 ignore_failures = ["firmware"]
