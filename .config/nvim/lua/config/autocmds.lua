@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- auto reload configs
+-- auto reload configs --
 
 -- yabai
 vim.api.nvim_create_autocmd("BufWritePost", {
@@ -57,6 +57,8 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   end,
 })
 
+----
+
 -- disable autoformat for PKGBUILD
 vim.api.nvim_create_autocmd("BufRead", {
   group = Utils.augroup("pkgbuild"),
@@ -79,7 +81,9 @@ require("lazyvim.util").on_load("nvim-dap", function()
   })
 end)
 
--- custom filetype detection
+-- custom filetype detection --
+
+-- json
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = Utils.augroup("custom_filetypes"),
   pattern = { "flake.lock" },
@@ -87,3 +91,8 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     vim.bo[event.buf].filetype = "json"
   end,
 })
+
+----
+
+-- clear lazyvim autocmds
+vim.api.nvim_clear_autocmds({ group = "lazyvim_json_conceal" })
