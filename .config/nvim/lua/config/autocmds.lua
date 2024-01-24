@@ -78,3 +78,12 @@ require("lazyvim.util").on_load("nvim-dap", function()
     callback = load_launchjs,
   })
 end)
+
+-- custom filetype detection
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = Utils.augroup("custom_filetypes"),
+  pattern = { "flake.lock" },
+  callback = function(event)
+    vim.bo[event.buf].filetype = "json"
+  end,
+})
