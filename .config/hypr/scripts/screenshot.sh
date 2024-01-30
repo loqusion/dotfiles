@@ -1,107 +1,21 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-# XXX: This is non-standard to my knowledge, but grimblast uses it so 🤷
-# https://github.com/hyprwm/contrib/blob/16884001b26e6955ff4b88b4dfe4c8986e20f153/grimblast/grimblast#L25
-export XDG_SCREENSHOTS_DIR=${SCREENSHOTS_DIR:-${XDG_PICTURES_DIR:-$HOME/Pictures}/Screenshots}
-mkdir -p "$XDG_SCREENSHOTS_DIR"
+SCREENSHOTS_DIR=${SCREENSHOTS_DIR:-${XDG_PICTURES_DIR:-$HOME/Pictures}/Screenshots}
 
-GRIMBLAST_TARGET=$1
-GRIMBLAST_COMMAND=copysave
+DATE_COMMAND=${DATE_COMMAND:-"date -Ins"}
+EXTENSION="png"
+MIME_TYPE="image/png"
 
-APP=grimblast
+TARGET=${1:-}
+
+APP=screenshot.sh
 EDIT_APP=gimp
-
-SILENT_OUTPUT=(
-	"selection cancelled"
-)
 
 ACTION_VIEW="view"
 ACTION_EDIT="edit"
 
 shader=""
-
-is_silent() {
-	local output
-
-	for output in "${SILENT_OUTPUT[@]}"; do
-		if echo "$1" | grep -q "$output"; then
-			return 0
-		fi
-	done
-	return 1
-}
-
-notify() {
-	notify-send -t 3000 -a "$APP" -e "$APP" "$@"
-}
-
-notify_success() {
-	local output=$1
-	notify \
-		-i "$output" "$(transform_output "$output")"
-	# TODO: this isn't working properly; see https://gitlab.gnome.org/GNOME/libnotify/-/issues/37
-	# -A "${ACTION_VIEW}=View" -A "${ACTION_EDIT}=Edit" \
-}
-
-transform_output() {
-	local output=$1
-	local target
-
-	case "$GRIMBLAST_TARGET" in
-	active)
-		target="window"
-		;;
-	area)
-		target="selection"
-		;;
-	output)
-		target="screen"
-		;;
-	screen)
-		target="all screens"
-		;;
-	*) ;;
-	esac
-
-	case "$GRIMBLAST_COMMAND" in
-	copysave | save)
-		echo "${target^} saved to $output"
-		;;
-	copy)
-		echo "${target^} copied to clipboard"
-		;;
-	*) ;;
-	esac
-}
-
-with_feedback() {
-	local output status
-
-	output=$("$@" 2>&1)
-	status=$?
-	restore_shader
-	if [ $status -ne 0 ]; then
-		if ! is_silent "$output"; then
-			notify "${output^}"
-		fi
-		return $status
-	fi
-
-	action=$(notify_success "$output")
-	case "$action" in
-	"$ACTION_VIEW")
-		xdg-open "$output"
-		;;
-	"$ACTION_EDIT")
-		nohup "$EDIT_APP" "$output" >/dev/null 2>&1 &
-		disown
-		;;
-	*)
-		echo "Unknown action: $action" >&2
-		return 1
-		;;
-	esac
-}
 
 restore_shader() {
 	if [ -n "$shader" ]; then
@@ -115,17 +29,87 @@ save_shader() {
 	trap restore_shader EXIT
 }
 
-case "$GRIMBLAST_TARGET" in
-output)
-	save_shader
-	with_feedback grimblast "$GRIMBLAST_COMMAND" output
-	;;
-area)
-	save_shader
-	with_feedback grimblast "$GRIMBLAST_COMMAND" area
-	;;
-*)
-	echo "Usage: $0 <output|area>" >&2
-	exit 1
-	;;
-esac
+notify() {
+	notify-send -t 3000 -a "$APP" -e "$APP" "$@"
+}
+
+notify_success() {
+	local file=$1
+
+	notify \
+		-i "$file" "${TARGET^} saved to ${file}"
+	# TODO: this isn't working properly; see https://gitlab.gnome.org/GNOME/libnotify/-/issues/37
+	# -A "${ACTION_VIEW}=View" -A "${ACTION_EDIT}=Edit" \
+}
+
+run_action() {
+	local action=$1
+	local file=$2
+
+	case "$action" in
+	"$ACTION_VIEW")
+		xdg-open "$file"
+		;;
+	"$ACTION_EDIT")
+		nohup "$EDIT_APP" "$file" >/dev/null 2>&1 &
+		disown
+		;;
+	*)
+		echo "Unknown action: $action" >&2
+		return 1
+		;;
+	esac
+}
+
+get_region() {
+	local windows workspaces rectangles
+	workspaces=$(hyprctl monitors -j | jq -r 'map(.activeWorkspace.id)')
+	windows=$(hyprctl clients -j | jq -r --argjson workspaces "$workspaces" 'map(select([.workspace.id] | inside($workspaces)))')
+	rectangles=$(echo "$windows" | jq -r '.[] | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
+
+	echo "$rectangles" | slurp
+}
+
+get_current_output() {
+	hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .name'
+}
+
+with_copysave() {
+	local file=$1
+	shift
+
+	"$@" | tee "$file" | wl-copy --type "$MIME_TYPE"
+}
+
+main() {
+	local action file region
+
+	case "$TARGET" in
+	screen)
+		save_shader
+		file="${SCREENSHOTS_DIR}/$($DATE_COMMAND).${EXTENSION}"
+		mkdir -p "$(dirname "$file")"
+		with_copysave "$file" grim -o "$(get_current_output)" -
+		;;
+	selection)
+		save_shader
+		file="${SCREENSHOTS_DIR}/$($DATE_COMMAND).${EXTENSION}"
+		mkdir -p "$(dirname "$file")"
+		if ! region=$(get_region); then
+			return 0
+		fi
+		with_copysave "$file" grim -g "$region" -
+		;;
+	*)
+		echo "Usage: $0 <screen|selection>" >&2
+		return 1
+		;;
+	esac
+
+	action=$(notify_success "$file")
+	if [ -n "$action" ]; then
+		run_action "$action" "$file"
+	fi
+}
+
+main
