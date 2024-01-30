@@ -4,7 +4,14 @@ notify() {
 	notify-send -t 3000 -a 'wf-recorder' -e 'wf-recorder' "$@"
 }
 
-pkill --euid "$USER" --signal SIGINT wf-recorder && notify 'Saved recording' && exit
+if pkill --euid "$USER" --signal SIGINT wf-recorder; then
+	notify 'Saved recording'
+	exit
+fi
+
+. "$(dirname "$0")/hooks"
+runHook preCast
+trap "runHook postCast" EXIT
 
 XDG_VIDEOS_DIR=${XDG_VIDEOS_DIR:-$(xdg-user-dir VIDEOS)}
 

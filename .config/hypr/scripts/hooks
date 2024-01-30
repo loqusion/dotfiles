@@ -39,6 +39,14 @@ postScreenshot() {
 	_restore_fade
 }
 
+preCast() {
+	_disable_shader
+}
+
+postCast() {
+	_restore_shader
+}
+
 runHook() {
 	"$@" || true
 }
