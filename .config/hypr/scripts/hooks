@@ -2,7 +2,7 @@
 
 declare -A hook_vars
 
-_save_shader() {
+_disable_shader() {
 	hook_vars[shader]=$(hyprshade current)
 	hyprshade off
 }
@@ -12,10 +12,29 @@ _restore_shader() {
 	fi
 }
 
+# NOTE: This apparently removes a black border seen around screenshots
+# https://github.com/hyprwm/contrib/blob/16884001b26e6955ff4b88b4dfe4c8986e20f153/grimblast/grimblast#L219-L224
+_disable_fade() {
+	hook_vars[hyprland_fade]=$(hyprctl -j animations | jq -jr '.[0][] | select(.name == "fade") | .name, ",", (if .enabled == true then "1" else "0" end), ",", (.speed|floor), ",", .bezier')
+	hook_vars[hyprland_fade_out]=$(hyprctl -j animations | jq -jr '.[0][] | select(.name == "fadeOut") | .name, ",", (if .enabled == true then "1" else "0" end), ",", (.speed|floor), ",", .bezier')
+	hyprctl keyword animation 'fade,0,1,default' >/dev/null
+	hyprctl keyword animation 'fadeOut,0,1,default' >/dev/null
+}
+_restore_fade() {
+	if [ -n "${hook_vars[hyprland_fade]}" ]; then
+		hyprctl keyword animation "${hook_vars[hyprland_fade]}" >/dev/null
+	fi
+	if [ -n "${hook_vars[hyprland_fade_out]}" ]; then
+		hyprctl keyword animation "${hook_vars[hyprland_fade_out]}" >/dev/null
+	fi
+}
+
 preScreenshotHook() {
-	_save_shader
+	_disable_fade
+	_disable_shader
 }
 
 postScreenshotHook() {
 	_restore_shader
+	_restore_fade
 }
