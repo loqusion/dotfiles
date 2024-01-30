@@ -15,20 +15,6 @@ EDIT_APP=gimp
 ACTION_VIEW="view"
 ACTION_EDIT="edit"
 
-shader=""
-
-restore_shader() {
-	if [ -n "$shader" ]; then
-		hyprshade on "$shader"
-	fi
-}
-
-save_shader() {
-	shader=$(hyprshade current)
-	hyprshade off
-	trap restore_shader EXIT
-}
-
 notify() {
 	notify-send -t 3000 -a "$APP" -e "$APP" "$@"
 }
@@ -86,13 +72,11 @@ main() {
 
 	case "$TARGET" in
 	screen)
-		save_shader
 		file="${SCREENSHOTS_DIR}/$($DATE_COMMAND).${EXTENSION}"
 		mkdir -p "$(dirname "$file")"
 		with_copysave "$file" grim -o "$(get_current_output)" -
 		;;
 	selection)
-		save_shader
 		file="${SCREENSHOTS_DIR}/$($DATE_COMMAND).${EXTENSION}"
 		mkdir -p "$(dirname "$file")"
 		if ! region=$(get_region); then
@@ -112,4 +96,7 @@ main() {
 	fi
 }
 
+. "$(dirname "$0")/hooks"
+preScreenshotHook
+trap postScreenshotHook EXIT
 main

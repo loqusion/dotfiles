@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+declare -A hook_vars
+
+_save_shader() {
+	hook_vars[shader]=$(hyprshade current)
+	hyprshade off
+}
+_restore_shader() {
+	if [ -n "${hook_vars[shader]}" ]; then
+		hyprshade on "${hook_vars[shader]}"
+	fi
+}
+
+preScreenshotHook() {
+	_save_shader
+}
+
+postScreenshotHook() {
+	_restore_shader
+}
