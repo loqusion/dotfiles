@@ -9,7 +9,8 @@ APP=${APP:-$(basename "${1:?not defined}")}
 
 output=$("$@" 2>&1)
 status=$?
+default_message="<No output>\nError code: $status"
 if [ $status -ne 0 ]; then
-	notify-send --expire-time=5000 --app-name="$APP" --transient "$APP failed" "$output"
+	notify-send --expire-time=5000 --app-name="$APP" --transient "$APP failed" "${output:-$default_message}"
 	exit $status
 fi
