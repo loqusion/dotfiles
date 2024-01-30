@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# XXX: This is non-standard to my knowledge, but grimblast uses it so 🤷
+# https://github.com/hyprwm/contrib/blob/16884001b26e6955ff4b88b4dfe4c8986e20f153/grimblast/grimblast#L25
+export XDG_SCREENSHOTS_DIR=${SCREENSHOTS_DIR:-${XDG_PICTURES_DIR:-$HOME/Pictures}/Screenshots}
+mkdir -p "$XDG_SCREENSHOTS_DIR"
+
 GRIMBLAST_TARGET=$1
 GRIMBLAST_COMMAND=copysave
 
