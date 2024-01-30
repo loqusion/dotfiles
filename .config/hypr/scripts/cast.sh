@@ -7,6 +7,7 @@ DATE_COMMAND=${DATE_COMMAND:-"date -Ins"}
 CODEC="gif"
 EXTENSION="gif"
 FPS=30
+TIMEOUT=600
 
 notify() {
 	notify-send --expire-time=3000 --app-name="cast.sh" --transient "Screencast" "$@"
@@ -27,7 +28,7 @@ get_region() {
 }
 
 with_timeout() {
-	timeout --preserve-status 600 "$@"
+	timeout --preserve-status "$TIMEOUT" "$@"
 }
 
 main() {
