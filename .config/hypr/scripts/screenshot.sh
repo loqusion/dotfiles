@@ -9,21 +9,20 @@ MIME_TYPE="image/png"
 
 TARGET=${1:-}
 
-APP=screenshot.sh
 EDIT_APP=gimp
 
 ACTION_VIEW="view"
 ACTION_EDIT="edit"
 
 notify() {
-	notify-send -t 3000 -a "$APP" -e "$APP" "$@"
+	notify-send --expire-time=3000 --app-name="screenshot.sh" --transient "Screenshot" "$@"
 }
 
 notify_success() {
 	local file=$1
 
 	notify \
-		-i "$file" "${TARGET^} saved to ${file}"
+		--icon="$file" "${TARGET^} saved to ${file}"
 	# TODO: this isn't working properly; see https://gitlab.gnome.org/GNOME/libnotify/-/issues/37
 	# -A "${ACTION_VIEW}=View" -A "${ACTION_EDIT}=Edit" \
 }
