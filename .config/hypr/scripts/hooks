@@ -7,7 +7,7 @@ _disable_shader() {
 	hyprshade off
 }
 _restore_shader() {
-	if [ -n "${hook_vars[shader]}" ]; then
+	if [ -n "${hook_vars[shader]:-}" ]; then
 		hyprshade on "${hook_vars[shader]}"
 	fi
 }
@@ -21,20 +21,24 @@ _disable_fade() {
 	hyprctl keyword animation 'fadeOut,0,1,default' >/dev/null
 }
 _restore_fade() {
-	if [ -n "${hook_vars[hyprland_fade]}" ]; then
+	if [ -n "${hook_vars[hyprland_fade]:-}" ]; then
 		hyprctl keyword animation "${hook_vars[hyprland_fade]}" >/dev/null
 	fi
-	if [ -n "${hook_vars[hyprland_fade_out]}" ]; then
+	if [ -n "${hook_vars[hyprland_fade_out]:-}" ]; then
 		hyprctl keyword animation "${hook_vars[hyprland_fade_out]}" >/dev/null
 	fi
 }
 
-preScreenshotHook() {
+preScreenshot() {
 	_disable_fade
 	_disable_shader
 }
 
-postScreenshotHook() {
+postScreenshot() {
 	_restore_shader
 	_restore_fade
+}
+
+runHook() {
+	"$@" || true
 }

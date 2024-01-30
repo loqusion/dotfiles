@@ -97,6 +97,6 @@ main() {
 }
 
 . "$(dirname "$0")/hooks"
-preScreenshotHook
-trap postScreenshotHook EXIT
+runHook preScreenshot
+trap "runHook postScreenshot" EXIT
 main
