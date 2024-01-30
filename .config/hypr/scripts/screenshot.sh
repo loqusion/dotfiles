@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SCREENSHOTS_DIR=${SCREENSHOTS_DIR:-${XDG_PICTURES_DIR:-$HOME/Pictures}/Screenshots}
+SCREENSHOTS_DIR=${SCREENSHOTS_DIR:-${XDG_PICTURES_DIR:-$(xdg-user-dir PICTURES)}/Screenshots}
 
 DATE_COMMAND=${DATE_COMMAND:-"date -Ins"}
 EXTENSION="png"
