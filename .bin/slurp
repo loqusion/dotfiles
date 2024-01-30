@@ -3,4 +3,4 @@
 ##
 ## This is a wrapper script that sets default options.
 
-exec /usr/bin/slurp -d -F 'Terminess TTF Nerd Font'
+exec /usr/bin/slurp -d -F 'Terminess Nerd Font'
