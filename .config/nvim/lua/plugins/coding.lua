@@ -209,4 +209,17 @@ return {
     event = "VeryLazy",
     build = "cargo build --release",
   },
+
+  {
+    "zbirenbaum/copilot.lua",
+    optional = true,
+    opts = {
+      filetypes = {
+        gitcommit = true,
+        markdown = false,
+        mdx = false,
+        ["markdown.mdx"] = false,
+      },
+    },
+  },
 }
