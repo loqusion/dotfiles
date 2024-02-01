@@ -148,10 +148,12 @@
 !/retroarch/*.cfg
 !/retroarch/config/
 !/retroarch/config/**
+!/rpcs3/
+!/rpcs3/config.yml
 !/starship.toml
 !/topgrade.toml
-# !/user-dirs.dirs
 !/user-dirs.locale
+# !/user-dirs.dirs
 
 
 # Non-config
