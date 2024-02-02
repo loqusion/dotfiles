@@ -73,12 +73,12 @@ Video:
   Renderer: Vulkan
   Resolution: 1280x720
   Aspect ratio: 16:9
-  Frame limit: Auto
+  Frame limit: 60
   Second Frame Limit: 0
   MSAA: Auto
   Shader Mode: Async Shader Recompiler
   Shader Precision: High
-  Write Color Buffers: false
+  Write Color Buffers: true
   Write Depth Buffer: false
   Read Color Buffers: false
   Read Depth Buffer: false
@@ -107,7 +107,7 @@ Video:
   Force Hardware MSAA Resolve: false
   3D Display Mode: Disabled
   Debug Program Analyser: false
-  Accurate ZCULL stats: true
+  Accurate ZCULL stats: false
   Consecutive Frames To Draw: 1
   Consecutive Frames To Skip: 1
   Resolution Scale: 100
