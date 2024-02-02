@@ -19,13 +19,13 @@ Core:
   SPU delay penalty: 3
   SPU loop detection: false
   Max SPURS Threads: 6
-  SPU Block Size: Safe
+  SPU Block Size: Mega
   Accurate GETLLAR: false
   Accurate SPU DMA: false
   Accurate SPU Reservations: true
   Accurate Cache Line Stores: false
-  Accurate RSX reservation access: false
-  RSX FIFO Accuracy: Fast
+  Accurate RSX reservation access: true
+  RSX FIFO Accuracy: Atomic
   SPU Verification: true
   SPU Cache: true
   SPU Profiler: false
@@ -47,7 +47,7 @@ Core:
   Debug Console Mode: false
   Hook static functions: false
   Libraries Control:
-    []
+    - libvdec.sprx:lle
   HLE lwmutex: false
   SPU LLVM Lower Bound: 0
   SPU LLVM Upper Bound: 18446744073709551615
@@ -102,16 +102,16 @@ Video:
   Disable Vulkan Memory Allocator: false
   Use full RGB output range: true
   Strict Texture Flushing: false
-  Multithreaded RSX: false
-  Relaxed ZCULL Sync: false
+  Multithreaded RSX: true
+  Relaxed ZCULL Sync: true
   Force Hardware MSAA Resolve: false
   3D Display Mode: Disabled
   Debug Program Analyser: false
   Accurate ZCULL stats: false
   Consecutive Frames To Draw: 1
   Consecutive Frames To Skip: 1
-  Resolution Scale: 100
-  Anisotropic Filter Override: 0
+  Resolution Scale: 150
+  Anisotropic Filter Override: 16
   Texture LOD Bias Addend: 0
   Minimum Scalable Dimension: 16
   Shader Compiler Threads: 0
