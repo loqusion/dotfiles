@@ -150,6 +150,11 @@
 !/retroarch/config/**
 !/rpcs3/
 !/rpcs3/config.yml
+!/rpcs3/custom_configs
+!/rpcs3/custom_configs/**
+!/rpcs3/patch_config.yml
+!/rpcs3/patches
+!/rpcs3/patches/**
 !/starship.toml
 !/topgrade.toml
 !/user-dirs.locale
