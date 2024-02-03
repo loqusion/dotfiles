@@ -10,7 +10,6 @@ return {
         "shellcheck",
         "shfmt",
         "flake8",
-        "markdownlint",
       },
     },
   },
@@ -69,11 +68,8 @@ return {
     opts = {
       -- log_level = vim.log.levels.DEBUG,
       formatters_by_ft = {
-        ["markdown"] = { "prettierd" },
-        -- ["markdown.mdx"] = { "prettierd" },
         ["_"] = { "trim_whitespace", "trim_newlines" },
       },
-      formatters = {},
     },
   },
 
@@ -82,7 +78,6 @@ return {
     opts = {
       linters_by_ft = {
         lua = { "selene", "luacheck" },
-        markdown = { "markdownlint" },
       },
       linters = {
         luacheck = {
@@ -105,7 +100,6 @@ return {
     opts = function(_, opts)
       local nls = require("null-ls")
       vim.list_extend(opts.sources, {
-        nls.builtins.diagnostics.markdownlint,
         nls.builtins.diagnostics.selene.with({
           condition = function(utils)
             return utils.root_has_file({ "selene.toml" })

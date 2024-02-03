@@ -49,13 +49,6 @@ return {
     },
   },
 
-  -- paste image in markdown
-  {
-    "ekickx/clipboard-image.nvim",
-    cmd = "PasteImg",
-    build = 'test "$(uname -s)" = "Darwin" && brew install pngpaste',
-  },
-
   -- execute project-specific config
   {
     "klen/nvim-config-local",
