@@ -5,12 +5,6 @@ return {
   },
 
   {
-    "jxnblk/vim-mdx-js",
-    enabled = false,
-    event = "BufReadPre",
-  },
-
-  {
     "NoahTheDuke/vim-just",
     enabled = function()
       return not require("utils").has("tree-sitter-just")

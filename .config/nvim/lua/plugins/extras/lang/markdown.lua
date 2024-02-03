@@ -71,6 +71,12 @@ return {
     lazy = false,
   },
 
+  {
+    "jxnblk/vim-mdx-js",
+    enabled = false,
+    event = "BufReadPre",
+  },
+
   -- paste image
   {
     "ekickx/clipboard-image.nvim",
