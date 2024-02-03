@@ -34,11 +34,4 @@ return {
     event = "BufReadPre",
     commit = "2f788c627efa7a50baa5766cfacf1852528eca28",
   },
-
-  {
-    "loqusion/experimental_mdx.nvim",
-    name = "mdx.nvim",
-    dev = true,
-    lazy = false,
-  },
 }

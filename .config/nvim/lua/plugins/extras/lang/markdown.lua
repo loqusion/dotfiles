@@ -50,6 +50,13 @@ return {
     end,
   },
 
+  {
+    "loqusion/experimental_mdx.nvim",
+    name = "mdx.nvim",
+    dev = true,
+    lazy = false,
+  },
+
   -- paste image
   {
     "ekickx/clipboard-image.nvim",
