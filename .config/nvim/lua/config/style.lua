@@ -75,7 +75,7 @@ return {
   ---   | 'zenburned'
   ---   | 'zenwritten'
   -- }}}
-  colorscheme = "catppuccin-macchiato",
+  colorscheme = "catppuccin-mocha",
   background = "dark",
   transparent = override_transparent(true),
   animation = false,
