@@ -226,8 +226,8 @@ Miscellaneous:
   Start games in fullscreen mode: false
   Prevent display sleep while running games: true
   Show trophy popups: true
-  Show shader compilation hint: true
-  Show PPU compilation hint: true
+  Show shader compilation hint: false
+  Show PPU compilation hint: false
   Use native user interface: true
   GDB Server: 127.0.0.1:2345
   Silence All Logs: false
