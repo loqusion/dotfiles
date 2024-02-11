@@ -34,7 +34,7 @@ return {
                 "prettierd",
               }
             end
-            return { "injected", "prettierd" }
+            return { "injected_custom", "prettierd" }
           end,
         },
         formatters = {
