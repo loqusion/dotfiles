@@ -219,6 +219,7 @@ return {
         markdown = false,
         mdx = false,
         ["markdown.mdx"] = false,
+        typst = false,
       },
     },
   },
