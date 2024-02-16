@@ -6,6 +6,7 @@ SCREENCAST_DIR=${SCREENCAST_DIR:-${XDG_VIDEOS_DIR:-$(xdg-user-dir VIDEOS)}/Scree
 DATE_COMMAND=${DATE_COMMAND:-"date -Ins"}
 CODEC="gif"
 EXTENSION="gif"
+MIME_TYPE="image/gif"
 FPS=30
 TIMEOUT=600
 
@@ -39,10 +40,12 @@ main() {
 	fi
 
 	with_timeout wf-recorder --geometry "$region" --codec "$CODEC" --filter fps="$FPS" -f "$file"
+	wl-copy --type "$MIME_TYPE" <"$file"
 
 	notify_success "$file"
 }
 
+# WARNING: This makes the assumption that only one wf-recorder is running
 if pkill --euid "$USER" --signal SIGINT wf-recorder; then
 	exit
 fi
