@@ -611,4 +611,10 @@ return {
       { "<leader>ci", "<Cmd>Nerdy<CR>", desc = "Pick icon" },
     },
   },
+
+  -- Vim sugar for UNIX shell commands
+  {
+    "tpope/vim-eunuch",
+    lazy = false,
+  },
 }
