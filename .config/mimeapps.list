@@ -27,6 +27,7 @@ font/woff=org.gnome.FontManager.desktop
 application/xml=neovide.desktop
 application/rss+xml=neovide.desktop
 image/avif=feh.desktop
+text/x-chdr=neovide.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;
@@ -54,3 +55,4 @@ font/woff=org.gnome.FontManager.desktop;
 application/xml=neovide.desktop;
 application/rss+xml=neovide.desktop;
 image/avif=feh.desktop;
+text/x-chdr=neovide.desktop;
