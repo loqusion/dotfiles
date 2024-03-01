@@ -70,6 +70,15 @@ return {
   },
 
   {
+    "nvim-neotest/neotest",
+    opts = {
+      adapters = {
+        ["neotest-python"] = {},
+      },
+    },
+  },
+
+  {
     "nvimtools/none-ls.nvim",
     optional = true,
     opts = function(_, opts)

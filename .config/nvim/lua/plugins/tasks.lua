@@ -29,7 +29,6 @@ return {
     opts = {
       adapters = {
         -- ["neotest-jest"] = {},
-        ["neotest-python"] = {},
         ["neotest-vim-test"] = {
           ignore_filetypes = {
             "python",
