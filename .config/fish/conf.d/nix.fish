@@ -8,7 +8,7 @@ else
     set xdg_state_home ~/.local/state
 end
 
-set --local use_xdg_base_directories (nix show-config use-xdg-base-directories)
+set --local use_xdg_base_directories (nix config show use-xdg-base-directories)
 
 if test $use_xdg_base_directories = true
     set profile $xdg_state_home/nix/profile
