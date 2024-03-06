@@ -1,4 +1,4 @@
-(include "./bar.yuck")
+(include "./widgets/bar/bar.yuck")
 ;; (include "./sidebar.yuck")
 
 (defwindow bar0

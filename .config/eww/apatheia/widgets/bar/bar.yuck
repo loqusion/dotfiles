@@ -1,4 +1,4 @@
-(include "./notifications.yuck")
+(include "./widgets/bar/notifications.yuck")
 
 ;;; Depending on setup
 (defvar LAUNCHER_CMD "fuzzel")

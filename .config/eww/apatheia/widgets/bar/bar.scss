@@ -1,11 +1,11 @@
-/** Created by saimoom **/
+// Created by saimoom
 
 .bar {
   padding: 4px 14px;
-  margin: 10px $spacing-1 0px;
+  margin: $spacing-2-5 $spacing-3-5 0;
   border-radius: 12px;
   background-color: $color-bg-0;
-  box-shadow: 0 6px 5px 2px $color-shadow;
+  box-shadow: $box-shadow;
 
   // TODO: eliminate
   .module {
@@ -24,8 +24,6 @@
     margin: 0px 8px 0px 8px;
   }
 
-  /** tooltip!! **/
-
   tooltip.background {
     background-color: $color-bg-1;
     font-size: 18;
@@ -36,8 +34,6 @@
   tooltip label {
     margin: 6px;
   }
-
-  /** Widgets **/
 
   .workspaces {
     font-size: 28px;
