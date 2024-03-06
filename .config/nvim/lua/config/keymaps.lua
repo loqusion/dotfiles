@@ -63,6 +63,14 @@ map("n", "<leader>uL", function() LvUtils.toggle.number() end, { desc = "Toggle 
 
 map("n", "<leader>cR", Utils.runlua, { desc = "Run Lua" })
 
+map("n", "<leader>gC", function()
+  LvUtils.terminal({
+    "lazygit",
+    ("--git-dir=%s"):format(vim.env.DOTBARE_DIR),
+    ("--work-tree=%s"):format(vim.env.DOTBARE_TREE),
+  }, { cwd = vim.env.HOME, esc_esc = false, ctrl_hjkl = false })
+end, { desc = "Lazygit (dotfiles)" })
+
 if Utils.has("smart-splits.nvim") then
   -- manually map to override LazyVim mappings
   local smart_splits = require("lazy.core.config").spec.plugins["smart-splits.nvim"]

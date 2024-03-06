@@ -47,6 +47,7 @@ abbr hup "dotbare commit -v -m 'chore(home-manager): upgrade' ~/.config/home-man
 
 abbr c dotbare
 abbr lg lazygit
+abbr lgc "lazygit --git-dir=\$DOTBARE_DIR --work-tree=\$DOTBARE_TREE"
 
 abbr df "df -h"
 abbr du "du -h"
