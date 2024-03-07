@@ -6,22 +6,31 @@ return {
       {
         "mxsdev/nvim-dap-vscode-js",
         event = "VeryLazy",
-        config = function()
+        opts = function(_, opts)
+          opts.adapters = opts.adapters or {}
+          vim.list_extend(opts.adapters, {
+            "pwa-node",
+            "node-terminal",
+          })
+        end,
+        config = function(_, opts)
           local dap = require("dap")
           local dap_js = require("dap-vscode-js")
-          local mason_registry = require("mason-registry")
 
-          if not mason_registry.is_installed("js-debug-adapter") then
-            return
+          local function get_js_debug_path()
+            local mason_registry = require("mason-registry")
+
+            if not mason_registry.is_installed("js-debug-adapter") then
+              return
+            end
+
+            local js_debug_pkg = mason_registry.get_package("js-debug-adapter")
+            return js_debug_pkg:get_install_path()
           end
 
-          local js_debug_pkg = mason_registry.get_package("js-debug-adapter")
-          local js_debug_path = js_debug_pkg:get_install_path()
+          opts.debugger_path = opts.debugger_path or get_js_debug_path()
+          dap_js.setup(opts)
 
-          dap_js.setup({
-            debugger_path = js_debug_path,
-            adapters = { "pwa-node", "node-terminal" },
-          })
           for _, language in ipairs({ "typescript", "typescriptreact", "javascript" }) do
             dap.configurations[language] = {
               {

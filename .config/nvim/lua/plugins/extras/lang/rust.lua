@@ -68,6 +68,8 @@ return {
           type = "codelldb",
         })
       end
+
+      require("dap.ext.vscode").type_to_filetypes["rt_lldb"] = { "rust" }
     end,
   },
 

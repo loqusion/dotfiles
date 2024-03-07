@@ -17,6 +17,8 @@ return {
           local debugpy_path = debugpy:get_install_path()
 
           dap_python.setup(("%s/venv/bin/python"):format(debugpy_path))
+
+          require("dap.ext.vscode").type_to_filetypes["debugpy"] = { "python" }
         end,
       },
     },
