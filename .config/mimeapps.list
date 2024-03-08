@@ -28,6 +28,7 @@ application/xml=neovide.desktop
 application/rss+xml=neovide.desktop
 image/avif=feh.desktop
 text/x-chdr=neovide.desktop
+x-scheme-handler/discord-424004941485572097=discord-424004941485572097.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;
