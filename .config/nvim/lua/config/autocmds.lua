@@ -96,6 +96,15 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
+-- hyprlang
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = Utils.augroup("custom_filetypes"),
+  pattern = "*/hypr/*.conf",
+  callback = function(event)
+    vim.bo[event.buf].filetype = "hyprlang"
+  end,
+})
+
 ----
 
 -- clear lazyvim autocmds
