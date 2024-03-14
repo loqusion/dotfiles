@@ -114,14 +114,14 @@ return {
   },
 
   {
-    "simrat39/symbols-outline.nvim",
+    "hedyhli/outline.nvim",
     keys = {
-      { "<leader>cS", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" },
+      { "<leader>cS", "<cmd>Outline<cr>", desc = "Toggle Outline" },
       { "<leader>cs", false },
     },
-    deactivate = function()
-      vim.cmd([[SymbolsOutlineClose]])
-    end,
+    -- deactivate = function()
+    --   vim.cmd([[OutlineClose]])
+    -- end,
   },
 
   {
