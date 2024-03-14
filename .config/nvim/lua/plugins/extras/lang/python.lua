@@ -45,11 +45,20 @@ return {
   {
     "stevearc/conform.nvim",
     optional = true,
-    opts = {
-      formatters_by_ft = {
-        python = { "black" },
-      },
-    },
+    opts = function(_, opts)
+      local ruff_fix = require("conform").get_formatter_config("ruff_fix")
+
+      return vim.tbl_deep_extend("force", opts, {
+        formatters_by_ft = {
+          python = { "ruff_sort_imports", "ruff_format" },
+        },
+        formatters = {
+          ruff_sort_imports = vim.tbl_deep_extend("force", ruff_fix, {
+            prepend_args = { "--select", "I" },
+          }),
+        },
+      })
+    end,
   },
 
   {
