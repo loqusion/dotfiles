@@ -1,4 +1,5 @@
 # Configured per-machine by loqusion/bootstrap
+/hypridle.conf
 /hyprpaper.conf
 /monitors.conf
 /nvidia.conf
