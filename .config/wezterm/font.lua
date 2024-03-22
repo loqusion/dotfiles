@@ -3,7 +3,7 @@ local wezterm = require 'wezterm'
 local use_different_italics = true
 local font = {
   jetbrains = 'JetBrains Mono',
-  maple = 'Maple Mono SC NF',
+  maple = 'Maple Mono',
   victor = 'Victor Mono',
   twemoji = 'Twemoji',
 }
@@ -32,7 +32,7 @@ return function(config)
         italic = true,
         intensity = 'Bold',
         font = wezterm.font {
-          family = nerd(italic_font),
+          family = italic_font,
           weight = 'Bold',
           style = 'Italic',
         },
@@ -41,7 +41,7 @@ return function(config)
         italic = true,
         intensity = 'Half',
         font = wezterm.font {
-          family = nerd(italic_font),
+          family = italic_font,
           weight = 'DemiBold',
           style = 'Italic',
         },
@@ -50,7 +50,7 @@ return function(config)
         italic = true,
         intensity = 'Normal',
         font = wezterm.font {
-          family = nerd(italic_font),
+          family = italic_font,
           style = 'Italic',
         },
       },
