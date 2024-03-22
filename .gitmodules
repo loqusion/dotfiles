@@ -40,9 +40,6 @@
 [submodule ".config/catppuccin/fcitx5"]
 	path = .config/catppuccin/fcitx5
 	url = https://github.com/catppuccin/fcitx5
-[submodule ".config/uebersicht/pecan"]
-	path = .config/uebersicht/pecan
-	url = https://github.com/loqusion/pecan
 [submodule ".config/catppuccin/discord"]
 	path = .config/catppuccin/discord
 	url = https://github.com/catppuccin/discord
