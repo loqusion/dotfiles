@@ -100,6 +100,9 @@ return {
 
   {
     "tim-harding/neophyte",
+    cond = function()
+      return require("utils").check_command_exists("neophyte")
+    end,
     event = "VeryLazy",
     opts = {
       bg_override = {
