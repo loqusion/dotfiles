@@ -2,13 +2,25 @@ set --local profile
 set --local defexpr
 set --local xdg_state_home
 
+function __nix
+    if command -q nix
+        command nix $argv
+    else if test (uname -s) = Darwin
+        # WARNING: I'm not sure if this path is permanent or consistent across all macOS systems
+        /nix/var/nix/profiles/default/bin/nix $argv
+    else
+        echo "Could not determine location of nix binary" >&2
+        return 1
+    end
+end
+
 if set --query XDG_STATE_HOME
     set xdg_state_home $XDG_STATE_HOME
 else
     set xdg_state_home ~/.local/state
 end
 
-set --local use_xdg_base_directories (nix config show use-xdg-base-directories)
+set --local use_xdg_base_directories (__nix config show use-xdg-base-directories)
 
 if test $use_xdg_base_directories = true
     set profile $xdg_state_home/nix/profile
