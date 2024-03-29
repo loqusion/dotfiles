@@ -94,7 +94,7 @@ return {
     cmd = { "ISwap", "ISwapWith" },
     -- stylua: ignore
     keys = {
-      { "<leader>cs", function() require("iswap").iswap_with() end, desc = "Swap" },
+      { "<leader>cw", function() require("iswap").iswap_with() end, desc = "S[w]ap" },
     },
     opts = {},
   },
