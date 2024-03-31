@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==2{print $2}')
+HYPRGAMEMODE=$(hyprctl -j getoption animations:enabled | jq -r '.int')
 
 if [ "$HYPRGAMEMODE" = 1 ]; then
 	hyprctl --batch "\
