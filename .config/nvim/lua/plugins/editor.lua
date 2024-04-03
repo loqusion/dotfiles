@@ -218,9 +218,15 @@ return {
   -- neorg
   {
     "nvim-neorg/neorg",
-    ft = "norg",
-    cmd = "Neorg",
-    build = ":Neorg sync-parsers",
+    lazy = false,
+    version = "*",
+    dependencies = {
+      {
+        "vhyrro/luarocks.nvim",
+        priority = 1000,
+        config = true,
+      },
+    },
     opts = {
       load = {
         ["core.defaults"] = {},
@@ -228,7 +234,7 @@ return {
         ["core.dirman"] = {
           config = {
             workspaces = {
-              notes = "~/Documents/notes",
+              notes = "~/Documents/Notes",
             },
           },
         },
