@@ -11,8 +11,6 @@ return {
           vim.g.cursorhold_updatetime = 50
         end,
       },
-      "haydenmeade/neotest-jest",
-      "nvim-neotest/neotest-python",
       { "nvim-neotest/neotest-vim-test", dependencies = "vim-test/vim-test" },
     },
     -- stylua: ignore
@@ -28,10 +26,12 @@ return {
     },
     opts = {
       adapters = {
-        -- ["neotest-jest"] = {},
         ["neotest-vim-test"] = {
           ignore_filetypes = {
+            "javascript",
             "python",
+            "typescript",
+            "typescriptreact",
           },
         },
       },

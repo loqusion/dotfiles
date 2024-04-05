@@ -44,6 +44,17 @@ return {
   },
 
   {
+    "nvim-neotest/neotest",
+    optional = true,
+    dependencies = { { "haydenmeade/neotest-jest", dev = false } },
+    opts = {
+      adapters = {
+        ["neotest-jest"] = {},
+      },
+    },
+  },
+
+  {
     "vuki656/package-info.nvim",
     event = "BufRead package.json",
     opts = {
