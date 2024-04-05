@@ -69,7 +69,11 @@ return {
       strategy = {
         "toggleterm",
       },
-      templates = { "builtin", "user.run_script", "user.rust" },
+      templates = {
+        "builtin",
+        "loqusion.run_script",
+        "loqusion.rust",
+      },
       task_list = {
         bindings = {
           ["<C-l>"] = false,
