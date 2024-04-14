@@ -40,7 +40,15 @@ return {
       {
         "3rd/image.nvim",
         cond = not vim.g.neovide,
-        build = ("luarocks --local install --lua-version %s magick"):format(Util.lua_version()),
+        dependencies = {
+          {
+            "vhyrro/luarocks.nvim",
+            opts = function(_, opts)
+              opts.rocks = opts.rocks or {}
+              table.insert(opts.rocks, "magick")
+            end,
+          },
+        },
         opts = {
           backend = vim.env.KITTY_WINDOW_ID and "kitty" or "ueberzug",
         },
@@ -224,6 +232,7 @@ return {
       {
         "vhyrro/luarocks.nvim",
         priority = 1000,
+        opts = {},
         config = true,
       },
     },
