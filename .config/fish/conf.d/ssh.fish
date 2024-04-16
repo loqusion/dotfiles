@@ -9,7 +9,8 @@ function __ssh_idle_inhibit_on_exit --on-event fish_exit
     end
 end
 
-if set -q SSH_CONNECTION;
+if status is-login; and status is-interactive;
+    and set -q SSH_CONNECTION;
     and not set -q SSH_IDLE_INHIBIT_SERVICE;
     and string match -qi linux (uname -s)
     __ssh_idle_inhibit_on_login
