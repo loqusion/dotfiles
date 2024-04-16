@@ -1,5 +1,5 @@
 [Unit]
-Description=Inhibit idle
+Description=Inhibit idle %I
 
 [Service]
 ExecStart=/home/loqusion/.bin/idleinhibit.py
