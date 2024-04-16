@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # https://github.com/stwa/wayland-idle-inhibitor/blob/main/wayland-idle-inhibitor.py
 
+import sys
 from signal import SIGINT, SIGTERM, signal
 from threading import Event
 from dataclasses import dataclass
@@ -69,9 +70,9 @@ def main() -> None:
     display.dispatch()
     display.roundtrip()
 
-    print("Inhibiting idle...")
+    print("Inhibiting idle...", file=sys.stderr)
     done.wait()
-    print("Shutting down...")
+    print("Shutting down...", file=sys.stderr)
 
     inhibitor.destroy()
 
