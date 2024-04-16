@@ -4,7 +4,11 @@ function __ssh_idle_inhibit_on_login
 end
 
 function __ssh_idle_inhibit_on_exit --on-event fish_exit
-    systemctl --user stop $SSH_IDLE_INHIBIT_SERVICE
+    if set -q SSH_IDLE_INHIBIT_SERVICE
+        systemctl --user stop $SSH_IDLE_INHIBIT_SERVICE
+    end
 end
 
-__ssh_idle_inhibit_on_login
+if set -q SSH_CONNECTION
+    __ssh_idle_inhibit_on_login
+end
