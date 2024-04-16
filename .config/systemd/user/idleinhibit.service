@@ -1,0 +1,6 @@
+[Unit]
+Description=Inhibit idle
+
+[Service]
+Type=oneshot
+ExecStart=/home/loqusion/.bin/idleinhibit.py
