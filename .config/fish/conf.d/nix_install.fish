@@ -3,8 +3,9 @@ function install-nixpkgs
     nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs; and nix-channel --update
 end
 
-function install-home-manager-dotfiles
-    dotbare submodule update --init $HOME/.config/home-manager
+function install-home-manager-channel
+    echo "Installing home-manager channel..."
+    nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager; and nix-channel --update
 end
 
 function install-home-manager
@@ -16,15 +17,18 @@ function install-home-manager
     if not install-nixpkgs
         return
     end
+    if not install-home-manager-channel
+        return
+    end
 
-    install-home-manager-dotfiles
+    if not test -e ~/.config/home-manager
+        dotbare submodule update --init ~/.config/home-manager
+    end
 
-    # don't show annoying notification
-    nix-shell -p home-manager --run "home-manager news >/dev/null 2>&1"
-
-    nix-shell -p home-manager --run "home-manager switch"
+    nix-shell -I ~/.local/state/nix/defexpr/channels -I ~/.nix-defexpr '<home-manager>' -A install
+    nix-shell -I ~/.local/state/nix/defexpr/channels -I ~/.nix-defexpr -p home-manager --run "home-manager switch"
 end
 
 function uninstall-home-manager
-    yes | nix-shell -p home-manager --run "home-manager uninstall 2>/dev/null"
+    nix-shell -I ~/.local/state/nix/defexpr/channels -I ~/.nix-defexpr -p home-manager --run "home-manager uninstall"
 end
