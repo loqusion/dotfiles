@@ -8,7 +8,15 @@ CODEC="gif"
 EXTENSION="gif"
 MIME_TYPE="image/gif"
 FPS=30
+SCALE_WIDTH=480
+SCALE_HEIGHT=-2
 TIMEOUT=600
+
+scratch=$(mktemp -d -t cast.sh.XXXXXXXXXX)
+finish() {
+	rm -rf "$scratch"
+}
+trap finish EXIT
 
 notify() {
 	notify-send --expire-time=3000 --app-name="cast.sh" --transient "Screencast" "$@"
@@ -32,14 +40,30 @@ with_timeout() {
 	timeout --preserve-status "$TIMEOUT" "$@"
 }
 
+record_and_process() {
+	local output=$1
+	local region=$2
+
+	# local tmp_output="$scratch/output.${EXTENSION}"
+	# local tmp_palette="$scratch/gif_palette.png"
+
+	with_timeout wf-recorder --geometry "$region" --codec "$CODEC" --filter fps="$FPS" -f "$output"
+
+	# TODO: implement some automatic processing
+	# with_timeout wf-recorder --geometry "$region" --codec "$CODEC" --filter fps="$FPS" -f "$tmp_output"
+	# ffmpeg -y -i "$tmp_output" -filter_complex "fps=${FPS},scale=${SCALE_WIDTH}:${SCALE_HEIGHT},palettegen=stats_mode=full" "$tmp_palette"
+	# ffmpeg -y -i "$tmp_output" -i "$tmp_palette" -filter_complex "[0]fps=${FPS},scale=${SCALE_WIDTH}:${SCALE_HEIGHT}[scaled];[scaled][1]paletteuse=dither=sierra2_4a" "$output"
+}
+
 main() {
+	local file region
 	file="${SCREENCAST_DIR}/$($DATE_COMMAND).${EXTENSION}"
 	mkdir -p "$(dirname "$file")"
 	if ! region=$(get_region); then
 		return 0
 	fi
 
-	with_timeout wf-recorder --geometry "$region" --codec "$CODEC" --filter fps="$FPS" -f "$file"
+	record_and_process "$file" "$region"
 	wl-copy --type "$MIME_TYPE" <"$file"
 
 	notify_success "$file"
