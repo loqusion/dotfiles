@@ -12,12 +12,6 @@ SCALE_WIDTH=480
 SCALE_HEIGHT=-2
 TIMEOUT=600
 
-scratch=$(mktemp -d -t cast.sh.XXXXXXXXXX)
-finish() {
-	rm -rf "$scratch"
-}
-trap finish EXIT
-
 notify() {
 	notify-send --expire-time=3000 --app-name="cast.sh" --transient "Screencast" "$@"
 }
@@ -48,9 +42,11 @@ record_and_process() {
 	# local tmp_palette="$scratch/gif_palette.png"
 
 	with_timeout wf-recorder --geometry "$region" --codec "$CODEC" --filter fps="$FPS" -f "$output"
+	# with_timeout wf-recorder --geometry "$region" --codec "$CODEC" --filter fps="$FPS" -f "$tmp_output"
+
+	runHook postCast
 
 	# TODO: implement some automatic processing
-	# with_timeout wf-recorder --geometry "$region" --codec "$CODEC" --filter fps="$FPS" -f "$tmp_output"
 	# ffmpeg -y -i "$tmp_output" -filter_complex "fps=${FPS},scale=${SCALE_WIDTH}:${SCALE_HEIGHT},palettegen=stats_mode=full" "$tmp_palette"
 	# ffmpeg -y -i "$tmp_output" -i "$tmp_palette" -filter_complex "[0]fps=${FPS},scale=${SCALE_WIDTH}:${SCALE_HEIGHT}[scaled];[scaled][1]paletteuse=dither=sierra2_4a" "$output"
 }
@@ -76,6 +72,13 @@ fi
 
 . "$(dirname "$0")/hooks"
 runHook preCast
-trap "runHook postCast" EXIT
+# trap "runHook postCast" EXIT
+
+scratch=$(mktemp -d -t cast.sh.XXXXXXXXXX)
+finish() {
+	rm -rf "$scratch"
+	runHook postCast
+}
+trap finish EXIT
 
 main

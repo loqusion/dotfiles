@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 declare -A hook_vars
+declare -A hooks_ran
 
 _disable_shader() {
 	hook_vars[shader]=$(hyprshade current)
@@ -48,5 +49,12 @@ postCast() {
 }
 
 runHook() {
+	local hook_name=$1
+	if [ -n "${hooks_ran[$hook_name]:-}" ]; then
+		return
+	fi
+
 	"$@" || true
+
+	hooks_ran[$hook_name]=1
 }
