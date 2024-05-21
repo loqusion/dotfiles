@@ -46,7 +46,12 @@ function M.get_value(...)
 end
 
 function M.switch(config)
-  config = vim.uv.fs_realpath(config)
+  local err_name, err_message
+  config, err_name, err_message = vim.uv.fs_realpath(config)
+  if not config then
+    error(err_name .. ": " .. err_message)
+  end
+
   local config_name = vim.fn.fnamemodify(config, ":p:~"):gsub("[\\/]", "."):gsub("^~%.", ""):gsub("%.$", "")
   local root = vim.fn.fnamemodify("~/.nvim/" .. config_name, ":p"):gsub("/$", "")
   vim.fn.mkdir(root, "p")
