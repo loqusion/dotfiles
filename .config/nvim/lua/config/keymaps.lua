@@ -1,4 +1,3 @@
-local LvUtils = require("lazyvim.util")
 local Utils = require("utils")
 
 ---@return LazyKeysHandler
@@ -57,21 +56,21 @@ map("n", "<leader>wo", "<C-w>o", { desc = "Close other windows" })
 map("n", "<leader>fe", "<cmd>edit<cr>", { desc = "Re-edit file" })
 
 -- stylua: ignore start
-map("n", "<leader>ul", function() LvUtils.toggle("relativenumber") end, { desc = "Toggle Relative Line Numbers" })
-map("n", "<leader>uL", function() LvUtils.toggle.number() end, { desc = "Toggle Line Numbers" })
+map("n", "<leader>ul", function() LazyVim.toggle("relativenumber") end, { desc = "Toggle Relative Line Numbers" })
+map("n", "<leader>uL", function() LazyVim.toggle.number() end, { desc = "Toggle Line Numbers" })
 -- stylua: ignore end
 
 map("n", "<leader>cR", Utils.runlua, { desc = "Run Lua" })
 
 map("n", "<leader>gC", function()
-  LvUtils.terminal({
+  LazyVim.terminal({
     "lazygit",
     ("--git-dir=%s"):format(vim.env.DOTBARE_DIR),
     ("--work-tree=%s"):format(vim.env.DOTBARE_TREE),
   }, { cwd = vim.env.HOME, esc_esc = false, ctrl_hjkl = false })
 end, { desc = "Lazygit (dotfiles)" })
 
-if Utils.has("smart-splits.nvim") then
+if LazyVim.has("smart-splits.nvim") then
   -- manually map to override LazyVim mappings
   local smart_splits = require("lazy.core.config").spec.plugins["smart-splits.nvim"]
   local smart_splits_keys = require("lazy.core.plugin").values(smart_splits, "keys", true)

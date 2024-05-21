@@ -1,4 +1,4 @@
-local Util = require("utils")
+local Utils = require("utils")
 local style = require("config.style")
 
 return {
@@ -20,7 +20,7 @@ return {
       ---@param prefix string
       ---@param spec { name: string, plugins: string[] }
       defaults = vim.iter(defaults):fold({}, function(acc, prefix, spec)
-        if vim.iter(spec.plugins):any(Util.has) then
+        if vim.iter(spec.plugins):any(LazyVim.has) then
           acc[prefix] = { name = spec.name }
         end
         return acc
@@ -60,7 +60,7 @@ return {
       {
         "<leader>e",
         function()
-          require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").root.get() })
+          require("neo-tree.command").execute({ toggle = true, dir = LazyVim.root() })
         end,
         desc = "Explorer NeoTree (root dir)",
       },
@@ -78,7 +78,7 @@ return {
           mappings = {
             -- FIXME: conflicts with new mappings
             -- ["o"] = "open_in_external_program",
-            ["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = Util.has("image.nvim") } },
+            ["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = LazyVim.has("image.nvim") } },
           },
         },
         commands = {
@@ -563,7 +563,7 @@ return {
     init = function()
       vim.opt.sessionoptions:append({ "buffers", "tabpages", "globals" })
       vim.api.nvim_create_autocmd("SessionLoadPost", {
-        group = Util.augroup("scope"),
+        group = Utils.augroup("scope"),
         callback = function()
           vim.cmd([[ScopeLoadState]])
         end,
@@ -576,7 +576,7 @@ return {
     optional = true,
     opts = {
       pre_save = function()
-        if Util.has("scope.nvim") then
+        if LazyVim.has("scope.nvim") then
           vim.cmd([[ScopeSaveState]])
         end
       end,
