@@ -14,27 +14,23 @@ return {
         config = true,
       },
     },
-    config = function(_, opts)
-      local cmp = require("cmp")
-      -- force overwrite copilot's mapping
-      opts.mapping["<CR>"] = cmp.mapping.confirm({ select = false })
-      cmp.setup(opts)
-      vim.keymap.set({ "i", "s" }, "<C-e>", function()
-        return require("luasnip").choice_active() and "<Plug>luasnip-next-choice" or "<C-e>"
-      end, { expr = true, silent = true })
-    end,
-    ---@param opts cmp.ConfigSchema
+    ---@param opts cmp.ConfigSchema | {auto_brackets?: string[]}
     opts = function(_, opts)
       local cmp = require("cmp")
       local compare = cmp.config.compare
-      return vim.tbl_deep_extend("force", opts, {
+
+      opts = vim.tbl_deep_extend("force", opts, {
+        auto_brackets = {},
         completion = {
           completeopt = "menu,menuone,noselect",
+        },
+        mapping = {
+          ["<CR>"] = LazyVim.cmp.confirm({ select = false }),
         },
         sources = cmp.config.sources(vim.list_extend(opts.sources, {
           { name = "emoji" },
           { name = "neorg" },
-          { name = "npm", keyword_length = 3 },
+          -- { name = "npm", keyword_length = 3 },
         })),
         sorting = {
           comparators = {
@@ -86,6 +82,8 @@ return {
           end,
         },
       })
+
+      return opts
     end,
   },
 }
