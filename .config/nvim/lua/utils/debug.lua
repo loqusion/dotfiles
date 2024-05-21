@@ -42,7 +42,7 @@ end
 
 function M.get_value(...)
   local value = { ... }
-  return vim.tbl_islist(value) and vim.tbl_count(value) <= 1 and value[1] or value
+  return vim.islist(value) and vim.tbl_count(value) <= 1 and value[1] or value
 end
 
 function M.switch(config)
