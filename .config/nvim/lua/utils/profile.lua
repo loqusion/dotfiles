@@ -11,7 +11,7 @@ local pack_len = vim.F.pack_len
 function M.stat(name, start)
   M.stats[name] = M.stats[name] or { total = 0, time = 0 }
   M.stats[name].total = M.stats[name].total + 1
-  M.stats[name].time = M.stats[name].time + vim.loop.hrtime() - start
+  M.stats[name].time = M.stats[name].time + vim.uv.hrtime() - start
 end
 
 function M.wrap(name, fn)
@@ -20,7 +20,7 @@ function M.wrap(name, fn)
   end
   M.wrapped[fn] = true
   return function(...)
-    local start = vim.loop.hrtime()
+    local start = vim.uv.hrtime()
     local ret = pack_len(pcall(fn, ...))
     M.stat(name, start)
     if ret[1] then
@@ -57,7 +57,7 @@ function M.require(modname)
   if package.loaded[modname] then
     return package.loaded[modname]
   end
-  local start = vim.loop.hrtime()
+  local start = vim.uv.hrtime()
   local ret = pack_len(pcall(M._require, modname))
   M.stat(modname, start)
   if ret[1] then

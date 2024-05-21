@@ -1,13 +1,13 @@
 _G.profile = function(cmd, times, flush)
   times = times or 100
-  local start = vim.loop.hrtime()
+  local start = vim.uv.hrtime()
   for _ = 1, times, 1 do
     if flush then
       jit.flush(cmd, true)
     end
     cmd()
   end
-  print(((vim.loop.hrtime() - start) / 1000000 / times) .. "ms")
+  print(((vim.uv.hrtime() - start) / 1000000 / times) .. "ms")
 end
 
 local M = {}
@@ -33,7 +33,7 @@ function M.lua_version()
 end
 
 function M.disable_autoformat(root_dir)
-  root_dir = vim.F.if_nil(root_dir, vim.loop.cwd())
+  root_dir = vim.F.if_nil(root_dir, vim.uv.cwd())
   vim.api.nvim_create_autocmd("BufReadPost", {
     group = M.augroup("disable_autoformat"),
     pattern = root_dir .. "*",
@@ -45,7 +45,7 @@ function M.disable_autoformat(root_dir)
 end
 
 function M.exists(fname)
-  local stat = vim.loop.fs_stat(fname)
+  local stat = vim.uv.fs_stat(fname)
   return (stat and stat.type and true) or false
 end
 
@@ -66,7 +66,7 @@ end
 
 function M.fqn(fname)
   fname = vim.fn.fnamemodify(fname, ":p")
-  return vim.loop.fs_realpath(fname) or fname
+  return vim.uv.fs_realpath(fname) or fname
 end
 
 function M.runlua()

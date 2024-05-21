@@ -10,7 +10,7 @@ function M.get_loc()
   end
   info = info or me
   local source = info.source:sub(2)
-  source = vim.loop.fs_realpath(source) or source
+  source = vim.uv.fs_realpath(source) or source
   return source .. ":" .. info.linedefined
 end
 
@@ -46,7 +46,7 @@ function M.get_value(...)
 end
 
 function M.switch(config)
-  config = vim.loop.fs_realpath(config)
+  config = vim.uv.fs_realpath(config)
   local config_name = vim.fn.fnamemodify(config, ":p:~"):gsub("[\\/]", "."):gsub("^~%.", ""):gsub("%.$", "")
   local root = vim.fn.fnamemodify("~/.nvim/" .. config_name, ":p"):gsub("/$", "")
   vim.fn.mkdir(root, "p")
@@ -64,8 +64,8 @@ function M.switch(config)
     new[xdg] = path
     if name == "config" then
       path = path .. "/nvim"
-      pcall(vim.loop.fs_unlink, path)
-      vim.loop.fs_symlink(config, path, { dir = true })
+      pcall(vim.uv.fs_unlink, path)
+      vim.uv.fs_symlink(config, path, { dir = true })
     end
   end
 

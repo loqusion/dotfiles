@@ -11,7 +11,7 @@ local function dap_rust_program()
       return false
     end
     local full_path = ("%s/%s"):format(path, name)
-    return vim.loop.fs_access(full_path, "X") or false
+    return vim.uv.fs_access(full_path, "X") or false
   end, { path = target_debug_dir, type = "file", limit = math.huge })
   if #executable_names == 0 then
     vim.notify(
