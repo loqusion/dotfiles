@@ -1,7 +1,7 @@
 default := "minimal"
 
 build theme=default *FLAGS="":
-  npx sass --no-source-map '{{theme}}/style.scss' '{{theme}}/style.css' {{FLAGS}}
+  pnpx sass --no-source-map '{{theme}}/style.scss' '{{theme}}/style.css' {{FLAGS}}
 
 watch theme=default:
   @just build '{{theme}}' --watch
