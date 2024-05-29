@@ -63,11 +63,11 @@ window {
   background: rgba(35, 31, 32, 0);
 }
 
-window#waybar.solo {
-  background: rgba(217, 216, 216, 1);
-  color: rgba(32, 31, 35, 0.85);
-  padding: 10px;
-}
+// window#waybar.solo {
+//   background: rgba(217, 216, 216, 1);
+//   color: rgba(32, 31, 35, 0.85);
+//   padding: 10px;
+// }
 
 .modules-left,
 .modules-center,
@@ -219,7 +219,8 @@ window#waybar.solo {
   padding-right: 15px;
 }
 
-#custom-appname {
+#custom-appname,
+#window {
   @include button-box-high;
 }
 

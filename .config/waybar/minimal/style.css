@@ -13,12 +13,6 @@ window {
   background: rgba(35, 31, 32, 0);
 }
 
-window#waybar.solo {
-  background: rgb(217, 216, 216);
-  color: rgba(32, 31, 35, 0.85);
-  padding: 10px;
-}
-
 .modules-left,
 .modules-center,
 .modules-right {
@@ -214,7 +208,8 @@ window#waybar.solo {
   padding-right: 15px;
 }
 
-#custom-appname {
+#custom-appname,
+#window {
   padding: 5px 10px;
   margin: 5px 5px 0px 0px;
   border: 2px solid #eae9f0;

@@ -3,24 +3,19 @@
   "position": "top",
   "height": 35,
   "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["custom/appname"],
+  "modules-center": ["hyprland/window"],
   "modules-right": [
     "tray",
     "custom/recorder",
-    "custom/notification",
+    // "custom/notification",
+    "idle_inhibitor",
     "backlight",
     "pulseaudio",
     "bluetooth",
     "network",
     "battery",
     "clock",
-    "idle_inhibitor",
   ],
-  "custom/launcher": {
-    "format": "",
-    "on-click": "wofi --show drun -o DP-3",
-    "on-click-right": "killall wofi",
-  },
   "hyprland/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
@@ -55,25 +50,17 @@
       "28": "XXVIII",
       "29": "XXIX",
       "30": "XXX",
-      "urgent": "",
     },
   },
-  "wlr/window": {
-    "max-length": 80,
-    "tooltip": false,
-  },
-  "custom/appname": {
-    "width": "500",
-    "format": "{}",
-    "interval": "once",
-    "signal": 9,
-    "exec": "hyprctl activewindow -j | jq \"[.class,.title]\" | jq --raw-output 'join(\" ✦ \")'",
+  "hyprland/window": {
+    "format": "{title}",
+    "separate-outputs": true,
   },
   "clock": {
     "interval": 1,
-    "format": "{:%I:%M %p}",
-    "format-alt": "{:%Y-%m-%d %I:%M %p}",
-    "tooltip-format": "{:%Y-%m-%d (%a)}",
+    "format": "{:%a %b %d  %I:%M %p}",
+    // "format-alt": "{:%I:%M %p}",
+    "on-click": "sleep 0.1; swaync-client -t -sw",
   },
   "battery": {
     "format": "{icon}",
@@ -95,7 +82,6 @@
   "network": {
     "format": "{icon}",
     "format-alt": "{bandwidthDownBytes} {icon}",
-    "format-alt-click": "click-right",
     "format-icons": {
       "wifi": ["󰤟", "󰤢", "󰤥", "󰤨"],
       "ethernet": ["󰈁"],
