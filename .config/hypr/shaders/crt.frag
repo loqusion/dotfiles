@@ -518,4 +518,3 @@ void main() {
     gl_FragColor = color;
     gl_FragColor.a = 1.0;
 }
-

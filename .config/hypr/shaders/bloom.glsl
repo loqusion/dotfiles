@@ -1,6 +1,6 @@
 #version 330 core
 
-precision mediump float;
+precision highp float;
 varying vec2 v_texcoord;
 uniform sampler2D tex;
 
@@ -20,7 +20,7 @@ void main() {
 
 	float samples = 0.0f;
 	vec4 colorSum = vec4(0.0f);
-	
+
 	for (int x = -bloomRadius; x <= bloomRadius; ++x) {
 		for (int y = -bloomRadius; y <= bloomRadius; ++y) {
 			vec2 offset = vec2(x, y) * invTextureSize;

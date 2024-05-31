@@ -1,6 +1,6 @@
 #version 330 core
 
-precision mediump float;
+precision highp float;
 varying vec2 v_texcoord;
 uniform sampler2D tex;
 
@@ -17,7 +17,7 @@ void main() {
 
 	float samples = 0.0f;
 	vec4 colorSum = vec4(0.0f);
-	
+
 	for (int x = -blurRadius; x <= blurRadius; ++x) {
 		for (int y = -blurRadius; y <= blurRadius; ++y) {
 			vec2 offset = vec2(x, y) * invTextureSize;
@@ -29,7 +29,7 @@ void main() {
 			colorSum += texture(tex, coords) * strength;
 		}
 	}
-	
+
 	colorSum /= samples;
 	gl_FragColor = colorSum;
 }
