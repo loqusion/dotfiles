@@ -39,7 +39,10 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use feh to set a wallpaper
-exec feh --bg-fill ~/Pictures/Wallpapers/Erikaz-And-Dlanor-A-Knox.jpg
+exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/Erikaz-And-Dlanor-A-Knox.jpg
+
+# Start udiskie to automount USB drives
+exec --no-startup-id udiskie
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
