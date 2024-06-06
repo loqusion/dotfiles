@@ -2,3 +2,5 @@
 .npmrc
 fish_variables
 secrets.fish
+.ssh/*
+!.ssh/config
