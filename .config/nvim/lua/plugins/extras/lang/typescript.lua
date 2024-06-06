@@ -20,30 +20,6 @@ return {
   },
 
   {
-    "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      local inlay_hints = {
-        includeInlayParameterNameHints = "all",
-        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayEnumMemberValueHints = true,
-      }
-      local extra_opts = {
-        settings = {
-          typescript = { inlayHints = inlay_hints },
-          javascript = { inlayHints = inlay_hints },
-        },
-      }
-
-      opts.servers.tsserver = vim.tbl_deep_extend("force", opts.servers.tsserver, extra_opts)
-      opts.servers.denols = {}
-    end,
-  },
-
-  {
     "nvim-neotest/neotest",
     optional = true,
     dependencies = { { "haydenmeade/neotest-jest", dev = false } },
