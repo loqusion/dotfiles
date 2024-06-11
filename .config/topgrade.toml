@@ -3,10 +3,7 @@
 assume_yes = true
 
 # Disable specific steps - same options as the command line flag
-disable = [
-    "micro",
-    "spicetify",
-]
+disable = ["micro", "spicetify"]
 
 # Ignore failures for these steps
 ignore_failures = ["firmware"]
@@ -83,8 +80,8 @@ no_self_update = true
 #"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
 #"Custom command using interactive shell (unix)" = "-i vim_upgrade"
 "Fish Update Completions" = "fish_update_completions"
-"Dotfiles" = "dotbare pull --rebase --autostash"
-"Bootstrap" = "bdump.sh"
+"Dotfiles Pull" = "dotbare pull --rebase --autostash"
+"Bootstrap Dump" = "bdump.sh"
 
 [brew]
 #greedy_cask = true
