@@ -26,4 +26,7 @@ return function(config)
   config.window_decorations = uname == 'Darwin' and 'TITLE | RESIZE' or 'RESIZE'
   config.window_background_opacity = transparent and 0.90 or 1.00
   config.window_close_confirmation = 'NeverPrompt'
+
+  config.initial_rows = 50
+  config.initial_cols = 110
 end
