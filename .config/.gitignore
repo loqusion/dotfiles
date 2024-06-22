@@ -143,6 +143,8 @@
 !/dz65rgb_v3.layout.json
 !/electron*-flags.conf
 !/electron-flags.conf
+!/godot/
+!/godot/editor_settings*
 !/mimeapps.list
 !/retroarch/
 !/retroarch/*.cfg
