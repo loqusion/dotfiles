@@ -1,14 +1,21 @@
 [[shades]]
 name = "vibrance"
 default = true
+[shades.config]
+balance = { red = 1.0, green = 1.0, blue = 1.0 } # 0.0 - 10.0
+strength = 0.25                                  # -1.0 - 1.0
 
 [[shades]]
 name = "blue-light-filter"
 start_time = 20:00:00
 end_time = 06:00:00
+gradual_shift_duration = 300
+[shades.config]
+temperature = 2600.0 # 1000.0 - 40000.0
+strength = 1.0       # 0.0 - 1.0
 
 [[shades]]
 name = "color-filter"
 [shades.config]
-type = "protanopia" # "protanopia", "deuteranopia", "tritanopia"
-intensity = 1.0     # 0.0 - 1.0
+type = "red-green" # "red-green", "green-red", "blue-yellow"
+strength = 0.2     # 0.0 - 1.0
