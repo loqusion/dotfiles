@@ -146,6 +146,8 @@
 !/godot/
 !/godot/editor_settings*
 !/mimeapps.list
+!/obsidian/
+!/obsidian/user-flags.conf
 !/retroarch/
 !/retroarch/*.cfg
 !/retroarch/config/
