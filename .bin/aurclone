@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+AUR_URL="https://aur.archlinux.org"
+
+name=$1
+shift
+
+git clone "$AUR_URL/$name.git" "$@"
