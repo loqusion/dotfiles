@@ -29,6 +29,18 @@ return {
     },
     opts = {},
   },
+  {
+    "folke/which-key.nvim",
+    optional = true,
+    opts = {
+      icons = {
+        rules = {
+          { plugin = "ChatGPT.nvim", icon = " ", color = "green" },
+          __extend = true,
+        },
+      },
+    },
+  },
 
   -- obsidian
   {
