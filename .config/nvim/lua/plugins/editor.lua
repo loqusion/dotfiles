@@ -4,6 +4,7 @@ local style = require("config.style")
 return {
   {
     "folke/which-key.nvim",
+    opts_extend = { "spec", "icons.rules" },
     opts = function(_, opts)
       local wk = require("which-key")
 
@@ -39,6 +40,31 @@ return {
 
       return vim.tbl_deep_extend("force", opts, {
         show_help = false,
+        icons = {
+          rules = {
+            { plugin = "ChatGPT.nvim", icon = " ", color = "green" },
+            { plugin = "colortils.nvim", icon = "󰏘", color = "orange" },
+            { plugin = "detour.nvim", icon = "", color = "blue" },
+            { plugin = "git-messenger.vim", icon = "󰊢", color = "orange" },
+            { plugin = "goto-preview", icon = "", color = "cyan" },
+            { plugin = "iswap.nvim", icon = "󰣁", color = "cyan" },
+            { plugin = "neogen", icon = "󰈙", color = "green" },
+            { plugin = "overseer.nvim", icon = "󱓞", color = "red" },
+            { plugin = "ssr.nvim", icon = "󰛔", color = "blue" },
+            { plugin = "telekasten.nvim", icon = "", color = "yellow" },
+            { pattern = "^delete$", icon = "", color = "red" },
+            { pattern = "^notes$", icon = "", color = "yellow" },
+            { pattern = "^preview$", icon = "", color = "cyan" },
+            { pattern = "^run$", icon = "󱓞", color = "red" },
+            { pattern = "copy link to repo", icon = "󰆏", color = "yellow" },
+            { pattern = "copy permalink", icon = "󰆏", color = "yellow" },
+            { pattern = "coverage", icon = "󰱑", color = "red" },
+            { pattern = "diffview", icon = "", color = "green" },
+            { pattern = "join block", icon = "󰡍", color = "cyan" },
+            { pattern = "split block", icon = "󰡏", color = "cyan" },
+            { pattern = "swap current with next", icon = "󰓡", color = "blue" },
+          },
+        },
       })
     end,
   },
