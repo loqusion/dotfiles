@@ -5,30 +5,40 @@ return {
   {
     "folke/which-key.nvim",
     opts = function(_, opts)
-      ---@type table<string, { name: string, plugins: string[]}>
-      local defaults = {
-        ["<leader>bd"] = { name = "+delete", plugins = { "bufferline.nvim", "close-buffers.nvim", "mini.bufremove" } },
-        ["<leader>n"] = { name = "+notes", plugins = { "telekasten.nvim" } },
-        ["<leader>o"] = { name = "+open", plugins = { "peek.nvim", "ChatGPT.nvim" } },
-        ["<leader>r"] = { name = "+run", plugins = { "overseer.nvim" } },
-        ["<localleader>e"] = { name = "+evaulate", plugins = { "conjure" } },
-        ["<localleader>ec"] = { name = "+comment", plugins = { "conjure" } },
-        ["<localleader>l"] = { name = "+log", plugins = { "conjure" } },
-        ["gp"] = { name = "+preview", plugins = { "goto-preview" } },
-      }
+      local wk = require("which-key")
 
-      ---@param prefix string
-      ---@param spec { name: string, plugins: string[] }
-      defaults = vim.iter(defaults):fold({}, function(acc, prefix, spec)
-        if vim.iter(spec.plugins):any(LazyVim.has) then
-          acc[prefix] = { name = spec.name }
-        end
-        return acc
-      end)
+      local unfiltered_spec = {
+        { "<leader>bd", group = "delete" },
+        { "<leader>n", group = "notes" },
+        { "<leader>o", group = "open" },
+        { "<leader>r", group = "run" },
+        { "<localleader>e", group = "evaluate" },
+        { "<localleader>ec", group = "comment" },
+        { "<localleader>l", group = "log" },
+        { "gp", group = "preview" },
+      }
+      local required_plugins = {
+        delete = { "bufferline.nvim", "close-buffers.nvim", "mini.bufremove" },
+        notes = { "telekasten.nvim" },
+        open = { "peek.nvim", "ChatGPT.nvim" },
+        run = { "overseer.nvim" },
+        evaluate = { "conjure" },
+        comment = { "conjure" },
+        log = { "conjure" },
+        preview = { "goto-preview" },
+      }
+      local spec = vim
+        .iter(unfiltered_spec)
+        :filter(function(item)
+          local plugins = required_plugins[item.group]
+          return vim.iter(plugins):any(LazyVim.has)
+        end)
+        :totable()
+
+      wk.add(spec)
 
       return vim.tbl_deep_extend("force", opts, {
         show_help = false,
-        defaults = defaults,
       })
     end,
   },
@@ -325,8 +335,8 @@ return {
     "folke/which-key.nvim",
     optional = true,
     opts = {
-      defaults = {
-        ["<leader>tc"] = { name = "+coverage" },
+      spec = {
+        { "<leader>tc", group = "coverage" },
       },
     },
   },
