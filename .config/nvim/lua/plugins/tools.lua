@@ -30,7 +30,7 @@ return {
     "kana/vim-arpeggio",
     event = "InsertEnter",
     init = function()
-      vim.g.arpeggio_timeoutlen = 50
+      vim.g.arpeggio_timeoutlen = 70
     end,
     config = function()
       vim.fn["arpeggio#map"]("i", "", 0, "jk", "<Esc>")
