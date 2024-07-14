@@ -55,23 +55,28 @@ return {
       "OverseerBuild",
       "OverseerQuickAction",
       "OverseerTaskAction",
+      "OverseerClearCache",
     },
     keys = {
-      { "<leader>rr", "<cmd>OverseerRun<cr>", desc = "Task" },
-      { "<leader>rc", "<cmd>OverseerRunCmd<cr>", desc = "Cmd" },
-      { "<leader>rb", "<cmd>OverseerLoadBundle<cr>", desc = "Load Bundle" },
-      { "<leader>rB", "<cmd>OverseerSaveBundle<cr>", desc = "Save Bundle" },
-      { "<leader>ru", "<cmd>OverseerToggle<cr>", desc = "Overseer UI" },
-      { "<leader>ra", "<cmd>OverseerQuickAction<cr>", desc = "Quick Action" },
+      { "<leader>ru", "<cmd>OverseerToggle<cr>", desc = "Task list" },
+      { "<leader>rr", "<cmd>OverseerRun<cr>", desc = "Run task" },
+      { "<leader>rb", "<cmd>OverseerBuild<cr>", desc = "Run task (build)" },
+      { "<leader>rc", "<cmd>OverseerRunCmd<cr>", desc = "Run task (command)" },
+      { "<leader>ra", "<cmd>OverseerQuickAction<cr>", desc = "Action (recent task)" },
       { "<leader>rA", "<cmd>OverseerTaskAction<cr>", desc = "Action" },
+      { "<leader>ri", "<cmd>OverseerInfo<cr>", desc = "Overseer info" },
+      { "<leader>rl", "<cmd>OverseerLoadBundle<cr>", desc = "Load Bundle" },
+      { "<leader>rs", "<cmd>OverseerSaveBundle<cr>", desc = "Save Bundle" },
     },
     opts = {
-      strategy = {
-        "toggleterm",
-      },
       templates = { "builtin", "loqusion" },
+      -- strategy = {
+      --   "toggleterm",
+      -- },
       task_list = {
         bindings = {
+          ["<C-j>"] = false,
+          ["<C-k>"] = false,
           ["<C-l>"] = false,
           ["<C-h>"] = false,
           ["["] = false,
@@ -80,6 +85,21 @@ return {
           H = "DecreaseDetail",
           ["<C-[>"] = "DecreaseWidth",
           ["<C-]>"] = "IncreaseWidth",
+        },
+      },
+      form = {
+        win_opts = {
+          winblend = 0,
+        },
+      },
+      confirm = {
+        win_opts = {
+          winblend = 0,
+        },
+      },
+      task_win = {
+        win_opts = {
+          winblend = 0,
         },
       },
     },
