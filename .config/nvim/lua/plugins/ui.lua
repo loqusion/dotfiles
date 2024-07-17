@@ -114,17 +114,6 @@ return {
   },
 
   {
-    "hedyhli/outline.nvim",
-    keys = {
-      { "<leader>cS", "<cmd>Outline<cr>", desc = "Toggle Outline" },
-      { "<leader>cs", false },
-    },
-    -- deactivate = function()
-    --   vim.cmd([[OutlineClose]])
-    -- end,
-  },
-
-  {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
     deactivate = function()
