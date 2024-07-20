@@ -12,14 +12,12 @@ require("lazy").setup({
   spec = {
     {
       "LazyVim/LazyVim",
-      -- TODO: migrate to 11.0 when neovim 0.10 is is released in extra repository
-      -- version = "^10.25.0", -- version doesn't work
-      -- tag = "v10.25.0",
       import = "lazyvim.plugins",
     },
     { import = "lazyvim.plugins.extras.coding.copilot" },
     -- TODO: migrate to native snippets
     { import = "lazyvim.plugins.extras.coding.luasnip", enabled = true },
+    { import = "lazyvim.plugins.extras.coding.neogen" },
     { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.dap.nlua" },
     { import = "lazyvim.plugins.extras.editor.dial" },

@@ -1,18 +1,5 @@
 return {
   {
-    "danymat/neogen",
-    -- stylua: ignore
-    keys = {
-      { "<leader>cn", function() require("neogen").generate({}) end, desc = "Neogen comment" },
-    },
-    opts = function(_, opts)
-      if LazyVim.has("LuaSnip") then
-        opts.snippet_engine = "luasnip"
-      end
-    end,
-  },
-
-  {
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
     config = true,
@@ -72,30 +59,6 @@ return {
       show_cursorline = true,
       number_only = false,
       centered_peeking = true,
-    },
-  },
-
-  -- structural search and replace
-  {
-    "cshuaimin/ssr.nvim",
-    -- stylua: ignore
-    keys = {
-      { "<leader>sr", function() require("ssr").open() end, mode = { "n", "x" }, desc = "Replace (ssr)" },
-    },
-  },
-  {
-    "nvim-pack/nvim-spectre",
-    -- stylua: ignore
-    keys = {
-      { "<leader>sr", false },
-      { "<leader>sR", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
-    },
-  },
-  {
-    "nvim-telescope/telescope.nvim",
-    keys = {
-      { "<leader>sR", false },
-      { "<leader>su", "<cmd>Telescope resume<CR>", desc = "Res[u]me" },
     },
   },
 
