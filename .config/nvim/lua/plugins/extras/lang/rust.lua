@@ -1,4 +1,5 @@
 local Utils = require("utils")
+local style = require("config.style")
 
 local function dap_rust_program()
   local target_dir = vim.fn.json_decode(vim.fn.system("cargo metadata --format-version 1 | jq '.target_directory'"))
@@ -32,7 +33,14 @@ return {
 
   {
     "mrcjkb/rustaceanvim",
-    opts = {},
+    opts = {
+      tools = {
+        ---@type vim.api.keyset.win_config
+        float_win_config = {
+          border = style.border,
+        },
+      },
+    },
   },
 
   {
