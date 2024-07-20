@@ -1,3 +1,14 @@
+---@param formatters_by_ft table<string, string[]>
+local function update_formatters(formatters_by_ft)
+  for lang, formatters_list in pairs(formatters_by_ft) do
+    if vim.iter(formatters_list):any(function(formatter)
+      return formatter == "prettier"
+    end) then
+      formatters_by_ft[lang] = { "prettierd" }
+    end
+  end
+end
+
 return {
   {
     "williamboman/mason.nvim",
@@ -12,26 +23,7 @@ return {
     "stevearc/conform.nvim",
     optional = true,
     opts = function(_, opts)
-      opts = vim.tbl_deep_extend("force", opts, {
-        formatters_by_ft = {
-          ["javascript"] = { "prettierd" },
-          ["javascriptreact"] = { "prettierd" },
-          ["typescript"] = { "prettierd" },
-          ["typescriptreact"] = { "prettierd" },
-          ["vue"] = { "prettierd" },
-          ["css"] = { "prettierd" },
-          ["scss"] = { "prettierd" },
-          ["less"] = { "prettierd" },
-          ["html"] = { "prettierd" },
-          ["json"] = { "prettierd" },
-          ["jsonc"] = { "prettierd" },
-          ["yaml"] = { "prettierd" },
-          -- ["markdown"] = { "prettierd" },
-          -- ["markdown.mdx"] = { "prettierd" },
-          ["graphql"] = { "prettierd" },
-          ["handlebars"] = { "prettierd" },
-        },
-      })
+      update_formatters(opts.formatters_by_ft)
       return opts
     end,
   },
