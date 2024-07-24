@@ -1,3 +1,5 @@
+local style = require("config.style")
+
 return {
   {
     "williamboman/mason.nvim",
@@ -61,6 +63,26 @@ return {
       vim.list_extend(opts.sources, {
         nls.builtins.diagnostics.markdownlint,
       })
+    end,
+  },
+
+  {
+    "MeanderingProgrammer/markdown.nvim",
+    optional = true,
+    opts = function(_, opts)
+      if style.transparent then
+        opts.code.style = "language"
+        opts.heading.backgrounds = {
+          "RenderMarkdownH1",
+          "RenderMarkdownH2",
+          "RenderMarkdownH3",
+          "RenderMarkdownH4",
+          "RenderMarkdownH5",
+          "RenderMarkdownH6",
+        }
+      end
+
+      return opts
     end,
   },
 
