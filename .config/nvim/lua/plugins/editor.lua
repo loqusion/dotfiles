@@ -20,7 +20,7 @@ return {
       }
       local required_plugins = {
         delete = { "bufferline.nvim", "close-buffers.nvim", "mini.bufremove" },
-        notes = { "telekasten.nvim" },
+        notes = { "neorg" },
         open = { "peek.nvim", "ChatGPT.nvim" },
         run = { "overseer.nvim" },
         evaluate = { "conjure" },
@@ -51,7 +51,6 @@ return {
             { plugin = "neogen", icon = "󰈙", color = "green" },
             { plugin = "overseer.nvim", icon = "󱓞", color = "red" },
             { plugin = "ssr.nvim", icon = "󰛔", color = "blue" },
-            { plugin = "telekasten.nvim", icon = "", color = "yellow" },
             { pattern = "^delete$", icon = "", color = "red" },
             { pattern = "^notes$", icon = "", color = "yellow" },
             { pattern = "^preview$", icon = "", color = "cyan" },
