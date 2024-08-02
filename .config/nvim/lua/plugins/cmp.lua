@@ -29,7 +29,6 @@ return {
         },
         sources = cmp.config.sources(vim.list_extend(opts.sources, {
           { name = "emoji" },
-          { name = "neorg" },
           -- { name = "npm", keyword_length = 3 },
         })),
         sorting = {

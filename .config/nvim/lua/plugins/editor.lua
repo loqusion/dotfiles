@@ -259,39 +259,6 @@ return {
     opts = {},
   },
 
-  -- neorg
-  {
-    "nvim-neorg/neorg",
-    lazy = false,
-    version = "*",
-    dependencies = {
-      {
-        "vhyrro/luarocks.nvim",
-        priority = 1000,
-        opts = {},
-        config = true,
-      },
-    },
-    opts = {
-      load = {
-        ["core.defaults"] = {},
-        ["core.concealer"] = {},
-        ["core.dirman"] = {
-          config = {
-            workspaces = {
-              notes = "~/Documents/Notes",
-            },
-          },
-        },
-        ["core.completion"] = {
-          config = { engine = "nvim-cmp" },
-        },
-        ["core.export"] = {},
-        ["core.summary"] = {},
-      },
-    },
-  },
-
   {
     "echasnovski/mini.bracketed",
     event = "BufReadPost",
