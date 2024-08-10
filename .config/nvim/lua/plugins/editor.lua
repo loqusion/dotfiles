@@ -71,24 +71,6 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
-    dependencies = {
-      {
-        "3rd/image.nvim",
-        cond = not vim.g.neovide,
-        dependencies = {
-          {
-            "vhyrro/luarocks.nvim",
-            opts = function(_, opts)
-              opts.rocks = opts.rocks or {}
-              table.insert(opts.rocks, "magick")
-            end,
-          },
-        },
-        opts = {
-          backend = vim.env.KITTY_WINDOW_ID and "kitty" or "ueberzug",
-        },
-      },
-    },
     keys = {
       { "<leader>fe", false },
       { "<leader>fE", false },
