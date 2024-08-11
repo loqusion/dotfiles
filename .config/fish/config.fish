@@ -1,3 +1,10 @@
+if not set -q LOQUSION_SYSTEMD_INHIBIT
+    if set -q SSH_CONNECTION
+        LOQUSION_SYSTEMD_INHIBIT=true exec systemd-inhibit --who="SSH session" --why="Active user" --what="idle" --mode=block $SHELL
+        exit $status
+    end
+end
+
 if status is-interactive && set -q START_ZELLIJ
     set -gx ZELLIJ_AUTO_START true
     set -gx ZELLIJ_AUTO_EXIT true
