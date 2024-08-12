@@ -6,9 +6,7 @@ return {
 
   {
     "NoahTheDuke/vim-just",
-    enabled = function()
-      return not require("utils").has("tree-sitter-just")
-    end,
+    enabled = false,
     event = "BufReadPre",
   },
 
