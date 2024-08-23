@@ -37,7 +37,6 @@ return {
       },
       ---@class lspconfig.options
       servers = {
-        bashls = {},
         cssls = {
           settings = {
             css = {
