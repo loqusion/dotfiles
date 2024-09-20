@@ -14,7 +14,7 @@ require("lazy").setup({
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
     },
-    { import = "lazyvim.plugins.extras.coding.copilot", enabled = true },
+    { import = "lazyvim.plugins.extras.coding.copilot", enabled = false },
     -- TODO: migrate to native snippets
     { import = "lazyvim.plugins.extras.coding.luasnip", enabled = true },
     { import = "lazyvim.plugins.extras.coding.neogen" },
