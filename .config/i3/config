@@ -60,6 +60,9 @@ bindsym $mod+Return exec $term
 # kill focused window
 bindsym $mod+q kill
 
+# lock screen
+bindsym $mod+Ctrl+q exec --no-startup-id i3lock
+
 # start dmenu (a program launcher)
 bindsym $mod+space exec $dmenu
 
