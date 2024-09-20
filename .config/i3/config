@@ -66,6 +66,9 @@ bindsym $mod+Ctrl+q exec --no-startup-id i3lock
 # start dmenu (a program launcher)
 bindsym $mod+space exec $dmenu
 
+# don't wrap focus
+focus_wrapping no
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
