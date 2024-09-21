@@ -13,7 +13,7 @@ return {
     optional = true,
     opts = {
       formatters_by_ft = {
-        nix = { { "alejandra", "nixfmt" } },
+        nix = { "alejandra", "nixfmt", stop_after_first = true },
       },
     },
   },
