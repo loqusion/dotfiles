@@ -67,7 +67,7 @@ return {
   },
 
   {
-    "MeanderingProgrammer/markdown.nvim",
+    "MeanderingProgrammer/render-markdown.nvim",
     optional = true,
     opts = function(_, opts)
       if style.transparent then
