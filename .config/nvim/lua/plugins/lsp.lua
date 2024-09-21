@@ -71,7 +71,7 @@ return {
     "mfussenegger/nvim-lint",
     opts = {
       linters_by_ft = {
-        lua = { "selene", "luacheck" },
+        -- lua = { "selene", "luacheck" },
       },
       linters = {
         luacheck = {
