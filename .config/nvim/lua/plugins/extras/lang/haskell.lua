@@ -1,19 +1,3 @@
----Return the first index matching the given predicate.
----If no items match the predicate, return nil.
----
----@generic T
----@param tbl T[]
----@param predicate fun(t: T): boolean
----@return integer?
-local function tbl_find(tbl, predicate)
-  for i, v in ipairs(tbl) do
-    if predicate(v) then
-      return i
-    end
-  end
-  return nil
-end
-
 return {
   {
     "williamboman/mason.nvim",
@@ -22,14 +6,6 @@ return {
         "hlint",
         "ormolu",
       })
-
-      ---@cast opts { ensure_installed: string[] }
-      local idx = tbl_find(opts.ensure_installed, function(t)
-        return t == "haskell-language-server"
-      end)
-      if idx ~= nil then
-        table.remove(opts.ensure_installed, idx)
-      end
     end,
   },
 
