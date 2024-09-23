@@ -148,7 +148,8 @@ return {
     "folke/twilight.nvim",
     cmd = "Twilight",
     keys = {
-      { "<leader>ut", "<Cmd>Twilight<CR>", desc = "Toggle Twilight" },
+      -- FIXME: conflicts with nvim-treesitter-context extra
+      -- { "<leader>ut", "<Cmd>Twilight<CR>", desc = "Toggle Twilight" },
     },
   },
 
