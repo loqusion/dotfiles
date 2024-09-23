@@ -20,6 +20,10 @@ templates:
 # to see the current sequence.
 # stack-colors: STYLES
 
+# Hooks are only run when 'system-ghc: false'.
+# See https://www.haskell.org/ghcup/guide/#strategy-1-stack-hooks-new-recommended
+system-ghc: false
+
 nix:
   enable: false
   pure: true
