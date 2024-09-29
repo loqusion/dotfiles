@@ -1,5 +1,7 @@
 local style = require("config.style")
 
+local enable_inlay_hints = false
+
 return {
   {
     "williamboman/mason.nvim",
@@ -17,6 +19,28 @@ return {
         vim.list_extend(opts.ensure_installed, { "jsdoc" })
       end
     end,
+  },
+
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        vtsls = {
+          settings = {
+            typescript = {
+              inlayHints = {
+                enumMemberValues = { enabled = enable_inlay_hints },
+                functionLikeReturnTypes = { enabled = enable_inlay_hints },
+                parameterNames = { enabled = enable_inlay_hints and "literals" or false },
+                parameterTypes = { enabled = enable_inlay_hints },
+                propertyDeclarationTypes = { enabled = enable_inlay_hints },
+                variableTypes = { enabled = false },
+              },
+            },
+          },
+        },
+      },
+    },
   },
 
   {
