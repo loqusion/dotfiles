@@ -1,6 +1,6 @@
 local style = require("config.style")
 
-local enable_inlay_hints = false
+local enable_inlay_hints = true
 
 return {
   {
@@ -25,6 +25,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
+        ts_ls = { enabled = false },
         vtsls = {
           settings = {
             typescript = {
