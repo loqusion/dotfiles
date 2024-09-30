@@ -314,7 +314,9 @@ return {
 
   -- tabline-like bufferline
   {
-    "akinsho/bufferline.nvim",
+    -- "akinsho/bufferline.nvim",
+    "loqusion/bufferline.nvim",
+    dev = true,
     keys = {
       { "<leader>bdl", "<Cmd>BufferLineCloseRight<CR>", desc = "Buffers to right" },
       { "<leader>bdh", "<Cmd>BufferLineCloseLeft<CR>", desc = "Buffers to left" },
