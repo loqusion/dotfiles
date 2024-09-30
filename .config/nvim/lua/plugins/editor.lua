@@ -520,7 +520,7 @@ return {
   -- scope buffers to tabpages
   {
     "tiagovla/scope.nvim",
-    enabled = false,
+    enabled = true,
     lazy = false,
     cmd = { "ScopeSaveState", "ScopeLoadState" },
     init = function()
