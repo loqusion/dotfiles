@@ -318,10 +318,9 @@ return {
     "loqusion/bufferline.nvim",
     dev = true,
     keys = {
-      { "<leader>bdl", "<Cmd>BufferLineCloseRight<CR>", desc = "Buffers to right" },
-      { "<leader>bdh", "<Cmd>BufferLineCloseLeft<CR>", desc = "Buffers to left" },
-      { "<c-s-h>", "<Cmd>BufferLineMovePrev<CR>", desc = "Move buffer left" },
-      { "<c-s-l>", "<Cmd>BufferLineMoveNext<CR>", desc = "Move buffer right" },
+      { "<leader>br", false },
+      { "<leader>bl", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete Buffers to the Right" },
+      { "<leader>bh", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete Buffers to the Left" },
     },
     opts = {
       options = {

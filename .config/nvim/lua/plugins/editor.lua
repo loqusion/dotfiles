@@ -9,7 +9,6 @@ return {
       local wk = require("which-key")
 
       local unfiltered_spec = {
-        { "<leader>bd", group = "delete" },
         { "<leader>n", group = "notes" },
         { "<leader>o", group = "open" },
         { "<leader>r", group = "run" },
@@ -19,7 +18,6 @@ return {
         { "gp", group = "preview" },
       }
       local required_plugins = {
-        delete = { "bufferline.nvim", "close-buffers.nvim", "mini.bufremove" },
         notes = { "neorg" },
         open = { "peek.nvim", "ChatGPT.nvim" },
         run = { "overseer.nvim" },
@@ -51,7 +49,6 @@ return {
             { plugin = "neogen", icon = "󰈙", color = "green" },
             { plugin = "overseer.nvim", icon = "󱓞", color = "red" },
             { plugin = "ssr.nvim", icon = "󰛔", color = "blue" },
-            { pattern = "^delete$", icon = "", color = "red" },
             { pattern = "^notes$", icon = "", color = "yellow" },
             { pattern = "^preview$", icon = "", color = "cyan" },
             { pattern = "^run$", icon = "󱓞", color = "red" },
@@ -312,51 +309,6 @@ return {
       spec = {
         { "<leader>tc", group = "coverage" },
       },
-    },
-  },
-
-  -- close buffers matching filter
-  {
-    "kazhala/close-buffers.nvim",
-    cmd = { "BDelete", "BWipeout" },
-    keys = {
-      {
-        "<leader>bdi",
-        function()
-          require("close_buffers").delete({ type = "hidden" })
-          require("bufferline.ui").refresh()
-        end,
-        desc = "H[i]dden buffers",
-      },
-      {
-        "<leader>bdo",
-        function()
-          require("close_buffers").delete({ type = "other" })
-          require("bufferline.ui").refresh()
-        end,
-        desc = "Other buffers",
-      },
-      {
-        "<leader>bdd",
-        function()
-          require("close_buffers").delete({ type = "this" })
-        end,
-        desc = "Current buffer",
-      },
-      {
-        "<leader>bD",
-        function()
-          require("close_buffers").delete({ type = "this", force = true })
-        end,
-        desc = "Current buffer (Force)",
-      },
-    },
-  },
-  {
-    "echasnovski/mini.bufremove",
-    keys = {
-      { "<leader>bd", false },
-      { "<leader>bD", false },
     },
   },
 
