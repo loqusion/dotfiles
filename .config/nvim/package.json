@@ -1,0 +1,14 @@
+{
+  "name": "loqusion-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "javascriptreact",
+          "typescriptreact"
+        ],
+        "path": "./snippets/javascript/react.json"
+      }
+    ]
+  }
+}
