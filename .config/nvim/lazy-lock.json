@@ -125,7 +125,7 @@
   "rest.nvim": { "branch": "main", "commit": "3a7eecb442d9c02538cc99f76c611ba4912654a3" },
   "reticle.nvim": { "branch": "main", "commit": "e90aa929b989c093df1de1780afe25e48553f5ce" },
   "rose-pine": { "branch": "main", "commit": "8b1fd252255a7f2c41b4192a787ab62660b29f72" },
-  "rustaceanvim": { "branch": "master", "commit": "047f9c9d8cd2861745eb9de6c1570ee0875aa795" },
+  "rustaceanvim": { "branch": "master", "commit": "29f42cc149f915d771c550b6dfe7c788d856cf04" },
   "scope.nvim": { "branch": "main", "commit": "932102696ead2b7ab9ff65017767b57e2722fdde" },
   "smart-splits.nvim": { "branch": "master", "commit": "95833675cd92538bf9cded1d2d58d1fc271c5428" },
   "smartyank.nvim": { "branch": "master", "commit": "d9e078fe08d6466e37ea45ac446a9f60e6866789" },
