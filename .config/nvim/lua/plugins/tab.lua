@@ -82,8 +82,9 @@ return {
     "nvim-cmp",
     optional = true,
     keys = {
-      { "<Tab>", false },
-      { "<S-Tab>", false },
+      { "<Tab>", mode = "i", false },
+      { "<Tab>", mode = "s", false },
+      { "<S-Tab>", mode = { "i", "s" }, false },
     },
   },
 }
