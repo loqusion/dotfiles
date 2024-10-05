@@ -70,9 +70,9 @@ return {
     },
     opts = {
       templates = { "builtin", "loqusion" },
-      -- strategy = {
-      --   "toggleterm",
-      -- },
+      strategy = {
+        "toggleterm",
+      },
       task_list = {
         bindings = {
           ["<C-j>"] = false,
