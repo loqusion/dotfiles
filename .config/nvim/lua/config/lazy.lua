@@ -62,6 +62,7 @@ require("lazy").setup({
     --#endregion
     { import = "plugins" },
     { import = "plugins.extras.coding.autopairs" },
+    { import = "plugins.extras.coding.avante" },
     { import = "plugins.extras.coding.backseat" },
     { import = "plugins.extras.coding.comment", enabled = false },
     { import = "plugins.extras.coding.surround", enabled = true },
