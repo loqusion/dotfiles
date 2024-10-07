@@ -50,6 +50,7 @@
   "hydra.nvim": { "branch": "master", "commit": "3ced42c0b6a6c85583ff0f221635a7f4c1ab0dd0" },
   "im-select.nvim": { "branch": "master", "commit": "6425bea7bbacbdde71538b6d9580c1f7b0a5a010" },
   "image_preview.nvim": { "branch": "main", "commit": "8de950078bdecf1916e8dbddfbee451e095b023c" },
+  "img-clip.nvim": { "branch": "main", "commit": "28a32d811d69042f4fa5c3d5fa35571df2bc1623" },
   "inc-rename.nvim": { "branch": "main", "commit": "8ba77017ca468f3029bf88ef409c2d20476ea66b" },
   "incline.nvim": { "branch": "main", "commit": "16fc9c073e3ea4175b66ad94375df6d73fc114c0" },
   "indent-blankline.nvim": { "branch": "master", "commit": "e7a4442e055ec953311e77791546238d1eaae507" },
