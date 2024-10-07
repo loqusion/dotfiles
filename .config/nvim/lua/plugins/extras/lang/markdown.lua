@@ -82,7 +82,9 @@ return {
         }
       end
 
-      return opts
+      return vim.tbl_deep_extend("force", opts, {
+        file_types = vim.list_extend(opts.file_types or {}, { "markdown", "norg", "rmd", "org" }),
+      })
     end,
   },
 
