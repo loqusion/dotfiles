@@ -3,14 +3,10 @@
   border-radius: 0;
   font-family: "JetBrainsMono NF";
   font-size: 18px;
-  box-shadow: none;
-  text-shadow: none;
-  transition-duration: 0s;
 }
 
-window {
-  color: rgba(35, 31, 32, 0.85);
-  background: rgba(35, 31, 32, 0);
+window#waybar {
+  background-color: transparent;
 }
 
 .modules-left,
@@ -29,7 +25,6 @@ window {
   border-radius: 10px;
   color: #eae9f0;
   background-color: unset;
-  border: 2px solid #eae9f0;
   box-shadow: #eae9f0 0px 5px 0px 0px;
   margin-top: 0px;
   margin-bottom: 5px;
@@ -83,7 +78,6 @@ window {
   border-radius: 10px;
   color: #eae9f0;
   background-color: unset;
-  border: 2px solid #eae9f0;
   box-shadow: #eae9f0 0px 5px 0px 0px;
   margin-top: 0px;
   margin-bottom: 5px;
@@ -198,7 +192,6 @@ window {
   border-radius: 10px;
   color: #eae9f0;
   background-color: unset;
-  border: 2px solid #eae9f0;
   box-shadow: #eae9f0 0px 5px 0px 0px;
   margin-top: 0px;
   margin-bottom: 5px;
@@ -218,7 +211,6 @@ window {
   border-radius: 10px;
   color: #eae9f0;
   background-color: unset;
-  border: 2px solid #eae9f0;
   box-shadow: #eae9f0 0px 5px 0px 0px;
   margin-top: 0px;
   margin-bottom: 5px;
@@ -232,5 +224,4 @@ window {
   padding: 0px 10px;
   padding-right: 1px;
   border-radius: 5px 0px 0px 5px;
-  background-color: rgba(17, 17, 27, 0);
 }

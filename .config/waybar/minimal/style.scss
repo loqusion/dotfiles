@@ -1,73 +1,76 @@
-$dark: true;
-$fg0: #11111b;
-$bg0: #eae9f0;
-$red: #e97193;
-$green: #aac5a0;
-$yellow: #f6d6b3;
-$orange: #f2c798;
-$blue: #a8c5e6;
-$purple: #dfa7e7;
-$purple2: #ecdbee;
-$teal: #72b69c;
+@use "sass:color";
 
-@if $dark == true {
-  $fg0: #eae9f0;
-  $bg0: #11111b00;
-  $red: #e97193;
-  $green: #aac5a0;
-  $yellow: #f6d6b3;
-  $orange: #f2c798;
-  $blue: #a8c5e6;
-  $purple: #dfa7e7;
-  $purple2: #ecdbee;
-  $teal: #72b69c;
-}
+$font-family: "JetBrainsMono NF";
+$font-size: 18px;
+
+$color-background: #11111b;
+
+$color-text: #eae9f0;
+$color-red: #e97193;
+$color-green: #aac5a0;
+$color-yellow: #f6d6b3;
+$color-orange: #f2c798;
+$color-blue: #a8c5e6;
+$color-purple: #dfa7e7;
+$color-purple2: #ecdbee;
+$color-teal: #72b69c;
+
+$color-fullscreen-alpha: 1;
+$color-fullscreen: color.change($color-blue, $alpha: $color-fullscreen-alpha);
 
 @mixin button-box {
   padding: 5px 10px;
   margin: 5px 5px 0px 0px;
-  border: 2px solid $fg0;
-  box-shadow: $fg0 0px 0px 0px 0px;
+  border: 2px solid $color-text;
+  box-shadow: $color-text 0px 0px 0px 0px;
   transition: 0.1s all ease;
 
   border-radius: 10px;
-  color: $fg0;
+  color: $color-text;
 
   background-color: unset;
 }
 
 @mixin button-box-high {
   @include button-box;
-  border: 2px solid $fg0;
-  box-shadow: $fg0 0px 5px 0px 0px;
+  box-shadow: $color-text 0px 5px 0px 0px;
   margin-top: 0px;
   margin-bottom: 5px;
   transition: 0.1s all ease;
-  color: $fg0;
+  color: $color-text;
 
   opacity: 1;
+}
+
+@mixin button-box-fullscreen {
+  @include button-box;
+
+  color: $color-fullscreen;
+  border-color: $color-fullscreen;
+  box-shadow: $color-fullscreen 0px 0px 0px 0px;
+}
+
+@mixin button-box-high-fullscreen {
+  @include button-box-high;
+
+  color: $color-fullscreen;
+  border-color: $color-fullscreen;
+  box-shadow: $color-fullscreen 0px 5px 0px 0px;
 }
 
 * {
   border: none;
   border-radius: 0;
-  font-family: "JetBrainsMono NF";
-  font-size: 18px;
-  box-shadow: none;
-  text-shadow: none;
-  transition-duration: 0s;
+  font-family: $font-family;
+  font-size: $font-size;
 }
 
-window {
-  color: rgba(35, 31, 32, 0.85);
-  background: rgba(35, 31, 32, 0);
+window#waybar {
+  background-color: transparent;
 }
 
-// window#waybar.solo {
-//   background: rgba(217, 216, 216, 1);
-//   color: rgba(32, 31, 35, 0.85);
-//   padding: 10px;
-// }
+window#waybar.fullscreen {
+}
 
 .modules-left,
 .modules-center,
@@ -93,7 +96,7 @@ window {
   margin-bottom: 0px;
   border-radius: 10px;
   transition: none;
-  color: $fg0;
+  color: $color-text;
   margin-bottom: 0px;
 }
 
@@ -104,7 +107,7 @@ window {
 }
 
 #workspaces button:hover {
-  box-shadow: $fg0 0px 5px 0px 0px;
+  box-shadow: $color-text 0px 5px 0px 0px;
   margin-top: 0px;
   margin-bottom: 5px;
 }
@@ -117,7 +120,7 @@ window {
   transition: 0.04s all ease;
   margin-top: 2px;
   margin-bottom: 3px;
-  box-shadow: $fg0 0px 3px 0px 0px;
+  box-shadow: $color-text 0px 3px 0px 0px;
 }
 
 /* #workspaces button.occupied {
@@ -187,27 +190,27 @@ window {
 }
 
 #battery.warning {
-  color: $fg0;
+  color: $color-text;
 }
 
 #battery.critical {
-  color: $fg0;
+  color: $color-text;
 }
 
 #battery.charging {
-  color: $fg0;
+  color: $color-text;
 }
 
 #custom-storage.warning {
-  color: $fg0;
+  color: $color-text;
 }
 
 #custom-storage.critical {
-  color: $fg0;
+  color: $color-text;
 }
 
 #apatheia {
-  color: $fg0;
+  color: $color-text;
 }
 
 #backlight {
@@ -229,5 +232,4 @@ window {
   padding: 0px 10px;
   padding-right: 1px;
   border-radius: 5px 0px 0px 5px;
-  background-color: $bg0;
 }
