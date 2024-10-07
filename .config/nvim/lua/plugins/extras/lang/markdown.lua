@@ -100,11 +100,4 @@ return {
     enabled = false,
     event = "BufReadPre",
   },
-
-  -- paste image
-  {
-    "ekickx/clipboard-image.nvim",
-    cmd = "PasteImg",
-    build = 'test "$(uname -s)" = "Darwin" && brew install pngpaste',
-  },
 }
