@@ -25,6 +25,8 @@ return {
       require("avante_lib").load()
     end,
     opts = {
+      ---@type Provider
+      provider = "claude",
       hints = { enabled = false },
     },
   },
