@@ -53,14 +53,9 @@ function M.escape_pattern(text)
   return text:gsub("([^%w])", "%%%1")
 end
 
----NOTE: Only searches in `after/ftplugin`
----
 ---@param modname string
 function M.require_user_ftplugin(modname)
-  local package_path = package.path
-  package.path = ("%s/.config/nvim/after/ftplugin/?.lua;"):format(vim.env.HOME) .. package.path
-  local ok, result = pcall(require, modname)
-  package.path = package_path
+  local ok, result = pcall(dofile, ("%s/.config/nvim/after/ftplugin/%s.lua"):format(vim.env.HOME, modname))
   return ok, result
 end
 
