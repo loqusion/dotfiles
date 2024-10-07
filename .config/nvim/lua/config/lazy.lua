@@ -14,6 +14,9 @@ require("lazy").setup({
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
     },
+    -- TODO: use lazyvim avante extra when it gets merged
+    -- see https://github.com/LazyVim/LazyVim/pull/4440
+    -- { import = "lazyvim.plugins.extras.coding.avante" },
     { import = "lazyvim.plugins.extras.coding.copilot", enabled = false },
     -- TODO: migrate to native snippets
     { import = "lazyvim.plugins.extras.coding.luasnip", enabled = true },
