@@ -14,15 +14,16 @@ _git_resolved_head() {
 }
 
 saved_ref=$(_git_resolved_head)
+_git stash push -q --include-untracked --no-keep-index --message "stash created by $basename"
+
 finish() {
 	set +e
 	_git checkout -q "$saved_ref"
 	_git stash pop --index
 }
 trap finish EXIT
-_git stash push -q --include-untracked --no-keep-index --message "stash created by $basename"
-_git checkout -q "$MAIN_BRANCH"
 
+_git checkout -q "$MAIN_BRANCH"
 _git pull --rebase
 "$BOOTSTRAP_DIR"/dump.sh
 _git commit -q --message "chore($(hostname -s)): dump" || true
