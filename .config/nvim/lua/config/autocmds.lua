@@ -105,6 +105,15 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
+-- terraform
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = Utils.augroup("custom_filetypes"),
+  pattern = "*.tf",
+  callback = function(event)
+    vim.bo[event.buf].filetype = "terraform"
+  end,
+})
+
 ----
 
 -- clear lazyvim autocmds
