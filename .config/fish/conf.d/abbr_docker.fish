@@ -1,0 +1,23 @@
+abbr d docker
+abbr db 'docker image build'
+abbr dco 'docker container'
+abbr dhi 'docker image history'
+abbr di 'docker image'
+abbr dipr 'docker image prune'
+abbr dlo 'docker container logs'
+abbr dls 'docker image ls'
+abbr dpl 'docker image pull'
+abbr dps 'docker container ps'
+abbr dpsa 'docker container ps --all'
+abbr dr 'docker container run'
+abbr ds 'docker container start'
+abbr dst 'docker container stop'
+abbr dt 'docker image tag'
+
+abbr dn 'docker network'
+
+abbr dc 'docker compose'
+abbr dcd 'docker compose down'
+abbr dcr 'docker compose run'
+abbr dcu 'docker compose up'
+abbr dcw 'docker compose up --watch'
