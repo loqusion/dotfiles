@@ -4,3 +4,5 @@ fish_variables
 secrets.fish
 .ssh/*
 !.ssh/config
+.docker/conf
+.docker/config.json
