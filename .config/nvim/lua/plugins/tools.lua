@@ -1,7 +1,7 @@
 return {
   -- contextual keybinds
   {
-    "anuvyklack/hydra.nvim",
+    "nvimtools/hydra.nvim",
     keys = {
       { "zl", desc = "Scroll right" },
       { "zh", desc = "Scroll left" },
