@@ -381,6 +381,7 @@ return {
   -- open files from a terminal buffer in current neovim instance
   {
     "willothy/flatten.nvim",
+    enabled = false,
     commit = "d92c93959e9ac52a00002d6fd64c2d2ca5dd7192",
     dependencies = {
       { "willothy/wezterm.nvim", config = true },
