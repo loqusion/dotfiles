@@ -93,10 +93,10 @@ return {
     cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
     keys = {
       {
-        mode = { "n", "v" },
-        "<S-c>",
-        "<cmd>MCstart<cr>",
+        "_",
+        "<Cmd>MCstart<CR>",
         desc = "Create a selection for selected text or word under the cursor",
+        mode = { "n", "v" },
       },
     },
     opts = {
