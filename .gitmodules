@@ -49,6 +49,9 @@
 [submodule ".config/catppuccin/glamour"]
 	path = .config/catppuccin/glamour
 	url = https://github.com/catppuccin/glamour.git
+[submodule ".config/catppuccin/fuzzel"]
+	path = .config/catppuccin/fuzzel
+	url = https://github.com/catppuccin/fuzzel
 [submodule ".config/home-manager"]
 	path = .config/home-manager
 	url = git@github.com:loqusion/dotfiles-nix.git
