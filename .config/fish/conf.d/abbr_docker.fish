@@ -2,6 +2,7 @@ abbr d docker
 abbr db 'docker image build'
 abbr dbt 'docker image build -t'
 abbr dcn 'docker container'
+abbr dcpr 'docker container prune'
 abbr dhi 'docker image history'
 abbr di 'docker image'
 abbr dipr 'docker image prune'
