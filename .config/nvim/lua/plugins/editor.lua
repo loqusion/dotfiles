@@ -15,7 +15,6 @@ return {
         { "<localleader>e", group = "evaluate" },
         { "<localleader>ec", group = "comment" },
         { "<localleader>l", group = "log" },
-        { "gp", group = "preview" },
       }
       local required_plugins = {
         notes = { "neorg" },
@@ -249,31 +248,37 @@ return {
     config = function(_, opts)
       local bracketed = require("mini.bracketed")
 
-      local function put(cmd, regtype)
-        local body = vim.fn.getreg(vim.v.register)
-        local type = vim.fn.getregtype(vim.v.register)
-        vim.fn.setreg(vim.v.register, body, regtype or "l")
-        bracketed.register_put_region(cmd)
-        vim.cmd(('normal! "%s%s'):format(vim.v.register, cmd:lower()))
-        ---@diagnostic disable-next-line: param-type-mismatch
-        vim.fn.setreg(vim.v.register, body, type)
+      local function mappings_put()
+        local function put(cmd, regtype)
+          local body = vim.fn.getreg(vim.v.register)
+          local type = vim.fn.getregtype(vim.v.register)
+          vim.fn.setreg(vim.v.register, body, regtype or "l")
+          bracketed.register_put_region(cmd)
+          vim.cmd(('normal! "%s%s'):format(vim.v.register, cmd:lower()))
+          ---@diagnostic disable-next-line: param-type-mismatch
+          vim.fn.setreg(vim.v.register, body, type)
+        end
+
+        for cmd, desc in pairs({ ["]p"] = "Put forward", ["[p"] = "Put backward" }) do
+          vim.keymap.set("n", cmd, function()
+            put(cmd)
+          end, { desc = desc })
+        end
+        for cmd, desc in pairs({ ["]P"] = "Put forward", ["[P"] = "Put backward" }) do
+          vim.keymap.set("n", cmd, function()
+            put(cmd, "c")
+          end, { desc = desc })
+        end
+
+        for lhs, desc in pairs({ p = "Put forward", P = "Put backward" }) do
+          vim.keymap.set({ "n", "x" }, lhs, function()
+            return bracketed.register_put_region(lhs)
+          end, { expr = true, desc = desc })
+        end
       end
 
-      for cmd, desc in pairs({ ["]p"] = "Put forward", ["[p"] = "Put backward" }) do
-        vim.keymap.set("n", cmd, function()
-          put(cmd)
-        end, { desc = desc })
-      end
-      for cmd, desc in pairs({ ["]P"] = "Put forward", ["[P"] = "Put backward" }) do
-        vim.keymap.set("n", cmd, function()
-          put(cmd, "c")
-        end, { desc = desc })
-      end
-
-      for lhs, desc in pairs({ p = "Put forward", P = "Put backward" }) do
-        vim.keymap.set({ "n", "x" }, lhs, function()
-          return bracketed.register_put_region(lhs)
-        end, { expr = true, desc = desc })
+      if not LazyVim.has("yanky.nvim") then
+        mappings_put()
       end
 
       bracketed.setup(opts)

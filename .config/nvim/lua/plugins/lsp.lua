@@ -113,9 +113,9 @@ return {
     "rmagatti/goto-preview",
     -- stylua: ignore
     keys = {
-      { "gpd", function() require("goto-preview").goto_preview_definition({}) end,     desc = "Preview Definition" },
-      { "gpi", function() require("goto-preview").goto_preview_implementation({}) end, desc = "Preview Implementation" },
-      { "gP",  function() require("goto-preview").close_all_win() end,                 desc = "Preview: Close windows" },
+      { "<leader>cp", function() require("goto-preview").goto_preview_definition({}) end,     desc = "Preview Definition" },
+      -- { "???", function() require("goto-preview").goto_preview_implementation({}) end, desc = "Preview Implementation" },
+      { "<leader>cP",  function() require("goto-preview").close_all_win() end,                 desc = "Preview: Close windows" },
     },
     opts = {},
   },

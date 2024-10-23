@@ -42,6 +42,7 @@ return {
   -- copy-paste over ssh with osc52
   {
     "ibhagwan/smartyank.nvim",
+    enabled = false,
     event = "VeryLazy",
     opts = {
       -- we already have this

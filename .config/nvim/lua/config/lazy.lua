@@ -21,6 +21,7 @@ require("lazy").setup({
     -- TODO: migrate to native snippets
     { import = "lazyvim.plugins.extras.coding.luasnip", enabled = true },
     { import = "lazyvim.plugins.extras.coding.neogen" },
+    { import = "lazyvim.plugins.extras.coding.yanky" },
     { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.dap.nlua" },
     { import = "lazyvim.plugins.extras.editor.dial" },
