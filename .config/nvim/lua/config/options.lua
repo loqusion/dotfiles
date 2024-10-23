@@ -8,6 +8,7 @@ opt.backup = true -- Save backups to ~/.local/state/backup/
 opt.backupdir:remove(".")
 opt.colorcolumn = { "+1" }
 opt.cursorline = true
+opt.diffopt:append({ "vertical" })
 opt.display = { "uhex" } -- Show unprintable characters as <xx>
 opt.equalalways = false -- Splitting or closing a window won't automatically resize all windows
 -- opt.fillchars:append({ diff = "╱", fold = " ", foldopen = "", foldsep = " ", foldclose = "", eob = " " })
