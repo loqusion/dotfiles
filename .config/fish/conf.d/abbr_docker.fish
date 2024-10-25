@@ -24,6 +24,7 @@ abbr dn 'docker network'
 
 abbr dc 'docker compose'
 abbr dcb 'docker compose build'
+abbr dcc --set-cursor 'docker compose config % | bat -l yaml'
 abbr dcd 'docker compose down'
 abbr dcf 'docker compose -f'
 abbr dcl 'docker compose logs'
