@@ -1,11 +1,5 @@
 return {
   {
-    "smjonas/inc-rename.nvim",
-    cmd = "IncRename",
-    config = true,
-  },
-
-  {
     "ThePrimeagen/refactoring.nvim",
     -- stylua: ignore
     keys = {
