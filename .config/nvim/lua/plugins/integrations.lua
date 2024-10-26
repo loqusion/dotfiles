@@ -14,22 +14,6 @@ return {
     },
   },
 
-  -- chatgpt
-  {
-    "jackMort/ChatGPT.nvim",
-    cmd = { "ChatGPTActAs", "ChatGPT" },
-    keys = {
-      {
-        "<leader>oc",
-        function()
-          require("chatgpt").openChat()
-        end,
-        desc = "ChatGPT",
-      },
-    },
-    opts = {},
-  },
-
   -- obsidian
   {
     "IlyasYOY/obs.nvim",

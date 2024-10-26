@@ -18,7 +18,7 @@ return {
       }
       local required_plugins = {
         notes = { "neorg" },
-        open = { "peek.nvim", "ChatGPT.nvim" },
+        open = { "peek.nvim" },
         run = { "overseer.nvim" },
         evaluate = { "conjure" },
         comment = { "conjure" },
@@ -39,7 +39,6 @@ return {
         show_help = false,
         icons = {
           rules = {
-            { plugin = "ChatGPT.nvim", icon = " ", color = "green" },
             { plugin = "colortils.nvim", icon = "󰏘", color = "orange" },
             { plugin = "detour.nvim", icon = "", color = "blue" },
             { plugin = "git-messenger.vim", icon = "󰊢", color = "orange" },
