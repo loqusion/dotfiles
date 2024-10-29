@@ -115,6 +115,9 @@ return {
   {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
+    keys = {
+      { "<leader>fu", "<Cmd>UndotreeToggle<CR>", desc = "Toggle Undotree" },
+    },
     deactivate = function()
       vim.cmd([[UndotreeHide]])
     end,
