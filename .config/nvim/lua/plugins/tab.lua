@@ -17,6 +17,7 @@ end
 return {
   {
     "abecodes/tabout.nvim",
+    enabled = false,
     keys = function()
       local tab_fn
       local tab_s_fn
