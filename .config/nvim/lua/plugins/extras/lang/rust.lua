@@ -33,14 +33,27 @@ return {
 
   {
     "mrcjkb/rustaceanvim",
-    opts = {
-      tools = {
-        ---@type vim.api.keyset.win_config
-        float_win_config = {
-          border = style.border,
+    opts = function(_, opts)
+      local on_attach = opts.server.on_attach
+
+      return {
+        tools = {
+          ---@type vim.api.keyset.win_config
+          float_win_config = {
+            border = style.border,
+          },
         },
-      },
-    },
+        server = {
+          on_attach = function(client, buffer, ...)
+            on_attach(client, buffer, ...)
+
+            vim.keymap.set("n", "<leader>K", function()
+              vim.cmd.RustLsp("openDocs")
+            end, { desc = "Rust Docs (item under cursor)", buffer = buffer })
+          end,
+        },
+      }
+    end,
   },
 
   {
