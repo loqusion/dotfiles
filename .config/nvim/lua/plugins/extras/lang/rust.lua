@@ -49,7 +49,10 @@ return {
 
             vim.keymap.set("n", "<leader>K", function()
               vim.cmd.RustLsp("openDocs")
-            end, { desc = "Rust Docs (item under cursor)", buffer = buffer })
+            end, { desc = "Rust: Open docs for item under cursor", buffer = buffer })
+            vim.keymap.set("n", "<leader>cE", function()
+              vim.cmd.RustLsp("expandMacro")
+            end, { desc = "Rust: Expand macro under cursor", buffer = buffer })
           end,
         },
       }
