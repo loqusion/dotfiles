@@ -68,6 +68,7 @@ return {
       { "<leader>rl", "<cmd>OverseerLoadBundle<cr>", desc = "Load Bundle" },
       { "<leader>rs", "<cmd>OverseerSaveBundle<cr>", desc = "Save Bundle" },
     },
+    ---@type overseer.Config
     opts = {
       templates = { "builtin", "loqusion" },
       strategy = {
