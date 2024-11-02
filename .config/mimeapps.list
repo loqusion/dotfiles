@@ -30,6 +30,7 @@ image/avif=feh.desktop
 text/x-chdr=neovide.desktop
 x-scheme-handler/discord-424004941485572097=discord-424004941485572097.desktop
 application/x-msdownload=proton-custom.desktop
+video/webm=vlc.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;
@@ -59,3 +60,4 @@ application/rss+xml=neovide.desktop;
 image/avif=feh.desktop;
 text/x-chdr=neovide.desktop;
 application/x-msdownload=proton-custom.desktop;
+video/webm=firefox.desktop;vlc.desktop;
