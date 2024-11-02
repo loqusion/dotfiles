@@ -24,6 +24,7 @@ return {
       -- required for `avante.tokenizers` and templates to work
       require("avante_lib").load()
     end,
+    ---@type avante.Config
     opts = {
       ---@type Provider
       provider = "claude",
