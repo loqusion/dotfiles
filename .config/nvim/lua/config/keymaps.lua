@@ -25,10 +25,6 @@ unmap("n", "<leader>ft")
 unmap("n", "<leader>fT")
 unmap({ "n", "t" }, "<C-/>")
 unmap({ "n", "t" }, "<C-_>")
-unmap("t", "<C-h>")
-unmap("t", "<C-j>")
-unmap("t", "<C-k>")
-unmap("t", "<C-l>")
 
 for _, x in ipairs({ false, "2", "3", "4" }) do
   local lhs = (x == false and "<MiddleMouse>" or ("<%s-MiddleMouse>"):format(x))
@@ -48,6 +44,8 @@ map("n", "l", l, { desc = "which_key_ignore" })
 map("n", "gV", "v`[o`]", { desc = "Switch to VISUAL using last insertion/yank" })
 -- map("x", "g=", [[<Esc><Cmd>s/\%V.*\%V./\=eval("TODO")<CR>]], { desc = "Evaluate expression" })
 
+map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
+
 map("n", "<leader>w=", "<C-w>=", { desc = "Equalize windows" })
 map("n", "<leader>wT", "<C-w>T", { desc = "Break out into a new tab" })
 map("n", "<leader>wx", "<C-w>x", { desc = "Swap current with next" })
@@ -55,15 +53,10 @@ map("n", "<leader>wo", "<C-w>o", { desc = "Close other windows" })
 
 map("n", "<leader>fe", "<cmd>edit<cr>", { desc = "Re-edit file" })
 
--- stylua: ignore start
-map("n", "<leader>ul", function() LazyVim.toggle("relativenumber") end, { desc = "Toggle Relative Line Numbers" })
-map("n", "<leader>uL", function() LazyVim.toggle.number() end, { desc = "Toggle Line Numbers" })
--- stylua: ignore end
-
 map("n", "<leader>cR", Utils.runlua, { desc = "Run Lua" })
 
 map("n", "<leader>gC", function()
-  LazyVim.terminal({
+  Snacks.terminal({
     "lazygit",
     ("--git-dir=%s"):format(vim.env.DOTBARE_DIR),
     ("--work-tree=%s"):format(vim.env.DOTBARE_TREE),
