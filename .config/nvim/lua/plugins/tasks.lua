@@ -120,7 +120,7 @@ return {
     "rest-nvim/rest.nvim",
     ft = "http",
     config = function(_, opts)
-      require("rest-nvim").setup(opts)
+      require("rest_nvim").setup(opts)
       vim.api.nvim_create_autocmd("FileType", {
         group = Utils.augroup("http"),
         pattern = "http",

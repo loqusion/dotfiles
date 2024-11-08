@@ -130,14 +130,4 @@ function M.version()
   end
 end
 
----@param cmd string
-function M.check_command_exists(cmd)
-  local ok, result = pcall(vim.system, { "which", ("%s"):format(cmd) })
-  if not ok then
-    vim.notify(result, vim.log.levels.ERROR)
-    return false
-  end
-  return ok and result:wait().code == 0
-end
-
 return M

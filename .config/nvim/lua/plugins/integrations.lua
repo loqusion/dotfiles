@@ -85,7 +85,7 @@ return {
   {
     "tim-harding/neophyte",
     cond = function()
-      return require("utils").check_command_exists("neophyte")
+      return vim.fn.executable("neophyte") == 1
     end,
     event = "VeryLazy",
     opts = {
