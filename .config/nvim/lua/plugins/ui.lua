@@ -415,6 +415,7 @@ return {
 
   {
     "nvim-colortils/colortils.nvim",
+    enabled = false,
     cmd = "Colortils",
     keys = {
       { "<leader>co", "<cmd>Colortils picker<cr>", desc = "Colortils" },
