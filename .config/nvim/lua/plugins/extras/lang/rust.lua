@@ -47,12 +47,15 @@ return {
           on_attach = function(client, buffer, ...)
             on_attach(client, buffer, ...)
 
-            vim.keymap.set("n", "<leader>K", function()
-              vim.cmd.RustLsp("openDocs")
-            end, { desc = "Rust: Open docs for item under cursor", buffer = buffer })
-            vim.keymap.set("n", "<leader>cE", function()
+            vim.keymap.set("n", "<leader>ce", function()
               vim.cmd.RustLsp("expandMacro")
-            end, { desc = "Rust: Expand macro under cursor", buffer = buffer })
+            end, { desc = "Expand Macro (Rust)", buffer = buffer })
+            vim.keymap.set("n", "<leader>co", function()
+              vim.cmd.RustLsp("openDocs")
+            end, { desc = "Open Docs (Rust)", buffer = buffer })
+            vim.keymap.set("n", "<leader>cp", function()
+              vim.cmd.RustLsp("parentModule")
+            end, { desc = "Open Parent Module (Rust)", buffer = buffer })
           end,
         },
       }
