@@ -397,6 +397,7 @@ return {
   {
     "akinsho/toggleterm.nvim",
     version = "v2.*",
+    cmd = "ToggleTerm",
     keys = function(plugin)
       return {
         { plugin.opts.open_mapping, desc = "Toggle Terminal" },
