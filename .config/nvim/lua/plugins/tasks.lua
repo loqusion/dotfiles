@@ -118,6 +118,7 @@ return {
   -- rest client
   {
     "rest-nvim/rest.nvim",
+    enabled = false,
     ft = "http",
     config = function(_, opts)
       require("rest_nvim").setup(opts)
@@ -130,5 +131,13 @@ return {
         end,
       })
     end,
+  },
+
+  -- rest client
+  {
+    "mistweaverco/kulala.nvim",
+    keys = {
+      { "<CR>", "<Cmd>lua require('kulala').run()<CR>", desc = "Send the request", ft = "http" },
+    },
   },
 }
