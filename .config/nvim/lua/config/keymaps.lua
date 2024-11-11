@@ -72,3 +72,45 @@ if LazyVim.has("smart-splits.nvim") then
     map(keys.mode or "n", keys[1], keys[2], get_opts(keys))
   end
 end
+
+if LazyVim.has("LuaSnip") then
+  map("i", "<Tab>", function()
+    if require("luasnip").expand_or_jumpable(1) then
+      return "<Plug>luasnip-expand-or-jump"
+    else
+      return "<Tab>"
+    end
+  end, { expr = true, desc = "Jump Next" })
+  map("s", "<Tab>", function()
+    return "<Plug>luasnip-jump-next"
+  end, { expr = true, desc = "Jump Next" })
+  map({ "i", "s" }, "<S-Tab>", function()
+    if require("luasnip").jumpable(-1) then
+      return "<Plug>luasnip-jump-prev"
+    else
+      return "<S-Tab>"
+    end
+  end, { expr = true, desc = "Jump Previous" })
+else
+  map("i", "<Tab>", function()
+    if vim.snippet.active({ direction = 1 }) then
+      return "<Cmd>lua vim.snippet.jump(1)<CR>"
+    else
+      return "<Tab>"
+    end
+  end, { expr = true, desc = "Jump Next" })
+  map("s", "<Tab>", function()
+    if vim.snippet.active({ direction = 1 }) then
+      return "<Cmd>lua vim.snippet.jump(1)<CR>"
+    else
+      return "<Tab>"
+    end
+  end, { expr = true, desc = "Jump Next" })
+  map({ "i", "s" }, "<S-Tab>", function()
+    if vim.snippet.active({ direction = -1 }) then
+      return "<Cmd>lua vim.snippet.jump(-1)<CR>"
+    else
+      return "<S-Tab>"
+    end
+  end, { expr = true, desc = "Jump Previous" })
+end

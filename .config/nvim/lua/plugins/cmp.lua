@@ -19,6 +19,13 @@ return {
       local cmp = require("cmp")
       local compare = cmp.config.compare
 
+      -- use <c-p>, <c-n> to navigate cmp menu, not <tab>
+      for key, _ in pairs(opts.mapping) do
+        if string.lower(key) == "<tab>" then
+          opts.mapping[key] = nil
+        end
+      end
+
       opts = vim.tbl_deep_extend("force", opts, {
         auto_brackets = {},
         completion = {
