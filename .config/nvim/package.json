@@ -8,6 +8,10 @@
           "typescriptreact"
         ],
         "path": "./snippets/javascript/react.json"
+      },
+      {
+        "language": "rust",
+        "path": "./snippets/rust.json"
       }
     ]
   }
