@@ -4,7 +4,7 @@ return {
   -- modern matchit and matchparen
   {
     "andymass/vim-matchup",
-    enabled = true, -- WARN: This plugin has caused an annoying bug with cmp in the past
+    enabled = false, -- WARN: This plugin causes an annoying bug with cmp
     event = "BufReadPost",
     config = function()
       vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
