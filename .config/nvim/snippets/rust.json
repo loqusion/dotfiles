@@ -1,7 +1,7 @@
 {
   "amain": {
     "prefix": "amain",
-    "body": ["#[tokio::main]", "async fn main() {", "    ${1}", "}"],
+    "body": ["#[tokio::main]", "async fn main() {", "    ${1:todo!();}", "}"],
     "description": "async fn main() { … }"
   }
 }
