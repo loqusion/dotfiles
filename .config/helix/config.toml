@@ -1,0 +1,28 @@
+theme = "catppuccin_mocha"
+
+[editor]
+auto-format = true
+color-modes = true
+cursorline = true
+line-number = "absolute"
+middle-click-paste = false
+true-color = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.indent-guides]
+rainbow-option = "dim"
+render = true
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.smart-tab]
+enable = true
+supersede-menu = true
+
+[editor.statusline]
+center = ["position-percentage"]
