@@ -1,5 +1,6 @@
 .megarc
 .npmrc
+.npmrcs
 fish_variables
 secrets.fish
 .ssh/*
