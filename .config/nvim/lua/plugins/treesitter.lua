@@ -1,5 +1,13 @@
 return {
-  { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
+  {
+    "nvim-treesitter/playground",
+    cmd = {
+      "TSCaptureUnderCursor",
+      "TSHighlightCapturesUnderCursor",
+      "TSNodeUnderCursor",
+      "TSPlaygroundToggle",
+    },
+  },
 
   -- modern matchit and matchparen
   {
