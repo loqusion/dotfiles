@@ -183,53 +183,24 @@ return {
     "chrisgrieser/nvim-spider",
     event = "VeryLazy",
     keys = function()
-      local skipInsignificantPunctuation = true
+      require("snacks")
+        .toggle({
+          name = "spider.nvim",
+          get = function()
+            return require("spider.config").globalOpts.skipInsignificantPunctuation
+          end,
+          set = function(state)
+            require("spider.config").globalOpts.skipInsignificantPunctuation = state
+          end,
+        })
+        :map("<leader>uS")
 
+      -- stylua: ignore
       return {
-        {
-          "w",
-          function()
-            require("spider").motion("w", { skipInsignificantPunctuation = skipInsignificantPunctuation })
-          end,
-          mode = { "n", "o", "x" },
-          desc = "Next word",
-        },
-        {
-          "e",
-          function()
-            require("spider").motion("e", { skipInsignificantPunctuation = skipInsignificantPunctuation })
-          end,
-          mode = { "n", "o", "x" },
-          desc = "Previous word",
-        },
-        {
-          "b",
-          function()
-            require("spider").motion("b", { skipInsignificantPunctuation = skipInsignificantPunctuation })
-          end,
-          mode = { "n", "o", "x" },
-          desc = "End of word",
-        },
-        {
-          "ge",
-          function()
-            require("spider").motion("ge", { skipInsignificantPunctuation = skipInsignificantPunctuation })
-          end,
-          mode = { "n", "o", "x" },
-          desc = "Previous end of word",
-        },
-        {
-          "<leader>uS",
-          function()
-            skipInsignificantPunctuation = not skipInsignificantPunctuation
-            if skipInsignificantPunctuation then
-              require("lazy.core.util").info("Enabled Spider", { title = "Spider" })
-            else
-              require("lazy.core.util").warn("Disabled Spider", { title = "Spider" })
-            end
-          end,
-          desc = "Toggle Spider",
-        },
+        { "w", function() require("spider").motion("w") end, mode = { "n", "o", "x" }, desc = "Next word" },
+        { "e", function() require("spider").motion("e") end, mode = { "n", "o", "x" }, desc = "Previous word" },
+        { "b", function() require("spider").motion("b") end, mode = { "n", "o", "x" }, desc = "End of word" },
+        { "ge", function() require("spider").motion("ge") end, mode = { "n", "o", "x" }, desc = "Previous end of word" },
       }
     end,
     opts = {},
