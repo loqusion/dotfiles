@@ -102,6 +102,8 @@
 !/rtx/**
 !/skhd/
 !/skhd/**
+!/sqlite3/
+!/sqlite3/**
 !/stylua/
 !/stylua/**
 !/swayidle/
