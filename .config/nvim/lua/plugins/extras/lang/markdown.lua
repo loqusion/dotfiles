@@ -71,15 +71,24 @@ return {
     optional = true,
     opts = function(_, opts)
       if style.transparent then
-        opts.code.style = "language"
-        opts.heading.backgrounds = {
-          "RenderMarkdownH1",
-          "RenderMarkdownH2",
-          "RenderMarkdownH3",
-          "RenderMarkdownH4",
-          "RenderMarkdownH5",
-          "RenderMarkdownH6",
-        }
+        opts = vim.tbl_deep_extend("force", opts or {}, {
+          anti_conceal = {
+            enabled = true,
+          },
+          code = {
+            style = "language",
+          },
+          heading = {
+            backgrounds = {
+              "RenderMarkdownH1",
+              "RenderMarkdownH2",
+              "RenderMarkdownH3",
+              "RenderMarkdownH4",
+              "RenderMarkdownH5",
+              "RenderMarkdownH6",
+            },
+          },
+        })
       end
 
       return vim.tbl_deep_extend("force", opts, {
