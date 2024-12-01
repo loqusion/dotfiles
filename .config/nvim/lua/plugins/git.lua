@@ -86,28 +86,6 @@ return {
     config = true,
   },
 
-  -- fugitive
-  {
-    "tpope/vim-fugitive",
-    cmd = {
-      "G",
-      "Git",
-      "Gdiffsplit",
-      "Gread",
-      "Gwrite",
-      "Ggrep",
-      "GMove",
-      "GDelete",
-      "GRemove",
-      "GRename",
-      "Glgrep",
-      "Gedit",
-      "Gsplit",
-      "Gvsplit",
-      "Gtabedit",
-    },
-  },
-
   -- GitHub interface
   {
     "pwntester/octo.nvim",
