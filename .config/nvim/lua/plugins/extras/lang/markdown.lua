@@ -76,7 +76,8 @@ return {
             enabled = true,
           },
           code = {
-            style = "language",
+            disable_background = true,
+            border = "none",
           },
           heading = {
             backgrounds = {
