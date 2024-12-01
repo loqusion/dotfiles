@@ -89,7 +89,6 @@ return {
   -- fugitive
   {
     "tpope/vim-fugitive",
-    dependencies = { "tpope/vim-rhubarb" },
     cmd = {
       "G",
       "Git",
@@ -99,7 +98,6 @@ return {
       "Ggrep",
       "GMove",
       "GDelete",
-      "GBrowse",
       "GRemove",
       "GRename",
       "Glgrep",
@@ -115,5 +113,18 @@ return {
     "pwntester/octo.nvim",
     cmd = "Octo",
     config = true,
+  },
+
+  -- GBrowse
+  {
+    "folke/snacks.nvim",
+    cmd = { "GBrowse" },
+    opts = function(_, opts)
+      vim.api.nvim_create_user_command("GBrowse", function()
+        require("snacks.gitbrowse")()
+      end, {})
+
+      return opts
+    end,
   },
 }
