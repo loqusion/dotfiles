@@ -2,7 +2,7 @@ return {
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { "typst-lsp" })
+      vim.list_extend(opts.ensure_installed, { "tinymist" })
     end,
   },
 
@@ -10,7 +10,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        typst_lsp = {},
+        tinymist = {},
       },
     },
   },
