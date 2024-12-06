@@ -31,6 +31,7 @@ text/x-chdr=neovide.desktop
 x-scheme-handler/discord-424004941485572097=discord-424004941485572097.desktop
 application/x-msdownload=proton-custom.desktop
 video/webm=vlc.desktop
+x-scheme-handler/mailto=firefox.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;
