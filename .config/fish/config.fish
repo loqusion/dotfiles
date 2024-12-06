@@ -51,7 +51,7 @@ abbr sv sudoedit
 abbr vsudo sudoedit
 abbr vup "dotbare commit -v -m 'chore(vim): upgrade' ~/.config/nvim/lazy-lock.json && dotbare push"
 abbr vrt "dotbare restore --worktree --staged ~/.config/nvim/lazy-lock.json"
-abbr hup "nix flake update --flake ~/.config/home-manager && git -C ~/.config/home-manager commit -v -m 'chore: update lockfile' ~/.config/home-manager/flake.lock && git -C ~/.config/home-manager push; dotbare commit -v -m 'chore(home-manager): upgrade' ~/.config/home-manager && dotbare push"
+abbr hup "~/.config/home-manager/update.sh && dotbare commit -v -m 'chore(home-manager): upgrade ~/.config/home-manager && dotbare push"
 
 abbr c dotbare
 abbr lg lazygit
