@@ -39,5 +39,12 @@ return {
         desc = "Find Lazy Plugin Spec",
       },
     },
+    opts = function(_, opts)
+      local actions = require("telescope.actions")
+
+      -- Restore defaults
+      opts.defaults.mappings.i["<C-f>"] = actions.preview_scrolling_left
+      opts.defaults.mappings.i["<C-b>"] = nil
+    end,
   },
 }
