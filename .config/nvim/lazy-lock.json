@@ -1,6 +1,6 @@
 {
   "FixCursorHold.nvim": { "branch": "master", "commit": "1900f89dc17c603eec29960f57c00bd9ae696495" },
-  "LazyVim": { "branch": "main", "commit": "3c605f547c594b509d83f8677bb7609c005edea5" },
+  "LazyVim": { "branch": "main", "commit": "99c361f708924ddc63599115580bda537cc7f119" },
   "LuaSnip": { "branch": "master", "commit": "33b06d72d220aa56a7ce80a0dd6f06c70cd82b9d" },
   "NeoComposer.nvim": { "branch": "main", "commit": "7ecb04d4a1712a6fd7272c1c9482ea878c144588" },
   "SchemaStore.nvim": { "branch": "main", "commit": "f8c2a0f5d51b800ea4625808e243d9e8f7c5e1df" },
@@ -128,7 +128,7 @@
   "rustaceanvim": { "branch": "master", "commit": "a244210b28f9055c2b4cfa85c92c8a71c13671c9" },
   "scope.nvim": { "branch": "main", "commit": "932102696ead2b7ab9ff65017767b57e2722fdde" },
   "smartyank.nvim": { "branch": "master", "commit": "d9e078fe08d6466e37ea45ac446a9f60e6866789" },
-  "snacks.nvim": { "branch": "main", "commit": "fe1751ef64a1ec072fa3b2b3d454d07eb1f7c7f7" },
+  "snacks.nvim": { "branch": "main", "commit": "a7608b13ea476ecca471cf0900a77b8dd1650d76" },
   "space-vim-theme": { "branch": "master", "commit": "4790dbba31f678f75af4f4c7a1465008542bd979" },
   "sqlite.lua": { "branch": "master", "commit": "d0ffd703b56d090d213b497ed4eb840495f14a11" },
   "styler.nvim": { "branch": "main", "commit": "cd616580f206d929a319987f8f9aa7e0bd6f11ef" },
