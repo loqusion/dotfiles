@@ -126,35 +126,6 @@ return {
     end,
   },
 
-  {
-    "folke/zen-mode.nvim",
-    cmd = "ZenMode",
-    keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
-    opts = {
-      window = {
-        options = {
-          number = false,
-          relativenumber = false,
-          foldcolumn = "0",
-        },
-      },
-      plugins = {
-        gitsigns = true,
-        tmux = true,
-        twilight = false,
-      },
-    },
-  },
-
-  {
-    "folke/twilight.nvim",
-    cmd = "Twilight",
-    keys = {
-      -- FIXME: conflicts with nvim-treesitter-context extra
-      -- { "<leader>ut", "<Cmd>Twilight<CR>", desc = "Toggle Twilight" },
-    },
-  },
-
   -- floating winbar
   {
     "b0o/incline.nvim",
