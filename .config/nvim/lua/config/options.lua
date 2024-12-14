@@ -2,6 +2,10 @@ local style = require("config.style")
 local opt = vim.opt
 local o = vim.o
 
+-- LazyVim options
+-- See: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+vim.g.lazyvim_picker = "telescope"
+
 vim.g.maplocalleader = [[\]]
 opt.background = style.background
 opt.backup = true -- Save backups to ~/.local/state/backup/
