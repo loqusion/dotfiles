@@ -114,3 +114,17 @@ else
     end
   end, { expr = true, desc = "Jump Previous" })
 end
+
+if LazyVim.has("nvim-spider") then
+  require("snacks")
+    .toggle({
+      name = "spider.nvim",
+      get = function()
+        return require("spider.config").globalOpts.skipInsignificantPunctuation
+      end,
+      set = function(state)
+        require("spider.config").globalOpts.skipInsignificantPunctuation = state
+      end,
+    })
+    :map("<leader>uS")
+end

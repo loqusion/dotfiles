@@ -183,18 +183,6 @@ return {
     "chrisgrieser/nvim-spider",
     event = "VeryLazy",
     keys = function()
-      require("snacks")
-        .toggle({
-          name = "spider.nvim",
-          get = function()
-            return require("spider.config").globalOpts.skipInsignificantPunctuation
-          end,
-          set = function(state)
-            require("spider.config").globalOpts.skipInsignificantPunctuation = state
-          end,
-        })
-        :map("<leader>uS")
-
       -- stylua: ignore
       return {
         { "w", function() require("spider").motion("w") end, mode = { "n", "o", "x" }, desc = "Next word" },
