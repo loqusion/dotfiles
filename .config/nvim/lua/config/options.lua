@@ -2,10 +2,11 @@ local style = require("config.style")
 local opt = vim.opt
 local o = vim.o
 
--- LazyVim options
+-- LazyVim/Snacks.nvim options
 -- See: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 vim.g.lazyvim_picker = "telescope"
 vim.g.lazyvim_cmp = "nvim-cmp"
+vim.g.snacks_animate = true
 
 vim.g.maplocalleader = [[\]]
 opt.background = style.background
