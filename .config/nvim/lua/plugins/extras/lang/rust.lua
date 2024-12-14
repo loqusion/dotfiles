@@ -57,6 +57,19 @@ return {
               vim.cmd.RustLsp("parentModule")
             end, { desc = "Open Parent Module (Rust)", buffer = buffer })
           end,
+          default_settings = {
+            ["rust-analyzer"] = {
+              files = {
+                excludeDirs = {
+                  ".direnv",
+                  ".git",
+                  ".gitlab",
+                  "node_modules",
+                  ".venv",
+                },
+              },
+            },
+          },
         },
       }
     end,
