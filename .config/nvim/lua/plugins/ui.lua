@@ -82,7 +82,7 @@ return {
       -- notification and error when upstream lualine_a changes
       assert_lualine(vim.inspect(opts.sections.lualine_a), '{ "mode" }', "opts.sections.lualine_a")
 
-      table.insert(opts.sections.lualine_x, 2, { "overseer" })
+      table.insert(opts.sections.lualine_x, 3, { "overseer" })
 
       opts.options = vim.tbl_deep_extend("force", opts.options, {
         component_separators = "|",
