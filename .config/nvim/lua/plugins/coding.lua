@@ -80,6 +80,7 @@ return {
 
   {
     "smoka7/multicursors.nvim",
+    enabled = false, -- buggy
     dependencies = {
       "nvimtools/hydra.nvim",
     },
