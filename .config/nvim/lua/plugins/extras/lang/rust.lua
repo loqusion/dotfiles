@@ -53,9 +53,6 @@ return {
             vim.keymap.set("n", "<leader>co", function()
               vim.cmd.RustLsp("openDocs")
             end, { desc = "Open Docs (Rust)", buffer = buffer })
-            vim.keymap.set("n", "<leader>cp", function()
-              vim.cmd.RustLsp("parentModule")
-            end, { desc = "Open Parent Module (Rust)", buffer = buffer })
           end,
           default_settings = {
             ["rust-analyzer"] = {
