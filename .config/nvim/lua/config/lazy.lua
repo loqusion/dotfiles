@@ -27,7 +27,8 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.dap.nlua" },
     { import = "lazyvim.plugins.extras.editor.dial" },
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
-    { import = "lazyvim.plugins.extras.editor.inc-rename" },
+    -- BUG: Sometimes doesn't work for rust-analyzer
+    -- { import = "lazyvim.plugins.extras.editor.inc-rename" },
     { import = "lazyvim.plugins.extras.editor.navic" },
     { import = "lazyvim.plugins.extras.editor.telescope" }, -- fzf.lua is default upstream
     { import = "lazyvim.plugins.extras.formatting.prettier" },
