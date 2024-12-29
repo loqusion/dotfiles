@@ -40,6 +40,8 @@
 !/gdb/**
 !/gh/
 !/gh/**
+!/ghostty/
+!/ghostty/**
 !/git/
 !/git/**
 !/glow/

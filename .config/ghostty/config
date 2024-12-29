@@ -1,0 +1,39 @@
+# Main fonts
+font-family = "JetBrainsMono NF"
+font-family-bold = "JetBrainsMono NF"
+font-family-italic = "Maple Mono SC NF"
+font-family-bold-italic = "Maple Mono SC NF"
+
+# Emoji fonts
+font-family = "Apple Color Emoji"
+font-family = "Twemoji"
+font-family-bold = "Apple Color Emoji"
+font-family-bold = "Twemoji"
+font-family-italic = "Apple Color Emoji"
+font-family-italic = "Twemoji"
+font-family-bold-italic = "Apple Color Emoji"
+font-family-bold-italic = "Twemoji"
+
+# Appearance
+theme = "dark:catppuccin-mocha,light:catppuccin-latte"
+window-theme = "ghostty"
+background-opacity = 0.9
+window-decoration = false
+
+# Keybindings
+## Goto split
+keybind = ctrl+alt+h=goto_split:left
+keybind = ctrl+alt+j=goto_split:bottom
+keybind = ctrl+alt+k=goto_split:top
+keybind = ctrl+alt+l=goto_split:right
+## Resizing splits
+keybind = super+ctrl+shift+h=resize_split:left,50
+keybind = super+ctrl+shift+j=resize_split:down,50
+keybind = super+ctrl+shift+k=resize_split:up,50
+keybind = super+ctrl+shift+l=resize_split:right,50
+keybind = super+ctrl+shift+plus=equalize_splits
+
+# Mitigate startup delay (heuristic isn't working)
+gtk-single-instance = true
+
+# vim: ft=conf
