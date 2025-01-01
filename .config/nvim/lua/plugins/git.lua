@@ -90,6 +90,11 @@ return {
     keys = {
       { "<leader>gm", "<Cmd>Neogit<CR>", desc = "Neogit" },
     },
-    config = true,
+    opts = {
+      signs = {
+        item = { "", "" },
+        section = { "", "" },
+      },
+    },
   },
 }
