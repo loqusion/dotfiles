@@ -17,13 +17,10 @@ return {
 
   {
     "neovim/nvim-lspconfig",
-    ---@type PluginLspOpts
     opts = {
       servers = {
-        ---@type lspconfig.options.pyright
-        ---@diagnostic disable-next-line: missing-fields
         pyright = {
-          ---@param client lsp.Client
+          ---@type vim.lsp.client.on_attach_cb
           on_attach = function(client, _)
             client.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(function(_, result, ctx, config)
               local function filter_pyright(diagnostic)
