@@ -79,4 +79,14 @@ return {
       mappings = "<leader>gy",
     },
   },
+
+  -- Magit
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "sindrets/diffview.nvim",
+    },
+    cmd = "Neogit",
+    config = true,
+  },
 }
