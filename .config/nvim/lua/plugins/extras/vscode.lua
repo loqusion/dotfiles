@@ -40,6 +40,7 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
+---@type LazySpec[]
 return {
   {
     "LazyVim/LazyVim",

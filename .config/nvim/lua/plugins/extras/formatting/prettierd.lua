@@ -9,6 +9,7 @@ local function update_formatters(formatters_by_ft)
   end
 end
 
+---@type LazySpec[]
 return {
   {
     "williamboman/mason.nvim",

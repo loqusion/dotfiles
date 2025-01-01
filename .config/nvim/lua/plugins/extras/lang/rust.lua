@@ -25,6 +25,7 @@ local function dap_rust_program()
   return require("dap.ui").pick_if_many(executable_names, "Pick an executable:", tostring)
 end
 
+---@type LazySpec[]
 return {
   {
     "Saecki/crates.nvim",

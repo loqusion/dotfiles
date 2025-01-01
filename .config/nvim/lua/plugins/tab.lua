@@ -14,6 +14,7 @@ local function taboutBackMulti()
   require("tabout.tab").tabout("backward", true, true)
 end
 
+---@type LazySpec[]
 return {
   {
     "abecodes/tabout.nvim",

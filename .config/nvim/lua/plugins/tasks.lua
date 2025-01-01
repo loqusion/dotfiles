@@ -1,5 +1,6 @@
 local Utils = require("utils")
 
+---@type LazySpec[]
 return {
   -- run tests
   {

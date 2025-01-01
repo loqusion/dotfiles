@@ -1,5 +1,6 @@
 local style = require("config.style")
 
+---@type LazySpec[]
 return {
   {
     "hrsh7th/nvim-cmp",

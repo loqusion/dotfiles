@@ -1,3 +1,4 @@
+---@type LazySpec[]
 return {
   {
     "yetone/avante.nvim",
@@ -36,7 +37,7 @@ return {
     "MeanderingProgrammer/render-markdown.nvim",
     optional = true,
     ft = function(_, ft)
-      vim.list_extend(ft, { "Avante" })
+      return vim.list_extend(ft, { "Avante" })
     end,
     opts = function(_, opts)
       opts.file_types = vim.list_extend(opts.file_types or {}, { "Avante" })

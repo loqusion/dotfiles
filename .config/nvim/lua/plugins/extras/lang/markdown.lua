@@ -1,5 +1,6 @@
 local style = require("config.style")
 
+---@type LazySpec[]
 return {
   {
     "williamboman/mason.nvim",

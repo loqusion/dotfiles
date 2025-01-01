@@ -1,5 +1,6 @@
 local Utils = require("utils")
 
+---@type LazySpec[]
 return {
   -- render diagnostics using virtual lines on top of the real lines of code
   {
