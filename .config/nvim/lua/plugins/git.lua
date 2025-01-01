@@ -87,6 +87,9 @@ return {
       "sindrets/diffview.nvim",
     },
     cmd = "Neogit",
+    keys = {
+      { "<leader>gm", "<Cmd>Neogit<CR>", desc = "Neogit" },
+    },
     config = true,
   },
 }
