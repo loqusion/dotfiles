@@ -87,7 +87,12 @@ return {
     dependencies = {
       "sindrets/diffview.nvim",
     },
-    cmd = "Neogit",
+    cmd = {
+      "Neogit",
+      "NeogitCommit",
+      "NeogitLog",
+      "NeogitResetState",
+    },
     keys = {
       { "<leader>gm", "<Cmd>Neogit<CR>", desc = "Neogit" },
     },
