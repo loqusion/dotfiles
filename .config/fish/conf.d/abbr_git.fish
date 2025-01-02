@@ -46,7 +46,7 @@ if status --is-interactive
     abbr gca 'git commit -v --all'
     abbr gca! 'git commit -v --all --amend'
     abbr gcan! 'git commit -v --all --no-edit --amend'
-    abbr gcm 'git commit --message'
+    abbr gcm 'git commit -v --message'
     abbr gcam 'git commit --all --message'
     abbr gci "git commit -v --allow-empty --message 'Make it so.'"
 
@@ -60,9 +60,6 @@ if status --is-interactive
     abbr gcl 'git clone --recurse-submodules'
     abbr gclean 'git clean --interactive -d'
     abbr gpristine 'git reset --hard && git clean -dffx'
-    abbr gcm 'git checkout (git_main_branch)'
-    abbr gcd 'git checkout (git_develop_branch)'
-    abbr gcmsg 'git commit -v --message'
 
     abbr gco 'git checkout'
     abbr gcoo 'git checkout --ours'
