@@ -190,6 +190,7 @@ if status --is-interactive
     abbr grev 'git revert'
 
     abbr grs 'git reset'
+    abbr grss 'git reset --soft'
     abbr grs! 'git reset --hard'
     abbr grso 'git reset origin/(git_current_branch)'
     abbr grso! 'git reset origin/(git_current_branch) --hard'
