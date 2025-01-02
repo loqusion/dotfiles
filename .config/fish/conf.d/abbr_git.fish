@@ -263,4 +263,7 @@ if status --is-interactive
     abbr gams 'git am --skip'
     abbr gama 'git am --abort'
     abbr gamscp 'git am --show-current-patch'
+
+    abbr gx 'git absorb'
+    abbr gxr 'git absorb --and-rebase'
 end
