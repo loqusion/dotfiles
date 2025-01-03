@@ -25,6 +25,16 @@
 (use-package zerodark-theme
   :init (load-theme 'zerodark t))
 
+(use-package evil
+  :init
+  (evil-mode 1)
+  (evil-set-undo-system 'undo-redo)
+  (evil-set-leader '(normal visual motion) (kbd "SPC"))
+  (evil-define-key '(normal visual) 'global (kbd "j") 'evil-next-visual-line)
+  (evil-define-key '(normal visual) 'global (kbd "k") 'evil-previous-visual-line)
+  (evil-define-key '(normal visual) 'global (kbd "q") 'evil-execute-last-recorded-macro)
+  (evil-define-key '(normal visual) 'global (kbd "Q") 'evil-record-macro))
+
 (use-package magit
   :bind ("C-x g" . magit-status))
 
@@ -65,7 +75,7 @@
  '(global-display-line-numbers-mode t)
  '(inhibit-startup-screen nil)
  '(menu-bar-mode nil)
- '(package-selected-packages '(esup which-key magit))
+ '(package-selected-packages '(esup evil which-key magit))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
  '(save-place-mode t)
