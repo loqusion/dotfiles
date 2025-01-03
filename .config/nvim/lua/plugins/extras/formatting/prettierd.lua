@@ -1,3 +1,5 @@
+---@module 'lazy'
+
 ---@param formatters_by_ft table<string, string[]>
 local function update_formatters(formatters_by_ft)
   for lang, formatters_list in pairs(formatters_by_ft) do

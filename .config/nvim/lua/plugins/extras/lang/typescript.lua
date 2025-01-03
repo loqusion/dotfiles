@@ -1,3 +1,5 @@
+---@module 'lazy'
+
 local style = require("config.style")
 
 local enable_inlay_hints = true

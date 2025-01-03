@@ -1,3 +1,5 @@
+---@module 'lazy'
+
 local Utils = require("utils")
 
 ---@type LazySpec[]

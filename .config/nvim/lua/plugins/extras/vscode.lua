@@ -1,3 +1,5 @@
+---@module 'lazy'
+
 -- https://github.com/LazyVim/LazyVim/blob/879e29504d43e9f178d967ecc34d482f902e5a91/lua/lazyvim/plugins/extras/vscode.lua
 
 if not vim.g.vscode then

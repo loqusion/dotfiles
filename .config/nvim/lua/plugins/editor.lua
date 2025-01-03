@@ -1,3 +1,5 @@
+---@module 'lazy'
+
 local Utils = require("utils")
 local style = require("config.style")
 

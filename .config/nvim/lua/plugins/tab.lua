@@ -1,3 +1,5 @@
+---@module 'lazy'
+
 local function tabout()
   require("tabout.tab").tabout("forward", true, false)
 end

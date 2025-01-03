@@ -1,3 +1,5 @@
+---@module 'lazy'
+
 local style = require("config.style")
 
 ---@type LazySpec[]
