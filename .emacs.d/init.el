@@ -16,6 +16,7 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+(setq use-package-always-defer t)
 
 ;; Emacs Start Up Profiler
 (use-package esup
@@ -23,27 +24,134 @@
   ;; Workaround for bug: https://github.com/jschaf/esup/issues/54#issuecomment-651247749
   :init (setq esup-depth 0))
 
-(use-package zerodark-theme
-  :init (load-theme 'zerodark t))
+;; Themes
+(use-package spacemacs-theme)
+(use-package zerodark-theme)
+
+(load-theme 'spacemacs-dark t)
+
+(defun set-alpha (alpha)
+  "Set the frame opacity (alpha transparency)."
+  (interactive)
+  (set-frame-parameter nil 'alpha-background alpha)
+  (setf (alist-get 'alpha-background default-frame-alist) alpha))
+(set-alpha 95)
 
 ;; Vim keymaps to avoid Emacs pinky
 (use-package evil
-  :init
+  :demand t
+  ;; :init
+  ;; (setq evil-want-Y-yank-to-eol t)
+  :config
   (evil-mode 1)
   (evil-set-undo-system 'undo-redo)
   (evil-set-leader '(normal visual motion) (kbd "SPC"))
-  (evil-define-key '(normal visual) 'global (kbd "j") 'evil-next-visual-line)
-  (evil-define-key '(normal visual) 'global (kbd "k") 'evil-previous-visual-line)
-  (evil-define-key '(normal visual) 'global (kbd "q") 'evil-execute-last-recorded-macro)
-  (evil-define-key '(normal visual) 'global (kbd "Q") 'evil-record-macro))
+
+  (customize-set-variable 'evil-want-Y-yank-to-eol t)
+
+  (evil-define-key '(normal visual) 'global
+    (kbd "j") 'evil-next-visual-line
+    (kbd "k") 'evil-previous-visual-line
+    (kbd "q") 'evil-execute-last-recorded-macro
+    (kbd "Q") 'evil-record-macro))
+
+;; Shows number of matches in mode-line when searching with evil.
+(use-package evil-anzu
+  :after (evil)
+  ;; Lazy loading doesn't provide much benefit because evil-anzu
+  ;; only defines four defadvices
+  :demand t)
+
+;; Motions and text objects for delimited function arguments.
+(use-package evil-args
+  :after (evil)
+  :bind
+  (:map evil-inner-text-objects-map
+   ("a" . evil-inner-arg)
+   :map evil-outer-text-objects-map
+   ("a" . evil-outer-arg)))
+
+;; Modal-editing optimized for editing Lisp.
+;; TODO: Add lispy
+;; (use-package evil-cleverparens
+;;   :after (evil)
+;;   :hook (
+
+;; Enables two char keypress to exit most modes.
+(use-package evil-escape
+  :after (evil)
+  :hook (pre-command . evil-escape-pre-command-hook)
+  :init
+  (setq evil-escape-key-sequence "jk")
+  (setq evil-escape-unordered-key-sequence t)
+  :config
+  (message "evil-escape loaded"))
+
+;; Highlight changes with evil operations
+(use-package evil-goggles
+  :after (evil)
+  :demand t
+  :init
+  (setq evil-goggles-duration 0.1)
+  :config
+  (evil-goggles-mode t))
+
+;; Motions to comment text.
+(use-package evil-nerd-commenter
+  :after (evil)
+  :bind
+  (:map evil-normal-state-map
+   ("gc" . evilnc-comment-operator)
+   :map evil-visual-state-map
+   ("gc" . evilnc-comment-or-uncomment-lines))
+  :init
+  (setq evilnc-comment-text-object "gc"))
+
+;; Vim-style numeric incrementing and decrementing.
+(use-package evil-numbers
+  :after (evil)
+  :bind
+  (:map evil-normal-state-map
+   ("C-x =" . evil-numbers/inc-at-pt)
+   ("C-x +" . evil-numbers/inc-at-pt)
+   ("C-x -" . evil-numbers/dec-at-pt)))
+
+;; vim-surround emulation.
+(use-package evil-surround
+  :after (evil)
+  :bind
+  (:map evil-operator-state-map
+   ("s" . evil-surround-edit)
+   ("S" . evil-Surround-edit)
+   :map evil-visual-state-map
+   ("S" . evil-surround-region)
+   ("gS" . evil-Surround-region)))
+
+;; Start a * or # search from the visual selection.
+(use-package evil-visualstar
+  :after (evil)
+  :bind
+  (:map evil-visual-state-map
+   ("*" . evil-visualstar/begin-search-forward)
+   ("#" . evil-visualstar/begin-search-backward)))
+
+;; Jump to visible text (similar to vim-easymotion)
+(use-package avy
+  :after (evil)
+  :bind
+  (:map evil-normal-state-map
+   ("s" . avy-goto-char)
+   ("S" . avy-goto-line)))
 
 ;; Git porcelain
 (use-package magit
-  :bind ("C-x g" . magit-status))
+  :bind ("C-x g" . magit-status)
+  :init
+  ;; Disable Emacs VC for Git
+  (setq vc-handled-backends (delq 'Git vc-handled-backends)))
 
 ;; Display key bindings in a popup
 (use-package which-key
-  ;; :diminish which-key-mode
   :config (which-key-mode))
 
 (defun config-visit ()
@@ -82,7 +190,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(menu-bar-mode nil)
- '(package-selected-packages '(esup evil which-key magit))
+ '(package-selected-packages
+   '(evil-visualstar evil-goggles evil-args evil-nerd-commenter evil-surround evil-escape avy esup evil which-key magit))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
  '(tool-bar-mode nil))
