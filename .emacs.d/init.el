@@ -61,24 +61,26 @@
 
 ;; Options
 (setq isearch-wrap-pause "no-ding")
-(setq line-number-mode t)
-(setq column-number-mode t)
 
+(setq ansi-color-names-vector
+      ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
+
+;; Modes
+(line-number-mode t)
+(column-number-mode t)
+(global-display-line-numbers-mode t)
+(save-place-mode t)
+
+;; custom-* functions are slow, so I've moved out everything I can
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
- '(column-number-mode t)
- '(global-display-line-numbers-mode t)
- '(inhibit-startup-screen nil)
  '(menu-bar-mode nil)
  '(package-selected-packages '(esup evil which-key magit))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
- '(save-place-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
