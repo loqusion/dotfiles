@@ -1,3 +1,8 @@
+;; Make startup faster by reducing the frequency of garbage
+;; collection. The default is 800 kilobytes.
+;; The threshold is lowered again after initialization.
+(setq gc-cons-threshold (* 50 1000 1000))
+
 (require 'package)
 (setq package-enable-at-startup nil)
 
@@ -11,6 +16,11 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+(use-package esup
+  :commands esup
+  ;; Workaround for bug: https://github.com/jschaf/esup/issues/54#issuecomment-651247749
+  :init (setq esup-depth 0))
 
 (use-package zerodark-theme
   :init (load-theme 'zerodark t))
@@ -55,7 +65,7 @@
  '(global-display-line-numbers-mode t)
  '(inhibit-startup-screen nil)
  '(menu-bar-mode nil)
- '(package-selected-packages '(which-key magit))
+ '(package-selected-packages '(esup which-key magit))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
  '(save-place-mode t)
@@ -67,3 +77,14 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 113 :width normal :foundry "ADBO" :family "SauceCodePro Nerd Font"))))
  '(fringe ((t (:background "#292b2e")))))
+
+;; Make gc pauses faster by decreasing the threshold.
+(setq gc-cons-threshold (* 2 1000 1000))
+
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (message "Emacs ready in %s with %d garbage collections."
+		     (format "%.2fms"
+			     (* 1000 (float-time
+				      (time-subtract after-init-time before-init-time))))
+		     gcs-done)))
