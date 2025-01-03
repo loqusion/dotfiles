@@ -15,8 +15,12 @@
 	autoSetupRemote = true
 [merge]
 	conflictstyle = diff3
+	tool = nvimmerge
+[mergetool "nvimmerge"]
+	cmd = nvim +DiffviewOpen
 [diff]
 	colorMoved = default
+	tool = nvimdiff
 [diff "lockb"]
 	textconv = bun
 	binary = true
