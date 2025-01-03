@@ -17,6 +17,7 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; Emacs Start Up Profiler
 (use-package esup
   :commands esup
   ;; Workaround for bug: https://github.com/jschaf/esup/issues/54#issuecomment-651247749
@@ -25,6 +26,7 @@
 (use-package zerodark-theme
   :init (load-theme 'zerodark t))
 
+;; Vim keymaps to avoid Emacs pinky
 (use-package evil
   :init
   (evil-mode 1)
@@ -35,9 +37,11 @@
   (evil-define-key '(normal visual) 'global (kbd "q") 'evil-execute-last-recorded-macro)
   (evil-define-key '(normal visual) 'global (kbd "Q") 'evil-record-macro))
 
+;; Git porcelain
 (use-package magit
   :bind ("C-x g" . magit-status))
 
+;; Display key bindings in a popup
 (use-package which-key
   ;; :diminish which-key-mode
   :config (which-key-mode))
