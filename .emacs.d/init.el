@@ -154,6 +154,13 @@
 (use-package which-key
   :config (which-key-mode))
 
+(use-package dashboard
+  :demand t
+  :init
+  (setq inhibit-startup-message t)
+  :config
+  (dashboard-setup-startup-hook))
+
 (defun config-visit ()
   "Edit Emacs configuration."
   (interactive)
