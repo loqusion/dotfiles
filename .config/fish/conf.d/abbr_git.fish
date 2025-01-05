@@ -196,9 +196,11 @@ if status --is-interactive
     abbr grmc 'git rm --cached'
 
     abbr grt 'git restore'
-    abbr grts 'git restore --source'
-    abbr grtst 'git restore --staged'
+    abbr grts 'git restore --staged'
     abbr grt! 'git restore --worktree --staged'
+    abbr grto 'git restore --ours'
+    abbr grtt 'git restore --theirs'
+    abbr grtm 'git restore --merge'
 
     abbr groot 'cd (git rev-parse --show-toplevel || echo .)'
 
