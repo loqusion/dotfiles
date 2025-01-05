@@ -77,12 +77,11 @@ if status --is-interactive
     abbr gcpc 'git cherry-pick --continue'
 
     abbr gd 'git diff'
-    abbr gdca 'git diff --cached'
-    abbr gdcw 'git diff --cached --word-diff'
+    abbr gdw 'git diff --word-diff'
     abbr gds 'git diff --staged'
+    abbr gds 'git diff --staged --word-diff'
     abbr gdt 'git diff-tree --no-commit-id --name-only -r'
     abbr gdup 'git diff @{upstream}'
-    abbr gdw 'git diff --word-diff'
 
     abbr gdct 'git describe --tags (git rev-list --tags --max-count 1)'
 
