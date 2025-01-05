@@ -128,98 +128,92 @@ if status --is-interactive
     abbr gloga 'git log --oneline --decorate --graph --all'
     abbr glp _git_log_prettily
 
-    abbr gm 'git merge'
+    abbr gm 'git merge' # Join two or more development histories together
     abbr gmom 'git merge origin/(git_main_branch)'
     abbr gmum 'git merge upstream/(git_main_branch)'
     abbr gma 'git merge --abort'
     abbr gms 'git merge --squash'
 
-    abbr gmtl 'git mergetool --no-prompt'
+    abbr gmtl 'git mergetool --no-prompt' # Run merge conflict resolution tools to resolve merge conflicts
 
-    abbr gp 'git push'
-    abbr gpd 'git push --dry-run'
-    abbr gpf 'git push --force-with-lease --force-if-includes'
-    abbr gpf! 'git push --force'
-    abbr gpt 'git push --tags'
+    abbr gp 'git push' # Update remote refs along with associated objects
+    abbr gpd 'git push --dry-run' # Do everything except actually send the updates
+    abbr gpf 'git push --force-with-lease --force-if-includes' # Safe --force
+    abbr gpf! 'git push --force' # Force remote repository to lose commits if remote ref is not an ancestor of local ref
+    abbr gpt 'git push --tags' # Push tags
     abbr gptf 'git push --tags --force-with-lease --force-if-includes'
     abbr gptf! 'git push --tags --force'
-    abbr gpoat 'git push origin --all && git push origin --tags'
+    abbr gpoat 'git push origin --all && git push origin --tags' # Push all branches and tags to origin
     abbr gpoatf 'git push origin --all --force-with-lease --force-if-includes && git push origin --tags --force-with-lease --force-if-includes'
     abbr gpoatf! 'git push origin --all --force && git push origin --tags --force'
-    abbr gpod 'git push origin --delete'
-    abbr gpu 'git push upstream'
-    abbr gpv 'git push --verbose'
+    abbr gpod 'git push origin --delete' # Remove listed refs in origin
+    abbr gpop 'git push origin --prune' # Remove remote branches in origin without a local counterpart
 
-    abbr gl 'git pull'
+    abbr gl 'git pull' # Fetch from and integrate with another repository or local branch
     abbr gpl 'git pull'
-    abbr gpld 'git pull'
     abbr gplo 'git pull origin'
     abbr gplom 'git pull origin (git_main_branch)'
     abbr gploc 'git pull origin (git_current_branch)'
     abbr gplu 'git pull upstream'
     abbr gplum 'git pull upstream (git_main_branch)'
     abbr gpluc 'git pull upstream (git_current_branch)'
-    abbr gplr 'git pull --rebase'
 
-    abbr gr 'git remote'
-    abbr gra 'git remote add'
+    abbr gr 'git remote -v' # Manage set of tracked repositories
+    abbr gra 'git remote add' # Add a remote
     abbr grau 'git remote add upstream'
-    abbr grmv 'git remote rename'
-    abbr grrm 'git remote remove'
-    abbr grset 'git remote set-url'
-    abbr grssh 'git remote set-url origin (gh repo view --json sshUrl -q .sshUrl)'
-    abbr grurl 'git remote set-url origin (gh repo view --json url -q .url)'
-    abbr gru 'git remote update'
-    abbr grv 'git remote -v'
-    abbr grvv 'git remote -vvv'
+    abbr grrn 'git remote rename' # Rename a remote
+    abbr grrm 'git remote remove' # Remove a remote
+    abbr gru 'git remote update' # Fetch updates for remotes in the repository
+    abbr grssh 'git remote set-url origin (gh repo view --json sshUrl -q .sshUrl)' # Set origin to SSH URL
+    abbr grhttp 'git remote set-url origin (gh repo view --json url -q .url)' # Set origin to HTTPS URL
 
-    abbr grb 'git rebase'
-    abbr grba 'git rebase --abort'
-    abbr grbc 'git rebase --continue'
-    abbr grbd 'git rebase (git_develop_branch)'
-    abbr grbi 'git rebase --interactive'
-    abbr grbm 'git rebase (git_main_branch)'
-    abbr grbom 'git rebase origin/(git_main_branch)'
-    abbr grbo 'git rebase --onto'
-    abbr grbs 'git rebase --skip'
+    abbr grb 'git rebase' # Reapply commits on top of another base tip
+    abbr grbi 'git rebase --interactive' # Make an editable list of commits about to be rebased
+    abbr grbc 'git rebase --continue' # Continue in-progress rebasing process
+    abbr grbs 'git rebase --skip' # Skip the current patch in the in-progress rebasing process
+    abbr grba 'git rebase --abort' # Abort in-progress rebase operation
+    abbr grbe 'git rebase --edit-todo' # Edit todo list during interactive rebase
+    abbr grbo 'git rebase --onto' # Reset to <newbase> before applying commits
+    abbr grbm 'git rebase (git_main_branch)' # Rebase on main branch
+    abbr grbd 'git rebase (git_develop_branch)' # Rebase on dev branch
+    abbr grbom 'git rebase origin/(git_main_branch)' # Rebase on origin main branch
 
-    abbr grev 'git revert'
+    abbr grev 'git revert' # Revert commit changes, and record some new commits that record them
 
-    abbr grs 'git reset'
-    abbr grss 'git reset --soft'
-    abbr grs! 'git reset --hard'
-    abbr grso 'git reset origin/(git_current_branch)'
-    abbr grso! 'git reset origin/(git_current_branch) --hard'
+    abbr grs 'git reset' # Copy entries to the index, or reset current branch head
+    abbr grss 'git reset --soft' # Reset current branch head, don't touch index or working tree
+    abbr grs! 'git reset --hard' # Reset current branch head, index, and working tree
+    abbr grso 'git reset origin/(git_current_branch)' # Reset to origin branch corresponding to current
+    abbr grso! 'git reset origin/(git_current_branch) --hard' # Hard reset to origin branch corresponding to current
 
-    abbr grm 'git rm'
-    abbr grmc 'git rm --cached'
+    abbr grm 'git rm' # Remove files from the working tree and index
+    abbr grmc 'git rm --cached' # Only remove files from index
 
-    abbr grt 'git restore'
-    abbr grts 'git restore --staged'
-    abbr grt! 'git restore --worktree --staged'
-    abbr grto 'git restore --ours'
-    abbr grtt 'git restore --theirs'
-    abbr grtm 'git restore --merge'
+    abbr grt 'git restore' # Restore working tree from index
+    abbr grts 'git restore --staged' # Restore index from HEAD
+    abbr grt! 'git restore --worktree --staged' # Restore working tree & index from HEAD
+    abbr grto 'git restore --ours' # Restore from stage #2 (ours)
+    abbr grtt 'git restore --theirs' # Restore from stage #3 (theirs)
+    abbr grtm 'git restore --merge' # Recreate conflicted merge
 
-    abbr groot 'cd (git rev-parse --show-toplevel || echo .)'
+    abbr groot 'cd (git rev-parse --show-toplevel || echo .)' # Change working directory to root
 
-    abbr gs 'git status'
-    abbr gss 'git status --short'
-    abbr gsb 'git status --short --branch'
+    abbr gs 'git status' # Show the working tree status
+    abbr gsl 'git status --long' # Status in the long-format
+    abbr gsb 'git status --short --branch' # Also show branch and tracking info
 
-    abbr gsh 'git show'
-    abbr gshp 'git show --pretty=short --show-signature'
+    abbr gsh 'git show' # Show various types of objects
 
-    abbr gst 'git stash push'
-    abbr gsta 'git stash apply'
-    abbr gstc 'git stash clear'
-    abbr gstd 'git stash drop'
-    abbr gstl 'git stash list'
-    abbr gstp 'git stash pop'
-    abbr gsts 'git stash show --text --include-untracked'
-    abbr gstu 'git stash push --include-untracked'
-    abbr gstuo 'git stash push; git stash push --include-untracked; git stash pop stash@{1}'
-    abbr gstall 'git stash --all'
+    abbr gst 'git stash push' # Stash the changes in a dirty working directory
+    abbr gstu 'git stash push --include-untracked' # All untracked files are also stashed
+    abbr gstuo 'git stash push; git stash push --include-untracked; git stash pop stash@{1}' # Stash only untracked files
+    abbr gstall 'git stash push --all' # All ignored and untracked files are also stashed
+    abbr gstl 'git stash list' # List stash entries
+    abbr gsts 'git stash show --text' # Show the changes recorded in a stash entry
+    abbr gstp 'git stash pop' # Remove a stash entry and apply it
+    abbr gsta 'git stash apply' # Apply a stash entry without removing it
+    abbr gstb 'git stash branch' # Create and switch to a branch, popping a stash entry
+    abbr gstd 'git stash drop' # Remove a single stash entry
 
     abbr gsba 'git submodule add'
     abbr gsbi 'git submodule init'
