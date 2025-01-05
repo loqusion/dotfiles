@@ -190,7 +190,6 @@ if status --is-interactive
     abbr grs! 'git reset --hard'
     abbr grso 'git reset origin/(git_current_branch)'
     abbr grso! 'git reset origin/(git_current_branch) --hard'
-    abbr grs- 'git reset --'
 
     abbr grm 'git rm'
     abbr grmc 'git rm --cached'
