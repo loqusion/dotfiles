@@ -3,6 +3,10 @@ font-family = "SauceCodePro NF"
 # font-family-italic = "Maple Mono SC NF"
 # font-family-bold-italic = "Maple Mono SC NF"
 
+# CJK
+font-family = "Noto Serif CJK JP"
+# font-family-italic = "Noto Serif CJK JP"
+
 # Emoji fonts
 font-family = "Apple Color Emoji"
 font-family = "Twemoji"
