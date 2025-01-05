@@ -1,18 +1,15 @@
 # Main fonts
-font-family = "JetBrainsMono NF"
-font-family-bold = "JetBrainsMono NF"
-font-family-italic = "Maple Mono SC NF"
-font-family-bold-italic = "Maple Mono SC NF"
+font-family = "SauceCodePro NF"
+# font-family-italic = "Maple Mono SC NF"
+# font-family-bold-italic = "Maple Mono SC NF"
 
 # Emoji fonts
 font-family = "Apple Color Emoji"
 font-family = "Twemoji"
-font-family-bold = "Apple Color Emoji"
-font-family-bold = "Twemoji"
-font-family-italic = "Apple Color Emoji"
-font-family-italic = "Twemoji"
-font-family-bold-italic = "Apple Color Emoji"
-font-family-bold-italic = "Twemoji"
+# font-family-italic = "Apple Color Emoji"
+# font-family-italic = "Twemoji"
+# font-family-bold-italic = "Apple Color Emoji"
+# font-family-bold-italic = "Twemoji"
 
 # Appearance
 theme = "dark:catppuccin-mocha,light:catppuccin-latte"
