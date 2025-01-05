@@ -36,3 +36,5 @@
 	required = true
 [status]
 	short = true
+[stash]
+	showIncludeUntracked = true
