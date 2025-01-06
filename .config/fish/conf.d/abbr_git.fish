@@ -106,10 +106,6 @@ if status --is-interactive
 
     abbr gi 'git init' # Create an empty Git repository
 
-    abbr gignore 'git update-index --assume-unchanged'
-    abbr gunignore 'git update-index --no-assume-unchanged'
-    abbr gignored "git ls-files -v | grep '^[[:lower:]]' | awk '{print \$2}'"
-
     abbr gfg 'git ls-files | grep'
 
     abbr glg 'git log --stat'
