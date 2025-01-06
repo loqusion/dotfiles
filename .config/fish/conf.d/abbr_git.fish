@@ -253,8 +253,37 @@ if status --is-interactive
 
     abbr gwch 'git whatchanged -p --abbrev-commit --pretty=medium'
 
-    abbr gwip 'git add -A; git rm (git ls-files --deleted) 2>/dev/null; git commit --no-verify --no-gpg-sign --message "--wip-- [skip ci]"'
-    abbr gunwip 'git log --max-count=1 | grep -q -c "\--wip--" && git reset HEAD~1'
+    function gwip --description 'Create or update WIP commit containing working tree changes'
+        git add --all; or return
+        if git diff --quiet --exit-code --cached HEAD
+            return 0
+        end
+
+        git log --max-count=1 --pretty='format:%s' | grep --quiet --count '^--wip--'
+        if test $status -eq 0
+            set -l commit_output \
+                (git commit --no-verify --no-gpg-sign --amend --no-edit --allow-empty); or return
+            set -l parent (git rev-parse HEAD^); or return
+            if git diff --quiet --exit-code $parent HEAD
+                echo 'WIP commit is empty; removing' >&2
+                git reset 'HEAD~1'
+            else
+                echo $commit_output
+            end
+        else
+            git commit --no-verify --no-gpg-sign --message '--wip-- [skip ci]'
+        end
+    end
+    function gunwip --description 'Reset current HEAD to commit before WIP'
+        set -l commit_subject (git log --max-count=1 --pretty='format:%s'); or return
+        echo $commit_subject | grep --quiet --count '^--wip--'
+        if test $status -eq 0
+            git reset 'HEAD~1'
+        else
+            echo 'error: no WIP commit found' >&2
+            return 169
+        end
+    end
 
     abbr gwt 'git worktree'
     abbr gwta 'git worktree add'
