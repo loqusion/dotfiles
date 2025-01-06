@@ -35,15 +35,15 @@ opt.tabstop = 4 -- Default tab width 4 spaces
 opt.textwidth = 120 -- Maximum width of text
 opt.virtualedit = "block" -- Allow positioning cursor where there is no text in visual block mode
 
-local normal_font = "JetBrainsMono NF"
-local italic_font = "Maple Mono SC NF"
+local normal_font = "SauceCodePro NF"
+local cjk_font = "Noto Serif CJK JP"
 local emoji_font = "Twemoji"
 local font_options = {
-  "h13",
+  "h12.5",
 }
 o.guifont = vim.fn.join({
   normal_font,
-  italic_font,
+  cjk_font,
   emoji_font,
 }, ",") .. ":" .. vim.fn.join(font_options, ":")
 o.linespace = -2
