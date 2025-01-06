@@ -9,36 +9,45 @@ if status --is-interactive
 
     abbr g git
 
-    abbr ga 'git add --verbose'
-    abbr gaa 'git add --all --verbose'
-    abbr gapa 'git add --patch --verbose'
-    abbr gau 'git add --update --verbose'
+    abbr ga 'git add -v' # Add file contents to the index
+    abbr ga! 'git add -v --force' # Allow adding otherwise ignored files
+    abbr gapa 'git add -v --patch' # Interactively choose hunks and add them to the index
+    abbr gae 'git add -v --edit' # Edit the patch before applying it
+    abbr gau 'git add -v --update' # Update the index just with tracked files
+    abbr gaa 'git add -v --all' # Update the index to match the working tree
 
-    abbr gap 'git apply'
-    abbr gapt 'git apply --3way'
+    abbr gap 'git apply -v ' # Apply a patch to files
+    abbr gaps 'git apply --stat' # Output diffstat without applying
+    abbr gapc 'git apply -v --check' # Check if the patch is applicable without applying
+    abbr gap3 'git apply -v --3way' # 3-way merge, implies --index
 
-    abbr gb 'git branch'
-    abbr gba 'git branch --all'
-    abbr gbd 'git branch --delete'
-    abbr gbD 'git branch --delete --force'
-    abbr gbda 'git branch --no-color --merged | grep -vE "^([+*]|\s*($(git_main_branch)|$(git_develop_branch))\s*\$)" | xargs git branch --delete 2>/dev/null'
-    function gbg -d 'gone branches???'
-        git branch -vv | grep ": gone\]"
-    end
-    abbr gbg 'git branch -vv | grep ": gone\]"'
-    alias gbgd "set res (gbg | awk '{print \$1}') && test -n \$res && echo \$res | xargs git branch -d"
-    alias gbgD "set res (gbg | awk '{print \$1}') && test -n \$res && echo \$res | xargs git branch -D"
-    abbr gbnm 'git branch --no-merged'
-    abbr gbr 'git branch --remote'
-    abbr gbdr 'git branch --delete --remote'
+    abbr gb 'git branch' # Branch operations
+    abbr gbd 'git branch --delete' # Delete a branch
+    abbr gbd! 'git branch --delete --force' # Delete a branch (force)
+    abbr gbm 'git branch --move' # Move/rename a branch
+    abbr gbm! 'git branch --move --force' # Move/rename a branch (force)
+    abbr gbc 'git branch --copy' # Copy a branch
+    abbr gbc! 'git branch --copy --force' # Copy a branch (force)
+    abbr gbl 'git branch -vv --list' # List branches
+    abbr gbla 'git branch -vv --all --list' # List both remote-tracking branches and local branches
+    # abbr gbda 'git branch --merged | grep -vE "^([+*]|\s*($(git_main_branch)|$(git_develop_branch))\s*\$)" | xargs git branch --delete 2>/dev/null'
+    # FIXME: These are too naive
+    # function gbg -d 'Git: Print local branches whose upstream branch no longer exists'
+    #     git branch -vv | grep ": gone\]"
+    # end
+    # abbr gbg 'git branch -vv | grep ": gone\]"'
+    # alias gbgd "set res (gbg | awk '{print \$1}') && test -n \$res && echo \$res | xargs git branch -d"
+    # alias gbgD "set res (gbg | awk '{print \$1}') && test -n \$res && echo \$res | xargs git branch -D"
 
-    abbr gbl 'git blame -w'
-
-    abbr gbs 'git bisect'
-    abbr gbss 'git bisect start'
-    abbr gbsb 'git bisect bad'
-    abbr gbsg 'git bisect good'
-    abbr gbsr 'git bisect reset'
+    abbr gbs 'git bisect' # Use binary search to find the commit that introduced a changed property (e.g. a bug)
+    abbr gbss 'git bisect start' # Start a bisect session
+    abbr gbsb 'git bisect bad' # Mark a commit as 'bad'
+    abbr gbsn 'git bisect new' # Mark a commit as 'new' (same as 'bad')
+    abbr gbsg 'git bisect good' # Mark a commit as 'good'
+    abbr gbso 'git bisect old' # Mark a commit as 'old' (same as 'good')
+    abbr gbsl 'git bisect log' # Show what has been done so far
+    abbr gbsrep 'git bisect replay' # Replay bisect actions from a logfile
+    abbr gbsr 'git bisect reset' # Clean up bisect state and return to original HEAD
 
     abbr gc 'git commit -v'
     abbr gc! 'git commit -v --amend'
@@ -57,7 +66,8 @@ if status --is-interactive
 
     abbr gcf 'git config --list'
 
-    abbr gcl 'git clone --recurse-submodules'
+    abbr gcl 'git clone' # Clone a repository into a new directory
+    abbr gclr 'git clone --recurse-submodules' # Clone, then initialize and clone submodules
     abbr gclean 'git clean --interactive -d'
     abbr gpristine 'git reset --hard && git clean -dffx'
 
@@ -79,7 +89,6 @@ if status --is-interactive
     abbr gd 'git diff'
     abbr gdw 'git diff --word-diff'
     abbr gds 'git diff --staged'
-    abbr gds 'git diff --staged --word-diff'
     abbr gdt 'git diff-tree --no-commit-id --name-only -r'
     abbr gdup 'git diff @{upstream}'
 
@@ -91,21 +100,11 @@ if status --is-interactive
     abbr gfa 'git fetch --all --prune --jobs=10'
     abbr gfo 'git fetch origin'
 
-    # ggf
-    # ggfl
-    # ggl
-    # ggp
-    # ggpnp
-    # ggpull
-    # ggpur
-    # ggpush
-    # ggsup
-    # ggu
-    # gpsup
+    abbr ghh 'git help' # Display help information about Git
+    abbr ghha 'git help --all' # Print a list of all available commands
+    abbr ghhg 'git help --guides' # Print a list of the Git concept guides
 
-    abbr ghh 'git help'
-
-    abbr gi 'git init'
+    abbr gi 'git init' # Create an empty Git repository
 
     abbr gignore 'git update-index --assume-unchanged'
     abbr gunignore 'git update-index --no-assume-unchanged'
@@ -141,26 +140,27 @@ if status --is-interactive
     abbr gpf 'git push --force-with-lease --force-if-includes' # Safe --force
     abbr gpf! 'git push --force' # Force remote repository to lose commits if remote ref is not an ancestor of local ref
     abbr gpt 'git push --tags' # Push tags
-    abbr gptf 'git push --tags --force-with-lease --force-if-includes'
-    abbr gptf! 'git push --tags --force'
+    abbr gptf 'git push --tags --force-with-lease --force-if-includes' # Force push tags
+    abbr gptf! 'git push --tags --force' # Force push tags (really mean it)
     abbr gpoat 'git push origin --all && git push origin --tags' # Push all branches and tags to origin
-    abbr gpoatf 'git push origin --all --force-with-lease --force-if-includes && git push origin --tags --force-with-lease --force-if-includes'
-    abbr gpoatf! 'git push origin --all --force && git push origin --tags --force'
+    abbr gpoatf 'git push origin --all --force-with-lease --force-if-includes && git push origin --tags --force-with-lease --force-if-includes' # Force push all
+    abbr gpoatf! 'git push origin --all --force && git push origin --tags --force' # Force push all (really mean it)
     abbr gpod 'git push origin --delete' # Remove listed refs in origin
     abbr gpop 'git push origin --prune' # Remove remote branches in origin without a local counterpart
 
+    # TODO: Expand git pull abbrs
     abbr gl 'git pull' # Fetch from and integrate with another repository or local branch
     abbr gpl 'git pull'
-    abbr gplo 'git pull origin'
-    abbr gplom 'git pull origin (git_main_branch)'
-    abbr gploc 'git pull origin (git_current_branch)'
-    abbr gplu 'git pull upstream'
-    abbr gplum 'git pull upstream (git_main_branch)'
-    abbr gpluc 'git pull upstream (git_current_branch)'
+    abbr gplo 'git pull origin' # Pull from origin
+    abbr gplom 'git pull origin (git_main_branch)' # Pull main branch from origin
+    abbr gploc 'git pull origin (git_current_branch)' # Pull current branch from origin
+    abbr gplu 'git pull upstream' # Pull from upstream
+    abbr gplum 'git pull upstream (git_main_branch)' # Pull main branch from upstream
+    abbr gpluc 'git pull upstream (git_current_branch)' # Pull current branch from upstream
 
     abbr gr 'git remote -v' # Manage set of tracked repositories
     abbr gra 'git remote add' # Add a remote
-    abbr grau 'git remote add upstream'
+    abbr grau 'git remote add upstream' # Add a remote named upstream
     abbr grrn 'git remote rename' # Rename a remote
     abbr grrm 'git remote remove' # Remove a remote
     abbr gru 'git remote update' # Fetch updates for remotes in the repository
@@ -180,14 +180,14 @@ if status --is-interactive
 
     abbr grev 'git revert' # Revert commit changes, and record some new commits that record them
 
+    abbr grm 'git rm' # Remove files from the working tree and index
+    abbr grmc 'git rm --cached' # Only remove files from index
+
     abbr grs 'git reset' # Copy entries to the index, or reset current branch head
     abbr grss 'git reset --soft' # Reset current branch head, don't touch index or working tree
     abbr grs! 'git reset --hard' # Reset current branch head, index, and working tree
     abbr grso 'git reset origin/(git_current_branch)' # Reset to origin branch corresponding to current
     abbr grso! 'git reset origin/(git_current_branch) --hard' # Hard reset to origin branch corresponding to current
-
-    abbr grm 'git rm' # Remove files from the working tree and index
-    abbr grmc 'git rm --cached' # Only remove files from index
 
     abbr grt 'git restore' # Restore working tree from index
     abbr grts 'git restore --staged' # Restore index from HEAD
@@ -204,7 +204,24 @@ if status --is-interactive
 
     abbr gsh 'git show' # Show various types of objects
 
-    abbr gst 'git stash push' # Stash the changes in a dirty working directory
+    abbr gsm 'git submodule' # Initialize, update, or inspect submodules
+    abbr gsma 'git submodule add' # Add a repository as a submodule
+    abbr gsmi 'git submodule update --init --recursive' # Initialize submodules, then update working tree with what the superproject expects
+    abbr gsmd 'git submodule deinit' # Unregister submodules by removing from .git/config and worktree
+    abbr gsmd! 'git submodule deinit --force' # Unregister submodules (force)
+    abbr gsmda 'git submodule deinit --all' # Unregister all submodules
+    abbr gsmda! 'git submodule deinit --all --force' # Unregister all submodules (force)
+    abbr gsmu 'git submodule update --remote' # Integrate changes from upstream project
+    abbr gsmsb 'git submodule set-branch --branch' # Set remote tracking branch for submodule
+    abbr gsmsd 'git submodule set-branch --default' # Set remote tracking branch for submodule to remote HEAD
+    abbr gsms 'git submodule summary' # Summary of commits made in working tree since a commit (default: HEAD)
+    abbr gsmsc 'git submodule summary --cached' # Summary of commits made in index since a commit (default: HEAD)
+    abbr gsmsf 'git submodule summary --files' # Summary of commits made in working tree since index
+    abbr gsmf 'git submodule foreach' # Evaluate an arbitrary shell command in each checked out submodule
+    abbr gsmf 'git submodule foreach --recursive' # Evaluate an arbitrary shell command in each checked out submodule (recursive)
+    abbr gsmabs 'git submodule absorbgitdirs' # Convert cloned subdirectories into submodules
+
+    abbr gst 'git stash' # Stash the changes in a dirty working directory
     abbr gstu 'git stash push --include-untracked' # All untracked files are also stashed
     abbr gstuo 'git stash push; git stash push --include-untracked; git stash pop stash@{1}' # Stash only untracked files
     abbr gstall 'git stash push --all' # All ignored and untracked files are also stashed
@@ -215,16 +232,13 @@ if status --is-interactive
     abbr gstb 'git stash branch' # Create and switch to a branch, popping a stash entry
     abbr gstd 'git stash drop' # Remove a single stash entry
 
-    abbr gsba 'git submodule add'
-    abbr gsbi 'git submodule init'
-    abbr gsbu 'git submodule update'
-    abbr gsbui 'git submodule update --init'
-    abbr gsbur 'git submodule update --remote'
-
-    abbr gsw 'git switch'
-    abbr gswc 'git switch --create'
-    abbr gswm 'git switch (git_main_branch)'
-    abbr gswd 'git switch (git_develop_branch)'
+    abbr gsw 'git switch' # Switch branches
+    abbr gswc 'git switch --create' # Create a new branch and switch to it
+    abbr gswc! 'git switch --force-create' # If branch exists, it will be reset to start point
+    abbr gswm 'git switch (git_main_branch)' # Switch to main branch
+    abbr gswd 'git switch (git_develop_branch)' # Switch to dev branch
+    abbr gswd 'git switch --detach' # Switch to a commit for inspection and discardable experiments
+    abbr gswr 'git switch --recurse-submodules' # Update the content of all active submodules
 
     abbr gt 'git tag'
     abbr gts 'git tag --sign'
@@ -251,12 +265,6 @@ if status --is-interactive
     abbr gwtl 'git worktree list'
     abbr gwtmv 'git worktree move'
     abbr gwtrm 'git worktree remove'
-
-    abbr gam 'git am'
-    abbr gamc 'git am --continue'
-    abbr gams 'git am --skip'
-    abbr gama 'git am --abort'
-    abbr gamscp 'git am --show-current-patch'
 
     abbr gx 'git absorb'
     abbr gxr 'git absorb --and-rebase'
