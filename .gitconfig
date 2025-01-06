@@ -4,41 +4,41 @@
 [user]
 	name = loqusion
 	email = 38332081+loqusion@users.noreply.github.com
-[init]
-	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [interactive]
 	diffFilter = delta --color-only
-[pull]
-	rebase = true
-	ff = only
-[push]
-	autoSetupRemote = true
-[merge]
-	conflictstyle = diff3
-	tool = nvimmerge
-[mergetool "nvimmerge"]
-	cmd = nvim +DiffviewOpen
+[checkout]
+	workers = 0
 [diff]
 	colorMoved = default
 	tool = nvimdiff
 [diff "lockb"]
 	textconv = bun
 	binary = true
+[difftool "nvimdiff"]
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[fetch]
+	parallel = 0
+[init]
+	defaultBranch = main
+[merge]
+	conflictstyle = diff3
+	tool = nvimmerge
+[mergetool "nvimmerge"]
+	cmd = nvim +DiffviewOpen
+[pull]
+	rebase = true
+	ff = only
+[push]
+	autoSetupRemote = true
+[stash]
+	showIncludeUntracked = true
+[status]
+	short = true
 [delta]
 	navigate = true
 	light = false
-[difftool "nvimdiff"]
-	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[checkout]
-	workers = 0
-[fetch]
-	parallel = 0
-[status]
-	short = true
-[stash]
-	showIncludeUntracked = true
