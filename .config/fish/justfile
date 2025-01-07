@@ -1,0 +1,19 @@
+test:
+    #!/usr/bin/env fish
+    set result 0
+    set is_first_test true
+    for test_file in ./tests/test_*.fish
+        if test $is_first_test = true
+            set is_first_test false
+        else
+            echo
+        end
+
+        fish ./test_file_harness.fish (realpath $test_file)
+
+        if test $status -ne 0
+            set result 1
+        end
+    end
+
+    return $result
