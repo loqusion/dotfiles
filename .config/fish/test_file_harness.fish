@@ -7,6 +7,8 @@ if test -z (string trim $test_file)
     return 1
 end
 
+set -gx FISH_CONFIG_DIR (realpath $dirname)
+
 source $dirname/tests/utils.fish
 source $test_file
 
@@ -74,6 +76,8 @@ or begin
     return $before_all_status
 end
 
+# WARNING: Don't try to run tests concurrently. Some test hooks use shared
+# mutable state, which can cause race conditions.
 set result 0
 for test in $tests
     __try_hook before_each \
