@@ -1,5 +1,5 @@
 test:
-    #!/usr/bin/env fish
+    #!/usr/bin/env -S fish --no-config
     set result 0
     set is_first_test true
     for test_file in ./tests/test_*.fish
@@ -9,7 +9,7 @@ test:
             echo
         end
 
-        fish ./test_file_harness.fish (realpath $test_file)
+        fish --no-config ./test_file_harness.fish (realpath $test_file)
 
         if test $status -ne 0
             set result 1
