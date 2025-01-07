@@ -51,9 +51,10 @@ function test_gunwip_works
     assert_cmd init; or return
 
     gunwip
-    assert_cmd_fail 'expected gunwip to fail when working tree is clean'; or return
-    git log --max-count=1 --pretty='format:%s' | grep -q '^initial commit$'
-    assert_cmd 'expected initial commit message to be intact'; or return
+    assert_cmd_fail 'expected gunwip to fail when there is no WIP commit'; or return
+    test "$(git rev-list --max-count=1 --no-commit-header --pretty='format:%s' HEAD)" \
+        = "initial commit"
+    assert_cmd 'expected HEAD to be initial commit'; or return
 
     echo wip >wip.txt
     gwip
@@ -61,6 +62,12 @@ function test_gunwip_works
 
     gunwip
     assert_cmd 'expected gunwip to succeed'; or return
-    # TODO: add assertions
-    # git diff --cached HEAD
+
+    test "$(git rev-list --max-count=1 --no-commit-header --pretty='format:%s' HEAD)" \
+        = "initial commit"
+    assert_cmd 'expected HEAD to be initial commit'; or return
+    test "$(git ls-files --others --exclude-standard)" = "wip.txt"
+    assert_cmd 'expected untracked files to only consist of wip.txt'; or return
+    test (git diff-index --cached --name-only HEAD | count) -eq 0
+    assert_cmd 'expected index to be identical to HEAD'; or return
 end
