@@ -130,7 +130,7 @@ function assert_snapshot -a name -a actual
 
         return $snapshot_status
     else
-        echo -n $actual >$snapshot_file
+        echo -n $actual >$snapshot_file; or return
         echo "wrote snapshot to $(realpath --relative-to=$test_dir/.. $snapshot_file)"
     end
 end
