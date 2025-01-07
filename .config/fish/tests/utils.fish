@@ -36,7 +36,7 @@ function assert_cmd -a msg
 end
 
 function assert_cmd_fail -a msg
-    set cmd_status $status
+    set -l cmd_status $status
     set -l rest_args $argv[2..-1]
 
     if test $cmd_status -eq 0
@@ -114,9 +114,9 @@ function assert_snapshot -a name -a actual
 
     set -l snapshot_file $snapshot_dir/$name.snap
     if test -f $snapshot_file
-        set expected "$(cat $snapshot_file)"; or return
+        set -l expected "$(cat $snapshot_file)"; or return
         diff -q (echo "$actual" | psub) (echo "$expected" | psub) &>/dev/null
-        set snapshot_status $status
+        set -l snapshot_status $status
 
         if test $snapshot_status -ne 0
             set -l caller_site (__caller_site 3)
