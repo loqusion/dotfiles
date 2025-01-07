@@ -4,12 +4,41 @@ function __caller_site -a depth
 
     set -l index (math $depth \* 2 + 2)
     set -l called_on_line $stack_trace[$index]
+
+    function bug_stack_trace_does_not_match_regex \
+        --inherit-variable index \
+        --inherit-variable called_on_line \
+        --inherit-variable stack_trace
+        echo "$(set_color yellow)warning$(set_color normal): stack trace line $index doesn't match regex:" >&2
+        echo "$called_on_line" >&2
+        echo >&2
+        echo "Full stack trace:" >&2
+        string join \n $stack_trace >&2
+        echo >&2
+        echo "This is a bug." >&2
+    end
+
+    function bug_index_out_of_bounds \
+        --inherit-variable index \
+        --inherit-variable stack_trace
+        echo "$(set_color yellow)warning$(set_color normal): index out of bounds: $index" >&2
+        echo "Stack trace:" >&2
+        string join \n $stack_trace >&2
+        echo >&2
+        echo "This is a bug." >&2
+    end
+
     if string length -q $called_on_line
-        string match -rq 'called on line (?<line>\d+) of file (?<file>.*)' -- "$called_on_line"
+        string match -q --regex 'called on line (?<line>\d+) of file (?<file>.*)' -- "$called_on_line"; or begin
+            bug_stack_trace_does_not_match_regex
+            return 1
+        end
         set file (echo $file | string replace --regex '^~/' $HOME/)
-        set file (realpath --relative-to=$test_dir/.. $file)
+        set normalized_file (realpath --relative-to=$test_dir/.. $file)
+        and set file $normalized_file
         echo "$file:$line"
     else
+        bug_index_out_of_bounds
         return 1
     end
 end
