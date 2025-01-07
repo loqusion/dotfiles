@@ -14,15 +14,16 @@ function __caller_site -a depth
     end
 end
 
+function __print_caller_site -a caller_site
+    echo $caller_site
+end
+
 function assert_cmd -a msg
     set -l cmd_status $status
     set -l rest_args $argv[2..-1]
 
     if test $cmd_status -ne 0
-        set -l caller_site (__caller_site 3)
-        if string length -q $caller_site
-            echo "$caller_site"
-        end
+        set -l caller_site (__caller_site 3); and __print_caller_site $caller_site
 
         if string length -q $msg
             printf "assertion failed: $msg\n" $rest_args
@@ -40,16 +41,14 @@ function assert_cmd_fail -a msg
     set -l rest_args $argv[2..-1]
 
     if test $cmd_status -eq 0
-        set -l caller_site (__caller_site 3)
-        if string length -q $caller_site
-            echo "$caller_site"
-        end
+        set -l caller_site (__caller_site 3); and __print_caller_site $caller_site
 
         if string length -q $msg
             printf "assertion failed: $msg\n" $rest_args
         else
             printf "assertion failed: expected command to fail\n"
         end
+
         return 1
     else
         return 0
@@ -60,10 +59,7 @@ function assert_eq -a left -a right -a msg
     set -l rest_args $argv[4..-1]
 
     if test "$left" != "$right"
-        set -l caller_site (__caller_site 3)
-        if string length -q $caller_site
-            echo "$caller_site"
-        end
+        set -l caller_site (__caller_site 3); and __print_caller_site $caller_site
 
         if string length -q $msg
             printf "assertion `left == right` failed: $msg\n" $argv
@@ -72,6 +68,7 @@ function assert_eq -a left -a right -a msg
         end
         echo "  left: $left"
         echo " right: $right"
+
         return 1
     end
 end
@@ -80,10 +77,7 @@ function assert_ne -a left -a right -a msg
     set -l rest_args $argv[4..-1]
 
     if test "$left" = "$right"
-        set -l caller_site (__caller_site 3)
-        if string length -q $caller_site
-            echo "$caller_site"
-        end
+        set -l caller_site (__caller_site 3); and __print_caller_site $caller_site
 
         if string length -q $msg
             printf "assertion `left != right` failed: $msg\n" $argv
@@ -92,6 +86,7 @@ function assert_ne -a left -a right -a msg
         end
         echo "  left: $left"
         echo " right: $right"
+
         return 1
     end
 end
@@ -119,10 +114,7 @@ function assert_snapshot -a name -a actual
         set -l snapshot_status $status
 
         if test $snapshot_status -ne 0
-            set -l caller_site (__caller_site 3)
-            if string length -q $caller_site
-                echo "$caller_site"
-            end
+            set -l caller_site (__caller_site 3); and __print_caller_site $caller_site
 
             echo "snapshot assertion for $name failed"
             __show_diff "$expected" "$actual"
