@@ -11,7 +11,7 @@ source $dirname/tests/utils.fish
 source $test_file
 
 set functions (functions --names)
-set tests (string join0 $functions | grep -z '^test_' | string split0)
+set unfiltered_tests (string join0 $functions | grep -z '^test_' | string split0)
 set before_all (string join0 $functions | grep -z '^before_all$' | string split0)
 set before_each (string join0 $functions | grep -z '^before_each$' | string split0)
 set after_all (string join0 $functions | grep -z '^after_all$' | string split0)
@@ -54,6 +54,16 @@ function __try_hook -a hook_name -a error_fmt
         printf $error_fmt $hook_status $rest_args >&2
         return $hook_status
     end
+end
+
+if not set -q TEST_FILTER
+    set -gx TEST_FILTER '.'
+end
+set tests (string join0 $unfiltered_tests | grep -zE "$TEST_FILTER" | string split0)
+
+if test (count $tests) -eq 0
+    echo 'No tests matched environment variable TEST_FILTER' >&2
+    return 0
 end
 
 __try_hook before_all \
