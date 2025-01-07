@@ -85,11 +85,9 @@ for test in $tests
     end
 
     begin
-        begin
-            eval $test
-            set test_status $status
-        end 2>| read --null stderr
-    end | read --null stdout
+        eval $test
+        set test_status $status
+    end &| read --null test_output
 
     __try_hook after_each \
         "test $test ... $(set_color red)FAILED$(set_color normal): after_each failed with exit code %d\n"
@@ -105,16 +103,8 @@ for test in $tests
         echo "test $test ... $(set_color red)FAILED$(set_color normal)"
     end
 
-    if set -q TEST_NOCAPTURE
-        if string length -q $stdout
-            echo "stdout:"
-            echo "$stdout"
-        end
-
-        if string length -q $stderr
-            echo "stderr:"
-            echo $stderr
-        end
+    if set -q TEST_NOCAPTURE; and string length -q $test_output
+        echo $test_output
     end
 end
 
