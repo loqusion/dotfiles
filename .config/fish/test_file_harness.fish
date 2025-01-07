@@ -88,6 +88,9 @@ for test in $tests
         continue
     end
 
+    # FIXME: Currently, there's no way to differentiate assertion output from
+    # regular output. This could be done with file descriptors, but fish has
+    # no way to do this unlike bash.
     if set -q TEST_NOCAPTURE
         eval $test
         set test_status $status
