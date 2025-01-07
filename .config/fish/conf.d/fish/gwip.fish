@@ -9,6 +9,7 @@ function __git_abbr_reset_or_delete_head
         # git commit --no-verify --no-gpg-sign --amend --no-edit --allow-empty --message 'empty commit'
     end
 end
+
 function gwip --description 'Create or update WIP commit containing working tree changes'
     git add --all; or return
     if git rev-parse --quiet --verify HEAD >/dev/null
@@ -31,6 +32,7 @@ function gwip --description 'Create or update WIP commit containing working tree
         git commit --no-verify --no-gpg-sign --message '--wip-- [skip ci]'
     end
 end
+
 function gunwip --description 'Reset current HEAD to commit before WIP'
     set -l commit_subject (git log --max-count=1 --pretty='format:%s'); or return
     if echo $commit_subject | grep --quiet --count '^--wip--'
