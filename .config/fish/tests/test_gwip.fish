@@ -20,11 +20,12 @@ end
 function test_smoke
     __init
     assert_cmd init; or return
+
     git log | string length -q
     assert_cmd 'log message should not be empty'
 end
 
-function test_gwip
+function test_gwip_works
     __init
     assert_cmd init; or return
 
@@ -45,7 +46,7 @@ function test_gwip
         'only change is the text wip'; or return
 end
 
-function test_gunwip
+function test_gunwip_works
     __init
     assert_cmd init; or return
 
