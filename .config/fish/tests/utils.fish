@@ -131,7 +131,9 @@ function __show_diff -a expected -a actual
     end
 end
 
-function assert_snapshot -a name -a actual
+function assert_snapshot -a name -a actual -a msg
+    set -l rest_args $argv[4..-1]
+
     set -l test_dir (status dirname)
     set -l snapshot_dir $test_dir/snapshots
     mkdir --parents --mode=755 $snapshot_dir; or return
@@ -145,7 +147,11 @@ function assert_snapshot -a name -a actual
         if test $snapshot_status -ne 0
             set -l caller_site (__caller_site 3); and __print_caller_site $caller_site
 
-            echo "snapshot assertion for $name failed"
+            if string length -q $msg
+                printf "snapshot assertion for $name failed: $msg\n" $rest_args
+            else
+                printf "snapshot assertion for $name failed\n"
+            end
             __show_diff "$expected" "$actual"
         end
 

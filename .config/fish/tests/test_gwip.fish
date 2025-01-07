@@ -41,8 +41,8 @@ function test_gwip
     assert_snapshot gwip_difftree \
         "$(git diff-tree --no-commit-id --patch HEAD |
             grep -vE '^index [[:alnum:]]*\.\.[[:alnum:]]*$' |
-            grep -vE '^new file mode [[:digit:]]*$')"
-    assert_cmd 'only change is the text wip'; or return
+            grep -vE '^new file mode [[:digit:]]*$')" \
+        'only change is the text wip'; or return
 end
 
 function test_gunwip
