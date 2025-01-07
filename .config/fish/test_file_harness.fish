@@ -49,7 +49,11 @@ function __try_hook -a hook_name -a error_fmt
         return 0
     end
 
-    eval $hook_name
+    if set -q TEST_NOCAPTURE
+        eval $hook_name
+    else
+        eval $hook_name &>/dev/null
+    end
     set -l hook_status $status
 
     if test $hook_status -ne 0
