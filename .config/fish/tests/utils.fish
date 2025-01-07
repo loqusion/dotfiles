@@ -1,8 +1,29 @@
+function __caller_site -a depth
+    set -l stack_trace (status stack-trace)
+    set -l test_dir (status dirname)
+
+    set -l index (math $depth \* 2 + 2)
+    set -l called_on_line $stack_trace[$index]
+    if string length -q $called_on_line
+        string match -rq 'called on line (?<line>\d+) of file (?<file>.*)' -- "$called_on_line"
+        set file (echo $file | string replace --regex '^~/' $HOME/)
+        set file (realpath --relative-to=$test_dir/.. $file)
+        echo "$file:$line"
+    else
+        return 1
+    end
+end
+
 function assert_cmd -a msg
-    set cmd_status $status
+    set -l cmd_status $status
     set -l rest_args $argv[2..-1]
 
     if test $cmd_status -ne 0
+        set -l caller_site (__caller_site 3)
+        if string length -q $caller_site
+            echo "$caller_site"
+        end
+
         if string length -q $msg
             printf "assertion failed: $msg\n" $rest_args
         else
@@ -19,6 +40,11 @@ function assert_cmd_fail -a msg
     set -l rest_args $argv[2..-1]
 
     if test $cmd_status -eq 0
+        set -l caller_site (__caller_site 3)
+        if string length -q $caller_site
+            echo "$caller_site"
+        end
+
         if string length -q $msg
             printf "assertion failed: $msg\n" $rest_args
         else
@@ -34,6 +60,11 @@ function assert_eq -a left -a right -a msg
     set -l rest_args $argv[4..-1]
 
     if test "$left" != "$right"
+        set -l caller_site (__caller_site 3)
+        if string length -q $caller_site
+            echo "$caller_site"
+        end
+
         if string length -q $msg
             printf "assertion `left == right` failed: $msg\n" $argv
         else
@@ -49,6 +80,11 @@ function assert_ne -a left -a right -a msg
     set -l rest_args $argv[4..-1]
 
     if test "$left" = "$right"
+        set -l caller_site (__caller_site 3)
+        if string length -q $caller_site
+            echo "$caller_site"
+        end
+
         if string length -q $msg
             printf "assertion `left != right` failed: $msg\n" $argv
         else
@@ -83,6 +119,11 @@ function assert_snapshot -a name -a actual
         set snapshot_status $status
 
         if test $snapshot_status -ne 0
+            set -l caller_site (__caller_site 3)
+            if string length -q $caller_site
+                echo "$caller_site"
+            end
+
             echo "snapshot assertion for $name failed"
             __show_diff "$expected" "$actual"
         end
