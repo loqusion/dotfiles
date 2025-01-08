@@ -32,6 +32,7 @@ function gunwip --description 'Reset current HEAD to commit before WIP'
         if set -l parent_hash (git rev-parse --quiet --verify 'HEAD^')
             git reset $parent_hash
         else
+            echo 'warning: refusing to delete root commit, amending it to blank state (working tree will remain intact)' >&2
             # `git ls-files -z ... | git rm ... --pathspec-from-file='-' --pathspec-file-nul`
             # doesn't work for some reason
             git ls-files -z --cached --deduplicate ':/' |
