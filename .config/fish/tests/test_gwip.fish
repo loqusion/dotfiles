@@ -29,7 +29,7 @@ function test_gwip_works
     __init
     assert_cmd init; or return
 
-    echo wip >wip.txt
+    echo wip >wip.txt; or return
     gwip
     assert_cmd 'gwip should return 0'; or return
 
@@ -56,7 +56,7 @@ function test_gunwip_works
         = "initial commit"
     assert_cmd 'expected HEAD to be initial commit'; or return
 
-    echo wip >wip.txt
+    echo wip >wip.txt; or return
     gwip
     assert_cmd 'expected gwip to succeed'; or return
 
