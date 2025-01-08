@@ -1,15 +1,3 @@
-function __git_abbr_reset_or_delete_head
-    if set -l parent_hash (git rev-parse --quiet --verify 'HEAD^')
-        git reset $parent_hash
-    else
-        # WARN: This makes recovery using HEAD@{n} temporarily impossible. Find an alternative?
-        git update-ref -d HEAD
-        git reset
-        # echo 'warning: TODO' >&2
-        # git commit --no-verify --no-gpg-sign --amend --no-edit --allow-empty --message 'empty commit'
-    end
-end
-
 function gwip --description 'Create or update WIP commit containing working tree changes'
     git add --all; or return
     if git rev-parse --quiet --verify HEAD >/dev/null
@@ -23,9 +11,9 @@ function gwip --description 'Create or update WIP commit containing working tree
 
         if git diff-tree -r --root --no-commit-id --name-only HEAD | grep --quiet --count '.'
             echo $commit_output
-        else
-            echo 'WIP commit is empty; removing' >&2
-            __git_abbr_reset_or_delete_head
+        else if set -l parent_hash (git rev-parse --quiet --verify 'HEAD^')
+            echo 'WIP commit is empty; resetting to parent' >&2
+            git reset $parent_hash
         end
     else
         # Either git log failed (no commits), or grep failed (last commit didn't match)
@@ -41,7 +29,15 @@ function gunwip --description 'Reset current HEAD to commit before WIP'
     end | read --function commit_subject
 
     if echo $commit_subject | grep --quiet --count '^--wip--'
-        __git_abbr_reset_or_delete_head
+        if set -l parent_hash (git rev-parse --quiet --verify 'HEAD^')
+            git reset $parent_hash
+        else
+            # `git ls-files -z ... | git rm ... --pathspec-from-file='-' --pathspec-file-nul`
+            # doesn't work for some reason
+            git ls-files -z --cached --deduplicate ':/' |
+                xargs -0 -- git rm --quiet --cached --
+            git commit --no-verify --no-gpg-sign --amend --no-edit --allow-empty
+        end
     else
         echo 'error: no WIP commit found' >&2
         return 169
