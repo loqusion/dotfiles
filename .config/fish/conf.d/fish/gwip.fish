@@ -35,7 +35,7 @@ function gunwip --description 'Reset current HEAD to commit before WIP'
             # `git ls-files -z ... | git rm ... --pathspec-from-file='-' --pathspec-file-nul`
             # doesn't work for some reason
             git ls-files -z --cached --deduplicate ':/' |
-                xargs -0 --no-run-if-empty -- git rm --quiet --cached --
+                xargs -0 --no-run-if-empty -- git rm --quiet --cached --; or return
             git commit --no-verify --no-gpg-sign --amend --no-edit --allow-empty
         end
     else
