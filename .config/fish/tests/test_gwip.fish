@@ -98,6 +98,8 @@ function test_gunwip_works
     gunwip
     assert_cmd; or return
 
+    test "$(git rev-list --count --grep='^--wip--' HEAD)" -eq 0
+    assert_cmd 'expected no WIP commits'
     test "$(git rev-list --max-count=1 --no-commit-header --pretty='format:%s' HEAD)" \
         = "initial commit"
     assert_cmd 'expected HEAD to be initial commit'; or return
