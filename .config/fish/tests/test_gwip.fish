@@ -44,6 +44,18 @@ function test_gwip_works
         'expected commit to only include WIP changes'; or return
 end
 
+function test_gwip_ignores_clean_working_tree
+    __init
+    assert_cmd; or return
+
+    gwip
+    assert_cmd; or return
+
+    test "$(git rev-list --max-count=1 --no-commit-header --pretty='format:%s' HEAD)" \
+        = "initial commit"
+    assert_cmd 'expected HEAD to be initial commit'; or return
+end
+
 function test_gwip_amends_previous_wip_commit
     __init
     assert_cmd; or return
