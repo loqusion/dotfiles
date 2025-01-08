@@ -25,7 +25,7 @@ function test_smoke
     assert_cmd 'log message should not be empty'
 end
 
-function test_gwip_works
+function test_gwip_creates_wip_commit
     __init
     assert_cmd; or return
 
@@ -104,7 +104,7 @@ function test_gwip_removes_previous_wip_commit_if_empty
     assert_cmd 'expected index to be identical to working tree'; or return
 end
 
-function test_gunwip_works
+function test_gunwip_resets_wip_commit
     __init
     assert_cmd; or return
 
