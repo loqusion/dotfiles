@@ -31,7 +31,7 @@ function test_gwip_works
 
     echo wip >wip.txt; or return
     gwip
-    assert_cmd 'gwip should return 0'; or return
+    assert_cmd 'expected gwip to succeed'; or return
 
     test (git ls-files --others --exclude-standard | count) -eq 0
     assert_cmd 'should be no untracked files'; or return
