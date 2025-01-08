@@ -46,7 +46,7 @@ if status --is-interactive
     abbr gbsg 'git bisect good' # Mark a commit as 'good'
     abbr gbso 'git bisect old' # Mark a commit as 'old' (same as 'good')
     abbr gbsl 'git bisect log' # Show what has been done so far
-    abbr gbsrep 'git bisect replay' # Replay bisect actions from a logfile
+    abbr gbsp 'git bisect replay' # Replay bisect actions from a logfile
     abbr gbsr 'git bisect reset' # Clean up bisect state and return to original HEAD
 
     abbr gc 'git commit -v'
