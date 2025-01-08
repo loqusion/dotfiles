@@ -17,6 +17,10 @@ function __init
     git commit --message 'initial commit'; or return
 end
 
+function __init_no_commit
+    git init --object-format=sha1; or return
+end
+
 function test_smoke
     __init
     assert_cmd; or return
@@ -138,7 +142,7 @@ function test_gunwip_resets_wip_commit
 end
 
 function test_gunwip_fails_when_no_commits
-    git init --object-format=sha1
+    __init_no_commit
     assert_cmd; or return
 
     gunwip
