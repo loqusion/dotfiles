@@ -76,8 +76,9 @@ if status --is-interactive
     abbr gcl 'git clone' # Clone a repository into a new directory
     abbr gclr 'git clone --recurse-submodules' # Clone, then initialize and clone submodules
 
-    abbr gclean 'git clean --interactive -d'
-    abbr gpristine 'git reset --hard && git clean -dffx'
+    abbr gclean 'git clean --interactive -d' # Interactively clean untracked files
+    abbr gcleanx 'git clean --interactive -x -d' # Interactively clean untracked and ignored files
+    abbr gpristine "git reset --hard && git clean -dffx ':/'" # Reset working directory and index to HEAD, and remove all untracked and ignored files
 
     abbr gco 'git checkout'
     abbr gcoo 'git checkout --ours'
