@@ -62,7 +62,16 @@ if status --is-interactive
     abbr gcss 'git commit --gpg-sign --signoff'
     abbr gcssm 'git commit --gpg-sign --signoff --message'
 
-    abbr gcf 'git config --list'
+    abbr gcf 'git config' # Query/set/replace/unset repository or global options
+    abbr gcfl 'git config list' # List all variables set in config file, along with their values
+    abbr gcfg 'git config get' # Emit the value of the specified key
+    abbr gcfga 'git config get --all' # Emits all values associated with the specified key
+    abbr gcfs 'git config set' # Set value for a config option
+    abbr gcfsa 'git config set --append' # Add a new line to a config option
+    abbr gcfsA 'git config set --all' # Replace a multi-valued config option with a new value
+    abbr gcfu 'git config unset' # Unset a config option
+    abbr gcfuA 'git config unset --all' # Unset a multi-valued config option
+    abbr gcfe 'git config edit' # Open an editor to modify the config file
 
     abbr gcl 'git clone' # Clone a repository into a new directory
     abbr gclr 'git clone --recurse-submodules' # Clone, then initialize and clone submodules
