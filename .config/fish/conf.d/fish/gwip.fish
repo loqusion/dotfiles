@@ -34,7 +34,12 @@ function gwip --description 'Create or update WIP commit containing working tree
 end
 
 function gunwip --description 'Reset current HEAD to commit before WIP'
-    set -l commit_subject (git log --max-count=1 --pretty='format:%s'); or return
+    # Using `set commit_subject (...)` here prevents stderr redirection from
+    # working correctly
+    begin
+        git log --max-count=1 --pretty='format:%s'; or return
+    end | read --function commit_subject
+
     if echo $commit_subject | grep --quiet --count '^--wip--'
         __git_abbr_reset_or_delete_head
     else
