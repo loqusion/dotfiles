@@ -72,7 +72,7 @@ function test_gwip_amends_previous_wip_commit
     assert_cmd 'expected no untracked files'; or return
     test "$(git rev-list --max-count=1 --grep='^--wip--' HEAD)" = "$(git rev-parse --verify HEAD)"
     assert_cmd 'expected matching commit message to be HEAD'; or return
-    test "$(git rev-list --grep='^--wip--' HEAD | count)" -eq 1
+    test "$(git rev-list --count --grep='^--wip--' HEAD)" -eq 1
     assert_cmd 'expected only 1 WIP commit'; or return
     assert_snapshot gwip_amend_difftree \
         "$(git diff-tree --no-commit-id --patch HEAD |
