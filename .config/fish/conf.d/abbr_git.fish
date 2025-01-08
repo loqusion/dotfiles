@@ -1,6 +1,8 @@
 if status --is-interactive
     set -g __git_abbr_version 0.1.0
 
+    source (status dirname)/fish/gwip.fish
+
     function _git_log_prettily
         if not test -z $argv[1]
             git log --pretty=$argv[1]
@@ -252,8 +254,6 @@ if status --is-interactive
     abbr gupomi 'git pull --rebase=interactive origin (git_main_branch)'
 
     abbr gwch 'git whatchanged -p --abbrev-commit --pretty=medium'
-
-    source (status dirname)/fish/gwip.fish
 
     abbr gwt 'git worktree'
     abbr gwta 'git worktree add'
