@@ -1,12 +1,6 @@
 if status --is-interactive
     source (status dirname)/fish/gwip.fish
 
-    function _git_log_prettily
-        if not test -z $argv[1]
-            git log --pretty=$argv[1]
-        end
-    end
-
     abbr g git
 
     abbr ga 'git add -v' # Add file contents to the index
@@ -64,10 +58,15 @@ if status --is-interactive
     abbr gcasm 'git commit --all --signoff --message'
     abbr gcans! 'git commit -v --all --signoff --no-edit --amend'
 
+    abbr gcs 'git commit --gpg-sign'
+    abbr gcss 'git commit --gpg-sign --signoff'
+    abbr gcssm 'git commit --gpg-sign --signoff --message'
+
     abbr gcf 'git config --list'
 
     abbr gcl 'git clone' # Clone a repository into a new directory
     abbr gclr 'git clone --recurse-submodules' # Clone, then initialize and clone submodules
+
     abbr gclean 'git clean --interactive -d'
     abbr gpristine 'git reset --hard && git clean -dffx'
 
@@ -75,10 +74,6 @@ if status --is-interactive
     abbr gcoo 'git checkout --ours'
     abbr gcor 'git checkout --recurse-submodules'
     abbr gcot 'git checkout --theirs'
-
-    abbr gcs 'git commit --gpg-sign'
-    abbr gcss 'git commit --gpg-sign --signoff'
-    abbr gcssm 'git commit --gpg-sign --signoff --message'
 
     abbr gcount 'git shortlog -sn'
 
@@ -91,10 +86,9 @@ if status --is-interactive
     abbr gds 'git diff --staged'
     abbr gdt 'git diff-tree --no-commit-id --name-only -r'
     abbr gdup 'git diff @{upstream}'
+    alias gdnolock 'git diff $argv ":(exclude)package-lock.json" ":(exclude)*.lock"'
 
     abbr gdct 'git describe --tags (git rev-list --tags --max-count 1)'
-
-    alias gdnolock 'git diff $argv ":(exclude)package-lock.json" ":(exclude)*.lock"'
 
     abbr gf 'git fetch'
     abbr gfa 'git fetch --all --prune --jobs=10'
@@ -107,6 +101,12 @@ if status --is-interactive
     abbr gi 'git init' # Create an empty Git repository
 
     abbr gfg 'git ls-files | grep'
+
+    function _git_log_prettily
+        if not test -z $argv[1]
+            git log --pretty=$argv[1]
+        end
+    end
 
     abbr glg 'git log --stat'
     abbr glgp 'git log --stat --patch'
@@ -153,6 +153,11 @@ if status --is-interactive
     abbr gplu 'git pull upstream' # Pull from upstream
     abbr gplum 'git pull upstream (git_main_branch)' # Pull main branch from upstream
     abbr gpluc 'git pull upstream (git_current_branch)' # Pull current branch from upstream
+    abbr gup 'git pull --rebase'
+    abbr gupv 'git pull --rebase --verbose'
+    abbr gupa 'git pull --rebase --autostash --verbose'
+    abbr gupom 'git pull --rebase origin (git_main_branch)'
+    abbr gupomi 'git pull --rebase=interactive origin (git_main_branch)'
 
     abbr gr 'git remote -v' # Manage set of tracked repositories
     abbr gra 'git remote add' # Add a remote
@@ -244,12 +249,6 @@ if status --is-interactive
     function gtl -d 'List tags matching a pattern'
         git tag --sort=-v:refname -n --list "$argv[1]*"
     end
-
-    abbr gup 'git pull --rebase'
-    abbr gupv 'git pull --rebase --verbose'
-    abbr gupa 'git pull --rebase --autostash --verbose'
-    abbr gupom 'git pull --rebase origin (git_main_branch)'
-    abbr gupomi 'git pull --rebase=interactive origin (git_main_branch)'
 
     abbr gwch 'git whatchanged -p --abbrev-commit --pretty=medium'
 
