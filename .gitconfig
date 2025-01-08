@@ -15,6 +15,7 @@
 	workers = 0
 [diff]
 	colorMoved = default
+	colorMovedWS = allow-indentation-change
 	tool = nvimdiff
 [diff "lockb"]
 	textconv = bun
