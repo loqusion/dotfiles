@@ -85,8 +85,6 @@ if status --is-interactive
     abbr gcor 'git checkout --recurse-submodules'
     abbr gcot 'git checkout --theirs'
 
-    abbr gcount 'git shortlog -sn'
-
     abbr gcp 'git cherry-pick'
     abbr gcpa 'git cherry-pick --abort'
     abbr gcpc 'git cherry-pick --continue'
