@@ -81,6 +81,29 @@ function test_gwip_amends_previous_wip_commit
         'expected commit to include old and new WIP changes'; or return
 end
 
+function test_gwip_removes_previous_wip_commit_if_empty
+    __init
+    assert_cmd; or return
+
+    echo wip >wip.txt; or return
+    gwip
+    assert_cmd; or return
+
+    rm wip.txt; or return
+    gwip
+    assert_cmd; or return
+
+    test "$(git rev-list --count --grep='^--wip--' HEAD)" -eq 0
+    assert_cmd 'expected no WIP commits'; or return
+    test "$(git rev-list --max-count=1 --no-commit-header --pretty='format:%s' HEAD)" \
+        = "initial commit"
+    assert_cmd 'expected HEAD to be initial commit'; or return
+    test (git diff-index --cached --name-only HEAD | count) -eq 0
+    assert_cmd 'expected index to be identical to HEAD'; or return
+    test (git diff-files --name-only | count) -eq 0
+    assert_cmd 'expected index to be identical to working tree'; or return
+end
+
 function test_gunwip_works
     __init
     assert_cmd; or return
