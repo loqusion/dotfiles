@@ -1,6 +1,4 @@
 if status --is-interactive
-    set -g __git_abbr_version 0.1.0
-
     source (status dirname)/fish/gwip.fish
 
     function _git_log_prettily
