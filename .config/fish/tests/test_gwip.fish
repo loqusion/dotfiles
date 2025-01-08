@@ -49,11 +49,16 @@ function test_gwip_ignores_clean_working_tree
     assert_cmd; or return
 
     gwip
-    assert_cmd; or return
 
+    test "$(git rev-list --count --grep='^--wip--' HEAD)" -eq 0
+    assert_cmd 'expected no WIP commits'; or return
     test "$(git rev-list --max-count=1 --no-commit-header --pretty='format:%s' HEAD)" \
         = "initial commit"
     assert_cmd 'expected HEAD to be initial commit'; or return
+    test (git diff-index --cached --name-only HEAD | count) -eq 0
+    assert_cmd 'expected index to be identical to HEAD'; or return
+    test (git diff-files --name-only | count) -eq 0
+    assert_cmd 'expected index to be identical to working tree'; or return
 end
 
 function test_gwip_amends_previous_wip_commit
