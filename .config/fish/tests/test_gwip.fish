@@ -259,7 +259,7 @@ function test_gunwip_on_root_removes_files_from_wip_commit_and_leaves_working_tr
             string split0 | string trim | string join0 |
             xargs -0 -L 1 --no-run-if-empty -- \
                 /bin/bash -c 'test -n "$1" && echo "$1" && cat "$1"' '' # blank parameter ensures positional parameters are assigned
-            )" \
+        )" \
         'expected working tree to remain intact'; or return
 
     git reflog show HEAD -- >/dev/null
