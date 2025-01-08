@@ -37,8 +37,6 @@ function test_gwip_works
     assert_cmd 'should be no untracked files'; or return
     test "$(git rev-list --max-count=1 --grep='^--wip--' HEAD)" = "$(git rev-parse --verify HEAD)"
     assert_cmd 'commit message should match and be HEAD'; or return
-    test "$(git diff-tree --no-commit-id --name-only HEAD)" = 'wip.txt'
-    assert_cmd 'only file changed should be wip.txt'; or return
     assert_snapshot gwip_difftree \
         "$(git diff-tree --no-commit-id --patch HEAD |
             grep -vE '^index [[:alnum:]]*\.\.[[:alnum:]]*$' |
