@@ -3,7 +3,7 @@
 	pager = delta
 [user]
 	name = loqusion
-	email = 38332081+loqusion@users.noreply.github.com
+	email = loqusion@gmail.com
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
