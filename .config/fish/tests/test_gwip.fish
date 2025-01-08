@@ -19,7 +19,7 @@ end
 
 function test_smoke
     __init
-    assert_cmd init; or return
+    assert_cmd; or return
 
     git log | string length -q
     assert_cmd 'log message should not be empty'
@@ -27,11 +27,11 @@ end
 
 function test_gwip_works
     __init
-    assert_cmd init; or return
+    assert_cmd; or return
 
     echo wip >wip.txt; or return
     gwip
-    assert_cmd 'expected gwip to succeed'; or return
+    assert_cmd; or return
 
     test (git ls-files --others --exclude-standard | count) -eq 0
     assert_cmd 'should be no untracked files'; or return
@@ -48,7 +48,7 @@ end
 
 function test_gunwip_works
     __init
-    assert_cmd init; or return
+    assert_cmd; or return
 
     gunwip
     assert_cmd_fail 'expected gunwip to fail when there is no WIP commit'; or return
@@ -58,10 +58,10 @@ function test_gunwip_works
 
     echo wip >wip.txt; or return
     gwip
-    assert_cmd 'expected gwip to succeed'; or return
+    assert_cmd; or return
 
     gunwip
-    assert_cmd 'expected gunwip to succeed'; or return
+    assert_cmd; or return
 
     test "$(git rev-list --max-count=1 --no-commit-header --pretty='format:%s' HEAD)" \
         = "initial commit"
@@ -74,7 +74,7 @@ end
 
 function test_gunwip_fails_when_no_commits
     git init --object-format=sha1
-    assert_cmd init; or return
+    assert_cmd; or return
 
     gunwip
     assert_cmd_fail 'expected gunwip to fail when there are no commits'; or return
