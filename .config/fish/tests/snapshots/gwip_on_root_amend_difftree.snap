@@ -1,0 +1,10 @@
+diff --git a/hi.txt b/hi.txt
+--- /dev/null
++++ b/hi.txt
+@@ -0,0 +1 @@
++hi
+diff --git a/wip.txt b/wip.txt
+--- /dev/null
++++ b/wip.txt
+@@ -0,0 +1 @@
++wip

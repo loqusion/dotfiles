@@ -48,6 +48,27 @@ function test_gwip_creates_wip_commit
         'expected commit to only include WIP changes'; or return
 end
 
+function test_gwip_on_root_creates_wip_commit
+    __init_no_commit
+    assert_cmd; or return
+
+    echo wip >wip.txt; or return
+    gwip
+    assert_cmd; or return
+
+    test (git ls-files --others --exclude-standard | count) -eq 0
+    assert_cmd 'expected no untracked files'; or return
+    test "$(git rev-list --max-count=1 --grep='^--wip--' HEAD)" = "$(git rev-parse --verify HEAD)"
+    assert_cmd 'expected matching commit message to be HEAD'; or return
+    git rev-parse --quiet --verify 'HEAD^'
+    assert_cmd_fail 'expected WIP commit to be root commit'; or return
+    assert_snapshot gwip_on_root_difftree \
+        "$(git diff-tree --root --no-commit-id --patch HEAD |
+            grep -vE '^index [[:alnum:]]*\.\.[[:alnum:]]*$' |
+            grep -vE '^new file mode [[:digit:]]*$')" \
+        'expected commit to include WIP changes'; or return
+end
+
 function test_gwip_ignores_clean_working_tree
     __init
     assert_cmd; or return
@@ -63,6 +84,16 @@ function test_gwip_ignores_clean_working_tree
     assert_cmd 'expected index to be identical to HEAD'; or return
     test (git diff-files --name-only | count) -eq 0
     assert_cmd 'expected index to be identical to working tree'; or return
+end
+
+function test_gwip_on_root_ignores_clean_working_tree
+    __init_no_commit
+    assert_cmd; or return
+
+    gwip
+
+    git rev-parse --quiet --verify HEAD
+    assert_cmd_fail 'expected no HEAD'; or return
 end
 
 function test_gwip_amends_previous_wip_commit
@@ -85,6 +116,31 @@ function test_gwip_amends_previous_wip_commit
     assert_cmd 'expected only 1 WIP commit'; or return
     assert_snapshot gwip_amend_difftree \
         "$(git diff-tree --no-commit-id --patch HEAD |
+            grep -vE '^index [[:alnum:]]*\.\.[[:alnum:]]*$' |
+            grep -vE '^new file mode [[:digit:]]*$')" \
+        'expected commit to include old and new WIP changes'; or return
+end
+
+function test_gwip_on_root_amends_previous_wip_commit
+    __init_no_commit
+    assert_cmd; or return
+
+    echo wip >wip.txt; or return
+    gwip
+    assert_cmd; or return
+
+    echo hi >hi.txt; or return
+    gwip
+    assert_cmd; or return
+
+    test (git ls-files --others --exclude-standard | count) -eq 0
+    assert_cmd 'expected no untracked files'; or return
+    test "$(git rev-list --max-count=1 --grep='^--wip--' HEAD)" = "$(git rev-parse --verify HEAD)"
+    assert_cmd 'expected matching commit message to be HEAD'; or return
+    test "$(git rev-list --count --grep='^--wip--' HEAD)" -eq 1
+    assert_cmd 'expected only 1 WIP commit'; or return
+    assert_snapshot gwip_on_root_amend_difftree \
+        "$(git diff-tree --root --no-commit-id --patch HEAD |
             grep -vE '^index [[:alnum:]]*\.\.[[:alnum:]]*$' |
             grep -vE '^new file mode [[:digit:]]*$')" \
         'expected commit to include old and new WIP changes'; or return
