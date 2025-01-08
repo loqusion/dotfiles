@@ -227,7 +227,7 @@ if status --is-interactive
     abbr gsmsc 'git submodule summary --cached' # Summary of commits made in index since a commit (default: HEAD)
     abbr gsmsf 'git submodule summary --files' # Summary of commits made in working tree since index
     abbr gsmf 'git submodule foreach' # Evaluate an arbitrary shell command in each checked out submodule
-    abbr gsmf 'git submodule foreach --recursive' # Evaluate an arbitrary shell command in each checked out submodule (recursive)
+    abbr gsmfr 'git submodule foreach --recursive' # Evaluate an arbitrary shell command in each checked out submodule (recursive)
     abbr gsmabs 'git submodule absorbgitdirs' # Convert cloned subdirectories into submodules
 
     abbr gst 'git stash' # Stash the changes in a dirty working directory
