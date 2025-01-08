@@ -71,3 +71,14 @@ function test_gunwip_works
     test (git diff-index --cached --name-only HEAD | count) -eq 0
     assert_cmd 'expected index to be identical to HEAD'; or return
 end
+
+function test_gunwip_fails_when_no_commits
+    git init --object-format=sha1
+    assert_cmd init; or return
+
+    gunwip
+    assert_cmd_fail 'expected gunwip to fail when there are no commits'; or return
+
+    git rev-parse --quiet --verify HEAD
+    assert_cmd_fail 'expected no HEAD'; or return
+end
