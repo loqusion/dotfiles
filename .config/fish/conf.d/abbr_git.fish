@@ -215,6 +215,7 @@ if status --is-interactive
     abbr gsb 'git status --short --branch' # Also show branch and tracking info
 
     abbr gsh 'git show' # Show various types of objects
+    abbr gshlt 'git show (git describe --abbrev=0)' # Show latest tag
 
     abbr gsm 'git submodule' # Initialize, update, or inspect submodules
     abbr gsma 'git submodule add' # Add a repository as a submodule
