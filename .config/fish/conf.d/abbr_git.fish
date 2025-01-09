@@ -110,8 +110,6 @@ if status --is-interactive
 
     abbr gi 'git init' # Create an empty Git repository
 
-    abbr gfg 'git ls-files | grep'
-
     function _git_log_prettily
         if not test -z $argv[1]
             git log --pretty=$argv[1]
@@ -262,8 +260,6 @@ if status --is-interactive
     function gtl -d 'List tags matching a pattern'
         git tag --sort=-v:refname -n --list "$argv[1]*"
     end
-
-    abbr gwch 'git whatchanged -p --abbrev-commit --pretty=medium'
 
     abbr gwt 'git worktree'
     abbr gwta 'git worktree add'
