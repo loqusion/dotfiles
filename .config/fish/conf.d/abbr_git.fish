@@ -191,6 +191,9 @@ if status --is-interactive
 
     abbr grev 'git revert' # Revert commit changes, and record some new commits that record them
 
+    # TODO: More git reflog abbrs
+    abbr grl 'git reflog' # Manage reflog information
+
     abbr grm 'git rm' # Remove files from the working tree and index
     abbr grmc 'git rm --cached' # Only remove files from index
 
