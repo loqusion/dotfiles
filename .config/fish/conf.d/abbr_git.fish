@@ -149,18 +149,14 @@ if status --is-interactive
 
     # TODO: Expand git pull abbrs
     abbr gl 'git pull' # Fetch from and integrate with another repository or local branch
-    abbr gpl 'git pull'
+    abbr gpl 'git pull' # Alias for `gl`
+    abbr gpl! 'git pull --autostash' # Pull, stashing local changes and applying after the operation ends
     abbr gplo 'git pull origin' # Pull from origin
     abbr gplom 'git pull origin (git_main_branch)' # Pull main branch from origin
     abbr gploc 'git pull origin (git_current_branch)' # Pull current branch from origin
     abbr gplu 'git pull upstream' # Pull from upstream
     abbr gplum 'git pull upstream (git_main_branch)' # Pull main branch from upstream
     abbr gpluc 'git pull upstream (git_current_branch)' # Pull current branch from upstream
-    abbr gup 'git pull --rebase'
-    abbr gupv 'git pull --rebase --verbose'
-    abbr gupa 'git pull --rebase --autostash --verbose'
-    abbr gupom 'git pull --rebase origin (git_main_branch)'
-    abbr gupomi 'git pull --rebase=interactive origin (git_main_branch)'
 
     abbr gr 'git remote -v' # Manage set of tracked repositories
     abbr gra 'git remote add' # Add a remote
