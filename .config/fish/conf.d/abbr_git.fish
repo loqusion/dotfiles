@@ -252,14 +252,11 @@ if status --is-interactive
     abbr gswd 'git switch --detach' # Switch to a commit for inspection and discardable experiments
     abbr gswr 'git switch --recurse-submodules' # Update the content of all active submodules
 
-    abbr gt 'git tag'
-    abbr gts 'git tag --sign'
-    abbr gtv 'git tag | sort -V'
-    abbr gta 'git tag --annotate'
-    abbr gtas 'git tag --annotate --sign'
-    function gtl -d 'List tags matching a pattern'
-        git tag --sort=-v:refname -n --list "$argv[1]*"
-    end
+    abbr gt 'git tag' # Create, list, or delete a tag object
+    abbr gta 'git tag --annotate' # Make an annotated tag object
+    abbr gtl 'git tag --list -n1 --sort=-version:refname' # List tags (optionally matching a given pattern)
+    abbr gts 'git config set tag.gpgSign true' # Enable auto tag GPG signing
+    abbr gts! 'git config unset tag.gpgSign' # Remove configuration for tag GPG signing
 
     abbr gw 'git worktree' # Manage multiple working trees
     abbr gwa 'git worktree add' # Create a worktree
