@@ -97,6 +97,7 @@ if status --is-interactive
     abbr gdt 'git diff-tree --no-commit-id --name-only -r'
     abbr gdup 'git diff @{upstream}'
     alias gdnolock 'git diff $argv ":(exclude)package-lock.json" ":(exclude)*.lock"'
+    abbr gdm 'git diff AUTO_MERGE' # When in conflict resolution mode, show what changes you've made so far to resolve textual conflicts
 
     abbr gdct 'git describe --tags (git rev-list --tags --max-count 1)'
 
@@ -119,6 +120,7 @@ if status --is-interactive
     abbr glo 'git log --oneline' # Show compact logs
     abbr glog 'git log --oneline --graph' # Show graph with compact text
     abbr gloga 'git log --oneline --graph --all' # Show compact graph with all refs in refs/
+    abbr glm 'git log --merge --patch --stat' # Show relevant commits when resolving conflicts
     # These commands show a graph with extra information
     abbr glol "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'"
     abbr glols "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --stat"
@@ -127,10 +129,11 @@ if status --is-interactive
     abbr glods "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"
 
     abbr gm 'git merge' # Join two or more development histories together
-    abbr gmom 'git merge origin/(git_main_branch)'
-    abbr gmum 'git merge upstream/(git_main_branch)'
-    abbr gma 'git merge --abort'
-    abbr gms 'git merge --squash'
+    abbr gm! 'git merge --autostash' # Merge, stashing local changes and applying after the operation ends
+    abbr gmom 'git merge origin/(git_main_branch)' # Merge remote-tracking main branch for origin
+    abbr gmum 'git merge upstream/(git_main_branch)' # Merge remote-tracking main branch for upstream
+    abbr gma 'git merge --abort' # Abort conflict resolution and reconstruct pre-merge state
+    abbr gms 'git merge --squash' # Merge into a single commit
 
     abbr gmtl 'git mergetool --no-prompt' # Run merge conflict resolution tools to resolve merge conflicts
 
@@ -209,6 +212,9 @@ if status --is-interactive
 
     abbr gsh 'git show' # Show various types of objects
     abbr gshlt 'git show (git describe --abbrev=0)' # Show latest tag
+    abbr gshb --set-cursor 'git show :1:%' # Show blob stage 1 (base)
+    abbr gsho --set-cursor 'git show :2:%' # Show blob stage 2 (ours)
+    abbr gsht --set-cursor 'git show :3:%' # Show blob stage 3 (theirs)
 
     abbr gsm 'git submodule' # Initialize, update, or inspect submodules
     abbr gsma 'git submodule add' # Add a repository as a submodule
