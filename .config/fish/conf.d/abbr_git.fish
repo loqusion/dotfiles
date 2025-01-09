@@ -112,26 +112,19 @@ if status --is-interactive
 
     abbr gi 'git init' # Create an empty Git repository
 
-    function _git_log_prettily
-        if not test -z $argv[1]
-            git log --pretty=$argv[1]
-        end
-    end
-
-    abbr glg 'git log --stat'
-    abbr glgp 'git log --stat --patch'
-    abbr glgg 'git log --graph'
-    abbr glgga 'git log --graph --decorate --all'
-    abbr glgm 'git log --graph --max-count=10'
-    abbr glo 'git log --oneline --decorate'
+    abbr glg 'git log --stat' # Show logs with diffstat
+    abbr glgp 'git log --patch --stat' # Show logs with patch and diffstat
+    abbr glgg 'git log --graph' # Draw a text-based graphical representation of the commit history
+    abbr glgga 'git log --graph --all' # Show graph with all refs in refs/
+    abbr glo 'git log --oneline' # Show compact logs
+    abbr glog 'git log --oneline --graph' # Show graph with compact text
+    abbr gloga 'git log --oneline --graph --all' # Show compact graph with all refs in refs/
+    # These commands show a graph with extra information
     abbr glol "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'"
     abbr glols "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --stat"
+    abbr glola "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all"
     abbr glod "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'"
     abbr glods "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"
-    abbr glola "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all"
-    abbr glog 'git log --oneline --decorate --graph'
-    abbr gloga 'git log --oneline --decorate --graph --all'
-    abbr glp _git_log_prettily
 
     abbr gm 'git merge' # Join two or more development histories together
     abbr gmom 'git merge origin/(git_main_branch)'
