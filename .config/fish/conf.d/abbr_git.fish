@@ -85,9 +85,11 @@ if status --is-interactive
     abbr gcor 'git checkout --recurse-submodules'
     abbr gcot 'git checkout --theirs'
 
-    abbr gcp 'git cherry-pick'
-    abbr gcpa 'git cherry-pick --abort'
-    abbr gcpc 'git cherry-pick --continue'
+    abbr gcp 'git cherry-pick' # Apply the changes introduced by some existing commits
+    abbr gcpc 'git cherry-pick --continue' # Continue in-progress cherry-pick operation
+    abbr gcps 'git cherry-pick --skip' # Skip the current commit for in-progress cherry-pick operation
+    abbr gcpa 'git cherry-pick --abort' # Abort in-progress cherry-pick operation
+    abbr gcpn 'git cherry-pick --no-commit' # Apply changes to working tree and index, without making a commit
 
     abbr gd 'git diff'
     abbr gdw 'git diff --word-diff'
