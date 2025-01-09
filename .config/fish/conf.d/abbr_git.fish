@@ -268,6 +268,7 @@ if status --is-interactive
     abbr gwrm 'git worktree remove' # Remove a worktree
     abbr gwrm! 'git worktree remove --force' # Remove a worktree (force)
 
+    # Requires git-absorb to be installed
     abbr gx 'git absorb'
     abbr gxr 'git absorb --and-rebase'
 end
