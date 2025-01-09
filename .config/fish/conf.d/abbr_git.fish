@@ -261,11 +261,12 @@ if status --is-interactive
         git tag --sort=-v:refname -n --list "$argv[1]*"
     end
 
-    abbr gwt 'git worktree'
-    abbr gwta 'git worktree add'
-    abbr gwtl 'git worktree list'
-    abbr gwtmv 'git worktree move'
-    abbr gwtrm 'git worktree remove'
+    abbr gw 'git worktree' # Manage multiple working trees
+    abbr gwa 'git worktree add' # Create a worktree
+    abbr gwl 'git worktree list' # List details of each worktree
+    abbr gwmv 'git worktree move' # Move a worktree to a new location
+    abbr gwrm 'git worktree remove' # Remove a worktree
+    abbr gwrm! 'git worktree remove --force' # Remove a worktree (force)
 
     abbr gx 'git absorb'
     abbr gxr 'git absorb --and-rebase'
