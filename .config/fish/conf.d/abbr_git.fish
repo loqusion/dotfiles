@@ -151,7 +151,6 @@ if status --is-interactive
     abbr gpod 'git push origin --delete' # Remove listed refs in origin
     abbr gpop 'git push origin --prune' # Remove remote branches in origin without a local counterpart
 
-    # TODO: Expand git pull abbrs
     abbr gl 'git pull' # Fetch from and integrate with another repository or local branch
     abbr gpl 'git pull' # Alias for `gl`
     abbr gpl! 'git pull --autostash' # Pull, stashing local changes and applying after the operation ends
