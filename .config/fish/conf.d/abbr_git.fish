@@ -100,7 +100,11 @@ if status --is-interactive
     alias gdnolock 'git diff $argv ":(exclude)package-lock.json" ":(exclude)*.lock"'
     abbr gdm 'git diff AUTO_MERGE' # When in conflict resolution mode, show what changes you've made so far to resolve textual conflicts
 
-    abbr gdct 'git describe --tags (git rev-list --tags --max-count 1)'
+    # TODO: `git describe` abbrs
+    # abbr gde 'git describe' # Give an object a human readable name based on an available ref
+    # abbr gdet 'git describe --tags' # Describe a commit using any tag, instead of only annotated tags
+    # abbr gdea 'git describe --all' # Describe a commit using any ref found in refs/, instead of only annotated tags
+    # abbr ? 'git describe --abbrev=0' # Find the closest tagname without any suffix
 
     abbr gf 'git fetch' # Download objects and refs from another repository
     abbr gfu 'git fetch upstream' # Fetch from upstream repository
