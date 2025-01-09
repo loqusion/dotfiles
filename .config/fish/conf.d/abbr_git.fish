@@ -72,6 +72,7 @@ if status --is-interactive
     abbr gcfu 'git config unset' # Unset a config option
     abbr gcfuA 'git config unset --all' # Unset a multi-valued config option
     abbr gcfe 'git config edit' # Open an editor to modify the config file
+    abbr gcfeg 'git config edit --global' # Open an editor to modify the global config file
 
     abbr gcl 'git clone' # Clone a repository into a new directory
     abbr gclr 'git clone --recurse-submodules' # Clone, then initialize and clone submodules
