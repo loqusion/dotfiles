@@ -100,9 +100,11 @@ if status --is-interactive
 
     abbr gdct 'git describe --tags (git rev-list --tags --max-count 1)'
 
-    abbr gf 'git fetch'
-    abbr gfa 'git fetch --all --prune --jobs=10'
-    abbr gfo 'git fetch origin'
+    abbr gf 'git fetch' # Download objects and refs from another repository
+    abbr gfu 'git fetch upstream' # Fetch from upstream repository
+    abbr gfp 'git fetch --prune' # Fetch and prune any remote-tracking references that no longer exist on the remote
+    abbr gfa 'git fetch --all --tags' # Fetch branches and tags from all remotes
+    abbr gfap 'git fetch --all --tags --prune' # Fetch and prune from all remotes
 
     abbr ghh 'git help' # Display help information about Git
     abbr ghha 'git help --all' # Print a list of all available commands
