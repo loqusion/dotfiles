@@ -252,9 +252,8 @@ if status --is-interactive
 
     abbr gt 'git tag' # Create, list, or delete a tag object
     abbr gta 'git tag --annotate' # Make an annotated tag object
+    abbr gts 'git tag --sign' # Make a GPG-signed tag
     abbr gtl 'git tag --list -n1 --sort=-version:refname' # List tags (optionally matching a given pattern)
-    abbr gts 'git config set tag.gpgSign true' # Enable auto tag GPG signing
-    abbr gts! 'git config unset tag.gpgSign' # Remove configuration for tag GPG signing
 
     abbr gw 'git worktree' # Manage multiple working trees
     abbr gwa 'git worktree add' # Create a worktree
