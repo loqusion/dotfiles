@@ -177,11 +177,12 @@ if status --is-interactive
     abbr gl 'git pull' # Fetch from and integrate with another repository or local branch
     abbr gpl 'git pull' # Alias for `gl`
     abbr gpl! 'git pull --autostash' # Pull, stashing local changes and applying after the operation ends
+    abbr gplsu 'git pull --set-upstream' # Pull, adding upstream branch for subsequent argument-less `git pull`
     abbr gplo 'git pull origin' # Pull from origin
-    abbr gplom 'git pull origin (git_main_branch)' # Pull main branch from origin
+    abbr gplom 'git pull origin (git_main_branch)' # Pull main branch from origin into current branch
     abbr gploc 'git pull origin (git_current_branch)' # Pull current branch from origin
     abbr gplu 'git pull upstream' # Pull from upstream
-    abbr gplum 'git pull upstream (git_main_branch)' # Pull main branch from upstream
+    abbr gplum 'git pull upstream (git_main_branch)' # Pull main branch from upstream into current branch
     abbr gpluc 'git pull upstream (git_current_branch)' # Pull current branch from upstream
 
     abbr gr 'git remote -v' # Manage set of tracked repositories
