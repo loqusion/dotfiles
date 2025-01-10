@@ -133,6 +133,13 @@ if status --is-interactive
     abbr glod "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'"
     abbr glods "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"
 
+    abbr gls 'git ls-files' # Show information about files in the index and the working tree
+    abbr glss 'git ls-files --stage' # Show staged contents' mode bits, object name, and stage number
+    abbr glsu 'git ls-files --unmerged' # Show information about unmerged files
+    abbr glsr 'git ls-files --resolve-undo' # Show files with resolve-undo information (can recreate conflicted merge)
+    abbr glso 'git ls-files --others --exclude-standard' # Show untracked files (excluding ignored)
+    abbr glsO 'git ls-files --others' # Show untracked files (including ignored)
+
     abbr gm 'git merge' # Join two or more development histories together
     abbr gm! 'git merge --autostash' # Merge, stashing local changes and applying after the operation ends
     abbr gmom 'git merge origin/(git_main_branch)' # Merge remote-tracking main branch for origin
