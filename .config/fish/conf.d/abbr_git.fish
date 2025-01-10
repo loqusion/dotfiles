@@ -106,7 +106,7 @@ if status --is-interactive
     abbr gdw 'git diff --word-diff=color' # Show the specific words that changed in a line
     abbr gdc 'git diff --cached' # View changes to index relative to a commit
     abbr gdcw 'git diff --cached --word-diff=color' # View changes to index relative to a commit (word diff)
-    abbr gdh 'git diff HEAD' # View changes to working tree relative to HEAD
+    abbr gdh 'git diff HEAD --' # View changes to working tree relative to HEAD
     abbr gdup 'git diff @{upstream}' # View changes to working tree relative to upstream branch
     abbr gdm 'git diff AUTO_MERGE' # When in conflict resolution mode, show what changes you've made so far to resolve textual conflicts
     abbr gds 'git diff --stat' # View diffstat summarizing changes
