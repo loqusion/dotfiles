@@ -139,10 +139,10 @@ if status --is-interactive
 
     abbr gm 'git merge' # Join two or more development histories together
     abbr gm! 'git merge --autostash' # Merge, stashing local changes and applying after the operation ends
-    abbr gmom 'git merge origin/(git_main_branch)' # Merge remote-tracking main branch for origin
-    abbr gmum 'git merge upstream/(git_main_branch)' # Merge remote-tracking main branch for upstream
     abbr gma 'git merge --abort' # Abort conflict resolution and reconstruct pre-merge state
     abbr gms 'git merge --squash' # Merge into a single commit
+    abbr gmom 'git merge origin/(git_main_branch)' # Merge remote-tracking main branch for origin
+    abbr gmum 'git merge upstream/(git_main_branch)' # Merge remote-tracking main branch for upstream
 
     abbr gmtl 'git mergetool --no-prompt' # Run merge conflict resolution tools to resolve merge conflicts
 
