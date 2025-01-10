@@ -24,7 +24,7 @@ if status --is-interactive
     abbr gbc! 'git branch --copy --force' # Copy a branch (force)
     abbr gbl 'git branch -vv --list' # List branches
     abbr gbla 'git branch -vv --all --list' # List both remote-tracking branches and local branches
-    # abbr gbda 'git branch --merged | grep -vE "^([+*]|\s*($(git_main_branch)|$(git_develop_branch))\s*\$)" | xargs git branch --delete 2>/dev/null'
+    abbr gbda 'git branch --merged (git_main_branch) | grep -vE "^([+*]|\s*(main|master|trunk|dev|devel|development)\s*\$)" | xargs git branch --delete' # Delete all branches merged into the main branch
     # FIXME: These are too naive
     # function gbg -d 'Git: Print local branches whose upstream branch no longer exists'
     #     git branch -vv | grep ": gone\]"
