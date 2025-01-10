@@ -45,13 +45,13 @@ if status --is-interactive
 
     abbr gc 'git commit -v'
     abbr gc! 'git commit -v --amend'
-    abbr gcn! 'git commit -v --amend --no-edit'
+    abbr gcn! 'git commit --amend --no-edit'
     abbr gca 'git commit -v --all'
     abbr gca! 'git commit -v --all --amend'
-    abbr gcan! 'git commit -v --all --no-edit --amend'
-    abbr gcm 'git commit -v --message'
+    abbr gcan! 'git commit --all --amend --no-edit'
+    abbr gcm 'git commit --message'
     abbr gcam 'git commit --all --message'
-    abbr gci "git commit -v --allow-empty --message 'Make it so.'"
+    abbr gci "git commit --allow-empty --message 'initial commit'"
 
     abbr gcsm 'git commit --signoff --message'
     abbr gcas 'git commit --all --signoff'
