@@ -5,10 +5,10 @@ if status --is-interactive
 
     abbr ga 'git add -v' # Add file contents to the index
     abbr ga! 'git add -v --force' # Allow adding otherwise ignored files
-    abbr gapa 'git add -v --patch' # Interactively choose hunks and add them to the index
-    abbr gae 'git add -v --edit' # Edit the patch before applying it
     abbr gau 'git add -v --update' # Update the index just with tracked files
     abbr gaa 'git add -v --all' # Update the index to match the working tree
+    abbr gapa 'git add --patch' # Interactively choose hunks and add them to the index
+    abbr gae 'git add --edit' # Edit the patch before applying it
 
     abbr gap 'git apply -v ' # Apply a patch to files
     abbr gaps 'git apply --stat' # Output diffstat without applying
