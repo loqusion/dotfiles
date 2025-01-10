@@ -43,7 +43,8 @@ if status --is-interactive
     abbr gbsp 'git bisect replay' # Replay bisect actions from a logfile
     abbr gbsr 'git bisect reset' # Clean up bisect state and return to original HEAD
 
-    abbr gc 'git commit -v'
+    # TODO: add fixup, etc
+    abbr gc 'git commit -v' # Record changes to the repository
     abbr gc! 'git commit -v --amend'
     abbr gcn! 'git commit --amend --no-edit'
     abbr gca 'git commit -v --all'
@@ -54,12 +55,12 @@ if status --is-interactive
     abbr gci "git commit --allow-empty --message 'initial commit'"
 
     abbr gcsm 'git commit --signoff --message'
-    abbr gcas 'git commit --all --signoff'
+    abbr gcas 'git commit -v --all --signoff'
     abbr gcasm 'git commit --all --signoff --message'
     abbr gcans! 'git commit -v --all --signoff --no-edit --amend'
 
-    abbr gcs 'git commit --gpg-sign'
-    abbr gcss 'git commit --gpg-sign --signoff'
+    abbr gcs 'git commit -v --gpg-sign'
+    abbr gcss 'git commit -v --gpg-sign --signoff'
     abbr gcssm 'git commit --gpg-sign --signoff --message'
 
     abbr gcf 'git config' # Query/set/replace/unset repository or global options
