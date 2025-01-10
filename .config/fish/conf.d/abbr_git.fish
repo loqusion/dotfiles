@@ -209,8 +209,10 @@ if status --is-interactive
     abbr grt 'git restore' # Restore working tree from index
     abbr grts 'git restore --staged' # Restore index from HEAD
     abbr grt! 'git restore --worktree --staged' # Restore working tree & index from HEAD
-    # TODO: Is this general enough?
-    abbr grtb 'git restore --source=(git merge-base HEAD MERGE_HEAD)' # Restore from stage #1 (base)
+    # TODO: It feels like there should be a better way to do this.
+    # abbr grtb 'git restore --source=(git merge-base HEAD (git_conflict_head))' # Restore from stage #1 (base)
+    # abbr grtb git_restore_base # Restore from stage #1 (base)
+    # abbr grtb 'git checkout-index --stage=1' # Restore from stage #1 (base)
     abbr grto 'git restore --ours' # Restore from stage #2 (ours)
     abbr grtt 'git restore --theirs' # Restore from stage #3 (theirs)
     abbr grtm 'git restore --merge' # Recreate conflicted merge
