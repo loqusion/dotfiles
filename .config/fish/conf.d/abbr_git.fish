@@ -89,13 +89,28 @@ if status --is-interactive
     abbr gcpa 'git cherry-pick --abort' # Abort in-progress cherry-pick operation
     abbr gcpn 'git cherry-pick --no-commit' # Apply changes to working tree and index, without making a commit
 
-    abbr gd 'git diff'
-    abbr gdw 'git diff --word-diff'
-    abbr gds 'git diff --staged'
-    abbr gdt 'git diff-tree --no-commit-id --name-only -r'
-    abbr gdup 'git diff @{upstream}'
-    alias gdnolock 'git diff $argv ":(exclude)package-lock.json" ":(exclude)*.lock"'
+    # git diff [<path>...] - View changes to working tree relative to the index
+    # git diff --no-index <path> <path> - Compare two paths on the filesystem
+    # git diff --cached [--merge-base] [<commit>] [<path>...] - View changes to index relative to <commit> | [merge-base <commit> HEAD] <INDEX>
+    # git diff [--merge-base] <commit> [<path>...] - View changes to working tree relative to <commit> | [merge-base <commit> HEAD] <WORKING TREE>
+    # git diff [--merge-base] <commitA> <commitB> [<path>...] - View changes to <commitB> relative to <commitA> | [merge-base <commitA> <commitB>] <commitB>
+    # git diff <mergeCommit> <mergeCommitParent1>... <mergeCommitParentN> [<path>...] - View the results of a merge commit (can use ^@ and ^!, e.g. git diff A A^@, git diff A A^!)
+    # git diff <commitA>..<commitB> [<path>...] - View changes to <commitB> relative to <commitA> (omit <commit> on one side to use HEAD instead, e.g. HEAD^.., ..<commit>)
+    # git diff <commitA>...<commitB> [<path>...] - View changes on the branch containing and up to <commitB> starting at a common ancestor of <commitA> and <commitB> (omit <commit> on one side to use HEAD instead)
+    # git diff <blobA> <blobB> - View changes to <blobB> relative to <blobA>
+    #
+    # For more ways to spell <commit>, see `git help revisions`.
+    # See also: `git help diffcore`.
+    abbr gd 'git diff' # Show changes between commits, commit and working tree, etc
+    abbr gdw 'git diff --word-diff=color' # Show the specific words that changed in a line
+    abbr gdc 'git diff --cached' # View changes to index relative to a commit
+    abbr gdcw 'git diff --cached --word-diff=color' # View changes to index relative to a commit (word diff)
+    abbr gdh 'git diff HEAD' # View changes to working tree relative to HEAD
+    abbr gdup 'git diff @{upstream}' # View changes to working tree relative to upstream branch
     abbr gdm 'git diff AUTO_MERGE' # When in conflict resolution mode, show what changes you've made so far to resolve textual conflicts
+    abbr gds 'git diff --stat' # View diffstat summarizing changes
+    abbr gdsp 'git diff --stat --patch' # View diffstat + patch
+    alias gdnolock "git diff $argv ':!package-lock.json' ':!*.lock'" # Show diff excluding lockfiles
 
     # TODO: `git describe` abbrs
     # abbr gde 'git describe' # Give an object a human readable name based on an available ref
