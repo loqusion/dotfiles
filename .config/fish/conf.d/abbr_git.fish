@@ -213,6 +213,7 @@ if status --is-interactive
     abbr grto 'git restore --ours' # Restore from stage #2 (ours)
     abbr grtt 'git restore --theirs' # Restore from stage #3 (theirs)
     abbr grtm 'git restore --merge' # Recreate conflicted merge
+    abbr grtp 'git restore --patch' # Interactively restore hunks
 
     abbr groot 'cd (git rev-parse --show-toplevel || echo .)' # Change working directory to root
 
