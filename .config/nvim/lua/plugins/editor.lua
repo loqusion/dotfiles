@@ -290,7 +290,13 @@ return {
   {
     "ecthelionvi/NeoComposer.nvim",
     dependencies = { "kkharji/sqlite.lua" },
-    keys = { "q", "Q", "<m-q>", "<c-p>", "<c-n>" },
+    keys = {
+      { "q", mode = { "n", "x" } },
+      { "Q", mode = { "n", "x" } },
+      "<m-q>",
+      "<c-p>",
+      "<c-n>",
+    },
     opts = {
       queue_most_recent = true,
       keymaps = {
