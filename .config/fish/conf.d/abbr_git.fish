@@ -113,11 +113,10 @@ if status --is-interactive
     abbr gdsp 'git diff --stat --patch' # View diffstat + patch
     alias gdnolock "git diff $argv ':!package-lock.json' ':!*.lock'" # Show diff excluding lockfiles
 
-    # TODO: `git describe` abbrs
-    # abbr gde 'git describe' # Give an object a human readable name based on an available ref
-    # abbr gdet 'git describe --tags' # Describe a commit using any tag, instead of only annotated tags
-    # abbr gdea 'git describe --all' # Describe a commit using any ref found in refs/, instead of only annotated tags
-    # abbr ? 'git describe --abbrev=0' # Find the closest tagname without any suffix
+    abbr gde 'git describe' # Give an object a human readable name based on an available ref
+    abbr gdet 'git describe --tags' # Describe a commit using any tag, instead of only annotated tags
+    abbr gdea 'git describe --all' # Describe a commit using any ref found in refs/, instead of only annotated tags
+    abbr gdct 'git describe --abbrev=0' # Find the closest tagname without any suffix
 
     abbr gf 'git fetch' # Download objects and refs from another repository
     abbr gfu 'git fetch upstream' # Fetch from upstream repository
