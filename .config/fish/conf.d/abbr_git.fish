@@ -218,8 +218,9 @@ if status --is-interactive
     abbr grss 'git reset --soft' # Reset current branch head, don't touch index or working tree
     abbr grsk 'git reset --keep' # Reset current branch head and index; keep working tree changes or abort
     abbr grs! 'git reset --hard' # Reset current branch head, index, and working tree
-    abbr grso 'git reset origin/(git_current_branch)' # Reset to origin branch corresponding to current
-    abbr grso! 'git reset origin/(git_current_branch) --hard' # Hard reset to origin branch corresponding to current
+    # TODO: `git reset @{upstream}` instead?
+    # abbr grso 'git reset origin/(git_current_branch)' # Reset to origin branch corresponding to current
+    # abbr grso! 'git reset origin/(git_current_branch) --hard' # Hard reset to origin branch corresponding to current
 
     abbr grt 'git restore' # Restore working tree from index
     abbr grts 'git restore --staged' # Restore index from HEAD
