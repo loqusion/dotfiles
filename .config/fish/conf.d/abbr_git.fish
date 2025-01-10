@@ -79,8 +79,7 @@ if status --is-interactive
 
     abbr gclean 'git clean --interactive -d' # Interactively clean untracked files
     abbr gcleanx 'git clean --interactive -x -d' # Interactively clean untracked and ignored files
-    # FIXME: This is too similar to `gwip`
-    # abbr gwipe "git reset --hard && git clean -dff ':/'" # Reset working directory and index to HEAD, and remove all untracked files
+    abbr gexpunge "git reset --hard && git clean -dff ':/'" # Reset working directory and index to HEAD, and remove all untracked files
     abbr gpristine "git reset --hard && git clean -dffx ':/'" # Reset working directory and index to HEAD, and remove all untracked and ignored files
 
     abbr gco 'git checkout' # Switch branches or restore working tree files
