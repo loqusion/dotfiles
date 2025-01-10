@@ -81,10 +81,7 @@ if status --is-interactive
     abbr gcleanx 'git clean --interactive -x -d' # Interactively clean untracked and ignored files
     abbr gpristine "git reset --hard && git clean -dffx ':/'" # Reset working directory and index to HEAD, and remove all untracked and ignored files
 
-    abbr gco 'git checkout'
-    abbr gcoo 'git checkout --ours'
-    abbr gcor 'git checkout --recurse-submodules'
-    abbr gcot 'git checkout --theirs'
+    abbr gco 'git checkout' # Switch branches or restore working tree files
 
     abbr gcp 'git cherry-pick' # Apply the changes introduced by some existing commits
     abbr gcpc 'git cherry-pick --continue' # Continue in-progress cherry-pick operation
