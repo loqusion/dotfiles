@@ -175,8 +175,8 @@ if status --is-interactive
     abbr gpod 'git push origin --delete' # Remove listed refs in origin
     abbr gpop 'git push origin --prune' # Remove remote branches in origin without a local counterpart
 
-    abbr gl 'git pull' # Fetch from and integrate with another repository or local branch
-    abbr gpl 'git pull' # Alias for `gl`
+    abbr gpl 'git pull' # Fetch from and integrate with another repository or local branch
+    abbr gl 'git pull' # Alias for `gpl`
     abbr gpl! 'git pull --autostash' # Pull, stashing local changes and applying after the operation ends
     abbr gplsu 'git pull --set-upstream' # Pull, adding upstream branch for subsequent argument-less `git pull`
     abbr gplo 'git pull origin' # Pull from origin
@@ -213,6 +213,8 @@ if status --is-interactive
     abbr grm 'git rm' # Remove files from the working tree and index
     abbr grmc 'git rm --cached' # Only remove files from index
 
+    abbr groot 'cd (git rev-parse --show-toplevel || echo .)' # Change working directory to root
+
     abbr grs 'git reset' # Copy entries to the index, or reset current branch head
     abbr grss 'git reset --soft' # Reset current branch head, don't touch index or working tree
     abbr grsk 'git reset --keep' # Reset current branch head and index; keep working tree changes or abort
@@ -232,8 +234,6 @@ if status --is-interactive
     abbr grtt 'git restore --theirs' # Restore from stage #3 (theirs)
     abbr grtm 'git restore --merge' # Recreate conflicted merge
     abbr grtp 'git restore --patch' # Interactively restore hunks
-
-    abbr groot 'cd (git rev-parse --show-toplevel || echo .)' # Change working directory to root
 
     abbr gs 'git status' # Show the working tree status
     abbr gsl 'git status --long' # Status in the long-format
