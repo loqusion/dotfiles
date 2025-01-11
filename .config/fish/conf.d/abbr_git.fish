@@ -18,8 +18,8 @@ if status --is-interactive
     abbr gb 'git branch' # Branch operations
     abbr gbd 'git branch --delete' # Delete a branch
     abbr gbd! 'git branch --delete --force' # Delete a branch (force)
-    abbr gbm 'git branch --move' # Move/rename a branch
-    abbr gbm! 'git branch --move --force' # Move/rename a branch (force)
+    abbr gbrn 'git branch --move' # Move/rename a branch
+    abbr gbrn! 'git branch --move --force' # Move/rename a branch (force)
     abbr gbc 'git branch --copy' # Copy a branch
     abbr gbc! 'git branch --copy --force' # Copy a branch (force)
     abbr gbl 'git branch -vv --list' # List branches
