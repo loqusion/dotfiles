@@ -13,6 +13,8 @@
 	diffFilter = delta --color-only
 [checkout]
 	workers = 0
+[commit]
+	gpgSign = true
 [diff]
 	colorMoved = default
 	colorMovedWS = allow-indentation-change
