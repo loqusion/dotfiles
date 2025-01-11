@@ -205,6 +205,7 @@ if status --is-interactive
     abbr grbm 'git rebase (git_main_branch)' # Rebase on main branch
     abbr grbd 'git rebase (git_develop_branch)' # Rebase on dev branch
     abbr grbom 'git rebase origin/(git_main_branch)' # Rebase on origin main branch
+    abbr grbum 'git rebase upstream/(git_main_branch)' # Rebase on upstream main branch
 
     abbr grev 'git revert' # Revert commit changes, and record some new commits that record them
 
