@@ -182,7 +182,6 @@ if status --is-interactive
     abbr gmtl 'git mergetool --no-prompt' # Run merge conflict resolution tools to resolve merge conflicts
 
     abbr gp 'git push' # Update remote refs along with associated objects
-    abbr gpd 'git push --dry-run' # Do everything except actually send the updates
     abbr gpf 'git push --force-with-lease --force-if-includes' # Safe --force
     abbr gpf! 'git push --force' # Force remote repository to lose commits if remote ref is not an ancestor of local ref
     abbr gpt 'git push --tags' # Push tags
@@ -191,8 +190,9 @@ if status --is-interactive
     abbr gpoat 'git push origin --all && git push origin --tags' # Push all branches and tags to origin
     abbr gpoatf 'git push origin --all --force-with-lease --force-if-includes && git push origin --tags --force-with-lease --force-if-includes' # Force push all
     abbr gpoatf! 'git push origin --all --force && git push origin --tags --force' # Force push all (really mean it)
-    abbr gpod 'git push origin --delete' # Remove listed refs in origin
-    abbr gpop 'git push origin --prune' # Remove remote branches in origin without a local counterpart
+    abbr gpp 'git push --prune' # Remove remote branches without a local counterpart
+    abbr gpd 'git push --delete' # Delete listed refs from remote repository
+    abbr gpu 'git push --set-upstream' # Add upstream reference, used by argument-less `git pull`
 
     abbr gpl 'git pull' # Fetch from and integrate with another repository or local branch
     abbr gl 'git pull' # Alias for `gpl`
