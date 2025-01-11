@@ -298,6 +298,6 @@ if status --is-interactive
     abbr gwrm! 'git worktree remove --force' # Remove a worktree (force)
 
     # Requires git-absorb to be installed
-    abbr gx 'git absorb'
-    abbr gxr 'git absorb --and-rebase'
+    abbr gx 'git absorb' # Automatically write fixup! commits for staged changes
+    abbr gxr 'git absorb --and-rebase' # Auto fixup! commits with rebase
 end
