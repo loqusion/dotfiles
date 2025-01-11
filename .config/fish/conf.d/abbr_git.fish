@@ -194,6 +194,7 @@ if status --is-interactive
     abbr grau 'git remote add upstream' # Add a remote named upstream
     abbr grrn 'git remote rename' # Rename a remote
     abbr grrm 'git remote remove' # Remove a remote
+    abbr grp 'git remote prune' # Delete stale references
     abbr gru 'git remote update' # Fetch updates for remotes in the repository
     abbr grssh 'git remote set-url origin (gh repo view --json sshUrl -q .sshUrl)' # Set origin to SSH URL
     abbr grhttp 'git remote set-url origin (gh repo view --json url -q .url)' # Set origin to HTTPS URL
