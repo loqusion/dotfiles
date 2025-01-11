@@ -61,6 +61,9 @@ if status --is-interactive
     abbr gcsm 'git commit --signoff --message' # Commit + Signoff + Message
     abbr gcasm 'git commit --all --signoff --message' # Commit + All + Signoff + Message
     # ---
+    abbr gcf --set-cursor 'git commit --fixup=%' # Create a new commit which "fixes up" another commit when applied with `git rebase --autosquash`
+    abbr gcfa --set-cursor 'git commit --fixup=amend:%' # Fixup commit, also refine log message
+    # ---
     abbr gci "git commit --allow-empty --message 'initial commit'" # Initial commit
 
     abbr gcf 'git config' # Query/set/replace/unset repository or global options
