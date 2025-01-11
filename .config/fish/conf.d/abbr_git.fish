@@ -24,14 +24,30 @@ if status --is-interactive
     abbr gbc! 'git branch --copy --force' # Copy a branch (force)
     abbr gbl 'git branch -vv --list' # List branches
     abbr gbla 'git branch -vv --all --list' # List both remote-tracking branches and local branches
-    abbr gbda 'git branch --merged (git_main_branch) | grep -vE "^([+*]|\s*(main|master|trunk|dev|devel|development)\s*\$)" | xargs git branch --delete' # Delete all branches merged into the main branch
-    # FIXME: These are too naive
-    # function gbg -d 'Git: Print local branches whose upstream branch no longer exists'
-    #     git branch -vv | grep ": gone\]"
-    # end
-    # abbr gbg 'git branch -vv | grep ": gone\]"'
-    # alias gbgd "set res (gbg | awk '{print \$1}') && test -n \$res && echo \$res | xargs git branch -d"
-    # alias gbgD "set res (gbg | awk '{print \$1}') && test -n \$res && echo \$res | xargs git branch -D"
+    abbr gbm 'git branch --merged (git_main_branch) | grep -vE "^([+*]|\s*(main|master|trunk|dev|devel|development)\s*\$)"' # Print all branches merged into the main branch
+    abbr gbmd 'git branch --merged (git_main_branch) | grep -vE "^([+*]|\s*(main|master|trunk|dev|devel|development)\s*\$)" | xargs git branch --delete' # Delete all branches merged into the main branch
+    abbr gbg "git branch -vv --list | grep ': gone\]'" # Print branches whose upstream branch no longer exists
+    function gbgd -d 'Delete local branches whose upstream branch no longer exists'
+        command git rev-parse --git-dir &>/dev/null; or begin
+            echo 'fatal: not a git repository' >&2
+            return 1
+        end
+
+        set branches (command git branch --format='%(refname:short) %(upstream:track)' --list | grep '\[gone\]' | awk '{print $1}')
+        if test (count $branches) -gt 0
+            echo 'The following merged branches would be deleted:' >&2
+            for branch in $branches
+                echo "    $branch" >&2
+            end
+            echo >&2
+            read --prompt-str 'Continue? [y/N]: ' --local confirm; or return
+            if test "$confirm" = y -o "$confirm" = Y
+                string join ' ' $branches | xargs -- git branch --delete
+            else
+                return 1
+            end
+        end
+    end
 
     abbr gbs 'git bisect' # Use binary search to find the commit that introduced a changed property (e.g. a bug)
     abbr gbss 'git bisect start' # Start a bisect session
