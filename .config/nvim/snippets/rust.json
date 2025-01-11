@@ -3,5 +3,10 @@
     "prefix": "amain",
     "body": ["#[tokio::main]", "async fn main() {", "    ${1:todo!();}", "}"],
     "description": "async fn main() { … }"
+  },
+  "todo": {
+    "prefix": "todo",
+    "body": ["todo!(${1})"],
+    "description": "todo!()"
   }
 }
