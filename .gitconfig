@@ -39,6 +39,8 @@
 	ff = only
 [push]
 	autoSetupRemote = true
+[rebase]
+	autoSquash = true
 [stash]
 	showIncludeUntracked = true
 [status]
