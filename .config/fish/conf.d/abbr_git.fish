@@ -43,25 +43,25 @@ if status --is-interactive
     abbr gbsp 'git bisect replay' # Replay bisect actions from a logfile
     abbr gbsr 'git bisect reset' # Clean up bisect state and return to original HEAD
 
-    # TODO: add fixup, etc
-    abbr gc 'git commit -v' # Record changes to the repository
-    abbr gc! 'git commit -v --amend'
-    abbr gcn! 'git commit --amend --no-edit'
-    abbr gca 'git commit -v --all'
-    abbr gca! 'git commit -v --all --amend'
-    abbr gcan! 'git commit --all --amend --no-edit'
-    abbr gcm 'git commit --message'
-    abbr gcam 'git commit --all --message'
-    abbr gci "git commit --allow-empty --message 'initial commit'"
-
-    abbr gcsm 'git commit --signoff --message'
-    abbr gcas 'git commit -v --all --signoff'
-    abbr gcasm 'git commit --all --signoff --message'
-    abbr gcans! 'git commit -v --all --signoff --no-edit --amend'
-
-    abbr gcs 'git commit -v --gpg-sign'
-    abbr gcss 'git commit -v --gpg-sign --signoff'
-    abbr gcssm 'git commit --gpg-sign --signoff --message'
+    abbr gc 'git commit -v' # Create a new commit containing the contents of the index
+    abbr gc! 'git commit -v --amend' # Replace the last commit
+    abbr gcn! 'git commit --amend --no-edit' # Replace the last commit, without editing the message
+    abbr gca 'git commit -v --all' # Commit, automatically staging tracked files
+    abbr gca! 'git commit -v --all --amend' # Commit + All + Amend
+    abbr gcan! 'git commit --all --amend --no-edit' # Commit + All + Amend + No-edit
+    abbr gcm 'git commit --message' # Commit, using a message specified on the command line
+    abbr gcam 'git commit --all --message' # Commit + All + Message
+    # ---
+    abbr gcs 'git commit -v --signoff' # Commit with a Signed-off-by trailer
+    abbr gcs! 'git commit -v --signoff --amend' # Commit + Signoff + Amend
+    abbr gcsn! 'git commit --signoff --no-edit --amend' # Commit + Signoff + No-edit + Amend
+    abbr gcas 'git commit -v --all --signoff' # Commit + All + Signoff
+    abbr gcas! 'git commit -v --all --signoff --amend' # Commit + All + Sign-off + Amend
+    abbr gcasn! 'git commit --all --signoff --no-edit --amend' # Commit + All + Signoff + No-edit + Amend
+    abbr gcsm 'git commit --signoff --message' # Commit + Signoff + Message
+    abbr gcasm 'git commit --all --signoff --message' # Commit + All + Signoff + Message
+    # ---
+    abbr gci "git commit --allow-empty --message 'initial commit'" # Initial commit
 
     abbr gcf 'git config' # Query/set/replace/unset repository or global options
     abbr gcfl 'git config list' # List all variables set in config file, along with their values
