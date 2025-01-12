@@ -77,7 +77,7 @@ return {
 
       -- LazyVim sets `reuse_win` to `true`. When `reuse_win` is `true`, if you
       -- open a buffer in multiple windows and goto a definition/etc in the
-      -- second window, it will use the first window.
+      -- second window, it will use the first window, which is bad.
       -- stylua: ignore
       vim.list_extend(Keys, {
         { "gd", function() require("telescope.builtin").lsp_definitions({ reuse_win = false }) end, desc = "Goto Definition", has = "definition" },
