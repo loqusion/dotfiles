@@ -17,6 +17,8 @@ local function unmap(modes, lhs, opts)
   vim.keymap.del(modes, lhs, opts)
 end
 
+map({ "n", "x" }, "<Space>", "<Nop>")
+
 unmap("n", "<C-Up>")
 unmap("n", "<C-Down>")
 unmap("n", "<C-Left>")
