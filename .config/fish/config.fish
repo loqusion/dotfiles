@@ -66,6 +66,8 @@ abbr untar "tar xvf"
 abbr glow "glow -p"
 abbr ub unbuffer
 
+abbr parup --set-cursor 'paru -Gpa % | bat -l PKGBUILD'
+
 abbr zj zellij
 abbr zja "zellij attach"
 
