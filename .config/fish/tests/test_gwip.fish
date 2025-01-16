@@ -1,13 +1,13 @@
 source $FISH_CONFIG_DIR/conf.d/fish/gwip.fish
 
 function before_each
-    set -g tmp_dir (mktemp -dt 'fish_test-XXXXXXXXXX')
-    pushd $tmp_dir
+    set -g tmp_dir "$(mktemp -dt 'fish_test-XXXXXXXXXX')"
+    pushd "$tmp_dir"
 end
 
 function after_each
     popd
-    rm -rf $tmp_dir
+    rm -rf "$tmp_dir"
 end
 
 function __init
