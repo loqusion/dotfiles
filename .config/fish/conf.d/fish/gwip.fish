@@ -13,7 +13,7 @@ function gwip --description 'Create or update WIP commit containing working tree
             echo $commit_output
         else if set -l parent_hash (git rev-parse --quiet --verify 'HEAD^')
             echo 'WIP commit is empty; resetting to parent' >&2
-            git reset $parent_hash
+            git reset $parent_hash[1]
         end
     else
         # Either git log failed (no commits), or grep failed (last commit didn't match)
@@ -30,7 +30,7 @@ function gunwip --description 'Reset current HEAD to commit before WIP'
 
     if echo $commit_subject | grep --quiet --count '^--wip--'
         if set -l parent_hash (git rev-parse --quiet --verify 'HEAD^')
-            git reset $parent_hash
+            git reset $parent_hash[1]
         else
             echo 'warning: refusing to delete root commit, amending it to blank state (working tree will remain intact)' >&2
             # `git ls-files -z ... | git rm ... --pathspec-from-file='-' --pathspec-file-nul`
