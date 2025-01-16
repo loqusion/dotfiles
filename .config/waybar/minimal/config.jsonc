@@ -20,7 +20,10 @@
     "format": "{icon}",
     "on-click": "activate",
     "sort-by-number": true,
+    "show-special": true,
+    "special-visible-only": false,
     "format-icons": {
+      "special": "",
       "1": "I",
       "2": "II",
       "3": "III",
