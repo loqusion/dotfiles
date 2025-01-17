@@ -67,6 +67,8 @@ abbr glow "glow -p"
 abbr ub unbuffer
 
 abbr parup --set-cursor 'paru -Gpa % | bat -l PKGBUILD'
+alias paru-orphans 'paru -Qdtq'
+alias paru-remove-all-orphans 'paru -Qdtq | paru -Rns -'
 
 abbr zj zellij
 abbr zja "zellij attach"
