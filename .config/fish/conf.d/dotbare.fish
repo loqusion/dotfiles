@@ -2,8 +2,8 @@ if test -d ~/.dotbare
     fish_add_path ~/.dotbare
 end
 
-set -Ux DOTBARE_DIR "$HOME/.local/share/dotfiles"
-set -Ux DOTBARE_TREE $HOME
+set -Ux DOTBARE_DIR ~/.local/share/dotfiles
+set -Ux DOTBARE_TREE ~
 
 abbr cs "dotbare status"
 abbr ca "dotbare add -v"
