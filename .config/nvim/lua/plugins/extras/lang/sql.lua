@@ -14,6 +14,7 @@ return {
     },
   },
 
+  -- TODO: When https://github.com/stevearc/conform.nvim/pull/625 is merged, use `sqruff`
   {
     "mfussenegger/nvim-lint",
     optional = true,
