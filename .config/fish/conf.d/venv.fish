@@ -28,13 +28,11 @@ function __get_venv_dir
     return
 end
 
-function __serialize_path
-    set path $argv[1]
+function __serialize_path -a path
     string replace -a / "%" $path
 end
 
-function __venv_consent_file
-    set venv_dir $argv[1]
+function __venv_consent_file -a venv_dir
     set xdg_state_home $XDG_STATE_HOME
     if test -z $xdg_state_home
         set xdg_state_home $HOME/.local/state
@@ -46,27 +44,21 @@ function __venv_consent_file
     echo $consent_file
 end
 
-function __venv_get_consent_from_file
-    set consent_file $argv[1]
+function __venv_get_consent_from_file -a consent_file
     if ! test -r $consent_file
         return
     end
     cat $consent_file
 end
 
-function __venv_set_consent
-    set consent_file $argv[1]
-    set consent $argv[2]
-
+function __venv_set_consent -a consent_file -a consent
     echo $consent >$consent_file
 end
 
-function __venv_allow
-    set venv_dir $argv[1]
+function __venv_allow -a venv_dir -a consent_file
     if test -z "$venv_dir"
         set venv_dir (__get_venv_dir)
     end
-    set consent_file $argv[2]
     if test -z "$consent_file"
         set consent_file (__venv_consent_file $venv_dir)
     end
@@ -74,12 +66,10 @@ function __venv_allow
     __venv_set_consent $consent_file allow
 end
 
-function __venv_deny
-    set venv_dir $argv[1]
+function __venv_deny -a venv_dir -a consent_file
     if test -z "$venv_dir"
         set venv_dir (__get_venv_dir)
     end
-    set consent_file $argv[2]
     if test -z "$consent_file"
         set consent_file (__venv_consent_file $venv_dir)
     end
@@ -87,9 +77,7 @@ function __venv_deny
     __venv_set_consent $consent_file deny
 end
 
-function __venv_consent_get_response
-    set venv_dir $argv[1]
-
+function __venv_consent_get_response -a venv_dir
     while read --nchars 1 -l response --prompt-str="Allow activation of $venv_dir? [y/n]"
         or return 1
         switch $response
@@ -106,10 +94,7 @@ function __venv_consent_get_response
     end
 end
 
-function __venv_acquire_consent
-    set venv_dir $argv[1]
-    set consent_file $argv[2]
-
+function __venv_acquire_consent -a venv_dir -a consent_file
     if not set response (__venv_consent_get_response $venv_dir)
         return 1
     end
@@ -119,8 +104,7 @@ function __venv_acquire_consent
     echo $response
 end
 
-function __venv_consent
-    set venv_dir $argv[1]
+function __venv_consent -a venv_dir
     set consent_file (__venv_consent_file $venv_dir)
 
     set consent (__venv_get_consent_from_file $consent_file)
