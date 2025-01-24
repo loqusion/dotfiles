@@ -300,11 +300,22 @@ return {
       { "<C-S-L>", "<Cmd>BufferLineMoveNext<CR>", desc = "Move Buffer to the Right" },
       { "<C-S-H>", "<Cmd>BufferLineMovePrev<CR>", desc = "Move Buffer to the Left" },
     },
-    opts = {
-      options = {
-        show_buffer_close_icons = false,
-      },
-    },
+    ---@param opts bufferline.UserConfig
+    opts = function(_, opts)
+      local pinned_group = require("bufferline.groups").builtin.pinned:with({ icon = "󰤱" })
+      ---@type bufferline.UserConfig
+      local overrides = {
+        options = {
+          show_buffer_close_icons = false,
+          groups = {
+            items = {
+              pinned_group,
+            },
+          },
+        },
+      }
+      return vim.tbl_deep_extend("force", opts, overrides)
+    end,
   },
 
   -- Ultra fold
