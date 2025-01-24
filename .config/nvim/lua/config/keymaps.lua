@@ -130,3 +130,12 @@ if LazyVim.has("nvim-spider") then
     })
     :map("<leader>uS")
 end
+
+-- stylua: ignore
+if vim.fn.executable("lazygit") == 1 then
+  -- I hate change :)
+  map("n", "<leader>gf", function() Snacks.lazygit.log_file() end, { desc = "Lazygit Current File History" })
+  ---@diagnostic disable-next-line: missing-fields
+  map("n", "<leader>gl", function() Snacks.lazygit.log({ cwd = LazyVim.root.git() }) end, { desc = "Lazygit Log" })
+  map("n", "<leader>gL", function() Snacks.lazygit.log() end, { desc = "Lazygit Log (cwd)" })
+end
