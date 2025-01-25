@@ -7,7 +7,7 @@ end
 
 function after_each
     popd
-    rm -rf "$tmp_dir"
+    command rm -rf -- "$tmp_dir"
 end
 
 function __init
