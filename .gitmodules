@@ -59,3 +59,6 @@
 	path = .config/home-manager
 	url = git@github.com:loqusion/dotfiles-nix.git
 	shallow = false
+[submodule ".config/yazi/plugins/ouch.yazi"]
+	path = .config/yazi/plugins/ouch.yazi
+	url = https://github.com/ndtoan96/ouch.yazi.git

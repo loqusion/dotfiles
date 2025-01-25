@@ -1,0 +1,4 @@
+[[manager.prepend_keymap]]
+on = ["C"]
+run = "plugin ouch --args=tar.gz"
+desc = "Compress with ouch"
