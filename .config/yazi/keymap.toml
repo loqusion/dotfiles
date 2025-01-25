@@ -1,4 +1,9 @@
 [[manager.prepend_keymap]]
+on = ["g", "r"]
+run = "cd ~/repos"
+desc = "Goto ~/repos"
+
+[[manager.prepend_keymap]]
 on = ["C"]
 run = "plugin ouch --args=tar.gz"
 desc = "Compress with ouch"
