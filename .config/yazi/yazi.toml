@@ -1,9 +1,12 @@
 [plugin]
 prepend_previewers = [
+    # Archive preview + compression
     { mime = "application/*zip", run = "ouch" },
     { mime = "application/x-tar", run = "ouch" },
     { mime = "application/x-bzip2", run = "ouch" },
     { mime = "application/x-7z-compressed", run = "ouch" },
     { mime = "application/x-rar", run = "ouch" },
     { mime = "application/x-xz", run = "ouch" },
+    # Markdown viewer
+    { name = "*.md", run = "glow" },
 ]
