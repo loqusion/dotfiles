@@ -82,6 +82,7 @@ require("lazy").setup({
     { import = "plugins.extras.coding.surround", enabled = true },
     { import = "plugins.extras.dap" },
     { import = "plugins.extras.editor.neorg", enabled = false },
+    { import = "plugins.extras.editor.telescope" },
     { import = "plugins.extras.formatting" },
     { import = "plugins.extras.lang" },
     { import = "plugins.extras.vscode" },
