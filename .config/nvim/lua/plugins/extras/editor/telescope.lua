@@ -52,6 +52,19 @@ return {
   },
 
   {
+    "debugloop/telescope-undo.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
+    keys = {
+      { "<leader>su", "<Cmd>Telescope undo<CR>", desc = "Undotree" },
+    },
+    config = function(_, _)
+      require("telescope").load_extension("undo")
+    end,
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = function()
       if LazyVim.pick.want() ~= "telescope" then
