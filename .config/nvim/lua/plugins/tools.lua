@@ -36,9 +36,9 @@ return {
       vim.g.arpeggio_timeoutlen = 70
     end,
     config = function()
-      vim.fn["arpeggio#map"]("i", "", 0, "jk", "<Esc>")
+      vim.fn["arpeggio#map"]("i", "", 1, "jk", "<Esc>")
       -- Full-width jk during IME
-      vim.fn["arpeggio#map"]("i", "", 0, "ｊｋ", "<Esc>")
+      vim.fn["arpeggio#map"]("i", "", 1, "ｊｋ", "<Esc>")
     end,
   },
 
