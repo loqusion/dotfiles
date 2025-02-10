@@ -6,6 +6,7 @@ local o = vim.o
 -- See: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 vim.g.lazyvim_picker = "telescope"
 vim.g.lazyvim_cmp = "nvim-cmp"
+vim.g.lazyvim_explorer = "neo-tree"
 vim.g.snacks_animate = true
 
 vim.g.maplocalleader = [[\]]
