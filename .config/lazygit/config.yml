@@ -2,6 +2,7 @@ git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never
+notARepository: skip
 promptToReturnFromSubprocess: false
 theme:
   lightTheme: false
