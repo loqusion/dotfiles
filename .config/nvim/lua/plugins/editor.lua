@@ -431,6 +431,7 @@ return {
           "TelescopePrompt",
           "alpha",
           "dashboard",
+          "snacks_terminal",
           "toggleterm",
         },
       },
