@@ -32,6 +32,7 @@ x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 x-scheme-handler/mailto=firefox.desktop
 x-scheme-handler/notion=notion-app.desktop
+video/mp4=vlc.desktop
 
 [Added Associations]
 application/octet-stream=neovide.desktop;
@@ -62,3 +63,4 @@ video/webm=firefox.desktop;vlc.desktop;
 x-scheme-handler/chrome=firefox.desktop;
 x-scheme-handler/http=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
+video/mp4=vlc.desktop;
