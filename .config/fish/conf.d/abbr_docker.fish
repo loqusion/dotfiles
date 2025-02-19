@@ -21,6 +21,7 @@ abbr drmi 'docker image rm'
 abbr ds 'docker container start'
 abbr dst 'docker container stop'
 abbr dt 'docker image tag'
+abbr dx 'docker container exec -it'
 
 abbr dn 'docker network'
 
