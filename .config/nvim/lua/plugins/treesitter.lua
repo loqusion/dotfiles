@@ -17,6 +17,10 @@ return {
     "andymass/vim-matchup",
     enabled = false, -- WARN: This plugin causes an annoying bug with cmp
     event = "BufReadPost",
+    init = function()
+      vim.g.loaded_matchit = 1
+      vim.g.loaded_matchparen = 1
+    end,
     config = function()
       vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
     end,
