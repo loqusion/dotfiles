@@ -8,7 +8,7 @@ return {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
-        "markdownlint",
+        "markdownlint-cli2",
       })
     end,
   },
@@ -18,7 +18,7 @@ return {
     optional = true,
     opts = {
       linters_by_ft = {
-        markdown = { "markdownlint" },
+        markdown = { "markdownlint-cli2" },
       },
     },
   },
@@ -54,17 +54,6 @@ return {
             },
           }),
         },
-      })
-    end,
-  },
-
-  {
-    "nvimtools/none-ls.nvim",
-    optional = true,
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      vim.list_extend(opts.sources, {
-        nls.builtins.diagnostics.markdownlint,
       })
     end,
   },
