@@ -14,9 +14,6 @@ require("lazy").setup({
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
     },
-    -- TODO: use lazyvim avante extra when it gets merged
-    -- see https://github.com/LazyVim/LazyVim/pull/4440
-    -- { import = "lazyvim.plugins.extras.coding.avante" },
     { import = "lazyvim.plugins.extras.coding.copilot", enabled = false },
     -- TODO: migrate to native snippets
     { import = "lazyvim.plugins.extras.coding.luasnip", enabled = true },
@@ -77,7 +74,7 @@ require("lazy").setup({
     --#endregion
     { import = "plugins" },
     { import = "plugins.extras.coding.autopairs" },
-    { import = "plugins.extras.coding.avante" },
+    -- { import = "plugins.extras.coding.avante" },
     { import = "plugins.extras.coding.backseat" },
     { import = "plugins.extras.coding.comment", enabled = false },
     { import = "plugins.extras.coding.surround", enabled = true },
