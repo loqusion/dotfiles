@@ -33,6 +33,8 @@ x-scheme-handler/https=firefox.desktop
 x-scheme-handler/mailto=firefox.desktop
 x-scheme-handler/notion=notion-app.desktop
 video/mp4=vlc.desktop
+x-scheme-handler/nxm=ModOrganizer-steamtinkerlaunch-dl.desktop
+x-scheme-handler/nxm-protocol=ModOrganizer-steamtinkerlaunch-dl.desktop
 
 [Added Associations]
 application/octet-stream=neovide.desktop;
