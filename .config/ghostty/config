@@ -19,7 +19,7 @@ font-family = "Twemoji"
 theme = "dark:catppuccin-mocha,light:catppuccin-latte"
 window-theme = "ghostty"
 background-opacity = 0.9
-window-decoration = false
+# window-decoration = false
 
 # Keybindings
 ## Goto split
@@ -34,7 +34,7 @@ keybind = super+ctrl+shift+k=resize_split:up,50
 keybind = super+ctrl+shift+l=resize_split:right,50
 keybind = super+ctrl+shift+plus=equalize_splits
 
-# Mitigate startup delay (heuristic isn't working)
-gtk-single-instance = true
+# Mitigate startup delay (uncomment if this isn't detected automatically)
+# gtk-single-instance = true
 
 # vim: ft=conf
