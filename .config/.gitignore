@@ -22,6 +22,8 @@
 !/coolercontrol/**
 !/dunst/
 !/dunst/**
+!/environment.d/
+!/environment.d/**
 !/eww/
 !/eww/**
 !/fcitx5/
@@ -194,3 +196,4 @@
 .DS_STORE
 fish_variables
 secrets.fish
+/environment.d/??-home-manager.conf
