@@ -26,7 +26,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.dial" },
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
     -- BUG: Sometimes doesn't work for rust-analyzer
-    -- { import = "lazyvim.plugins.extras.editor.inc-rename" },
+    { import = "lazyvim.plugins.extras.editor.inc-rename", enabled = false },
     { import = "lazyvim.plugins.extras.editor.navic" },
     { import = "lazyvim.plugins.extras.editor.neo-tree" },
     { import = "lazyvim.plugins.extras.editor.telescope" }, -- fzf.lua is default upstream
@@ -75,7 +75,7 @@ require("lazy").setup({
     --#endregion
     { import = "plugins" },
     { import = "plugins.extras.coding.autopairs" },
-    -- { import = "plugins.extras.coding.avante" },
+    { import = "plugins.extras.coding.avante", enabled = false },
     { import = "plugins.extras.coding.backseat" },
     { import = "plugins.extras.coding.comment", enabled = false },
     { import = "plugins.extras.coding.surround", enabled = true },
