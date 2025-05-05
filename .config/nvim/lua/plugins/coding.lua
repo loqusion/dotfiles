@@ -114,4 +114,16 @@ return {
       },
     },
   },
+
+  {
+    "gbprod/yanky.nvim",
+    optional = true,
+    opts = {
+      system_clipboard = {
+        -- TODO: Re-enable when #7 is fixed
+        -- See https://github.com/gbprod/yanky.nvim/issues/123
+        sync_with_ring = false,
+      },
+    },
+  },
 }
