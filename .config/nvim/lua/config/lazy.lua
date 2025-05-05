@@ -19,7 +19,8 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.coding.luasnip", enabled = true },
     { import = "lazyvim.plugins.extras.coding.neogen" },
     { import = "lazyvim.plugins.extras.coding.nvim-cmp" }, -- LEGACY
-    { import = "lazyvim.plugins.extras.coding.yanky" },
+    -- FIXME: See https://github.com/gbprod/yanky.nvim/issues/123
+    { import = "lazyvim.plugins.extras.coding.yanky", enabled = false },
     { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.dap.nlua" },
     { import = "lazyvim.plugins.extras.editor.dial" },

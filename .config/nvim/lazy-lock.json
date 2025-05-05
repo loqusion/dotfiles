@@ -163,6 +163,5 @@
   "virtcolumn.nvim": { "branch": "main", "commit": "4d385b4aa42aa3af6fa2cb8527462fa4badbd163" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
   "yaml-companion.nvim": { "branch": "main", "commit": "131b0d67bd2e0f1a02e0daf2f3460482221ce3c0" },
-  "yanky.nvim": { "branch": "main", "commit": "04775cc6e10ef038c397c407bc17f00a2f52b378" },
   "zenbones.nvim": { "branch": "main", "commit": "9deaa8a38e43e8c587b427095dd43c3511255b21" }
 }
