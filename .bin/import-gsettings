@@ -16,4 +16,3 @@ gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
 gsettings set org.gnome.desktop.interface icon-theme "$icon_theme"
 # gsettings set org.gnome.desktop.interface cursor-theme "$cursor_theme"
 gsettings set org.gnome.desktop.interface font-name "$font_name"
-gsettings set org.gnome.desktop.interface text-scaling-factor 1
