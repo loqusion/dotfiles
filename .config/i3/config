@@ -12,7 +12,7 @@
 set $mod Mod4
 
 # Programs
-set $term wezterm start
+set $term ghostty
 set $dmenu "rofi -modi drun,run -show drun"
 
 # Font for window titles. Will also be used by the bar unless a different font
