@@ -180,10 +180,17 @@
 # Non-config
 
 /btop/btop.log
-/tmux/plugins/
+/gtk-3.0/bookmarks.bakg
+/helix/runtime
 /lazygit/state.yml
-/systemd/**/*.wants/**
 /nvim/spell/**
+/systemd/**/*.wants/**
+/tmux/plugins/
+
+
+# Intentionally untracked config
+
+/git/gitk
 
 
 # Dangerous!!!
