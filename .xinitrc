@@ -2,7 +2,7 @@
 
 # shellcheck disable=SC1090
 
-session=${1:-awesome}
+session=${1:-i3}
 
 case $(hostname -s | tr '[:upper:]' '[:lower:]') in
 kuro)
