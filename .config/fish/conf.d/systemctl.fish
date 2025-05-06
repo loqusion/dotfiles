@@ -14,4 +14,6 @@ if status --is-interactive
     abbr sysut "systemctl --user stop"
     abbr sysue "systemctl --user enable --now"
     abbr sysud "systemctl --user disable --now"
+
+    abbr jn "sudo journalctl"
 end
