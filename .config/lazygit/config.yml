@@ -1,4 +1,5 @@
 git:
+  autoForwardBranches: none
   overrideGpg: true
   paging:
     colorArg: always
