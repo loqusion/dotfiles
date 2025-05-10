@@ -106,6 +106,7 @@ image/heic=org.gnome.Loupe.desktop
 image/jxl=org.gnome.Loupe.desktop
 image/x-xcursor=org.gnome.Loupe.desktop
 video/x-mpeg-system=vlc.desktop
+application/zip=org.gnome.Nautilus.desktop
 
 [Added Associations]
 application/octet-stream=neovide.desktop;
@@ -207,3 +208,4 @@ image/heic=org.gnome.Loupe.desktop;
 image/jxl=org.gnome.Loupe.desktop;
 image/x-xcursor=org.gnome.Loupe.desktop;
 video/x-mpeg-system=vlc.desktop;
+application/zip=org.gnome.Nautilus.desktop;
