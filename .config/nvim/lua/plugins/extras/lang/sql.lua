@@ -6,7 +6,7 @@ local sql_ft = { "sql", "mysql", "plsql" }
 return {
   -- Remove sqlfluff from upstream config
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = function(_, opts)
       for i, v in ipairs(opts.ensure_installed) do
         if v == "sqlfluff" then
