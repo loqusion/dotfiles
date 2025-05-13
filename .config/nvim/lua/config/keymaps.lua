@@ -65,6 +65,10 @@ map("n", "<leader>gC", function()
   }, { cwd = vim.env.HOME, esc_esc = false, ctrl_hjkl = false })
 end, { desc = "Lazygit (dotfiles)" })
 
+map("n", "<leader>uI", function()
+  vim.treesitter.inspect_tree()
+end, { desc = "Inspect Tree" })
+
 if LazyVim.has("smart-splits.nvim") then
   -- manually map to override LazyVim mappings
   local smart_splits = require("lazy.core.config").spec.plugins["smart-splits.nvim"]
