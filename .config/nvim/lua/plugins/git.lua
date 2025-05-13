@@ -86,6 +86,7 @@ return {
   -- Magit
   {
     "NeogitOrg/neogit",
+    enabled = false,
     dependencies = {
       "sindrets/diffview.nvim",
     },
