@@ -107,7 +107,7 @@
   "obs.nvim": { "branch": "main", "commit": "08ac76f96255bf0317e4bb8349cc977e5f75d61f" },
   "octo.nvim": { "branch": "master", "commit": "57ab7aa6daa0144164af7fb40436b8e6fa7789ff" },
   "one-small-step-for-vimkind": { "branch": "main", "commit": "ba909c68fed65e268df8a4684bafef4ec889c8bc" },
-  "onedarkpro.nvim": { "branch": "main", "commit": "7f48f471e1fa3e4711c690ab20767794df3a886b" },
+  "onedarkpro.nvim": { "branch": "main", "commit": "00c9146411e2160c56b681daea4f977aacf07171" },
   "overseer.nvim": { "branch": "master", "commit": "72c68aab0358c92f451168b704c411c4a3e3410e" },
   "oxocarbon.nvim": { "branch": "main", "commit": "004777819ba294423b638a35a75c9f0c7be758ed" },
   "package-info.nvim": { "branch": "master", "commit": "4f1b8287dde221153ec9f2acd46e8237d2d0881e" },
