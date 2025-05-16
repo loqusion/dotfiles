@@ -97,10 +97,7 @@ require("lazy").setup({
     fallback = true,
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
-  checker = {
-    enabled = true,
-    concurrency = 5, -- avoid rate limits
-  },
+  checker = { enabled = true },
   performance = {
     rtp = {
       disabled_plugins = {
