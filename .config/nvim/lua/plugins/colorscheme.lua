@@ -35,6 +35,9 @@ return {
     name = "catppuccin",
     opts = {
       transparent_background = style.transparent,
+      float = {
+        transparent = style.transparent,
+      },
       integrations = {
         navic = { enabled = true, custom_bg = style.transparent and "NONE" or "lualine" },
       },
