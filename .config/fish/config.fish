@@ -11,6 +11,8 @@ if status is-interactive && set -q START_ZELLIJ
     eval (zellij setup --generate-auto-start fish | string collect)
 end
 
+fish_config theme choose "Catppuccin Mocha"
+
 set -gx LOCALE_ARCHIVE /usr/lib/locale/locale-archive
 
 set -gx EDITOR (which nvim)
