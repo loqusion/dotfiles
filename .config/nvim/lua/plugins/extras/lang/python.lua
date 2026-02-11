@@ -24,18 +24,22 @@ return {
         pyright = {
           ---@type vim.lsp.client.on_attach_cb
           on_attach = function(client, _)
-            client.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(function(_, result, ctx, config)
-              local function filter_pyright(diagnostic)
-                diagnostic = diagnostic or {}
-                local source = diagnostic.source
-                if type(source) ~= "string" then
-                  return true
+            local SHOULD_FILTER_PYRIGHT = false
+
+            if SHOULD_FILTER_PYRIGHT then
+              client.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(function(_, result, ctx, config)
+                local function filter_pyright(diagnostic)
+                  diagnostic = diagnostic or {}
+                  local source = diagnostic.source
+                  if type(source) ~= "string" then
+                    return true
+                  end
+                  return string.lower(source) ~= "pyright"
                 end
-                return string.lower(source) ~= "pyright"
-              end
-              result.diagnostics = vim.tbl_filter(filter_pyright, result.diagnostics)
-              vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
-            end, {})
+                result.diagnostics = vim.tbl_filter(filter_pyright, result.diagnostics)
+                vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+              end, {})
+            end
           end,
         },
       },
