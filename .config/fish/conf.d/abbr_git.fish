@@ -197,6 +197,7 @@ if status --is-interactive
     abbr gpl 'git pull' # Fetch from and integrate with another repository or local branch
     abbr gl 'git pull' # Alias for `gpl`
     abbr gpl! 'git pull --autostash' # Pull, stashing local changes and applying after the operation ends
+    abbr gpl!! 'git pull --autostash --rebase' # Pull, autostash, and rebase
     abbr gplsu 'git pull --set-upstream' # Pull, adding upstream branch for subsequent argument-less `git pull`
     abbr gplo 'git pull origin' # Pull from origin
     abbr gplom 'git pull origin (git_main_branch)' # Pull main branch from origin into current branch
