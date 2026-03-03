@@ -1,0 +1,10 @@
+{
+  "ns": {
+    "prefix": "ns",
+    "body": ["namespace ${1:MyNamespace} {", "\t$0", "} // namespace $1"]
+  },
+  "namespace": {
+    "prefix": "namespace",
+    "body": ["namespace ${1:MyNamespace} {", "\t$0", "} // namespace $1"]
+  }
+}

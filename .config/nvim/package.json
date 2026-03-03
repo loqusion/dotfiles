@@ -3,6 +3,10 @@
   "contributes": {
     "snippets": [
       {
+        "language": "cpp",
+        "path": "./snippets/cpp/cpp.json"
+      },
+      {
         "language": [
           "javascriptreact",
           "typescriptreact"
