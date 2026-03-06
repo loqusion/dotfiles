@@ -107,6 +107,8 @@ image/jxl=org.gnome.Loupe.desktop
 image/x-xcursor=org.gnome.Loupe.desktop
 video/x-mpeg-system=vlc.desktop
 application/zip=org.gnome.Nautilus.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
+text/x-c++src=org.gnome.gedit.desktop
 
 [Added Associations]
 application/octet-stream=neovide.desktop;
@@ -209,3 +211,5 @@ image/jxl=org.gnome.Loupe.desktop;
 image/x-xcursor=org.gnome.Loupe.desktop;
 video/x-mpeg-system=vlc.desktop;
 application/zip=org.gnome.Nautilus.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;
+text/x-c++src=org.gnome.gedit.desktop;
