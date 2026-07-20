@@ -1,3 +1,10 @@
+########################################################################
+# WARNING:
+# Do NOT remove this file. It prevents files containing sensitive data
+# from being leaked to the public.
+# Search for the word 'Dangerous'.
+########################################################################
+
 *
 !/.gitignore
 
