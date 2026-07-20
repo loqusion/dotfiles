@@ -1,0 +1,42 @@
+{{- if ne .chezmoi.os "darwin" }}
+iterm2/
+skhd/
+tabtab/
+yabai/
+{{- end }}
+
+{{- if ne .chezmoi.os "linux" }}
+coolercontrol/
+dunst/
+eww/
+fcitx5/
+font-manager/
+fontconfig/
+fuzzel/
+gtk-*/
+home-manager/
+hypr/
+i3/
+MangoHud/
+mpv/
+nwg-look/
+obs-studio/
+obsidian/
+paru/
+qt?ct/
+rofi/
+swayidle/
+swaylock/
+systemd/
+user-tmpfiles.d/
+waybar/
+wezterm/
+wireplumber/
+wlogout/
+xsettingsd/
+zathura/
+_vpn.toml
+electron*-flags.conf
+mimeapps.list
+user-dirs.locale
+{{- end }}

@@ -1,1 +1,27 @@
 README.md
+**/*.txt
+
+repos/
+
+{{- if ne .chezmoi.os "darwin" }}
+.bin/tiling.sh
+{{- end }}
+
+{{- if ne .chezmoi.os "linux" }}
+.bin/fix-hyprpaper.sh
+.bin/fix-lock.sh
+.bin/import-gsettings
+.bin/slurp
+.bin/vpn
+.bin/webcam.sh
+.icons/
+.local/share/applications/
+.local/share/fcitx5/
+.local/share/icons/
+.screenlayout/
+.bash_profile
+.bashrc
+.gtkrc-*
+.xinitrc
+.Xresources
+{{- end }}
