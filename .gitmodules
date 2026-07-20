@@ -34,9 +34,6 @@
 [submodule ".config/catppuccin/steam"]
 	path = dot_config/external_catppuccin/steam
 	url = https://github.com/catppuccin/steam
-[submodule ".config/catppuccin/element"]
-	path = dot_config/external_catppuccin/element
-	url = https://github.com/catppuccin/element
 [submodule ".config/catppuccin/fcitx5"]
 	path = dot_config/external_catppuccin/fcitx5
 	url = https://github.com/catppuccin/fcitx5
