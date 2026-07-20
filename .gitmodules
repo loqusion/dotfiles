@@ -1,6 +1,3 @@
-[submodule ".config/kitty/kitty-themes"]
-	path = dot_config/kitty/external_themes
-	url = https://github.com/dexpota/kitty-themes
 [submodule ".config/catppuccin/fish"]
 	path = dot_config/external_catppuccin/fish
 	url = https://github.com/catppuccin/fish
