@@ -4,7 +4,7 @@ if status is-interactive && set -q START_ZELLIJ
     eval (zellij setup --generate-auto-start fish | string collect)
 end
 
-fish_config theme choose "Catppuccin Mocha"
+fish_config theme choose catppuccin-mocha
 
 set -gx LOCALE_ARCHIVE /usr/lib/locale/locale-archive
 
