@@ -22,8 +22,6 @@
 !/bat/**
 !/btop/
 !/btop/**
-!/catppuccin/
-!/catppuccin/**
 !/cava
 !/cava**
 !/coolercontrol/
@@ -34,6 +32,10 @@
 !/environment.d/**
 !/eww/
 !/eww/**
+!/external_catppuccin/
+!/external_catppuccin/**
+!/external_home-manager/
+!/external_home-manager/**
 !/fcitx5/
 !/fcitx5/**
 !/fish/
@@ -60,8 +62,6 @@
 !/gtk-3.0/**
 !/helix/
 !/helix/**
-!/home-manager/
-!/home-manager/**
 !/htop/
 !/htop/**
 !/hypr/
