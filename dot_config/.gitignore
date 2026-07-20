@@ -159,8 +159,6 @@
 !/PCSX2/inis/*.ini
 !/_vpn.toml
 !/dz65rgb_v3.layout.json
-!/electron*-flags.conf
-!/electron-flags.conf
 !/godot/
 !/godot/editor_settings*
 !/mimeapps.list
@@ -178,6 +176,8 @@
 !/rpcs3/patches
 !/rpcs3/patches/**
 !/starship.toml
+!/symlink_electron*-flags.conf
+!/symlink_electron-flags.conf
 !/topgrade.toml
 !/user-dirs.locale
 # !/user-dirs.dirs

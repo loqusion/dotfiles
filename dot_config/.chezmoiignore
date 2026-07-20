@@ -1,3 +1,5 @@
+catppuccin/
+
 {{- if ne .chezmoi.os "darwin" }}
 iterm2/
 skhd/
