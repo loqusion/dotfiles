@@ -4,9 +4,6 @@
 [submodule ".config/catppuccin/fish"]
 	path = dot_config/external_catppuccin/fish
 	url = https://github.com/catppuccin/fish
-[submodule ".config/catppuccin/bat"]
-	path = dot_config/external_catppuccin/bat
-	url = https://github.com/catppuccin/bat
 [submodule ".config/catppuccin/btop"]
 	path = dot_config/external_catppuccin/btop
 	url = https://github.com/catppuccin/btop
