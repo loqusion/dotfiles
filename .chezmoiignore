@@ -3,6 +3,17 @@ README.md
 
 repos/
 
+.docker/
+.ssh/*
+
+!.ssh/config
+
+.megarc
+.npmrc
+.npmrcs
+**/fish_variables
+**/secrets.fish
+
 {{- if ne .chezmoi.os "darwin" }}
 .bin/tiling.sh
 {{- end }}
