@@ -68,17 +68,6 @@ return {
     },
   },
 
-  -- auto dark mode (macOS only)
-  {
-    "cormacrelf/dark-notify",
-    enabled = jit.os == "OSX",
-    event = "ColorScheme",
-    build = "command -V dark-notify || brew install cormacrelf/tap/dark-notify",
-    config = function(_, opts)
-      require("dark_notify").run(opts)
-    end,
-  },
-
   -- auto sync terminal background with neovim colorscheme
   {
     "typicode/bg.nvim",
