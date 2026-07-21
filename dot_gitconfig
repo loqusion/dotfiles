@@ -2,7 +2,7 @@
 	editor = nvim
 	pager = delta
 [user]
-	name = loqusion
+	name = John R Bernard
 	email = loqusion@gmail.com
 [filter "lfs"]
 	clean = git-lfs clean -- %f
