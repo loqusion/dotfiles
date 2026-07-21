@@ -74,6 +74,7 @@ require("lazy").setup({
     -- { import = "plugins.ui" },
     --#endregion
     { import = "plugins" },
+    { import = "plugins.extras.ai.claudecode", enabled = true },
     { import = "plugins.extras.coding.autopairs" },
     { import = "plugins.extras.coding.avante", enabled = false },
     { import = "plugins.extras.coding.comment", enabled = false },
