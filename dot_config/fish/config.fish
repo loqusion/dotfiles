@@ -44,13 +44,10 @@ abbr v nvim
 abbr vd "cd ~/.config/nvim && $EDITOR"
 abbr sv sudoedit
 abbr vsudo sudoedit
-abbr vup "dotbare commit -v -m 'chore(vim): upgrade' ~/.config/nvim/lazy-lock.json && dotbare push"
-abbr vrt "dotbare restore --worktree --staged ~/.config/nvim/lazy-lock.json"
+alias vup "__dotfiles_push 'chore(vim): upgrade' ~/.config/nvim/lazy-lock.json"
 abbr hup "~/.config/home-manager/update.sh && dotbare commit -v -m 'chore(home-manager): upgrade ~/.config/home-manager && dotbare push"
 
-abbr c dotbare
 abbr lg lazygit
-abbr lgc "lazygit --git-dir=\$DOTBARE_DIR --work-tree=\$DOTBARE_TREE"
 
 abbr df "df -h"
 abbr du "du -h"

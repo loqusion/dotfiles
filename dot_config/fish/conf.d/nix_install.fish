@@ -9,6 +9,9 @@ function install-home-manager-channel
 end
 
 function install-home-manager
+    echo "Error: dotfile configuration has been migrated to chezmoi. Please update `install-home-manager` to use chezmoi instead of dotbare." >&2
+    return 1
+
     if command -v home-manager &>/dev/null
         echo "home-manager is already installed."
         return
