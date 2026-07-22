@@ -68,23 +68,6 @@ vim.api.nvim_create_autocmd("BufRead", {
   end,
 })
 
--- launch.json auto load
-require("lazyvim.util").on_load("nvim-dap", function()
-  local function load_launchjs()
-    require("dap.ext.vscode").load_launchjs()
-  end
-
-  load_launchjs()
-
-  vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = "launch.json",
-    callback = function()
-      vim.notify("Reloading launch.json", vim.log.levels.INFO)
-      load_launchjs()
-    end,
-  })
-end)
-
 -- custom filetype detection --
 
 -- json
