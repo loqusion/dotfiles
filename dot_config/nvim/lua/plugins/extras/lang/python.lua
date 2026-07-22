@@ -12,7 +12,6 @@ return {
         "mypy",
         "pylint",
         "ruff",
-        "ruff-lsp",
       })
     end,
   },

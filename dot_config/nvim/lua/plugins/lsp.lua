@@ -33,13 +33,15 @@ return {
       inlay_hints = { enabled = true },
       codelens = { enabled = false },
       document_highlight = { enabled = true },
-      capabilities = {
-        -- workaround for performance issue
-        -- see https://github.com/neovim/neovim/issues/23291#issuecomment-1686709265
-        workspace = { didChangeWatchedFiles = { dynamicRegistration = false } },
-      },
       ---@class lspconfig.options
       servers = {
+        ["*"] = {
+          capabilities = {
+            -- workaround for performance issue
+            -- see https://github.com/neovim/neovim/issues/23291#issuecomment-1686709265
+            workspace = { didChangeWatchedFiles = { dynamicRegistration = false } },
+          },
+        },
         cssls = {
           settings = {
             css = {
