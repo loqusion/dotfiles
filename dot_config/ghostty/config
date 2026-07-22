@@ -24,17 +24,28 @@ background-opacity = 0.9
 # window-decoration = false
 
 # Keybindings
-## Goto split
+
+## Goto split (needed for Linux)
 keybind = ctrl+alt+h=goto_split:left
 keybind = ctrl+alt+j=goto_split:bottom
 keybind = ctrl+alt+k=goto_split:top
 keybind = ctrl+alt+l=goto_split:right
+
 ## Resizing splits
+keybind = ctrl+alt+shift+h=resize_split:left,50
+keybind = ctrl+alt+shift+j=resize_split:down,50
+keybind = ctrl+alt+shift+k=resize_split:up,50
+keybind = ctrl+alt+shift+l=resize_split:right,50
+keybind = ctrl+alt+shift+plus=equalize_splits
+keybind = ctrl+alt+shift+==equalize_splits
+
+## Resizing splits (alternative)
 keybind = super+ctrl+shift+h=resize_split:left,50
 keybind = super+ctrl+shift+j=resize_split:down,50
 keybind = super+ctrl+shift+k=resize_split:up,50
 keybind = super+ctrl+shift+l=resize_split:right,50
 keybind = super+ctrl+shift+plus=equalize_splits
+keybind = super+ctrl+shift+==equalize_splits
 
 # Mitigate startup delay (uncomment if this isn't detected automatically)
 # gtk-single-instance = true
