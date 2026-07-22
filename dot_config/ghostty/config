@@ -3,11 +3,13 @@ font-family = "SauceCodePro NF"
 # font-family-italic = "Maple Mono SC NF"
 # font-family-bold-italic = "Maple Mono SC NF"
 
-# CJK
+# CJK 你好 こんにちは 감사합니다
+font-family = "Hiragino Mincho ProN"
 font-family = "Noto Serif CJK JP"
+# font-family-italic = "Hiragino Mincho ProN"
 # font-family-italic = "Noto Serif CJK JP"
 
-# Emoji fonts
+# Emoji fonts 👻👺
 font-family = "Apple Color Emoji"
 font-family = "Twemoji"
 # font-family-italic = "Apple Color Emoji"
