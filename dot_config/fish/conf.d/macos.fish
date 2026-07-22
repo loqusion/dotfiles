@@ -13,4 +13,6 @@ if test (uname) = Darwin
     if test -f $HOMEBREW_COMMAND_NOT_FOUND_HANDLER
         source $HOMEBREW_COMMAND_NOT_FOUND_HANDLER
     end
+
+    fish_add_path (brew --prefix rustup)/bin
 end
