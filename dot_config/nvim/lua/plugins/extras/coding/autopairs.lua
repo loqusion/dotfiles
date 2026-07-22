@@ -2,7 +2,7 @@
 
 ---@type LazySpec[]
 return {
-  { "echasnovski/mini.pairs", enabled = false },
+  { "nvim-mini/mini.pairs", enabled = false },
   {
     "windwp/nvim-autopairs",
     event = "VeryLazy",

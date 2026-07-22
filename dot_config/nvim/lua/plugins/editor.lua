@@ -198,7 +198,7 @@ return {
   },
 
   {
-    "echasnovski/mini.bracketed",
+    "nvim-mini/mini.bracketed",
     event = "BufReadPost",
     opts = {
       comment = { suffix = "" },
