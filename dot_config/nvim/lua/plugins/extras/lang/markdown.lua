@@ -17,6 +17,11 @@ return {
     "mfussenegger/nvim-lint",
     optional = true,
     opts = {
+      linters = {
+        ["markdownlint-cli2"] = {
+          args = { "--config", vim.fn.expand("~/.markdownlint.yml"), "-" },
+        },
+      },
       linters_by_ft = {
         markdown = { "markdownlint-cli2" },
       },
