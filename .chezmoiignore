@@ -5,6 +5,8 @@ repos/
 
 .docker/
 .ssh/*
+.claude/*
+!.claude/CLAUDE.md
 
 !.ssh/config
 
