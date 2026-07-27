@@ -1,1 +1,3 @@
 *.*.avanterules
+
+**/.claude/settings.local.json
