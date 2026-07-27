@@ -11,6 +11,28 @@ return {
     -- See `:h nvim-surround.migrating.v3_to_v4`.
     init = function()
       vim.g.nvim_surround_no_insert_mappings = true
+
+      -- `ys...e` wraps a motion/text-object in a LaTeX environment,
+      -- prompting for its name (mirrors classic vim-surround's tex support).
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "tex",
+        group = vim.api.nvim_create_augroup("nvim_surround_tex", { clear = true }),
+        callback = function()
+          require("nvim-surround").buffer_setup({
+            surrounds = {
+              e = {
+                add = function()
+                  local config = require("nvim-surround.config")
+                  local result = config.get_input("Enter the environment name: ")
+                  if result then
+                    return { { "\\begin{" .. result .. "}" }, { "\\end{" .. result .. "}" } }
+                  end
+                end,
+              },
+            },
+          })
+        end,
+      })
     end,
     keys = {
       { "ys", desc = "Add surrounding" },
