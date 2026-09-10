@@ -67,6 +67,9 @@ abbr y yazi
 abbr zj zellij
 abbr zja "zellij attach"
 
+abbr ... "cd ../.."
+abbr .... "cd ../../.."
+
 if command -q rtx
     rtx activate fish | source
 end
