@@ -1,7 +1,10 @@
-function la --wraps='eza --color=always --icons --group-directories-first --all' --description 'alias la eza --color=always --icons --group-directories-first --all'
-    if isatty 1 && command -q eza
-        eza --color=always --icons --group-directories-first --all $argv
-    else
-        command ls -A --color=auto $argv
+if not command -q eza
+    function la --wraps='ls --color=auto -A' --description 'alias ls ls --color=auto -A'
+        command ls --color=auto -A $argv
     end
+    return
+end
+
+function la --wraps='eza --icons --hyperlink --group-directories-first --all' --description 'alias la eza --icons --hyperlink --group-directories-first --all'
+    eza --icons --hyperlink --group-directories-first --all $argv
 end

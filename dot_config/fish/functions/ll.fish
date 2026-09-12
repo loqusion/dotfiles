@@ -1,8 +1,10 @@
-function ll --wraps='eza --color=always --icons --group-directories-first --all --long --git' --description 'alias ll eza --color=always --icons --group-directories-first --all --long'
-    if isatty 1 && command -q eza
-        eza --color=always --icons --group-directories-first --all --long --git $argv
-    else
-        command ls -lA --color=always $argv
+if not command -q eza
+    function ll --wraps='ls --color=auto -lAh' --description 'alias ls ls --color=auto -lAh'
+        command ls --color=auto -lAh $argv
     end
+    return
+end
 
+function ll --wraps='eza --icons --hyperlink --group-directories-first --all --long --git' --description 'alias ll eza --icons --hyperlink --group-directories-first --all --long --git'
+    eza --icons --hyperlink --group-directories-first --all --long --git $argv
 end
