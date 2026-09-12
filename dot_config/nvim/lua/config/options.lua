@@ -21,6 +21,8 @@ opt.equalalways = false -- Splitting or closing a window won't automatically res
 -- opt.fillchars:append({ diff = "╱", fold = " ", foldopen = "", foldsep = " ", foldclose = "", eob = " " })
 opt.foldcolumn = "1"
 opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldminlines = 3
 opt.helpheight = 12 -- Minimum height of the help window
 opt.linebreak = true -- Only break lines between punctuation and white space
 opt.listchars:append({ precedes = "«", extends = "»" }) -- Text beyond horizontal window boundaries
