@@ -325,9 +325,8 @@ return {
   -- Ultra fold
   {
     "kevinhwang91/nvim-ufo",
-    optional = true,
     dependencies = "kevinhwang91/promise-async",
-    -- event = "BufReadPost",
+    event = "VeryLazy",
     -- stylua: ignore
     keys = {
       { "zR", function() require("ufo").openAllFolds() end },
@@ -335,32 +334,31 @@ return {
       { "zr", function() require("ufo").openFoldsExceptKinds() end },
       { "zm", function() require("ufo").closeFoldsWith() end },
     },
-    -- opts = {
-    --   close_fold_kinds = { "imports" },
-    --   provider_selector = function(_, filetype)
-    --     local ts = { "treesitter", "indent" }
-    --     local providers = {
-    --       lua = ts,
-    --       zsh = ts,
-    --     }
-    --     return providers[filetype]
-    --   end,
-    -- },
+    opts = {
+      close_fold_kinds_for_ft = {
+        default = { "imports", "comment", "region" },
+      },
+    },
   },
   -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   opts = {
-  --     capabilities = {
-  --       textDocument = {
-  --         foldingRange = {
-  --           dynamicRegistration = false,
-  --           lineFoldingOnly = true,
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
+  {
+    "neovim/nvim-lspconfig",
+    optional = true,
+    opts = {
+      servers = {
+        ["*"] = {
+          capabilities = {
+            textDocument = {
+              foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true,
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 
   -- 'statuscolumn' customization
   {
