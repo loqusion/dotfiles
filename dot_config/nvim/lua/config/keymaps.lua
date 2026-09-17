@@ -44,6 +44,11 @@ end
 map("n", "l", l, { desc = "which_key_ignore" })
 
 map("n", "gV", "v`[o`]", { desc = "Switch to VISUAL using last insertion/yank" })
+
+-- ctags-based jump, disambiguates with a list when there are multiple
+-- matches (e.g. a declaration and a definition); fallback for when gd
+-- (LSP) can't resolve a cross-file definition
+map("n", "gy", "g<C-]>", { desc = "Goto Definition (ctags)" })
 -- map("x", "g=", [[<Esc><Cmd>s/\%V.*\%V./\=eval("TODO")<CR>]], { desc = "Evaluate expression" })
 
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })

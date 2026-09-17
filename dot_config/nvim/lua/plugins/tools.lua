@@ -71,6 +71,24 @@ return {
     config = true,
   },
 
+  -- generate ctags for tag-based navigation (dumb fallback for gy: useful
+  -- when an LSP's semantic index can't resolve cross-file definitions,
+  -- e.g. clangd without a compile_commands.json)
+  {
+    "ludovicchabant/vim-gutentags",
+    cond = function()
+      return vim.fn.executable("/opt/homebrew/bin/ctags") == 1
+    end,
+    event = { "BufReadPost", "BufNewFile" },
+    init = function()
+      vim.g.gutentags_ctags_executable = "/opt/homebrew/bin/ctags"
+      vim.g.gutentags_add_default_project_roots = true
+      vim.g.gutentags_project_root = { ".git", ".hg", ".svn", "Makefile", "CMakeLists.txt" }
+      vim.g.gutentags_cache_dir = vim.fn.stdpath("cache") .. "/tags"
+      vim.g.gutentags_ctags_exclude = { ".git", "node_modules", "build", "dist" }
+    end,
+  },
+
   {
     "loqusion/star.nvim",
     dev = true,
