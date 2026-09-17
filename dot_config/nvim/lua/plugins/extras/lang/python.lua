@@ -1,5 +1,23 @@
 ---@module 'lazy'
 
+local function pyproject_has_mypy_section(pyproject_file)
+  local ok, lines = pcall(vim.fn.readfile, pyproject_file)
+  if not ok then
+    return false
+  end
+  -- matches [tool.mypy], [tool.mypy.overrides], [[tool.mypy.overrides]]
+  -- but not [tool.mypy_extra] or [tool.mypy-something]
+  return table.concat(lines, "\n"):find("%[tool%.mypy[%]%.]") ~= nil
+end
+
+local function has_mypy_config(dir)
+  if #vim.fs.find({ "mypy.ini" }, { path = dir, upward = true }) > 0 then
+    return true
+  end
+  local pyproject = vim.fs.find({ "pyproject.toml" }, { path = dir, upward = true })[1]
+  return pyproject ~= nil and pyproject_has_mypy_section(pyproject)
+end
+
 ---@type LazySpec[]
 return {
   {
@@ -74,7 +92,7 @@ return {
       linters = {
         mypy = {
           condition = function(ctx)
-            return #vim.fs.find({ "mypy.ini", "pyproject.toml" }, { path = ctx.filename, upward = true }) > 0
+            return has_mypy_config(ctx.filename)
           end,
         },
       },
@@ -105,8 +123,8 @@ return {
           end,
         }),
         nls.builtins.diagnostics.mypy.with({
-          condition = function(utils)
-            return utils.root_has_file("mypy.ini", "pyproject.toml")
+          condition = function(_)
+            return has_mypy_config(require("lazyvim.util").root.get())
           end,
           runtime_condition = function(params)
             local root_dir = require("lazyvim.util").root.get()
