@@ -5,6 +5,7 @@
   "NeoComposer.nvim": { "branch": "main", "commit": "7ecb04d4a1712a6fd7272c1c9482ea878c144588" },
   "SchemaStore.nvim": { "branch": "main", "commit": "3d2c297f7152208daf4a382ea7123f9e4ebf9da1" },
   "alpha-nvim": { "branch": "main", "commit": "6c6a89d5b068b5251c8bdf0dd57bb921bcfeeb09" },
+  "arm-syntax-vim": { "branch": "master", "commit": "84ee5c476bbfde87dd6b5fb9f6f207fbce335a73" },
   "ayu": { "branch": "master", "commit": "e5a9f0fa2918d6b5f57c21b3ac014314ee5e41c8" },
   "bg.nvim": { "branch": "main", "commit": "85da2c68409820466753b50c2e6f699517778a17" },
   "bufferline.nvim": { "branch": "main", "commit": "7a8734a19cd9556db8a9d860a4c278e476d76d21" },
