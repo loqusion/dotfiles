@@ -29,4 +29,10 @@ return {
     event = "BufReadPre",
     commit = "2f788c627efa7a50baa5766cfacf1852528eca28",
   },
+
+  {
+    "arm9/arm-syntax-vim",
+    event = "BufReadPre",
+    commit = "84ee5c476bbfde87dd6b5fb9f6f207fbce335a73",
+  },
 }
