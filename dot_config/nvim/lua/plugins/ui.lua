@@ -334,11 +334,32 @@ return {
       { "zr", function() require("ufo").openFoldsExceptKinds() end },
       { "zm", function() require("ufo").closeFoldsWith() end },
     },
+    -- close_fold_kinds_for_ft re-closes matching folds on every edit whenever
+    -- the buffer is open in 2+ windows (ufo re-checks window count on every
+    -- TextChanged/InsertLeave/save, not just on first open). Disable it and
+    -- close these kinds ourselves, once, on first read instead.
+    -- See: https://github.com/kevinhwang91/nvim-ufo/issues/167
+    --      https://github.com/kevinhwang91/nvim-ufo/issues/187
+    --      https://github.com/kevinhwang91/nvim-ufo/issues/299
     opts = {
-      close_fold_kinds_for_ft = {
-        default = { "imports", "comment", "region" },
-      },
+      close_fold_kinds_for_ft = { default = {} },
     },
+    -- config = function(_, opts)
+    --   require("ufo").setup(opts)
+    --   vim.api.nvim_create_autocmd("BufReadPost", {
+    --     group = Utils.augroup("ufo_close_kinds_once"),
+    --     callback = function(event)
+    --       vim.defer_fn(function()
+    --         if vim.api.nvim_get_current_buf() == event.buf then
+    --           -- openFoldsExceptKinds issues a raw `:foldclose` per matching
+    --           -- range; a single-line range (e.g. a one-line comment) can't
+    --           -- actually be folded and throws E490, so guard with pcall.
+    --           pcall(require("ufo").openFoldsExceptKinds, { "imports", "comment", "region" })
+    --         end
+    --       end, 300)
+    --     end,
+    --   })
+    -- end,
   },
   -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
   {
