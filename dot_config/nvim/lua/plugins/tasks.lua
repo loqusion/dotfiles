@@ -135,12 +135,4 @@ return {
       })
     end,
   },
-
-  -- rest client
-  {
-    "mistweaverco/kulala.nvim",
-    keys = {
-      { "<CR>", "<Cmd>lua require('kulala').run()<CR>", desc = "Send the request", ft = "http" },
-    },
-  },
 }

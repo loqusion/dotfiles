@@ -56,7 +56,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.util.dot" },
     { import = "lazyvim.plugins.extras.util.octo" },
     { import = "lazyvim.plugins.extras.util.project" },
-    { import = "lazyvim.plugins.extras.util.rest" },
     --#region DEBUG
     -- { import = "plugins.cmp" },
     -- { import = "plugins.coding" },
