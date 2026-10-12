@@ -99,5 +99,39 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 
 ----
 
+-- HACK: keep which-key triggers ahead of newer buffer-local mappings.
+-- Neovim checks buffer-local mappings newest-first. When a mapping like `gr`
+-- (e.g. LSP keymaps, which Snacks sets after attach) is newer than which-key's
+-- `nowait` `g` trigger, typing `g` waits for more keys, and then `gc` resolves
+-- to the `gc` operator instead of `gcc`, so `gcc` does nothing. which-key
+-- expects its triggers to be added after other mappings, so re-add them.
+vim.api.nvim_create_autocmd("SafeState", {
+  group = Utils.augroup("which_key_trigger_order"),
+  callback = function()
+    if not package.loaded["which-key"] or require("which-key.state").state then
+      return
+    end
+    if vim.api.nvim_get_mode().mode ~= "n" then
+      return
+    end
+    local buf = vim.api.nvim_get_current_buf()
+    local newer = {} ---@type string[] lhs of non-trigger mappings newer than the current one
+    for _, map in ipairs(vim.api.nvim_buf_get_keymap(buf, "n")) do
+      if map.desc and map.desc:find("which-key-trigger", 1, true) then
+        for _, lhs in ipairs(newer) do
+          if vim.startswith(lhs, map.lhs) then
+            local wk_buf = require("which-key.buf")
+            wk_buf.clear({ buf = buf, mode = "n" })
+            wk_buf.get({ buf = buf, mode = "n" })
+            return
+          end
+        end
+      else
+        newer[#newer + 1] = map.lhs
+      end
+    end
+  end,
+})
+
 -- clear lazyvim autocmds
 vim.api.nvim_clear_autocmds({ group = "lazyvim_json_conceal" })
