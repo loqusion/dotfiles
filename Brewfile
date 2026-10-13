@@ -1,24 +1,37 @@
-tap "cormacrelf/tap"
+# GNU compiler collection for aarch64-elf
+brew "aarch64-elf-gcc"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# GNU binary tools for native development
+brew "binutils"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
 # Incredibly fast JavaScript runtime, bundler, test runner, and package manager
 brew "bun"
 # Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
+# Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
+brew "clang-format"
 # Cross-platform make
 brew "cmake"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# Reference implementation for the Development Containers specification
+brew "devcontainer"
 # Program that can automate interactive applications
 brew "expect"
 # Modern, maintained replacement for ls
 brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
 # User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# GNU debugger
+brew "gdb"
 # GitHub command-line tool
 brew "gh"
 # Syntax-highlighting pager for git and diff output
@@ -31,30 +44,42 @@ brew "grc"
 brew "helix"
 # Command-line benchmarking tool
 brew "hyperfine"
+# Tools and libraries to manipulate images in select formats
+brew "imagemagick"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Handy way to save and run project-specific commands
 brew "just"
 # Simple terminal UI for git commands
 brew "lazygit"
+# Next-gen compiler infrastructure
+brew "llvm"
 # Package manager for the Lua programming language
 brew "luarocks"
+# Utility for directing compilation
+brew "make"
+# Show markdown documents on text terminals
+brew "mdcat"
+# Menu-driven communications program
+brew "minicom"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Port scanning utility for large networks
 brew "nmap"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
 # Modern shell for the GitHub era
 brew "nushell"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
+# Generic machine emulator and virtualizer
+brew "qemu"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Rust toolchain installer
 brew "rustup"
 # Cross-shell prompt for astronauts
 brew "starship"
+# System performance benchmark tool
+brew "sysbench"
 # Very fast implementation of tldr in Rust
 brew "tealdeer"
 # Program that allows you to count code, quickly
@@ -63,6 +88,8 @@ brew "tokei"
 brew "topgrade"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# GNU Binutils for x86_64-linux-gnu cross development
+brew "x86_64-linux-gnu-binutils"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # Multi-track audio editor and recorder
@@ -71,6 +98,8 @@ cask "audacity"
 cask "claude"
 # Terminal-based AI coding assistant
 cask "claude-code"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
 # API documentation browser and code snippet manager
 cask "dash@6"
 # Voice and text chat software
@@ -84,6 +113,10 @@ cask "ghostty"
 cask "github"
 # Web browser
 cask "google-chrome"
+# Native desktop AI assistant from Google
+cask "google-gemini"
+# Free and open-source media player
+cask "iina"
 # Free and open-source painting and sketching program
 cask "krita"
 # Full TeX Live distribution without GUI applications
@@ -184,6 +217,7 @@ vscode "miguelsolorio.fluent-icons"
 vscode "mikestead.dotenv"
 vscode "monokai.theme-monokai-pro-vscode"
 vscode "mquandalle.graphql"
+vscode "ms-azuretools.vscode-containers"
 vscode "ms-azuretools.vscode-docker"
 vscode "ms-ceintl.vscode-language-pack-ja"
 vscode "ms-dotnettools.csharp"
@@ -199,7 +233,11 @@ vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode-remote.remote-ssh"
 vscode "ms-vscode-remote.remote-ssh-edit"
 vscode "ms-vscode-remote.remote-wsl"
+vscode "ms-vscode.cmake-tools"
+vscode "ms-vscode.cpp-devtools"
 vscode "ms-vscode.cpptools"
+vscode "ms-vscode.cpptools-extension-pack"
+vscode "ms-vscode.cpptools-themes"
 vscode "ms-vscode.remote-explorer"
 vscode "ms-vscode.vscode-typescript-next"
 vscode "ms-vsliveshare.vsliveshare"
