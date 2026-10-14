@@ -57,6 +57,7 @@ abbr tarify "tar czpvf"
 abbr untar "tar xvf"
 abbr glow "glow -p"
 abbr ub unbuffer
+abbr m make
 
 abbr parup --set-cursor 'paru -Gpa % | bat -l PKGBUILD'
 alias paru-orphans 'paru -Qdtq'
