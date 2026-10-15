@@ -38,6 +38,22 @@ opt.tabstop = 4 -- Default tab width 4 spaces
 opt.textwidth = 120 -- Maximum width of text
 opt.virtualedit = "block" -- Allow positioning cursor where there is no text in visual block mode
 
+-- LazyVim leaves 'clipboard' empty over SSH, so plain yanks never reach OSC 52.
+-- Copy via OSC 52, but paste from the unnamed register: OSC 52 reads are
+-- unsupported by many terminals and would block until timeout.
+opt.clipboard = "unnamedplus"
+if vim.env.SSH_CONNECTION then
+  local osc52 = require("vim.ui.clipboard.osc52")
+  local function paste()
+    return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
+  end
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") },
+    paste = { ["+"] = paste, ["*"] = paste },
+  }
+end
+
 local normal_font = "SauceCodePro NF"
 local cjk_font = "Noto Serif CJK JP"
 local emoji_font = "Twemoji"
