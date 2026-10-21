@@ -289,6 +289,8 @@ return {
   -- better macros
   {
     "ecthelionvi/NeoComposer.nvim",
+    -- FIXME: Yanking and pasting in macros does not work as expected
+    enabled = false,
     dependencies = { "kkharji/sqlite.lua" },
     keys = {
       { "q", mode = { "n", "x" } },

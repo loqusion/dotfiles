@@ -60,6 +60,19 @@ map("n", "<leader>wo", "<C-w>o", { desc = "Close other windows" })
 
 map("n", "<leader>fe", "<cmd>edit<cr>", { desc = "Re-edit file" })
 
+-- expr mapping (rather than feedkeys) keeps the `Q` keystroke out of the
+-- recorded register when stopping
+local function Q()
+  if vim.fn.reg_recording() ~= "" then
+    return "q"
+  else
+    return "qq"
+  end
+end
+
+map({ "n", "x" }, "q", "@q", { desc = "Execute macro" })
+map({ "n", "x" }, "Q", Q, { expr = true, desc = "Record macro" })
+
 map("n", "<leader>cR", Utils.runlua, { desc = "Run Lua" })
 
 map("n", "<leader>gC", function()
