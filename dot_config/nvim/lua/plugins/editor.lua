@@ -164,6 +164,22 @@ return {
         -- search, and then the rest of the word I type is interpreted as vim
         -- commands, resulting in who-knows-what.
         search = { enabled = false },
+        char = {
+          config = function(opts)
+            local is_macro = not (vim.fn.reg_executing() == "" and vim.fn.reg_recording() == "")
+
+            -- autohide flash when in operator-pending mode or when
+            -- recording/executing a macro
+            opts.autohide = opts.autohide or is_macro or (vim.fn.mode(true):find("no") and vim.v.operator == "y")
+
+            -- disable jump labels when not enabled, when using a count,
+            -- or when recording/executing a macro
+            opts.jump_labels = opts.jump_labels and vim.v.count == 0 and not is_macro
+
+            -- Show jump labels only in operator-pending mode
+            -- opts.jump_labels = vim.v.count == 0 and vim.fn.mode(true):find("o")
+          end,
+        },
       },
     },
   },
