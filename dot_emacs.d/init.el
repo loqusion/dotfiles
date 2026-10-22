@@ -198,7 +198,8 @@
  ;; If there is more than one, they won't work right.
  '(menu-bar-mode nil)
  '(package-selected-packages
-   '(evil-visualstar evil-goggles evil-args evil-nerd-commenter evil-surround evil-escape avy esup evil which-key magit))
+   '(avy esup evil evil-args evil-escape evil-goggles evil-nerd-commenter
+	 evil-surround evil-visualstar magit which-key))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
  '(tool-bar-mode nil))
