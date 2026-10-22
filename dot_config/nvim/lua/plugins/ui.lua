@@ -192,34 +192,37 @@ return {
 
   {
     "petertriho/nvim-scrollbar",
+    branch = "refactor/v2", -- TODO: Remove this line after 2026-11-16
     event = "BufReadPost",
-    dependencies = {
-      "kevinhwang91/nvim-hlslens",
-    },
     config = function()
       local scrollbar = require("scrollbar")
       local palette = require("utils.palette")
       scrollbar.setup({
-        handle = { color = palette.overlay0 },
-        excluded_filetypes = {
-          "TelescopePrompt",
-          "cmp_docs",
-          "cmp_menu",
-          "noice",
-          "notify",
-          "prompt",
+        providers = { cursor = false },
+        scrollbar = {
+          thumb = {
+            highlight = { bg = palette.overlay0 },
+          },
         },
         marks = {
-          Search = { color = palette.search },
-          Error = { color = palette.error },
-          Warn = { color = palette.warning },
-          Info = { color = palette.info },
-          Hint = { color = palette.hint },
-          Misc = { color = palette.misc },
+          Search = { highlight = { fg = palette.search } },
+          Error = { highlight = { fg = palette.error } },
+          Warn = { highlight = { fg = palette.warning } },
+          Info = { highlight = { fg = palette.info } },
+          Hint = { highlight = { fg = palette.hint } },
+          Misc = { highlight = { fg = palette.misc } },
         },
-        handlers = { cursor = false },
+        exclude = {
+          filetypes = {
+            "TelescopePrompt",
+            "cmp_docs",
+            "cmp_menu",
+            "noice",
+            "notify",
+            "prompt",
+          },
+        },
       })
-      require("scrollbar.handlers.search").setup({ override_lens = function() end })
     end,
   },
 
