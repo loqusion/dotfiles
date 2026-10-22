@@ -199,11 +199,6 @@ return {
       local palette = require("utils.palette")
       scrollbar.setup({
         providers = { cursor = false },
-        scrollbar = {
-          thumb = {
-            highlight = { bg = palette.overlay0 },
-          },
-        },
         marks = {
           Search = { highlight = { fg = palette.search } },
           Error = { highlight = { fg = palette.error } },
@@ -211,16 +206,6 @@ return {
           Info = { highlight = { fg = palette.info } },
           Hint = { highlight = { fg = palette.hint } },
           Misc = { highlight = { fg = palette.misc } },
-        },
-        exclude = {
-          filetypes = {
-            "TelescopePrompt",
-            "cmp_docs",
-            "cmp_menu",
-            "noice",
-            "notify",
-            "prompt",
-          },
         },
       })
     end,
