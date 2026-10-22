@@ -3,6 +3,8 @@ README.md
 
 repos/
 
+Brewfile
+
 .docker/
 .ssh/*
 .claude/*
