@@ -47,7 +47,16 @@ keybind = super+ctrl+shift+l=resize_split:right,50
 keybind = super+ctrl+shift+plus=equalize_splits
 keybind = super+ctrl+shift+==equalize_splits
 
+{{ if eq .chezmoi.os "darwin" -}}
+## Option-key dashes (kitty keyboard protocol in fish/nvim otherwise
+## receives alt+minus instead of the composed character)
+keybind = alt+minus=text:–
+keybind = alt+shift+minus=text:—
+{{- end }}
+
+{{ if eq .chezmoi.os "linux" -}}
 # Mitigate startup delay (uncomment if this isn't detected automatically)
 # gtk-single-instance = true
+{{- end }}
 
 # vim: ft=conf
