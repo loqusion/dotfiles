@@ -321,8 +321,8 @@ return {
     dev = true,
     dependencies = { "kkharji/sqlite.lua" },
     keys = {
-      { "q", mode = { "n", "x" } },
       { "Q", mode = { "n", "x" } },
+      { "@", mode = { "n", "x" } },
       "<m-q>",
       "<c-p>",
       "<c-n>",
@@ -330,7 +330,7 @@ return {
     opts = {
       queue_most_recent = true,
       keymaps = {
-        play_macro = "q",
+        play_macro = "@",
         toggle_record = "Q",
       },
     },

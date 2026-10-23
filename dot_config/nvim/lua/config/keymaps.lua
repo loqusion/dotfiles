@@ -17,6 +17,17 @@ local function unmap(modes, lhs, opts)
   vim.keymap.del(modes, lhs, opts)
 end
 
+local function map_default(modes, lhs, rhs, opts)
+  for _, mode in ipairs(type(modes) == "table" and modes or { modes }) do
+    local claimed = vim.iter(vim.api.nvim_get_keymap(mode)):any(function(m)
+      return m.lhs == lhs and not (m.desc or ""):match("^:help .*%-default$")
+    end)
+    if not claimed then
+      map(mode, lhs, rhs, opts)
+    end
+  end
+end
+
 map({ "n", "x" }, "<Space>", "<Nop>")
 
 unmap("n", "<C-Up>")
@@ -37,6 +48,9 @@ map({ "n", "x" }, "g#", "<Nop>")
 
 map({ "n", "x" }, "x", '"_x', { desc = "Delete char" })
 map({ "n", "x" }, "X", '"_X', { desc = "Delete prev char" })
+
+map_default({ "n", "x" }, "q", "<Nop>", { desc = "which_key_ignore" })
+map_default({ "n", "x" }, "Q", "q", { desc = "which_key_ignore" })
 
 local function l()
   vim.cmd([[exe 'normal! ' .. (foldclosed(line('.')) != -1 ? (mode() == 'n' ? 'zo0' : 'zogv0') : v:count1 .. 'l')]])
