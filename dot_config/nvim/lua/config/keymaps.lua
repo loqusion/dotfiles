@@ -49,7 +49,12 @@ map({ "n", "x" }, "g#", "<Nop>")
 map({ "n", "x" }, "x", '"_x', { desc = "Delete char" })
 map({ "n", "x" }, "X", '"_X', { desc = "Delete prev char" })
 
-map_default({ "n", "x" }, "q", "<Nop>", { desc = "which_key_ignore" })
+if vim.fn.has("nvim-0.13") == 1 then
+  -- Use q for multiple cursors
+  map_default({ "n", "x" }, "q", "Q")
+else
+  map_default({ "n", "x" }, "q", "<Nop>", { desc = "which_key_ignore" })
+end
 map_default({ "n", "x" }, "Q", "q", { desc = "which_key_ignore" })
 
 local function l()
