@@ -57,6 +57,34 @@ else
 end
 map_default({ "n", "x" }, "Q", "q", { desc = "which_key_ignore" })
 
+local function esc()
+  vim.cmd("noh")
+  LazyVim.cmp.actions.snippet_stop()
+end
+if vim.fn.has("nvim-0.13") == 1 then
+  local function clear_multicursors()
+    local mc_ns = vim.api.nvim_create_namespace("nvim.multicursor")
+    vim.api.nvim_buf_clear_namespace(0, mc_ns, 0, -1)
+  end
+  -- Clear search and stop snippet on escape
+  map({ "i", "s" }, "<esc>", function()
+    esc()
+    return "<esc>"
+  end, { expr = true, desc = "which_key_ignore" })
+  -- Clear search, stop snippet, and clear multicursors on escape in normal mode
+  map({ "n" }, "<esc>", function()
+    clear_multicursors()
+    esc()
+    return "<esc>"
+  end, { expr = true, desc = "which_key_ignore" })
+else
+  -- Clear search and stop snippet on escape
+  map({ "i", "n", "s" }, "<esc>", function()
+    esc()
+    return "<esc>"
+  end, { expr = true, desc = "which_key_ignore" })
+end
+
 local function l()
   vim.cmd([[exe 'normal! ' .. (foldclosed(line('.')) != -1 ? (mode() == 'n' ? 'zo0' : 'zogv0') : v:count1 .. 'l')]])
 end
