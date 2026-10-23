@@ -91,7 +91,7 @@
   "nvim-nio": { "branch": "master", "commit": "edcc181a875301dd21840189aa2f2f9ad69fc172" },
   "nvim-notify": { "branch": "master", "commit": "8701bece920b38ea289b457f902e2ad184131a5d" },
   "nvim-regexplainer": { "branch": "main", "commit": "bece261bd93a54bba428db71106ee4e570b1fc21" },
-  "nvim-scrollbar": { "branch": "refactor/v2", "commit": "d2b075af708b9534f385d8601955ada6259d27b4" },
+  "nvim-scrollbar": { "branch": "refactor/v2", "commit": "0d6d6af685bb6f7e08d925423ed36d2ec824c692" },
   "nvim-spider": { "branch": "main", "commit": "38f74f733734566bec3b23a9dcf968a5a5559cd6" },
   "nvim-surround": { "branch": "main", "commit": "2e93e154de9ff326def6480a4358bfc149d5da2c" },
   "nvim-treesitter": { "branch": "main", "commit": "29212d826054bb2948fa9d3a99eca9bf6a050eb2" },
