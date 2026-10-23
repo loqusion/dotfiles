@@ -1,3 +1,5 @@
+;;; init.el --- Emacs configuration  -*- lexical-binding: t; -*-
+
 ;; Make startup faster by reducing the frequency of garbage
 ;; collection. The default is 800 kilobytes.
 ;; The threshold is lowered again after initialization.
