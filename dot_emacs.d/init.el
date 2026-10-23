@@ -37,111 +37,18 @@
   (setf (alist-get 'alpha-background default-frame-alist) alpha))
 (set-alpha 95)
 
-;; Vim keymaps to avoid Emacs pinky
-(use-package evil
-  :demand t
-  ;; :init
-  ;; (setq evil-want-Y-yank-to-eol t)
-  :config
-  (evil-mode 1)
-  (evil-set-undo-system 'undo-redo)
-  (evil-set-leader '(normal visual motion) (kbd "SPC"))
-
-  (customize-set-variable 'evil-want-Y-yank-to-eol t)
-
-  (evil-define-key '(normal visual) 'global
-    (kbd "j") 'evil-next-visual-line
-    (kbd "k") 'evil-previous-visual-line
-    (kbd "q") 'evil-execute-last-recorded-macro
-    (kbd "Q") 'evil-record-macro))
-
-;; Shows number of matches in mode-line when searching with evil.
-(use-package evil-anzu
-  :after (evil)
-  ;; Lazy loading doesn't provide much benefit because evil-anzu
-  ;; only defines four defadvices
-  :demand t)
-
-;; Motions and text objects for delimited function arguments.
-(use-package evil-args
-  :after (evil)
-  :bind
-  (:map evil-inner-text-objects-map
-   ("a" . evil-inner-arg)
-   :map evil-outer-text-objects-map
-   ("a" . evil-outer-arg)))
-
-;; Modal-editing optimized for editing Lisp.
-;; TODO: Add lispy
-;; (use-package evil-cleverparens
-;;   :after (evil)
-;;   :hook (
-
-;; Enables two char keypress to exit most modes.
-(use-package evil-escape
-  :after (evil)
-  :hook (pre-command . evil-escape-pre-command-hook)
-  :init
-  (setq evil-escape-key-sequence "jk")
-  (setq evil-escape-unordered-key-sequence t)
-  :config
-  (message "evil-escape loaded"))
-
-;; Highlight changes with evil operations
-(use-package evil-goggles
-  :after (evil)
-  :demand t
-  :init
-  (setq evil-goggles-duration 0.1)
-  :config
-  (evil-goggles-mode t))
-
-;; Motions to comment text.
-(use-package evil-nerd-commenter
-  :after (evil)
-  :bind
-  (:map evil-normal-state-map
-   ("gc" . evilnc-comment-operator)
-   :map evil-visual-state-map
-   ("gc" . evilnc-comment-or-uncomment-lines))
-  :init
-  (setq evilnc-comment-text-object "gc"))
-
-;; Vim-style numeric incrementing and decrementing.
-(use-package evil-numbers
-  :after (evil)
-  :bind
-  (:map evil-normal-state-map
-   ("C-x =" . evil-numbers/inc-at-pt)
-   ("C-x +" . evil-numbers/inc-at-pt)
-   ("C-x -" . evil-numbers/dec-at-pt)))
-
-;; vim-surround emulation.
-(use-package evil-surround
-  :after (evil)
-  :bind
-  (:map evil-operator-state-map
-   ("s" . evil-surround-edit)
-   ("S" . evil-Surround-edit)
-   :map evil-visual-state-map
-   ("S" . evil-surround-region)
-   ("gS" . evil-Surround-region)))
-
-;; Start a * or # search from the visual selection.
-(use-package evil-visualstar
-  :after (evil)
-  :bind
-  (:map evil-visual-state-map
-   ("*" . evil-visualstar/begin-search-forward)
-   ("#" . evil-visualstar/begin-search-backward)))
-
 ;; Jump to visible text (similar to vim-easymotion)
 (use-package avy
-  :after (evil)
-  :bind
-  (:map evil-normal-state-map
-   ("s" . avy-goto-char)
-   ("S" . avy-goto-line)))
+  :bind (("C-:" . avy-goto-char-timer)
+         ("C-'" . avy-goto-char-2)
+         ("M-g g" . avy-goto-line)
+         ("M-g w" . avy-goto-word-1)
+         :map isearch-mode-map
+         ("C-'" . avy-isearch))
+  :config
+  (setq avy-timeout-seconds 0.3)
+  ;; Dim the buffer while choosing a target
+  (setq avy-background t))
 
 ;; Git porcelain
 (use-package magit
@@ -198,8 +105,7 @@
  ;; If there is more than one, they won't work right.
  '(menu-bar-mode nil)
  '(package-selected-packages
-   '(avy esup evil evil-args evil-escape evil-goggles evil-nerd-commenter
-	 evil-surround evil-visualstar magit which-key))
+   '(avy dashboard esup magit spacemacs-theme which-key zerodark-theme))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
  '(tool-bar-mode nil))
