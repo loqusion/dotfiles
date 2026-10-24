@@ -94,7 +94,7 @@ return {
       endwise = { enable = true },
       indent = {
         enable = true,
-        disable = { "rust" },
+        disable = { "rust", "c", "cpp" },
       },
       matchup = { enable = true },
       query_linter = {
