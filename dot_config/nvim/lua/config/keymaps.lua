@@ -92,6 +92,14 @@ map("n", "l", l, { desc = "which_key_ignore" })
 
 map("n", "gV", "v`[o`]", { desc = "Switch to VISUAL using last insertion/yank" })
 
+map("n", "<M-w>", function()
+  -- suppress "N fewer lines" message
+  local report = vim.o.report
+  vim.o.report = 9999
+  vim.cmd.normal("gwgc")
+  vim.o.report = report
+end, { desc = "Reflow comment" })
+
 -- ctags-based jump, disambiguates with a list when there are multiple
 -- matches (e.g. a declaration and a definition); fallback for when gd
 -- (LSP) can't resolve a cross-file definition
