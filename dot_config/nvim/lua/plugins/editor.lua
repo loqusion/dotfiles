@@ -471,6 +471,19 @@ return {
         },
       },
     },
+    config = function(_, opts)
+      require("reticle").setup(opts)
+      -- Snacks closes terminal floats inside a non-nested TermClose autocmd,
+      -- so WinEnter never fires for the window we return to
+      vim.api.nvim_create_autocmd("TermClose", {
+        group = Utils.augroup("reticle_termclose"),
+        callback = function()
+          vim.schedule(function()
+            vim.api.nvim_exec_autocmds("WinEnter", { group = "Reticle" })
+          end)
+        end,
+      })
+    end,
   },
 
   -- scope buffers to tabpages
