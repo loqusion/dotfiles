@@ -195,6 +195,13 @@ if LazyVim.has("nvim-spider") then
     :map("<leader>uS")
 end
 
+if LazyVim.has("snacks.nvim") then
+  local zen = Snacks.toggle.zen()
+  zen.opts.notify = false
+  zen:map("<leader>z")
+  zen:map("<leader>uz")
+end
+
 -- stylua: ignore
 if vim.fn.executable("lazygit") == 1 then
   -- I hate change :)
