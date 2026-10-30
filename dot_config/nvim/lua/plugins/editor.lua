@@ -159,12 +159,32 @@ return {
         -- Simulate nvim-treesitter incremental selection
         { "<C-Space>", mode = { "n", "o", "x" },
           function()
+            -- flash's builtin next/prev wrap around (shrinking past the innermost
+            -- node selects the whole file), so step through the nodes ourselves
+            -- and stop at either end
+            local nodes, idx
+            local function step(delta)
+              return function(state)
+                if not nodes then
+                  nodes = vim.list_extend({}, state.results)
+                  table.sort(nodes, function(a, b) return a.depth > b.depth end)
+                  idx = 1
+                end
+                local new = idx + delta
+                if nodes[new] then
+                  idx = new
+                  state:jump(nodes[idx])
+                end
+              end
+            end
             require("flash").treesitter({
               actions = {
-                ["<C-Space>"] = "next",
-                ["<BS>"] = "prev",
+                ["<C-Space>"] = step(1),
+                ["<BS>"] = step(-1),
               },
-              label = {before = false, after = false},
+              labels = "",
+              -- don't cover the statusline with the ⚡ prompt window
+              prompt = { enabled = false },
             })
           end, desc = "Treesitter Incremental Selection" },
       }
