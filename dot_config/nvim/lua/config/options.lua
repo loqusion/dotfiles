@@ -35,7 +35,7 @@ opt.swapfile = false -- Don't use swapfile
 opt.showcmd = false -- Don't show command in statusline
 opt.spelllang = { "en_us", "cjk" }
 opt.tabstop = 4 -- Default tab width 4 spaces
-opt.textwidth = 120 -- Maximum width of text
+opt.textwidth = 80 -- Maximum width of text
 opt.virtualedit = "block" -- Allow positioning cursor where there is no text in visual block mode
 
 -- LazyVim leaves 'clipboard' empty over SSH, so plain yanks never reach OSC 52.
