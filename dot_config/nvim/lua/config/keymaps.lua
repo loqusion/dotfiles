@@ -96,7 +96,12 @@ map({ "n", "x" }, "<M-w>", function()
   -- suppress "N fewer lines" message
   local report = vim.o.report
   vim.o.report = 9999
-  vim.cmd.normal(vim.fn.mode() == "n" and "gwgc" or "gw")
+  if vim.fn.mode() == "n" then
+    vim.cmd.normal("gwgc") -- remap needed for the `gc` textobject
+  else
+    -- noremap, otherwise `w` gets hijacked by nvim-spider's visual-mode mapping
+    vim.cmd.normal({ "gw", bang = true })
+  end
   vim.o.report = report
 end, { desc = "Reflow comment" })
 
