@@ -23,7 +23,8 @@ fish_add_path ~/.local/bin
 set -U fish_greeting ""
 
 set -Ux LESS -rQM
-set -Ux MANPAGER "nvim +Man!"
+# Only page through nvim when stdout is a terminal; otherwise emit plain text
+set -Ux MANPAGER "sh -c 'if [ -t 1 ]; then exec nvim +Man!; else exec col -bx; fi'"
 
 if string match -riq '^wezterm' $TERM_PROGRAM
     alias nvim "TERM=wezterm $(which nvim)"
