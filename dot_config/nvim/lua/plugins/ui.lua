@@ -29,7 +29,20 @@ return {
       })
     end,
     config = function(_, opts)
+      local ui = require("noice.ui")
+      local get_handler = ui.get_handler
+
+      -- HACK: See https://github.com/folke/noice.nvim/issues/1111.
+      ---@diagnostic disable-next-line: duplicate-set-field
+      ui.get_handler = function(event, ...)
+        if event == "restart" then
+          return
+        end
+        return get_handler(event, ...)
+      end
+
       require("noice").setup(opts)
+
       vim.api.nvim_create_autocmd("FileType", {
         group = Utils.augroup("noice_markdown"),
         pattern = "markdown",
