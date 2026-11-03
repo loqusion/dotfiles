@@ -207,6 +207,11 @@ return {
           Hint = { highlight = { fg = palette.hint } },
           Misc = { highlight = { fg = palette.misc } },
         },
+        exclude = {
+          filetypes = {
+            ["neo-tree"] = true,
+          },
+        },
       }))
     end,
   },
