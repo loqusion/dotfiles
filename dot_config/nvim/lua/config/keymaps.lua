@@ -120,6 +120,13 @@ map("n", "<leader>wo", "<C-w>o", { desc = "Close other windows" })
 
 map("n", "<leader>fe", "<cmd>edit<cr>", { desc = "Re-edit file" })
 
+-- builtin [count]ZR discards the session for any count in [1-8], which is easy
+-- to trigger by accident; only honor the explicit counts 8 and 9
+map("n", "ZR", function()
+  local count = vim.v.count
+  vim.cmd("normal! " .. ((count == 8 or count == 9) and count or "") .. "ZR")
+end, { desc = "which_key_ignore" })
+
 map("n", "<leader>cR", Utils.runlua, { desc = "Run Lua" })
 
 map("n", "<leader>gC", function()
