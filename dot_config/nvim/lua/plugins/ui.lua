@@ -194,10 +194,10 @@ return {
     "petertriho/nvim-scrollbar",
     branch = "refactor/v2", -- TODO: Remove this line after 2026-11-16
     event = "BufReadPost",
-    config = function()
+    config = function(_, opts)
       local scrollbar = require("scrollbar")
       local palette = require("utils.palette")
-      scrollbar.setup({
+      scrollbar.setup(vim.tbl_deep_extend("force", opts, {
         providers = { cursor = false },
         marks = {
           Search = { highlight = { fg = palette.search } },
@@ -207,7 +207,7 @@ return {
           Hint = { highlight = { fg = palette.hint } },
           Misc = { highlight = { fg = palette.misc } },
         },
-      })
+      }))
     end,
   },
 
