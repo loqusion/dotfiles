@@ -30,7 +30,7 @@ return {
           prefix = "icons",
         },
       },
-      inlay_hints = { enabled = true },
+      inlay_hints = { enabled = false },
       codelens = { enabled = false },
       document_highlight = { enabled = true },
       ---@class lspconfig.options
