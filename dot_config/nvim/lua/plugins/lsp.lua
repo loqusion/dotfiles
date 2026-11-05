@@ -122,6 +122,10 @@ return {
       -- { "???", function() require("goto-preview").goto_preview_implementation({}) end, desc = "Preview Implementation" },
       { "<leader>cP",  function() require("goto-preview").close_all_win() end,                 desc = "Preview: Close windows" },
     },
-    opts = {},
+    opts = {
+      -- above nvim-scrollbar (30) and treesitter-context (20), below noice hover (45)
+      -- nested previews count up from here (+1 each)
+      zindex = 40,
+    },
   },
 }
