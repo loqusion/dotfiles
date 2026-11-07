@@ -15,10 +15,10 @@ set -gx SUDO_EDITOR $EDITOR
 set -gx GOPATH $HOME/.go
 set -gx CARGO_HOME $HOME/.cargo
 
-fish_add_path $CARGO_HOME/bin
-fish_add_path $GOPATH/bin
-fish_add_path ~/.bin
-fish_add_path ~/.local/bin
+fish_add_path -gmP $CARGO_HOME/bin
+fish_add_path -gmP $GOPATH/bin
+fish_add_path -gmP ~/.bin
+fish_add_path -gmP ~/.local/bin
 
 set -U fish_greeting ""
 
