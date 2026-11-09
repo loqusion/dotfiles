@@ -9,6 +9,6 @@
       "",
       "#endif  // ${TM_DIRECTORY/.*[\\/\\\\](.*)/${1:/upcase}/}${TM_FILENAME_BASE/(.*)/_${1:/upcase}/}${TM_FILENAME/.*\\.(.*)/_${1:/upcase}/}_"
     ],
-    "description": "header guard. format :\n\tINCLUDE_<dirname>_<filename>_<extension>_"
+    "description": "header guard. format :\n\t<DIRNAME>_<FILENAME>_<EXTENSION>_"
   }
 }
