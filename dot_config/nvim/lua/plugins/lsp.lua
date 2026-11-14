@@ -126,6 +126,71 @@ return {
       -- above nvim-scrollbar (30) and treesitter-context (20), below noice hover (45)
       -- nested previews count up from here (+1 each)
       zindex = 40,
+      post_open_hook = function(buf, win)
+        -- remember the non-preview window this stack was opened from
+        local prev = vim.fn.win_getid(vim.fn.winnr("#"))
+        vim.w[win].preview_origin = prev ~= 0 and (vim.w[prev].preview_origin or prev) or nil
+
+        -- mappings are buffer-local, so outside a preview window they fall back to the builtin key
+        local function in_preview()
+          return vim.w["is-goto-preview-window"] == 1
+        end
+
+        vim.keymap.set("n", "q", function()
+          if not in_preview() then
+            return vim.api.nvim_feedkeys("q", "n", false)
+          end
+          vim.api.nvim_win_close(0, true)
+        end, { buffer = buf, desc = "Close preview" })
+
+        vim.keymap.set("n", "Q", function()
+          if not in_preview() then
+            return vim.api.nvim_feedkeys("Q", "n", false)
+          end
+          local origin = vim.w.preview_origin
+          require("goto-preview").close_all_win()
+          if origin and vim.api.nvim_win_is_valid(origin) then
+            vim.api.nvim_set_current_win(origin)
+          end
+        end, { buffer = buf, desc = "Close all previews" })
+
+        vim.keymap.set("n", "<CR>", function()
+          if not in_preview() then
+            return vim.api.nvim_feedkeys(vim.keycode("<CR>"), "n", false)
+          end
+          local origin = vim.w.preview_origin
+          if not (origin and vim.api.nvim_win_is_valid(origin)) then
+            return
+          end
+          local pos = vim.api.nvim_win_get_cursor(0)
+          vim.bo[buf].bufhidden = "" -- goto-preview sets "wipe"; undo it before the float closes
+          vim.bo[buf].buflisted = true -- vim.uri_to_bufnr() creates unlisted buffers
+          require("goto-preview").close_all_win()
+          vim.api.nvim_set_current_win(origin)
+          vim.cmd("normal! m'")
+          vim.api.nvim_win_set_buf(origin, buf)
+          vim.api.nvim_win_set_cursor(origin, pos)
+        end, { buffer = buf, desc = "Open preview in window" })
+
+        -- post_close_hook also fires on BufLeave, so clean up on this window's close instead
+        vim.api.nvim_create_autocmd("WinClosed", {
+          pattern = tostring(win),
+          once = true,
+          callback = vim.schedule_wrap(function()
+            if not vim.api.nvim_buf_is_valid(buf) then
+              return
+            end
+            for _, w in ipairs(vim.fn.win_findbuf(buf)) do
+              if vim.w[w]["is-goto-preview-window"] == 1 then
+                return -- still shown in another preview
+              end
+            end
+            pcall(vim.keymap.del, "n", "q", { buffer = buf })
+            pcall(vim.keymap.del, "n", "Q", { buffer = buf })
+            pcall(vim.keymap.del, "n", "<CR>", { buffer = buf })
+          end),
+        })
+      end,
     },
   },
 }
