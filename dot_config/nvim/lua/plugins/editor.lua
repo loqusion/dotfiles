@@ -147,6 +147,14 @@ return {
   {
     "folke/flash.nvim",
     keys = function()
+      local function jump_line(forward)
+        return require("flash").jump({
+          search = { mode = "search", max_length = 0, forward = forward, wrap = false, multi_window = false },
+          label = { after = { 0, 0 } },
+          pattern = "^",
+        })
+      end
+
       -- stylua: ignore
       return {
         -- disable s for operator-pending mode
@@ -156,6 +164,8 @@ return {
         { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
         { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
         { "<C-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+        { "<leader>j", mode = {"n", "x", "o"}, function() jump_line(true) end, desc = "Jump forward" },
+        { "<leader>k", mode = {"n", "x", "o"}, function() jump_line(false) end, desc = "Jump backward" },
         -- Simulate nvim-treesitter incremental selection
         { "<C-Space>", mode = { "n", "o", "x" },
           function()
