@@ -1,0 +1,15 @@
+*
+
+!.gitignore
+!init.el
+!early-init.el
+!lisp/
+!snippets/
+!templates/
+!README*
+
+**/*~
+**/\#*#
+**/.#*
+**/*.elc
+**/*.eln
