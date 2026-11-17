@@ -113,6 +113,48 @@ map("n", "gy", "g<C-]>", { desc = "Goto Definition (ctags)" })
 
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
+local function cmdline_word(dir)
+  local line, pos = vim.fn.getcmdline(), vim.fn.getcmdpos()
+  local function class(i)
+    local c = line:sub(i, i)
+    if c:match("%s") then
+      return "space"
+    elseif c:match("[%w_\128-\255]") then
+      return "word"
+    else
+      return "punct"
+    end
+  end
+  local i = pos
+  if dir < 0 then
+    i = i - 1
+    -- stylua: ignore start
+    while i >= 1 and class(i) == "space" do i = i - 1 end
+    local run = i >= 1 and class(i)
+    while i >= 1 and class(i) == run do i = i - 1 end
+    -- stylua: ignore end
+    return string.rep("<Left>", vim.fn.strchars(line:sub(i + 1, pos - 1)))
+  else
+    -- stylua: ignore start
+    while i <= #line and class(i) == "space" do i = i + 1 end
+    local run = i <= #line and class(i)
+    while i <= #line and class(i) == run do i = i + 1 end
+    -- stylua: ignore end
+    return string.rep("<Right>", vim.fn.strchars(line:sub(pos, i - 1)))
+  end
+end
+
+map("c", "<C-a>", "<Home>")
+map("c", "<C-f>", "<Right>")
+map("c", "<C-b>", "<Left>")
+map("c", "<C-d>", "<Del>")
+-- stylua: ignore start
+map("c", "<S-Left>", function() return cmdline_word(-1) end, { expr = true })
+map("c", "<M-b>", function() return cmdline_word(-1) end, { expr = true })
+map("c", "<S-Right>", function() return cmdline_word(1) end, { expr = true })
+map("c", "<M-f>", function() return cmdline_word(1) end, { expr = true })
+-- stylua: ignore end
+
 map("n", "<leader>w=", "<C-w>=", { desc = "Equalize windows" })
 map("n", "<leader>wT", "<C-w>T", { desc = "Break out into a new tab" })
 map("n", "<leader>wx", "<C-w>x", { desc = "Swap current with next" })
