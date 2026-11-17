@@ -21,8 +21,13 @@ font-family = Twemoji
 # theme = dark:Catppuccin Mocha,light:Catppuccin Latte
 theme = Catppuccin Mocha
 window-theme = ghostty
-background-opacity = 0.9
+{{- if eq .chezmoi.os "darwin" }}
+background-opacity = 0.8
 background-blur = macos-glass-regular
+{{- else }}
+background-opacity = 0.9
+background-blur = true
+{{- end }}
 
 # Keybindings
 
