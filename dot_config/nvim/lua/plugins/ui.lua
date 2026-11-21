@@ -318,6 +318,7 @@ return {
       { "<leader>br", false },
       { "<leader>bl", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete Buffers to the Right" },
       { "<leader>bh", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete Buffers to the Left" },
+      { "<leader>bx", "<Cmd>BufferLinePickClose<CR>", desc = "Pick Buffer to Delete" },
       { "<C-S-L>", "<Cmd>BufferLineMoveNext<CR>", desc = "Move Buffer to the Right" },
       { "<C-S-H>", "<Cmd>BufferLineMovePrev<CR>", desc = "Move Buffer to the Left" },
     },
