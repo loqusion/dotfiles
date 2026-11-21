@@ -23,7 +23,7 @@ return {
   -- visualize and resolve conflicts
   {
     "akinsho/git-conflict.nvim",
-    version = "",
+    version = "*",
     event = "LazyFile",
     opts = {
       default_mappings = false,
