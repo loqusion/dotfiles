@@ -100,6 +100,15 @@ return {
 
       table.insert(opts.sections.lualine_x, 3, { "overseer" })
 
+      -- Only show diagnostics if they are enabled
+      for _, component in ipairs(opts.sections.lualine_c) do
+        if component[1] == "diagnostics" then
+          component.cond = function()
+            return vim.diagnostic.is_enabled({ bufnr = 0 })
+          end
+        end
+      end
+
       opts.options = vim.tbl_deep_extend("force", opts.options, {
         component_separators = "|",
         section_separators = { left = "", right = "" },
