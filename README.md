@@ -10,6 +10,4 @@ Theme is rewrite of [AmadeusWM's config](https://github.com/AmadeusWM/dotfiles-h
 
 </details>
 
-[Inspiration for this setup](https://www.atlassian.com/git/tutorials/dotfiles)
-
 [Bootstrap a new system](https://github.com/loqusion/bootstrap)
