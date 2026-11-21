@@ -135,3 +135,13 @@ vim.api.nvim_create_autocmd("SafeState", {
 
 -- clear lazyvim autocmds
 vim.api.nvim_clear_autocmds({ group = "lazyvim_json_conceal" })
+vim.api.nvim_clear_autocmds({ group = "lazyvim_wrap_spell" })
+
+-- wrap in text filetypes (replaces lazyvim_wrap_spell, without spell)
+vim.api.nvim_create_autocmd("FileType", {
+  group = Utils.augroup("wrap"),
+  pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
+  callback = function()
+    vim.opt_local.wrap = true
+  end,
+})
