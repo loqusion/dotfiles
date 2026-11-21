@@ -220,7 +220,7 @@ return {
       local scrollbar = require("scrollbar")
       local palette = require("utils.palette")
       scrollbar.setup(vim.tbl_deep_extend("force", opts, {
-        providers = { cursor = false },
+        providers = { cursor = false, diagnostic = false },
         marks = {
           Search = { highlight = { fg = palette.search } },
           Error = { highlight = { fg = palette.error } },
