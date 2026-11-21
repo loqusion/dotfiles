@@ -30,18 +30,43 @@ return {
     },
     config = function(_, opts)
       require("git-conflict").setup(opts)
+
+      local modes = { "n" }
+      local keys = {
+        { "co", "<Plug>(git-conflict-ours)", "Choose Ours" },
+        { "ct", "<Plug>(git-conflict-theirs)", "Choose Theirs" },
+        { "cb", "<Plug>(git-conflict-both)", "Choose Both" },
+        { "c0", "<Plug>(git-conflict-none)", "Choose None" },
+      }
+      local group = vim.api.nvim_create_augroup("UserGitConflict", { clear = true })
+
       vim.api.nvim_create_autocmd("User", {
-        group = "GitConflictCommands",
+        group = group,
         pattern = "GitConflictDetected",
         callback = function()
-          local buffer = vim.api.nvim_get_current_buf()
-          local function map(mode, l, r, desc)
-            vim.keymap.set(mode, l, r, { buffer = buffer, desc = "Git Conflict: " .. desc })
+          local buf = vim.api.nvim_get_current_buf()
+          if vim.b[buf].conflict_mappings_set then
+            return
           end
-          map("n", "co", "<Plug>(git-conflict-ours)", "Choose Ours")
-          map("n", "cb", "<Plug>(git-conflict-both)", "Choose Both")
-          map("n", "c0", "<Plug>(git-conflict-none)", "Choose None")
-          map("n", "ct", "<Plug>(git-conflict-theirs)", "Choose Theirs")
+          vim.b[buf].conflict_mappings_set = true
+          for _, k in ipairs(keys) do
+            vim.keymap.set(modes, k[1], k[2], { buffer = buf, desc = "Git Conflict: " .. k[3] })
+          end
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("User", {
+        group = group,
+        pattern = "GitConflictResolved",
+        callback = function()
+          local buf = vim.api.nvim_get_current_buf()
+          if not vim.b[buf].conflict_mappings_set then
+            return
+          end
+          for _, k in ipairs(keys) do
+            pcall(vim.keymap.del, modes, k[1], { buffer = buf })
+          end
+          vim.b[buf].conflict_mappings_set = false
         end,
       })
     end,
