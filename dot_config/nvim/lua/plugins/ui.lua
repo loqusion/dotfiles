@@ -219,7 +219,8 @@ return {
     config = function(_, opts)
       local scrollbar = require("scrollbar")
       local palette = require("utils.palette")
-      scrollbar.setup(vim.tbl_deep_extend("force", opts, {
+      ---@type ScrollbarUserConfig
+      local overrides = {
         providers = { cursor = false, diagnostic = false },
         marks = {
           Search = { highlight = { fg = palette.search } },
@@ -234,7 +235,8 @@ return {
             ["neo-tree"] = true,
           },
         },
-      }))
+      }
+      scrollbar.setup(vim.tbl_deep_extend("force", opts, overrides))
     end,
   },
 
