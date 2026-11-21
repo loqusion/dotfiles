@@ -9,6 +9,7 @@ vim.g.lazyvim_cmp = "nvim-cmp"
 vim.g.lazyvim_explorer = "neo-tree"
 vim.g.snacks_animate = true
 vim.g.autoformat = false
+vim.diagnostic.enable(false)
 
 vim.g.maplocalleader = [[\]]
 opt.background = style.background
